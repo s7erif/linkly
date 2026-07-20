@@ -25,6 +25,7 @@ for (const file of await filesUnder(sourceRoot)) {
   const isDatabase = normalized.startsWith("src/lib/database/");
   const isService = normalized.startsWith("src/services/") || normalized.startsWith("src/lib/services/") || normalized.startsWith("src/use-cases/");
   const isFeature = normalized.startsWith("src/features/");
+  const isRoute = normalized.startsWith("src/app/") && normalized.endsWith("/route.ts");
 
   if ((source.includes("@/generated/prisma") || source.includes("@prisma/client")) && !isRepository && !isDatabase) {
     report(file, "ARCH001", "Prisma imports are restricted to repository implementations and database infrastructure");
@@ -55,6 +56,12 @@ for (const file of await filesUnder(sourceRoot)) {
   }
   if (isRepository && /\bas\s+(?:Promise<)?(?:[A-Za-z]+DTO)/.test(source)) {
     report(file, "ARCH009", "Repository DTOs require explicit mapping; type assertions are forbidden");
+  if (isRoute && /@\/(?:repositories|services|use-cases|lib\/database)|generated\/prisma|@prisma\/client|\bprisma\s*\./.test(source)) {
+    report(file, "ARCH012", "Route handlers may call composed application use cases only");
+  }
+  if (isRoute && /from\s+["'](?:react|next\/headers|next\/navigation)/.test(source)) {
+    report(file, "ARCH013", "Transport routes must not depend on React or UI/runtime context helpers");
+  }
   }
   if (source.includes("@/lib/prisma") || source.includes("./lib/prisma") || source.includes("../prisma")) {
     report(file, "ARCH010", "The legacy Prisma access path is forbidden");

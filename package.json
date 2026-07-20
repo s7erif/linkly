@@ -14,7 +14,8 @@
     "architecture:check": "node scripts/check-architecture.mjs",
     "verify:foundation": "npm run architecture:check && npm run typecheck && npm run lint && npm run build",
     "test": "vitest run",
-    "verify:sprint2": "npm run architecture:check && npm run typecheck && npm run test && npm run lint && npm run build"
+    "verify:sprint2": "npm run architecture:check && npm run typecheck && npm run test && npm run lint && npm run build",
+    "verify:sprint3": "npm run architecture:check && npm run typecheck && npm run test && npm run lint && npm run build"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",
