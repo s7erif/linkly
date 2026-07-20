@@ -1,25 +1,36 @@
-# Task Report: Foundation Architecture Review
+# Task Report: Sprint 1 Architecture Remediation
 
 ## Outcome
 
-A read-only architecture review was completed. No implementation code was changed.
+Every violation in FOUNDATION_REVIEW.md was eliminated. FOUNDATION_REVIEW_V2.md marks every gate PASS and approves the Sprint 1 foundation architecture.
 
-The foundation is not approved for Sprint 2. High-severity violations remain around Prisma type leakage, direct Prisma writes in AccessCodeService, business policy in repositories, public concrete-repository exports, and unenforced transaction boundaries.
+## Files changed
 
-## Files created or updated
+- src/repositories/contracts.ts: persistence-independent commands, read/write ports, and UnitOfWork.
+- src/repositories/*.repository.ts: explicit DTO mappers, root read implementations, and transaction-only write implementations.
+- src/repositories/prisma-unit-of-work.ts: sole construction boundary for write repositories.
+- src/services/*.service.ts: policy-owned orchestration with no Prisma or UI dependencies.
+- src/lib/services/*.service.ts: legacy behavior moved behind DTO/repository ports.
+- src/lib/composition-root.ts: infrastructure wiring.
+- src/app/api/cards/route.js, src/app/card/[hash]/page.tsx, src/lib/auth.js: active compatibility consumers now call services.
+- src/features/*/index.ts: concrete repository exports removed.
+- src/dto/legacy.dto.ts and src/dto/index.ts: compatibility DTOs.
+- src/lib/database/* and src/lib/prisma.js: obsolete public/direct Prisma access removed.
+- scripts/check-architecture.mjs and package.json: automated architecture enforcement and complete verification gate.
+- FOUNDATION_REVIEW_V2.md: final passing review.
+- docs/ARCHITECTURE.md: remediated boundaries documented.
+- test-prisma.ts and scratch-query.js: direct diagnostic Prisma access removed.
 
-- FOUNDATION_REVIEW.md: Complete verification matrix, evidence, severity-ranked violations, confirmed strengths, and Sprint 2 gate.
-- TASK_REPORT.md: Review handoff required by project workflow.
+## Verification
 
-## Verification performed
-
-- Scanned foundation services for React, UI, NextResponse, request, cookie, and header dependencies.
-- Scanned repositories for framework and request-context imports.
-- Inspected repository interfaces, selects, return types, and persistence input types.
-- Inspected every new service write and transaction boundary.
-- Scanned active application code for direct Prisma access and foundation bypasses.
-- Inspected feature barrel exports for bypass paths.
+- npm run architecture:check: passed.
+- npm run typecheck: passed.
+- npm run lint: passed with zero errors.
+- npm run build: passed.
+- npm run verify:foundation: passed.
 
 ## Risks
 
-Proceeding to Sprint 2 would make the current boundary violations part of new feature contracts and increase migration cost. The Critical and High gate items in FOUNDATION_REVIEW.md should be resolved first.
+- Legacy schema compatibility remains intentionally supported, but it no longer bypasses the foundation.
+- ESLint reports existing warning-only image optimization and generated-file notices; no lint errors remain.
+- No Prisma schema or migration changes were required.
