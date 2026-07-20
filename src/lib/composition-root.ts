@@ -28,3 +28,20 @@ export function getAccessCodeService(): AccessCodeService {
   if (!secret) throw new Error("ACCESS_CODE_HMAC_KEY is required to construct AccessCodeService");
   return new AccessCodeService({ accessCodes: accessCodeReads, unitOfWork }, createAccessCodeHasher(secret));
 }
+
+import { CreateCard, CreateCustomer, CreateEditorSession, GenerateInitialAccessCode, ReadPublicCard, VerifyAccessCode } from "@/use-cases";
+import { createHmacSecretHasher, secureAccessCodeGenerator, secureSessionTokenGenerator } from "@/services/credential-security.service";
+
+export const createCustomer = new CreateCustomer(unitOfWork);
+export const createCard = new CreateCard(unitOfWork);
+export const readPublicCard = new ReadPublicCard(cardReads);
+export function getAccessCodeUseCases() {
+  const secret = getEnvironment().ACCESS_CODE_HMAC_KEY;
+  if (!secret) throw new Error("ACCESS_CODE_HMAC_KEY is required to construct access-code use cases");
+  const hasher = createHmacSecretHasher(secret);
+  return {
+    generateInitialAccessCode: new GenerateInitialAccessCode(unitOfWork, hasher, secureAccessCodeGenerator),
+    verifyAccessCode: new VerifyAccessCode(unitOfWork, hasher),
+    createEditorSession: new CreateEditorSession(unitOfWork, hasher, secureSessionTokenGenerator),
+  };
+}

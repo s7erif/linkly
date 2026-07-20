@@ -23,7 +23,7 @@ for (const file of await filesUnder(sourceRoot)) {
   const source = await readFile(file, "utf8");
   const isRepository = normalized.startsWith("src/repositories/");
   const isDatabase = normalized.startsWith("src/lib/database/");
-  const isService = normalized.startsWith("src/services/") || normalized.startsWith("src/lib/services/");
+  const isService = normalized.startsWith("src/services/") || normalized.startsWith("src/lib/services/") || normalized.startsWith("src/use-cases/");
   const isFeature = normalized.startsWith("src/features/");
 
   if ((source.includes("@/generated/prisma") || source.includes("@prisma/client")) && !isRepository && !isDatabase) {
