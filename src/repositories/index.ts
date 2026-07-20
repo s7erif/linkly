@@ -1,5 +1,5 @@
 export type {
-  AccessCodeLookupCriteria,
+  AccessCodeEventCommand,
   AccessCodeReadRepository,
   AccessCodeWriteRepository,
   CardLookupCriteria,
@@ -10,6 +10,7 @@ export type {
   CreateCustomerCommand,
   CustomerReadRepository,
   CustomerWriteRepository,
+  CreateEditorSessionCommand,
   EditorSessionWriteRepository,
   TransactionRepositories,
   UnitOfWork,

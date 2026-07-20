@@ -30,3 +30,9 @@ export class ConflictError extends AppError {
 export class ConfigurationError extends AppError {
   constructor(message: string) { super(message, 500, "CONFIGURATION_ERROR"); }
 }
+export class InvalidAccessCodeError extends UnauthorizedError {
+  constructor() { super("Access code is invalid, expired, or revoked"); }
+}
+export class InitialAccessCodeExistsError extends ConflictError {
+  constructor(cardId: string) { super("An access code already exists for this card", { cardId }); }
+}

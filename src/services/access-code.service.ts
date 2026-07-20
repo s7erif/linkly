@@ -21,7 +21,8 @@ export class AccessCodeService {
   constructor(private readonly dependencies: AccessCodeServiceDependencies, private readonly hasher: AccessCodeHasher) {}
   async verify(input: string): Promise<AccessCodeDTO | null> {
     const hash = await this.hasher.hash(accessCodeSchema.parse(input));
-    return this.dependencies.accessCodes.findByHash({ hash, statuses: ["ACTIVE"], validAt: new Date() });
+    const accessCode = await this.dependencies.accessCodes.findByHash(hash);
+    return accessCode?.status === "ACTIVE" && (!accessCode.expiresAt || accessCode.expiresAt > new Date()) ? accessCode : null;
   }
   async issue(input: IssueAccessCodeInput): Promise<IssuedAccessCodeDTO> {
     const command = issueAccessCodeSchema.parse(input);

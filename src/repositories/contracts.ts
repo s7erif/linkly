@@ -64,11 +64,6 @@ export interface CardWriteRepository {
   incrementAccessVersion(cardId: string): Promise<void>;
 }
 
-export interface AccessCodeLookupCriteria {
-  hash: Uint8Array<ArrayBuffer>;
-  statuses: readonly AccessCodeStatus[];
-  validAt: Date;
-}
 export interface CreateAccessCodeCommand {
   cardId: string;
   codeHash: Uint8Array<ArrayBuffer>;
@@ -83,15 +78,22 @@ export interface UpdateAccessCodesCommand {
   revokedAt: Date;
 }
 export interface AccessCodeReadRepository {
-  findByHash(criteria: AccessCodeLookupCriteria): Promise<AccessCodeDTO | null>;
+  findByHash(hash: Uint8Array<ArrayBuffer>): Promise<AccessCodeDTO | null>;
   findLatestByCard(cardId: string, statuses: readonly AccessCodeStatus[]): Promise<AccessCodeDTO | null>;
   findMaximumVersion(cardId: string): Promise<number | null>;
+}
+export interface AccessCodeEventCommand {
+  accessCodeId: string; occurredAt: Date; success: boolean; ipHash?: Uint8Array<ArrayBuffer>; userAgentHash?: Uint8Array<ArrayBuffer>; failureReason?: string | null;
 }
 export interface AccessCodeWriteRepository {
   create(command: CreateAccessCodeCommand): Promise<AccessCodeDTO>;
   updateMany(command: UpdateAccessCodesCommand): Promise<number>;
+  markUsed(accessCodeId: string, usedAt: Date): Promise<void>;
+  recordEvent(command: AccessCodeEventCommand): Promise<import("@/dto").AccessCodeEventDTO>;
 }
+export interface CreateEditorSessionCommand { cardId: string; accessCodeId: string; tokenHash: Uint8Array<ArrayBuffer>; expiresAt: Date; }
 export interface EditorSessionWriteRepository {
+  create(command: CreateEditorSessionCommand): Promise<import("@/dto").EditorSessionDTO>;
   revokeByCard(cardId: string, activeStatus: "ACTIVE", revokedAt: Date): Promise<number>;
 }
 export interface UnitOfWork {
