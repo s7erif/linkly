@@ -1,31 +1,35 @@
-# TASK_REPORT.md
+# Task Report: Sprint 1 — Backend Foundation
 
-## Task ID: DB-02
-**Goal:** Create the Analytics model for tracking card engagement.
+## Outcome
 
-### Summary
-Successfully created the `Analytics` model and established a one-to-one relationship with the `BusinessCard` model, preserving backward compatibility and keeping existing APIs and components intact.
+Sprint 1 foundation is implemented and verified. The configured PostgreSQL database is migrated, Prisma reports no drift, strict TypeScript passes, targeted lint passes, and the Next.js production build succeeds.
 
-### Changed Files
-- `prisma/schema.prisma`
+## Files changed
 
-### Prisma Schema Changes
-- Added the `Analytics` model with fields: `id`, `businessCardId` (marked as `@unique`), `pageViews`, `qrScans`, `linkClicks`, `createdAt`, and `updatedAt`.
-- Added a one-to-one relationship field `analytics Analytics?` to the `BusinessCard` model.
-- Configured a foreign key constraint linking `Analytics.businessCardId` to `BusinessCard.id` with `ON DELETE CASCADE`.
+- prisma/schema.prisma: Prisma 7 PostgreSQL schema, OI models, indexes, relations/cascades, and exact legacy mappings.
+- prisma/migrations: clean-install baseline, additive OI migration, and active-code invariant.
+- src/lib/database: adapter-backed Prisma factory, Node/Next singleton, and transaction helper.
+- src/repositories: Customer, Card, and AccessCode interfaces and explicit-select implementations.
+- src/services: transactional Customer, Card, and AccessCode services.
+- src/dto, src/validation, src/types, src/features: public foundation contracts and feature entry points.
+- src/lib/errors.ts, env.ts, logger.ts: centralized errors, validated environment, and redacting structured logger.
+- src/lib/services/social-link.service.ts: legacy transaction explicitly targets its compatibility model.
+- package.json, package-lock.json, tsconfig.json, .env.example, .gitignore: tooling and configuration.
+- docs/ARCHITECTURE.md and docs/DATABASE_SPEC.md: implementation state recorded.
 
-### Migration Summary
-- Manually generated a safe Prisma migration SQL file (`prisma/migrations/20260719055145_phase2_add_analytics/migration.sql`).
-- The migration creates the `Analytics` table with default values of `0` for the tracking counters.
-- It adds a `UNIQUE INDEX` on `businessCardId` to enforce the one-to-one relationship.
-- Regenerated the Prisma client successfully (`npx prisma generate`).
+## Verification
 
-### Risks
-- **None:** The change is purely additive. Because the relation is optional on the `BusinessCard` side (`Analytics?`), existing cards without analytics records will not cause runtime errors. Future API implementations can safely create analytics records for new cards or backfill existing ones.
+- Prisma validate and generate: passed.
+- Prisma migrate deploy and status: passed; database is up to date.
+- Prisma datasource-to-schema diff: no difference.
+- Strict TypeScript: passed.
+- Targeted ESLint: passed.
+- Next.js 16.2.6 production build: passed.
 
-### Validation Performed
-- Validated Prisma schema syntax.
-- Confirmed Prisma client successfully regenerated, indicating the schema and relationships are correct.
+## Risks and notes
 
-### Suggested Next Task
-- **Task DASH-01:** Begin Phase 3 (Dashboard Refactor) by building the base reusable UI foundation atoms (`Button`, `Input`, `Card`).
+- Legacy tables are intentionally retained until compatibility reads and migrated data are verified.
+- The existing database had legacy tables but no recorded history. They were introspected, matched, and baselined before additive migrations.
+- Workers must create Prisma per request with the factory and Hyperdrive; the singleton is for the current Node/Next runtime.
+- npm reports 10 audit findings (1 low, 8 moderate, 1 high). Forced upgrades were not attempted because they may be breaking.
+- Access-code plaintext is returned only once. Storage uses HMAC-SHA-256; composition must provide a random key of at least 32 bytes.
