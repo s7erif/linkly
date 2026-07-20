@@ -67,6 +67,20 @@ for (const file of await filesUnder(sourceRoot)) {
     report(file, "ARCH010", "The legacy Prisma access path is forbidden");
   }
 }
+const canonicalThemeDirectory = join(sourceRoot, "components", "themes");
+const canonicalThemes = (await filesUnder(canonicalThemeDirectory)).filter((file) => /Theme\.tsx$/.test(file));
+if (canonicalThemes.length !== 1 || !canonicalThemes[0]?.endsWith(`${sep}DefaultTheme.tsx`)) {
+  failures.push(`src/components/themes: ARCH014: exactly one canonical DefaultTheme component is allowed`);
+}
+if (canonicalThemes[0]) {
+  const themeSource = await readFile(canonicalThemes[0], "utf8");
+  if (/\bfetch\s*\(|@\/(?:repositories|services|use-cases|lib\/composition-root)/.test(themeSource)) {
+    report(canonicalThemes[0], "ARCH015", "Themes must be presentation-only and may not fetch data or call application layers");
+  }
+  if (!/card:\s*PublicCardDTO/.test(themeSource) || !/appearance:\s*AppearanceSettings/.test(themeSource)) {
+    report(canonicalThemes[0], "ARCH016", "The canonical theme contract is PublicCardDTO plus AppearanceSettings only");
+  }
+}
 if (failures.length) {
   console.error("Architecture boundary check failed:\n" + failures.map((failure) => `- ${failure}`).join("\n"));
   process.exit(1);
