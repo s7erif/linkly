@@ -1,36 +1,35 @@
-# Task Report: Sprint 1 Architecture Remediation
+# Task Report: Sprint 2 Application Use Cases
 
 ## Outcome
 
-Every violation in FOUNDATION_REVIEW.md was eliminated. FOUNDATION_REVIEW_V2.md marks every gate PASS and approves the Sprint 1 foundation architecture.
+Implemented and verified the six requested application use cases without adding UI, API routes, React pages, middleware, or analytics.
 
 ## Files changed
 
-- src/repositories/contracts.ts: persistence-independent commands, read/write ports, and UnitOfWork.
-- src/repositories/*.repository.ts: explicit DTO mappers, root read implementations, and transaction-only write implementations.
-- src/repositories/prisma-unit-of-work.ts: sole construction boundary for write repositories.
-- src/services/*.service.ts: policy-owned orchestration with no Prisma or UI dependencies.
-- src/lib/services/*.service.ts: legacy behavior moved behind DTO/repository ports.
-- src/lib/composition-root.ts: infrastructure wiring.
-- src/app/api/cards/route.js, src/app/card/[hash]/page.tsx, src/lib/auth.js: active compatibility consumers now call services.
-- src/features/*/index.ts: concrete repository exports removed.
-- src/dto/legacy.dto.ts and src/dto/index.ts: compatibility DTOs.
-- src/lib/database/* and src/lib/prisma.js: obsolete public/direct Prisma access removed.
-- scripts/check-architecture.mjs and package.json: automated architecture enforcement and complete verification gate.
-- FOUNDATION_REVIEW_V2.md: final passing review.
-- docs/ARCHITECTURE.md: remediated boundaries documented.
-- test-prisma.ts and scratch-query.js: direct diagnostic Prisma access removed.
+- src/use-cases/: CreateCustomer, CreateCard, GenerateInitialAccessCode, VerifyAccessCode, CreateEditorSession, ReadPublicCard, shared validation/clock support, and barrel.
+- src/validation/use-cases.ts and validation barrel: Zod schemas and input types.
+- src/dto/editor-session.dto.ts, access-code-event.dto.ts, and DTO barrel: safe use-case results.
+- src/services/credential-security.service.ts: Web Crypto access-code, HMAC, session-token, and token-hash abstractions.
+- src/repositories/contracts.ts: access-code event, usage, and editor-session commands.
+- src/repositories/access-code.repository.ts and editor-session.repository.ts: explicit event/session mappings and transaction writes.
+- src/repositories/prisma-unit-of-work.ts: explicit unique-conflict mapping.
+- src/lib/composition-root.ts: production use-case wiring.
+- src/lib/errors.ts and barrel: explicit InvalidAccessCodeError and InitialAccessCodeExistsError.
+- scripts/check-architecture.mjs: application use cases included in service-boundary enforcement.
+- tests/sprint-2-use-cases.test.ts and vitest.config.ts: 10 isolated use-case tests.
+- package.json and package-lock.json: Vitest and Sprint 2 verification scripts.
+- SPRINT_2_REVIEW.md: final compliance review.
+- docs/ARCHITECTURE.md: application-layer architecture recorded.
 
 ## Verification
 
-- npm run architecture:check: passed.
-- npm run typecheck: passed.
-- npm run lint: passed with zero errors.
-- npm run build: passed.
-- npm run verify:foundation: passed.
+- npm run verify:sprint2: passed.
+- Architecture enforcement: passed.
+- Strict TypeScript: passed.
+- Vitest: 10/10 passed.
+- ESLint: zero errors.
+- Production build: passed.
 
 ## Risks
 
-- Legacy schema compatibility remains intentionally supported, but it no longer bypasses the foundation.
-- ESLint reports existing warning-only image optimization and generated-file notices; no lint errors remain.
-- No Prisma schema or migration changes were required.
+See SPRINT_2_REVIEW.md. Primary deferred concerns are API-level rate limiting/transport, unknown-code telemetry without an accessCodeId, and future editor-session lifecycle use cases.
