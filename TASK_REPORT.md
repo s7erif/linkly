@@ -1,33 +1,26 @@
-# Task Report: Sprint 3 Transport Layer
+# Task Report — Sprint 4 Public Experience
 
 ## Outcome
 
-Implemented and verified the five requested HTTP route handlers without adding React UI, dashboard/editor pages, analytics ingestion, or authentication middleware.
+Implemented the first canonical public card experience, one isolated default theme, a validated appearance model, an instant live preview, and secure appearance persistence through the application layer.
 
-## Files changed
+## Modified files
 
-- src/transport/http/: response contracts, request parsing, route wrapper, domain-error conversion, request IDs, logging, schemas, and cache policy.
-- src/app/customers/route.ts: POST /customers.
-- src/app/cards/route.ts: POST /cards.
-- src/app/access/verify/route.ts: POST /access/verify.
-- src/app/editor/session/route.ts: POST /editor/session.
-- src/app/card/[slug]/route.ts: GET /card/[slug].
-- src/app/card/[hash]/page.tsx: removed because Next.js prohibits a page and route at the same public URL.
-- scripts/check-architecture.mjs: transport dependency enforcement.
-- tests/sprint-3-routes.test.ts: six transport tests.
-- package.json: verify:sprint3 gate.
-- SPRINT_3_REVIEW.md: route, errors, caching, compliance, risks, and test evidence.
-- docs/API_SPEC.md and docs/ARCHITECTURE.md: transport contract recorded.
-
-## Verification
-
-- npm run verify:sprint3: passed.
-- Architecture enforcement: passed.
-- Strict TypeScript: passed.
-- Vitest: 16/16 combined tests passed.
-- ESLint: zero errors.
-- Next.js production build: passed and exposes all five requested routes.
+- `src/types/appearance.ts` — typed appearance contract.
+- `src/validation/appearance.ts`, `src/validation/use-cases.ts`, `src/validation/index.ts` — validation, defaults, and write input.
+- `src/dto/card.dto.ts` — adds validated appearance to public DTOs.
+- `src/use-cases/read-public-card.ts`, `src/services/card.service.ts` — explicitly map stored theme configuration to appearance.
+- `src/use-cases/update-card-appearance.ts`, `src/use-cases/index.ts` — authorized transactional save use case.
+- `src/repositories/contracts.ts`, `src/repositories/card.repository.ts`, `src/repositories/editor-session.repository.ts`, `src/repositories/index.ts` — domain ports and transaction-scoped persistence/query implementation.
+- `src/lib/composition-root.ts` — composes the new use case.
+- `src/app/cards/[id]/appearance/route.ts` — thin save transport.
+- `src/components/themes/DefaultTheme.tsx`, `default-theme.module.css` — sole canonical theme.
+- `src/features/public-card/*`, `src/app/c/[slug]/page.tsx` — public endpoint consumer and page.
+- `src/features/appearance/*`, `src/app/appearance/[slug]/page.tsx` — controls and live preview.
+- `scripts/check-architecture.mjs` — theme isolation enforcement.
+- `docs/SPRINT_4_ARCHITECTURE.md` — architecture addendum.
+- `SPRINT_4_REVIEW.md` — sprint compliance review.
 
 ## Risks
 
-See SPRINT_3_REVIEW.md. Key deferred concerns are rate limiting/authentication, CDN trace-ID handling on cache hits, explicit cache invalidation, and retirement of legacy /api routes.
+See `SPRINT_4_REVIEW.md`. Principal risks are the `/c` route compromise, client-side initial fetch, missing media resolution, and the intentional dependency on an already-issued editor session.
