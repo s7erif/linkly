@@ -1,52 +1,559 @@
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "rhel-openssl-1.0.x", "rhel-openssl-3.0.x"]
+  provider        = "prisma-client"
+  previewFeatures = ["partialIndexes"]
+  output          = "../src/generated/prisma"
+  runtime         = "cloudflare"
 }
 
 datasource db {
-  provider  = "postgresql"
+  provider = "postgresql"
 }
 
-model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
+enum CustomerStatus {
+  ACTIVE
+  SUSPENDED
+  ARCHIVED
+}
+
+enum CardStatus {
+  DRAFT
+  PUBLISHED
+  UNPUBLISHED
+  ARCHIVED
+}
+
+enum CardVisibility {
+  PUBLIC
+  UNLISTED
+  PRIVATE
+}
+
+enum AccessCodeStatus {
+  ACTIVE
+  ROTATED
+  REVOKED
+  EXPIRED
+}
+
+enum EditorSessionStatus {
+  ACTIVE
+  REVOKED
+  EXPIRED
+}
+
+enum ThemeStatus {
+  DRAFT
+  ACTIVE
+  RETIRED
+}
+
+enum SubscriptionStatus {
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  PAUSED
+  CANCELED
+  EXPIRED
+}
+
+enum AnalyticsEventType {
+  VISIT
+  QR_SCAN
+  CONTACT_SAVE
+  BUTTON_CLICK
+  SOCIAL_CLICK
+}
+
+enum DeviceType {
+  DESKTOP
+  MOBILE
+  TABLET
+  UNKNOWN
+}
+
+enum BotClassification {
+  HUMAN
+  BOT
+  SUSPECTED
+  UNKNOWN
+}
+
+enum MediaKind {
+  AVATAR
+  COVER
+  LOGO
+  IMAGE
+  DOCUMENT
+}
+
+enum MediaStatus {
+  PENDING
+  READY
+  FAILED
+  DELETED
+}
+
+enum AuditActorType {
+  ADMIN
+  EDITOR
+  SYSTEM
+}
+
+enum LegacyEntityType {
+  BUSINESS_CARD
+  USER
+  SOCIAL_LINK
+  ANALYTICS
+}
+
+model AdminUser {
+  id           String          @id @default(uuid()) @db.Uuid
+  email        String          @unique
+  name         String?
+  passwordHash String?
+  isActive     Boolean         @default(true)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  deletedAt    DateTime?
+  roles        AdminUserRole[]
+  auditLogs    AuditLog[]      @relation("AdminAuditLogs")
+
+  @@index([isActive, deletedAt])
+}
+
+model AdminRole {
+  id        String          @id @default(uuid()) @db.Uuid
+  key       String          @unique
+  name      String
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  users     AdminUserRole[]
+}
+
+model AdminUserRole {
+  adminUserId String    @db.Uuid
+  roleId      String    @db.Uuid
+  createdAt   DateTime  @default(now())
+  adminUser   AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+  role        AdminRole @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([adminUserId, roleId])
+  @@index([roleId])
+}
+
+model Customer {
+  id            String         @id @default(uuid()) @db.Uuid
+  displayName   String
+  email         String?
+  phone         String?
+  status        CustomerStatus @default(ACTIVE)
+  locale        String         @default("en")
+  timezone      String         @default("UTC")
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  deletedAt     DateTime?
+  cards         Card[]         @relation("CustomerCards")
+  subscriptions Subscription[] @relation("CustomerSubscriptions")
+  media         MediaAsset[]   @relation("CustomerMedia")
+  settings      Setting[]      @relation("CustomerSettings")
+
+  @@index([email])
+  @@index([phone])
+  @@index([status, deletedAt])
+}
+
+model Card {
+  id                String               @id @default(uuid()) @db.Uuid
+  customerId        String               @db.Uuid
+  themeId           String?              @db.Uuid
+  slug              String               @unique
+  name              String
+  status            CardStatus           @default(DRAFT)
+  visibility        CardVisibility       @default(PRIVATE)
+  publishedAt       DateTime?
+  accessVersion     Int                  @default(1)
+  themeConfig       Json?
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+  deletedAt         DateTime?
+  customer          Customer             @relation("CustomerCards", fields: [customerId], references: [id], onDelete: Restrict)
+  theme             Theme?               @relation("ThemeCards", fields: [themeId], references: [id], onDelete: SetNull)
+  profile           CardProfile?
+  buttons           CardButton[]         @relation("CardButtons")
+  socialLinks       SocialLink[]         @relation("CardSocialLinks")
+  sections          CardSection[]        @relation("CardSections")
+  accessCodes       AccessCode[]         @relation("CardAccessCodes")
+  editorSessions    EditorSession[]      @relation("CardEditorSessions")
+  media             CardMedia[]          @relation("CardMediaLinks")
+  events            AnalyticsEvent[]     @relation("CardEvents")
+  aggregates        AnalyticsAggregate[] @relation("CardAggregates")
+  legacyIdentifiers LegacyIdentifier[]   @relation("CardLegacyIdentifiers")
+  settings          Setting[]            @relation("CardSettings")
+
+  @@index([customerId, deletedAt])
+  @@index([status, visibility, deletedAt])
+  @@index([themeId])
+}
+
+model CardProfile {
+  cardId      String   @id @db.Uuid
+  fullName    String
+  headline    String?
+  company     String?
+  bio         String?
+  email       String?
+  phone       String?
+  website     String?
+  address     String?
+  countryCode String?  @db.VarChar(2)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  card        Card     @relation(fields: [cardId], references: [id], onDelete: Cascade)
+}
+
+model CardSection {
+  id        String    @id @default(uuid()) @db.Uuid
+  cardId    String    @db.Uuid
+  kind      String
+  title     String?
+  position  Int
+  isVisible Boolean   @default(true)
+  config    Json?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  card      Card      @relation("CardSections", fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@unique([cardId, position])
+}
+
+model Theme {
+  id           String      @id @default(uuid()) @db.Uuid
+  key          String      @unique
+  name         String
+  version      Int         @default(1)
+  status       ThemeStatus @default(DRAFT)
+  configSchema Json?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  cards        Card[]      @relation("ThemeCards")
+
+  @@index([status])
+}
+
+model SocialLink {
+  id        String           @id @default(uuid()) @db.Uuid
+  cardId    String           @db.Uuid
+  platform  String
+  label     String?
+  url       String
+  position  Int
+  isVisible Boolean          @default(true)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  deletedAt DateTime?
+  card      Card             @relation("CardSocialLinks", fields: [cardId], references: [id], onDelete: Cascade)
+  events    AnalyticsEvent[] @relation("SocialEvents")
+
+  @@unique([cardId, position])
+  @@index([cardId, isVisible, position])
+  @@map("CardSocialLink")
+}
+
+model CardButton {
+  id        String           @id @default(uuid()) @db.Uuid
+  cardId    String           @db.Uuid
+  label     String
+  url       String
+  position  Int
+  isVisible Boolean          @default(true)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  deletedAt DateTime?
+  card      Card             @relation("CardButtons", fields: [cardId], references: [id], onDelete: Cascade)
+  events    AnalyticsEvent[] @relation("ButtonEvents")
+
+  @@unique([cardId, position])
+  @@index([cardId, isVisible, position])
+  @@map("CardButton")
+}
+
+model AccessCode {
+  id            String            @id @default(uuid()) @db.Uuid
+  cardId        String            @db.Uuid
+  codeHash      Bytes             @unique
+  version       Int
+  status        AccessCodeStatus  @default(ACTIVE)
+  expiresAt     DateTime?
+  lastUsedAt    DateTime?
+  useCount      Int               @default(0)
+  rotatedFromId String?           @unique @db.Uuid
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  revokedAt     DateTime?
+  card          Card              @relation("CardAccessCodes", fields: [cardId], references: [id], onDelete: Cascade)
+  rotatedFrom   AccessCode?       @relation("CodeRotation", fields: [rotatedFromId], references: [id], onDelete: SetNull)
+  rotatedTo     AccessCode?       @relation("CodeRotation")
+  sessions      EditorSession[]   @relation("CodeSessions")
+  usage         AccessCodeUsage[] @relation("CodeUsage")
+
+  @@unique([cardId, version])
+  @@unique([cardId], map: "AccessCode_one_active_per_card", where: { status: "ACTIVE" })
+  @@index([cardId, status])
+  @@index([expiresAt])
+}
+
+model AccessCodeUsage {
+  id            String     @id @default(uuid()) @db.Uuid
+  accessCodeId  String     @db.Uuid
+  occurredAt    DateTime   @default(now())
+  success       Boolean
+  ipHash        Bytes?
+  userAgentHash Bytes?
+  failureReason String?
+  accessCode    AccessCode @relation("CodeUsage", fields: [accessCodeId], references: [id], onDelete: Cascade)
+
+  @@index([accessCodeId, occurredAt])
+}
+
+model EditorSession {
+  id           String              @id @default(uuid()) @db.Uuid
+  cardId       String              @db.Uuid
+  accessCodeId String              @db.Uuid
+  tokenHash    Bytes               @unique
+  status       EditorSessionStatus @default(ACTIVE)
+  expiresAt    DateTime
+  lastSeenAt   DateTime?
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+  revokedAt    DateTime?
+  card         Card                @relation("CardEditorSessions", fields: [cardId], references: [id], onDelete: Cascade)
+  accessCode   AccessCode          @relation("CodeSessions", fields: [accessCodeId], references: [id], onDelete: Cascade)
+
+  @@index([cardId, status])
+  @@index([expiresAt])
+}
+
+model Plan {
+  id             String         @id @default(uuid()) @db.Uuid
+  key            String         @unique
+  name           String
+  priceMinor     Int
+  currency       String         @db.VarChar(3)
+  intervalMonths Int
+  isActive       Boolean        @default(true)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  subscriptions  Subscription[] @relation("PlanSubscriptions")
+
+  @@index([isActive])
+}
+
+model Subscription {
+  id                 String             @id @default(uuid()) @db.Uuid
+  customerId         String             @db.Uuid
+  planId             String             @db.Uuid
+  status             SubscriptionStatus
   provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  providerRef        String?            @unique
+  currentPeriodStart DateTime?
+  currentPeriodEnd   DateTime?
+  canceledAt         DateTime?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  customer           Customer           @relation("CustomerSubscriptions", fields: [customerId], references: [id], onDelete: Restrict)
+  plan               Plan               @relation("PlanSubscriptions", fields: [planId], references: [id], onDelete: Restrict)
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
+  @@index([customerId, status])
+  @@index([planId, status])
+  @@index([status, currentPeriodEnd])
 }
 
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+model MediaAsset {
+  id          String      @id @default(uuid()) @db.Uuid
+  customerId  String      @db.Uuid
+  kind        MediaKind
+  status      MediaStatus @default(PENDING)
+  storageKey  String      @unique
+  fileName    String
+  contentType String
+  byteSize    BigInt
+  checksum    String?
+  width       Int?
+  height      Int?
+  altText     String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  deletedAt   DateTime?
+  customer    Customer    @relation("CustomerMedia", fields: [customerId], references: [id], onDelete: Restrict)
+  cards       CardMedia[] @relation("MediaCardLinks")
+
+  @@index([customerId, status, deletedAt])
 }
 
-model User {
-  id            String             @id @default(cuid())
+model CardMedia {
+  cardId       String     @db.Uuid
+  mediaAssetId String     @db.Uuid
+  role         MediaKind
+  position     Int        @default(0)
+  createdAt    DateTime   @default(now())
+  card         Card       @relation("CardMediaLinks", fields: [cardId], references: [id], onDelete: Cascade)
+  mediaAsset   MediaAsset @relation("MediaCardLinks", fields: [mediaAssetId], references: [id], onDelete: Restrict)
+
+  @@id([cardId, mediaAssetId, role])
+  @@index([cardId, role, position])
+}
+
+model AnalyticsEvent {
+  id           String             @id @default(uuid()) @db.Uuid
+  cardId       String             @db.Uuid
+  type         AnalyticsEventType
+  occurredAt   DateTime           @default(now())
+  receivedAt   DateTime           @default(now())
+  sessionHash  Bytes?
+  visitorHash  Bytes?
+  countryCode  String?            @db.VarChar(2)
+  browser      String?
+  os           String?
+  deviceType   DeviceType         @default(UNKNOWN)
+  botClass     BotClassification  @default(UNKNOWN)
+  buttonId     String?            @db.Uuid
+  socialLinkId String?            @db.Uuid
+  referrerHost String?
+  metadata     Json?
+  card         Card               @relation("CardEvents", fields: [cardId], references: [id], onDelete: Cascade)
+  button       CardButton?        @relation("ButtonEvents", fields: [buttonId], references: [id], onDelete: SetNull)
+  socialLink   SocialLink?        @relation("SocialEvents", fields: [socialLinkId], references: [id], onDelete: SetNull)
+
+  @@index([cardId, occurredAt])
+  @@index([type, occurredAt])
+  @@index([occurredAt])
+  @@index([cardId, countryCode, occurredAt])
+}
+
+model AnalyticsAggregate {
+  id             String             @id @default(uuid()) @db.Uuid
+  cardId         String             @db.Uuid
+  period         String
+  bucketStart    DateTime
+  eventType      AnalyticsEventType
+  dimension      String
+  dimensionValue String
+  count          BigInt             @default(0)
+  uniqueCount    BigInt?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+  card           Card               @relation("CardAggregates", fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@unique([cardId, period, bucketStart, eventType, dimension, dimensionValue])
+  @@index([cardId, period, bucketStart])
+}
+
+model Setting {
+  id         String    @id @default(uuid()) @db.Uuid
+  customerId String?   @db.Uuid
+  cardId     String?   @db.Uuid
+  scope      String
+  key        String
+  value      Json
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  customer   Customer? @relation("CustomerSettings", fields: [customerId], references: [id], onDelete: Cascade)
+  card       Card?     @relation("CardSettings", fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@unique([scope, customerId, cardId, key])
+  @@index([customerId, key])
+  @@index([cardId, key])
+}
+
+model AuditLog {
+  id              String         @id @default(uuid()) @db.Uuid
+  actorType       AuditActorType
+  adminUserId     String?        @db.Uuid
+  editorSessionId String?        @db.Uuid
+  action          String
+  resourceType    String
+  resourceId      String?
+  success         Boolean        @default(true)
+  ipHash          Bytes?
+  metadata        Json?
+  createdAt       DateTime       @default(now())
+  adminUser       AdminUser?     @relation("AdminAuditLogs", fields: [adminUserId], references: [id], onDelete: SetNull)
+
+  @@index([resourceType, resourceId, createdAt])
+  @@index([actorType, createdAt])
+}
+
+model LegacyIdentifier {
+  id           String           @id @default(uuid()) @db.Uuid
+  entityType   LegacyEntityType
+  legacySystem String
+  legacyId     String
+  legacyHash   String?
+  cardId       String?          @db.Uuid
+  createdAt    DateTime         @default(now())
+  card         Card?            @relation("CardLegacyIdentifiers", fields: [cardId], references: [id], onDelete: Restrict)
+
+  @@unique([legacySystem, entityType, legacyId])
+  @@unique([legacySystem, legacyHash])
+  @@index([legacyHash])
+  @@index([cardId])
+}
+
+// Prototype compatibility tables remain mapped until migration is verified.
+model LegacyUser {
+  id            String               @id @default(cuid())
   name          String?
-  email         String?            @unique
+  email         String?              @unique
   emailVerified DateTime?
   image         String?
-  accounts      Account[]
-  sessions      Session[]
-  cards         BusinessCard[]
+  accounts      LegacyAccount[]
+  sessions      LegacySession[]
+  cards         LegacyBusinessCard[]
+
+  @@map("User")
 }
 
-model BusinessCard {
-  id              String   @id @default(cuid())
+model LegacyAccount {
+  id                String     @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              LegacyUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("Account")
+}
+
+model LegacySession {
+  id           String     @id @default(cuid())
+  sessionToken String     @unique
+  userId       String
+  expires      DateTime
+  user         LegacyUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("Session")
+}
+
+model LegacyVerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("VerificationToken")
+}
+
+model LegacyBusinessCard {
+  id              String             @id @default(cuid())
   name            String
   title           String
   company         String
@@ -54,51 +561,46 @@ model BusinessCard {
   phone           String?
   email           String?
   website         String?
-  bio             String?  @db.Text
-  avatar          String?  @db.Text
-  backgroundImage String?  @db.Text
-  socialLinks     String   @db.Text // JSON string of social media links
-  templateId      String   @default("classic")
-  urlHash         String   @unique
-  slug            String   @unique
-  isActive        Boolean  @default(true)
-  createTime      DateTime @default(now())
-  updateTime      DateTime @updatedAt
+  bio             String?
+  avatar          String?
+  backgroundImage String?
+  socialLinksJson String             @map("socialLinks")
+  templateId      String             @default("classic")
+  urlHash         String             @unique @default(cuid())
+  slug            String             @unique
+  isActive        Boolean            @default(true)
+  createTime      DateTime           @default(now())
+  updateTime      DateTime
   userId          String
-  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  links           SocialLink[]
-  analytics       Analytics?
+  user            LegacyUser         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  socialLinks     LegacySocialLink[]
+  analytics       LegacyAnalytics?
+
+  @@map("BusinessCard")
 }
 
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
-}
-
-model SocialLink {
-  id             String       @id @default(cuid())
+model LegacySocialLink {
+  id             String             @id @default(cuid())
   businessCardId String
   platform       String
   url            String
-  order          Int          @default(0)
-  createdAt      DateTime     @default(now())
-
-  businessCard   BusinessCard @relation(fields: [businessCardId], references: [id], onDelete: Cascade)
+  order          Int                @default(0)
+  createdAt      DateTime           @default(now())
+  businessCard   LegacyBusinessCard @relation(fields: [businessCardId], references: [id], onDelete: Cascade)
 
   @@index([businessCardId])
+  @@map("SocialLink")
 }
 
-model Analytics {
-  id             String       @id @default(cuid())
-  businessCardId String       @unique
-  pageViews      Int          @default(0)
-  qrScans        Int          @default(0)
-  linkClicks     Int          @default(0)
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
+model LegacyAnalytics {
+  id             String             @id @default(cuid())
+  businessCardId String             @unique
+  pageViews      Int                @default(0)
+  qrScans        Int                @default(0)
+  linkClicks     Int                @default(0)
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime
+  businessCard   LegacyBusinessCard @relation(fields: [businessCardId], references: [id], onDelete: Cascade)
 
-  businessCard   BusinessCard @relation(fields: [businessCardId], references: [id], onDelete: Cascade)
+  @@map("Analytics")
 }
