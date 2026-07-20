@@ -1,4 +1,4 @@
 export { CustomerService } from "@/services/customer.service";
-export { PrismaCustomerRepository } from "@/repositories/customer.repository";
-export type { CustomerRepository } from "@/repositories/customer.repository";
+export type { CustomerServiceDependencies } from "@/services/customer.service";
 export type { CustomerDTO } from "@/dto/customer.dto";
+export type { CreateCustomerInput, UpdateCustomerInput } from "@/validation/customer";

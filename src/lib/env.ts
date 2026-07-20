@@ -3,6 +3,7 @@ import { z } from "zod";
 const schema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   DATABASE_URL: z.string().min(1),
+  ACCESS_CODE_HMAC_KEY: z.string().min(32).optional(),
   DIRECT_URL: z.string().min(1).optional(),
   LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
 });

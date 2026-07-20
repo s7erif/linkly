@@ -1,38 +1,34 @@
 import type { CustomerDTO } from "@/dto";
 import { NotFoundError } from "@/lib/errors";
-import { withTransaction } from "@/lib/database";
-import { PrismaCustomerRepository, type CustomerRepository } from "@/repositories";
+import type { CustomerReadRepository, UnitOfWork, UpdateCustomerCommand } from "@/repositories";
 import { createCustomerSchema, updateCustomerSchema, type CreateCustomerInput, type UpdateCustomerInput } from "@/validation";
 
+export interface CustomerServiceDependencies {
+  customers: CustomerReadRepository;
+  unitOfWork: UnitOfWork;
+}
 export class CustomerService {
-  constructor(private readonly repository?: CustomerRepository) {}
+  constructor(private readonly dependencies: CustomerServiceDependencies) {}
   async get(id: string): Promise<CustomerDTO> {
-    const customer = await this.repository?.findById(id);
-    if (this.repository && !customer) throw new NotFoundError("Customer", id);
-    if (customer) return customer;
-    return withTransaction(async (tx) => {
-      const found = await new PrismaCustomerRepository(tx).findById(id);
-      if (!found) throw new NotFoundError("Customer", id);
-      return found;
-    });
+    const customer = await this.dependencies.customers.findById(id, null);
+    if (!customer) throw new NotFoundError("Customer", id);
+    return customer;
   }
   async create(input: CreateCustomerInput): Promise<CustomerDTO> {
-    const data = createCustomerSchema.parse(input);
-    return withTransaction((tx) => new PrismaCustomerRepository(tx).create(data));
+    const command = createCustomerSchema.parse(input);
+    return this.dependencies.unitOfWork.execute(({ customers }) => customers.create(command));
   }
   async update(id: string, input: UpdateCustomerInput): Promise<CustomerDTO> {
-    const data = updateCustomerSchema.parse(input);
-    return withTransaction(async (tx) => {
-      const repository = new PrismaCustomerRepository(tx);
-      if (!await repository.findById(id)) throw new NotFoundError("Customer", id);
-      return repository.update(id, data);
+    const command: UpdateCustomerCommand = updateCustomerSchema.parse(input);
+    return this.dependencies.unitOfWork.execute(async ({ customers }) => {
+      if (!await customers.findById(id, null)) throw new NotFoundError("Customer", id);
+      return customers.update(id, command);
     });
   }
   async archive(id: string): Promise<CustomerDTO> {
-    return withTransaction(async (tx) => {
-      const repository = new PrismaCustomerRepository(tx);
-      if (!await repository.findById(id)) throw new NotFoundError("Customer", id);
-      return repository.archive(id, new Date());
+    return this.dependencies.unitOfWork.execute(async ({ customers }) => {
+      if (!await customers.findById(id, null)) throw new NotFoundError("Customer", id);
+      return customers.update(id, { status: "ARCHIVED", deletedAt: new Date() });
     });
   }
 }
