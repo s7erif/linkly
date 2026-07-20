@@ -1,35 +1,33 @@
-# Task Report: Sprint 2 Application Use Cases
+# Task Report: Sprint 3 Transport Layer
 
 ## Outcome
 
-Implemented and verified the six requested application use cases without adding UI, API routes, React pages, middleware, or analytics.
+Implemented and verified the five requested HTTP route handlers without adding React UI, dashboard/editor pages, analytics ingestion, or authentication middleware.
 
 ## Files changed
 
-- src/use-cases/: CreateCustomer, CreateCard, GenerateInitialAccessCode, VerifyAccessCode, CreateEditorSession, ReadPublicCard, shared validation/clock support, and barrel.
-- src/validation/use-cases.ts and validation barrel: Zod schemas and input types.
-- src/dto/editor-session.dto.ts, access-code-event.dto.ts, and DTO barrel: safe use-case results.
-- src/services/credential-security.service.ts: Web Crypto access-code, HMAC, session-token, and token-hash abstractions.
-- src/repositories/contracts.ts: access-code event, usage, and editor-session commands.
-- src/repositories/access-code.repository.ts and editor-session.repository.ts: explicit event/session mappings and transaction writes.
-- src/repositories/prisma-unit-of-work.ts: explicit unique-conflict mapping.
-- src/lib/composition-root.ts: production use-case wiring.
-- src/lib/errors.ts and barrel: explicit InvalidAccessCodeError and InitialAccessCodeExistsError.
-- scripts/check-architecture.mjs: application use cases included in service-boundary enforcement.
-- tests/sprint-2-use-cases.test.ts and vitest.config.ts: 10 isolated use-case tests.
-- package.json and package-lock.json: Vitest and Sprint 2 verification scripts.
-- SPRINT_2_REVIEW.md: final compliance review.
-- docs/ARCHITECTURE.md: application-layer architecture recorded.
+- src/transport/http/: response contracts, request parsing, route wrapper, domain-error conversion, request IDs, logging, schemas, and cache policy.
+- src/app/customers/route.ts: POST /customers.
+- src/app/cards/route.ts: POST /cards.
+- src/app/access/verify/route.ts: POST /access/verify.
+- src/app/editor/session/route.ts: POST /editor/session.
+- src/app/card/[slug]/route.ts: GET /card/[slug].
+- src/app/card/[hash]/page.tsx: removed because Next.js prohibits a page and route at the same public URL.
+- scripts/check-architecture.mjs: transport dependency enforcement.
+- tests/sprint-3-routes.test.ts: six transport tests.
+- package.json: verify:sprint3 gate.
+- SPRINT_3_REVIEW.md: route, errors, caching, compliance, risks, and test evidence.
+- docs/API_SPEC.md and docs/ARCHITECTURE.md: transport contract recorded.
 
 ## Verification
 
-- npm run verify:sprint2: passed.
+- npm run verify:sprint3: passed.
 - Architecture enforcement: passed.
 - Strict TypeScript: passed.
-- Vitest: 10/10 passed.
+- Vitest: 16/16 combined tests passed.
 - ESLint: zero errors.
-- Production build: passed.
+- Next.js production build: passed and exposes all five requested routes.
 
 ## Risks
 
-See SPRINT_2_REVIEW.md. Primary deferred concerns are API-level rate limiting/transport, unknown-code telemetry without an accessCodeId, and future editor-session lifecycle use cases.
+See SPRINT_3_REVIEW.md. Key deferred concerns are rate limiting/authentication, CDN trace-ID handling on cache hits, explicit cache invalidation, and retirement of legacy /api routes.
