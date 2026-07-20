@@ -1,53 +1,48 @@
+
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-
-// Generate unique hash for card URL
-async function generateUniqueHash() {
-  let hash = "";
-  let exists = true;
-  while (exists) {
-    hash = Math.random().toString(36).substring(2, 10);
-    const count = await prisma.businessCard.count({
-      where: { urlHash: hash }
-    });
-    if (count === 0) {
-      exists = false;
-    }
-  }
-  return hash;
-}
+import {
+  cardsQuerySchema,
+  deleteCardQuerySchema,
+  businessCardCreateSchema,
+  businessCardUpdateSchema
+} from "@/lib/validation/business-card";
+import { errorResponse, validationErrorResponse } from "@/lib/api";
+import { AppError } from "@/lib/errors";
+import { legacyCardService } from "@/lib/composition-root";
 
 export async function GET(req) {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return errorResponse("Unauthorized", 401, "UNAUTHORIZED");
     }
 
     const { searchParams } = new URL(req.url);
-    const id = searchParams.get("id");
+    const id = searchParams.get("id") || undefined;
+
+    const queryResult = cardsQuerySchema.safeParse({ id });
+    if (!queryResult.success) {
+      return validationErrorResponse(
+        queryResult.error.flatten().fieldErrors,
+        "Invalid query parameters"
+      );
+    }
 
     if (id) {
-      const card = await prisma.businessCard.findFirst({
-        where: { id, userId: session.user.id }
-      });
-      if (!card) {
-        return new NextResponse("Not Found", { status: 404 });
-      }
+      const card = await legacyCardService.get(id, session.user.id);
       return NextResponse.json(card);
     }
 
-    const cards = await prisma.businessCard.findMany({
-      where: { userId: session.user.id },
-      orderBy: { createTime: "desc" }
-    });
-
+    const cards = await legacyCardService.list(session.user.id);
     return NextResponse.json(cards);
   } catch (error) {
     console.error("[CARDS_GET]", error);
-    return new NextResponse("Internal Error", { status: 500 });
+    if (error instanceof AppError) {
+      return errorResponse(error.message, error.statusCode, error.code);
+    }
+    return errorResponse("Internal server error", 500, "INTERNAL_ERROR");
   }
 }
 
@@ -55,94 +50,41 @@ export async function POST(req) {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return errorResponse("Unauthorized", 401, "UNAUTHORIZED");
     }
 
     const body = await req.json();
-    const {
-      id,
-      name,
-      title,
-      company,
-      address,
-      phone,
-      email,
-      website,
-      bio,
-      avatar,
-      backgroundImage,
-      socialLinks,
-      showAiAssistant,
-      templateId,
-      htmlContent,
-      userPrompt
-    } = body;
+    const id = body.id || undefined;
 
-    if (!name || !name.trim()) {
-      return new NextResponse("Name is required", { status: 400 });
-    }
-    if (!title || !title.trim()) {
-      return new NextResponse("Title is required", { status: 400 });
-    }
-    if (!company || !company.trim()) {
-      return new NextResponse("Company is required", { status: 400 });
+    const validationResult = id
+      ? businessCardUpdateSchema.safeParse(body)
+      : businessCardCreateSchema.safeParse(body);
+
+    if (!validationResult.success) {
+      return validationErrorResponse(
+        validationResult.error.flatten().fieldErrors,
+        "Validation failed"
+      );
     }
 
-    const cleanData = {
-      name: name.trim(),
-      title: title.trim(),
-      company: company.trim(),
-      address: address ? address.trim() : null,
-      phone: phone ? phone.trim() : null,
-      email: email ? email.trim() : null,
-      website: website ? website.trim() : null,
-      bio: bio ? bio.trim() : null,
-      avatar: avatar || null,
-      backgroundImage: backgroundImage || null,
-      socialLinks: typeof socialLinks === "string" ? socialLinks : JSON.stringify(socialLinks || {}),
-      showAiAssistant: showAiAssistant !== false,
-      templateId: templateId || "classic",
-      htmlContent: htmlContent || null,
-      userPrompt: userPrompt || null,
-    };
+    const validatedData = validationResult.data;
 
     if (id) {
-      // Update existing
-      const existing = await prisma.businessCard.findFirst({
-        where: { id, userId: session.user.id }
-      });
-
-      if (!existing) {
-        return new NextResponse("Not Found", { status: 404 });
-      }
-
-      // If user switches back to standard templates from custom, clear htmlContent
-      if (cleanData.templateId !== "custom") {
-        cleanData.htmlContent = null;
-      }
-
-      const updated = await prisma.businessCard.update({
-        where: { id },
-        data: cleanData
-      });
-
+      const updated = await legacyCardService.update(id, validatedData, session.user.id);
       return NextResponse.json(updated);
     } else {
-      // Create new
-      const urlHash = await generateUniqueHash();
-      const created = await prisma.businessCard.create({
-        data: {
-          ...cleanData,
-          urlHash,
-          userId: session.user.id
-        }
-      });
-
+      const created = await legacyCardService.create(validatedData, session.user.id);
       return NextResponse.json(created);
     }
   } catch (error) {
     console.error("[CARDS_POST]", error);
-    return new NextResponse("Internal Error", { status: 500 });
+    if (error instanceof AppError) {
+      return errorResponse(error.message, error.statusCode, error.code);
+    }
+    if (error.code === "P2002") {
+      return errorResponse("A card with this slug or hash already exists", 409, "CONFLICT");
+    }
+    return errorResponse("Internal server error", 500, "INTERNAL_ERROR");
   }
 }
 
@@ -150,31 +92,27 @@ export async function DELETE(req) {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return errorResponse("Unauthorized", 401, "UNAUTHORIZED");
     }
 
     const { searchParams } = new URL(req.url);
-    const id = searchParams.get("id");
+    const id = searchParams.get("id") || undefined;
 
-    if (!id) {
-      return new NextResponse("Missing card ID", { status: 400 });
+    const queryResult = deleteCardQuerySchema.safeParse({ id });
+    if (!queryResult.success) {
+      return validationErrorResponse(
+        queryResult.error.flatten().fieldErrors,
+        "Missing or invalid card ID"
+      );
     }
 
-    const card = await prisma.businessCard.findFirst({
-      where: { id, userId: session.user.id }
-    });
-
-    if (!card) {
-      return new NextResponse("Not Found", { status: 404 });
-    }
-
-    await prisma.businessCard.delete({
-      where: { id }
-    });
-
+    await legacyCardService.delete(id, session.user.id);
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("[CARDS_DELETE]", error);
-    return new NextResponse("Internal Error", { status: 500 });
+    if (error instanceof AppError) {
+      return errorResponse(error.message, error.statusCode, error.code);
+    }
+    return errorResponse("Internal server error", 500, "INTERNAL_ERROR");
   }
 }

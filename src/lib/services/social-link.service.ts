@@ -1,63 +1,24 @@
-import type { Prisma } from "../../generated/prisma/client";
-import { prisma } from "../prisma";
-import { SocialLinkInput } from "../validation/social-link";
-import { getCardById } from "./business-card.service";
+import type { LegacySocialLinkDTO } from "@/dto";
+import { NotFoundError } from "@/lib/errors";
+import type { LegacyReadRepository, UnitOfWork } from "@/repositories";
+import type { SocialLinkInput } from "@/lib/validation/social-link";
 
-/**
- * Gets all social links for a specific business card after verifying ownership.
- */
-export async function getSocialLinks(cardId: string, userId: string) {
-  // Verify card existence and ownership first
-  await getCardById(cardId, userId);
-
-  return prisma.socialLink.findMany({
-    where: { businessCardId: cardId },
-    orderBy: { order: "asc" }
-  });
-}
-
-/**
- * Replaces all social links for a card in a Prisma transaction, verifying ownership first.
- * Returns the newly created SocialLink[] rows.
- */
-export async function replaceSocialLinks(cardId: string, links: SocialLinkInput[], userId: string) {
-  // Verify card existence and ownership first
-  await getCardById(cardId, userId);
-
-  return prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-    // Delete existing social links
-    await tx.legacySocialLink.deleteMany({
-      where: { businessCardId: cardId }
+export class LegacySocialLinkService {
+  constructor(private readonly reads: LegacyReadRepository, private readonly unitOfWork: UnitOfWork) {}
+  async list(cardId: string, userId: string): Promise<LegacySocialLinkDTO[]> {
+    if (!await this.reads.findCardByIdAndUser(cardId, userId)) throw new NotFoundError("Card not found");
+    return this.reads.listLinks(cardId);
+  }
+  replace(cardId: string, links: SocialLinkInput[], userId: string): Promise<LegacySocialLinkDTO[]> {
+    return this.unitOfWork.execute(async ({ legacy }) => {
+      if (!await legacy.findCardByIdAndUser(cardId, userId)) throw new NotFoundError("Card not found");
+      return legacy.replaceLinks(cardId, links.map((link, index) => ({ platform: link.platform, url: link.url, order: link.order ?? index })));
     });
-
-    // Create new ones using createMany
-    const data = links.map((link, index) => ({
-      businessCardId: cardId,
-      platform: link.platform,
-      url: link.url,
-      order: link.order !== undefined ? link.order : index
-    }));
-
-    if (data.length > 0) {
-      await tx.legacySocialLink.createMany({ data });
-    }
-
-    // Query and return the newly created records
-    return tx.legacySocialLink.findMany({
-      where: { businessCardId: cardId },
-      orderBy: { order: "asc" }
+  }
+  async delete(cardId: string, userId: string): Promise<void> {
+    await this.unitOfWork.execute(async ({ legacy }) => {
+      if (!await legacy.findCardByIdAndUser(cardId, userId)) throw new NotFoundError("Card not found");
+      await legacy.deleteLinks(cardId);
     });
-  });
-}
-
-/**
- * Deletes all social links for a specific card after verifying ownership.
- */
-export async function deleteSocialLinks(cardId: string, userId: string) {
-  // Verify card existence and ownership first
-  await getCardById(cardId, userId);
-
-  await prisma.socialLink.deleteMany({
-    where: { businessCardId: cardId }
-  });
+  }
 }
