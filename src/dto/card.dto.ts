@@ -1,4 +1,5 @@
 import type { CardStatus, CardVisibility } from "@/types";
+import type { AppearanceSettings } from "@/types/appearance";
 
 export interface CardProfileDTO {
   fullName: string;
@@ -26,6 +27,7 @@ export interface CardDTO {
   updatedAt: Date;
 }
 export interface PublicCardDTO extends Omit<CardDTO, "customerId" | "accessVersion"> {
+  appearance: AppearanceSettings;
   buttons: ReadonlyArray<{ id: string; label: string; url: string; position: number }>;
   socialLinks: ReadonlyArray<{ id: string; platform: string; label: string | null; url: string; position: number }>;
 }

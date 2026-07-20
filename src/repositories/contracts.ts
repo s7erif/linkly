@@ -1,5 +1,6 @@
 import type { AccessCodeDTO, CardDTO, CustomerDTO, EditorCardDTO, PublicCardDTO } from "@/dto";
 import type { AccessCodeStatus, CardStatus, CardVisibility, CustomerStatus } from "@/types";
+import type { AppearanceSettings } from "@/types/appearance";
 
 export interface CreateCustomerCommand {
   displayName: string;
@@ -62,6 +63,7 @@ export interface CardWriteRepository {
   create(command: CreateCardCommand): Promise<CardDTO>;
   update(id: string, command: UpdateCardCommand): Promise<CardDTO>;
   incrementAccessVersion(cardId: string): Promise<void>;
+  updateAppearance(cardId: string, appearance: AppearanceSettings): Promise<EditorCardDTO>;
 }
 
 export interface CreateAccessCodeCommand {
@@ -92,6 +94,9 @@ export interface AccessCodeWriteRepository {
   recordEvent(command: AccessCodeEventCommand): Promise<import("@/dto").AccessCodeEventDTO>;
 }
 export interface CreateEditorSessionCommand { cardId: string; accessCodeId: string; tokenHash: Uint8Array<ArrayBuffer>; expiresAt: Date; }
+export interface EditorSessionReadRepository {
+  findByTokenHash(tokenHash: Uint8Array<ArrayBuffer>): Promise<import("@/dto").EditorSessionDTO | null>;
+}
 export interface EditorSessionWriteRepository {
   create(command: CreateEditorSessionCommand): Promise<import("@/dto").EditorSessionDTO>;
   revokeByCard(cardId: string, activeStatus: "ACTIVE", revokedAt: Date): Promise<number>;
@@ -128,6 +133,6 @@ export interface TransactionRepositories {
   customers: CustomerReadRepository & CustomerWriteRepository;
   cards: CardReadRepository & CardWriteRepository;
   accessCodes: AccessCodeReadRepository & AccessCodeWriteRepository;
-  editorSessions: EditorSessionWriteRepository;
+  editorSessions: EditorSessionReadRepository & EditorSessionWriteRepository;
   legacy: LegacyReadRepository & LegacyWriteRepository;
 }

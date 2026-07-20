@@ -1,6 +1,7 @@
 import type { Prisma, PrismaClient } from "@/generated/prisma/client";
 import type { CardDTO, CardProfileDTO, EditorCardDTO } from "@/dto";
 import type { CardLookupCriteria, CardReadRepository, CardWriteRepository, CreateCardCommand, UpdateCardCommand } from "./contracts";
+import type { AppearanceSettings } from "@/types/appearance";
 
 const profileSelect = { fullName: true, headline: true, company: true, bio: true, email: true, phone: true, website: true, address: true, countryCode: true } satisfies Prisma.CardProfileSelect;
 const baseSelect = { id: true, customerId: true, themeId: true, slug: true, name: true, status: true, visibility: true, publishedAt: true, accessVersion: true, createdAt: true, updatedAt: true, profile: { select: profileSelect } } satisfies Prisma.CardSelect;
@@ -47,6 +48,10 @@ export class PrismaCardTransactionRepository extends CardRepositoryBase implemen
     const { profile, ...card } = command;
     const row = await this.db.card.update({ where: { id }, data: { ...card, ...(profile ? { profile: { update: profile } } : {}) }, select: baseSelect });
     return mapCard(row);
+  }
+  async updateAppearance(cardId: string, appearance: AppearanceSettings): Promise<EditorCardDTO> {
+    const row = await this.db.card.update({ where: { id: cardId }, data: { themeConfig: { colors: appearance.colors, background: appearance.background, typography: appearance.typography, buttonStyle: appearance.buttonStyle, borderRadius: appearance.borderRadius, shadow: appearance.shadow, sections: appearance.sections } }, select: editorSelect });
+    return mapEditorCard(row);
   }
   async incrementAccessVersion(cardId: string): Promise<void> {
     await this.db.card.update({ where: { id: cardId }, data: { accessVersion: { increment: 1 } }, select: { id: true } });

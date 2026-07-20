@@ -1,5 +1,6 @@
 import type { CardDTO, EditorCardDTO, PublicCardDTO } from "@/dto";
 import { NotFoundError } from "@/lib/errors";
+import { resolveAppearanceSettings } from "@/validation/appearance";
 import type { CardReadRepository, UnitOfWork, UpdateCardCommand } from "@/repositories";
 import { createCardSchema, updateCardSchema, type CreateCardInput, type UpdateCardInput } from "@/validation";
 
@@ -14,8 +15,8 @@ export class CardService {
   async getPublicCard(slug: string): Promise<PublicCardDTO> {
     const source = await this.dependencies.cards.findRenderSourceBySlug({ slug, statuses: ["PUBLISHED"], visibilities: ["PUBLIC", "UNLISTED"], deletedAt: null });
     if (!source) throw new NotFoundError("Card", slug);
-    const { customerId: _customerId, accessVersion: _accessVersion, themeConfig: _themeConfig, ...card } = source;
-    return { ...card, buttons: source.buttons.filter((button) => button.isVisible).map(({ isVisible: _isVisible, ...button }) => button), socialLinks: source.socialLinks.filter((link) => link.isVisible).map(({ isVisible: _isVisible, ...link }) => link) };
+    const { customerId: _customerId, accessVersion: _accessVersion, themeConfig, ...card } = source;
+    return { ...card, appearance: resolveAppearanceSettings(themeConfig), buttons: source.buttons.filter((button) => button.isVisible).map(({ isVisible: _isVisible, ...button }) => button), socialLinks: source.socialLinks.filter((link) => link.isVisible).map(({ isVisible: _isVisible, ...link }) => link) };
   }
   async create(input: CreateCardInput): Promise<CardDTO> {
     const command = createCardSchema.parse(input);

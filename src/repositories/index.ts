@@ -11,6 +11,7 @@ export type {
   CustomerReadRepository,
   CustomerWriteRepository,
   CreateEditorSessionCommand,
+  EditorSessionReadRepository,
   EditorSessionWriteRepository,
   TransactionRepositories,
   UnitOfWork,

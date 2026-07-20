@@ -3,6 +3,7 @@ import { accessCodeSchema } from "./access-code";
 import { createCardSchema } from "./card";
 import { createCustomerSchema } from "./customer";
 import { slugSchema, uuidSchema } from "./common";
+import { appearanceSettingsSchema } from "./appearance";
 
 const optionalHash = z.instanceof(Uint8Array).optional();
 export const createCustomerUseCaseSchema = createCustomerSchema;
@@ -27,9 +28,11 @@ export const createEditorSessionSchema = z.object({
   userAgentHash: optionalHash,
 });
 export const readPublicCardSchema = z.object({ slug: slugSchema });
+export const updateCardAppearanceSchema = z.object({ cardId: uuidSchema, sessionToken: z.string().regex(/^[0-9a-f]{64}$/), appearance: appearanceSettingsSchema });
 export type CreateCustomerUseCaseInput = z.input<typeof createCustomerUseCaseSchema>;
 export type CreateCardUseCaseInput = z.input<typeof createCardUseCaseSchema>;
 export type GenerateInitialAccessCodeInput = z.input<typeof generateInitialAccessCodeSchema>;
 export type VerifyAccessCodeInput = z.input<typeof verifyAccessCodeSchema>;
 export type CreateEditorSessionInput = z.input<typeof createEditorSessionSchema>;
 export type ReadPublicCardInput = z.input<typeof readPublicCardSchema>;
+export type UpdateCardAppearanceInput = z.input<typeof updateCardAppearanceSchema>;
