@@ -163,8 +163,8 @@ export type CustomerAccountGroupByOutputType = {
   id: string
   customerId: string
   email: string
-  passwordHash: runtime.Bytes
-  passwordSalt: runtime.Bytes
+  passwordHash: runtime.Bytes | null
+  passwordSalt: runtime.Bytes | null
   createdAt: Date
   updatedAt: Date
   _count: CustomerAccountCountAggregateOutputType | null
@@ -194,28 +194,30 @@ export type CustomerAccountWhereInput = {
   id?: Prisma.UuidFilter<"CustomerAccount"> | string
   customerId?: Prisma.UuidFilter<"CustomerAccount"> | string
   email?: Prisma.StringFilter<"CustomerAccount"> | string
-  passwordHash?: Prisma.BytesFilter<"CustomerAccount"> | runtime.Bytes
-  passwordSalt?: Prisma.BytesFilter<"CustomerAccount"> | runtime.Bytes
+  passwordHash?: Prisma.BytesNullableFilter<"CustomerAccount"> | runtime.Bytes | null
+  passwordSalt?: Prisma.BytesNullableFilter<"CustomerAccount"> | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFilter<"CustomerAccount"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CustomerAccount"> | Date | string
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
   sessions?: Prisma.CustomerSessionListRelationFilter
   passwordResets?: Prisma.CustomerPasswordResetListRelationFilter
   memberships?: Prisma.WorkspaceMembershipListRelationFilter
+  oauthAccounts?: Prisma.CustomerOAuthAccountListRelationFilter
 }
 
 export type CustomerAccountOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  passwordHash?: Prisma.SortOrder
-  passwordSalt?: Prisma.SortOrder
+  passwordHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  passwordSalt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   customer?: Prisma.CustomerOrderByWithRelationInput
   sessions?: Prisma.CustomerSessionOrderByRelationAggregateInput
   passwordResets?: Prisma.CustomerPasswordResetOrderByRelationAggregateInput
   memberships?: Prisma.WorkspaceMembershipOrderByRelationAggregateInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountOrderByRelationAggregateInput
 }
 
 export type CustomerAccountWhereUniqueInput = Prisma.AtLeast<{
@@ -225,22 +227,23 @@ export type CustomerAccountWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.CustomerAccountWhereInput | Prisma.CustomerAccountWhereInput[]
   OR?: Prisma.CustomerAccountWhereInput[]
   NOT?: Prisma.CustomerAccountWhereInput | Prisma.CustomerAccountWhereInput[]
-  passwordHash?: Prisma.BytesFilter<"CustomerAccount"> | runtime.Bytes
-  passwordSalt?: Prisma.BytesFilter<"CustomerAccount"> | runtime.Bytes
+  passwordHash?: Prisma.BytesNullableFilter<"CustomerAccount"> | runtime.Bytes | null
+  passwordSalt?: Prisma.BytesNullableFilter<"CustomerAccount"> | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFilter<"CustomerAccount"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CustomerAccount"> | Date | string
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
   sessions?: Prisma.CustomerSessionListRelationFilter
   passwordResets?: Prisma.CustomerPasswordResetListRelationFilter
   memberships?: Prisma.WorkspaceMembershipListRelationFilter
+  oauthAccounts?: Prisma.CustomerOAuthAccountListRelationFilter
 }, "id" | "customerId" | "email">
 
 export type CustomerAccountOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  passwordHash?: Prisma.SortOrder
-  passwordSalt?: Prisma.SortOrder
+  passwordHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  passwordSalt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CustomerAccountCountOrderByAggregateInput
@@ -255,8 +258,8 @@ export type CustomerAccountScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"CustomerAccount"> | string
   customerId?: Prisma.UuidWithAggregatesFilter<"CustomerAccount"> | string
   email?: Prisma.StringWithAggregatesFilter<"CustomerAccount"> | string
-  passwordHash?: Prisma.BytesWithAggregatesFilter<"CustomerAccount"> | runtime.Bytes
-  passwordSalt?: Prisma.BytesWithAggregatesFilter<"CustomerAccount"> | runtime.Bytes
+  passwordHash?: Prisma.BytesNullableWithAggregatesFilter<"CustomerAccount"> | runtime.Bytes | null
+  passwordSalt?: Prisma.BytesNullableWithAggregatesFilter<"CustomerAccount"> | runtime.Bytes | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CustomerAccount"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"CustomerAccount"> | Date | string
 }
@@ -264,61 +267,65 @@ export type CustomerAccountScalarWhereWithAggregatesInput = {
 export type CustomerAccountCreateInput = {
   id?: string
   email: string
-  passwordHash: runtime.Bytes
-  passwordSalt: runtime.Bytes
+  passwordHash?: runtime.Bytes | null
+  passwordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutAccountInput
   sessions?: Prisma.CustomerSessionCreateNestedManyWithoutAccountInput
   passwordResets?: Prisma.CustomerPasswordResetCreateNestedManyWithoutAccountInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutAccountInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountCreateNestedManyWithoutAccountInput
 }
 
 export type CustomerAccountUncheckedCreateInput = {
   id?: string
   customerId: string
   email: string
-  passwordHash: runtime.Bytes
-  passwordSalt: runtime.Bytes
+  passwordHash?: runtime.Bytes | null
+  passwordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.CustomerSessionUncheckedCreateNestedManyWithoutAccountInput
   passwordResets?: Prisma.CustomerPasswordResetUncheckedCreateNestedManyWithoutAccountInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutAccountInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUncheckedCreateNestedManyWithoutAccountInput
 }
 
 export type CustomerAccountUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  passwordSalt?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutAccountNestedInput
   sessions?: Prisma.CustomerSessionUpdateManyWithoutAccountNestedInput
   passwordResets?: Prisma.CustomerPasswordResetUpdateManyWithoutAccountNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutAccountNestedInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUpdateManyWithoutAccountNestedInput
 }
 
 export type CustomerAccountUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  passwordSalt?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.CustomerSessionUncheckedUpdateManyWithoutAccountNestedInput
   passwordResets?: Prisma.CustomerPasswordResetUncheckedUpdateManyWithoutAccountNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutAccountNestedInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUncheckedUpdateManyWithoutAccountNestedInput
 }
 
 export type CustomerAccountCreateManyInput = {
   id?: string
   customerId: string
   email: string
-  passwordHash: runtime.Bytes
-  passwordSalt: runtime.Bytes
+  passwordHash?: runtime.Bytes | null
+  passwordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -326,8 +333,8 @@ export type CustomerAccountCreateManyInput = {
 export type CustomerAccountUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  passwordSalt?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -336,8 +343,8 @@ export type CustomerAccountUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  passwordSalt?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -414,8 +421,8 @@ export type CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CustomerAccountUpdateToOneWithWhereWithoutCustomerInput, Prisma.CustomerAccountUpdateWithoutCustomerInput>, Prisma.CustomerAccountUncheckedUpdateWithoutCustomerInput>
 }
 
-export type BytesFieldUpdateOperationsInput = {
-  set?: runtime.Bytes
+export type NullableBytesFieldUpdateOperationsInput = {
+  set?: runtime.Bytes | null
 }
 
 export type CustomerAccountCreateNestedOneWithoutPasswordResetsInput = {
@@ -430,6 +437,20 @@ export type CustomerAccountUpdateOneRequiredWithoutPasswordResetsNestedInput = {
   upsert?: Prisma.CustomerAccountUpsertWithoutPasswordResetsInput
   connect?: Prisma.CustomerAccountWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.CustomerAccountUpdateToOneWithWhereWithoutPasswordResetsInput, Prisma.CustomerAccountUpdateWithoutPasswordResetsInput>, Prisma.CustomerAccountUncheckedUpdateWithoutPasswordResetsInput>
+}
+
+export type CustomerAccountCreateNestedOneWithoutOauthAccountsInput = {
+  create?: Prisma.XOR<Prisma.CustomerAccountCreateWithoutOauthAccountsInput, Prisma.CustomerAccountUncheckedCreateWithoutOauthAccountsInput>
+  connectOrCreate?: Prisma.CustomerAccountCreateOrConnectWithoutOauthAccountsInput
+  connect?: Prisma.CustomerAccountWhereUniqueInput
+}
+
+export type CustomerAccountUpdateOneRequiredWithoutOauthAccountsNestedInput = {
+  create?: Prisma.XOR<Prisma.CustomerAccountCreateWithoutOauthAccountsInput, Prisma.CustomerAccountUncheckedCreateWithoutOauthAccountsInput>
+  connectOrCreate?: Prisma.CustomerAccountCreateOrConnectWithoutOauthAccountsInput
+  upsert?: Prisma.CustomerAccountUpsertWithoutOauthAccountsInput
+  connect?: Prisma.CustomerAccountWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CustomerAccountUpdateToOneWithWhereWithoutOauthAccountsInput, Prisma.CustomerAccountUpdateWithoutOauthAccountsInput>, Prisma.CustomerAccountUncheckedUpdateWithoutOauthAccountsInput>
 }
 
 export type CustomerAccountCreateNestedOneWithoutSessionsInput = {
@@ -463,25 +484,27 @@ export type CustomerAccountUpdateOneRequiredWithoutMembershipsNestedInput = {
 export type CustomerAccountCreateWithoutCustomerInput = {
   id?: string
   email: string
-  passwordHash: runtime.Bytes
-  passwordSalt: runtime.Bytes
+  passwordHash?: runtime.Bytes | null
+  passwordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.CustomerSessionCreateNestedManyWithoutAccountInput
   passwordResets?: Prisma.CustomerPasswordResetCreateNestedManyWithoutAccountInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutAccountInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountCreateNestedManyWithoutAccountInput
 }
 
 export type CustomerAccountUncheckedCreateWithoutCustomerInput = {
   id?: string
   email: string
-  passwordHash: runtime.Bytes
-  passwordSalt: runtime.Bytes
+  passwordHash?: runtime.Bytes | null
+  passwordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.CustomerSessionUncheckedCreateNestedManyWithoutAccountInput
   passwordResets?: Prisma.CustomerPasswordResetUncheckedCreateNestedManyWithoutAccountInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutAccountInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUncheckedCreateNestedManyWithoutAccountInput
 }
 
 export type CustomerAccountCreateOrConnectWithoutCustomerInput = {
@@ -503,49 +526,53 @@ export type CustomerAccountUpdateToOneWithWhereWithoutCustomerInput = {
 export type CustomerAccountUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  passwordSalt?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.CustomerSessionUpdateManyWithoutAccountNestedInput
   passwordResets?: Prisma.CustomerPasswordResetUpdateManyWithoutAccountNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutAccountNestedInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUpdateManyWithoutAccountNestedInput
 }
 
 export type CustomerAccountUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  passwordSalt?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.CustomerSessionUncheckedUpdateManyWithoutAccountNestedInput
   passwordResets?: Prisma.CustomerPasswordResetUncheckedUpdateManyWithoutAccountNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutAccountNestedInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUncheckedUpdateManyWithoutAccountNestedInput
 }
 
 export type CustomerAccountCreateWithoutPasswordResetsInput = {
   id?: string
   email: string
-  passwordHash: runtime.Bytes
-  passwordSalt: runtime.Bytes
+  passwordHash?: runtime.Bytes | null
+  passwordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutAccountInput
   sessions?: Prisma.CustomerSessionCreateNestedManyWithoutAccountInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutAccountInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountCreateNestedManyWithoutAccountInput
 }
 
 export type CustomerAccountUncheckedCreateWithoutPasswordResetsInput = {
   id?: string
   customerId: string
   email: string
-  passwordHash: runtime.Bytes
-  passwordSalt: runtime.Bytes
+  passwordHash?: runtime.Bytes | null
+  passwordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.CustomerSessionUncheckedCreateNestedManyWithoutAccountInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutAccountInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUncheckedCreateNestedManyWithoutAccountInput
 }
 
 export type CustomerAccountCreateOrConnectWithoutPasswordResetsInput = {
@@ -567,49 +594,121 @@ export type CustomerAccountUpdateToOneWithWhereWithoutPasswordResetsInput = {
 export type CustomerAccountUpdateWithoutPasswordResetsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  passwordSalt?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutAccountNestedInput
   sessions?: Prisma.CustomerSessionUpdateManyWithoutAccountNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutAccountNestedInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUpdateManyWithoutAccountNestedInput
 }
 
 export type CustomerAccountUncheckedUpdateWithoutPasswordResetsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  passwordSalt?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.CustomerSessionUncheckedUpdateManyWithoutAccountNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutAccountNestedInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUncheckedUpdateManyWithoutAccountNestedInput
+}
+
+export type CustomerAccountCreateWithoutOauthAccountsInput = {
+  id?: string
+  email: string
+  passwordHash?: runtime.Bytes | null
+  passwordSalt?: runtime.Bytes | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  customer: Prisma.CustomerCreateNestedOneWithoutAccountInput
+  sessions?: Prisma.CustomerSessionCreateNestedManyWithoutAccountInput
+  passwordResets?: Prisma.CustomerPasswordResetCreateNestedManyWithoutAccountInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutAccountInput
+}
+
+export type CustomerAccountUncheckedCreateWithoutOauthAccountsInput = {
+  id?: string
+  customerId: string
+  email: string
+  passwordHash?: runtime.Bytes | null
+  passwordSalt?: runtime.Bytes | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.CustomerSessionUncheckedCreateNestedManyWithoutAccountInput
+  passwordResets?: Prisma.CustomerPasswordResetUncheckedCreateNestedManyWithoutAccountInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutAccountInput
+}
+
+export type CustomerAccountCreateOrConnectWithoutOauthAccountsInput = {
+  where: Prisma.CustomerAccountWhereUniqueInput
+  create: Prisma.XOR<Prisma.CustomerAccountCreateWithoutOauthAccountsInput, Prisma.CustomerAccountUncheckedCreateWithoutOauthAccountsInput>
+}
+
+export type CustomerAccountUpsertWithoutOauthAccountsInput = {
+  update: Prisma.XOR<Prisma.CustomerAccountUpdateWithoutOauthAccountsInput, Prisma.CustomerAccountUncheckedUpdateWithoutOauthAccountsInput>
+  create: Prisma.XOR<Prisma.CustomerAccountCreateWithoutOauthAccountsInput, Prisma.CustomerAccountUncheckedCreateWithoutOauthAccountsInput>
+  where?: Prisma.CustomerAccountWhereInput
+}
+
+export type CustomerAccountUpdateToOneWithWhereWithoutOauthAccountsInput = {
+  where?: Prisma.CustomerAccountWhereInput
+  data: Prisma.XOR<Prisma.CustomerAccountUpdateWithoutOauthAccountsInput, Prisma.CustomerAccountUncheckedUpdateWithoutOauthAccountsInput>
+}
+
+export type CustomerAccountUpdateWithoutOauthAccountsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutAccountNestedInput
+  sessions?: Prisma.CustomerSessionUpdateManyWithoutAccountNestedInput
+  passwordResets?: Prisma.CustomerPasswordResetUpdateManyWithoutAccountNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutAccountNestedInput
+}
+
+export type CustomerAccountUncheckedUpdateWithoutOauthAccountsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.CustomerSessionUncheckedUpdateManyWithoutAccountNestedInput
+  passwordResets?: Prisma.CustomerPasswordResetUncheckedUpdateManyWithoutAccountNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutAccountNestedInput
 }
 
 export type CustomerAccountCreateWithoutSessionsInput = {
   id?: string
   email: string
-  passwordHash: runtime.Bytes
-  passwordSalt: runtime.Bytes
+  passwordHash?: runtime.Bytes | null
+  passwordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutAccountInput
   passwordResets?: Prisma.CustomerPasswordResetCreateNestedManyWithoutAccountInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutAccountInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountCreateNestedManyWithoutAccountInput
 }
 
 export type CustomerAccountUncheckedCreateWithoutSessionsInput = {
   id?: string
   customerId: string
   email: string
-  passwordHash: runtime.Bytes
-  passwordSalt: runtime.Bytes
+  passwordHash?: runtime.Bytes | null
+  passwordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
   passwordResets?: Prisma.CustomerPasswordResetUncheckedCreateNestedManyWithoutAccountInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutAccountInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUncheckedCreateNestedManyWithoutAccountInput
 }
 
 export type CustomerAccountCreateOrConnectWithoutSessionsInput = {
@@ -631,49 +730,53 @@ export type CustomerAccountUpdateToOneWithWhereWithoutSessionsInput = {
 export type CustomerAccountUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  passwordSalt?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutAccountNestedInput
   passwordResets?: Prisma.CustomerPasswordResetUpdateManyWithoutAccountNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutAccountNestedInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUpdateManyWithoutAccountNestedInput
 }
 
 export type CustomerAccountUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  passwordSalt?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passwordResets?: Prisma.CustomerPasswordResetUncheckedUpdateManyWithoutAccountNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutAccountNestedInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUncheckedUpdateManyWithoutAccountNestedInput
 }
 
 export type CustomerAccountCreateWithoutMembershipsInput = {
   id?: string
   email: string
-  passwordHash: runtime.Bytes
-  passwordSalt: runtime.Bytes
+  passwordHash?: runtime.Bytes | null
+  passwordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutAccountInput
   sessions?: Prisma.CustomerSessionCreateNestedManyWithoutAccountInput
   passwordResets?: Prisma.CustomerPasswordResetCreateNestedManyWithoutAccountInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountCreateNestedManyWithoutAccountInput
 }
 
 export type CustomerAccountUncheckedCreateWithoutMembershipsInput = {
   id?: string
   customerId: string
   email: string
-  passwordHash: runtime.Bytes
-  passwordSalt: runtime.Bytes
+  passwordHash?: runtime.Bytes | null
+  passwordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.CustomerSessionUncheckedCreateNestedManyWithoutAccountInput
   passwordResets?: Prisma.CustomerPasswordResetUncheckedCreateNestedManyWithoutAccountInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUncheckedCreateNestedManyWithoutAccountInput
 }
 
 export type CustomerAccountCreateOrConnectWithoutMembershipsInput = {
@@ -695,25 +798,27 @@ export type CustomerAccountUpdateToOneWithWhereWithoutMembershipsInput = {
 export type CustomerAccountUpdateWithoutMembershipsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  passwordSalt?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutAccountNestedInput
   sessions?: Prisma.CustomerSessionUpdateManyWithoutAccountNestedInput
   passwordResets?: Prisma.CustomerPasswordResetUpdateManyWithoutAccountNestedInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUpdateManyWithoutAccountNestedInput
 }
 
 export type CustomerAccountUncheckedUpdateWithoutMembershipsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  passwordHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  passwordSalt?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  passwordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  passwordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.CustomerSessionUncheckedUpdateManyWithoutAccountNestedInput
   passwordResets?: Prisma.CustomerPasswordResetUncheckedUpdateManyWithoutAccountNestedInput
+  oauthAccounts?: Prisma.CustomerOAuthAccountUncheckedUpdateManyWithoutAccountNestedInput
 }
 
 
@@ -725,12 +830,14 @@ export type CustomerAccountCountOutputType = {
   sessions: number
   passwordResets: number
   memberships: number
+  oauthAccounts: number
 }
 
 export type CustomerAccountCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | CustomerAccountCountOutputTypeCountSessionsArgs
   passwordResets?: boolean | CustomerAccountCountOutputTypeCountPasswordResetsArgs
   memberships?: boolean | CustomerAccountCountOutputTypeCountMembershipsArgs
+  oauthAccounts?: boolean | CustomerAccountCountOutputTypeCountOauthAccountsArgs
 }
 
 /**
@@ -764,6 +871,13 @@ export type CustomerAccountCountOutputTypeCountMembershipsArgs<ExtArgs extends r
   where?: Prisma.WorkspaceMembershipWhereInput
 }
 
+/**
+ * CustomerAccountCountOutputType without action
+ */
+export type CustomerAccountCountOutputTypeCountOauthAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CustomerOAuthAccountWhereInput
+}
+
 
 export type CustomerAccountSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -777,6 +891,7 @@ export type CustomerAccountSelect<ExtArgs extends runtime.Types.Extensions.Inter
   sessions?: boolean | Prisma.CustomerAccount$sessionsArgs<ExtArgs>
   passwordResets?: boolean | Prisma.CustomerAccount$passwordResetsArgs<ExtArgs>
   memberships?: boolean | Prisma.CustomerAccount$membershipsArgs<ExtArgs>
+  oauthAccounts?: boolean | Prisma.CustomerAccount$oauthAccountsArgs<ExtArgs>
   _count?: boolean | Prisma.CustomerAccountCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["customerAccount"]>
 
@@ -818,6 +933,7 @@ export type CustomerAccountInclude<ExtArgs extends runtime.Types.Extensions.Inte
   sessions?: boolean | Prisma.CustomerAccount$sessionsArgs<ExtArgs>
   passwordResets?: boolean | Prisma.CustomerAccount$passwordResetsArgs<ExtArgs>
   memberships?: boolean | Prisma.CustomerAccount$membershipsArgs<ExtArgs>
+  oauthAccounts?: boolean | Prisma.CustomerAccount$oauthAccountsArgs<ExtArgs>
   _count?: boolean | Prisma.CustomerAccountCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CustomerAccountIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -834,13 +950,14 @@ export type $CustomerAccountPayload<ExtArgs extends runtime.Types.Extensions.Int
     sessions: Prisma.$CustomerSessionPayload<ExtArgs>[]
     passwordResets: Prisma.$CustomerPasswordResetPayload<ExtArgs>[]
     memberships: Prisma.$WorkspaceMembershipPayload<ExtArgs>[]
+    oauthAccounts: Prisma.$CustomerOAuthAccountPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     customerId: string
     email: string
-    passwordHash: runtime.Bytes
-    passwordSalt: runtime.Bytes
+    passwordHash: runtime.Bytes | null
+    passwordSalt: runtime.Bytes | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["customerAccount"]>
@@ -1241,6 +1358,7 @@ export interface Prisma__CustomerAccountClient<T, Null = never, ExtArgs extends 
   sessions<T extends Prisma.CustomerAccount$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerAccount$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   passwordResets<T extends Prisma.CustomerAccount$passwordResetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerAccount$passwordResetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerPasswordResetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   memberships<T extends Prisma.CustomerAccount$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerAccount$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkspaceMembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  oauthAccounts<T extends Prisma.CustomerAccount$oauthAccountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerAccount$oauthAccountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerOAuthAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1747,6 +1865,30 @@ export type CustomerAccount$membershipsArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   distinct?: Prisma.WorkspaceMembershipScalarFieldEnum | Prisma.WorkspaceMembershipScalarFieldEnum[]
+}
+
+/**
+ * CustomerAccount.oauthAccounts
+ */
+export type CustomerAccount$oauthAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CustomerOAuthAccount
+   */
+  select?: Prisma.CustomerOAuthAccountSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CustomerOAuthAccount
+   */
+  omit?: Prisma.CustomerOAuthAccountOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CustomerOAuthAccountInclude<ExtArgs> | null
+  where?: Prisma.CustomerOAuthAccountWhereInput
+  orderBy?: Prisma.CustomerOAuthAccountOrderByWithRelationInput | Prisma.CustomerOAuthAccountOrderByWithRelationInput[]
+  cursor?: Prisma.CustomerOAuthAccountWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CustomerOAuthAccountScalarFieldEnum | Prisma.CustomerOAuthAccountScalarFieldEnum[]
 }
 
 /**

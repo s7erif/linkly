@@ -58,6 +58,7 @@ export const ModelName = {
   NfcCard: 'NfcCard',
   CustomerAccount: 'CustomerAccount',
   CustomerPasswordReset: 'CustomerPasswordReset',
+  CustomerOAuthAccount: 'CustomerOAuthAccount',
   CustomerSession: 'CustomerSession',
   Workspace: 'Workspace',
   WorkspaceMembership: 'WorkspaceMembership',
@@ -220,6 +221,20 @@ export const CustomerPasswordResetScalarFieldEnum = {
 } as const
 
 export type CustomerPasswordResetScalarFieldEnum = (typeof CustomerPasswordResetScalarFieldEnum)[keyof typeof CustomerPasswordResetScalarFieldEnum]
+
+
+export const CustomerOAuthAccountScalarFieldEnum = {
+  id: 'id',
+  accountId: 'accountId',
+  provider: 'provider',
+  providerAccountId: 'providerAccountId',
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type CustomerOAuthAccountScalarFieldEnum = (typeof CustomerOAuthAccountScalarFieldEnum)[keyof typeof CustomerOAuthAccountScalarFieldEnum]
 
 
 export const CustomerSessionScalarFieldEnum = {

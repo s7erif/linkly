@@ -1088,10 +1088,6 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type NullableBytesFieldUpdateOperationsInput = {
-  set?: runtime.Bytes | null
-}
-
 export type OrderCreateNestedOneWithoutPaymentSubmissionsInput = {
   create?: Prisma.XOR<Prisma.OrderCreateWithoutPaymentSubmissionsInput, Prisma.OrderUncheckedCreateWithoutPaymentSubmissionsInput>
   connectOrCreate?: Prisma.OrderCreateOrConnectWithoutPaymentSubmissionsInput

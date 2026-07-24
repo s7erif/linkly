@@ -40,7 +40,7 @@ export class ActivationService {
     const card = await this.validate(value.activationToken);
     if (!card || !["AVAILABLE", "RESERVED"].includes(card.status)) throw new Error("NFC card is unavailable");
     const account = await this.repository.findAccountByEmail(value.email);
-    if (!account || !await this.verifyPassword(value.password, account.passwordHash, account.passwordSalt)) throw new Error("Email or password is incorrect");
+    if (!account || !account.passwordHash || !account.passwordSalt || !await this.verifyPassword(value.password, account.passwordHash, account.passwordSalt)) throw new Error("Email or password is incorrect");
     return this.activate(value.activationToken, value.username, { account }, value.rememberMe ? sessionLifetime : 60 * 60 * 24);
   }
 
@@ -55,7 +55,7 @@ export class ActivationService {
   async loginCustomer(input: unknown) {
     const value = customerLoginSchema.parse(input);
     const account = await this.repository.findAccountByEmail(value.email);
-    if (!account || !await this.verifyPassword(value.password, account.passwordHash, account.passwordSalt) || !account.workspace) throw new Error("Email or password is incorrect");
+    if (!account || !account.passwordHash || !account.passwordSalt || !await this.verifyPassword(value.password, account.passwordHash, account.passwordSalt) || !account.workspace) throw new Error("Email or password is incorrect");
     const token = secureSessionTokenGenerator.generate();
     const expiresAt = new Date(Date.now() + (value.rememberMe ? 30 : 1) * 24 * 60 * 60 * 1000);
     await this.repository.createSession(account.id, await secureSessionTokenGenerator.hash(token), expiresAt);

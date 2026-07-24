@@ -433,14 +433,15 @@ model CustomerAccount {
   id           String                @id @default(uuid()) @db.Uuid
   customerId   String                @unique @db.Uuid
   email        String                @unique
-  passwordHash Bytes
-  passwordSalt Bytes
+  passwordHash Bytes?
+  passwordSalt Bytes?
   createdAt    DateTime              @default(now())
   updatedAt    DateTime              @updatedAt
   customer     Customer              @relation(fields: [customerId], references: [id], onDelete: Restrict)
   sessions     CustomerSession[]     @relation("CustomerAccountSessions")
   passwordResets CustomerPasswordReset[] @relation("CustomerAccountPasswordResets")
   memberships  WorkspaceMembership[] @relation("AccountWorkspaceMemberships")
+  oauthAccounts CustomerOAuthAccount[] @relation("CustomerAccountOAuth")
 }
 
 model CustomerPasswordReset {
@@ -453,6 +454,21 @@ model CustomerPasswordReset {
   account   CustomerAccount @relation("CustomerAccountPasswordResets", fields: [accountId], references: [id], onDelete: Cascade)
 
   @@index([accountId, expiresAt, usedAt])
+}
+
+model CustomerOAuthAccount {
+  id                String          @id @default(uuid()) @db.Uuid
+  accountId         String          @db.Uuid
+  provider          String
+  providerAccountId String
+  accessToken       String?
+  refreshToken      String?
+  expiresAt         DateTime?
+  createdAt         DateTime        @default(now())
+  account           CustomerAccount @relation("CustomerAccountOAuth", fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([accountId])
 }
 
 model CustomerSession {

@@ -38,8 +38,8 @@ function mapAccount(row: {
   id: string;
   customerId: string;
   email: string;
-  passwordHash: Uint8Array<ArrayBuffer>;
-  passwordSalt: Uint8Array<ArrayBuffer>;
+  passwordHash: Uint8Array<ArrayBuffer> | null;
+  passwordSalt: Uint8Array<ArrayBuffer> | null;
   customer: { displayName: string };
   memberships: readonly {
     workspace: {

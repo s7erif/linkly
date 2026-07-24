@@ -391,6 +391,7 @@ export const ModelName = {
   NfcCard: 'NfcCard',
   CustomerAccount: 'CustomerAccount',
   CustomerPasswordReset: 'CustomerPasswordReset',
+  CustomerOAuthAccount: 'CustomerOAuthAccount',
   CustomerSession: 'CustomerSession',
   Workspace: 'Workspace',
   WorkspaceMembership: 'WorkspaceMembership',
@@ -462,7 +463,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "adminUser" | "adminRole" | "adminUserRole" | "customer" | "nfcCard" | "customerAccount" | "customerPasswordReset" | "customerSession" | "workspace" | "workspaceMembership" | "billingAccount" | "order" | "paymentSubmission" | "invoice" | "invoiceLine" | "retryTask" | "billingTimelineEntry" | "card" | "cardProfile" | "cardSection" | "cardBlock" | "cardBlockMedia" | "theme" | "socialLink" | "cardButton" | "accessCode" | "accessCodeUsage" | "editorSession" | "plan" | "planFeature" | "planVersion" | "planVersionFeature" | "planPrice" | "subscription" | "subscriptionReminder" | "subscriptionPeriod" | "subscriptionChange" | "mediaAsset" | "mediaFolder" | "mediaUsage" | "cardMedia" | "analyticsEvent" | "analyticsAggregate" | "notificationDelivery" | "setting" | "auditLog" | "legacyIdentifier" | "legacyUser" | "legacyAccount" | "legacySession" | "legacyVerificationToken" | "legacyBusinessCard" | "legacySocialLink" | "legacyAnalytics" | "payment" | "paymentAttempt" | "paymentAllocation" | "refund" | "paymentMethodReference" | "entitlementGrant" | "providerObjectReference" | "webhookInbox" | "outboxEvent"
+    modelProps: "adminUser" | "adminRole" | "adminUserRole" | "customer" | "nfcCard" | "customerAccount" | "customerPasswordReset" | "customerOAuthAccount" | "customerSession" | "workspace" | "workspaceMembership" | "billingAccount" | "order" | "paymentSubmission" | "invoice" | "invoiceLine" | "retryTask" | "billingTimelineEntry" | "card" | "cardProfile" | "cardSection" | "cardBlock" | "cardBlockMedia" | "theme" | "socialLink" | "cardButton" | "accessCode" | "accessCodeUsage" | "editorSession" | "plan" | "planFeature" | "planVersion" | "planVersionFeature" | "planPrice" | "subscription" | "subscriptionReminder" | "subscriptionPeriod" | "subscriptionChange" | "mediaAsset" | "mediaFolder" | "mediaUsage" | "cardMedia" | "analyticsEvent" | "analyticsAggregate" | "notificationDelivery" | "setting" | "auditLog" | "legacyIdentifier" | "legacyUser" | "legacyAccount" | "legacySession" | "legacyVerificationToken" | "legacyBusinessCard" | "legacySocialLink" | "legacyAnalytics" | "payment" | "paymentAttempt" | "paymentAllocation" | "refund" | "paymentMethodReference" | "entitlementGrant" | "providerObjectReference" | "webhookInbox" | "outboxEvent"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -981,6 +982,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.CustomerPasswordResetCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.CustomerPasswordResetCountAggregateOutputType> | number
+        }
+      }
+    }
+    CustomerOAuthAccount: {
+      payload: Prisma.$CustomerOAuthAccountPayload<ExtArgs>
+      fields: Prisma.CustomerOAuthAccountFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CustomerOAuthAccountFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CustomerOAuthAccountFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>
+        }
+        findFirst: {
+          args: Prisma.CustomerOAuthAccountFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CustomerOAuthAccountFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>
+        }
+        findMany: {
+          args: Prisma.CustomerOAuthAccountFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>[]
+        }
+        create: {
+          args: Prisma.CustomerOAuthAccountCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>
+        }
+        createMany: {
+          args: Prisma.CustomerOAuthAccountCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CustomerOAuthAccountCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>[]
+        }
+        delete: {
+          args: Prisma.CustomerOAuthAccountDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>
+        }
+        update: {
+          args: Prisma.CustomerOAuthAccountUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>
+        }
+        deleteMany: {
+          args: Prisma.CustomerOAuthAccountDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CustomerOAuthAccountUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CustomerOAuthAccountUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>[]
+        }
+        upsert: {
+          args: Prisma.CustomerOAuthAccountUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>
+        }
+        aggregate: {
+          args: Prisma.CustomerOAuthAccountAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCustomerOAuthAccount>
+        }
+        groupBy: {
+          args: Prisma.CustomerOAuthAccountGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CustomerOAuthAccountGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CustomerOAuthAccountCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CustomerOAuthAccountCountAggregateOutputType> | number
         }
       }
     }
@@ -5257,6 +5332,20 @@ export const CustomerPasswordResetScalarFieldEnum = {
 export type CustomerPasswordResetScalarFieldEnum = (typeof CustomerPasswordResetScalarFieldEnum)[keyof typeof CustomerPasswordResetScalarFieldEnum]
 
 
+export const CustomerOAuthAccountScalarFieldEnum = {
+  id: 'id',
+  accountId: 'accountId',
+  provider: 'provider',
+  providerAccountId: 'providerAccountId',
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type CustomerOAuthAccountScalarFieldEnum = (typeof CustomerOAuthAccountScalarFieldEnum)[keyof typeof CustomerOAuthAccountScalarFieldEnum]
+
+
 export const CustomerSessionScalarFieldEnum = {
   id: 'id',
   accountId: 'accountId',
@@ -7098,6 +7187,7 @@ export type GlobalOmitConfig = {
   nfcCard?: Prisma.NfcCardOmit
   customerAccount?: Prisma.CustomerAccountOmit
   customerPasswordReset?: Prisma.CustomerPasswordResetOmit
+  customerOAuthAccount?: Prisma.CustomerOAuthAccountOmit
   customerSession?: Prisma.CustomerSessionOmit
   workspace?: Prisma.WorkspaceOmit
   workspaceMembership?: Prisma.WorkspaceMembershipOmit

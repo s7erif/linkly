@@ -3,8 +3,8 @@ export type ActivationAccountRecord = {
   customerId: string;
   displayName?: string;
   email: string;
-  passwordHash: Uint8Array<ArrayBuffer>;
-  passwordSalt: Uint8Array<ArrayBuffer>;
+  passwordHash: Uint8Array<ArrayBuffer> | null;
+  passwordSalt: Uint8Array<ArrayBuffer> | null;
   workspace: {
     id: string;
     primaryCardId: string | null;
