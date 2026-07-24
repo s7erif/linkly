@@ -220,7 +220,7 @@ export default function LiquidGlassNavbar({
         "/activate",
         "/register",
         "/gallery",
-        "/login",
+        "/admin/login",
       ].includes(pathname)
   );
 

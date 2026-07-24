@@ -18,6 +18,8 @@ export const authOptions = {
           // Resolve the temporary legacy admin identity through the compatibility service.
           const email = "admin@oicards.local";
           const user = await legacyAdminUserService.ensure(email, "Shop Admin");
+          const { ensureBootstrapAdmin } = await import("@/lib/composition-root");
+          await ensureBootstrapAdmin.execute(email, "Shop Admin");
           return { id: user.id, name: user.name, email: user.email };
         }
         return null; // Login failed
@@ -40,6 +42,6 @@ export const authOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET || "fallback_secret_for_development_only",
   pages: {
-    signIn: "/login",
+    signIn: "/admin/login",
   },
 };
