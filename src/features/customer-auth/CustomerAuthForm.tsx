@@ -44,8 +44,8 @@ export function CustomerAuthForm({ mode, token = "" }: { mode: Mode; token?: str
     {message ? <Text aria-live="polite" tone={ok || pendingReview ? "muted" : "danger"}>{message}</Text> : null}
     <Button fullWidth loading={pending} type="submit">{mode === "register" ? "Create account" : mode === "login" ? "Sign in" : mode === "forgot" ? "Send reset link" : "Reset password"}</Button>
     {mode === "login" ? <><Button as="a" href="/customer/forgot-password" variant="link">Forgot password?</Button><Text tone="muted">Don&apos;t have an account? <Link href="/register">Create Account</Link></Text></> : null}
-    {mode === "register" ? <Text tone="muted">Already have an account? <Link href="/customer/login">Sign in</Link></Text> : null}
-    {mode === "forgot" ? <Text tone="muted"><Link href="/customer/login">Back to Login</Link></Text> : null}
-    {mode === "reset" && ok ? <Text tone="muted"><Link href="/customer/login">Back to Login</Link></Text> : null}
+    {mode === "register" ? <Text tone="muted">Already have an account? <Link href="/login">Sign in</Link></Text> : null}
+    {mode === "forgot" ? <Text tone="muted"><Link href="/login">Back to Login</Link></Text> : null}
+    {mode === "reset" && ok ? <Text tone="muted"><Link href="/login">Back to Login</Link></Text> : null}
   </Stack></form>;
 }
