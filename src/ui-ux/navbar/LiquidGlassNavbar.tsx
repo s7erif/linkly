@@ -216,7 +216,6 @@ export default function LiquidGlassNavbar({
     pathname &&
       /^\/[^/]+$/.test(pathname) &&
       ![
-        "/access",
         "/activate",
         "/register",
         "/gallery",

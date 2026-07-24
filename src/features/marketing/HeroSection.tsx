@@ -232,8 +232,8 @@ export default function HeroSection({ brandName }: HeroSectionProps) {
             <Link href="/register" className={styles.primaryCta}>
               Create Your Card
             </Link>
-            <Link href="/access" className={styles.secondaryCta}>
-              How It Works
+            <Link href="/login" className={styles.secondaryCta}>
+              Sign In
             </Link>
           </motion.div>
 

@@ -10,7 +10,7 @@ export const RESERVED_SLUGS = new Set([
   "dashboard", "help", "login", "logout", "register", "reset-password",
   "settings", "support", "workspace", "www",
   // Additional route conflicts (user spec)
-  "welcome", "access", "register", "create-card", "profile",
+  "welcome", "register", "create-card", "profile",
 ]);
 
 /** Readable suffixes tried in order when generating additional card slugs. */
