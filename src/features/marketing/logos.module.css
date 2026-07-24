@@ -1,0 +1,120 @@
+/* ── Logos — Glass pill strip ────────────────────────────────── */
+
+.wrap {
+  position: relative;
+  z-index: 10;
+  margin: -8px auto 0;
+  width: 100%;
+  max-width: 56rem; /* max-w-4xl */
+  padding: 0 24px;
+}
+
+@media (min-width: 640px) {
+  .wrap { padding: 0 40px; }
+}
+
+/* Glass pill */
+.pill {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  border-radius: 16px; /* rounded-2xl */
+  padding: 16px 24px;
+  /* glass-pill: white ~65% opacity, blur 16px, saturate 140% */
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 30px -18px rgba(20, 20, 40, 0.25);
+}
+
+@media (min-width: 640px) {
+  .pill {
+    padding: 16px 40px;
+  }
+}
+
+/* Individual logo */
+.logo {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+  transition: color 0.2s;
+}
+
+.logo:hover {
+  color: #000000;
+}
+
+/* Logo sub-components */
+
+.logoRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logoStripe {
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: -0.025em;
+}
+
+.logoCircle {
+  display: grid;
+  width: 14px;
+  height: 14px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.logoCircle::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.logoSquare {
+  display: grid;
+  width: 14px;
+  height: 14px;
+  place-items: center;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.logoVercelSvg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+.logoFramerSvg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.logoFigmaCircle {
+  display: grid;
+  width: 14px;
+  height: 14px;
+  place-items: center;
+  border-radius: 50%;
+  background: #000000;
+}
+
+.logoFigmaCircle::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+}

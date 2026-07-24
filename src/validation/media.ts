@@ -1,0 +1,3 @@
+import { z } from "zod";
+export const mediaUploadSchema = z.object({ fileName:z.string().min(1).max(255).regex(/^[^\\/\\:*?"<>|]+$/), contentType:z.enum(["image/png","image/jpeg","image/webp","image/avif","image/svg+xml"]), byteSize:z.number().int().positive().max(10*1024*1024), extension:z.string().regex(/^[a-z0-9]+$/i) });
+export const mediaSearchSchema = z.object({ search:z.string().trim().max(120).optional(), folderId:z.string().uuid().nullable().optional(), contentType:z.string().max(100).optional(), page:z.number().int().min(1).default(1), pageSize:z.number().int().min(1).max(100).default(25) });

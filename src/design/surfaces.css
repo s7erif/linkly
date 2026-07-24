@@ -1,0 +1,133 @@
+[data-oi-theme] {
+  /* Surface hierarchy */
+  --oi-surface-background: var(--oi-color-background);
+  --oi-surface-default: var(--oi-color-surface);
+  --oi-surface-raised: var(--oi-color-surface-elevated);
+  --oi-surface-floating: color-mix(in srgb, var(--oi-color-surface-elevated) var(--oi-mix-surface-floating), var(--oi-color-background));
+  --oi-surface-modal: var(--oi-color-surface-elevated);
+  --oi-surface-interactive: var(--oi-color-surface);
+  --oi-surface-interactive-hover: color-mix(in srgb, var(--oi-color-accent) var(--oi-mix-interactive-hover), var(--oi-color-surface));
+  --oi-surface-interactive-pressed: color-mix(in srgb, var(--oi-color-accent) var(--oi-mix-interactive-pressed), var(--oi-color-surface));
+
+  /* Border hierarchy */
+  --oi-border-standard: var(--oi-color-border);
+  --oi-border-soft: color-mix(in srgb, var(--oi-color-border) var(--oi-mix-border-soft), var(--oi-color-transparent));
+  --oi-border-glass: color-mix(in srgb, var(--oi-color-border-strong) var(--oi-mix-border-glass), var(--oi-color-transparent));
+  --oi-border-focus: var(--oi-color-accent);
+
+  /* Elevation hierarchy */
+  --oi-elevation-level-0: var(--oi-shadow-none);
+  --oi-elevation-level-1: var(--oi-shadow-sm);
+  --oi-elevation-level-2: var(--oi-shadow-md);
+  --oi-elevation-level-3: var(--oi-shadow-lg);
+  --oi-elevation-level-floating: var(--oi-shadow-lg);
+  --oi-elevation-modal: var(--oi-shadow-xl);
+  --oi-elevation-popover: var(--oi-shadow-md);
+  --oi-elevation-tooltip: var(--oi-shadow-sm);
+
+  /* Glass hierarchy */
+  --oi-glass-xs-background: color-mix(in srgb, var(--oi-color-surface) var(--oi-glass-opacity-xs), var(--oi-color-transparent));
+  --oi-glass-xs-blur: var(--oi-blur-sm);
+  --oi-glass-xs-border: var(--oi-border-glass);
+  --oi-glass-xs-shadow: var(--oi-elevation-level-1);
+
+  --oi-glass-sm-background: color-mix(in srgb, var(--oi-color-surface) var(--oi-glass-opacity-sm), var(--oi-color-transparent));
+  --oi-glass-sm-blur: var(--oi-blur-md);
+  --oi-glass-sm-border: var(--oi-border-glass);
+  --oi-glass-sm-shadow: var(--oi-elevation-level-1);
+
+  --oi-glass-md-background: color-mix(in srgb, var(--oi-color-surface-elevated) var(--oi-glass-opacity-md), var(--oi-color-transparent));
+  --oi-glass-md-blur: var(--oi-blur-lg);
+  --oi-glass-md-border: var(--oi-border-glass);
+  --oi-glass-md-shadow: var(--oi-elevation-level-2);
+
+  --oi-glass-lg-background: color-mix(in srgb, var(--oi-color-surface-elevated) var(--oi-glass-opacity-lg), var(--oi-color-transparent));
+  --oi-glass-lg-blur: var(--oi-blur-xl);
+  --oi-glass-lg-border: var(--oi-border-glass);
+  --oi-glass-lg-shadow: var(--oi-elevation-level-3);
+
+  /* Overlay hierarchy */
+  --oi-overlay-dialog-backdrop: var(--oi-color-overlay);
+  --oi-overlay-dialog-surface: var(--oi-surface-modal);
+  --oi-overlay-dialog-shadow: var(--oi-elevation-modal);
+  --oi-overlay-dialog-layer: var(--oi-z-dialog);
+
+  --oi-overlay-drawer-backdrop: var(--oi-color-overlay);
+  --oi-overlay-drawer-surface: var(--oi-surface-modal);
+  --oi-overlay-drawer-shadow: var(--oi-elevation-modal);
+  --oi-overlay-drawer-layer: var(--oi-z-dialog);
+
+  --oi-overlay-command-backdrop: var(--oi-color-overlay);
+  --oi-overlay-command-surface: var(--oi-glass-lg-background);
+  --oi-overlay-command-shadow: var(--oi-elevation-modal);
+  --oi-overlay-command-layer: var(--oi-z-dialog);
+
+  --oi-overlay-dropdown-backdrop: var(--oi-color-transparent);
+  --oi-overlay-dropdown-surface: var(--oi-surface-floating);
+  --oi-overlay-dropdown-shadow: var(--oi-elevation-popover);
+  --oi-overlay-dropdown-layer: var(--oi-z-dropdown);
+
+  --oi-overlay-context-menu-backdrop: var(--oi-color-transparent);
+  --oi-overlay-context-menu-surface: var(--oi-surface-floating);
+  --oi-overlay-context-menu-shadow: var(--oi-elevation-popover);
+  --oi-overlay-context-menu-layer: var(--oi-z-dropdown);
+
+  --oi-overlay-tooltip-backdrop: var(--oi-color-transparent);
+  --oi-overlay-tooltip-surface: var(--oi-surface-floating);
+  --oi-overlay-tooltip-shadow: var(--oi-elevation-tooltip);
+  --oi-overlay-tooltip-layer: var(--oi-z-dropdown);
+}
+
+
+[data-oi-theme] {
+  /* Crystal glass foundation */
+  --oi-glass-xs-background: color-mix(in srgb, var(--oi-color-glass-tint) var(--oi-glass-opacity-xs), transparent);
+  --oi-glass-xs-hover-background: color-mix(in srgb, var(--oi-color-glass-tint) var(--oi-glass-hover-opacity-xs), transparent);
+  --oi-glass-xs-blur: var(--oi-glass-blur-xs);
+  --oi-glass-xs-saturation: var(--oi-glass-saturation-xs);
+  --oi-glass-xs-border: color-mix(in srgb, var(--oi-color-glass-border) 78%, var(--oi-border-soft));
+  --oi-glass-xs-highlight: var(--oi-color-glass-highlight);
+  --oi-glass-xs-hover-border: var(--oi-color-glass-border);
+  --oi-glass-xs-shadow: var(--oi-shadow-inner-highlight), var(--oi-shadow-xs);
+  --oi-glass-xs-hover-shadow: var(--oi-shadow-inner-highlight), var(--oi-shadow-sm);
+
+  --oi-glass-sm-background: color-mix(in srgb, var(--oi-color-glass-tint) var(--oi-glass-opacity-sm), transparent);
+  --oi-glass-sm-hover-background: color-mix(in srgb, var(--oi-color-glass-tint) var(--oi-glass-hover-opacity-sm), transparent);
+  --oi-glass-sm-blur: var(--oi-glass-blur-sm);
+  --oi-glass-sm-saturation: var(--oi-glass-saturation-sm);
+  --oi-glass-sm-border: color-mix(in srgb, var(--oi-color-glass-border) 76%, var(--oi-border-soft));
+  --oi-glass-sm-highlight: var(--oi-color-glass-highlight);
+  --oi-glass-sm-hover-border: var(--oi-color-glass-border);
+  --oi-glass-sm-shadow: var(--oi-shadow-inner-highlight), var(--oi-shadow-sm);
+  --oi-glass-sm-hover-shadow: var(--oi-shadow-inner-highlight), var(--oi-shadow-md);
+
+  --oi-glass-md-background: color-mix(in srgb, var(--oi-color-glass-tint) var(--oi-glass-opacity-md), transparent);
+  --oi-glass-md-hover-background: color-mix(in srgb, var(--oi-color-glass-tint) var(--oi-glass-hover-opacity-md), transparent);
+  --oi-glass-md-blur: var(--oi-glass-blur-md);
+  --oi-glass-md-saturation: var(--oi-glass-saturation-md);
+  --oi-glass-md-border: color-mix(in srgb, var(--oi-color-glass-border) 74%, var(--oi-border-soft));
+  --oi-glass-md-highlight: var(--oi-color-glass-highlight);
+  --oi-glass-md-hover-border: var(--oi-color-glass-border);
+  --oi-glass-md-shadow: var(--oi-shadow-inner-highlight), var(--oi-shadow-md);
+  --oi-glass-md-hover-shadow: var(--oi-shadow-inner-highlight), var(--oi-shadow-lg);
+
+  --oi-glass-lg-background: color-mix(in srgb, var(--oi-color-glass-tint) var(--oi-glass-opacity-lg), transparent);
+  --oi-glass-lg-hover-background: color-mix(in srgb, var(--oi-color-glass-tint) var(--oi-glass-hover-opacity-lg), transparent);
+  --oi-glass-lg-blur: var(--oi-glass-blur-lg);
+  --oi-glass-lg-saturation: var(--oi-glass-saturation-lg);
+  --oi-glass-lg-border: color-mix(in srgb, var(--oi-color-glass-border) 72%, var(--oi-border-soft));
+  --oi-glass-lg-highlight: var(--oi-color-glass-highlight);
+  --oi-glass-lg-hover-border: var(--oi-color-glass-border);
+  --oi-glass-lg-shadow: var(--oi-shadow-inner-highlight), var(--oi-shadow-lg);
+  --oi-glass-lg-hover-shadow: var(--oi-shadow-inner-highlight), var(--oi-shadow-xl);
+
+  --oi-glass-xl-background: color-mix(in srgb, var(--oi-color-glass-tint) var(--oi-glass-opacity-xl), transparent);
+  --oi-glass-xl-hover-background: color-mix(in srgb, var(--oi-color-glass-tint) var(--oi-glass-hover-opacity-xl), transparent);
+  --oi-glass-xl-blur: var(--oi-glass-blur-xl);
+  --oi-glass-xl-saturation: var(--oi-glass-saturation-xl);
+  --oi-glass-xl-border: color-mix(in srgb, var(--oi-color-glass-border) 70%, var(--oi-border-soft));
+  --oi-glass-xl-highlight: var(--oi-color-glass-highlight);
+  --oi-glass-xl-hover-border: var(--oi-color-glass-border);
+  --oi-glass-xl-shadow: var(--oi-shadow-inner-highlight), var(--oi-shadow-xl);
+  --oi-glass-xl-hover-shadow: var(--oi-shadow-inner-highlight), var(--oi-shadow-xl);
+}

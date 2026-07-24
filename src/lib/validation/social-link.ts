@@ -1,15 +1,18 @@
 import { z } from "zod";
 import { CONSTANTS } from "../constants";
-import { urlValidator } from "./common";
 
 export const socialLinkSchema = z.object({
   platform: z.enum(CONSTANTS.SUPPORTED_SOCIAL_PLATFORMS, {
-    errorMap: () => ({ message: "Unsupported social platform" })
+    message: "Unsupported social platform"
   }),
-  url: urlValidator.refine((val) => val !== "", {
-    message: "URL cannot be empty for a social link"
-  }),
+  url: z.string().url("Invalid social platform URL").max(2000),
   order: z.number().int().min(0).default(0),
 });
 
 export const socialLinkUpdateSchema = socialLinkSchema.partial();
+
+export const socialLinkArraySchema = z.array(socialLinkSchema);
+
+export type SocialLinkInput = z.infer<typeof socialLinkSchema>;
+
+

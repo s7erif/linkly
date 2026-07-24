@@ -6,6 +6,8 @@ export {
   createCustomerRequestSchema,
   createEditorSessionRequestSchema,
   publicCardParamsSchema,
+  cardRouteParamsSchema,
+  cardBlockRouteParamsSchema,
   verifyAccessCodeRequestSchema,
 } from "./schemas";
 export type { ErrorEnvelope, RouteResult, SuccessEnvelope } from "./contracts";

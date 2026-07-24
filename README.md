@@ -70,6 +70,7 @@ Configure these keys inside your local `.env` or production Vercel dashboard:
 | Category              | Variable                             | Purpose & Source                                                                             |
 | :-------------------- | :----------------------------------- | :------------------------------------------------------------------------------------------- |
 | **Database**          | `DATABASE_URL`                       | PostgreSQL connection string ([Supabase](https://supabase.com) or [Neon](https://neon.tech)) |
+| **Access codes**      | `ACCESS_CODE_HMAC_KEY`               | Stable secret of at least 32 bytes used to HMAC access codes (`openssl rand -hex 32`)          |
 | **NextAuth / Google** | `NEXTAUTH_SECRET`                    | Random secret string for signing auth tokens (`openssl rand -base64 32`)                     |
 |                       | `NEXTAUTH_URL`                       | Local/production domain (e.g. `http://localhost:3000`)                                       |
 |                       | `GOOGLE_CLIENT_ID`                   | Obtained from [Google Cloud Console Credentials](https://console.cloud.google.com/)          |

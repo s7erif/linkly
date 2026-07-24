@@ -14,8 +14,8 @@ export async function parseJsonBody<T>(request: Request, schema: z.ZodType<T>): 
   }
   return result.data;
 }
-export function parseRouteParams<T>(params: unknown, schema: z.ZodType<T>): T {
-  const result = schema.safeParse(params);
+export async function parseRouteParams<T>(params: unknown | Promise<unknown>, schema: z.ZodType<T>): Promise<T> {
+  const result = schema.safeParse(await params);
   if (!result.success) {
     throw new ValidationError("Route parameter validation failed", { fields: result.error.flatten().fieldErrors });
   }

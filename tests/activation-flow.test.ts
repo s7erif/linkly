@@ -1,0 +1,26 @@
+import { describe, expect, it, vi } from "vitest";
+import type { AccessCodeDTO, CardDTO, CustomerDTO, EditorCardDTO, EditorSessionDTO, OrderDTO } from "@/dto";
+import type { TransactionRepositories, UnitOfWork } from "@/repositories";
+import { ApproveOrder, CreateCard, CreateCustomer, CreateEditorSession, CreateOrder, GenerateInitialAccessCode, ReadWorkspaceCard, UpdateCardProfile } from "@/use-cases";
+
+const ORDER_ID="53bd8d70-8f9b-48bc-a7de-bbca23bdf033",CUSTOMER_ID="3d594650-c44b-4f60-8c9a-c0f44f57615d",CARD_ID="0915a8e0-60eb-4cfc-b6dc-adcb01dd249a",CODE_ID="32ca1ea0-f889-49ff-aa1a-ab72691492e9",SESSION_ID="ee50b035-0824-4551-a2ea-dfc7a40f62f0",NOW=new Date("2026-07-20T08:00:00.000Z"),TOKEN="b".repeat(64);
+
+describe("Order activation flow",()=>{it("creates, approves, issues, activates, opens, and edits one Draft/Private card",async()=>{
+ let order:OrderDTO|null=null,card:EditorCardDTO|null=null,accessCode:AccessCodeDTO|null=null,session:EditorSessionDTO|null=null;
+ const customer:CustomerDTO={id:CUSTOMER_ID,displayName:"Sherif Osman",email:"sherif@example.com",phone:"01000000000",status:"ACTIVE",locale:"en",timezone:"UTC",createdAt:NOW,updatedAt:NOW};
+ const repositories={
+  orders:{create:vi.fn(async command=>(order={id:ORDER_ID,...command,customerId:null,cardIds:[],createdAt:NOW,updatedAt:NOW})),findById:vi.fn(async()=>order),list:vi.fn(async()=>order?[order]:[]),findAccountCredentials:vi.fn(async()=>null),findPendingRegistrationByEmail:vi.fn(async()=>null),update:vi.fn(async(_id,command)=>(order={...order!,...command,customerId:command.customerId===undefined?order!.customerId:command.customerId,cardIds:card?[card.id]:[]})),transition:vi.fn(async command=>{if(!order||order.status!==command.fromStatus)return null;return order={...order,...command.update}})},
+  customers:{create:vi.fn(async()=>customer),findById:vi.fn(async()=>customer),update:vi.fn(),provisionAccount:vi.fn(async()=>({accountId:"acct-1",workspaceId:"ws-1"}))},
+  cards:{create:vi.fn(async command=>{card={id:CARD_ID,customerId:CUSTOMER_ID,themeId:null,slug:command.slug,name:command.name,status:"DRAFT",visibility:"PRIVATE",publishedAt:null,accessVersion:1,profile:{fullName:command.fullName,headline:null,company:command.initialProfile?.company??null,bio:null,email:command.initialProfile?.email??null,phone:command.initialProfile?.phone??null,website:null,address:null,countryCode:null},themeConfig:null,buttons:[],socialLinks:[],createdAt:NOW,updatedAt:NOW};return card as CardDTO}),findById:vi.fn(async()=>card),findEditorById:vi.fn(async()=>card),findRenderSourceBySlug:vi.fn(),update:vi.fn(async(_id,command)=>{if(command.profile&&card)card={...card,profile:{...card.profile!,...command.profile}};return card as CardDTO}),updateAppearance:vi.fn(),incrementAccessVersion:vi.fn()},
+  accessCodes:{findMaximumVersion:vi.fn(async()=>null),create:vi.fn(async command=>(accessCode={id:CODE_ID,cardId:command.cardId,version:1,status:"ACTIVE",expiresAt:null,lastUsedAt:null,useCount:0,createdAt:NOW,revokedAt:null})),findByHash:vi.fn(async()=>accessCode),findLatestByCard:vi.fn(),updateMany:vi.fn(),markUsed:vi.fn(),recordEvent:vi.fn(async()=>({id:"31ca1ea0-f889-49ff-aa1a-ab72691492e9",accessCodeId:CODE_ID,eventType:"VERIFIED" as const,occurredAt:NOW,success:true,failureReason:null}))},
+  editorSessions:{create:vi.fn(async command=>(session={id:SESSION_ID,cardId:command.cardId,accessCodeId:command.accessCodeId,status:"ACTIVE",expiresAt:command.expiresAt,lastSeenAt:null,createdAt:NOW,revokedAt:null})),findByTokenHash:vi.fn(async()=>session),revokeByCard:vi.fn()},legacy:{} as TransactionRepositories["legacy"],migrations:{} as TransactionRepositories["migrations"]
+ } as TransactionRepositories;
+ const unitOfWork:UnitOfWork={execute:work=>work(repositories)};
+ const created=await new CreateOrder(unitOfWork,{generate:()=>"OI-20260720-49486B01"},{now:()=>NOW}).execute({customerName:"Sherif Osman",email:"sherif@example.com",phone:"01000000000",package:"DIGITAL_NFC",quantity:1});
+ const accessGenerator={generate:()=>"0123456789ABCDEFGHJKMNPQRS",format:(value:string)=>`OI-${value}`},hasher={hash:vi.fn(async()=>new Uint8Array([1]))};
+ const approved=await new ApproveOrder(unitOfWork,new CreateCustomer(unitOfWork),new CreateCard(unitOfWork),new GenerateInitialAccessCode(unitOfWork,hasher,accessGenerator)).execute({orderId:created.id});
+ const issuedSession=await new CreateEditorSession(unitOfWork,hasher,{generate:()=>TOKEN,hash:vi.fn(async()=>new Uint8Array([2]))},{now:()=>NOW}).execute({code:approved.issuedAccessCodes[0].code,lifetimeSeconds:3600});
+ const workspace=await new ReadWorkspaceCard(unitOfWork,{generate:()=>TOKEN,hash:vi.fn(async()=>new Uint8Array([2]))},()=>NOW).execute({cardId:issuedSession.session.cardId,sessionToken:issuedSession.token});
+ const updated=await new UpdateCardProfile(unitOfWork,{generate:()=>TOKEN,hash:vi.fn(async()=>new Uint8Array([2]))},()=>NOW).execute({cardId:workspace.id,sessionToken:issuedSession.token,profile:{...workspace.profile!,headline:"Founder"}});
+ expect(approved.cards[0]).toMatchObject({id:CARD_ID,slug:"sherif-osman",status:"DRAFT",visibility:"PRIVATE"});expect(issuedSession.session.cardId).toBe(CARD_ID);expect(workspace.slug).toBe(approved.cards[0].slug);expect(updated.profile?.headline).toBe("Founder");
+});});

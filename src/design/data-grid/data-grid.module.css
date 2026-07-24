@@ -1,0 +1,239 @@
+.tableFrame {
+  overflow: hidden;
+}
+
+.tableScroller {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.table {
+  border-collapse: collapse;
+  inline-size: 100%;
+  min-inline-size: var(--oi-data-grid-min-inline-size);
+  color: var(--oi-color-text);
+}
+
+.caption {
+  padding: var(--oi-space-3) var(--oi-space-4);
+  color: var(--oi-color-text-muted);
+  font-size: var(--oi-font-size-sm);
+  text-align: start;
+}
+
+.tableHeader {
+  background: var(--oi-color-surface-muted);
+}
+
+.tableRow {
+  min-block-size: var(--oi-data-grid-row-min-block-size);
+  border-block-end: var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-border-soft);
+  transition: background-color var(--oi-duration-fast) var(--oi-ease-standard);
+}
+
+.tableBody .tableRow:hover {
+  background: var(--oi-data-grid-hover-background);
+}
+
+.tableBody .tableRow:last-child {
+  border-block-end: var(--oi-border-width-none);
+}
+
+.tableRowSelected {
+  background: var(--oi-data-grid-selected-background);
+}
+
+.columnHeader,
+.tableCell {
+  padding: var(--oi-data-grid-cell-padding-block) var(--oi-data-grid-cell-padding-inline);
+  vertical-align: middle;
+}
+
+.columnHeader {
+  color: var(--oi-color-text-muted);
+  font-weight: var(--oi-font-weight-semibold);
+  white-space: nowrap;
+}
+
+.tableCell {
+  font-size: var(--oi-font-size-sm);
+}
+
+.alignStart {
+  text-align: start;
+}
+
+.alignCenter {
+  text-align: center;
+}
+
+.alignEnd {
+  text-align: end;
+}
+
+.selectionColumn {
+  inline-size: var(--oi-data-grid-row-min-block-size);
+  text-align: center;
+}
+
+.selectionCheckbox {
+  inline-size: var(--oi-data-grid-selection-size);
+  block-size: var(--oi-data-grid-selection-size);
+  margin: var(--oi-space-0);
+  accent-color: var(--oi-color-accent);
+}
+
+.selectionCheckbox:focus-visible,
+.tableCell:focus-visible {
+  outline: var(--oi-border-width-focus) var(--oi-border-style-standard) var(--oi-border-focus);
+  outline-offset: calc(var(--oi-border-width-focus) * -1);
+}
+
+.sortButton {
+  min-inline-size: max-content;
+}
+
+.toolbar,
+.filterBar,
+.bulkActions,
+.pagination {
+  padding: var(--oi-space-4);
+}
+
+.toolbarControls,
+.filterControls {
+  flex: 1 1 auto;
+}
+
+.searchField {
+  flex: 1 1 var(--oi-container-sm);
+}
+
+.pageStatus {
+  min-inline-size: var(--oi-space-16);
+  text-align: center;
+}
+
+.emptyTableState {
+  padding: var(--oi-space-8);
+}
+
+.tableSkeleton {
+  padding: var(--oi-space-4);
+}
+
+.skeletonRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--oi-space-20), 1fr));
+  gap: var(--oi-space-4);
+  align-items: center;
+  min-block-size: var(--oi-data-grid-row-min-block-size);
+}
+
+.visuallyHidden {
+  position: absolute;
+  inline-size: var(--oi-border-width-standard);
+  block-size: var(--oi-border-width-standard);
+  padding: var(--oi-space-0);
+  margin: calc(var(--oi-border-width-standard) * -1);
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: var(--oi-border-width-none);
+}
+
+@media (max-width: 64rem) {
+  .table {
+    min-inline-size: var(--oi-container-sm);
+  }
+}
+
+@media (max-width: 40rem) {
+  .tableScroller {
+    overflow: visible;
+  }
+
+  .table {
+    min-inline-size: var(--oi-space-0);
+  }
+
+  .tableHeader {
+    position: absolute;
+    inline-size: var(--oi-border-width-standard);
+    block-size: var(--oi-border-width-standard);
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .tableBody,
+  .tableRow,
+  .tableCell {
+    display: block;
+  }
+
+  .tableBody {
+    padding: var(--oi-space-3);
+  }
+
+  .tableRow {
+    padding: var(--oi-space-3);
+    border: var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-border-soft);
+    border-radius: var(--oi-radius-lg);
+    background: var(--oi-surface-default);
+  }
+
+  .tableRow + .tableRow {
+    margin-block-start: var(--oi-space-3);
+  }
+
+  .tableCell {
+    display: grid;
+    grid-template-columns: minmax(var(--oi-data-grid-mobile-label-inline-size), 1fr) minmax(var(--oi-space-0), 2fr);
+    gap: var(--oi-space-3);
+    align-items: center;
+    padding: var(--oi-space-2) var(--oi-space-3);
+    text-align: start;
+  }
+
+  .tableCell::before {
+    content: attr(data-label);
+    color: var(--oi-color-text-muted);
+    font-size: var(--oi-font-size-xs);
+    font-weight: var(--oi-font-weight-semibold);
+  }
+
+  .selectionColumn {
+    inline-size: auto;
+  }
+
+  .mobileHidden {
+    display: none;
+  }
+
+  .toolbar,
+  .filterBar,
+  .bulkActions,
+  .pagination {
+    padding: var(--oi-space-3);
+  }
+
+  .toolbarControls,
+  .filterControls,
+  .searchField {
+    inline-size: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tableRow {
+    transition-duration: var(--oi-duration-instant);
+  }
+}
+
+@media (forced-colors: active) {
+  .tableRowSelected,
+  .tableBody .tableRow:hover {
+    outline: var(--oi-border-width-standard) var(--oi-border-style-standard) Highlight;
+    outline-offset: calc(var(--oi-border-width-standard) * -1);
+  }
+}

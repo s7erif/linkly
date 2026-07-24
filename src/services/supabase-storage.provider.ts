@@ -1,0 +1,10 @@
+import type { StorageProvider } from "@/types/providers";
+import { getEnvironment } from "@/lib/env";
+
+export class SupabaseStorageProvider implements StorageProvider {
+  private readonly url: string; private readonly key: string; private readonly bucket: string;
+  constructor(config = getEnvironment()) { if (!config.SUPABASE_URL || !config.SUPABASE_SERVICE_ROLE_KEY || !config.SUPABASE_STORAGE_BUCKET) throw new Error("Supabase Storage configuration is required"); this.url=config.SUPABASE_URL.replace(/\/$/,""); this.key=config.SUPABASE_SERVICE_ROLE_KEY; this.bucket=config.SUPABASE_STORAGE_BUCKET; }
+  async put(input:{key:string;body:Uint8Array;contentType:string}) { const safe=input.key.replace(/^\/+/,"").replace(/\.\./g,""); const response=await fetch(`${this.url}/storage/v1/object/${this.bucket}/${safe}`,{method:"POST",headers:{Authorization:`Bearer ${this.key}`,apikey:this.key,"Content-Type":input.contentType},body:Buffer.from(input.body)}); if(!response.ok) throw new Error(`Supabase upload failed (${response.status})`); return {key:safe,url:`${this.url}/storage/v1/object/public/${this.bucket}/${safe}`}; }
+  async delete(key:string){const safe=key.replace(/^\/+/,"").replace(/\.\./g,"");const response=await fetch(`${this.url}/storage/v1/object/${this.bucket}`,{method:"DELETE",headers:{Authorization:`Bearer ${this.key}`,apikey:this.key,"Content-Type":"application/json"},body:JSON.stringify({prefixes:[safe]})});if(!response.ok)throw new Error(`Supabase delete failed (${response.status})`)}
+  async signedUrl(key:string,expiresIn=3600){const safe=key.replace(/^\/+/,"").replace(/\.\./g,"");const response=await fetch(`${this.url}/storage/v1/object/sign/${this.bucket}/${safe}`,{method:"POST",headers:{Authorization:`Bearer ${this.key}`,apikey:this.key,"Content-Type":"application/json"},body:JSON.stringify({expiresIn})});if(!response.ok)throw new Error(`Supabase signed URL failed (${response.status})`);const data=await response.json() as {signedURL?:string};return data.signedURL?`${this.url}/storage/v1${data.signedURL}`:undefined;}
+}

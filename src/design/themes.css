@@ -1,0 +1,98 @@
+[data-oi-theme="light"] {
+  --oi-color-background: var(--oi-color-slate-50);
+  --oi-color-surface: var(--oi-color-white);
+  --oi-color-surface-muted: var(--oi-color-slate-100);
+  --oi-color-surface-elevated: var(--oi-color-white);
+  --oi-color-text: var(--oi-color-slate-950);
+  --oi-color-text-muted: var(--oi-color-slate-600);
+  --oi-color-text-subtle: var(--oi-color-slate-500);
+  --oi-color-border: var(--oi-color-slate-200);
+  --oi-color-border-strong: var(--oi-color-slate-300);
+  --oi-color-accent: var(--oi-color-violet-600);
+  --oi-color-accent-hover: var(--oi-color-violet-500);
+  --oi-color-on-accent: var(--oi-color-white);
+  --oi-color-success: var(--oi-color-green-500);
+  --oi-color-warning: var(--oi-color-amber-500);
+  --oi-color-danger: var(--oi-color-red-500);
+  --oi-color-info: var(--oi-color-blue-500);
+  --oi-color-success-text: var(--oi-color-green-700);
+  --oi-color-warning-text: var(--oi-color-amber-700);
+  --oi-color-danger-text: var(--oi-color-red-700);
+  --oi-color-info-text: var(--oi-color-blue-700);
+  --oi-color-overlay: rgb(15 23 42 / 0.48);
+  --oi-color-primary: var(--oi-color-primary-600);
+  --oi-color-muted: var(--oi-color-slate-500);
+  --oi-color-focus: var(--oi-color-primary-600);
+  --oi-shadow-focus: 0 0 0 3px color-mix(in srgb, var(--oi-color-focus) 28%, transparent);
+  --oi-color-hover: rgb(105 88 223 / 0.08);
+  --oi-color-disabled: var(--oi-color-slate-400);
+  --oi-color-glass-tint: var(--oi-color-white);
+  --oi-color-glass-border: rgb(255 255 255 / 0.72);
+  --oi-color-glass-highlight: rgb(255 255 255 / 0.68);
+}
+
+[data-oi-theme="dark"] {
+  --oi-color-background: var(--oi-color-slate-950);
+  --oi-color-surface: var(--oi-color-slate-900);
+  --oi-color-surface-muted: var(--oi-color-slate-800);
+  --oi-color-surface-elevated: var(--oi-color-slate-800);
+  --oi-color-text: var(--oi-color-slate-50);
+  --oi-color-text-muted: var(--oi-color-slate-300);
+  --oi-color-text-subtle: var(--oi-color-slate-400);
+  --oi-color-border: var(--oi-color-slate-800);
+  --oi-color-border-strong: var(--oi-color-slate-700);
+  --oi-color-accent: var(--oi-color-violet-400);
+  --oi-color-accent-hover: var(--oi-color-violet-500);
+  --oi-color-on-accent: var(--oi-color-slate-950);
+  --oi-color-success: var(--oi-color-green-500);
+  --oi-color-warning: var(--oi-color-amber-500);
+  --oi-color-danger: var(--oi-color-red-500);
+  --oi-color-info: var(--oi-color-blue-500);
+  --oi-color-success-text: var(--oi-color-green-500);
+  --oi-color-warning-text: var(--oi-color-amber-500);
+  --oi-color-danger-text: var(--oi-color-red-500);
+  --oi-color-info-text: var(--oi-color-blue-500);
+  --oi-color-overlay: rgb(2 6 23 / 0.72);
+  --oi-color-primary: var(--oi-color-violet-400);
+  --oi-color-muted: var(--oi-color-slate-400);
+  --oi-color-focus: var(--oi-color-violet-400);
+  --oi-shadow-focus: 0 0 0 3px color-mix(in srgb, var(--oi-color-focus) 32%, transparent);
+  --oi-color-hover: rgb(167 139 250 / 0.1);
+  --oi-color-disabled: var(--oi-color-slate-600);
+  --oi-color-glass-tint: var(--oi-color-slate-100);
+  --oi-color-glass-border: rgb(255 255 255 / 0.18);
+  --oi-color-glass-highlight: rgb(255 255 255 / 0.16);
+}
+
+[data-oi-theme-init] *,
+[data-oi-theme-init] *::before,
+[data-oi-theme-init] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+@media (forced-colors: active) {
+  [data-oi-theme] {
+    --oi-color-background: Canvas;
+    --oi-color-surface: Canvas;
+    --oi-color-surface-muted: Canvas;
+    --oi-color-surface-elevated: Canvas;
+    --oi-color-text: CanvasText;
+    --oi-color-text-muted: CanvasText;
+    --oi-color-text-subtle: GrayText;
+    --oi-color-border: ButtonBorder;
+    --oi-color-border-strong: CanvasText;
+    --oi-color-accent: LinkText;
+    --oi-color-accent-hover: LinkText;
+    --oi-color-on-accent: Canvas;
+    --oi-color-success: CanvasText;
+    --oi-color-warning: CanvasText;
+    --oi-color-danger: CanvasText;
+    --oi-color-info: LinkText;
+    --oi-color-success-text: CanvasText;
+    --oi-color-warning-text: CanvasText;
+    --oi-color-danger-text: CanvasText;
+    --oi-color-info-text: LinkText;
+    --oi-color-overlay: Canvas;
+  }
+}

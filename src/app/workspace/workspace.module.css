@@ -1,0 +1,29 @@
+.page {
+  background:
+    radial-gradient(circle at 15% 5%, var(--oi-surface-interactive-hover), transparent 28rem),
+    radial-gradient(circle at 85% 20%, var(--oi-surface-interactive-pressed), transparent 32rem),
+    var(--oi-background-canvas);
+  color: var(--oi-color-text);
+  min-block-size: 100dvh;
+  overflow: hidden;
+  padding-block: clamp(var(--oi-space-8), 8vw, var(--oi-space-16));
+  position: relative;
+}
+.page::before {
+  background: linear-gradient(135deg, var(--oi-glass-xs-highlight), transparent 45%);
+  border-radius: var(--oi-radius-full);
+  content: "";
+  filter: blur(var(--oi-blur-xl));
+  inset-block-start: -12rem;
+  inset-inline-start: 50%;
+  opacity: var(--oi-opacity-muted);
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-50%);
+  block-size: 22rem;
+  inline-size: min(80vw, 56rem);
+}
+.container { inline-size: 100%; position: relative; z-index: var(--oi-z-base); }
+@media (max-width: 36rem) {
+  .page { padding-block: var(--oi-space-6); }
+}

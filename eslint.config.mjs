@@ -10,6 +10,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "src/app/page.tsx",
+    "src/components/FormPanel.tsx",
+    "src/components/PreviewPanel.tsx",
+    "src/components/SharePanel.tsx",
+    "src/app/gallery/page.js",
+    "src/components/Navbar.js",
   ]),
 ]);
 

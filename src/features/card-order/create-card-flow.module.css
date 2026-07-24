@@ -1,0 +1,69 @@
+.paymentOptions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.paymentCard {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  border: 1px solid var(--oi-border, #e2e8f0);
+  background: var(--oi-surface, #fff);
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.paymentCard:hover:not(.paymentCardDisabled) {
+  border-color: var(--oi-primary, #0f172a);
+}
+
+.paymentCardSelected {
+  border-color: var(--oi-primary, #0f172a);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--oi-primary, #0f172a) 18%, transparent);
+}
+
+.paymentCardDisabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.paymentCardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.paymentCardTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+
+.comingSoon {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--oi-primary, #0f172a) 12%, transparent);
+  color: var(--oi-primary, #0f172a);
+}
+
+.cardBrands {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--oi-muted, #64748b);
+}
+
+.fieldHint {
+  font-size: 0.75rem;
+  color: var(--oi-muted, #64748b);
+  margin-top: 0.25rem;
+}

@@ -1,0 +1,498 @@
+# Tapp Art Direction
+
+Version: 1.0
+
+---
+
+# Purpose
+
+This document defines the visual direction of Tapp.
+
+It exists to prevent generic AI-generated interfaces.
+
+Every design decision should reinforce one goal:
+
+Create a product experience that feels handcrafted,
+timeless,
+and premium.
+
+If a design looks like a common SaaS template,
+it has failed.
+
+---
+
+# Creative Philosophy
+
+Design less.
+
+Communicate more.
+
+Every pixel should explain the product.
+
+Decoration is never the objective.
+
+Storytelling is.
+
+---
+
+# Design Inspiration
+
+Study the design language of:
+
+• Apple.com
+• Apple Wallet
+• Apple Card
+• Apple Vision Pro
+• Nothing
+• Arc Browser
+• Linear
+• Stripe
+• Notion
+• Swiss Editorial Design
+• Muji
+• Dieter Rams
+• Japanese Minimalism
+
+Do NOT imitate them.
+
+Understand why they work.
+
+Then create something original.
+
+---
+
+# Visual Personality
+
+The interface should feel:
+
+Elegant
+
+Quiet
+
+Confident
+
+Editorial
+
+Premium
+
+Intentional
+
+Modern
+
+Minimal
+
+Architectural
+
+Human
+
+---
+
+The interface should NEVER feel:
+
+Corporate
+
+Generic
+
+Busy
+
+Playful
+
+Cheap
+
+Flashy
+
+Immature
+
+Experimental
+
+Sci-fi
+
+AI-generated
+
+---
+
+# Object as Interface
+
+Everything should feel like a physical object.
+
+Cards are objects.
+
+Buttons are objects.
+
+Glass is a material.
+
+Surfaces have weight.
+
+Layers have depth.
+
+Users should feel they are interacting with carefully crafted objects rather than flat UI.
+
+---
+
+# Storytelling
+
+Never decorate.
+
+Demonstrate.
+
+Every major section should answer one visual question.
+
+Hero
+
+"What is this product?"
+
+Features
+
+"What problems does it solve?"
+
+How It Works
+
+"How does it actually work?"
+
+Showcase
+
+"What does the final result look like?"
+
+CTA
+
+"Why should I start today?"
+
+Every section has ONE message.
+
+Never mix multiple stories.
+
+---
+
+# Visual Hierarchy
+
+Every viewport must have one dominant focal point.
+
+One.
+
+Not three.
+
+The user's eye should immediately know where to look.
+
+Everything else supports that focus.
+
+---
+
+# Composition
+
+Prefer asymmetrical layouts.
+
+Avoid rigid symmetry unless intentionally creating balance.
+
+Allow whitespace to create hierarchy.
+
+Do not fill empty space because it exists.
+
+Whitespace is an active design element.
+
+---
+
+# Product First
+
+The product is always the hero.
+
+Never decorate around nothing.
+
+Every illustration.
+
+Every animation.
+
+Every mockup.
+
+Every card.
+
+Must explain the product.
+
+If an element cannot explain the product,
+
+remove it.
+
+---
+
+# Hero Direction
+
+Avoid traditional SaaS heroes.
+
+Never build:
+
+Text on the left.
+
+Phone on the right.
+
+Dashboard screenshot.
+
+Floating random cards.
+
+Glowing blobs.
+
+Instead,
+
+Create a story.
+
+Example:
+
+A premium NFC card approaches a phone.
+
+The phone responds.
+
+A beautiful profile appears.
+
+The interaction itself becomes the hero.
+
+Users understand the product before reading.
+
+---
+
+# Motion Direction
+
+Motion communicates intention.
+
+Never animate for entertainment.
+
+Every animation should answer:
+
+Why is this moving?
+
+Good motion:
+
+Reveal
+
+Focus
+
+Guide
+
+Confirm
+
+Connect
+
+Transition
+
+Bad motion:
+
+Bounce
+
+Spin
+
+Random floating
+
+Infinite movement
+
+Attention seeking
+
+---
+
+# Glass Philosophy
+
+Glass is a material.
+
+Not an effect.
+
+Use Liquid Glass only when it creates hierarchy.
+
+Never cover the interface with glass.
+
+Never stack unnecessary glass layers.
+
+Blur should improve clarity.
+
+Not reduce it.
+
+---
+
+# Depth
+
+Depth comes from layers.
+
+Not shadows.
+
+Use:
+
+Spacing
+
+Blur
+
+Contrast
+
+Light
+
+Scale
+
+before adding shadows.
+
+Shadows should be almost invisible.
+
+---
+
+# Imagery
+
+Photography should feel natural.
+
+Professional.
+
+Bright.
+
+Authentic.
+
+Avoid:
+
+Stock photos
+
+Fake office meetings
+
+People pointing at laptops
+
+Artificial smiles
+
+Technology clichés
+
+---
+
+# Icons
+
+Use clean outline icons.
+
+Consistent stroke weight.
+
+Minimal detail.
+
+Never mix icon styles.
+
+Never use decorative icons.
+
+Icons support content.
+
+They never become content.
+
+---
+
+# Color Usage
+
+Color has meaning.
+
+Not decoration.
+
+Black creates authority.
+
+White creates breathing room.
+
+Gray organizes information.
+
+Purple represents magic moments.
+
+Blue represents interaction.
+
+Never use bright colors simply to attract attention.
+
+---
+
+# Empty Space
+
+Whitespace is intentional.
+
+Large margins create confidence.
+
+Do not reduce spacing to fit more content.
+
+Do not add decorative objects to fill space.
+
+Breathing room communicates quality.
+
+---
+
+# Premium Test
+
+Before approving any design ask:
+
+Does this feel expensive?
+
+Would Apple publish something with this level of restraint?
+
+Would a luxury brand accept this composition?
+
+Does every element have a reason to exist?
+
+Can anything be removed?
+
+If yes,
+
+remove it.
+
+---
+
+# AI Detection Test
+
+If the layout looks like it was generated by AI,
+
+start over.
+
+Signs of AI-generated design:
+
+Phone on the right.
+
+Text on the left.
+
+Random floating glass cards.
+
+Floating gradient blobs.
+
+Dashboard screenshots.
+
+Centered mockups.
+
+Too many visual effects.
+
+Equal spacing everywhere.
+
+No clear hierarchy.
+
+No storytelling.
+
+Generic marketing copy.
+
+---
+
+# Success Criteria
+
+Someone should understand the product in less than 3 seconds.
+
+Someone should trust the product before interacting.
+
+Someone should remember the design after leaving.
+
+The interface should feel inevitable.
+
+Not designed.
+
+---
+
+# Non-Negotiable Rules
+
+Never design for trends.
+
+Design for longevity.
+
+Never create visual noise.
+
+Never decorate without purpose.
+
+Never sacrifice usability.
+
+Never copy common SaaS layouts.
+
+Always prioritize clarity.
+
+Always prioritize storytelling.
+
+Always prioritize trust.
+
+Design products people remember.
+
+Not pages people scroll past.
+
+---
+
+End of Art Direction

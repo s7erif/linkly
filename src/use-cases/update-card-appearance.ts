@@ -1,21 +1,2 @@
-import type { EditorCardDTO } from "@/dto";
-import { ForbiddenError, NotFoundError, UnauthorizedError } from "@/lib/errors";
-import type { UnitOfWork } from "@/repositories";
-import type { SessionTokenGenerator } from "@/services/credential-security.service";
-import { updateCardAppearanceSchema, type UpdateCardAppearanceInput } from "@/validation/use-cases";
-import { parseUseCaseInput } from "./shared";
-
-export class UpdateCardAppearance {
-  constructor(private readonly unitOfWork: UnitOfWork, private readonly tokens: SessionTokenGenerator, private readonly now: () => Date = () => new Date()) {}
-  async execute(input: UpdateCardAppearanceInput): Promise<EditorCardDTO> {
-    const command = parseUseCaseInput(updateCardAppearanceSchema, input);
-    const tokenHash = await this.tokens.hash(command.sessionToken);
-    return this.unitOfWork.execute(async ({ editorSessions, cards }) => {
-      const session = await editorSessions.findByTokenHash(tokenHash);
-      if (!session || session.status !== "ACTIVE" || session.expiresAt <= this.now()) throw new UnauthorizedError("Editor session is invalid or expired");
-      if (session.cardId !== command.cardId) throw new ForbiddenError("Editor session does not grant access to this card");
-      if (!await cards.findById(command.cardId, null)) throw new NotFoundError("Card", command.cardId);
-      return cards.updateAppearance(command.cardId, command.appearance);
-    });
-  }
-}
+import type{EditorCardDTO}from"@/dto";import type{UnitOfWork}from"@/repositories";import type{SessionTokenGenerator}from"@/services/credential-security.service";import{updateCardAppearanceSchema,type UpdateCardAppearanceInput}from"@/validation/use-cases";import{parseUseCaseInput}from"./shared";import{auditAdminWorkspaceEdit,authorizeEditorAccess,type EditorAuthorizationContext}from"./editor-authorization";
+export class UpdateCardAppearance{constructor(private readonly unitOfWork:UnitOfWork,private readonly tokens:SessionTokenGenerator,private readonly now:()=>Date=()=>new Date()){}async execute(input:UpdateCardAppearanceInput,authorization?:EditorAuthorizationContext):Promise<EditorCardDTO>{const command=parseUseCaseInput(updateCardAppearanceSchema,input);return this.unitOfWork.execute(async repositories=>{await authorizeEditorAccess(repositories,this.tokens,command.cardId,command.sessionToken,this.now(),authorization);const card=await repositories.cards.updateAppearance(command.cardId,command.appearance);await auditAdminWorkspaceEdit(repositories,authorization,command.cardId,"UPDATE_APPEARANCE");return card})}}

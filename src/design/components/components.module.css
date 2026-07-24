@@ -1,0 +1,400 @@
+.button {
+  align-items: center;
+  border-style: var(--oi-border-style-standard);
+  border-width: var(--oi-border-width-standard);
+  border-radius: var(--oi-radius-md);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--oi-font-family-sans);
+  font-weight: var(--oi-font-weight-semibold);
+  justify-content: center;
+  text-decoration: none;
+  transition:
+    background-color var(--oi-duration-fast) var(--oi-ease-standard),
+    border-color var(--oi-duration-fast) var(--oi-ease-standard),
+    box-shadow var(--oi-duration-fast) var(--oi-ease-standard),
+    color var(--oi-duration-fast) var(--oi-ease-standard),
+    transform var(--oi-duration-fast) var(--oi-ease-standard);
+  white-space: nowrap;
+}
+
+.button:hover:not(:disabled):not([aria-disabled="true"]) { transform: translateY(calc(var(--oi-space-1) * -.5)); }
+.button:active:not(:disabled):not([aria-disabled="true"]) { transform: translateY(var(--oi-space-0)); }
+
+.button:focus-visible,
+.fieldFrame:focus-within {
+  border-color: var(--oi-border-focus);
+  box-shadow: var(--oi-shadow-focus);
+  outline: var(--oi-border-width-none);
+}
+
+.buttonXs {
+  block-size: var(--oi-control-height-xs);
+  font-size: var(--oi-font-size-xs);
+  padding-inline: var(--oi-control-padding-xs);
+}
+
+.buttonSm {
+  block-size: var(--oi-control-height-sm);
+  font-size: var(--oi-font-size-xs);
+  padding-inline: var(--oi-control-padding-sm);
+}
+
+.buttonMd {
+  block-size: var(--oi-control-height-md);
+  font-size: var(--oi-font-size-sm);
+  padding-inline: var(--oi-control-padding-md);
+}
+
+.buttonLg {
+  block-size: var(--oi-control-height-lg);
+  font-size: var(--oi-font-size-md);
+  padding-inline: var(--oi-control-padding-lg);
+}
+
+.buttonPrimary {
+  background: var(--oi-component-action-primary);
+  border-color: var(--oi-component-action-primary);
+  color: var(--oi-component-action-primary-text);
+}
+
+.buttonPrimary:hover { background: var(--oi-component-action-primary-hover); }
+.buttonPrimary:active { background: var(--oi-component-action-primary-pressed); }
+
+.buttonSecondary {
+  background: var(--oi-component-action-secondary);
+  border-color: var(--oi-border-standard);
+  color: var(--oi-component-action-secondary-text);
+}
+
+.buttonSecondary:hover { background: var(--oi-component-action-secondary-hover); }
+.buttonSecondary:active { background: var(--oi-component-action-secondary-pressed); }
+
+.buttonGhost {
+  background: var(--oi-component-action-ghost);
+  border-color: var(--oi-color-transparent);
+  color: var(--oi-component-action-ghost-text);
+}
+
+.buttonGhost:hover { background: var(--oi-component-action-ghost-hover); }
+.buttonGhost:active { background: var(--oi-component-action-ghost-pressed); }
+
+.buttonDanger {
+  background: var(--oi-component-action-danger);
+  border-color: var(--oi-component-action-danger);
+  color: var(--oi-component-action-danger-text);
+}
+
+.buttonDanger:hover { background: var(--oi-component-action-danger-hover); }
+.buttonDanger:active { background: var(--oi-component-action-danger-pressed); }
+
+.buttonGlass {
+  -webkit-backdrop-filter: blur(var(--oi-glass-xs-blur)) saturate(var(--oi-glass-xs-saturation));
+  backdrop-filter: blur(var(--oi-glass-xs-blur)) saturate(var(--oi-glass-xs-saturation));
+  background: var(--oi-glass-xs-background);
+  border-color: var(--oi-glass-xs-border);
+  box-shadow: var(--oi-glass-xs-shadow);
+  color: var(--oi-color-text);
+}
+
+.buttonGlass:hover {
+  background: var(--oi-glass-xs-hover-background);
+  border-color: var(--oi-glass-xs-hover-border);
+  box-shadow: var(--oi-glass-xs-hover-shadow);
+}
+.buttonGlass:active {
+  background: var(--oi-glass-xs-background);
+  transform: scale(var(--oi-motion-press-scale));
+}
+
+.buttonLink {
+  background: var(--oi-component-action-link);
+  border-color: var(--oi-color-transparent);
+  color: var(--oi-component-action-link-text);
+  padding-inline: var(--oi-space-0);
+}
+
+.buttonLink:hover { color: var(--oi-component-action-link-hover); }
+.buttonLink:active { color: var(--oi-color-accent); }
+
+.buttonFull { inline-size: 100%; }
+.buttonIconOnly { padding-inline: var(--oi-space-0); }
+.buttonUnavailable {
+  cursor: not-allowed;
+  opacity: var(--oi-opacity-disabled);
+  pointer-events: none;
+}
+.buttonLoading { cursor: progress; }
+
+.confirmRoot{display:grid;inset:0;place-items:center;position:fixed;z-index:var(--oi-z-modal)}
+.confirmBackdrop{background:var(--oi-color-overlay);border:0;inset:0;position:absolute}
+.confirmDialog{inline-size:min(calc(100% - var(--oi-space-6)),28rem);padding:var(--oi-space-6);position:relative;z-index:1}
+@media(max-width:30rem){.confirmDialog{padding:var(--oi-space-5)}.confirmDialog [class*="inline"]{align-items:stretch;flex-direction:column}}
+
+.buttonContent {
+  inline-size: 100%;
+}
+
+.spinner {
+  animation: oi-component-spin var(--oi-duration-slow) var(--oi-ease-linear) infinite;
+  block-size: var(--oi-icon-size-sm);
+  border-color: var(--oi-component-spinner-color);
+  border-inline-end-color: var(--oi-color-transparent);
+  border-radius: var(--oi-radius-full);
+  border-style: var(--oi-border-style-standard);
+  border-width: var(--oi-border-width-focus);
+  flex: none;
+  inline-size: var(--oi-icon-size-sm);
+}
+
+@keyframes oi-component-spin {
+  to { transform: rotate(var(--oi-motion-turn)); }
+}
+
+.field {
+  inline-size: 100%;
+}
+
+.fieldLabel {
+  color: var(--oi-color-text);
+  font-weight: var(--oi-font-weight-medium);
+}
+
+.fieldFrame {
+  align-items: center;
+  background: var(--oi-component-field-background);
+  border-color: var(--oi-component-field-border);
+  border-radius: var(--oi-radius-md);
+  border-style: var(--oi-border-style-standard);
+  border-width: var(--oi-border-width-standard);
+  box-sizing: border-box;
+  display: flex;
+  inline-size: 100%;
+  transition:
+    border-color var(--oi-duration-fast) var(--oi-ease-standard),
+    box-shadow var(--oi-duration-fast) var(--oi-ease-standard);
+}
+
+.fieldFrame:hover { border-color: var(--oi-component-field-border-hover); }
+.fieldError { border-color: var(--oi-component-field-border-error); }
+.fieldSuccess { border-color: var(--oi-component-field-border-success); }
+.fieldDisabled {
+  cursor: not-allowed;
+  opacity: var(--oi-opacity-disabled);
+}
+.fieldReadOnly { background: var(--oi-surface-raised); }
+
+.fieldSm {
+  min-block-size: var(--oi-control-height-sm);
+  padding-inline: var(--oi-control-padding-sm);
+}
+
+.fieldMd {
+  min-block-size: var(--oi-control-height-md);
+  padding-inline: var(--oi-control-padding-md);
+}
+
+.fieldLg {
+  min-block-size: var(--oi-control-height-lg);
+  padding-inline: var(--oi-control-padding-lg);
+}
+
+.fieldControl {
+  background: var(--oi-color-transparent);
+  border-width: var(--oi-border-width-none);
+  color: var(--oi-color-text);
+  flex: 1;
+  font-family: var(--oi-font-family-sans);
+  font-size: var(--oi-font-size-sm);
+  inline-size: 100%;
+  min-inline-size: var(--oi-space-0);
+  outline: var(--oi-border-width-none);
+  padding: var(--oi-space-0);
+}
+
+.fieldControl::placeholder { color: var(--oi-color-text-subtle); }
+.fieldControl:disabled { cursor: not-allowed; }
+.fieldTextarea {
+  min-block-size: var(--oi-textarea-min-block-size);
+  padding-block: var(--oi-space-3);
+  resize: vertical;
+}
+
+.fieldAffix {
+  color: var(--oi-color-text-muted);
+  flex: none;
+}
+
+.fieldMessage {
+  color: var(--oi-color-text-muted);
+}
+.fieldMessageError { color: var(--oi-component-status-danger-text); }
+.fieldMessageSuccess { color: var(--oi-component-status-success-text); }
+
+.badge {
+  border-radius: var(--oi-radius-full);
+  border-style: var(--oi-border-style-standard);
+  border-width: var(--oi-border-width-standard);
+  box-sizing: border-box;
+  font-family: var(--oi-font-family-sans);
+  font-weight: var(--oi-font-weight-semibold);
+  line-height: var(--oi-line-height-tight);
+  white-space: nowrap;
+}
+
+.badgeSm {
+  block-size: var(--oi-badge-height-sm);
+  font-size: var(--oi-font-size-xs);
+  padding-inline: var(--oi-space-2);
+}
+
+.badgeMd {
+  block-size: var(--oi-badge-height-md);
+  font-size: var(--oi-font-size-sm);
+  padding-inline: var(--oi-space-3);
+}
+
+.badgePrimary {
+  background: var(--oi-component-status-primary-background);
+  border-color: var(--oi-component-status-primary-border);
+  color: var(--oi-color-accent);
+}
+.badgeSuccess {
+  background: var(--oi-component-status-success-background);
+  border-color: var(--oi-component-status-success-border);
+  color: var(--oi-component-status-success-text);
+}
+.badgeWarning {
+  background: var(--oi-component-status-warning-background);
+  border-color: var(--oi-component-status-warning-border);
+  color: var(--oi-component-status-warning-text);
+}
+.badgeDanger {
+  background: var(--oi-component-status-danger-background);
+  border-color: var(--oi-component-status-danger-border);
+  color: var(--oi-component-status-danger-text);
+}
+.badgeNeutral {
+  background: var(--oi-component-status-neutral-background);
+  border-color: var(--oi-component-status-neutral-border);
+  color: var(--oi-color-text-muted);
+}
+
+.card {
+  padding: var(--oi-card-padding);
+}
+
+.cardInteractive {
+  transition:
+    border-color var(--oi-duration-fast) var(--oi-ease-standard),
+    box-shadow var(--oi-duration-fast) var(--oi-ease-standard),
+    transform var(--oi-duration-fast) var(--oi-ease-standard);
+}
+
+.cardInteractive:hover {
+  border-color: var(--oi-border-focus);
+  box-shadow: var(--oi-elevation-level-2);
+  transform: translateY(calc(var(--oi-space-1) * -.5));
+}
+
+.skeleton {
+  animation: oi-component-skeleton var(--oi-duration-slower) var(--oi-ease-linear) infinite;
+  background: var(--oi-component-skeleton-background);
+  background-size: var(--oi-skeleton-background-size);
+  border-radius: var(--oi-radius-sm);
+  display: block;
+  opacity: var(--oi-opacity-skeleton);
+}
+
+.skeletonText {
+  block-size: var(--oi-skeleton-text-height);
+  inline-size: 100%;
+}
+
+.skeletonTitle {
+  block-size: var(--oi-skeleton-title-height);
+  inline-size: var(--oi-skeleton-title-width);
+}
+
+.skeletonAvatar {
+  block-size: var(--oi-skeleton-avatar-size);
+  border-radius: var(--oi-radius-full);
+  inline-size: var(--oi-skeleton-avatar-size);
+}
+
+.skeletonCard {
+  min-block-size: var(--oi-skeleton-card-height);
+  inline-size: 100%;
+}
+
+.skeletonTableRow {
+  block-size: var(--oi-skeleton-table-row-height);
+  inline-size: 100%;
+}
+
+@keyframes oi-component-skeleton {
+  from { background-position: var(--oi-skeleton-position-start); }
+  to { background-position: var(--oi-skeleton-position-end); }
+}
+
+.emptyState {
+  margin-inline: auto;
+  max-inline-size: var(--oi-empty-state-max-width);
+  padding: var(--oi-empty-state-padding);
+  text-align: center;
+}
+
+.emptyIllustration {
+  color: var(--oi-color-accent);
+}
+
+.emptyActions {
+  justify-content: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .cardInteractive,
+  .spinner,
+  .skeleton {
+    animation: var(--oi-animation-none);
+    transition-duration: var(--oi-duration-instant);
+  }
+
+  .button:hover,
+  .cardInteractive:hover { transform: none; }
+}
+
+@media (forced-colors: active) {
+  .buttonGlass {
+    -webkit-backdrop-filter: var(--oi-backdrop-filter-none);
+    backdrop-filter: var(--oi-backdrop-filter-none);
+  }
+}
+
+.drawerRoot{inset:0;position:fixed;z-index:var(--oi-z-modal)}.drawerBackdrop{background:var(--oi-overlay-backdrop-background);border:0;inset:0;padding:0;position:absolute}.drawer{border-inline-end:0;border-radius:var(--oi-radius-xl) 0 0 var(--oi-radius-xl);block-size:100%;box-shadow:var(--oi-overlay-drawer-shadow);display:grid;grid-template-rows:auto minmax(0,1fr) auto;inline-size:min(var(--oi-drawer-inline-size),calc(100% - var(--oi-space-6)));inset-block:0;inset-inline-end:0;overflow:hidden;position:absolute}.drawerHeader,.drawerFooter{border-block-end:var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-border-glass);padding:var(--oi-space-5)}.drawerBody{overflow-y:auto;padding:var(--oi-space-5)}.drawerFooter{border-block-end:0;border-block-start:var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-border-glass)}@media(max-width:40rem){.drawer{border-radius:var(--oi-radius-lg) 0 0 var(--oi-radius-lg);inline-size:calc(100% - var(--oi-space-3))}.drawerHeader,.drawerBody,.drawerFooter{padding:var(--oi-space-4)}.drawerHeader{padding-block-start:max(var(--oi-space-4),env(safe-area-inset-top))}.drawerBody{padding-block-end:max(var(--oi-space-8),calc(env(safe-area-inset-bottom) + var(--oi-space-4)))}.drawerFooter{padding-block-end:max(var(--oi-space-4),env(safe-area-inset-bottom))}}@media(forced-colors:active){.drawerBackdrop{background:Canvas}.drawer{border-color:CanvasText}}
+.drawerBody{min-inline-size:0;overflow-x:hidden;overscroll-behavior:contain}
+
+@media(prefers-reduced-motion:no-preference){.drawerBackdrop{animation:oi-drawer-fade var(--oi-duration-fast) var(--oi-ease-standard) both}.drawer{animation:oi-drawer-enter var(--oi-duration-fast) var(--oi-ease-standard) both;will-change:transform}}@keyframes oi-drawer-fade{from{opacity:0}}@keyframes oi-drawer-enter{from{transform:translateX(var(--oi-space-6))}}
+
+.imagePreviewTrigger{background:var(--oi-surface-interactive-hover);border:var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-border-soft);border-radius:var(--oi-radius-lg);color:var(--oi-color-accent);cursor:pointer;display:grid;font:inherit;gap:var(--oi-space-2);inline-size:100%;padding:var(--oi-space-2);text-align:start;transition:border-color var(--oi-duration-fast) var(--oi-ease-standard),box-shadow var(--oi-duration-fast) var(--oi-ease-standard),transform var(--oi-duration-fast) var(--oi-ease-standard)}
+.imagePreviewTrigger:hover{border-color:var(--oi-border-standard);box-shadow:var(--oi-elevation-level-2);transform:translateY(-2px)}
+.imagePreviewTrigger:focus-visible{border-color:var(--oi-border-focus);box-shadow:var(--oi-shadow-focus);outline:0}
+.imagePreviewFrame{aspect-ratio:16/10;background:var(--oi-surface-raised);border-radius:var(--oi-radius-md);display:block;overflow:hidden;position:relative}
+.imagePreviewFrame img{object-fit:contain}
+.imageDialogRoot{inset:0;position:fixed;z-index:calc(var(--oi-z-modal) + 1)}
+.imageDialogBackdrop{background:var(--oi-overlay-backdrop-background);border:0;inset:0;position:absolute}
+.imageDialog{block-size:calc(100% - var(--oi-space-8));box-shadow:var(--oi-overlay-dialog-shadow);display:grid;grid-template-rows:auto minmax(0,1fr) auto;inline-size:calc(100% - var(--oi-space-8));inset:var(--oi-space-4);overflow:hidden;position:absolute}
+.imageDialogHeader,.imageDialogFooter{padding:var(--oi-space-4) var(--oi-space-5)}
+.imageDialogHeader{border-block-end:var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-border-glass)}
+.imageDialogFooter{border-block-start:var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-border-glass)}
+.imageDialogCanvas{align-items:center;background:var(--oi-color-background);display:flex;justify-content:center;overflow:auto;padding:var(--oi-space-6);position:relative}
+.imageDialogCanvas>img{block-size:auto;max-inline-size:100%;transform-origin:center;transition:transform var(--oi-duration-fast) var(--oi-ease-standard)}
+.imageState{align-items:center;color:var(--oi-color-text-muted);display:grid;gap:var(--oi-space-2);inset:0;justify-items:center;padding:var(--oi-space-6);place-content:center;position:absolute;text-align:center;z-index:1}
+.imageState svg{block-size:var(--oi-icon-size-lg);inline-size:var(--oi-icon-size-lg)}
+.imageSpinner{animation:oi-component-spin var(--oi-duration-slow) var(--oi-ease-linear) infinite}
+.imageFailed{visibility:hidden}
+.zoomValue{min-inline-size:3.5rem;text-align:center}
+@media(max-width:40rem){.imageDialog{block-size:100%;border-radius:0;inline-size:100%;inset:0}.imageDialogHeader{align-items:flex-start;flex-direction:column}.imageDialogHeader>div:last-child{inline-size:100%;justify-content:flex-end}.imageDialogCanvas{padding:var(--oi-space-3)}}
+@media(prefers-reduced-motion:reduce){.imagePreviewTrigger,.imageDialogCanvas>img{transition-duration:var(--oi-duration-instant)}.imagePreviewTrigger:hover{transform:none}.imageSpinner{animation:var(--oi-animation-none)}}

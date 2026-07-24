@@ -1,0 +1,2 @@
+export interface MediaAssetDTO { id:string; fileName:string; originalFilename:string|null; extension:string|null; contentType:string; byteSize:number; storageKey:string; publicUrl:string|null; altText:string|null; caption:string|null; tags:readonly string[]; folderId:string|null; status:"PENDING"|"READY"|"FAILED"|"DELETED"; width:number|null; height:number|null; createdAt:Date; updatedAt:Date; deletedAt:Date|null; }
+export interface MediaQuery { search?:string; folderId?:string|null; contentType?:string; includeDeleted?:boolean; page?:number; pageSize?:number; }

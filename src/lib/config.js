@@ -6,7 +6,7 @@ const config = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     },
     secret: process.env.NEXTAUTH_SECRET,
-    url: process.env.NEXTAUTH_URL || "http://localhost:3000",
+    url: process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_APP_URL,
   },
   db: {
     url: process.env.DATABASE_URL,

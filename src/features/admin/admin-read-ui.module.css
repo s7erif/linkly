@@ -1,0 +1,2 @@
+.tableScroll{max-inline-size:100%;overflow-x:auto}
+@media(max-width:48rem){.tableScroll{overflow:visible}}

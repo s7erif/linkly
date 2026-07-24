@@ -1,0 +1,822 @@
+/* ── Tapp Hero — Premium Light Atmosphere ─────────────────────────
+   Apple-keynote background: #FAFAFB + soft purple ambient light.
+   Realistic iPhone-inspired device. NFC interaction scene.
+   Editorial two-column composition.
+   Only the navbar stays dark. Everything else is light.
+   ──────────────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "text visual";
+  align-items: center;
+  gap: 96px;
+  min-height: 100svh;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 104px 64px 80px;
+  background: transparent;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ── Ambient light layer — Apple-keynote style ─────────────────── */
+
+.ambientBg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    /* Base — warm off-white */
+    #FAFAFB,
+    /* Very subtle warm gray overlay */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.003) 2px,
+      rgba(0, 0, 0, 0.003) 2.5px
+    ),
+    /* Large soft purple ambient — upper right */
+    radial-gradient(
+      ellipse 900px 700px at 78% 15%,
+      rgba(124, 92, 255, 0.07) 0%,
+      rgba(124, 92, 255, 0.03) 30%,
+      transparent 65%
+    ),
+    /* Warm gray ambient — center */
+    radial-gradient(
+      ellipse 800px 800px at 45% 55%,
+      rgba(180, 175, 185, 0.06) 0%,
+      transparent 60%
+    ),
+    /* Subtle purple — lower left */
+    radial-gradient(
+      ellipse 650px 550px at 25% 75%,
+      rgba(124, 92, 255, 0.04) 0%,
+      transparent 55%
+    ),
+    /* Very faint warm glow — upper left */
+    radial-gradient(
+      ellipse 500px 400px at 10% 5%,
+      rgba(200, 195, 205, 0.05) 0%,
+      transparent 50%
+    ),
+    /* Subtle edge lighting — bottom right */
+    radial-gradient(
+      ellipse 550px 450px at 85% 85%,
+      rgba(124, 92, 255, 0.04) 0%,
+      transparent 55%
+    );
+  /* Extremely subtle grain */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.008;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+  }
+}
+
+/* ── Typography zone — left column ────────────────────────────── */
+
+.textZone {
+  grid-area: text;
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+  justify-self: end;
+}
+
+/* ── Badge — light Liquid Glass ────────────────────────────────── */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #666666;
+  font-size: 0.72rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7C5CFF;
+  box-shadow: 0 0 6px rgba(124, 92, 255, 0.3);
+}
+
+/* ── Headline — display-lg / display-lg-mobile ─────────────────── */
+/* display-lg-mobile: 40px/44px, -0.03em, 700 */
+/* display-lg (md+):   64px/72px, -0.04em, 700 */
+
+.headline {
+  margin: 0 0 24px; /* mb-6 */
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 44px;
+  letter-spacing: -0.03em;
+  color: #111111;
+}
+
+@media (min-width: 768px) {
+  .headline {
+    font-size: 64px;
+    line-height: 72px;
+    letter-spacing: -0.04em;
+  }
+}
+
+/* Hidden on mobile, visible on md+ (matching hidden md:block) */
+.headlineBr {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .headlineBr {
+    display: block;
+  }
+}
+
+/* text-gradient: linear-gradient(135deg, #000 0%, #6900b3 100%) */
+.textGradient {
+  background: linear-gradient(135deg, #000000 0%, #6900b3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Body — body-lg, secondary color ─────────────────────────── */
+/* body-lg: 18px/28px, 0em, 400 */
+/* secondary = #5d5e60 */
+
+.body {
+  margin: 0 0 48px; /* mb-12 */
+  max-width: 520px;
+  color: #5d5e60; /* secondary */
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+/* ── Actions ───────────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* ── Primary CTA — solid black ─────────────────────────────────── */
+
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 28px;
+  border: none;
+  border-radius: 24px;
+  background: #111111;
+  color: #ffffff;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.2s ease;
+}
+
+.primaryCta:hover {
+  transform: translateY(-1px);
+  background: #000000;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Secondary CTA — transparent Liquid Glass (light) ──────────── */
+
+.secondaryCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  color: #111111;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.secondaryCta:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(0, 0, 0, 0.14);
+}
+
+/* ── Trust stats ───────────────────────────────────────────────── */
+
+.trustRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.trustStat {
+  color: #999999;
+  font-size: 0.68rem;
+  letter-spacing: -0.01em;
+}
+
+/* ── Composition — right column, NFC scene ────────────────────── */
+
+.composition {
+  grid-area: visual;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 560px;
+  z-index: 1;
+}
+
+/* ── Phone — premium iPhone-inspired device ───────────────────── */
+
+.phoneFrame {
+  position: relative;
+  width: 296px;
+  padding: 5px;
+  border-radius: 46px;
+  /* Titanium frame — realistic metallic gradient for light bg */
+  background: linear-gradient(
+    165deg,
+    #c8c9cc 0%,
+    #a8a9ae 12%,
+    #8e8f94 28%,
+    #9a9ba0 45%,
+    #8a8b90 60%,
+    #a0a1a6 78%,
+    #b8b9be 100%
+  );
+  /* Soft ambient shadow on light bg */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.04),
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 24px 64px rgba(0, 0, 0, 0.1),
+    0 48px 120px rgba(0, 0, 0, 0.12);
+  z-index: 2;
+  flex-shrink: 0;
+  /* 8° perspective */
+  transform: perspective(800px) rotateY(-8deg) rotateX(2deg);
+  /* Edge highlight rim */
+  outline: 1px solid rgba(255, 255, 255, 0.06);
+  outline-offset: -1px;
+}
+
+/* Dynamic Island */
+.phoneNotch {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 68px;
+  height: 22px;
+  background: #1a1c22;
+  border-radius: 0 0 12px 12px;
+  z-index: 4;
+}
+
+/* Side buttons — volume up */
+.phoneBtnVolUp {
+  position: absolute;
+  left: -2px;
+  top: 96px;
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.15), rgba(255,255,255,0.02));
+  border-radius: 0 1px 1px 0;
+  z-index: 0;
+}
+
+/* Side buttons — volume down */
+.phoneBtnVolDown {
+  position: absolute;
+  left: -2px;
+  top: 130px;
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.15), rgba(255,255,255,0.02));
+  border-radius: 0 1px 1px 0;
+  z-index: 0;
+}
+
+/* Side button — power */
+.phoneBtnPower {
+  position: absolute;
+  right: -2px;
+  top: 108px;
+  width: 2px;
+  height: 32px;
+  background: linear-gradient(270deg, rgba(255,255,255,0.15), rgba(255,255,255,0.02));
+  border-radius: 1px 0 0 1px;
+  z-index: 0;
+}
+
+/* Phone screen */
+.phoneScreen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 560px;
+  padding: 44px 18px 32px;
+  border-radius: 42px;
+  background:
+    linear-gradient(175deg, #faf9fe 0%, #f5f3fc 25%, #fcfbff 100%);
+  overflow: hidden;
+}
+
+/* ── NFC Card — premium black, overlapping phone screen ───────── */
+
+.nfcCard {
+  position: absolute;
+  z-index: 5;
+  top: 52px;
+  left: calc(50% - 50px);
+  width: 180px;
+  height: 112px;
+  border-radius: 15px;
+  background: linear-gradient(150deg, #1a1d2e 0%, #0e1017 40%, #13151d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 16px 40px rgba(0, 0, 0, 0.4),
+    0 40px 80px rgba(0, 0, 0, 0.5);
+  transform: rotate(-10deg);
+  overflow: hidden;
+}
+
+.nfcCard::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+}
+
+.nfcChip {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 32px;
+  height: 24px;
+  border-radius: 5px;
+  background: linear-gradient(180deg,
+    rgba(190, 180, 215, 0.2) 0%,
+    rgba(150, 140, 185, 0.1) 50%,
+    rgba(170, 160, 195, 0.15) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.nfcPattern {
+  position: absolute;
+  bottom: 18px;
+  left: 16px;
+  right: 54px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nfcPatternLine {
+  height: 2px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.nfcPatternLine:nth-child(1) { width: 100%; }
+.nfcPatternLine:nth-child(2) { width: 62%; }
+.nfcPatternLine:nth-child(3) { width: 32%; }
+
+.nfcWireless {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nfcWireless::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ── Connection glow — contained purple ripple ───────────────────
+   Only around the NFC interaction point — not across the hero. */
+
+.connectionGlow {
+  position: absolute;
+  z-index: 3;
+  top: 150px;
+  left: calc(50% + 28px);
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.glowCore {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(124, 92, 255, 0.22) 0%,
+    rgba(124, 92, 255, 0.08) 25%,
+    rgba(124, 92, 255, 0.02) 55%,
+    transparent 100%
+  );
+}
+
+.glowRing {
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(124, 92, 255, 0.06) 0%,
+    transparent 65%
+  );
+}
+
+.glowPulse {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(124, 92, 255, 0.12) 0%,
+    transparent 45%
+  );
+}
+
+/* ── Profile card — on phone screen ───────────────────────────── */
+
+.profileCard {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 248px;
+  margin-top: auto;
+  margin-bottom: 6px;
+  padding: 24px 18px 20px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.03),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.profileAvatar {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 14px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #111111, #2a1a45);
+  color: #ffffff;
+  font-family: var(--font-outfit, Inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.profileName {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1b1b1b;
+  letter-spacing: -0.02em;
+  margin: 0 0 2px;
+  text-align: center;
+}
+
+.profileTitle {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #6b6365;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.profileActionPrimary {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: #111111;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.profileActionSecondary {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.03);
+  color: #1b1b1b;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.profileIcons {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.profileIcon {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.03);
+  color: #6b6365;
+  font-size: 10px;
+  font-style: normal;
+}
+
+/* ── Responsive — Tablet ──────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "text"
+      "visual";
+    gap: 56px;
+    padding: 88px 32px 56px;
+    max-width: 100%;
+  }
+
+  .textZone {
+    max-width: 100%;
+    justify-self: start;
+  }
+
+  .composition {
+    min-height: 460px;
+  }
+
+  .phoneFrame {
+    width: 264px;
+    padding: 4px;
+    border-radius: 42px;
+    transform: perspective(700px) rotateY(-5deg) rotateX(1.5deg);
+  }
+
+  .phoneNotch {
+    top: 4px;
+    width: 56px;
+    height: 20px;
+  }
+
+  .phoneScreen {
+    min-height: 500px;
+    padding: 38px 16px 28px;
+    border-radius: 38px;
+  }
+
+  .nfcCard {
+    width: 150px;
+    height: 94px;
+    top: 44px;
+    left: calc(50% - 42px);
+  }
+
+  .connectionGlow {
+    top: 130px;
+    left: calc(50% + 22px);
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ── Responsive — Mobile ──────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "text"
+      "visual";
+    gap: 40px;
+    padding: 80px 24px 48px;
+    max-width: 100%;
+  }
+
+  .textZone {
+    max-width: 100%;
+    justify-self: start;
+  }
+
+  .composition {
+    min-height: 400px;
+  }
+
+  .phoneFrame {
+    width: 224px;
+    padding: 4px;
+    border-radius: 36px;
+    transform: perspective(600px) rotateY(-4deg) rotateX(1deg);
+  }
+
+  .phoneNotch {
+    top: 4px;
+    width: 46px;
+    height: 18px;
+    border-radius: 0 0 10px 10px;
+  }
+
+  .phoneScreen {
+    min-height: 420px;
+    padding: 34px 14px 24px;
+    border-radius: 32px;
+  }
+
+  .phoneBtnVolUp,
+  .phoneBtnVolDown,
+  .phoneBtnPower {
+    display: none;
+  }
+
+  .nfcCard {
+    width: 130px;
+    height: 82px;
+    border-radius: 13px;
+    top: 36px;
+    left: calc(50% - 34px);
+  }
+
+  .nfcChip {
+    top: 12px;
+    left: 12px;
+    width: 26px;
+    height: 20px;
+  }
+
+  .nfcPattern {
+    bottom: 14px;
+    left: 12px;
+    right: 42px;
+  }
+
+  .nfcWireless {
+    bottom: 12px;
+    right: 12px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .connectionGlow {
+    top: 108px;
+    left: calc(50% + 16px);
+    width: 40px;
+    height: 40px;
+  }
+
+  .profileCard {
+    padding: 20px 14px 16px;
+    border-radius: 16px;
+  }
+
+  .profileAvatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    font-size: 1rem;
+  }
+
+  .headline {
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: -0.03em;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .primaryCta,
+  .secondaryCta {
+    width: 100%;
+    min-height: 48px;
+    font-size: 14px;
+    border-radius: 22px;
+  }
+}
+
+/* ── Small mobile ─────────────────────────────────────────────── */
+
+@media (max-width: 380px) {
+  .hero {
+    padding: 72px 16px 40px;
+    gap: 32px;
+  }
+
+  .phoneFrame {
+    width: 194px;
+    padding: 3px;
+    border-radius: 32px;
+  }
+
+  .phoneScreen {
+    min-height: 360px;
+    padding: 30px 12px 20px;
+    border-radius: 28px;
+  }
+
+  .nfcCard {
+    width: 112px;
+    height: 70px;
+    top: 30px;
+    left: calc(50% - 28px);
+  }
+
+  .headline {
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: -0.03em;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryCta,
+  .secondaryCta {
+    transition-duration: 0ms;
+  }
+  .primaryCta:hover,
+  .secondaryCta:hover {
+    transform: none;
+  }
+}

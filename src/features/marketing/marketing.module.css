@@ -1,0 +1,1137 @@
+/* ── Tapp Landing Page — Premium Light Theme ──────────────────────
+   Background: #FAFAFB (Apple-keynote warm off-white)
+   Typography: #111111 headlines, #666666 body
+   Accent: #7C5CFF (solid purple, no gradients in text)
+   ──────────────────────────────────────────────────────────────── */
+
+/* ── Landing wrapper ─────────────────────────────────────────── */
+
+.landing,
+.publicPage {
+  overflow-y: auto;
+  background: #FAFAFB;
+  color: #111111;
+}
+
+/* ── Aurora ambient background ──────────────────────────────── */
+
+.auroraBg {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(60% 45% at 78% 42%, rgba(180, 190, 255, 0.35), transparent 70%),
+    radial-gradient(50% 40% at 20% 30%, rgba(150, 200, 230, 0.3), transparent 70%),
+    radial-gradient(70% 60% at 60% 90%, rgba(220, 180, 240, 0.25), transparent 70%),
+    linear-gradient(180deg, #fdfdfd 0%, #fafafa 100%);
+}
+
+/* ── Hero (global section) ──────────────────────────────────── */
+/* Note: HeroSection uses hero.module.css; this is for alternate usage */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: calc(88px + env(safe-area-inset-top, 0px)) 24px 72px;
+  background: #FAFAFB;
+}
+
+/* Subtle ambient glow behind hero (for any non-HeroSection usage) */
+.hero:before {
+  position: absolute;
+  top: -280px;
+  left: 50%;
+  width: min(760px, 100vw);
+  height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 92, 255, 0.1), transparent 67%);
+  content: "";
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.heroInner {
+  position: relative;
+  display: grid;
+  max-width: 1180px;
+  margin: auto;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 72px;
+}
+
+.heroInner > * {
+  min-width: 0;
+}
+
+/* Pill badge */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #666666;
+  font-size: 0.68rem;
+  font-weight: 800;
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
+}
+
+.pill i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #7C5CFF;
+  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.12);
+}
+
+/* ── Typography ─────────────────────────────────────────────── */
+
+.hero h1 {
+  max-width: 680px;
+  margin: 22px 0 0;
+  font-size: clamp(3rem, 6vw, 5.6rem);
+  line-height: 0.96;
+  letter-spacing: -0.07em;
+  color: #111111;
+}
+
+.hero h1 span {
+  /* Solid purple — no gradient */
+  color: #7C5CFF;
+}
+
+.heroCopy {
+  max-width: 570px;
+  margin: 24px 0 0;
+  color: #666666;
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+/* ── Buttons ────────────────────────────────────────────────── */
+
+.primaryCta,
+.secondaryCta {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  border-radius: 24px;
+  font-size: 0.78rem;
+  font-weight: 650;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+}
+
+/* Primary — solid black */
+.primaryCta {
+  background: #111111;
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+.primaryCta:hover {
+  background: #000000;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.16);
+  transform: translateY(-2px);
+}
+
+/* Secondary — Liquid Glass (light) */
+.secondaryCta {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  color: #111111;
+}
+
+.secondaryCta:hover {
+  border-color: rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.75);
+  transform: translateY(-2px);
+}
+
+.microcopy {
+  margin-top: 16px;
+  color: #999999;
+  font-size: 0.66rem;
+}
+
+/* ── Showcase / Phone (legacy, not used by new HeroSection) ─── */
+
+.showcase {
+  position: relative;
+  display: grid;
+  min-height: 520px;
+  place-items: center;
+}
+
+.showcaseGlow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f0ecff, #f5efff);
+  filter: blur(2px);
+}
+
+.phone {
+  position: relative;
+  z-index: 1;
+  width: 286px;
+  padding: 10px;
+  border: 1px solid #d5d5da;
+  border-radius: 38px;
+  background: #e8e8ed;
+  box-shadow: 0 45px 90px rgba(0, 0, 0, 0.12);
+  transform: rotate(4deg);
+}
+
+.phoneScreen {
+  min-height: 470px;
+  padding: 38px 22px 24px;
+  border-radius: 30px;
+  background: linear-gradient(145deg, #f1f4ff, #f8eeff);
+  text-align: center;
+}
+
+.avatar {
+  display: grid;
+  width: 78px;
+  height: 78px;
+  margin: auto;
+  place-items: center;
+  border: 5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  background: linear-gradient(135deg, #7C5CFF, #9b5de5);
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 900;
+  box-shadow: 0 14px 30px rgba(124, 92, 255, 0.2);
+}
+
+.phoneScreen h3 {
+  margin: 17px 0 4px;
+  font-size: 1.1rem;
+}
+
+.phoneScreen > p {
+  margin: 0;
+  color: #666666;
+  font-size: 0.68rem;
+}
+
+.phoneButtons {
+  display: grid;
+  gap: 8px;
+  margin-top: 26px;
+}
+
+.phoneButtons span {
+  padding: 12px;
+  border-radius: 11px;
+  background: #111111;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.phoneButtons span:nth-child(2) {
+  background: rgba(0, 0, 0, 0.03);
+  color: #111111;
+}
+
+.phoneSocial {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.phoneSocial i {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border-radius: 9px;
+  background: #fff;
+  color: #666666;
+  font-size: 0.62rem;
+  font-style: normal;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Trust Bar ──────────────────────────────────────────────── */
+
+.trust {
+  padding: 20px 24px;
+  border-block: 1px solid rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+}
+
+.trustInner {
+  display: flex;
+  max-width: 1080px;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  color: #999999;
+  font-size: 0.68rem;
+  font-weight: 550;
+}
+
+/* ── Sections ───────────────────────────────────────────────── */
+
+.section {
+  padding: 90px 24px;
+}
+
+.sectionAlt {
+  background: #f7f7f9;
+}
+
+.sectionInner {
+  max-width: 1120px;
+  margin: auto;
+}
+
+.sectionHead {
+  max-width: 650px;
+  margin-bottom: 40px;
+}
+
+.kicker {
+  margin: 0 0 9px;
+  color: #7C5CFF;
+  font-size: 0.66rem;
+  font-weight: 650;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.sectionHead h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+  color: #111111;
+}
+
+.sectionHead p {
+  margin: 15px 0 0;
+  color: #666666;
+  line-height: 1.7;
+}
+
+/* ── Steps & Features Grid ──────────────────────────────────── */
+
+.steps,
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.step,
+.feature {
+  padding: 26px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+}
+
+.step span,
+.feature span {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 11px;
+  background: rgba(124, 92, 255, 0.06);
+  color: #7C5CFF;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.step h3,
+.feature h3 {
+  margin: 22px 0 8px;
+  font-size: 0.95rem;
+  color: #111111;
+}
+
+.step p,
+.feature p {
+  margin: 0;
+  color: #666666;
+  font-size: 0.72rem;
+  line-height: 1.65;
+}
+
+/* ── Product Split Cards ────────────────────────────────────── */
+
+.productSplit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.productCard {
+  position: relative;
+  overflow: hidden;
+  min-height: 330px;
+  padding: 34px;
+  border-radius: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+  color: #111111;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+.productCard:last-child {
+  background: #111111;
+  color: #ffffff;
+  border: none;
+}
+
+.productCard h3 {
+  max-width: 360px;
+  margin: 60px 0 10px;
+  font-size: 1.65rem;
+  letter-spacing: -0.04em;
+}
+
+.productCard p {
+  max-width: 420px;
+  margin: 0;
+  color: #666666;
+  font-size: 0.76rem;
+  line-height: 1.65;
+}
+
+.productCard:last-child p {
+  color: #c4bfff;
+}
+
+.productCard a {
+  display: inline-flex;
+  margin-top: 25px;
+  color: #111111;
+  font-size: 0.72rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.productCard:last-child a {
+  color: #ffffff;
+}
+
+.productNumber {
+  position: absolute;
+  top: 22px;
+  right: 26px;
+  color: rgba(0, 0, 0, 0.1);
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.productCard:last-child .productNumber {
+  color: rgba(255, 255, 255, 0.12);
+}
+
+/* ── Final CTA ──────────────────────────────────────────────── */
+
+.finalCta {
+  padding: 90px 24px;
+  background: #111111;
+  color: #ffffff;
+  text-align: center;
+}
+
+.finalCta h2 {
+  max-width: 700px;
+  margin: auto;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.finalCta p {
+  max-width: 560px;
+  margin: 20px auto;
+  color: #a0a0a8;
+  line-height: 1.7;
+}
+
+.finalCta .heroActions {
+  justify-content: center;
+}
+
+.finalCta .primaryCta {
+  background: #ffffff;
+  color: #111111;
+}
+
+.finalCta .primaryCta:hover {
+  background: #f5f5f5;
+}
+
+.finalCta .secondaryCta {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.finalCta .secondaryCta:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+
+.footer {
+  display: flex;
+  max-width: 1120px;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 24px;
+  color: #999999;
+  font-size: 0.65rem;
+}
+
+/* ── Page Hero (inner pages) ────────────────────────────────── */
+
+.pageHero {
+  padding: 70px 24px 42px;
+  text-align: center;
+}
+
+.pageHero .pill {
+  margin: auto;
+}
+
+.pageHero h1 {
+  margin: 20px auto 0;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  letter-spacing: -0.055em;
+  color: #111111;
+}
+
+.pageHero p {
+  max-width: 580px;
+  margin: 16px auto 0;
+  color: #666666;
+  line-height: 1.7;
+}
+
+/* ── Access Layout ──────────────────────────────────────────── */
+
+.accessWrap {
+  display: grid;
+  min-height: calc(100vh - 64px);
+  grid-template-columns: 1fr 1fr;
+  background: #FAFAFB;
+}
+
+.accessStory {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 70px;
+  overflow: hidden;
+  background: #111111;
+  color: #fff;
+}
+
+.accessStory h1 {
+  max-width: 520px;
+  margin: 20px 0 0;
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.accessStory p {
+  max-width: 500px;
+  color: #a0a0a8;
+  line-height: 1.75;
+}
+
+.accessPoints {
+  display: grid;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.accessPoints span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #d7dce4;
+  font-size: 0.72rem;
+}
+
+.accessPoints i {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #a89bff;
+  font-style: normal;
+}
+
+.accessPanel {
+  display: grid;
+  place-items: center;
+  padding: 40px;
+}
+
+.accessCard {
+  width: min(100%, 430px);
+}
+
+.accessCard h2 {
+  margin: 13px 0 6px;
+  font-size: 1.65rem;
+  letter-spacing: -0.04em;
+  color: #111111;
+}
+
+.accessCard > p {
+  margin: 0 0 24px;
+  color: #666666;
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.accessForm {
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.06);
+}
+
+.accessForm label {
+  color: #666666;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.accessForm input {
+  height: 48px;
+  padding: 0 13px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  color: #111111;
+  font: 700 0.82rem ui-monospace;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.accessForm input:focus {
+  border-color: #7C5CFF;
+  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.12);
+}
+
+.accessForm button {
+  height: 46px;
+  border: 0;
+  border-radius: 10px;
+  background: #111111;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.accessForm button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.accessForm small {
+  color: #999999;
+  text-align: center;
+  font-size: 0.61rem;
+  line-height: 1.5;
+}
+
+.formError {
+  margin: 0;
+  padding: 9px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fff7f7;
+  color: #b42318;
+  font-size: 0.67rem;
+}
+
+/* ── Order Flow ─────────────────────────────────────────────── */
+
+.orderShell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 10px 24px 90px;
+}
+
+.orderFlow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.orderFlow span {
+  padding: 11px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  background: #ffffff;
+  color: #666666;
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 550;
+}
+
+.orderFlow .flowActive {
+  border-color: rgba(124, 92, 255, 0.3);
+  background: rgba(124, 92, 255, 0.04);
+  color: #7C5CFF;
+}
+
+.orderCard {
+  padding: 26px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.05);
+}
+
+.orderGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.orderCard label {
+  display: grid;
+  gap: 7px;
+  color: #666666;
+  font-size: 0.68rem;
+  font-weight: 550;
+}
+
+.orderCard input,
+.orderCard select,
+.orderCard textarea {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 9px;
+  background: #fff;
+  color: #111111;
+  font: 500 0.73rem system-ui;
+  outline: none;
+}
+
+.orderCard textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.orderCard input:focus,
+.orderCard select:focus,
+.orderCard textarea:focus {
+  border-color: #7C5CFF;
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.1);
+}
+
+.spanTwo {
+  grid-column: 1 / -1;
+}
+
+.orderActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.orderActions button {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 9px;
+  background: #fff;
+  color: #111111;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.orderActions button:last-child {
+  border-color: #111111;
+  background: #111111;
+  color: #fff;
+}
+
+.placeholder {
+  padding: 18px;
+  border: 1px solid #f0d99e;
+  border-radius: 12px;
+  background: #fffaf0;
+  color: #785b21;
+  font-size: 0.7rem;
+  line-height: 1.65;
+}
+
+/* ── Plan Grid ──────────────────────────────────────────────── */
+
+.planGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.planCard {
+  position: relative;
+  display: grid;
+  min-height: 100%;
+  align-content: start;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  background: #ffffff;
+  color: #111111;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.16s, box-shadow 0.16s, transform 0.16s;
+}
+
+.planCard:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.planCard:focus-visible {
+  outline: 3px solid rgba(124, 92, 255, 0.25);
+  outline-offset: 3px;
+}
+
+.planCard[aria-pressed="true"] {
+  border-color: #7C5CFF;
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.12);
+}
+
+.planCard[data-popular] {
+  border-color: rgba(124, 92, 255, 0.3);
+}
+
+.planCard h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.planCard > p:not(.kicker) {
+  margin: 0;
+  color: #666666;
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.planBadge {
+  position: absolute;
+  inset-block-start: 16px;
+  inset-inline-end: 16px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: #111111;
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 650;
+}
+
+.planPrices {
+  display: grid;
+  gap: 4px;
+}
+
+.planPrices strong {
+  font-size: 0.9rem;
+}
+
+.planPrices span,
+.planCard small {
+  color: #666666;
+  font-size: 0.66rem;
+}
+
+.planCard ul {
+  display: grid;
+  gap: 7px;
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.planCard li {
+  color: #666666;
+  font-size: 0.68rem;
+}
+
+.planCard li:before {
+  margin-inline-end: 7px;
+  color: #7C5CFF;
+  content: "✓";
+}
+
+.planUnavailable {
+  max-width: 680px;
+  margin: 0 auto 90px;
+  padding: 34px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 18px;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.05);
+}
+
+.planUnavailable h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.planUnavailable p {
+  margin: 10px 0 0;
+  color: #666666;
+  font-size: 0.75rem;
+}
+
+/* ── Product card interactive states ────────────────────────── */
+
+.productCard[aria-pressed="true"] {
+  outline: 3px solid rgba(124, 92, 255, 0.35);
+  outline-offset: 3px;
+}
+
+.productCard[role="button"],
+button.productCard {
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.orderActions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ── Responsive — Tablet ────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .heroInner,
+  .accessWrap {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    text-align: center;
+  }
+
+  .heroCopy {
+    margin-inline: auto;
+  }
+
+  .heroActions {
+    justify-content: center;
+  }
+
+  .showcase {
+    min-height: 480px;
+  }
+
+  .steps,
+  .features {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .accessStory {
+    padding: 50px 30px;
+  }
+
+  .accessPanel {
+    padding: 40px 20px;
+  }
+}
+
+/* ── Responsive — Mobile ────────────────────────────────────── */
+
+@media (max-width: 620px) {
+  .hero {
+    padding-top: calc(72px + env(safe-area-inset-top, 0px));
+  }
+
+  .heroInner > * {
+    min-width: 0;
+  }
+
+  .trustInner {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .steps,
+  .features,
+  .productSplit,
+  .orderGrid,
+  .orderFlow {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 64px 20px;
+  }
+
+  .phone {
+    width: 260px;
+  }
+
+  .productCard {
+    min-height: 280px;
+  }
+
+  .accessStory {
+    padding: 45px 22px;
+  }
+
+  .accessPanel {
+    padding: 32px 18px;
+  }
+
+  .spanTwo {
+    grid-column: auto;
+  }
+
+  .footer {
+    align-items: flex-start;
+    gap: 12px;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 26rem) {
+  .hero {
+    padding-top: calc(68px + env(safe-area-inset-top, 0px));
+    padding-bottom: 56px;
+    padding-inline: 12px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .heroCopy {
+    font-size: 0.92rem;
+    padding-inline: 0;
+  }
+
+  .heroActions,
+  .orderActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .heroActions > *,
+  .orderActions > * {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .showcaseGlow {
+    width: min(290px, 90vw);
+    height: min(290px, 90vw);
+  }
+
+  .phone {
+    width: min(250px, 88vw);
+  }
+
+  .section,
+  .pageHero,
+  .finalCta {
+    padding-inline: 16px;
+  }
+
+  .accessStory {
+    padding-inline: 18px;
+  }
+
+  .accessPanel,
+  .orderShell {
+    padding-inline: 14px;
+  }
+
+  .accessForm,
+  .orderCard {
+    padding: 16px;
+  }
+
+  .productCard {
+    padding: 24px;
+  }
+
+  .trust {
+    padding-inline: 16px;
+  }
+}
+
+@media (max-width: 620px) {
+  .planGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .planCard {
+    padding: 20px;
+  }
+
+  .planUnavailable {
+    margin-inline: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .planCard {
+    transition: none;
+  }
+
+  .planCard:hover {
+    transform: none;
+  }
+}

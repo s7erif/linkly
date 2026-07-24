@@ -1,0 +1,81 @@
+/* ── Footer — minimal, nav-underline links ──────────────────── */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 72rem;
+  padding: 8px 24px 40px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 640px) {
+  .footer { padding: 8px 40px 40px; }
+}
+
+/* ── Brand ──────────────────────────────────────────────────── */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.brandMark {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 6px;
+  background: #1a1a1a;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fafafa;
+  line-height: 1;
+}
+
+/* ── Links ──────────────────────────────────────────────────── */
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.link {
+  position: relative;
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: #1a1a1a;
+}
+
+/* nav-underline effect */
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}

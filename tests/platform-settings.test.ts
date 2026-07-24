@@ -1,0 +1,11 @@
+import { describe, expect, it, vi } from "vitest";
+import type { PlatformManagementRepository } from "@/repositories/platform-management.repository";
+import { PlatformSettingsService } from "@/services/platform-settings.service";
+import { defaultPlatformSettings } from "@/types/platform-settings";
+
+describe("PlatformSettingsService",()=>{
+ it("loads canonical defaults when no settings document exists",async()=>{const repository={getPlatformSettings:vi.fn().mockResolvedValue(null)} as unknown as PlatformManagementRepository;await expect(new PlatformSettingsService(repository).load()).resolves.toEqual(defaultPlatformSettings)});
+ it("validates and persists the complete settings document",async()=>{const savePlatformSettings=vi.fn(async value=>value);const repository={getPlatformSettings:vi.fn(),savePlatformSettings} as unknown as PlatformManagementRepository;const service=new PlatformSettingsService(repository);const updated={...defaultPlatformSettings,general:{...defaultPlatformSettings.general,platformName:"OI Cards",currency:"egp"}};const result=await service.save(updated);expect(result.general.currency).toBe("EGP");expect(savePlatformSettings).toHaveBeenCalledOnce()});
+ it("loads the saved platform name on a subsequent request",async()=>{let stored=defaultPlatformSettings;const repository={getPlatformSettings:vi.fn(async()=>stored),savePlatformSettings:vi.fn(async value=>{stored=value;return value})} as unknown as PlatformManagementRepository;const service=new PlatformSettingsService(repository);await service.save({...defaultPlatformSettings,general:{...defaultPlatformSettings.general,platformName:"Acme Platform"}});await expect(service.load()).resolves.toMatchObject({general:{platformName:"Acme Platform"}})});
+ it("rejects invalid upload and session limits",async()=>{const repository={} as PlatformManagementRepository;const service=new PlatformSettingsService(repository);await expect(service.save({...defaultPlatformSettings,uploads:{...defaultPlatformSettings.uploads,maxSizeMb:0}})).rejects.toMatchObject({code:"VALIDATION_ERROR"});await expect(service.save({...defaultPlatformSettings,security:{...defaultPlatformSettings.security,sessionTimeoutMinutes:1}})).rejects.toMatchObject({code:"VALIDATION_ERROR"})});
+});

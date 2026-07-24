@@ -1,0 +1,59 @@
+[data-oi-theme] {
+  --oi-component-action-primary: var(--oi-color-accent);
+  --oi-component-action-primary-hover: var(--oi-color-accent-hover);
+  --oi-component-action-primary-pressed: color-mix(in srgb, var(--oi-color-accent) var(--oi-mix-action-pressed), var(--oi-color-text));
+  --oi-component-action-primary-text: var(--oi-color-on-accent);
+
+  --oi-component-action-secondary: var(--oi-surface-interactive);
+  --oi-component-action-secondary-hover: var(--oi-surface-interactive-hover);
+  --oi-component-action-secondary-pressed: var(--oi-surface-interactive-pressed);
+  --oi-component-action-secondary-text: var(--oi-color-text);
+
+  --oi-component-action-ghost: var(--oi-color-transparent);
+  --oi-component-action-ghost-hover: var(--oi-surface-interactive-hover);
+  --oi-component-action-ghost-pressed: var(--oi-surface-interactive-pressed);
+  --oi-component-action-ghost-text: var(--oi-color-text-muted);
+
+  --oi-component-action-danger: var(--oi-color-danger-text);
+  --oi-component-action-danger-hover: color-mix(in srgb, var(--oi-color-danger-text) var(--oi-mix-action-hover), var(--oi-color-text));
+  --oi-component-action-danger-pressed: color-mix(in srgb, var(--oi-color-danger-text) var(--oi-mix-action-pressed), var(--oi-color-text));
+  --oi-component-action-danger-text: var(--oi-color-background);
+
+  --oi-component-action-link: var(--oi-color-transparent);
+  --oi-component-action-link-text: var(--oi-color-accent);
+  --oi-component-action-link-hover: var(--oi-color-accent-hover);
+  --oi-component-spinner-color: currentColor;
+
+  --oi-component-field-background: var(--oi-surface-interactive);
+  --oi-component-field-border: var(--oi-border-standard);
+  --oi-component-field-border-hover: var(--oi-color-border-strong);
+  --oi-component-field-border-focus: var(--oi-border-focus);
+  --oi-component-field-border-error: var(--oi-color-danger);
+  --oi-component-field-border-success: var(--oi-color-success);
+
+  --oi-component-status-primary-background: color-mix(in srgb, var(--oi-color-accent) var(--oi-mix-status-background), var(--oi-color-transparent));
+  --oi-component-status-primary-border: color-mix(in srgb, var(--oi-color-accent) var(--oi-mix-status-border), var(--oi-color-transparent));
+  --oi-component-status-info-background: color-mix(in srgb, var(--oi-color-info) var(--oi-mix-status-background), var(--oi-color-transparent));
+  --oi-component-status-info-border: color-mix(in srgb, var(--oi-color-info) var(--oi-mix-status-border), var(--oi-color-transparent));
+  --oi-component-status-info-text: var(--oi-color-info-text);
+  --oi-component-status-success-background: color-mix(in srgb, var(--oi-color-success) var(--oi-mix-status-background), var(--oi-color-transparent));
+  --oi-component-status-success-border: color-mix(in srgb, var(--oi-color-success) var(--oi-mix-status-border), var(--oi-color-transparent));
+  --oi-component-status-success-text: var(--oi-color-success-text);
+  --oi-component-status-warning-background: color-mix(in srgb, var(--oi-color-warning) var(--oi-mix-status-background), var(--oi-color-transparent));
+  --oi-component-status-warning-border: color-mix(in srgb, var(--oi-color-warning) var(--oi-mix-status-border), var(--oi-color-transparent));
+  --oi-component-status-warning-text: var(--oi-color-warning-text);
+  --oi-component-status-danger-background: color-mix(in srgb, var(--oi-color-danger) var(--oi-mix-status-background), var(--oi-color-transparent));
+  --oi-component-status-danger-border: color-mix(in srgb, var(--oi-color-danger) var(--oi-mix-status-border), var(--oi-color-transparent));
+  --oi-component-status-danger-text: var(--oi-color-danger-text);
+  --oi-component-status-neutral-background: var(--oi-surface-raised);
+  --oi-component-status-neutral-border: var(--oi-border-soft);
+
+  --oi-component-skeleton-base: var(--oi-color-surface-muted);
+  --oi-component-skeleton-highlight: var(--oi-color-surface-elevated);
+  --oi-component-skeleton-background: linear-gradient(
+    var(--oi-gradient-direction-inline),
+    var(--oi-component-skeleton-base),
+    var(--oi-component-skeleton-highlight),
+    var(--oi-component-skeleton-base)
+  );
+}

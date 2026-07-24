@@ -1,423 +1,378 @@
-# PROJECT_SPEC.md
-
-# OI Cards Platform
+# OI Platform
 
 Version: 1.0
-
 Status: Planning
 
-Author: Sherif Osman
+---
+
+# Overview
+
+OI Platform هي منصة لإدارة Digital Business Cards.
+
+المنصة بتسمح للمستخدم إنه ينشئ ويعدل ويشارك بطاقته الرقمية سواء كان عنده NFC Card أو مجرد مشترك في الخدمة.
 
 ---
 
-# Project Vision
+# Goals
 
-OI Cards is a modern Digital NFC Business Card Platform.
-
-The platform enables businesses to create, manage, and publish unlimited digital business cards for customers.
-
-Each NFC card links to a beautiful, responsive public profile that works on any device.
-
-The platform is designed for companies that sell NFC cards and need a professional management dashboard.
-
----
-
-# Main Objectives
-
-- Modern UI
-- Fast Performance
-- Mobile First
-- NFC Ready
-- QR Code Support
-- Unlimited Customers
-- Beautiful Templates
-- White Label Ready
-- Easy Administration
+- Simple User Experience
+- No Login / No Password
+- Fast Card Editing
+- Powerful Admin Dashboard
+- Easy Theme System
+- Scalable Architecture
+- Subscription Ready
 
 ---
 
-# Target Users
+# User Types
 
-Current Version
+## 1. NFC Customer
 
-- Small Businesses
-- Marketing Agencies
-- Print Shops
-- NFC Card Sellers
-- Personal Branding Services
-
-Future Versions
-
-- Large Companies
-- Teams
-- Organizations
-- Multi-Tenant SaaS
+- Buys NFC Card
+- Receives Access Code
+- Opens Manage Page
+- Edits Card
+- Shares Public Link
 
 ---
 
-# Technology Stack
+## 2. Digital Customer
 
-## Frontend
-
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-
-## Backend
-
-- Next.js API Routes
-
-## Database
-
-- PostgreSQL
-- Prisma ORM
-
-## Authentication
-
-- NextAuth
-
-## Deployment
-
-- Vercel
-- Self Hosted
+- Subscribes Online
+- Receives Access Code
+- Creates Digital Card
+- Shares Public Link
 
 ---
 
-# User Roles
+## 3. Admin
 
-## Version 1
-
-Only one role exists.
-
-### Admin
-
-The administrator owns the dashboard.
-
-Permissions
-
-- Login
-- Create Customers
-- Edit Customers
-- Delete Customers
-- Disable Customers
+- Manage Customers
+- Manage Cards
+- Manage Access Codes
+- Manage Plans
 - Manage Themes
-- Manage Company Settings
 - View Analytics
-
-No customer login exists in Version 1.
+- Manage Settings
 
 ---
 
-# Customer
+# User Flow
 
-Each customer owns exactly one digital business card.
+Customer
 
-Customer Information
+Receive Access Code
 
-- Full Name
-- Job Title
-- Company
+↓
+
+oi.io/manage
+
+↓
+
+Enter Access Code
+
+↓
+
+Card Editor
+
+↓
+
+Save
+
+↓
+
+Public Card
+
+↓
+
+Share Card
+
+---
+
+# Public Pages
+
+/
+
+Landing Page
+
+/manage
+
+Enter Access Code
+
+/card/[slug]
+
+Public Card
+
+/pricing
+
+Pricing
+
+/contact
+
+Contact
+
+/privacy
+
+Privacy Policy
+
+/terms
+
+Terms & Conditions
+
+---
+
+# Card Editor
+
+Sections
+
+- Profile
+- Cover
+- Avatar
 - Bio
-- Phone
-- WhatsApp
-- Email
-- Website
-- Address
-- Profile Image
-- Cover Image
+- Buttons
+- Social Links
 - Theme
-- Public URL
-- QR Code
+- Colors
+- Preview
+- Save
 
 ---
 
-# Public Business Card
+# Public Card Features
 
-Each customer has a public page.
-
-Example
-
-/c/dr-mostafa
-
-The page contains
-
-- Profile Photo
-- Cover Image
+- Avatar
+- Cover
 - Name
 - Job Title
 - Company
-- Bio
+- About
 - Contact Buttons
 - Social Links
 - QR Code
-- Share Button
-- Save Contact (vCard)
-- Powered By Footer
-
----
-
-# Dashboard
-
-The dashboard includes:
-
-## Overview
-
-- Total Customers
-- Active Cards
-- Disabled Cards
-- Total Views
-- QR Scans
-- Recent Activity
-
----
-
-## Customers
-
-Functions
-
-- Add Customer
-- Edit Customer
-- Delete Customer
-- Disable Customer
-- Duplicate Customer
-- Search Customers
-- Copy Public Link
-- Download QR
-- Preview Card
-
----
-
-## Themes
-
-Manage available templates.
-
-Default Themes
-
-- Medical
-- Corporate
-- Business
-- Developer
-- Photographer
-
-Future Themes
-
-- Restaurant
-- Lawyer
-- Beauty
-- Real Estate
-- Fitness
-- Education
-
----
-
-## Analytics
-
-Per Customer
-
-- Total Views
-- QR Scans
-- Link Clicks
-- Last Visit
-
----
-
-## Company Settings
-
-- Company Name
-- Logo
-- Website
-- WhatsApp
-- Facebook
-- Instagram
-- Footer Text
-- Brand Colors
-
----
-
-# Public Features
-
-Every public page supports
-
-- Call
-- WhatsApp
-- Email
-- Website
-- Google Maps
-- Share
 - Save Contact
-- QR Code
+- Share Button
 
 ---
 
-# Theme Requirements
+# Theme System
 
-Every theme must
+Themes must be independent.
 
-- Support Mobile
-- Support Desktop
-- Support Arabic
-- Support English
-- Support Dark Mode
-- Support Light Mode
+Each Theme receives only CardData.
 
-Themes should use reusable React components.
+Example Themes
 
-No custom HTML editing.
-
----
-
-# Branding
-
-Every public page displays
-
-- Company Logo
-- Powered by OI Cards
-- Company Website
-
-Branding should be configurable.
+- Default
+- Minimal
+- Medical
+- Luxury
+- Corporate
+- Cyber
 
 ---
 
-# Performance Goals
+# Access Code System
 
-Lighthouse
+Each card has one unique Access Code.
 
-Performance ≥ 95
+Example
 
-Accessibility ≥ 95
+AAXFVMLMVR
 
-SEO ≥ 95
+The Access Code is used to:
 
-Best Practices ≥ 95
+- Access Card
+- Edit Card
+- Recover Card (Admin)
 
----
+No Login.
 
-# Security
-
-- NextAuth Authentication
-- Prisma Validation
-- Zod Validation
-- CSRF Protection
-- XSS Protection
-- Rate Limiting
-- Secure API Design
+No Password.
 
 ---
 
-# Future Roadmap
+# Subscription Plans
 
-Version 2
+Free
 
-- Multiple Companies
-- Team Members
-- Roles & Permissions
-- Booking System
-- Gallery
-- Videos
-- PDF Attachments
-- Contact Forms
-- CRM Integration
-- Google Reviews
-- Lead Collection
+Basic
+
+Pro
+
+Business
+
+Enterprise
 
 ---
 
-# Coding Standards
+# Analytics
 
-- TypeScript Strict Mode
-- Reusable Components
-- Server Components by Default
-- Client Components Only When Necessary
-- Clean Folder Structure
-- Feature-Based Organization
-- Modular Architecture
-- Strong Typing
-- Minimal Code Duplication
+Track
 
----
-
-# Development Workflow
-
-Every feature should follow this workflow
-
-1. Planning
-2. Database
-3. API
-4. UI
-5. Testing
-6. Documentation
-7. Review
-8. Commit
-
-No feature should skip any step.
+- Visits
+- Button Clicks
+- Social Clicks
+- Save Contact
+- QR Scans
+- Device
+- Country
 
 ---
 
-# Project Phases
+# Admin Dashboard
 
-✅ Phase 1
+Dashboard
 
-Project Cleanup
+Customers
 
-⬜ Phase 2
+Cards
 
-Database Refactor
+Access Codes
 
-⬜ Phase 3
-
-Dashboard Refactor
-
-⬜ Phase 4
-
-Customer Management
-
-⬜ Phase 5
-
-Public Business Card
-
-⬜ Phase 6
+Subscriptions
 
 Themes
 
-⬜ Phase 7
+Analytics
+
+Settings
+
+Logs
+
+---
+
+# Future Features
+
+- Multiple Cards
+- Teams
+- Employees
+- White Label
+- Custom Domains
+- NFC Store Integration
+- API
+- CRM
+- Google Reviews
+- QR Menu
+- Apple Wallet
+- Google Wallet
+
+---
+
+# Architecture Rules
+
+- One Card = One Access Code
+- CardRenderer renders every card
+- Themes are isolated
+- Public Page never renders card manually
+- Admin controls everything
+- Store is separate project
+
+---
+
+# Tech Stack
+
+Frontend
+
+- Next.js
+- React
+- TailwindCSS
+
+Backend
+
+- Next.js API
+- Prisma
+- PostgreSQL
+
+Storage
+
+- Supabase Storage
+
+Authentication
+
+- Access Code System
+
+Deployment
+
+- Cloudflare
+
+---
+
+# Roadmap
+
+Phase 1
+
+✔ Product Planning
+
+Phase 2
+
+Database Design
+
+Phase 3
+
+Admin Dashboard
+
+Phase 4
+
+Access Code System
+
+Phase 5
+
+Card Builder
+
+Phase 6
+
+Public Card
+
+Phase 7
 
 Analytics
 
-⬜ Phase 8
+Phase 8
 
-Branding
+Subscriptions
 
-⬜ Phase 9
+Phase 9
 
-Testing & Deployment
+Production Launch
 
----
+## Sprint 8 Product Separation (2026-07-20)
 
-# Definition of Done
+OI Platform now has three explicit products: Admin Platform under `/admin`, Customer Workspace under `/workspace`, and Public Card Experience under `/{username}`. Administrator NextAuth credentials and customer EditorSession credentials remain separate and are never exchanged or impersonated. The legacy Gallery is compatibility-only and no longer serves as the Admin product.
 
-The project is considered complete when
+## Sprint 9 Product Experience (2026-07-20)
 
-- Admin can manage unlimited customers.
-- Every customer has a unique public page.
-- Every customer has a QR Code.
-- Every customer supports Save Contact.
-- Dashboard is fully responsive.
-- Analytics are working.
-- Themes are configurable.
-- Branding is configurable.
-- The application is production ready.
+The public product now begins at a marketing landing page with only Create New Card and Access Your Card actions. `/access` exchanges an issued access code for an EditorSession and routes the customer to `/workspace`. `/create-card` presents purchase intent without claiming persistence or payment. `/admin/orders` represents the operator fulfillment pipeline. Admin entry is intentionally absent from public navigation.
 
----
+## Customer Communications
 
-# AI Development Rules
+Order fulfillment sends a one-time Welcome email after customer, card, and access-code issuance succeeds. The email contains customer-facing URLs, the plaintext access code available during issuance, and getting-started instructions. Order Approved and Card Ready templates are available for later lifecycle triggers, but Sprint 12 activates only Welcome. Delivery failure is visible to administrators and never rolls back fulfillment.
 
-Any AI assistant working on this project must
+## Sprint 13 Visual Card Builder
 
-- Read all files in the `/docs` directory before making changes.
-- Never modify unrelated files.
-- Never redesign existing UI without approval.
-- Never create breaking database migrations.
-- Update documentation after architecture changes.
-- Generate a task report after every completed task.
-- Stop after each task and wait for approval before continuing.
+The Customer Workspace is the canonical visual editor for profile, contact, social links, action buttons, appearance, SEO, visibility, and persisted section order. Every mutation requires the existing card-scoped EditorSession. The live preview uses the same PublicCardDTO and DefaultTheme as the public experience and refreshes from the authorized read model after successful persistence.
+
+## Sprint 14 Card Blocks
+
+Cards support ordered modular blocks: Hero, About, Contact, Social Links, CTA Buttons, Gallery, Video, FAQ, Location Map, Divider, and Rich Text. Existing profile, appearance, section, button, and social data remains canonical for legacy-compatible blocks. Persisted blocks become the page composition source after the customer initializes or adds block content.
+
+## Sprint 17 Editing Product Boundary
+
+The platform exposes one Workspace product at `/workspace`. Customers enter with an Access Code and use an EditorSession. Administrators enter from Admin Cards with their Admin session and never receive a customer EditorSession. Both actors use the same editor, renderer, preview, and save pipeline; Admin Mode adds only operator context and controls.
+
+## Publication Lifecycle
+
+Cards are edited as Drafts. Saving never publishes. A dedicated publication command transitions Draft to Published, makes visibility Public, and records the publication timestamp. Unpublish returns the card to Draft/Private. Archived cards must be restored to Draft before publishing. The public reader serves only cards that are simultaneously Published and Public.
+
+## Sprint 15 Activation-Driven Customer Provisioning
+
+Activation is the authoritative provisioning boundary for NFC customers. Administrators generate a one-time link for an available physical NFC card in the Activation Center. A customer signs up or signs in through that link; one transaction then consumes the activation, creates the customer identity when needed, creates a Workspace and digital card when needed, assigns the physical card, issues scoped sessions, and records lifecycle events. Admin Customer management remains edit, archive, search, filter, drawer, activity, and export only. Direct Admin customer creation is not permitted.
+
+## Sprint 3.3 manual subscriptions
+
+Subscriptions are manually approved and renewed by Platform Admin. Runtime subscription operations do not use pricing plans, gateways, or feature entitlements. Automatic expiration restricts customer Workspace writes without deleting data or hiding public profiles. See docs/manual-subscription-lifecycle.md.
+
+
+## Sprint UX-0.6 Customer Onboarding (2026-07-23)
+
+Customer onboarding has three canonical journeys: Website registration to a two-choice Welcome screen, NFC registration/login through the atomic activation transaction directly to the Card Builder, and returning-customer login to a secure Card selector or direct single-Card Builder handoff. The legacy NFC-oriented Workspace empty state and pending-activation navigation are removed.

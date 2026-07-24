@@ -1,0 +1,1 @@
+export interface BillingTimelineWriter{upsert(input:{orderId:string;event:string;entityType:string;entityId:string;metadata?:unknown}):Promise<unknown>}export class BillingTimelineService{constructor(private readonly writer:BillingTimelineWriter){}append(input:{orderId:string;event:string;entityType:string;entityId:string;metadata?:unknown}){return this.writer.upsert(input)}}

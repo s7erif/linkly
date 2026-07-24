@@ -1,0 +1,152 @@
+.oi-surface-background {
+  background: var(--oi-surface-background);
+  color: var(--oi-color-text);
+}
+
+.oi-surface {
+  background: var(--oi-surface-default);
+  border-color: var(--oi-border-standard);
+  border-style: var(--oi-border-style-standard);
+  border-width: var(--oi-border-width-standard);
+  box-shadow: var(--oi-elevation-level-0);
+  color: var(--oi-color-text);
+}
+
+.oi-surface-elevated {
+  background: var(--oi-surface-raised);
+  border-color: var(--oi-border-soft);
+  border-style: var(--oi-border-style-standard);
+  border-width: var(--oi-border-width-standard);
+  box-shadow: var(--oi-elevation-level-1);
+  color: var(--oi-color-text);
+}
+
+.oi-surface-floating {
+  background: var(--oi-surface-floating);
+  border-color: var(--oi-border-standard);
+  border-style: var(--oi-border-style-standard);
+  border-width: var(--oi-border-width-standard);
+  box-shadow: var(--oi-elevation-level-floating);
+  color: var(--oi-color-text);
+}
+
+.oi-surface-overlay {
+  background: var(--oi-surface-modal);
+  border-color: var(--oi-border-standard);
+  border-style: var(--oi-border-style-standard);
+  border-width: var(--oi-border-width-standard);
+  box-shadow: var(--oi-elevation-modal);
+  color: var(--oi-color-text);
+}
+
+.oi-interactive-surface {
+  background: var(--oi-surface-interactive);
+  border-color: var(--oi-border-standard);
+  border-style: var(--oi-border-style-standard);
+  border-width: var(--oi-border-width-standard);
+  color: var(--oi-color-text);
+  transition:
+    background-color var(--oi-duration-fast) var(--oi-ease-standard),
+    border-color var(--oi-duration-fast) var(--oi-ease-standard);
+}
+
+.oi-interactive-surface:hover {
+  background: var(--oi-surface-interactive-hover);
+}
+
+.oi-interactive-surface:active {
+  background: var(--oi-surface-interactive-pressed);
+}
+
+.oi-interactive-surface:focus-visible {
+  border-color: var(--oi-border-focus);
+  box-shadow: var(--oi-shadow-focus);
+  outline: var(--oi-border-width-none);
+}
+
+.oi-glass-xs,
+.oi-glass-sm,
+.oi-glass-md,
+.oi-glass-lg,
+.oi-glass-xl,
+.oi-glass,
+.oi-glass-heavy {
+  border-style: var(--oi-border-style-standard);
+  border-width: var(--oi-border-width-standard);
+  color: var(--oi-color-text);
+}
+
+.oi-glass-xs {
+  -webkit-backdrop-filter: blur(var(--oi-glass-xs-blur)) saturate(var(--oi-glass-xs-saturation));
+  backdrop-filter: blur(var(--oi-glass-xs-blur)) saturate(var(--oi-glass-xs-saturation));
+  background: var(--oi-surface-raised);
+  background: var(--oi-glass-xs-background);
+  border-color: var(--oi-glass-xs-border);
+  box-shadow: var(--oi-glass-xs-shadow);
+}
+
+.oi-glass-sm,
+.oi-glass {
+  -webkit-backdrop-filter: blur(var(--oi-glass-sm-blur)) saturate(var(--oi-glass-sm-saturation));
+  backdrop-filter: blur(var(--oi-glass-sm-blur)) saturate(var(--oi-glass-sm-saturation));
+  background: var(--oi-surface-raised);
+  background: var(--oi-glass-sm-background);
+  border-color: var(--oi-glass-sm-border);
+  box-shadow: var(--oi-glass-sm-shadow);
+}
+
+.oi-glass-md {
+  -webkit-backdrop-filter: blur(var(--oi-glass-md-blur)) saturate(var(--oi-glass-md-saturation));
+  backdrop-filter: blur(var(--oi-glass-md-blur)) saturate(var(--oi-glass-md-saturation));
+  background: var(--oi-surface-raised);
+  background: var(--oi-glass-md-background);
+  border-color: var(--oi-glass-md-border);
+  box-shadow: var(--oi-glass-md-shadow);
+}
+
+.oi-glass-lg,
+.oi-glass-heavy {
+  -webkit-backdrop-filter: blur(var(--oi-glass-lg-blur)) saturate(var(--oi-glass-lg-saturation));
+  backdrop-filter: blur(var(--oi-glass-lg-blur)) saturate(var(--oi-glass-lg-saturation));
+  background: var(--oi-surface-raised);
+  background: var(--oi-glass-lg-background);
+  border-color: var(--oi-glass-lg-border);
+  box-shadow: var(--oi-glass-lg-shadow);
+}
+
+.oi-glass-xl {
+  -webkit-backdrop-filter: blur(var(--oi-glass-xl-blur)) saturate(var(--oi-glass-xl-saturation));
+  backdrop-filter: blur(var(--oi-glass-xl-blur)) saturate(var(--oi-glass-xl-saturation));
+  background: var(--oi-surface-raised);
+  background: var(--oi-glass-xl-background);
+  border-color: var(--oi-glass-xl-border);
+  box-shadow: var(--oi-glass-xl-shadow);
+}
+
+.oi-overlay-backdrop {
+  background: var(--oi-overlay-dialog-backdrop);
+  inset: var(--oi-space-0);
+  position: fixed;
+  z-index: var(--oi-z-overlay);
+}
+
+@media (forced-colors: active) {
+  .oi-glass-xs,
+  .oi-glass-sm,
+  .oi-glass-md,
+  .oi-glass-lg,
+  .oi-glass-xl,
+  .oi-glass,
+  .oi-glass-heavy {
+    -webkit-backdrop-filter: var(--oi-backdrop-filter-none);
+    backdrop-filter: var(--oi-backdrop-filter-none);
+  }
+}
+
+
+.oi-glass-xs,.oi-glass-sm,.oi-glass-md,.oi-glass-lg,.oi-glass-xl{transition:background var(--oi-motion-hover-duration) var(--oi-motion-hover-easing),border-color var(--oi-motion-hover-duration) var(--oi-motion-hover-easing),box-shadow var(--oi-motion-hover-duration) var(--oi-motion-hover-easing),transform var(--oi-motion-hover-duration) var(--oi-motion-hover-easing)}
+.oi-glass-xs:hover{background:var(--oi-glass-xs-hover-background);border-color:var(--oi-glass-xs-hover-border);box-shadow:var(--oi-glass-xs-hover-shadow)}
+.oi-glass-sm:hover{background:var(--oi-glass-sm-hover-background);border-color:var(--oi-glass-sm-hover-border);box-shadow:var(--oi-glass-sm-hover-shadow)}
+.oi-glass-md:hover{background:var(--oi-glass-md-hover-background);border-color:var(--oi-glass-md-hover-border);box-shadow:var(--oi-glass-md-hover-shadow)}
+.oi-glass-lg:hover{background:var(--oi-glass-lg-hover-background);border-color:var(--oi-glass-lg-hover-border);box-shadow:var(--oi-glass-lg-hover-shadow)}
+.oi-glass-xl:hover{background:var(--oi-glass-xl-hover-background);border-color:var(--oi-glass-xl-hover-border);box-shadow:var(--oi-glass-xl-hover-shadow)}

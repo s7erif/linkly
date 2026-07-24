@@ -1,0 +1,16 @@
+[data-oi-theme] {
+  --oi-navigation-sidebar-width: 17rem;
+  --oi-navigation-sidebar-collapsed-width: var(--oi-space-20);
+  --oi-navigation-header-height: var(--oi-space-16);
+  --oi-navigation-content-max-width: var(--oi-container-xl);
+  --oi-navigation-drawer-width: 20rem;
+  --oi-navigation-item-min-height: var(--oi-control-height-sm);
+  --oi-navigation-item-indent: var(--oi-space-6);
+  --oi-navigation-avatar-size: var(--oi-control-height-sm);
+  --oi-navigation-notification-offset: calc(var(--oi-space-1) * -1);
+  --oi-navigation-badge-min-width: var(--oi-space-5);
+  --oi-navigation-popover-width: 15rem;
+  --oi-navigation-search-width: 20rem;
+  --oi-navigation-backdrop: var(--oi-overlay-drawer-backdrop);
+  --oi-navigation-layer: var(--oi-overlay-drawer-layer);
+}

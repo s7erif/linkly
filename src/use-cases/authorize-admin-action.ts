@@ -1,0 +1,1 @@
+import type{UnitOfWork}from"@/repositories";import type{AdminPermission}from"@/repositories/platform-management.repository";import{requireAdmin}from"./subscription-platform";export class AuthorizeAdminAction{constructor(private readonly uow:UnitOfWork){}execute(email:string,permission:AdminPermission){return this.uow.execute(async r=>{await requireAdmin(r,email,permission)})}}

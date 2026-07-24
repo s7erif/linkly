@@ -26,6 +26,20 @@ for (const file of await filesUnder(sourceRoot)) {
   const isService = normalized.startsWith("src/services/") || normalized.startsWith("src/lib/services/") || normalized.startsWith("src/use-cases/");
   const isFeature = normalized.startsWith("src/features/");
   const isRoute = normalized.startsWith("src/app/") && normalized.endsWith("/route.ts");
+  const cssModuleBindings = [...source.matchAll(/import\s+([A-Za-z_$][\w$]*)\s+from\s+["\x27][^"\x27]+\.module\.css["\x27]/g)]
+    .map((match) => match[1]);
+
+  for (const binding of cssModuleBindings) {
+    const escaped = binding.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const reExport = new RegExp(`export\\s+(?:default\\s+${escaped}\\b|(?:const|let|var)\\s+\\w+\\s*=\\s*${escaped}\\b|\\{[^}]*\\b${escaped}\\b[^}]*\\})`);
+    const passedAsProp = new RegExp(`(?:\\w+\\s*=\\s*\\{\\s*${escaped}\\s*\\}|\\{\\s*\\.\\.\\.${escaped}\\s*\\})`);
+    if (reExport.test(source)) {
+      report(file, "ARCH017", `CSS Module object '${binding}' must not be re-exported`);
+    }
+    if (passedAsProp.test(source)) {
+      report(file, "ARCH018", `CSS Module object '${binding}' must not be passed through JSX props`);
+    }
+  }
 
   if ((source.includes("@/generated/prisma") || source.includes("@prisma/client")) && !isRepository && !isDatabase) {
     report(file, "ARCH001", "Prisma imports are restricted to repository implementations and database infrastructure");

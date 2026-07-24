@@ -1,0 +1,3 @@
+export type PaymentSubmissionStatusDTO = "PENDING"|"APPROVED"|"REJECTED";
+export interface PaymentSubmissionDTO { id:string; orderId:string; customerId:string|null; paymentMethod:"INSTAPAY"|"MOBILE_WALLET"; amount:number; currency:string; senderName:string; senderPhone:string; referenceNumber:string; paymentProofAssetId:string|null; notes:string|null; status:PaymentSubmissionStatusDTO; submittedAt:Date; verifiedAt:Date|null; verifiedBy:string|null; rejectionReason:string|null; }
+export interface InvoiceDTO { id:string; invoiceNumber:string; orderId:string; customerId:string; planNameSnapshot:string; subtotal:number; discount:number; tax:number; total:number; currency:string; status:"DRAFT"|"ISSUED"|"PAID"|"VOID"; issuedAt:Date; pdfPath:string|null; }

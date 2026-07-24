@@ -1,0 +1,128 @@
+/* ── Feature Grid — 2×4 icon grid ───────────────────────────── */
+
+.section {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 72rem;
+  padding: 0 24px 96px;
+}
+
+@media (min-width: 640px) {
+  .section { padding: 0 40px 96px; }
+}
+
+/* ── Heading ────────────────────────────────────────────────── */
+
+.headWrap {
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--oi-font-family-display);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #1a1a1a;
+}
+
+@media (min-width: 640px) {
+  .heading { font-size: 46px; }
+}
+
+/* ── Grid ───────────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 56px;
+}
+
+@media (min-width: 640px) {
+  .grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ── Card ───────────────────────────────────────────────────── */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  aspect-ratio: 1.15 / 1;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  /* feature-card */
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 12px 28px -22px rgba(20, 20, 40, 0.3);
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 0.5s;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 26px 44px -24px rgba(20, 20, 40, 0.4);
+}
+
+/* ── Icon ───────────────────────────────────────────────────── */
+
+.cardIcon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.8);
+  transition: transform 0.5s;
+}
+
+.card:hover .cardIcon {
+  transform: scale(1.05);
+}
+
+/* ── Label ──────────────────────────────────────────────────── */
+
+.cardLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* ── Hover shine ────────────────────────────────────────────── */
+
+.cardShine {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.5s;
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.65) 0%,
+    transparent 40%
+  );
+}
+
+.card:hover .cardShine {
+  opacity: 1;
+}

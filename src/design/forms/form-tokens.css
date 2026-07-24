@@ -1,0 +1,19 @@
+:where([data-oi-theme]) {
+  --oi-form-section-padding: var(--oi-space-5);
+  --oi-form-control-background: var(--oi-surface-interactive);
+  --oi-form-control-border: var(--oi-border-standard);
+  --oi-form-control-border-hover: var(--oi-color-border-strong);
+  --oi-form-control-border-focus: var(--oi-border-focus);
+  --oi-form-control-border-error: var(--oi-color-danger);
+  --oi-form-control-border-success: var(--oi-color-success);
+  --oi-form-control-border-warning: var(--oi-color-warning);
+  --oi-form-control-min-block-size: var(--oi-control-height-md);
+  --oi-form-control-padding-inline: var(--oi-control-padding-md);
+  --oi-form-choice-size: var(--oi-space-5);
+  --oi-form-switch-inline-size: var(--oi-space-10);
+  --oi-form-switch-block-size: var(--oi-space-6);
+  --oi-form-switch-thumb-size: var(--oi-space-5);
+  --oi-form-upload-min-block-size: var(--oi-space-24);
+  --oi-form-image-preview-size: var(--oi-container-sm);
+  --oi-form-auto-column-size: var(--oi-space-24);
+}

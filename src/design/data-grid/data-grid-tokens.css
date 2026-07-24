@@ -1,0 +1,10 @@
+:where([data-oi-theme]) {
+  --oi-data-grid-min-inline-size: var(--oi-container-md);
+  --oi-data-grid-row-min-block-size: var(--oi-control-height-lg);
+  --oi-data-grid-cell-padding-block: var(--oi-space-3);
+  --oi-data-grid-cell-padding-inline: var(--oi-space-4);
+  --oi-data-grid-mobile-label-inline-size: var(--oi-space-24);
+  --oi-data-grid-selection-size: var(--oi-space-4);
+  --oi-data-grid-selected-background: var(--oi-surface-interactive-hover);
+  --oi-data-grid-hover-background: var(--oi-color-surface-muted);
+}

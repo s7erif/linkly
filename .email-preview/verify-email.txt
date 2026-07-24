@@ -1,0 +1,8 @@
+Hi Alex,
+
+Verify your email: https://oicards.com/verify?token=sample-token
+
+This link expires in 1 hour.
+
+— OI Cards
+https://oicards.com

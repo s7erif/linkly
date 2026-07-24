@@ -1,0 +1,442 @@
+.form {
+  padding: var(--oi-form-section-padding);
+}
+
+.section,
+.sectionNested {
+  padding: var(--oi-form-section-padding);
+}
+
+.sectionNested {
+  border-color: var(--oi-border-soft);
+}
+
+.formRow {
+  display: grid;
+  gap: var(--oi-space-4);
+  inline-size: 100%;
+}
+
+.layoutSingle {
+  grid-template-columns: minmax(var(--oi-space-0), 1fr);
+}
+
+.layoutTwo {
+  grid-template-columns: repeat(2, minmax(var(--oi-space-0), 1fr));
+}
+
+.layoutAuto {
+  grid-template-columns: repeat(auto-fit, minmax(var(--oi-form-auto-column-size), 1fr));
+}
+
+.layoutInline {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.layoutInline > * {
+  flex: 1 1 var(--oi-form-auto-column-size);
+}
+
+.formActions {
+  padding: var(--oi-space-4);
+  border-block-start: var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-border-soft);
+}
+
+.fieldGroup,
+.choiceField,
+.uploadField {
+  inline-size: 100%;
+}
+
+.fieldGroup[data-disabled],
+.choiceField[data-disabled],
+.uploadSurface[data-disabled] {
+  opacity: var(--oi-opacity-disabled);
+}
+
+.labelText,
+.choiceLabel,
+.groupLegend {
+  color: var(--oi-color-text);
+  font-family: var(--oi-font-family-sans);
+  font-size: var(--oi-font-size-sm);
+  font-weight: var(--oi-font-weight-medium);
+  line-height: var(--oi-line-height-normal);
+}
+
+.controlFrame,
+.multiSelect,
+.colorControl {
+  box-sizing: border-box;
+  min-block-size: var(--oi-form-control-min-block-size);
+  inline-size: 100%;
+  background: var(--oi-form-control-background);
+  border: var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-form-control-border);
+  border-radius: var(--oi-radius-md);
+  transition:
+    border-color var(--oi-duration-fast) var(--oi-ease-standard),
+    box-shadow var(--oi-duration-fast) var(--oi-ease-standard);
+}
+
+.controlFrame:hover,
+.multiSelect:hover,
+.colorControl:hover {
+  border-color: var(--oi-form-control-border-hover);
+}
+
+.controlFrame:focus-within,
+.multiSelect:focus-visible,
+.colorControl:focus-within,
+.nativeChoice:focus-visible + .choiceMark,
+.nativeRadio:focus-visible + .radioMark,
+.switchControl:focus-visible,
+.fileInput:focus-visible {
+  border-color: var(--oi-form-control-border-focus);
+  box-shadow: var(--oi-shadow-focus);
+  outline: var(--oi-border-width-none);
+}
+
+.controlFrame[data-status="error"],
+.multiSelect[data-status="error"],
+.colorControl[data-status="error"] {
+  border-color: var(--oi-form-control-border-error);
+}
+
+.controlFrame[data-status="success"],
+.multiSelect[data-status="success"],
+.colorControl[data-status="success"] {
+  border-color: var(--oi-form-control-border-success);
+}
+
+.controlFrame[data-status="warning"],
+.multiSelect[data-status="warning"],
+.colorControl[data-status="warning"] {
+  border-color: var(--oi-form-control-border-warning);
+}
+
+.controlFrame[data-readonly] {
+  background: var(--oi-surface-raised);
+}
+
+.selectControl {
+  appearance: none;
+  flex: 1;
+  min-inline-size: var(--oi-space-0);
+  block-size: var(--oi-form-control-min-block-size);
+  padding-inline: var(--oi-form-control-padding-inline);
+  background: var(--oi-color-transparent);
+  border: var(--oi-border-width-none);
+  color: var(--oi-color-text);
+  font: inherit;
+  outline: var(--oi-border-width-none);
+}
+
+.controlIcon {
+  padding-inline-end: var(--oi-space-3);
+  color: var(--oi-color-text-muted);
+  pointer-events: none;
+}
+
+.choiceGroup {
+  display: grid;
+  gap: var(--oi-space-2);
+  min-inline-size: var(--oi-space-0);
+  padding: var(--oi-space-0);
+  margin: var(--oi-space-0);
+  border: var(--oi-border-width-none);
+}
+
+.groupLegend {
+  padding: var(--oi-space-0);
+  margin-block-end: var(--oi-space-1);
+}
+
+.choiceOptions {
+  padding-block: var(--oi-space-1);
+}
+
+.checkboxFrame {
+  position: relative;
+  flex: none;
+  inline-size: var(--oi-form-choice-size);
+  block-size: var(--oi-form-choice-size);
+}
+
+.nativeChoice {
+  appearance: none;
+  inline-size: 100%;
+  block-size: 100%;
+  margin: var(--oi-space-0);
+  background: var(--oi-form-control-background);
+  border: var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-form-control-border);
+  border-radius: var(--oi-radius-sm);
+  cursor: pointer;
+}
+
+.nativeChoice:checked,
+.nativeChoice:indeterminate {
+  background: var(--oi-color-accent);
+  border-color: var(--oi-color-accent);
+}
+
+.choiceMark {
+  position: absolute;
+  inset: var(--oi-space-0);
+  display: grid;
+  color: var(--oi-color-on-accent);
+  place-items: center;
+  pointer-events: none;
+}
+
+.choiceMarkHidden {
+  visibility: hidden;
+}
+
+.radioOption {
+  display: grid;
+  grid-template-columns: var(--oi-form-choice-size) minmax(var(--oi-space-0), 1fr);
+  gap: var(--oi-space-3);
+  align-items: start;
+  cursor: pointer;
+}
+
+.radioOption[data-disabled] {
+  cursor: not-allowed;
+  opacity: var(--oi-opacity-disabled);
+}
+
+.nativeRadio {
+  position: absolute;
+  opacity: var(--oi-space-0);
+  pointer-events: none;
+}
+
+.radioMark {
+  display: block;
+  box-sizing: border-box;
+  inline-size: var(--oi-form-choice-size);
+  block-size: var(--oi-form-choice-size);
+  border: var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-form-control-border);
+  border-radius: var(--oi-radius-full);
+  background: var(--oi-form-control-background);
+}
+
+.nativeRadio:checked + .radioMark {
+  border-color: var(--oi-color-accent);
+  border-width: var(--oi-space-1);
+  background: var(--oi-color-on-accent);
+
+}
+
+.nativeRadio:checked + .radioMark::after {
+  content: "";
+  display: block;
+  inline-size: var(--oi-space-2);
+  block-size: var(--oi-space-2);
+  margin: var(--oi-space-1);
+  border-radius: var(--oi-radius-full);
+  background: var(--oi-color-accent);
+}
+
+.switchControl {
+  position: relative;
+  flex: none;
+  inline-size: var(--oi-form-switch-inline-size);
+  block-size: var(--oi-form-switch-block-size);
+  padding: var(--oi-space-0);
+  background: var(--oi-color-surface-muted);
+  border: var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-form-control-border);
+  border-radius: var(--oi-radius-full);
+  cursor: pointer;
+  transition:
+    background-color var(--oi-duration-fast) var(--oi-ease-standard),
+    border-color var(--oi-duration-fast) var(--oi-ease-standard);
+}
+
+.switchControl[data-checked] {
+  background: var(--oi-color-accent);
+  border-color: var(--oi-color-accent);
+}
+
+.switchControl:disabled {
+  cursor: not-allowed;
+  opacity: var(--oi-opacity-disabled);
+}
+
+.switchThumb {
+  position: absolute;
+  inset-block-start: var(--oi-border-width-standard);
+  inset-inline-start: var(--oi-border-width-standard);
+  inline-size: var(--oi-form-switch-thumb-size);
+  block-size: var(--oi-form-switch-thumb-size);
+  border-radius: var(--oi-radius-full);
+  background: var(--oi-color-on-accent);
+  box-shadow: var(--oi-shadow-sm);
+  transition: transform var(--oi-duration-fast) var(--oi-ease-standard);
+}
+
+.switchControl[data-checked] .switchThumb {
+  transform: translateX(calc(var(--oi-form-switch-inline-size) - var(--oi-form-switch-thumb-size) - (var(--oi-border-width-standard) * 2)));
+}
+
+:global([dir="rtl"]) .switchControl[data-checked] .switchThumb {
+  transform: translateX(calc((var(--oi-form-switch-inline-size) - var(--oi-form-switch-thumb-size) - (var(--oi-border-width-standard) * 2)) * -1));
+}
+
+.toggleGroup {
+  inline-size: 100%;
+}
+
+.toggleButton {
+  flex: 0 1 auto;
+}
+
+.multiSelect {
+  min-block-size: var(--oi-space-24);
+  padding: var(--oi-space-2) var(--oi-form-control-padding-inline);
+  color: var(--oi-color-text);
+  font: inherit;
+  outline: var(--oi-border-width-none);
+}
+
+.multiSelect option {
+  padding: var(--oi-space-2);
+}
+
+.combobox {
+  position: relative;
+}
+
+.comboboxList {
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline: var(--oi-space-0);
+  z-index: var(--oi-z-dropdown);
+  display: grid;
+  gap: var(--oi-space-1);
+  max-block-size: var(--oi-container-sm);
+  padding: var(--oi-space-2);
+  overflow-y: auto;
+}
+
+.comboboxOption {
+  justify-content: flex-start;
+  inline-size: 100%;
+}
+
+.noResults {
+  padding: var(--oi-space-3);
+}
+
+.colorControl {
+  padding: var(--oi-space-2) var(--oi-space-3);
+}
+
+.colorInput {
+  inline-size: var(--oi-space-10);
+  block-size: var(--oi-space-8);
+  padding: var(--oi-space-0);
+  background: var(--oi-color-transparent);
+  border: var(--oi-border-width-none);
+  cursor: pointer;
+}
+
+.colorValue {
+  color: var(--oi-color-text-muted);
+  font-family: var(--oi-font-family-mono);
+  font-size: var(--oi-font-size-sm);
+}
+
+.uploadSurface {
+  min-block-size: var(--oi-form-upload-min-block-size);
+  padding: var(--oi-space-5);
+}
+
+.fileInput {
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  padding: var(--oi-space-2);
+  color: var(--oi-color-text);
+  font: inherit;
+  border-radius: var(--oi-radius-sm);
+}
+
+.fileInput::file-selector-button {
+  min-block-size: var(--oi-control-height-sm);
+  margin-inline-end: var(--oi-space-3);
+  padding-inline: var(--oi-control-padding-sm);
+  background: var(--oi-component-action-secondary);
+  border: var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-border-standard);
+  border-radius: var(--oi-radius-md);
+  color: var(--oi-component-action-secondary-text);
+  cursor: pointer;
+  font: inherit;
+}
+
+.uploadProgress {
+  max-inline-size: var(--oi-container-sm);
+}
+
+.imagePreview,
+.imagePlaceholder {
+  display: grid;
+  min-block-size: var(--oi-form-upload-min-block-size);
+  max-inline-size: var(--oi-form-image-preview-size);
+  overflow: hidden;
+  place-items: center;
+}
+
+.imagePreview > * {
+  max-inline-size: 100%;
+}
+
+.imagePlaceholder {
+  padding: var(--oi-space-5);
+}
+
+@media (max-width: 40rem) {
+  .layoutTwo {
+    grid-template-columns: minmax(var(--oi-space-0), 1fr);
+  }
+
+  .layoutInline {
+    display: grid;
+    grid-template-columns: minmax(var(--oi-space-0), 1fr);
+  }
+
+  .form,
+  .section,
+  .sectionNested {
+    padding: var(--oi-space-4);
+  }
+
+  .formActions > * {
+    inline-size: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .controlFrame,
+  .multiSelect,
+  .colorControl,
+  .switchControl,
+  .switchThumb {
+    transition-duration: var(--oi-duration-instant);
+  }
+}
+
+@media (forced-colors: active) {
+  .nativeChoice:checked,
+  .nativeChoice:indeterminate,
+  .switchControl[data-checked] {
+    forced-color-adjust: none;
+    background: Highlight;
+    border-color: Highlight;
+  }
+
+  .choiceMark {
+    color: HighlightText;
+  }
+}

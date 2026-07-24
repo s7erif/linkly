@@ -1,0 +1,2 @@
+import { z } from "zod";
+export const paymentSubmissionSchema=z.object({orderId:z.string().uuid(),customerId:z.string().uuid().nullable().optional(),paymentMethod:z.enum(["INSTAPAY","MOBILE_WALLET"]),amount:z.number().int().positive(),currency:z.string().length(3),senderName:z.string().min(2).max(120),senderPhone:z.string().min(7).max(30),referenceNumber:z.string().min(3).max(120),paymentProofAssetId:z.string().uuid().nullable().optional(),notes:z.string().max(1000).nullable().optional()});

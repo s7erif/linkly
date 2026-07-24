@@ -8,6 +8,6 @@ export const createCustomerSchema = z.object({
   locale: z.string().trim().min(2).max(16).default("en"),
   timezone: z.string().trim().min(1).max(64).default("UTC"),
 });
-export const updateCustomerSchema = createCustomerSchema.partial();
+export const updateCustomerSchema = createCustomerSchema.partial().extend({ status: z.enum(["ACTIVE", "SUSPENDED", "ARCHIVED"]).optional() });
 export type CreateCustomerInput = z.input<typeof createCustomerSchema>;
 export type UpdateCustomerInput = z.input<typeof updateCustomerSchema>;

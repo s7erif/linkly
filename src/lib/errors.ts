@@ -36,3 +36,7 @@ export class InvalidAccessCodeError extends UnauthorizedError {
 export class InitialAccessCodeExistsError extends ConflictError {
   constructor(cardId: string) { super("An access code already exists for this card", { cardId }); }
 }
+
+export class InvalidOrderTransitionError extends ConflictError {
+  constructor(from: string, to: string) { super(`Order cannot transition from ${from} to ${to}`, { from, to }); }
+}

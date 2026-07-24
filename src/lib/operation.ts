@@ -1,0 +1,2 @@
+import { logger } from "@/lib/logger";
+export async function withOperation<T>(operation: string, work: (correlationId: string) => Promise<T>, correlationId = crypto.randomUUID()): Promise<T> { const started = Date.now(); try { const result = await work(correlationId); logger.info("operation.completed", { operation, correlationId, durationMs: Date.now() - started, success: true }); return result; } catch (error) { logger.error("operation.failed", error, { operation, correlationId, durationMs: Date.now() - started, success: false }); throw error; } }

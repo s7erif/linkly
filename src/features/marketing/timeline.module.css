@@ -1,0 +1,280 @@
+/* ── Timeline — steps + floating phone ──────────────────────── */
+
+.section {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 72rem;
+  padding: 32px 24px;
+}
+
+@media (min-width: 640px) {
+  .section { padding: 32px 40px; }
+}
+
+/* ── Grid ───────────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: 1.2fr 1fr; }
+}
+
+/* ── Heading ────────────────────────────────────────────────── */
+
+.heading {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: #1a1a1a;
+}
+
+/* ── Step row ───────────────────────────────────────────────── */
+
+.stepRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.stepItem {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.stepContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.stepIcon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.stepLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* ── Step connecting line ───────────────────────────────────── */
+
+.stepLine {
+  position: relative;
+  margin-top: 20px;
+  height: 1px;
+  flex: 1;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.stepLineFill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(129, 140, 248, 0.7),
+    rgba(125, 211, 252, 0.7),
+    transparent
+  );
+}
+
+/* ── Phone area ─────────────────────────────────────────────── */
+
+.phoneArea {
+  position: relative;
+  height: 380px;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* ── Floating chips ─────────────────────────────────────────── */
+
+.chip {
+  position: absolute;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2;
+}
+
+.chipLeft {
+  left: 8px;
+  top: 24px;
+}
+
+.chipRight {
+  right: 8px;
+  top: 96px;
+}
+
+.chipBottom {
+  right: 16px;
+  bottom: 64px;
+}
+
+.chipBox {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.chipBoxDim {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.chipBoxMid {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* ── Dark phone ─────────────────────────────────────────────── */
+
+.phone {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  height: 360px;
+  width: 190px;
+  border-radius: 38px;
+  padding: 5px;
+  background: linear-gradient(180deg, #1a1a1c, #242427, #0f0f11);
+  box-shadow: 0 40px 80px -30px rgba(20, 20, 40, 0.55);
+}
+
+.phoneInner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 34px;
+  background: #0f0f11;
+}
+
+.phoneNotch {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  transform: translateX(-50%);
+  z-index: 10;
+  height: 20px;
+  width: 80px;
+  border-radius: 9999px;
+  background: #000000;
+}
+
+.phoneContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.phoneAvatar {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(129, 140, 248, 0.3),
+    rgba(125, 211, 252, 0.3)
+  );
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.phoneAvatar svg {
+  width: 20px;
+  height: 20px;
+}
+
+.phoneTitle {
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.phoneList {
+  margin-top: 16px;
+  padding: 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.phoneRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px 8px;
+}
+
+.phoneRowIcon {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: inherit;
+}
+
+.phoneRowIcon svg {
+  width: 10px;
+  height: 10px;
+}
+
+.phoneRow:nth-child(1) .phoneRowIcon {
+  color: #4ade80; /* emerald-400 */
+}
+
+.phoneRow:not(:nth-child(1)) .phoneRowIcon {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.phoneRowBar {
+  height: 4px;
+  flex: 1;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.phoneHome {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 4px;
+  width: 64px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.4);
+}
