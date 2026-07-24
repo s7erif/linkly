@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { slideUp, fadeIn } from "@/lib/motionVariants";
 import QRCode from "qrcode/lib/browser";
-import { FaTimes, FaCopy, FaCheck } from "react-icons/fa";
+import { X, Copy, Check } from "lucide-react";
 
 interface QRModalProps {
   isOpen: boolean;
@@ -82,7 +82,7 @@ export function QRModal({ isOpen, onClose, cardName, cardUrl }: QRModalProps) {
               className="absolute top-4 right-4 w-8 h-8 rounded-full bg-bg-elevated text-secondary-text hover:text-primary-text flex items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-primary"
               aria-label="Close QR code modal"
             >
-              <FaTimes size={14} />
+              <X size={14} />
             </button>
 
             {/* Header */}
@@ -120,12 +120,12 @@ export function QRModal({ isOpen, onClose, cardName, cardUrl }: QRModalProps) {
             >
               {copied ? (
                 <>
-                  <FaCheck className="text-emerald-500" />
+                  <Check className="text-emerald-500" />
                   <span>Link Copied!</span>
                 </>
               ) : (
                 <>
-                  <FaCopy className="text-secondary-text" />
+                  <Copy className="text-secondary-text" />
                   <span>Copy Card Link</span>
                 </>
               )}

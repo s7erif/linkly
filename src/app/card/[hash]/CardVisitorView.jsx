@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { generateCardDocument } from "@/lib/templates";
-import { FaTimes, FaQrcode, FaShareAlt, FaCopy, FaCheck } from "react-icons/fa";
+import { X, QrCode, Share2, Copy, Check } from "lucide-react";
+import { ThemeRegistry } from "@/components/card-renderer/ThemeRegistry";
+import { CardRenderer } from "@/components/card-renderer/CardRenderer";
 
 export function CardVisitorView({ card }) {
   const [qrOpen, setQrOpen] = useState(false);
@@ -17,6 +19,9 @@ export function CardVisitorView({ card }) {
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(
     typeof window !== "undefined" ? window.location.href : ""
   )}`;
+
+  const themeId = (card.templateId || "default").toLowerCase();
+  const hasReactTheme = themeId in ThemeRegistry && themeId !== "default";
 
   return (
     <div className="flex-1 flex flex-col md:flex-row bg-slate-950 text-slate-100 font-sans relative overflow-hidden h-full min-h-screen">
@@ -36,26 +41,30 @@ export function CardVisitorView({ card }) {
               className="bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl p-2.5 text-sm flex items-center justify-center active:scale-95 transition-all"
               title="Show QR Code"
             >
-              <FaQrcode />
+              <QrCode />
             </button>
             <button
               onClick={handleCopyLink}
               className="bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl p-2.5 text-sm flex items-center justify-center active:scale-95 transition-all"
               title="Copy URL Link"
             >
-              {copied ? <FaCheck className="text-emerald-500" /> : <FaShareAlt />}
+              {copied ? <Check className="text-emerald-500" /> : <Share2 />}
             </button>
           </div>
         </div>
 
         {/* Mobile Device Frame */}
         <div className="w-full max-w-md aspect-[9/16] max-h-[680px] bg-slate-900 rounded-[36px] border-8 border-slate-800 shadow-2xl relative flex flex-col overflow-hidden">
-          <iframe
-            title="Business Card"
-            className="w-full h-full border-none bg-slate-900"
-            srcDoc={generateCardDocument(card)}
-            sandbox="allow-scripts"
-          />
+          {hasReactTheme ? (
+            <CardRenderer card={card} />
+          ) : (
+            <iframe
+              title="Business Card"
+              className="w-full h-full border-none bg-slate-900"
+              srcDoc={generateCardDocument(card)}
+              sandbox="allow-scripts"
+            />
+          )}
         </div>
       </div>
 
@@ -67,7 +76,7 @@ export function CardVisitorView({ card }) {
               onClick={() => setQrOpen(false)}
               className="absolute top-4 right-4 text-slate-400 hover:text-white p-1 hover:bg-slate-800 rounded-lg transition-all"
             >
-              <FaTimes />
+              <X />
             </button>
 
             <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-1">Scan QR Code</h3>
@@ -85,12 +94,12 @@ export function CardVisitorView({ card }) {
               >
                 {copied ? (
                   <>
-                    <FaCheck className="text-emerald-500" />
+                    <Check className="text-emerald-500" />
                     <span>Link Copied!</span>
                   </>
                 ) : (
                   <>
-                    <FaCopy />
+                    <Copy />
                     <span>Copy Card Link</span>
                   </>
                 )}
