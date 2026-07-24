@@ -1,0 +1,74 @@
+/**
+ * Base email layout used by every template.
+ * Provides consistent branding, responsive design, and plain-text fallback.
+ */
+
+export interface BaseContext {
+  preview?: string;
+  platformName: string;
+  platformUrl: string;
+  recipientName?: string;
+}
+
+function escapeHtml(text: string): string {
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+export function baseHtml(body: string, ctx: BaseContext): string {
+  const name = ctx.recipientName ? escapeHtml(ctx.recipientName) : "there";
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  ${ctx.preview ? `<meta name="description" content="${escapeHtml(ctx.preview)}">` : ""}
+  <title>${escapeHtml(ctx.platformName)}</title>
+  <style>
+    body { margin: 0; padding: 0; background: #f4f4f5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .container { max-width: 560px; margin: 0 auto; padding: 32px 16px; }
+    .card { background: #ffffff; border-radius: 12px; padding: 40px 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .logo { font-weight: 700; font-size: 18px; color: #111111; margin-bottom: 32px; }
+    h1 { font-size: 22px; font-weight: 700; color: #111111; margin: 0 0 12px; line-height: 1.3; }
+    p { font-size: 15px; color: #3f3f46; line-height: 1.6; margin: 0 0 16px; }
+    .btn { display: inline-block; background: #000000; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+    .btn:hover { background: #1a1a1a; }
+    .muted { color: #71717a; font-size: 13px; }
+    .divider { border-top: 1px solid #e4e4e7; margin: 24px 0; }
+    .footer { font-size: 12px; color: #a1a1aa; }
+    .footer a { color: #71717a; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #18181b; }
+      .card { background: #27272a; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+      .logo, h1 { color: #fafafa; }
+      p { color: #d4d4d8; }
+      .btn { background: #fafafa; color: #18181b; }
+      .muted { color: #a1a1aa; }
+      .divider { border-color: #3f3f46; }
+      .footer { color: #71717a; }
+      .footer a { color: #a1a1aa; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="logo">${escapeHtml(ctx.platformName)}</div>
+      ${body}
+    </div>
+    <div class="footer" style="margin-top:20px;text-align:center;">
+      <p class="footer">${escapeHtml(ctx.platformName)} &middot; <a href="${escapeHtml(ctx.platformUrl)}">${escapeHtml(ctx.platformUrl)}</a></p>
+    </div>
+  </div>
+</body>
+</html>`;
+}
+
+export function baseText(body: string, ctx: BaseContext): string {
+  const name = ctx.recipientName || "there";
+  return `Hi ${name},
+
+${body}
+
+— ${ctx.platformName}
+${ctx.platformUrl}`;
+}
