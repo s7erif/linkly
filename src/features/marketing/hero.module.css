@@ -124,12 +124,12 @@
 
 .headline {
   margin: 0 0 24px; /* mb-6 */
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--oi-font-family-display);
   font-size: 40px;
   font-weight: 700;
   line-height: 44px;
   letter-spacing: -0.03em;
-  color: #111111;
+  color: var(--oi-color-neutral-950);
 }
 
 @media (min-width: 768px) {
@@ -151,12 +151,9 @@
   }
 }
 
-/* text-gradient: linear-gradient(135deg, #000 0%, #6900b3 100%) */
+/* Solid primary color instead of gradient as per Art Direction */
 .textGradient {
-  background: linear-gradient(135deg, #000000 0%, #6900b3 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--oi-color-primary);
 }
 
 /* ── Body — body-lg, secondary color ─────────────────────────── */
@@ -166,8 +163,8 @@
 .body {
   margin: 0 0 48px; /* mb-12 */
   max-width: 520px;
-  color: #5d5e60; /* secondary */
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  color: var(--oi-color-neutral-600); /* secondary */
+  font-family: var(--oi-font-family-sans);
   font-size: 18px;
   line-height: 28px;
   letter-spacing: 0;
@@ -181,7 +178,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
-  margin-top: 32px;
+  margin-bottom: 32px;
 }
 
 /* ── Primary CTA — solid black ─────────────────────────────────── */
@@ -193,10 +190,10 @@
   min-height: 52px;
   padding: 0 28px;
   border: none;
-  border-radius: 24px;
-  background: #111111;
-  color: #ffffff;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  border-radius: var(--oi-radius-full);
+  background: var(--oi-color-neutral-950);
+  color: var(--oi-color-white);
+  font-family: var(--oi-font-family-sans);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -209,11 +206,9 @@
 }
 
 .primaryCta:hover {
-  transform: translateY(-1px);
-  background: #000000;
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.06),
-    0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(var(--oi-motion-hover-lift));
+  background: var(--oi-color-black);
+  box-shadow: var(--oi-shadow-md);
 }
 
 /* ── Secondary CTA — transparent Liquid Glass (light) ──────────── */
@@ -225,12 +220,12 @@
   min-height: 52px;
   padding: 0 28px;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  color: #111111;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  border-radius: var(--oi-radius-full);
+  background: var(--oi-glass-lg-background);
+  backdrop-filter: blur(var(--oi-glass-lg-blur));
+  -webkit-backdrop-filter: blur(var(--oi-glass-lg-blur));
+  color: var(--oi-color-neutral-950);
+  font-family: var(--oi-font-family-sans);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.01em;
@@ -244,8 +239,8 @@
 }
 
 .secondaryCta:hover {
-  transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.75);
+  transform: translateY(var(--oi-motion-hover-lift));
+  background: var(--oi-glass-lg-hover-background);
   border-color: rgba(0, 0, 0, 0.14);
 }
 
@@ -538,13 +533,13 @@
   border-radius: 16px;
   background: linear-gradient(135deg, #111111, #2a1a45);
   color: #ffffff;
-  font-family: var(--font-outfit, Inter), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--oi-font-family-display);
   font-size: 1.1rem;
   font-weight: 700;
 }
 
 .profileName {
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--oi-font-family-sans);
   font-size: 14px;
   font-weight: 600;
   color: #1b1b1b;
@@ -554,7 +549,7 @@
 }
 
 .profileTitle {
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--oi-font-family-sans);
   font-size: 11px;
   font-weight: 400;
   color: #6b6365;

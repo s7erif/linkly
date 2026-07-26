@@ -1,8 +1,7 @@
-import type { SubscriptionReminderType } from "@/generated/prisma/client";
 import type { Logger } from "@/lib/logger";
 import type { EmailProvider } from "@/notifications/contracts";
 import { subscriptionLifecycleEmail } from "@/notifications/templates";
-import type { SubscriptionLifecycleRecord, SubscriptionLifecycleRepository } from "@/repositories/subscription-lifecycle.repository";
+import type { SubscriptionLifecycleRecord, SubscriptionLifecycleRepository, SubscriptionReminderType } from "@/repositories/subscription-lifecycle.repository";
 
 const DAY=86_400_000;
 const utcDay=(value:Date)=>Date.UTC(value.getUTCFullYear(),value.getUTCMonth(),value.getUTCDate());

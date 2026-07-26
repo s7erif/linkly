@@ -7,8 +7,12 @@ import type {
   EditorCardDTO,
 } from "@/dto";
 import type {
+  AutosaveCardProjection,
+  BuilderCardProjection,
+  PublicCardProjection,
   CardLookupCriteria,
   CardReadRepository,
+  MutationResult,
   CardWriteRepository,
   CreateCardButtonCommand,
   CreateCardCommand,
@@ -23,6 +27,22 @@ import type {
   UpdateCardBlockCommand,
 } from "./contracts";
 import type { AppearanceSettings } from "@/types/appearance";
+import { serializeAppearance } from "@/validation/appearance";
+import {
+  autosaveCardSelect,
+  builderCardSelect,
+  cardBaseSelect,
+  duplicateCardSelect,
+  publicCardSelect,
+  publishCardSelect,
+  workspaceCardSelect,
+  type AutosaveCardRow,
+  type BuilderCardRow,
+  type CardRow,
+  type DuplicateCardRow,
+  type PublicCardRow,
+  type WorkspaceCardRow,
+} from "./card.projections";
 
 const SECTION_KINDS: readonly CardSectionKind[] = [
   "PROFILE",
@@ -33,88 +53,6 @@ const SECTION_KINDS: readonly CardSectionKind[] = [
 ];
 const isSectionKind = (value: string): value is CardSectionKind =>
   SECTION_KINDS.some((kind) => kind === value);
-const profileSelect = {
-  fullName: true,
-  headline: true,
-  company: true,
-  bio: true,
-  email: true,
-  phone: true,
-  website: true,
-  address: true,
-  countryCode: true,
-} satisfies Prisma.CardProfileSelect;
-const baseSelect = {
-  id: true,
-  customerId: true,
-  themeId: true,
-  slug: true,
-  name: true,
-  status: true,
-  visibility: true,
-  publishedAt: true,
-  accessVersion: true,
-  seoTitle: true,
-  seoDescription: true,
-  createdAt: true,
-  updatedAt: true,
-  profile: { select: profileSelect },
-} satisfies Prisma.CardSelect;
-const editorSelect = {
-  ...baseSelect,
-  blocks: {
-    where: { deletedAt: null },
-    orderBy: { position: "asc" as const },
-    select: {
-      id: true,
-      kind: true,
-      position: true,
-      isEnabled: true,
-      config: true,
-      media: {
-        orderBy: { position: "asc" as const },
-        select: { mediaAssetId: true },
-      },
-    },
-  },
-  themeConfig: true,
-  sections: {
-    where: { deletedAt: null },
-    orderBy: { position: "asc" as const },
-    select: {
-      id: true,
-      kind: true,
-      title: true,
-      position: true,
-      isVisible: true,
-    },
-  },
-  buttons: {
-    where: { deletedAt: null },
-    orderBy: { position: "asc" as const },
-    select: {
-      id: true,
-      label: true,
-      url: true,
-      position: true,
-      isVisible: true,
-    },
-  },
-  socialLinks: {
-    where: { deletedAt: null },
-    orderBy: { position: "asc" as const },
-    select: {
-      id: true,
-      platform: true,
-      label: true,
-      url: true,
-      position: true,
-      isVisible: true,
-    },
-  },
-} satisfies Prisma.CardSelect;
-type CardRow = Prisma.CardGetPayload<{ select: typeof baseSelect }>;
-type EditorCardRow = Prisma.CardGetPayload<{ select: typeof editorSelect }>;
 function mapProfile(row: CardRow["profile"]): CardProfileDTO | null {
   return row
     ? {
@@ -134,7 +72,6 @@ function mapCard(row: CardRow): CardDTO {
   return {
     id: row.id,
     customerId: row.customerId,
-    themeId: row.themeId,
     slug: row.slug,
     name: row.name,
     status: row.status,
@@ -149,7 +86,7 @@ function mapCard(row: CardRow): CardDTO {
   };
 }
 function mapSections(
-  rows: EditorCardRow["sections"],
+  rows: WorkspaceCardRow["sections"],
 ): readonly CardSectionDTO[] {
   const valid = rows
     .filter((row): row is typeof row & { kind: CardSectionKind } =>
@@ -167,7 +104,10 @@ function mapSections(
   }));
   return [...valid, ...missing].sort((a, b) => a.position - b.position);
 }
-function mapEditorCard(row: EditorCardRow): EditorCardDTO {
+function mapEditorCard(
+  row: WorkspaceCardRow | DuplicateCardRow,
+): EditorCardDTO {
+  const avatarUrl = "media" in row ? row.media[0]?.mediaAsset.publicUrl ?? null : null;
   return {
     ...mapCard(row),
     themeConfig: row.themeConfig ?? null,
@@ -182,6 +122,53 @@ function mapEditorCard(row: EditorCardRow): EditorCardDTO {
     })),
     buttons: row.buttons.map((button) => ({ ...button })),
     socialLinks: row.socialLinks.map((link) => ({ ...link })),
+    avatarUrl,
+  };
+}
+function mapBuilderCard(row: BuilderCardRow): BuilderCardProjection {
+  return {
+    id: row.id,
+    slug: row.slug,
+    status: row.status,
+    sections: mapSections(row.sections),
+    blocks: row.blocks.map((block) => ({
+      id: block.id,
+      kind: block.kind,
+      position: block.position,
+      isEnabled: block.isEnabled,
+      config: block.config,
+      mediaIds: block.media.map((item) => item.mediaAssetId),
+    })),
+    buttonIds: row.buttons.map((button) => button.id),
+    socialLinkIds: row.socialLinks.map((link) => link.id),
+  };
+}
+function mapPublicCard(row: PublicCardRow): PublicCardProjection {
+  return {
+    id: row.id,
+    slug: row.slug,
+    name: row.name,
+    status: row.status,
+    visibility: row.visibility,
+    publishedAt: row.publishedAt,
+    seoTitle: row.seoTitle,
+    seoDescription: row.seoDescription,
+    profile: mapProfile(row.profile),
+    themeConfig: row.themeConfig ?? null,
+    sections: mapSections(row.sections),
+    blocks: row.blocks.map((block) => ({
+      id: block.id,
+      kind: block.kind,
+      position: block.position,
+      isEnabled: block.isEnabled,
+      config: block.config,
+      mediaIds: block.media.map((item) => item.mediaAssetId),
+    })),
+    buttons: row.buttons.map((button) => ({ ...button })),
+    socialLinks: row.socialLinks.map((link) => ({ ...link })),
+    avatarUrl: row.media[0]?.mediaAsset.publicUrl ?? null,
+    createdAt: row.createdAt,
+    updatedAt: row.updatedAt,
   };
 }
 interface CardDatabase {
@@ -191,6 +178,7 @@ interface CardDatabase {
   socialLink: Prisma.TransactionClient["socialLink"];
   cardBlock: Prisma.TransactionClient["cardBlock"];
   cardBlockMedia: Prisma.TransactionClient["cardBlockMedia"];
+  cardMedia: Prisma.TransactionClient["cardMedia"];
   mediaAsset: Prisma.TransactionClient["mediaAsset"];
   customer: Prisma.TransactionClient["customer"];
 }
@@ -202,19 +190,85 @@ abstract class CardRepositoryBase implements CardReadRepository {
   async findById(id: string, deletedAt: null | Date): Promise<CardDTO | null> {
     const row = await this.db.card.findFirst({
       where: { ...this.ownedWhere(id), deletedAt },
-      select: baseSelect,
+      select: cardBaseSelect,
     });
     return row ? mapCard(row) : null;
   }
-  async findEditorById(
+  async findWorkspaceById(
+    id: string,
+    deletedAt: null | Date,
+  ): Promise<EditorCardDTO | null> {
+    const t0 = performance.now();
+    const row = await this.db.card.findFirst({
+      where: { ...this.ownedWhere(id), deletedAt },
+      select: workspaceCardSelect,
+    });
+    const queryMs = Math.round(performance.now() - t0);
+    const mapped = row ? mapEditorCard(row) : null;
+    const totalMs = Math.round(performance.now() - t0);
+    if (process.env.NODE_ENV === "development" && queryMs > 100) {
+      console.log(`[findWorkspaceById] Prisma query: ${queryMs}ms, mapping: ${totalMs - queryMs}ms, total: ${totalMs}ms`);
+    }
+    return mapped;
+  }
+  async findAutosaveById(
+    id: string,
+    deletedAt: null | Date,
+  ): Promise<AutosaveCardProjection | null> {
+    const row: AutosaveCardRow | null = await this.db.card.findFirst({
+      where: { ...this.ownedWhere(id), deletedAt },
+      select: autosaveCardSelect,
+    });
+    return row;
+  }
+  async findPublishById(
+    id: string,
+    deletedAt: null | Date,
+  ): Promise<AutosaveCardProjection | null> {
+    return this.db.card.findFirst({
+      where: { ...this.ownedWhere(id), deletedAt },
+      select: publishCardSelect,
+    });
+  }
+  async findBuilderById(
+    id: string,
+    deletedAt: null | Date,
+  ): Promise<BuilderCardProjection | null> {
+    const row = await this.db.card.findFirst({
+      where: { ...this.ownedWhere(id), deletedAt },
+      select: builderCardSelect,
+    });
+    return row ? mapBuilderCard(row) : null;
+  }
+  async findDuplicateById(
     id: string,
     deletedAt: null | Date,
   ): Promise<EditorCardDTO | null> {
     const row = await this.db.card.findFirst({
       where: { ...this.ownedWhere(id), deletedAt },
-      select: editorSelect,
+      select: duplicateCardSelect,
     });
     return row ? mapEditorCard(row) : null;
+  }
+  async findPublicBySlug(
+    criteria: CardLookupCriteria,
+  ): Promise<PublicCardProjection | null> {
+    const row = await this.db.card.findFirst({
+      where: {
+        slug: criteria.slug,
+        status: { in: [...criteria.statuses] },
+        visibility: { in: [...criteria.visibilities] },
+        deletedAt: criteria.deletedAt,
+      },
+      select: publicCardSelect,
+    });
+    return row ? mapPublicCard(row) : null;
+  }
+  async findEditorById(id: string, deletedAt: null | Date): Promise<EditorCardDTO | null> {
+    return this.findWorkspaceById(id, deletedAt);
+  }
+  async findEditorForMutationById(id: string, deletedAt: null | Date): Promise<EditorCardDTO | null> {
+    return this.findDuplicateById(id, deletedAt);
   }
   async findRenderSourceBySlug(
     criteria: CardLookupCriteria,
@@ -226,7 +280,7 @@ abstract class CardRepositoryBase implements CardReadRepository {
         visibility: { in: [...criteria.visibilities] },
         deletedAt: criteria.deletedAt,
       },
-      select: editorSelect,
+      select: workspaceCardSelect,
     });
     return row ? mapEditorCard(row) : null;
   }
@@ -263,6 +317,22 @@ abstract class CardRepositoryBase implements CardReadRepository {
       })) === new Set(mediaIds).size
     );
   }
+  async findOwnership(
+    cardId: string,
+  ): Promise<{ customerId: string; workspaceId: string; slug: string } | null> {
+    const row = await this.db.card.findFirst({
+      where: this.ownedWhere(cardId),
+      select: { customerId: true, workspaceId: true, slug: true },
+    });
+    return row ?? null;
+  }
+  async linkMediaAsset(cardId: string, mediaAssetId: string, role: string): Promise<void> {
+    // Remove any existing link with the same role (one avatar at a time)
+    await this.db.cardMedia.deleteMany({ where: { cardId, role: role as "AVATAR" | "COVER" | "LOGO" | "IMAGE" | "DOCUMENT" } });
+    await this.db.cardMedia.create({
+      data: { cardId, mediaAssetId, role: role as "AVATAR" | "COVER" | "LOGO" | "IMAGE" | "DOCUMENT", position: 0 },
+    });
+  }
 }
 export class PrismaCardReadRepository extends CardRepositoryBase {
   constructor(db: PrismaClient) {
@@ -286,14 +356,6 @@ export class PrismaCardTransactionRepository
   private async assertOwned(cardId: string): Promise<void> {
     if (!this.workspaceId) return;
     await this.db.card.findFirstOrThrow({ where: this.ownedWhere(cardId), select: { id: true } });
-  }
-  private async current(cardId: string): Promise<EditorCardDTO> {
-    return mapEditorCard(
-      await this.db.card.findFirstOrThrow({
-        where: this.ownedWhere(cardId),
-        select: editorSelect,
-      }),
-    );
   }
   async create(command: CreateCardCommand): Promise<CardDTO> {
     const owner = await this.db.customer.findFirstOrThrow({
@@ -319,7 +381,7 @@ export class PrismaCardTransactionRepository
           })),
         },
       },
-      select: baseSelect,
+      select: cardBaseSelect,
     });
     return mapCard(row);
   }
@@ -337,50 +399,38 @@ export class PrismaCardTransactionRepository
       await this.db.card.update({
         where: { id },
         data: { ...card, ...(profile ? { profile: { update: profile } } : {}) },
-        select: baseSelect,
+        select: cardBaseSelect,
       }),
     );
   }
   async updateAppearance(
     cardId: string,
     appearance: AppearanceSettings,
-  ): Promise<EditorCardDTO> {
+  ): Promise<MutationResult & { slug: string }> {
     await this.assertOwned(cardId);
-    return mapEditorCard(
-      await this.db.card.update({
-        where: { id: cardId },
-        data: {
-          themeConfig: {
-            colors: appearance.colors,
-            background: appearance.background,
-            typography: appearance.typography,
-            buttonStyle: appearance.buttonStyle,
-            borderRadius: appearance.borderRadius,
-            shadow: appearance.shadow,
-            sections: appearance.sections,
-          },
-        },
-        select: editorSelect,
-      }),
-    );
+    return this.db.card.update({
+      where: { id: cardId },
+      data: {
+        themeConfig: serializeAppearance(appearance) as Prisma.InputJsonValue,
+      },
+      select: { id: true, slug: true },
+    });
   }
   async updateSettings(
     cardId: string,
     command: UpdateCardSettingsCommand,
-  ): Promise<EditorCardDTO> {
+  ): Promise<MutationResult> {
     await this.assertOwned(cardId);
-    return mapEditorCard(
-      await this.db.card.update({
-        where: { id: cardId },
-        data: command,
-        select: editorSelect,
-      }),
-    );
+    return this.db.card.update({
+      where: { id: cardId },
+      data: command,
+      select: { id: true },
+    });
   }
   async replaceSections(
     cardId: string,
     sections: readonly CardSectionCommand[],
-  ): Promise<EditorCardDTO> {
+  ): Promise<MutationResult> {
     await this.assertOwned(cardId);
     await this.db.cardSection.updateMany({
       where: { cardId, deletedAt: null },
@@ -403,38 +453,49 @@ export class PrismaCardTransactionRepository
           title: section.title,
         },
       });
-    return this.current(cardId);
+    return { id: cardId };
   }
-  async createButton(command: CreateCardButtonCommand): Promise<EditorCardDTO> {
+  async createButton(command: CreateCardButtonCommand): Promise<MutationResult> {
     await this.assertOwned(command.cardId);
-    await this.db.cardButton.create({ data: command, select: { id: true } });
-    return this.current(command.cardId);
+    // Compute next position from the database — MAX(position) + 1 across ALL
+    // rows (including soft-deleted ones) so gaps from non-tail deletions
+    // never cause a unique-constraint collision.  Deleted rows have already
+    // been bumped to position + 1000 by deleteButton().
+    const maximum = await this.db.cardButton.aggregate({
+      where: { cardId: command.cardId },
+      _max: { position: true },
+    });
+    await this.db.cardButton.create({
+      data: { ...command, position: (maximum._max.position ?? -1) + 1 },
+      select: { id: true },
+    });
+    return { id: command.cardId };
   }
-  async updateButton(command: UpdateCardButtonCommand): Promise<EditorCardDTO> {
+  async updateButton(command: UpdateCardButtonCommand): Promise<MutationResult> {
     await this.assertOwned(command.cardId);
     const { cardId, buttonId, ...data } = command;
     await this.db.cardButton.updateMany({
       where: { id: buttonId, cardId, deletedAt: null },
       data,
     });
-    return this.current(cardId);
+    return { id: cardId };
   }
   async deleteButton(
     cardId: string,
     buttonId: string,
     deletedAt: Date,
-  ): Promise<EditorCardDTO> {
+  ): Promise<MutationResult> {
     await this.assertOwned(cardId);
     await this.db.cardButton.updateMany({
       where: { id: buttonId, cardId, deletedAt: null },
-      data: { deletedAt, isVisible: false },
+      data: { deletedAt, isVisible: false, position: { increment: 1000 } },
     });
-    return this.current(cardId);
+    return { id: cardId };
   }
   async reorderButtons(
     cardId: string,
     buttonIds: readonly string[],
-  ): Promise<EditorCardDTO> {
+  ): Promise<MutationResult> {
     await this.assertOwned(cardId);
     await this.db.cardButton.updateMany({
       where: { cardId },
@@ -445,42 +506,49 @@ export class PrismaCardTransactionRepository
         where: { id, cardId, deletedAt: null },
         data: { position },
       });
-    return this.current(cardId);
+    return { id: cardId };
   }
   async createSocialLink(
     command: CreateSocialLinkCommand,
-  ): Promise<EditorCardDTO> {
+  ): Promise<MutationResult> {
     await this.assertOwned(command.cardId);
-    await this.db.socialLink.create({ data: command, select: { id: true } });
-    return this.current(command.cardId);
+    const maximum = await this.db.socialLink.aggregate({
+      where: { cardId: command.cardId },
+      _max: { position: true },
+    });
+    await this.db.socialLink.create({
+      data: { ...command, position: (maximum._max.position ?? -1) + 1 },
+      select: { id: true },
+    });
+    return { id: command.cardId };
   }
   async updateSocialLink(
     command: UpdateSocialLinkCommand,
-  ): Promise<EditorCardDTO> {
+  ): Promise<MutationResult> {
     await this.assertOwned(command.cardId);
     const { cardId, socialLinkId, ...data } = command;
     await this.db.socialLink.updateMany({
       where: { id: socialLinkId, cardId, deletedAt: null },
       data,
     });
-    return this.current(cardId);
+    return { id: cardId };
   }
   async deleteSocialLink(
     cardId: string,
     socialLinkId: string,
     deletedAt: Date,
-  ): Promise<EditorCardDTO> {
+  ): Promise<MutationResult> {
     await this.assertOwned(cardId);
     await this.db.socialLink.updateMany({
       where: { id: socialLinkId, cardId, deletedAt: null },
-      data: { deletedAt, isVisible: false },
+      data: { deletedAt, isVisible: false, position: { increment: 1000 } },
     });
-    return this.current(cardId);
+    return { id: cardId };
   }
   async reorderSocialLinks(
     cardId: string,
     socialLinkIds: readonly string[],
-  ): Promise<EditorCardDTO> {
+  ): Promise<MutationResult> {
     await this.assertOwned(cardId);
     await this.db.socialLink.updateMany({
       where: { cardId },
@@ -491,7 +559,7 @@ export class PrismaCardTransactionRepository
         where: { id, cardId, deletedAt: null },
         data: { position },
       });
-    return this.current(cardId);
+    return { id: cardId };
   }
   private async syncBlockMedia(blockId: string, mediaIds: readonly string[]) {
     await this.db.cardBlockMedia.deleteMany({ where: { blockId } });
@@ -507,7 +575,7 @@ export class PrismaCardTransactionRepository
   async replaceBlocks(
     cardId: string,
     blocks: readonly CardBlockCommand[],
-  ): Promise<EditorCardDTO> {
+  ): Promise<MutationResult> {
     await this.assertOwned(cardId);
     await this.db.cardBlock.updateMany({
       where: { cardId, deletedAt: null },
@@ -526,9 +594,9 @@ export class PrismaCardTransactionRepository
       });
       await this.syncBlockMedia(created.id, block.mediaIds);
     }
-    return this.current(cardId);
+    return { id: cardId };
   }
-  async createBlock(command: CreateCardBlockCommand): Promise<EditorCardDTO> {
+  async createBlock(command: CreateCardBlockCommand): Promise<MutationResult> {
     await this.assertOwned(command.cardId);
     const maximum = await this.db.cardBlock.aggregate({
       where: { cardId: command.cardId },
@@ -545,9 +613,9 @@ export class PrismaCardTransactionRepository
       select: { id: true },
     });
     await this.syncBlockMedia(block.id, command.mediaIds);
-    return this.current(command.cardId);
+    return { id: command.cardId };
   }
-  async updateBlock(command: UpdateCardBlockCommand): Promise<EditorCardDTO> {
+  async updateBlock(command: UpdateCardBlockCommand): Promise<MutationResult> {
     await this.assertOwned(command.cardId);
     const { cardId, blockId, mediaIds, config, ...data } = command;
     await this.db.cardBlock.updateMany({
@@ -560,24 +628,24 @@ export class PrismaCardTransactionRepository
       },
     });
     if (mediaIds) await this.syncBlockMedia(blockId, mediaIds);
-    return this.current(cardId);
+    return { id: cardId };
   }
   async deleteBlock(
     cardId: string,
     blockId: string,
     deletedAt: Date,
-  ): Promise<EditorCardDTO> {
+  ): Promise<MutationResult> {
     await this.assertOwned(cardId);
     await this.db.cardBlock.updateMany({
       where: { id: blockId, cardId, deletedAt: null },
       data: { deletedAt, isEnabled: false, position: { increment: 1000 } },
     });
-    return this.current(cardId);
+    return { id: cardId };
   }
   async duplicateBlock(
     cardId: string,
     blockId: string,
-  ): Promise<EditorCardDTO> {
+  ): Promise<MutationResult> {
     await this.assertOwned(cardId);
     const source = await this.db.cardBlock.findFirstOrThrow({
       where: { id: blockId, cardId, deletedAt: null },
@@ -600,7 +668,7 @@ export class PrismaCardTransactionRepository
   async reorderBlocks(
     cardId: string,
     blockIds: readonly string[],
-  ): Promise<EditorCardDTO> {
+  ): Promise<MutationResult> {
     await this.assertOwned(cardId);
     await this.db.cardBlock.updateMany({
       where: { cardId },
@@ -611,7 +679,7 @@ export class PrismaCardTransactionRepository
         where: { id, cardId, deletedAt: null },
         data: { position },
       });
-    return this.current(cardId);
+    return { id: cardId };
   }
 
   async incrementAccessVersion(cardId: string): Promise<void> {

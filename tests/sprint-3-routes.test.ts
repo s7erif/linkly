@@ -19,9 +19,8 @@ vi.mock("@/lib/composition-root", () => ({
 
 import { POST as createCustomerRoute } from "@/app/customers/route";
 import { POST as createCardRoute } from "@/app/cards/route";
-import { POST as verifyRoute } from "@/app/access/verify/route";
-import { POST as createSessionRoute } from "@/app/editor/session/route";
 import { GET as publicCardRoute } from "@/app/card/[slug]/route";
+import { GET as retiredLegacyCardsRoute } from "@/app/api/cards/route";
 import { NotFoundError } from "@/lib/errors";
 
 function jsonRequest(path: string, body: unknown, requestId = "request-123"): Request {
@@ -70,15 +69,10 @@ describe("Sprint 3 route handlers", () => {
     expect(mocks.createCustomer.execute).not.toHaveBeenCalled();
   });
 
-  it("POST /access/verify and POST /editor/session call only their composed use cases", async () => {
-    mocks.verifyAccessCode.execute.mockResolvedValue({ accessCodeId: "code-1", cardId: "card-1" });
-    mocks.createEditorSession.execute.mockResolvedValue({ session: { id: "session-1" }, token: "one-time-token" });
-    const verifyResponse = await verifyRoute(jsonRequest("/access/verify", { code: "OI-01234-56789-ABCDE-FGHJK-MNPQRS" }));
-    const sessionResponse = await createSessionRoute(jsonRequest("/editor/session", { code: "OI-01234-56789-ABCDE-FGHJK-MNPQRS", lifetimeSeconds: 3600 }));
-    expect(verifyResponse.status).toBe(200);
-    expect(sessionResponse.status).toBe(201);
-    expect(mocks.verifyAccessCode.execute).toHaveBeenCalledWith({ code: "0123456789ABCDEFGHJKMNPQRS" });
-    expect(mocks.createEditorSession.execute).toHaveBeenCalledWith({ code: "0123456789ABCDEFGHJKMNPQRS", lifetimeSeconds: 3600 });
+  it("fails closed for the retired ownership-less legacy card API", async () => {
+    const response = retiredLegacyCardsRoute();
+    expect(response.status).toBe(410);
+    expect(await body(response)).toMatchObject({ success: false, code: "GONE" });
   });
 
   it("GET /card/[slug] returns immediately revalidated PublicCardDTO envelope", async () => {

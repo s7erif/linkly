@@ -3,6 +3,8 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 const mocks = vi.hoisted(() => ({
   createCardBlock: { execute: vi.fn() },
   getWorkspaceAdminAuthorization: vi.fn(),
+  invalidatePublicCard: vi.fn(),
+  invalidateAllPublicCards: vi.fn(),
 }));
 vi.mock("@/lib/composition-root", () => ({
   createCardBlock: mocks.createCardBlock,
@@ -10,6 +12,10 @@ vi.mock("@/lib/composition-root", () => ({
 }));
 vi.mock("@/lib/workspace-admin-authorization.server", () => ({
   getWorkspaceAdminAuthorization: mocks.getWorkspaceAdminAuthorization,
+}));
+vi.mock("@/features/public-card/public-card-cache.server", () => ({
+  invalidatePublicCard: mocks.invalidatePublicCard,
+  invalidateAllPublicCards: mocks.invalidateAllPublicCards,
 }));
 
 import { POST as createBlockRoute } from "@/app/cards/[id]/blocks/route";
@@ -33,7 +39,7 @@ function request() {
 describe("shared Workspace block route", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mocks.createCardBlock.execute.mockResolvedValue({ id: cardId });
+    mocks.createCardBlock.execute.mockResolvedValue({ id: cardId, slug: "ada" });
   });
 
   it("awaits Next.js Promise params and passes card.id to the customer block use case", async () => {
@@ -42,6 +48,7 @@ describe("shared Workspace block route", () => {
       params: Promise.resolve({ id: cardId }),
     });
     expect(response.status).toBe(200);
+    expect(mocks.invalidatePublicCard).toHaveBeenCalledWith("ada");
     expect(mocks.createCardBlock.execute).toHaveBeenCalledWith(
       { cardId, ...input },
       undefined,
@@ -55,6 +62,7 @@ describe("shared Workspace block route", () => {
       params: Promise.resolve({ id: cardId }),
     });
     expect(response.status).toBe(200);
+    expect(mocks.invalidatePublicCard).toHaveBeenCalledWith("ada");
     expect(mocks.createCardBlock.execute).toHaveBeenCalledWith(
       { cardId, ...input },
       authorization,

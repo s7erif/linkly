@@ -7,4 +7,5 @@
 @import "./navigation/navigation-tokens.css";
 @import "./data-grid/data-grid-tokens.css";
 @import "./forms/form-tokens.css";
+@import "./workspace-v2-tokens.css";
 @import "./legacy-compat.css";

@@ -18,7 +18,10 @@ export class ReadWorkspaceCard {
   async execute(input: ReadWorkspaceCardInput): Promise<WorkspaceCardDTO> {
     const command = parseUseCaseInput(readWorkspaceCardSchema, input);
     const tokenHash = await this.tokens.hash(command.sessionToken);
-    return this.unitOfWork.execute(async (repositories) => { const { editorSessions, cards } = repositories;
+    // Pure read — no writes, no interactive transaction needed.
+    const uow = this.unitOfWork;
+    const run = uow.read?.bind(uow) ?? uow.execute.bind(uow);
+    return run(async (repositories) => { const { editorSessions, cards } = repositories;
       const session = await editorSessions.findByTokenHash(tokenHash);
       if (
         !session ||
@@ -30,7 +33,7 @@ export class ReadWorkspaceCard {
         throw new ForbiddenError(
           "Editor session does not grant access to this card",
         );
-      const card = await cards.findEditorById(command.cardId, null);
+      const card = await (cards.findWorkspaceById?.(command.cardId, null) ?? cards.findEditorById(command.cardId, null));
       if (!card) throw new NotFoundError("Card", command.cardId);
       const subscription = repositories.platform ? await repositories.platform.findLatestSubscriptionByCard(card.id) : null;
       return {...toWorkspaceCardDTO(card), plan:{subscription,enabledFeatures:subscription?.plan.features.filter(feature=>feature.enabled)??[],disabledFeatures:subscription?.plan.features.filter(feature=>!feature.enabled)??[]}};

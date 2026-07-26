@@ -1,6 +1,7 @@
-import type { Prisma, PrismaClient, SubscriptionReminderType } from "@/generated/prisma/client";
+import type { Prisma, PrismaClient } from "@/generated/prisma/client";
 
 const lifecycleSelect={id:true,workspaceId:true,customerId:true,status:true,billingInterval:true,startsAt:true,expiresAt:true,activatedAt:true,renewedAt:true,expiredAt:true,canceledAt:true,suspendedAt:true,customer:{select:{displayName:true,email:true}}} satisfies Prisma.SubscriptionSelect;
+export type SubscriptionReminderType="EXPIRY_7_DAYS"|"EXPIRY_3_DAYS"|"EXPIRY_1_DAY"|"EXPIRED"|"RENEWED";
 export type SubscriptionLifecycleRecord=Prisma.SubscriptionGetPayload<{select:typeof lifecycleSelect}>;
 export type ReminderRecord={id:string;status:"PENDING"|"SENT"|"FAILED";idempotencyKey:string;recipient:string};
 export interface SubscriptionLifecycleRepository{

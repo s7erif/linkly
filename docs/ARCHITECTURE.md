@@ -814,11 +814,11 @@ Delivery identity is deterministic per card, channel, and template. Database uni
 
 ## Sprint 13 Additive Card Aggregate Extension
 
-The existing `cards` transaction repository port gained optional source-compatible capabilities for slug checks, metadata, CardSection replacement, and button/social CRUD and reordering. New application use cases enforce EditorSession ownership and own all mutation transactions. Routes compose those use cases and never access persistence. The authorized Workspace read model adds optional full editor collections while PublicCardDTO continues exposing visible collections only. DefaultTheme chooses a renderer per section kind and iterates the persisted DTO order; it does not fetch or contain persistence logic.
+The existing `cards` transaction repository port gained optional source-compatible capabilities for slug checks, metadata, CardSection replacement, and button/social CRUD and reordering. New application use cases enforce EditorSession ownership and own all mutation transactions. Routes compose those use cases and never access persistence. The authorized Workspace read model adds optional full editor collections while PublicCardDTO continues exposing visible collections only. `CardRenderer` is the single renderer for both Workspace Preview and the public profile; it does not fetch or contain persistence logic.
 
 ## Sprint 14 Block Rendering Pipeline
 
-Repository reads map raw persisted block configuration into EditorCardDTO. Application mappers validate each configuration and expose typed CardBlockDTO values. If no persisted blocks exist, legacy CardSection order and visibility map automatically to Hero, About, Contact, CTA Buttons, and Social Links blocks. DefaultTheme iterates enabled blocks and delegates to a typed block renderer registry; Gallery, Video, and Location implementations are lazy-loaded. Application use cases own materialization, CRUD, duplication, reorder, media ownership validation, authorization, and transactions.
+Repository reads map raw persisted block configuration into EditorCardDTO. Application mappers validate each configuration and expose typed CardBlockDTO values. If no persisted blocks exist, legacy CardSection order and visibility map automatically to Hero, About, Contact, CTA Buttons, and Social Links blocks. The shared renderer adapter maps those enabled blocks to the canonical renderer's section order. Application use cases own materialization, CRUD, duplication, reorder, media ownership validation, authorization, and transactions.
 
 
 ## Sprint 15 additive subscription architecture

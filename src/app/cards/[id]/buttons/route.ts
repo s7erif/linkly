@@ -1,5 +1,5 @@
 import { createCardButton, reorderCardButtons } from "@/lib/composition-root";
-import { handlePublicCardMutationRoute } from "@/features/public-card/public-card-mutation-route.server";
+import { handlePublicCardMutationRoute, shouldReturnEditorForMutation } from "@/features/public-card/public-card-mutation-route.server";
 import { getWorkspaceAdminAuthorization } from "@/lib/workspace-admin-authorization.server";
 import { parseJsonBody, parseRouteParams } from "@/transport/http";
 import {
@@ -17,7 +17,7 @@ export async function POST(
       parseRouteParams(context.params, params),
       parseJsonBody(request, createCardButtonSchema.omit({ cardId: true })),
     ]);
-    return { data: await createCardButton.execute({ cardId: id, ...input }, await getWorkspaceAdminAuthorization()) };
+    return { data: await createCardButton.execute({ cardId: id, ...input }, await getWorkspaceAdminAuthorization(), shouldReturnEditorForMutation(request)) };
   });
 }
 export async function PUT(
@@ -29,6 +29,6 @@ export async function PUT(
       parseRouteParams(context.params, params),
       parseJsonBody(request, reorderCardButtonsSchema.omit({ cardId: true })),
     ]);
-    return { data: await reorderCardButtons.execute({ cardId: id, ...input }, await getWorkspaceAdminAuthorization()) };
+    return { data: await reorderCardButtons.execute({ cardId: id, ...input }, await getWorkspaceAdminAuthorization(), shouldReturnEditorForMutation(request)) };
   });
 }

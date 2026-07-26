@@ -224,15 +224,6 @@ export const BillingInterval = {
 export type BillingInterval = (typeof BillingInterval)[keyof typeof BillingInterval]
 
 
-export const PlanVersionStatus = {
-  DRAFT: 'DRAFT',
-  PUBLISHED: 'PUBLISHED',
-  RETIRED: 'RETIRED'
-} as const
-
-export type PlanVersionStatus = (typeof PlanVersionStatus)[keyof typeof PlanVersionStatus]
-
-
 export const PriceCadence = {
   FREE: 'FREE',
   MONTH: 'MONTH',
@@ -263,49 +254,6 @@ export const WorkspaceRole = {
 export type WorkspaceRole = (typeof WorkspaceRole)[keyof typeof WorkspaceRole]
 
 
-export const SubscriptionPeriodKind = {
-  TRIAL: 'TRIAL',
-  PAID: 'PAID',
-  FREE: 'FREE',
-  COMPLIMENTARY: 'COMPLIMENTARY',
-  LIFETIME: 'LIFETIME'
-} as const
-
-export type SubscriptionPeriodKind = (typeof SubscriptionPeriodKind)[keyof typeof SubscriptionPeriodKind]
-
-
-export const SubscriptionChangeType = {
-  UPGRADE: 'UPGRADE',
-  DOWNGRADE: 'DOWNGRADE',
-  CADENCE_CHANGE: 'CADENCE_CHANGE',
-  CANCEL: 'CANCEL',
-  REACTIVATE: 'REACTIVATE'
-} as const
-
-export type SubscriptionChangeType = (typeof SubscriptionChangeType)[keyof typeof SubscriptionChangeType]
-
-
-export const SubscriptionChangeStatus = {
-  SCHEDULED: 'SCHEDULED',
-  APPLIED: 'APPLIED',
-  CANCELED: 'CANCELED',
-  FAILED: 'FAILED'
-} as const
-
-export type SubscriptionChangeStatus = (typeof SubscriptionChangeStatus)[keyof typeof SubscriptionChangeStatus]
-
-
-export const InvoiceLineType = {
-  BASE: 'BASE',
-  DISCOUNT: 'DISCOUNT',
-  TAX: 'TAX',
-  PRORATION: 'PRORATION',
-  CREDIT: 'CREDIT'
-} as const
-
-export type InvoiceLineType = (typeof InvoiceLineType)[keyof typeof InvoiceLineType]
-
-
 export const PaymentLedgerStatus = {
   PENDING: 'PENDING',
   PROCESSING: 'PROCESSING',
@@ -317,79 +265,6 @@ export const PaymentLedgerStatus = {
 } as const
 
 export type PaymentLedgerStatus = (typeof PaymentLedgerStatus)[keyof typeof PaymentLedgerStatus]
-
-
-export const PaymentAttemptStatus = {
-  PENDING: 'PENDING',
-  PROCESSING: 'PROCESSING',
-  SUCCEEDED: 'SUCCEEDED',
-  FAILED: 'FAILED',
-  CANCELED: 'CANCELED'
-} as const
-
-export type PaymentAttemptStatus = (typeof PaymentAttemptStatus)[keyof typeof PaymentAttemptStatus]
-
-
-export const RefundStatus = {
-  PENDING: 'PENDING',
-  SUCCEEDED: 'SUCCEEDED',
-  FAILED: 'FAILED',
-  CANCELED: 'CANCELED'
-} as const
-
-export type RefundStatus = (typeof RefundStatus)[keyof typeof RefundStatus]
-
-
-export const WebhookInboxStatus = {
-  RECEIVED: 'RECEIVED',
-  PROCESSING: 'PROCESSING',
-  PROCESSED: 'PROCESSED',
-  FAILED: 'FAILED',
-  IGNORED: 'IGNORED'
-} as const
-
-export type WebhookInboxStatus = (typeof WebhookInboxStatus)[keyof typeof WebhookInboxStatus]
-
-
-export const OutboxEventStatus = {
-  PENDING: 'PENDING',
-  PROCESSING: 'PROCESSING',
-  PUBLISHED: 'PUBLISHED',
-  FAILED: 'FAILED'
-} as const
-
-export type OutboxEventStatus = (typeof OutboxEventStatus)[keyof typeof OutboxEventStatus]
-
-
-export const EntitlementGrantSource = {
-  SUBSCRIPTION: 'SUBSCRIPTION',
-  ADMIN: 'ADMIN'
-} as const
-
-export type EntitlementGrantSource = (typeof EntitlementGrantSource)[keyof typeof EntitlementGrantSource]
-
-
-export const ProviderObjectType = {
-  CUSTOMER: 'CUSTOMER',
-  SUBSCRIPTION: 'SUBSCRIPTION',
-  PAYMENT: 'PAYMENT',
-  PAYMENT_METHOD: 'PAYMENT_METHOD',
-  INVOICE: 'INVOICE',
-  REFUND: 'REFUND'
-} as const
-
-export type ProviderObjectType = (typeof ProviderObjectType)[keyof typeof ProviderObjectType]
-
-
-export const ProviderMappingInternalType = {
-  BILLING_ACCOUNT: 'BILLING_ACCOUNT',
-  SUBSCRIPTION: 'SUBSCRIPTION',
-  PAYMENT: 'PAYMENT',
-  INVOICE: 'INVOICE',
-  REFUND: 'REFUND'
-} as const
-
-export type ProviderMappingInternalType = (typeof ProviderMappingInternalType)[keyof typeof ProviderMappingInternalType]
 
 
 export const AnalyticsEventType = {

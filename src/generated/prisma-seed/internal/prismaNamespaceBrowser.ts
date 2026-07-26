@@ -66,15 +66,12 @@ export const ModelName = {
   Order: 'Order',
   PaymentSubmission: 'PaymentSubmission',
   Invoice: 'Invoice',
-  InvoiceLine: 'InvoiceLine',
   RetryTask: 'RetryTask',
-  BillingTimelineEntry: 'BillingTimelineEntry',
   Card: 'Card',
   CardProfile: 'CardProfile',
   CardSection: 'CardSection',
   CardBlock: 'CardBlock',
   CardBlockMedia: 'CardBlockMedia',
-  Theme: 'Theme',
   SocialLink: 'SocialLink',
   CardButton: 'CardButton',
   AccessCode: 'AccessCode',
@@ -82,39 +79,19 @@ export const ModelName = {
   EditorSession: 'EditorSession',
   Plan: 'Plan',
   PlanFeature: 'PlanFeature',
-  PlanVersion: 'PlanVersion',
-  PlanVersionFeature: 'PlanVersionFeature',
   PlanPrice: 'PlanPrice',
   Subscription: 'Subscription',
   SubscriptionReminder: 'SubscriptionReminder',
-  SubscriptionPeriod: 'SubscriptionPeriod',
-  SubscriptionChange: 'SubscriptionChange',
   MediaAsset: 'MediaAsset',
   MediaFolder: 'MediaFolder',
-  MediaUsage: 'MediaUsage',
   CardMedia: 'CardMedia',
   AnalyticsEvent: 'AnalyticsEvent',
-  AnalyticsAggregate: 'AnalyticsAggregate',
   NotificationDelivery: 'NotificationDelivery',
   Setting: 'Setting',
   AuditLog: 'AuditLog',
   LegacyIdentifier: 'LegacyIdentifier',
-  LegacyUser: 'LegacyUser',
-  LegacyAccount: 'LegacyAccount',
-  LegacySession: 'LegacySession',
-  LegacyVerificationToken: 'LegacyVerificationToken',
   LegacyBusinessCard: 'LegacyBusinessCard',
-  LegacySocialLink: 'LegacySocialLink',
-  LegacyAnalytics: 'LegacyAnalytics',
-  Payment: 'Payment',
-  PaymentAttempt: 'PaymentAttempt',
-  PaymentAllocation: 'PaymentAllocation',
-  Refund: 'Refund',
-  PaymentMethodReference: 'PaymentMethodReference',
-  EntitlementGrant: 'EntitlementGrant',
-  ProviderObjectReference: 'ProviderObjectReference',
-  WebhookInbox: 'WebhookInbox',
-  OutboxEvent: 'OutboxEvent'
+  Payment: 'Payment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -378,22 +355,6 @@ export const InvoiceScalarFieldEnum = {
 export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
 
 
-export const InvoiceLineScalarFieldEnum = {
-  id: 'id',
-  invoiceId: 'invoiceId',
-  type: 'type',
-  description: 'description',
-  quantity: 'quantity',
-  unitAmountMinor: 'unitAmountMinor',
-  amountMinor: 'amountMinor',
-  currency: 'currency',
-  metadata: 'metadata',
-  createdAt: 'createdAt'
-} as const
-
-export type InvoiceLineScalarFieldEnum = (typeof InvoiceLineScalarFieldEnum)[keyof typeof InvoiceLineScalarFieldEnum]
-
-
 export const RetryTaskScalarFieldEnum = {
   id: 'id',
   entityType: 'entityType',
@@ -411,26 +372,11 @@ export const RetryTaskScalarFieldEnum = {
 export type RetryTaskScalarFieldEnum = (typeof RetryTaskScalarFieldEnum)[keyof typeof RetryTaskScalarFieldEnum]
 
 
-export const BillingTimelineEntryScalarFieldEnum = {
-  id: 'id',
-  workspaceId: 'workspaceId',
-  orderId: 'orderId',
-  event: 'event',
-  entityType: 'entityType',
-  entityId: 'entityId',
-  metadata: 'metadata',
-  createdAt: 'createdAt'
-} as const
-
-export type BillingTimelineEntryScalarFieldEnum = (typeof BillingTimelineEntryScalarFieldEnum)[keyof typeof BillingTimelineEntryScalarFieldEnum]
-
-
 export const CardScalarFieldEnum = {
   id: 'id',
   workspaceId: 'workspaceId',
   customerId: 'customerId',
   orderId: 'orderId',
-  themeId: 'themeId',
   slug: 'slug',
   name: 'name',
   status: 'status',
@@ -507,20 +453,6 @@ export const CardBlockMediaScalarFieldEnum = {
 export type CardBlockMediaScalarFieldEnum = (typeof CardBlockMediaScalarFieldEnum)[keyof typeof CardBlockMediaScalarFieldEnum]
 
 
-export const ThemeScalarFieldEnum = {
-  id: 'id',
-  key: 'key',
-  name: 'name',
-  version: 'version',
-  status: 'status',
-  configSchema: 'configSchema',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type ThemeScalarFieldEnum = (typeof ThemeScalarFieldEnum)[keyof typeof ThemeScalarFieldEnum]
-
-
 export const SocialLinkScalarFieldEnum = {
   id: 'id',
   cardId: 'cardId',
@@ -540,10 +472,15 @@ export type SocialLinkScalarFieldEnum = (typeof SocialLinkScalarFieldEnum)[keyof
 export const CardButtonScalarFieldEnum = {
   id: 'id',
   cardId: 'cardId',
+  type: 'type',
   label: 'label',
   url: 'url',
   position: 'position',
   isVisible: 'isVisible',
+  displayMode: 'displayMode',
+  color: 'color',
+  openInNewTab: 'openInNewTab',
+  analyticsEnabled: 'analyticsEnabled',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
@@ -636,41 +573,9 @@ export const PlanFeatureScalarFieldEnum = {
 export type PlanFeatureScalarFieldEnum = (typeof PlanFeatureScalarFieldEnum)[keyof typeof PlanFeatureScalarFieldEnum]
 
 
-export const PlanVersionScalarFieldEnum = {
-  id: 'id',
-  planId: 'planId',
-  version: 'version',
-  status: 'status',
-  name: 'name',
-  description: 'description',
-  limits: 'limits',
-  effectiveFrom: 'effectiveFrom',
-  effectiveTo: 'effectiveTo',
-  publishedAt: 'publishedAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type PlanVersionScalarFieldEnum = (typeof PlanVersionScalarFieldEnum)[keyof typeof PlanVersionScalarFieldEnum]
-
-
-export const PlanVersionFeatureScalarFieldEnum = {
-  id: 'id',
-  planVersionId: 'planVersionId',
-  key: 'key',
-  enabled: 'enabled',
-  limitValue: 'limitValue',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type PlanVersionFeatureScalarFieldEnum = (typeof PlanVersionFeatureScalarFieldEnum)[keyof typeof PlanVersionFeatureScalarFieldEnum]
-
-
 export const PlanPriceScalarFieldEnum = {
   id: 'id',
   key: 'key',
-  planVersionId: 'planVersionId',
   amountMinor: 'amountMinor',
   currency: 'currency',
   cadence: 'cadence',
@@ -744,36 +649,6 @@ export const SubscriptionReminderScalarFieldEnum = {
 export type SubscriptionReminderScalarFieldEnum = (typeof SubscriptionReminderScalarFieldEnum)[keyof typeof SubscriptionReminderScalarFieldEnum]
 
 
-export const SubscriptionPeriodScalarFieldEnum = {
-  id: 'id',
-  subscriptionId: 'subscriptionId',
-  kind: 'kind',
-  startsAt: 'startsAt',
-  endsAt: 'endsAt',
-  createdAt: 'createdAt'
-} as const
-
-export type SubscriptionPeriodScalarFieldEnum = (typeof SubscriptionPeriodScalarFieldEnum)[keyof typeof SubscriptionPeriodScalarFieldEnum]
-
-
-export const SubscriptionChangeScalarFieldEnum = {
-  id: 'id',
-  subscriptionId: 'subscriptionId',
-  type: 'type',
-  status: 'status',
-  fromPlanPriceId: 'fromPlanPriceId',
-  toPlanPriceId: 'toPlanPriceId',
-  effectiveAt: 'effectiveAt',
-  requestedAt: 'requestedAt',
-  appliedAt: 'appliedAt',
-  canceledAt: 'canceledAt',
-  reason: 'reason',
-  metadata: 'metadata'
-} as const
-
-export type SubscriptionChangeScalarFieldEnum = (typeof SubscriptionChangeScalarFieldEnum)[keyof typeof SubscriptionChangeScalarFieldEnum]
-
-
 export const MediaAssetScalarFieldEnum = {
   id: 'id',
   workspaceId: 'workspaceId',
@@ -815,18 +690,6 @@ export const MediaFolderScalarFieldEnum = {
 export type MediaFolderScalarFieldEnum = (typeof MediaFolderScalarFieldEnum)[keyof typeof MediaFolderScalarFieldEnum]
 
 
-export const MediaUsageScalarFieldEnum = {
-  id: 'id',
-  mediaAssetId: 'mediaAssetId',
-  entityType: 'entityType',
-  entityId: 'entityId',
-  field: 'field',
-  createdAt: 'createdAt'
-} as const
-
-export type MediaUsageScalarFieldEnum = (typeof MediaUsageScalarFieldEnum)[keyof typeof MediaUsageScalarFieldEnum]
-
-
 export const CardMediaScalarFieldEnum = {
   cardId: 'cardId',
   mediaAssetId: 'mediaAssetId',
@@ -859,24 +722,6 @@ export const AnalyticsEventScalarFieldEnum = {
 } as const
 
 export type AnalyticsEventScalarFieldEnum = (typeof AnalyticsEventScalarFieldEnum)[keyof typeof AnalyticsEventScalarFieldEnum]
-
-
-export const AnalyticsAggregateScalarFieldEnum = {
-  id: 'id',
-  workspaceId: 'workspaceId',
-  cardId: 'cardId',
-  period: 'period',
-  bucketStart: 'bucketStart',
-  eventType: 'eventType',
-  dimension: 'dimension',
-  dimensionValue: 'dimensionValue',
-  count: 'count',
-  uniqueCount: 'uniqueCount',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type AnalyticsAggregateScalarFieldEnum = (typeof AnalyticsAggregateScalarFieldEnum)[keyof typeof AnalyticsAggregateScalarFieldEnum]
 
 
 export const NotificationDeliveryScalarFieldEnum = {
@@ -950,54 +795,6 @@ export const LegacyIdentifierScalarFieldEnum = {
 export type LegacyIdentifierScalarFieldEnum = (typeof LegacyIdentifierScalarFieldEnum)[keyof typeof LegacyIdentifierScalarFieldEnum]
 
 
-export const LegacyUserScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  email: 'email',
-  emailVerified: 'emailVerified',
-  image: 'image'
-} as const
-
-export type LegacyUserScalarFieldEnum = (typeof LegacyUserScalarFieldEnum)[keyof typeof LegacyUserScalarFieldEnum]
-
-
-export const LegacyAccountScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  type: 'type',
-  provider: 'provider',
-  providerAccountId: 'providerAccountId',
-  refresh_token: 'refresh_token',
-  access_token: 'access_token',
-  expires_at: 'expires_at',
-  token_type: 'token_type',
-  scope: 'scope',
-  id_token: 'id_token',
-  session_state: 'session_state'
-} as const
-
-export type LegacyAccountScalarFieldEnum = (typeof LegacyAccountScalarFieldEnum)[keyof typeof LegacyAccountScalarFieldEnum]
-
-
-export const LegacySessionScalarFieldEnum = {
-  id: 'id',
-  sessionToken: 'sessionToken',
-  userId: 'userId',
-  expires: 'expires'
-} as const
-
-export type LegacySessionScalarFieldEnum = (typeof LegacySessionScalarFieldEnum)[keyof typeof LegacySessionScalarFieldEnum]
-
-
-export const LegacyVerificationTokenScalarFieldEnum = {
-  identifier: 'identifier',
-  token: 'token',
-  expires: 'expires'
-} as const
-
-export type LegacyVerificationTokenScalarFieldEnum = (typeof LegacyVerificationTokenScalarFieldEnum)[keyof typeof LegacyVerificationTokenScalarFieldEnum]
-
-
 export const LegacyBusinessCardScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -1016,36 +813,10 @@ export const LegacyBusinessCardScalarFieldEnum = {
   slug: 'slug',
   isActive: 'isActive',
   createTime: 'createTime',
-  updateTime: 'updateTime',
-  userId: 'userId'
+  updateTime: 'updateTime'
 } as const
 
 export type LegacyBusinessCardScalarFieldEnum = (typeof LegacyBusinessCardScalarFieldEnum)[keyof typeof LegacyBusinessCardScalarFieldEnum]
-
-
-export const LegacySocialLinkScalarFieldEnum = {
-  id: 'id',
-  businessCardId: 'businessCardId',
-  platform: 'platform',
-  url: 'url',
-  order: 'order',
-  createdAt: 'createdAt'
-} as const
-
-export type LegacySocialLinkScalarFieldEnum = (typeof LegacySocialLinkScalarFieldEnum)[keyof typeof LegacySocialLinkScalarFieldEnum]
-
-
-export const LegacyAnalyticsScalarFieldEnum = {
-  id: 'id',
-  businessCardId: 'businessCardId',
-  pageViews: 'pageViews',
-  qrScans: 'qrScans',
-  linkClicks: 'linkClicks',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type LegacyAnalyticsScalarFieldEnum = (typeof LegacyAnalyticsScalarFieldEnum)[keyof typeof LegacyAnalyticsScalarFieldEnum]
 
 
 export const PaymentScalarFieldEnum = {
@@ -1063,128 +834,6 @@ export const PaymentScalarFieldEnum = {
 } as const
 
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
-
-
-export const PaymentAttemptScalarFieldEnum = {
-  id: 'id',
-  paymentId: 'paymentId',
-  provider: 'provider',
-  idempotencyKey: 'idempotencyKey',
-  providerAttemptId: 'providerAttemptId',
-  status: 'status',
-  failureCode: 'failureCode',
-  failureMessage: 'failureMessage',
-  nextRetryAt: 'nextRetryAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type PaymentAttemptScalarFieldEnum = (typeof PaymentAttemptScalarFieldEnum)[keyof typeof PaymentAttemptScalarFieldEnum]
-
-
-export const PaymentAllocationScalarFieldEnum = {
-  id: 'id',
-  paymentId: 'paymentId',
-  invoiceId: 'invoiceId',
-  amountMinor: 'amountMinor',
-  createdAt: 'createdAt'
-} as const
-
-export type PaymentAllocationScalarFieldEnum = (typeof PaymentAllocationScalarFieldEnum)[keyof typeof PaymentAllocationScalarFieldEnum]
-
-
-export const RefundScalarFieldEnum = {
-  id: 'id',
-  paymentId: 'paymentId',
-  amountMinor: 'amountMinor',
-  currency: 'currency',
-  status: 'status',
-  reason: 'reason',
-  providerRef: 'providerRef',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type RefundScalarFieldEnum = (typeof RefundScalarFieldEnum)[keyof typeof RefundScalarFieldEnum]
-
-
-export const PaymentMethodReferenceScalarFieldEnum = {
-  id: 'id',
-  billingAccountId: 'billingAccountId',
-  provider: 'provider',
-  providerObjectId: 'providerObjectId',
-  type: 'type',
-  last4: 'last4',
-  brand: 'brand',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type PaymentMethodReferenceScalarFieldEnum = (typeof PaymentMethodReferenceScalarFieldEnum)[keyof typeof PaymentMethodReferenceScalarFieldEnum]
-
-
-export const EntitlementGrantScalarFieldEnum = {
-  id: 'id',
-  workspaceId: 'workspaceId',
-  subscriptionId: 'subscriptionId',
-  key: 'key',
-  limitValue: 'limitValue',
-  source: 'source',
-  startsAt: 'startsAt',
-  endsAt: 'endsAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type EntitlementGrantScalarFieldEnum = (typeof EntitlementGrantScalarFieldEnum)[keyof typeof EntitlementGrantScalarFieldEnum]
-
-
-export const ProviderObjectReferenceScalarFieldEnum = {
-  id: 'id',
-  provider: 'provider',
-  providerObjectType: 'providerObjectType',
-  externalId: 'externalId',
-  internalType: 'internalType',
-  internalId: 'internalId',
-  paymentId: 'paymentId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type ProviderObjectReferenceScalarFieldEnum = (typeof ProviderObjectReferenceScalarFieldEnum)[keyof typeof ProviderObjectReferenceScalarFieldEnum]
-
-
-export const WebhookInboxScalarFieldEnum = {
-  id: 'id',
-  provider: 'provider',
-  providerEventId: 'providerEventId',
-  eventType: 'eventType',
-  payload: 'payload',
-  status: 'status',
-  receivedAt: 'receivedAt',
-  processedAt: 'processedAt',
-  errorMessage: 'errorMessage'
-} as const
-
-export type WebhookInboxScalarFieldEnum = (typeof WebhookInboxScalarFieldEnum)[keyof typeof WebhookInboxScalarFieldEnum]
-
-
-export const OutboxEventScalarFieldEnum = {
-  id: 'id',
-  idempotencyKey: 'idempotencyKey',
-  aggregateType: 'aggregateType',
-  aggregateId: 'aggregateId',
-  eventType: 'eventType',
-  payload: 'payload',
-  status: 'status',
-  availableAt: 'availableAt',
-  occurredAt: 'occurredAt',
-  publishedAt: 'publishedAt',
-  attempts: 'attempts',
-  lastError: 'lastError'
-} as const
-
-export type OutboxEventScalarFieldEnum = (typeof OutboxEventScalarFieldEnum)[keyof typeof OutboxEventScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -1,0 +1,289 @@
+/* ── Tapp Products Page — Premium Light Atmosphere ─────────────────────────
+   Apple-keynote background: #FAFAFB + soft purple ambient light.
+   ──────────────────────────────────────────────────────────────── */
+
+.pageWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 104px 24px 80px;
+  background: transparent;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ── Ambient light layer — Apple-keynote style ─────────────────── */
+.ambientBg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    #FAFAFB,
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.003) 2px,
+      rgba(0, 0, 0, 0.003) 2.5px
+    ),
+    radial-gradient(
+      ellipse 900px 700px at 78% 15%,
+      rgba(124, 92, 255, 0.07) 0%,
+      rgba(124, 92, 255, 0.03) 30%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 800px 800px at 45% 55%,
+      rgba(180, 175, 185, 0.06) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 650px 550px at 25% 75%,
+      rgba(124, 92, 255, 0.04) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 500px 400px at 10% 5%,
+      rgba(200, 195, 205, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 550px 450px at 85% 85%,
+      rgba(124, 92, 255, 0.04) 0%,
+      transparent 55%
+    );
+}
+
+.ambientBg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.008;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* ── Content Layout ────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 720px;
+  width: 100%;
+}
+
+/* ── Typography ────────────────────────────── */
+.headline {
+  margin: 0 0 12px;
+  font-family: var(--oi-font-family-display);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.textGradient {
+  background: linear-gradient(135deg, var(--oi-color-primary) 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  margin: 0 0 24px;
+  font-family: var(--oi-font-family-sans);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--oi-color-neutral-950);
+}
+
+.body {
+  margin: 0 0 48px;
+  color: var(--oi-color-neutral-600);
+  font-family: var(--oi-font-family-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 560px;
+}
+
+/* ── Countdown Cards ────────────────────────────── */
+.countdownGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 56px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.countdownCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 4px 24px -6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.countdownCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 12px 32px -8px rgba(0, 0, 0, 0.08);
+}
+
+.countdownValue {
+  font-family: var(--oi-font-family-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--oi-color-neutral-950);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.countdownLabel {
+  font-family: var(--oi-font-family-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--oi-color-neutral-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── CTA / Notify Me ────────────────────────────── */
+.ctaWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.notifyButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 36px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--oi-radius-full);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: var(--oi-color-neutral-500); /* Disabled look */
+  font-family: var(--oi-font-family-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  cursor: not-allowed;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.notifyButton:hover {
+  /* Only hover animation, no functional state */
+  transform: translateY(-2px);
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--oi-color-neutral-600);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 8px 16px -4px rgba(0, 0, 0, 0.05);
+}
+
+.stayTuned {
+  font-family: var(--oi-font-family-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--oi-color-neutral-400);
+}
+
+/* ── Floating Blobs ────────────────────────────── */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: 1;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.blob1 {
+  width: 300px;
+  height: 300px;
+  background: rgba(124, 92, 255, 0.12);
+  top: 10%;
+  left: 20%;
+}
+
+.blob2 {
+  width: 400px;
+  height: 400px;
+  background: rgba(168, 85, 247, 0.08);
+  bottom: -10%;
+  right: 15%;
+}
+
+/* ── Responsive ────────────────────────────── */
+@media (min-width: 768px) {
+  .headline {
+    font-size: 64px;
+  }
+  .subtitle {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .pageWrapper {
+    padding: 88px 20px 64px;
+  }
+  .headline {
+    font-size: 40px;
+  }
+  .subtitle {
+    font-size: 28px;
+  }
+  .body {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+  .countdownGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .countdownCard {
+    padding: 20px 12px;
+  }
+  .countdownValue {
+    font-size: 28px;
+  }
+  .countdownLabel {
+    font-size: 11px;
+  }
+  .notifyButton {
+    min-height: 48px;
+    font-size: 14px;
+    padding: 0 32px;
+  }
+}

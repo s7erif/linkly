@@ -1,5 +1,5 @@
 import { createSocialLink, reorderSocialLinks } from "@/lib/composition-root";
-import { handlePublicCardMutationRoute } from "@/features/public-card/public-card-mutation-route.server";
+import { handlePublicCardMutationRoute, shouldReturnEditorForMutation } from "@/features/public-card/public-card-mutation-route.server";
 import { getWorkspaceAdminAuthorization } from "@/lib/workspace-admin-authorization.server";
 import { parseJsonBody, parseRouteParams } from "@/transport/http";
 import {
@@ -17,7 +17,7 @@ export async function POST(
       parseRouteParams(context.params, params),
       parseJsonBody(request, createSocialLinkSchema.omit({ cardId: true })),
     ]);
-    return { data: await createSocialLink.execute({ cardId: id, ...input }, await getWorkspaceAdminAuthorization()) };
+    return { data: await createSocialLink.execute({ cardId: id, ...input }, await getWorkspaceAdminAuthorization(), shouldReturnEditorForMutation(request)) };
   });
 }
 export async function PUT(
@@ -29,6 +29,6 @@ export async function PUT(
       parseRouteParams(context.params, params),
       parseJsonBody(request, reorderSocialLinksSchema.omit({ cardId: true })),
     ]);
-    return { data: await reorderSocialLinks.execute({ cardId: id, ...input }, await getWorkspaceAdminAuthorization()) };
+    return { data: await reorderSocialLinks.execute({ cardId: id, ...input }, await getWorkspaceAdminAuthorization(), shouldReturnEditorForMutation(request)) };
   });
 }

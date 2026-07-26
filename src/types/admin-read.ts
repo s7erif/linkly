@@ -157,7 +157,6 @@ export interface AdminCustomerDetail {
 }
 export interface AdminCardDetail {
   card: AdminCardListItem & {
-    themeId: string | null;
     publishedAt: Date | null;
   };
   owner: {

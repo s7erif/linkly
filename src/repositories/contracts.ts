@@ -103,11 +103,17 @@ export interface CardSectionCommand {
   title?: string | null;
 }
 export interface CreateCardButtonCommand {
+  id: string;
   cardId: string;
   label: string;
   url: string;
-  position: number;
+  position?: number;
   isVisible: boolean;
+  type: string;
+  displayMode: string;
+  color: string | null;
+  openInNewTab: boolean;
+  analyticsEnabled: boolean;
 }
 export interface UpdateCardButtonCommand {
   cardId: string;
@@ -115,13 +121,19 @@ export interface UpdateCardButtonCommand {
   label?: string;
   url?: string;
   isVisible?: boolean;
+  type?: string;
+  displayMode?: string;
+  color?: string | null;
+  openInNewTab?: boolean;
+  analyticsEnabled?: boolean;
 }
 export interface CreateSocialLinkCommand {
+  id: string;
   cardId: string;
   platform: string;
   label?: string | null;
   url: string;
-  position: number;
+  position?: number;
   isVisible: boolean;
 }
 export interface UpdateSocialLinkCommand {
@@ -151,10 +163,46 @@ export interface UpdateCardBlockCommand {
 }
 export interface CardReadRepository {
   findById(id: string, deletedAt: null | Date): Promise<CardDTO | null>;
+  /** Complete editor state for workspace hydration and live preview. */
+  findWorkspaceById?(
+    id: string,
+    deletedAt: null | Date,
+  ): Promise<EditorCardDTO | null>;
+  /** Minimal state used to authorize scalar autosave operations. */
+  findAutosaveById?(
+    id: string,
+    deletedAt: null | Date,
+  ): Promise<AutosaveCardProjection | null>;
+  /** Minimal state used to validate publication transitions. */
+  findPublishById?(
+    id: string,
+    deletedAt: null | Date,
+  ): Promise<PublishCardProjection | null>;
+  /** Reduced child graph used to validate builder mutations. */
+  findBuilderById?(
+    id: string,
+    deletedAt: null | Date,
+  ): Promise<BuilderCardProjection | null>;
+  /** Complete editable source required by card duplication. */
+  findDuplicateById?(
+    id: string,
+    deletedAt: null | Date,
+  ): Promise<EditorCardDTO | null>;
+  /** Public render source with ownership fields and hidden actions omitted. */
+  findPublicBySlug?(
+    criteria: CardLookupCriteria,
+  ): Promise<PublicCardProjection | null>;
+  /** @deprecated Use the operation-specific read matching the workflow. */
   findEditorById(
     id: string,
     deletedAt: null | Date,
   ): Promise<EditorCardDTO | null>;
+  /** @deprecated Use findBuilderById, findAutosaveById or findDuplicateById. */
+  findEditorForMutationById?(
+    id: string,
+    deletedAt: null | Date,
+  ): Promise<EditorCardDTO | null>;
+  /** @deprecated Use findPublicBySlug. */
   findRenderSourceBySlug(
     criteria: CardLookupCriteria,
   ): Promise<EditorCardDTO | null>;
@@ -163,61 +211,55 @@ export interface CardReadRepository {
     cardId: string,
     mediaIds: readonly string[],
   ): Promise<boolean>;
+  /** Resolves the real workspace + customer that own a card (for media scoping). */
+  findOwnership?(
+    cardId: string,
+  ): Promise<{ customerId: string; workspaceId: string; slug: string } | null>;
 }
+export interface AutosaveCardProjection {
+  id: string;
+  slug: string;
+  status: CardStatus;
+}
+export type PublishCardProjection = AutosaveCardProjection;
+export interface BuilderCardProjection extends AutosaveCardProjection {
+  sections: NonNullable<EditorCardDTO["sections"]>;
+  blocks: NonNullable<EditorCardDTO["blocks"]>;
+  buttonIds: readonly string[];
+  socialLinkIds: readonly string[];
+}
+export type PublicCardProjection = Omit<
+  EditorCardDTO,
+  "customerId" | "accessVersion"
+>;
+/** Lightweight post-mutation result. Callers that need the full card DTO should call findEditorById separately. */
+export type MutationResult = { id: string };
+/** Cache identity returned by writes that directly affect the public card. */
+export type PublicCardMutationResult = MutationResult & { slug: string };
+
 export interface CardWriteRepository {
   create(command: CreateCardCommand): Promise<CardDTO>;
   update(id: string, command: UpdateCardCommand): Promise<CardDTO>;
   incrementAccessVersion(cardId: string): Promise<void>;
-  updateAppearance(
-    cardId: string,
-    appearance: AppearanceSettings,
-  ): Promise<EditorCardDTO>;
-  updateSettings?(
-    cardId: string,
-    command: UpdateCardSettingsCommand,
-  ): Promise<EditorCardDTO>;
-  replaceSections?(
-    cardId: string,
-    sections: readonly CardSectionCommand[],
-  ): Promise<EditorCardDTO>;
-  createButton?(command: CreateCardButtonCommand): Promise<EditorCardDTO>;
-  updateButton?(command: UpdateCardButtonCommand): Promise<EditorCardDTO>;
-  deleteButton?(
-    cardId: string,
-    buttonId: string,
-    deletedAt: Date,
-  ): Promise<EditorCardDTO>;
-  reorderButtons?(
-    cardId: string,
-    buttonIds: readonly string[],
-  ): Promise<EditorCardDTO>;
-  createSocialLink?(command: CreateSocialLinkCommand): Promise<EditorCardDTO>;
-  updateSocialLink?(command: UpdateSocialLinkCommand): Promise<EditorCardDTO>;
-  deleteSocialLink?(
-    cardId: string,
-    socialLinkId: string,
-    deletedAt: Date,
-  ): Promise<EditorCardDTO>;
-  reorderSocialLinks?(
-    cardId: string,
-    socialLinkIds: readonly string[],
-  ): Promise<EditorCardDTO>;
-  replaceBlocks?(
-    cardId: string,
-    blocks: readonly CardBlockCommand[],
-  ): Promise<EditorCardDTO>;
-  createBlock?(command: CreateCardBlockCommand): Promise<EditorCardDTO>;
-  updateBlock?(command: UpdateCardBlockCommand): Promise<EditorCardDTO>;
-  deleteBlock?(
-    cardId: string,
-    blockId: string,
-    deletedAt: Date,
-  ): Promise<EditorCardDTO>;
-  duplicateBlock?(cardId: string, blockId: string): Promise<EditorCardDTO>;
-  reorderBlocks?(
-    cardId: string,
-    blockIds: readonly string[],
-  ): Promise<EditorCardDTO>;
+  updateAppearance(cardId: string, appearance: AppearanceSettings): Promise<PublicCardMutationResult>;
+  updateSettings?(cardId: string, command: UpdateCardSettingsCommand): Promise<MutationResult>;
+  replaceSections?(cardId: string, sections: readonly CardSectionCommand[]): Promise<MutationResult>;
+  createButton?(command: CreateCardButtonCommand): Promise<MutationResult>;
+  updateButton?(command: UpdateCardButtonCommand): Promise<MutationResult>;
+  deleteButton?(cardId: string, buttonId: string, deletedAt: Date): Promise<MutationResult>;
+  reorderButtons?(cardId: string, buttonIds: readonly string[]): Promise<MutationResult>;
+  createSocialLink?(command: CreateSocialLinkCommand): Promise<MutationResult>;
+  updateSocialLink?(command: UpdateSocialLinkCommand): Promise<MutationResult>;
+  deleteSocialLink?(cardId: string, socialLinkId: string, deletedAt: Date): Promise<MutationResult>;
+  reorderSocialLinks?(cardId: string, socialLinkIds: readonly string[]): Promise<MutationResult>;
+  replaceBlocks?(cardId: string, blocks: readonly CardBlockCommand[]): Promise<MutationResult>;
+  createBlock?(command: CreateCardBlockCommand): Promise<MutationResult>;
+  updateBlock?(command: UpdateCardBlockCommand): Promise<MutationResult>;
+  deleteBlock?(cardId: string, blockId: string, deletedAt: Date): Promise<MutationResult>;
+  duplicateBlock?(cardId: string, blockId: string): Promise<MutationResult>;
+  reorderBlocks?(cardId: string, blockIds: readonly string[]): Promise<MutationResult>;
+  /** Link a media asset to a card with the given role (e.g. AVATAR). */
+  linkMediaAsset?(cardId: string, mediaAssetId: string, role: string): Promise<void>;
 }
 
 export interface NfcCardRepository {
@@ -385,6 +427,10 @@ export interface WorkspaceOrderRepository {
 
 export interface UnitOfWork {
   execute<T>(
+    work: (repositories: TransactionRepositories) => Promise<T>,
+  ): Promise<T>;
+  /** Non-transactional read — no timeout, uses the connection pool. */
+  read?<T>(
     work: (repositories: TransactionRepositories) => Promise<T>,
   ): Promise<T>;
 }

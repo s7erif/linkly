@@ -465,7 +465,7 @@ The Admin shell itself is centralized. Repeated page-level layout logic remains 
 - Repeated details grids and summary cards.
 - Repeated responsive grid decisions across feature stylesheets.
 
-Public-card rendering also has parallel component paths under `components/themes`, `components/card-renderer`, and `components/public-card`, which increases layout ownership ambiguity.
+Public-card rendering is owned by `components/card-renderer`. Workspace Preview and the canonical public profile use the same renderer; feature-specific modules are data and shell adapters only.
 
 ---
 
@@ -481,7 +481,7 @@ No unresolved high-risk Theme Engine architecture issues were found in Sprint 4.
 2. **Overlapping primitives:** similar buttons, badges, inputs, empty states, and skeletons can diverge in accessibility and behavior.
 3. **Admin stylesheet breadth:** one large Admin CSS Module contains shell, page, CMS, media, table, form, and loading concerns, increasing accidental coupling.
 4. **Layout ownership ambiguity:** repeated page headers and panels make shared-versus-page responsibility inconsistent.
-5. **Public-card composition overlap:** multiple renderer and public-card component paths can lead to duplicated fixes.
+5. **Public-card composition:** resolved by the shared `CardRenderer`; legacy renderer implementations must not be reintroduced.
 
 ## Low
 
@@ -653,6 +653,12 @@ Digital Orders owns payment review, proof inspection, approval, rejection, and p
 ## Sprint 13B.1 Customer CRUD boundary
 
 `/admin/customers` remains server-rendered for authoritative reads. Route-scoped Client Components own only drawer state, toast feedback, URL controls, and post-success Data Grid reconciliation. Authenticated Server Actions call the existing `CustomerService`; validation, duplicate-email detection, unit-of-work writes, and soft deletion remain in the application/service boundary. Filtered CSV is the only Customer-specific HTTP endpoint and reuses `AdminReadService`.
+
+## Retired prototype card ownership boundary
+
+The current digital-card model is provisioned through Orders, NFC activation, Workspace EditorSessions, and authenticated Admin use cases. The removed prototype `User`/`SocialLink` ownership relationship must not be reconstructed in compatibility repositories or HTTP handlers.
+
+`/api/cards` is a fail-closed compatibility endpoint and returns `410 GONE` without database access. The flattened `LegacyBusinessCard` reader remains migration-only and may read its embedded JSON payload; it is not an authorization source. Any future compatibility work must use an explicit current authorization port rather than importing Prisma into services or guessing ownership from legacy columns.
 
 ## Sprint 2.6 Admin Design System convergence
 

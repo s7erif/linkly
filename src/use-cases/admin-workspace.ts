@@ -22,7 +22,7 @@ export class AdminWorkspace {
   async read(email: string, cardId: string): Promise<AdminWorkspaceDTO> {
     const [actor, card, subscription] = await Promise.all([
       this.platformReads.findAdminByEmail(email),
-      this.cards.findEditorById(cardId, null),
+      (this.cards.findWorkspaceById?.(cardId, null) ?? this.cards.findEditorById(cardId, null)),
       this.platformReads.findActiveSubscriptionByCard(cardId),
     ]);
     if (!actor || !hasAdminPermission(actor, "CARD_SUPPORT_EDIT"))

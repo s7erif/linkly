@@ -20,17 +20,22 @@ export interface CardServiceDependencies {
 export class CardService {
   constructor(private readonly dependencies: CardServiceDependencies) {}
   async getEditorCard(id: string): Promise<EditorCardDTO> {
-    const card = await this.dependencies.cards.findEditorById(id, null);
+    const card = await (this.dependencies.cards.findWorkspaceById?.(id, null) ?? this.dependencies.cards.findEditorById(id, null));
     if (!card) throw new NotFoundError("Card", id);
     return card;
   }
   async getPublicCard(slug: string): Promise<PublicCardDTO> {
-    const source = await this.dependencies.cards.findRenderSourceBySlug({
+    const source = await (this.dependencies.cards.findPublicBySlug?.({
       slug,
       statuses: ["PUBLISHED"],
       visibilities: ["PUBLIC", "UNLISTED"],
       deletedAt: null,
-    });
+    }) ?? this.dependencies.cards.findRenderSourceBySlug({
+      slug,
+      statuses: ["PUBLISHED"],
+      visibilities: ["PUBLIC", "UNLISTED"],
+      deletedAt: null,
+    }));
     if (!source) throw new NotFoundError("Card", slug);
     return toRenderableCardDTO(source);
   }

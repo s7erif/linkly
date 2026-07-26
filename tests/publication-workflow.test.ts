@@ -11,7 +11,6 @@ const token = "a".repeat(64);
 const base: EditorCardDTO = {
   id: cardId,
   customerId: "3d594650-c44b-4f60-8c9a-c0f44f57615d",
-  themeId: null,
   slug: "publication-card",
   name: "Publication Card",
   status: "DRAFT",

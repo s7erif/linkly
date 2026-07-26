@@ -4,12 +4,15 @@ import { cx } from "../primitives/utils";
 import { Field, type FieldSize } from "./Field";
 import styles from "./components.module.css";
 
+export type InputVariant = "standard" | "glass";
+
 export type InputProps = {
   error?: ReactNode;
   helperText?: ReactNode;
   label?: ReactNode;
   prefix?: ReactNode;
   size?: FieldSize;
+  variant?: InputVariant;
   success?: ReactNode;
   suffix?: ReactNode;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "style" | "color" | "prefix">;
@@ -31,6 +34,7 @@ export function Input({
   prefix,
   readOnly,
   size = "md",
+  variant = "standard",
   success,
   suffix,
   ...props
@@ -55,6 +59,7 @@ export function Input({
       <Inline
         className={cx(
           styles.fieldFrame,
+          variant === "glass" ? styles.fieldGlass : styles.fieldStandard,
           sizeClasses[size],
           Boolean(error) && styles.fieldError,
           Boolean(success) && styles.fieldSuccess,

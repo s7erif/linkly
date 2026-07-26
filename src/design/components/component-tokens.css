@@ -1,8 +1,8 @@
 [data-oi-theme] {
-  --oi-component-action-primary: var(--oi-color-accent);
-  --oi-component-action-primary-hover: var(--oi-color-accent-hover);
-  --oi-component-action-primary-pressed: color-mix(in srgb, var(--oi-color-accent) var(--oi-mix-action-pressed), var(--oi-color-text));
-  --oi-component-action-primary-text: var(--oi-color-on-accent);
+  --oi-component-action-primary: #000000;
+  --oi-component-action-primary-hover: #1a1a1a;
+  --oi-component-action-primary-pressed: #333333;
+  --oi-component-action-primary-text: #ffffff;
 
   --oi-component-action-secondary: var(--oi-surface-interactive);
   --oi-component-action-secondary-hover: var(--oi-surface-interactive-hover);

@@ -372,6 +372,14 @@ An `NfcCard` has nullable Customer and Workspace relationships so inventory can 
 
 Migration: `20260722090000_short_activation_token`.
 
+## MediaAsset public URL storage (2026-07-26)
+
+`MediaAsset.publicUrl` stores a public locator, not file bytes. Supabase Storage
+uploads store their HTTPS public URL. The local development fallback writes files
+under `public/uploads/<storageKey>` and stores the corresponding `/uploads/...`
+path. Existing `data:image/...;base64,...` rows remain valid and readable so the
+change requires no data rewrite or database migration.
+
 ## Platform Settings document (2026-07-22)
 
 Global platform configuration is stored in the existing `Setting` entity under scope `PLATFORM` and key `CONFIG`. The JSON value is versioned and validated by the Platform Settings service. It contains General, Contact, Email, Payment, Upload, Security, SEO, and Social sections. Provider credentials remain environment-owned and are never persisted in this document. No schema migration is required.

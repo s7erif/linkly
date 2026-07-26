@@ -40,3 +40,25 @@ export class InitialAccessCodeExistsError extends ConflictError {
 export class InvalidOrderTransitionError extends ConflictError {
   constructor(from: string, to: string) { super(`Order cannot transition from ${from} to ${to}`, { from, to }); }
 }
+
+// ── Customer authentication errors ──────────────────────────────────────
+
+/** No CustomerAccount row exists for this email. */
+export class AccountNotFoundError extends AppError {
+  constructor() { super("No account found for this email.", 401, "ACCOUNT_NOT_FOUND"); }
+}
+
+/** Account row exists but passwordHash / passwordSalt are null — account was never provisioned. */
+export class AccountNotProvisionedError extends AppError {
+  constructor() { super("Account has not been fully provisioned.", 401, "ACCOUNT_NOT_PROVISIONED"); }
+}
+
+/** Account exists but has no active workspace membership. */
+export class AccountNotActivatedError extends AppError {
+  constructor() { super("Account has not been activated.", 401, "ACCOUNT_NOT_ACTIVATED"); }
+}
+
+/** Account exists but the supplied password does not match. */
+export class InvalidPasswordError extends AppError {
+  constructor() { super("Email or password is incorrect.", 401, "INVALID_PASSWORD"); }
+}

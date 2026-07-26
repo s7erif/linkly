@@ -17,7 +17,6 @@ async function main() {
     const role = await db.adminRole.upsert({ where: { key: "SUPER_ADMIN" }, update: { name: "Super Admin" }, create: { key: "SUPER_ADMIN", name: "Super Admin" } });
     const admin = await db.adminUser.upsert({ where: { email: "admin@oicards.local" }, update: { name: "Shop Admin", isActive: true, deletedAt: null }, create: { email: "admin@oicards.local", name: "Shop Admin", isActive: true } });
     await db.adminUserRole.upsert({ where: { adminUserId_roleId: { adminUserId: admin.id, roleId: role.id } }, update: {}, create: { adminUserId: admin.id, roleId: role.id } });
-    await db.legacyUser.upsert({ where: { email: "admin@oicards.local" }, update: { name: "Shop Admin" }, create: { email: "admin@oicards.local", name: "Shop Admin" } });
 
     const plans = [
       { key: "starter", name: "Starter", description: "A focused digital card for individuals.", monthlyMinor: 999, quarterlyMinor: 2699, yearlyMinor: 9999, features: [["MAX_CARDS", 1], ["SEO", null]] },
@@ -28,8 +27,6 @@ async function main() {
       const saved = await db.plan.upsert({ where: { key: plan.key }, update: { name: plan.name, description: plan.description, priceMinor: plan.monthlyMinor, currency: "USD", intervalMonths: 1, monthlyMinor: plan.monthlyMinor, quarterlyMinor: plan.quarterlyMinor, yearlyMinor: plan.yearlyMinor, isActive: true, sortOrder: index }, create: { key: plan.key, name: plan.name, description: plan.description, priceMinor: plan.monthlyMinor, currency: "USD", intervalMonths: 1, monthlyMinor: plan.monthlyMinor, quarterlyMinor: plan.quarterlyMinor, yearlyMinor: plan.yearlyMinor, isActive: true, sortOrder: index } });
       for (const [key, limitValue] of plan.features) await db.planFeature.upsert({ where: { planId_key: { planId: saved.id, key } }, update: { enabled: true, limitValue }, create: { planId: saved.id, key, enabled: true, limitValue } });
     }
-    await db.theme.upsert({ where: { key: "default" }, update: { name: "Default", status: "ACTIVE", version: 1 }, create: { key: "default", name: "Default", status: "ACTIVE", version: 1, configSchema: {} } });
-    await db.theme.upsert({ where: { key: "medical" }, update: { name: "Medical", status: "ACTIVE", version: 1 }, create: { key: "medical", name: "Medical", status: "ACTIVE", version: 1, configSchema: {} } });
     for (const key of ["DRAFT", "PUBLISHED"]) { const existing = await db.setting.findFirst({ where: { scope: "WEBSITE", customerId: null, cardId: null, key }, select: { id: true } }); const value = { ...websiteDefaults, status: key }; if (existing) await db.setting.update({ where: { id: existing.id }, data: { value } }); else await db.setting.create({ data: { scope: "WEBSITE", key, value } }); }
     const settings = { siteName: "OI Cards", appUrl: process.env.NEXT_PUBLIC_APP_URL ?? "", supportEmail: "support@oicards.local", maintenanceMode: false, registrationEnabled: true, publicWebsiteEnabled: true };
     for (const [key, value] of Object.entries(settings)) { const existing = await db.setting.findFirst({ where: { scope: "PLATFORM", customerId: null, cardId: null, key }, select: { id: true } }); if (existing) await db.setting.update({ where: { id: existing.id }, data: { value } }); else await db.setting.create({ data: { scope: "PLATFORM", key, value } }); }

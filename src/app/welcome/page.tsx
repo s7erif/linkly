@@ -1,8 +1,8 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import Link from "next/link";
 import { getActivationService, customerSubscriptionReadService } from "@/lib/composition-root";
 import { buildWorkspaceBuilderPath } from "@/lib/public-links";
+import { WelcomeActions } from "./WelcomeActions";
 import styles from "./welcome.module.css";
 
 export const metadata = { title: "Welcome to your Workspace" };
@@ -15,15 +15,6 @@ export default async function WelcomePage() {
   const service = getActivationService();
   const account = session ? await service.accountForSession(session) : null;
   if (!account?.workspace) redirect("/login");
-
-  // The Welcome page is shown only once per approval. Mark it seen so future logins go straight to the Workspace.
-  store.set("oi_welcome_seen", "1", {
-    httpOnly: false,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/",
-    maxAge: 60 * 60 * 24 * 365,
-  });
 
   const displayName = account.displayName?.trim() || "there";
   const subscription = account.customerId
@@ -105,8 +96,7 @@ export default async function WelcomePage() {
         </section>
 
         <div className={styles.actions}>
-          <Link className={styles.start} href={startHref}>Start Building →</Link>
-          <Link className={styles.secondary} href="/workspace">Go to Workspace</Link>
+          <WelcomeActions startHref={startHref} workspaceHref="/workspace" />
         </div>
         <p className={styles.note}>This welcome screen is shown only once. You can access your Workspace anytime from the dashboard.</p>
       </div>

@@ -4,12 +4,12 @@
   position: relative;
   margin: 0 auto;
   width: 100%;
-  max-width: 72rem;
-  padding: 32px 24px;
+  max-width: var(--oi-container-lg);
+  padding: var(--oi-section-spacing) 24px;
 }
 
 @media (min-width: 640px) {
-  .section { padding: 32px 40px; }
+  .section { padding: var(--oi-section-spacing) var(--oi-space-10); }
 }
 
 /* ── Grid ───────────────────────────────────────────────────── */
@@ -28,10 +28,11 @@
 /* ── Heading ────────────────────────────────────────────────── */
 
 .heading {
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  color: #1a1a1a;
+  font-family: var(--oi-font-family-display);
+  font-size: var(--oi-font-size-2xl);
+  font-weight: var(--oi-font-weight-semibold);
+  letter-spacing: var(--oi-letter-spacing-tight);
+  color: var(--oi-color-neutral-950);
 }
 
 /* ── Step row ───────────────────────────────────────────────── */
@@ -59,20 +60,21 @@
 
 .stepIcon {
   display: grid;
-  width: 40px;
-  height: 40px;
+  width: var(--oi-icon-size-lg);
+  height: var(--oi-icon-size-lg);
   place-items: center;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background: rgba(255, 255, 255, 0.8);
-  color: rgba(0, 0, 0, 0.7);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  border-radius: var(--oi-radius-full);
+  border: var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-border-soft);
+  background: var(--oi-glass-sm-background);
+  color: var(--oi-color-neutral-700);
+  box-shadow: var(--oi-shadow-xs);
 }
 
 .stepLabel {
-  font-size: 11px;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.7);
+  font-family: var(--oi-font-family-sans);
+  font-size: var(--oi-font-size-xs);
+  font-weight: var(--oi-font-weight-medium);
+  color: var(--oi-color-neutral-700);
 }
 
 /* ── Step connecting line ───────────────────────────────────── */
@@ -110,13 +112,13 @@
 
 .chip {
   position: absolute;
-  padding: 8px;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  padding: var(--oi-space-2);
+  border-radius: var(--oi-radius-lg);
+  border: var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-glass-sm-border);
+  background: var(--oi-glass-sm-background);
+  box-shadow: var(--oi-glass-sm-shadow);
+  backdrop-filter: blur(var(--oi-glass-sm-blur)) saturate(var(--oi-glass-sm-saturation));
+  -webkit-backdrop-filter: blur(var(--oi-glass-sm-blur)) saturate(var(--oi-glass-sm-saturation));
   z-index: 2;
 }
 
@@ -215,8 +217,9 @@
 
 .phoneTitle {
   margin-top: 8px;
-  font-size: 11px;
-  font-weight: 600;
+  font-family: var(--oi-font-family-sans);
+  font-size: var(--oi-font-size-xs);
+  font-weight: var(--oi-font-weight-semibold);
   color: rgba(255, 255, 255, 0.9);
 }
 

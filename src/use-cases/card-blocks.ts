@@ -1,4 +1,4 @@
-import type { CardBlockDTO, EditorCardDTO, WorkspaceCardDTO } from "@/dto";
+import type { CardBlockDTO, WorkspaceCardDTO } from "@/dto";
 import {
   ConflictError,
   ForbiddenError,
@@ -6,6 +6,7 @@ import {
 } from "@/lib/errors";
 import type {
   CardBlockCommand,
+  BuilderCardProjection,
   TransactionRepositories,
   UnitOfWork,
 } from "@/repositories";
@@ -19,7 +20,7 @@ import {
   reorderCardBlocksSchema,
   updateCardBlockSchema,
 } from "@/validation/card-block";
-import { toWorkspaceCardDTO } from "./card-mappers";
+import { toEditorBlocks, toWorkspaceCardDTO } from "./card-mappers";
 import { parseUseCaseInput } from "./shared";
 import { auditAdminWorkspaceEdit, authorizeEditorAccess, type EditorAuthorizationContext } from "./editor-authorization";
 const capability = <T>(value: T | undefined, name: string): T => {
@@ -46,15 +47,16 @@ function command(block: CardBlockDTO): CardBlockCommand {
 }
 async function materialize(
   repositories: TransactionRepositories,
-  card: EditorCardDTO,
-): Promise<EditorCardDTO> {
-  if (card.blocks?.length) return card;
-  const legacy = toWorkspaceCardDTO(card).editorBlocks ?? [];
-  return capability(repositories.cards.replaceBlocks, "replaceBlocks").call(
+  card: BuilderCardProjection,
+): Promise<BuilderCardProjection> {
+  if (card.blocks.length) return card;
+  const legacy = toEditorBlocks(card);
+  await capability(repositories.cards.replaceBlocks, "replaceBlocks").call(
     repositories.cards,
     card.id,
     legacy.map(command),
   );
+  return { ...card, blocks: legacy };
 }
 async function validateMedia(
   repositories: TransactionRepositories,
@@ -78,20 +80,18 @@ abstract class BlockUseCase {
     protected readonly tokens: SessionTokenGenerator,
     protected readonly now: () => Date = () => new Date(),
   ) {}
-  protected run<T>(
+  protected async run(
     cardId: string,
     token: string,
     authorization: EditorAuthorizationContext | undefined,
-    work: (
-      repositories: TransactionRepositories,
-      card: EditorCardDTO,
-    ) => Promise<T>,
-  ) {
+    work: (repositories: TransactionRepositories, card: BuilderCardProjection) => Promise<void>,
+  ): Promise<WorkspaceCardDTO> {
     return this.unitOfWork.execute(async (repositories) => {
-      const card = await authorizeEditorAccess(repositories, this.tokens, cardId, token, this.now(), authorization);
-      const result = await work(repositories, card);
-      await auditAdminWorkspaceEdit(repositories, authorization, cardId, this.constructor.name);
-      return result;
+      const { card, actor } = await authorizeEditorAccess(repositories, this.tokens, cardId, token, this.now(), authorization);
+      await work(repositories, card);
+      await auditAdminWorkspaceEdit(repositories, actor, cardId, this.constructor.name);
+      const reloaded = (await (repositories.cards.findWorkspaceById?.(cardId, null) ?? repositories.cards.findEditorById(cardId, null)))!;
+      return toWorkspaceCardDTO(reloaded);
     });
   }
 }
@@ -108,8 +108,7 @@ export class InitializeCardBlocks extends BlockUseCase {
       value.cardId,
       value.sessionToken,
       authorization,
-      async (repositories, card) =>
-        toWorkspaceCardDTO(await materialize(repositories, card)),
+      async (repositories, card) => { await materialize(repositories, card); },
     );
   }
 }
@@ -125,7 +124,7 @@ export class CreateCardBlock extends BlockUseCase {
       async (repositories, source) => {
         const card = await materialize(repositories, source);
         await validateMedia(repositories, value.cardId, mediaIds);
-        return toWorkspaceCardDTO(
+        await 
           await capability(repositories.cards.createBlock, "createBlock").call(
             repositories.cards,
             {
@@ -136,8 +135,7 @@ export class CreateCardBlock extends BlockUseCase {
               mediaIds,
               position: card.blocks?.length ?? 0,
             },
-          ),
-        );
+          );
       },
     );
   }
@@ -163,7 +161,7 @@ export class UpdateCardBlock extends BlockUseCase {
                 ),
           mediaIds = parsed ? referencedMedia(parsed) : undefined;
         if (mediaIds) await validateMedia(repositories, value.cardId, mediaIds);
-        return toWorkspaceCardDTO(
+        await 
           await capability(repositories.cards.updateBlock, "updateBlock").call(
             repositories.cards,
             {
@@ -173,8 +171,7 @@ export class UpdateCardBlock extends BlockUseCase {
               isEnabled: value.isEnabled,
               mediaIds,
             },
-          ),
-        );
+          );
       },
     );
   }
@@ -191,14 +188,13 @@ export class DeleteCardBlock extends BlockUseCase {
           throw new ConflictError("A card must keep at least one block");
         if (!card.blocks?.some((block) => block.id === value.blockId))
           throw new NotFoundError("CardBlock", value.blockId);
-        return toWorkspaceCardDTO(
+        await 
           await capability(repositories.cards.deleteBlock, "deleteBlock").call(
             repositories.cards,
             value.cardId,
             value.blockId,
             this.now(),
-          ),
-        );
+          );
       },
     );
   }
@@ -213,12 +209,11 @@ export class DuplicateCardBlock extends BlockUseCase {
       async (repositories, card) => {
         if (!card.blocks?.some((block) => block.id === value.blockId))
           throw new NotFoundError("CardBlock", value.blockId);
-        return toWorkspaceCardDTO(
+        await 
           await capability(
             repositories.cards.duplicateBlock,
             "duplicateBlock",
-          ).call(repositories.cards, value.cardId, value.blockId),
-        );
+          ).call(repositories.cards, value.cardId, value.blockId);
       },
     );
   }
@@ -239,12 +234,11 @@ export class ReorderCardBlocks extends BlockUseCase {
           throw new ConflictError(
             "Block order must contain every block exactly once",
           );
-        return toWorkspaceCardDTO(
+        await 
           await capability(
             repositories.cards.reorderBlocks,
             "reorderBlocks",
-          ).call(repositories.cards, value.cardId, value.blockIds),
-        );
+          ).call(repositories.cards, value.cardId, value.blockIds);
       },
     );
   }

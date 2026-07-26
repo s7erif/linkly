@@ -137,22 +137,28 @@ export default function Timeline() {
           <div className={styles.phoneArea}>
             {/* Floating chips */}
             <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 10, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
               className={`${styles.chip} ${styles.chipLeft}`}
             >
               <div className={styles.chipBox} />
             </motion.div>
             <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 15, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
               className={`${styles.chip} ${styles.chipRight}`}
             >
               <div className={`${styles.chipBox} ${styles.chipBoxDim}`} />
             </motion.div>
             <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 10, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
               className={`${styles.chip} ${styles.chipBottom}`}
             >
               <div className={`${styles.chipBox} ${styles.chipBoxMid}`} />
@@ -160,8 +166,10 @@ export default function Timeline() {
 
             {/* Dark phone */}
             <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 0.61, 0.36, 1] }}
               className={styles.phone}
             >
               <div className={styles.phoneInner}>
@@ -170,7 +178,7 @@ export default function Timeline() {
                   <div className={styles.phoneAvatar}>
                     <IconUser />
                   </div>
-                  <div className={styles.phoneTitle}>Tappy Profile</div>
+                  <div className={styles.phoneTitle}>Linkly Profile</div>
                 </div>
                 <div className={styles.phoneList}>
                   {[0, 1, 2, 3].map((i) => (

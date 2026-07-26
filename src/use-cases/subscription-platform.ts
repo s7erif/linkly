@@ -14,7 +14,17 @@ function platform(r:TransactionRepositories){if(!r.platform)throw new Error("Pla
 export async function requireAdmin(r:TransactionRepositories,email:string,permission:AdminPermission){const actor=await platform(r).findAdminByEmail(email);if(!actor)throw new ForbiddenError("Administrator account is inactive or unavailable");if(!hasAdminPermission(actor,permission))throw new ForbiddenError(`Missing permission: ${permission}`);return actor}
 const addMonths=(date:Date,count:number)=>{const next=new Date(date);next.setUTCMonth(next.getUTCMonth()+count);return next};
 const monthsFor=(value:BillingIntervalDTO)=>value==="MONTHLY"?1:value==="QUARTERLY"?3:12;
-export class EnsureBootstrapAdmin {constructor(private readonly uow:UnitOfWork){} execute(email:string,name:string){return this.uow.execute(async r=>{const existing=await platform(r).findAdminByEmail(email);const actor=existing??await platform(r).ensureAdminUser(email,name);if(actor.roles.length===0)await platform(r).ensureBootstrapRole(actor.id)})}}
+export class EnsureBootstrapAdmin {
+ constructor(private readonly uow:UnitOfWork){}
+ execute(email:string,name:string){
+  return this.uow.execute(async r=>{
+   const existing=await platform(r).findAdminByEmail(email);
+   const actor=existing??await platform(r).ensureAdminUser(email,name);
+   if(actor.roles.length===0)await platform(r).ensureBootstrapRole(actor.id);
+   return actor;
+  });
+ }
+}
 export class ListActivePlans {constructor(private readonly repo:import("@/repositories/platform-management.repository").PlatformManagementRepository){}execute(){return this.repo.listPlans(true)}}
 export class ManagePlan {constructor(private readonly uow:UnitOfWork){} execute(email:string,id:string|undefined,input:PlanWrite):Promise<PlanDTO>{if(!input.name.trim())throw new ValidationError("Plan name is required");if(!input.key.match(/^[a-z0-9-]+$/))throw new ValidationError("Slug must contain lowercase letters, numbers, and hyphens only");if([input.monthlyMinor,input.yearlyMinor].some(value=>value!=null&&value<0))throw new ValidationError("Prices must be zero or greater");if(!Number.isInteger(input.sortOrder)||input.sortOrder<0)throw new ValidationError("Sort order must be a non-negative whole number");return this.uow.execute(async r=>{const actor=await requireAdmin(r,email,"PLAN_MANAGE");const plans=await platform(r).listPlans(false);if(plans.some(plan=>plan.id!==id&&plan.key===input.key))throw new ConflictError("Plan slug already exists");if(plans.some(plan=>plan.id!==id&&plan.sortOrder===input.sortOrder))throw new ConflictError("Sort order already exists");const saved=await platform(r).savePlan(id,input);await platform(r).audit({actorId:actor.id,action:id?"PLAN_UPDATED":"PLAN_CREATED",resourceType:"Plan",resourceId:saved.id});return saved})}}
 export class ManagePlanOperation {constructor(private readonly uow:UnitOfWork){} execute(email:string,id:string,operation:"DUPLICATE"|"ARCHIVE"|"ACTIVATE"|"DEACTIVATE"){return this.uow.execute(async r=>{const actor=await requireAdmin(r,email,"PLAN_MANAGE");const current=await platform(r).findPlan(id);if(!current)throw new NotFoundError("Plan",id);const saved=operation==="DUPLICATE"?await platform(r).duplicatePlan(id):operation==="ARCHIVE"?await platform(r).archivePlan(id):await platform(r).setPlanActive(id,operation==="ACTIVATE");await platform(r).audit({actorId:actor.id,action:"PLAN_"+operation,resourceType:"Plan",resourceId:saved.id,metadata:operation==="DUPLICATE"?{sourcePlanId:id}:undefined});return saved})}}

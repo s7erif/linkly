@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tapp Studio | Identity Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fcf8ff",
+                    "outline-variant": "#c8c4d7",
+                    "on-tertiary-fixed-variant": "#713700",
+                    "tertiary": "#924800",
+                    "on-primary-container": "#fffcff",
+                    "inverse-on-surface": "#f3effc",
+                    "surface-container-highest": "#e5e0ed",
+                    "surface-dim": "#dcd8e5",
+                    "on-secondary-fixed": "#180065",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#c6c0ff",
+                    "background": "#fcf8ff",
+                    "surface-bright": "#fcf8ff",
+                    "tertiary-fixed-dim": "#ffb785",
+                    "surface-container-high": "#eae6f3",
+                    "primary-fixed-dim": "#c6c0ff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#6d5df6",
+                    "secondary-fixed": "#e5deff",
+                    "on-secondary-fixed-variant": "#4330ac",
+                    "tertiary-container": "#b75c00",
+                    "secondary": "#5b4bc5",
+                    "surface-variant": "#e5e0ed",
+                    "surface-container-low": "#f6f1ff",
+                    "on-primary-fixed": "#150066",
+                    "inverse-surface": "#312f39",
+                    "secondary-container": "#9182ff",
+                    "on-error-container": "#93000a",
+                    "primary": "#5441dc",
+                    "on-secondary-container": "#270192",
+                    "primary-fixed": "#e4dfff",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#301400",
+                    "on-background": "#1c1b24",
+                    "on-tertiary-container": "#fffcff",
+                    "on-primary-fixed-variant": "#3d22c6",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#5643de",
+                    "on-surface-variant": "#474555",
+                    "error": "#ba1a1a",
+                    "on-surface": "#1c1b24",
+                    "secondary-fixed-dim": "#c7bfff",
+                    "tertiary-fixed": "#ffdcc6",
+                    "outline": "#787586",
+                    "surface-container": "#f0ecf9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "32px",
+                    "margin-desktop": "80px",
+                    "margin-mobile": "24px",
+                    "unit": "10px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-md": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "body-md": ["15px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "display-lg": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600"}],
+                    "body-lg": ["17px", {"lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #fcf8ff; }
+        .liquid-glass {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .ambient-shadow {
+            box-shadow: 0 40px 100px -20px rgba(84, 65, 220, 0.08);
+        }
+        .studio-stamp {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 4px 10px;
+            border: 1px solid #c8c4d7;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e0ed; border-radius: 10px; }
+        .phone-preview-shadow {
+            box-shadow: 0 60px 120px -30px rgba(84, 65, 220, 0.15);
+        }
+        .sidebar-item { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .sidebar-item:hover { background: rgba(84, 65, 220, 0.05); }
+        .sidebar-item.active { background: rgba(84, 65, 220, 0.08); color: #5441dc; }
+        .field-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .field-card:focus-within {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(84, 65, 220, 0.1);
+        }
+    </style>
+</head>
+<body class="overflow-hidden h-screen bg-surface selection:bg-primary/20">
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 bg-white/60 backdrop-blur-xl border-b border-outline-variant/20 h-16 flex justify-between items-center px-8">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">fingerprint</span>
+</div>
+<h1 class="font-bold text-xl tracking-tight text-on-surface">Tapp</h1>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="text-label-sm font-semibold uppercase tracking-widest text-primary relative after:content-[''] after:absolute after:-bottom-5 after:left-0 after:w-full after:h-0.5 after:bg-primary" href="#">Canvas</a>
+<a class="text-label-sm font-semibold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all" href="#">Team</a>
+<a class="text-label-sm font-semibold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-all" href="#">Versions</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-all"><span class="material-symbols-outlined text-[20px]">undo</span></button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-all"><span class="material-symbols-outlined text-[20px]">redo</span></button>
+<div class="h-4 w-px bg-outline-variant/30 mx-2"></div>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">devices</span>
+<span class="text-xs font-bold">100%</span>
+</button>
+</div>
+<button class="bg-primary text-white px-7 py-2.5 rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:shadow-lg hover:shadow-primary/20 active:scale-95 transition-all">
+            Publish
+        </button>
+</div>
+</header>
+<div class="flex h-screen pt-16">
+<!-- Minimal Arc Sidebar -->
+<aside class="h-full w-20 flex flex-col items-center py-8 border-r border-outline-variant/10 bg-white/40 backdrop-blur-md">
+<div class="space-y-6 flex flex-col items-center">
+<a class="sidebar-item active w-12 h-12 flex items-center justify-center rounded-2xl" href="#" title="Identity">
+<span class="material-symbols-outlined">fingerprint</span>
+</a>
+<a class="sidebar-item w-12 h-12 flex items-center justify-center rounded-2xl text-on-surface-variant" href="#" title="Design">
+<span class="material-symbols-outlined">palette</span>
+</a>
+<a class="sidebar-item w-12 h-12 flex items-center justify-center rounded-2xl text-on-surface-variant" href="#" title="Links">
+<span class="material-symbols-outlined">link</span>
+</a>
+<a class="sidebar-item w-12 h-12 flex items-center justify-center rounded-2xl text-on-surface-variant" href="#" title="Analytics">
+<span class="material-symbols-outlined">monitoring</span>
+</a>
+<a class="sidebar-item w-12 h-12 flex items-center justify-center rounded-2xl text-on-surface-variant" href="#" title="Settings">
+<span class="material-symbols-outlined">settings</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col items-center gap-6">
+<button class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:border-primary/50 transition-all">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border-2 border-white shadow-sm">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9AY0Ta8NECTmbyAf0qr9_AlU9u_eoYpvCN5xCQZaRdeSMVYqxSgKckmxZQsYznHmm7R-ykYefdqPDVYbQOcfTZriwPYrW_6DfeFGJsIMjR0EMz9vVeBlBSsnYoa9maKUy1ZwP5apK3OTMfIK2d4uRIi51mYenh-3gjoePU9WeNOhNSS9Uup_b_GsarIlxpARVV9nI64c8ldrNONIwH4v2CmoBtBwyzbyC0eFsBqjUSaTnwkkpbD1UX-VM3yTlg7RSCYe8jmd1FYs"/>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 bg-surface-container-lowest flex flex-col items-center justify-center relative overflow-hidden px-12">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(109,93,246,0.03)_0%,_transparent_50%)]"></div>
+<!-- Phone Preview - Visual Hero -->
+<div class="relative z-10 w-[340px] h-[680px] bg-white rounded-[3.5rem] border-[10px] border-on-surface-variant/5 phone-preview-shadow overflow-hidden flex flex-col scale-100 transition-transform duration-500 ease-out">
+<!-- Dynamic Status Bar -->
+<div class="h-12 w-full flex justify-between items-center px-10 pt-4">
+<span class="text-[11px] font-bold">9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-symbols-outlined text-[14px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[14px]">wifi</span>
+<span class="material-symbols-outlined text-[14px]">battery_full</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<div class="pt-16 pb-10 px-8 flex flex-col items-center text-center">
+<!-- Preview Profile Pic -->
+<div class="relative mb-8">
+<div class="w-28 h-28 rounded-full bg-gradient-to-tr from-primary/10 to-primary/5 p-1">
+<div class="w-full h-full rounded-full bg-white overflow-hidden ring-4 ring-white shadow-sm">
+<img class="w-full h-full object-cover transition-opacity duration-300" id="preview-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9AY0Ta8NECTmbyAf0qr9_AlU9u_eoYpvCN5xCQZaRdeSMVYqxSgKckmxZQsYznHmm7R-ykYefdqPDVYbQOcfTZriwPYrW_6DfeFGJsIMjR0EMz9vVeBlBSsnYoa9maKUy1ZwP5apK3OTMfIK2d4uRIi51mYenh-3gjoePU9WeNOhNSS9Uup_b_GsarIlxpARVV9nI64c8ldrNONIwH4v2CmoBtBwyzbyC0eFsBqjUSaTnwkkpbD1UX-VM3yTlg7RSCYe8jmd1FYs"/>
+</div>
+</div>
+</div>
+<h2 class="text-2xl font-bold text-on-surface tracking-tight mb-2" id="preview-name">Julian Vance</h2>
+<div class="inline-block px-3 py-1 rounded-md bg-primary/5 text-primary text-[10px] font-bold uppercase tracking-wider border border-primary/10 mb-6" id="preview-title">Executive Creative Director</div>
+<p class="text-[14px] text-on-surface-variant leading-relaxed max-w-[260px] font-light" id="preview-bio">Architecting digital identities for the world's most ambitious boutique brands and independent creators.</p>
+</div>
+<div class="px-8 space-y-4 pb-16">
+<div class="h-14 w-full bg-surface-container-low rounded-2xl flex items-center px-6 text-sm font-medium text-on-surface/70 border border-outline-variant/10 shadow-sm">
+<span class="material-symbols-outlined mr-3 text-[18px]">auto_awesome</span>
+                        Selected Works
+                    </div>
+<div class="h-14 w-full bg-surface-container-low rounded-2xl flex items-center px-6 text-sm font-medium text-on-surface/70 border border-outline-variant/10 shadow-sm">
+<span class="material-symbols-outlined mr-3 text-[18px]">article</span>
+                        Monthly Journal
+                    </div>
+</div>
+</div>
+</div>
+<div class="mt-12 flex gap-3">
+<div class="px-4 py-2 rounded-full bg-white border border-outline-variant/20 shadow-sm text-[10px] font-bold text-on-surface-variant uppercase tracking-widest flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span> Live Preview
+            </div>
+<div class="px-4 py-2 rounded-full bg-white border border-outline-variant/20 shadow-sm text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">
+                Focus Session
+            </div>
+</div>
+</main>
+<!-- Inspector Sidebar -->
+<aside class="w-[420px] h-screen border-l border-outline-variant/10 bg-white/80 backdrop-blur-2xl flex flex-col overflow-hidden">
+<div class="p-10 flex-1 overflow-y-auto custom-scrollbar space-y-12">
+<div>
+<h3 class="font-bold text-2xl text-on-surface tracking-tight mb-2">Edit Identity</h3>
+<p class="text-sm text-on-surface-variant font-light">Your digital persona, refined for a premium presence.</p>
+</div>
+<!-- Profile Section -->
+<section class="space-y-6">
+<label class="text-[11px] font-bold uppercase tracking-[0.2em] text-on-surface-variant opacity-60">Profile Essence</label>
+<!-- Premium Photo Uploader -->
+<div class="group relative w-36 h-36 mx-auto cursor-pointer">
+<div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-secondary opacity-0 group-hover:opacity-10 scale-110 transition-all duration-500"></div>
+<div class="w-full h-full rounded-full border border-outline-variant/30 flex items-center justify-center bg-surface-container-low overflow-hidden relative shadow-inner">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" id="inspector-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9AY0Ta8NECTmbyAf0qr9_AlU9u_eoYpvCN5xCQZaRdeSMVYqxSgKckmxZQsYznHmm7R-ykYefdqPDVYbQOcfTZriwPYrW_6DfeFGJsIMjR0EMz9vVeBlBSsnYoa9maKUy1ZwP5apK3OTMfIK2d4uRIi51mYenh-3gjoePU9WeNOhNSS9Uup_b_GsarIlxpARVV9nI64c8ldrNONIwH4v2CmoBtBwyzbyC0eFsBqjUSaTnwkkpbD1UX-VM3yTlg7RSCYe8jmd1FYs"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white">
+<span class="material-symbols-outlined">photo_camera</span>
+<span class="text-[10px] font-bold mt-1 tracking-widest">CHANGE</span>
+</div>
+</div>
+</div>
+<div class="space-y-5">
+<!-- Visual Cards for Inputs -->
+<div class="field-card p-5 rounded-2xl bg-surface-container-low border border-outline-variant/10 focus-within:bg-white focus-within:border-primary/20 transition-all">
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-3">Name</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-lg font-medium text-on-surface placeholder:text-outline-variant/50" oninput="document.getElementById('preview-name').innerText = this.value" type="text" value="Julian Vance"/>
+</div>
+<div class="field-card p-5 rounded-2xl bg-surface-container-low border border-outline-variant/10 focus-within:bg-white focus-within:border-primary/20 transition-all">
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-3">Role</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-lg font-medium text-on-surface placeholder:text-outline-variant/50" oninput="document.getElementById('preview-title').innerText = this.value" type="text" value="Executive Creative Director"/>
+</div>
+<div class="field-card p-5 rounded-2xl bg-surface-container-low border border-outline-variant/10 focus-within:bg-white focus-within:border-primary/20 transition-all">
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-3">Narrative</label>
+<textarea class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-light text-on-surface-variant leading-relaxed resize-none min-h-[100px] placeholder:text-outline-variant/50" oninput="document.getElementById('preview-bio').innerText = this.value">Architecting digital identities for the world's most ambitious boutique brands and independent creators.</textarea>
+</div>
+</div>
+</section>
+<!-- Connections Section -->
+<section class="pt-10 border-t border-outline-variant/10">
+<div class="flex items-center justify-between mb-6">
+<label class="text-[11px] font-bold uppercase tracking-[0.2em] text-on-surface-variant opacity-60">Connected Presence</label>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-primary hover:bg-primary/5 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-4 p-4 rounded-xl bg-surface-container-low/50 border border-outline-variant/5 hover:border-outline-variant/20 transition-all cursor-pointer group">
+<div class="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">public</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-on-surface">Main Portfolio</p>
+<p class="text-[11px] text-on-surface-variant">julianvance.studio</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">drag_indicator</span>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-xl bg-surface-container-low/50 border border-outline-variant/5 hover:border-outline-variant/20 transition-all cursor-pointer group">
+<div class="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center text-on-surface-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">alternate_email</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-on-surface">X / Twitter</p>
+<p class="text-[11px] text-on-surface-variant">@julianvance</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">drag_indicator</span>
+</div>
+</div>
+</section>
+<div class="pt-8 pb-12">
+<button class="w-full py-5 bg-on-surface text-white rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-on-surface/90 active:scale-[0.98] transition-all shadow-xl shadow-on-surface/10">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+                    Commit Changes
+                </button>
+</div>
+</div>
+</aside>
+</div>
+<script>
+    // Smooth interaction logic
+    document.querySelectorAll('input, textarea').forEach(el => {
+        el.addEventListener('focus', () => {
+            el.closest('.field-card').style.borderColor = '#5441dc';
+        });
+        el.addEventListener('blur', () => {
+            el.closest('.field-card').style.borderColor = '';
+        });
+    });
+
+    // Handle Profile Image Sync
+    const profileImg = document.getElementById('inspector-image');
+    const previewImg = document.getElementById('preview-image');
+    
+    // In a real app, this would handle the file upload
+    document.querySelector('.group.relative.w-36.h-36').addEventListener('click', () => {
+        console.log('Open file picker...');
+    });
+</script>
+</body></html>

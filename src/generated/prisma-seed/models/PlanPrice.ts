@@ -41,7 +41,6 @@ export type PlanPriceSumAggregateOutputType = {
 export type PlanPriceMinAggregateOutputType = {
   id: string | null
   key: string | null
-  planVersionId: string | null
   amountMinor: bigint | null
   currency: string | null
   cadence: $Enums.PriceCadence | null
@@ -57,7 +56,6 @@ export type PlanPriceMinAggregateOutputType = {
 export type PlanPriceMaxAggregateOutputType = {
   id: string | null
   key: string | null
-  planVersionId: string | null
   amountMinor: bigint | null
   currency: string | null
   cadence: $Enums.PriceCadence | null
@@ -73,7 +71,6 @@ export type PlanPriceMaxAggregateOutputType = {
 export type PlanPriceCountAggregateOutputType = {
   id: number
   key: number
-  planVersionId: number
   amountMinor: number
   currency: number
   cadence: number
@@ -103,7 +100,6 @@ export type PlanPriceSumAggregateInputType = {
 export type PlanPriceMinAggregateInputType = {
   id?: true
   key?: true
-  planVersionId?: true
   amountMinor?: true
   currency?: true
   cadence?: true
@@ -119,7 +115,6 @@ export type PlanPriceMinAggregateInputType = {
 export type PlanPriceMaxAggregateInputType = {
   id?: true
   key?: true
-  planVersionId?: true
   amountMinor?: true
   currency?: true
   cadence?: true
@@ -135,7 +130,6 @@ export type PlanPriceMaxAggregateInputType = {
 export type PlanPriceCountAggregateInputType = {
   id?: true
   key?: true
-  planVersionId?: true
   amountMinor?: true
   currency?: true
   cadence?: true
@@ -238,7 +232,6 @@ export type PlanPriceGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 export type PlanPriceGroupByOutputType = {
   id: string
   key: string
-  planVersionId: string
   amountMinor: bigint
   currency: string
   cadence: $Enums.PriceCadence
@@ -277,7 +270,6 @@ export type PlanPriceWhereInput = {
   NOT?: Prisma.PlanPriceWhereInput | Prisma.PlanPriceWhereInput[]
   id?: Prisma.UuidFilter<"PlanPrice"> | string
   key?: Prisma.StringFilter<"PlanPrice"> | string
-  planVersionId?: Prisma.UuidFilter<"PlanPrice"> | string
   amountMinor?: Prisma.BigIntFilter<"PlanPrice"> | bigint | number
   currency?: Prisma.StringFilter<"PlanPrice"> | string
   cadence?: Prisma.EnumPriceCadenceFilter<"PlanPrice"> | $Enums.PriceCadence
@@ -288,16 +280,12 @@ export type PlanPriceWhereInput = {
   isActive?: Prisma.BoolFilter<"PlanPrice"> | boolean
   createdAt?: Prisma.DateTimeFilter<"PlanPrice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PlanPrice"> | Date | string
-  planVersion?: Prisma.XOR<Prisma.PlanVersionScalarRelationFilter, Prisma.PlanVersionWhereInput>
   subscriptions?: Prisma.SubscriptionListRelationFilter
-  changesFrom?: Prisma.SubscriptionChangeListRelationFilter
-  changesTo?: Prisma.SubscriptionChangeListRelationFilter
 }
 
 export type PlanPriceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   key?: Prisma.SortOrder
-  planVersionId?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   cadence?: Prisma.SortOrder
@@ -308,20 +296,15 @@ export type PlanPriceOrderByWithRelationInput = {
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  planVersion?: Prisma.PlanVersionOrderByWithRelationInput
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
-  changesFrom?: Prisma.SubscriptionChangeOrderByRelationAggregateInput
-  changesTo?: Prisma.SubscriptionChangeOrderByRelationAggregateInput
 }
 
 export type PlanPriceWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   key?: string
-  planVersionId_currency_cadence_intervalCount_effectiveFrom?: Prisma.PlanPricePlanVersionIdCurrencyCadenceIntervalCountEffectiveFromCompoundUniqueInput
   AND?: Prisma.PlanPriceWhereInput | Prisma.PlanPriceWhereInput[]
   OR?: Prisma.PlanPriceWhereInput[]
   NOT?: Prisma.PlanPriceWhereInput | Prisma.PlanPriceWhereInput[]
-  planVersionId?: Prisma.UuidFilter<"PlanPrice"> | string
   amountMinor?: Prisma.BigIntFilter<"PlanPrice"> | bigint | number
   currency?: Prisma.StringFilter<"PlanPrice"> | string
   cadence?: Prisma.EnumPriceCadenceFilter<"PlanPrice"> | $Enums.PriceCadence
@@ -332,16 +315,12 @@ export type PlanPriceWhereUniqueInput = Prisma.AtLeast<{
   isActive?: Prisma.BoolFilter<"PlanPrice"> | boolean
   createdAt?: Prisma.DateTimeFilter<"PlanPrice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PlanPrice"> | Date | string
-  planVersion?: Prisma.XOR<Prisma.PlanVersionScalarRelationFilter, Prisma.PlanVersionWhereInput>
   subscriptions?: Prisma.SubscriptionListRelationFilter
-  changesFrom?: Prisma.SubscriptionChangeListRelationFilter
-  changesTo?: Prisma.SubscriptionChangeListRelationFilter
-}, "id" | "key" | "planVersionId_currency_cadence_intervalCount_effectiveFrom">
+}, "id" | "key">
 
 export type PlanPriceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   key?: Prisma.SortOrder
-  planVersionId?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   cadence?: Prisma.SortOrder
@@ -365,7 +344,6 @@ export type PlanPriceScalarWhereWithAggregatesInput = {
   NOT?: Prisma.PlanPriceScalarWhereWithAggregatesInput | Prisma.PlanPriceScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"PlanPrice"> | string
   key?: Prisma.StringWithAggregatesFilter<"PlanPrice"> | string
-  planVersionId?: Prisma.UuidWithAggregatesFilter<"PlanPrice"> | string
   amountMinor?: Prisma.BigIntWithAggregatesFilter<"PlanPrice"> | bigint | number
   currency?: Prisma.StringWithAggregatesFilter<"PlanPrice"> | string
   cadence?: Prisma.EnumPriceCadenceWithAggregatesFilter<"PlanPrice"> | $Enums.PriceCadence
@@ -391,16 +369,12 @@ export type PlanPriceCreateInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  planVersion: Prisma.PlanVersionCreateNestedOneWithoutPricesInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanPriceInput
-  changesFrom?: Prisma.SubscriptionChangeCreateNestedManyWithoutFromPlanPriceInput
-  changesTo?: Prisma.SubscriptionChangeCreateNestedManyWithoutToPlanPriceInput
 }
 
 export type PlanPriceUncheckedCreateInput = {
   id?: string
   key: string
-  planVersionId: string
   amountMinor: bigint | number
   currency: string
   cadence: $Enums.PriceCadence
@@ -412,8 +386,6 @@ export type PlanPriceUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanPriceInput
-  changesFrom?: Prisma.SubscriptionChangeUncheckedCreateNestedManyWithoutFromPlanPriceInput
-  changesTo?: Prisma.SubscriptionChangeUncheckedCreateNestedManyWithoutToPlanPriceInput
 }
 
 export type PlanPriceUpdateInput = {
@@ -429,16 +401,12 @@ export type PlanPriceUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  planVersion?: Prisma.PlanVersionUpdateOneRequiredWithoutPricesNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanPriceNestedInput
-  changesFrom?: Prisma.SubscriptionChangeUpdateManyWithoutFromPlanPriceNestedInput
-  changesTo?: Prisma.SubscriptionChangeUpdateManyWithoutToPlanPriceNestedInput
 }
 
 export type PlanPriceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
-  planVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   cadence?: Prisma.EnumPriceCadenceFieldUpdateOperationsInput | $Enums.PriceCadence
@@ -450,14 +418,11 @@ export type PlanPriceUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanPriceNestedInput
-  changesFrom?: Prisma.SubscriptionChangeUncheckedUpdateManyWithoutFromPlanPriceNestedInput
-  changesTo?: Prisma.SubscriptionChangeUncheckedUpdateManyWithoutToPlanPriceNestedInput
 }
 
 export type PlanPriceCreateManyInput = {
   id?: string
   key: string
-  planVersionId: string
   amountMinor: bigint | number
   currency: string
   cadence: $Enums.PriceCadence
@@ -488,7 +453,6 @@ export type PlanPriceUpdateManyMutationInput = {
 export type PlanPriceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
-  planVersionId?: Prisma.StringFieldUpdateOperationsInput | string
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   cadence?: Prisma.EnumPriceCadenceFieldUpdateOperationsInput | $Enums.PriceCadence
@@ -501,28 +465,9 @@ export type PlanPriceUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type PlanPriceListRelationFilter = {
-  every?: Prisma.PlanPriceWhereInput
-  some?: Prisma.PlanPriceWhereInput
-  none?: Prisma.PlanPriceWhereInput
-}
-
-export type PlanPriceOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
-export type PlanPricePlanVersionIdCurrencyCadenceIntervalCountEffectiveFromCompoundUniqueInput = {
-  planVersionId: string
-  currency: string
-  cadence: $Enums.PriceCadence
-  intervalCount: number
-  effectiveFrom: Date | string
-}
-
 export type PlanPriceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   key?: Prisma.SortOrder
-  planVersionId?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   cadence?: Prisma.SortOrder
@@ -544,7 +489,6 @@ export type PlanPriceAvgOrderByAggregateInput = {
 export type PlanPriceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   key?: Prisma.SortOrder
-  planVersionId?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   cadence?: Prisma.SortOrder
@@ -560,7 +504,6 @@ export type PlanPriceMaxOrderByAggregateInput = {
 export type PlanPriceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   key?: Prisma.SortOrder
-  planVersionId?: Prisma.SortOrder
   amountMinor?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   cadence?: Prisma.SortOrder
@@ -584,46 +527,12 @@ export type PlanPriceNullableScalarRelationFilter = {
   isNot?: Prisma.PlanPriceWhereInput | null
 }
 
-export type PlanPriceCreateNestedManyWithoutPlanVersionInput = {
-  create?: Prisma.XOR<Prisma.PlanPriceCreateWithoutPlanVersionInput, Prisma.PlanPriceUncheckedCreateWithoutPlanVersionInput> | Prisma.PlanPriceCreateWithoutPlanVersionInput[] | Prisma.PlanPriceUncheckedCreateWithoutPlanVersionInput[]
-  connectOrCreate?: Prisma.PlanPriceCreateOrConnectWithoutPlanVersionInput | Prisma.PlanPriceCreateOrConnectWithoutPlanVersionInput[]
-  createMany?: Prisma.PlanPriceCreateManyPlanVersionInputEnvelope
-  connect?: Prisma.PlanPriceWhereUniqueInput | Prisma.PlanPriceWhereUniqueInput[]
-}
-
-export type PlanPriceUncheckedCreateNestedManyWithoutPlanVersionInput = {
-  create?: Prisma.XOR<Prisma.PlanPriceCreateWithoutPlanVersionInput, Prisma.PlanPriceUncheckedCreateWithoutPlanVersionInput> | Prisma.PlanPriceCreateWithoutPlanVersionInput[] | Prisma.PlanPriceUncheckedCreateWithoutPlanVersionInput[]
-  connectOrCreate?: Prisma.PlanPriceCreateOrConnectWithoutPlanVersionInput | Prisma.PlanPriceCreateOrConnectWithoutPlanVersionInput[]
-  createMany?: Prisma.PlanPriceCreateManyPlanVersionInputEnvelope
-  connect?: Prisma.PlanPriceWhereUniqueInput | Prisma.PlanPriceWhereUniqueInput[]
-}
-
-export type PlanPriceUpdateManyWithoutPlanVersionNestedInput = {
-  create?: Prisma.XOR<Prisma.PlanPriceCreateWithoutPlanVersionInput, Prisma.PlanPriceUncheckedCreateWithoutPlanVersionInput> | Prisma.PlanPriceCreateWithoutPlanVersionInput[] | Prisma.PlanPriceUncheckedCreateWithoutPlanVersionInput[]
-  connectOrCreate?: Prisma.PlanPriceCreateOrConnectWithoutPlanVersionInput | Prisma.PlanPriceCreateOrConnectWithoutPlanVersionInput[]
-  upsert?: Prisma.PlanPriceUpsertWithWhereUniqueWithoutPlanVersionInput | Prisma.PlanPriceUpsertWithWhereUniqueWithoutPlanVersionInput[]
-  createMany?: Prisma.PlanPriceCreateManyPlanVersionInputEnvelope
-  set?: Prisma.PlanPriceWhereUniqueInput | Prisma.PlanPriceWhereUniqueInput[]
-  disconnect?: Prisma.PlanPriceWhereUniqueInput | Prisma.PlanPriceWhereUniqueInput[]
-  delete?: Prisma.PlanPriceWhereUniqueInput | Prisma.PlanPriceWhereUniqueInput[]
-  connect?: Prisma.PlanPriceWhereUniqueInput | Prisma.PlanPriceWhereUniqueInput[]
-  update?: Prisma.PlanPriceUpdateWithWhereUniqueWithoutPlanVersionInput | Prisma.PlanPriceUpdateWithWhereUniqueWithoutPlanVersionInput[]
-  updateMany?: Prisma.PlanPriceUpdateManyWithWhereWithoutPlanVersionInput | Prisma.PlanPriceUpdateManyWithWhereWithoutPlanVersionInput[]
-  deleteMany?: Prisma.PlanPriceScalarWhereInput | Prisma.PlanPriceScalarWhereInput[]
-}
-
-export type PlanPriceUncheckedUpdateManyWithoutPlanVersionNestedInput = {
-  create?: Prisma.XOR<Prisma.PlanPriceCreateWithoutPlanVersionInput, Prisma.PlanPriceUncheckedCreateWithoutPlanVersionInput> | Prisma.PlanPriceCreateWithoutPlanVersionInput[] | Prisma.PlanPriceUncheckedCreateWithoutPlanVersionInput[]
-  connectOrCreate?: Prisma.PlanPriceCreateOrConnectWithoutPlanVersionInput | Prisma.PlanPriceCreateOrConnectWithoutPlanVersionInput[]
-  upsert?: Prisma.PlanPriceUpsertWithWhereUniqueWithoutPlanVersionInput | Prisma.PlanPriceUpsertWithWhereUniqueWithoutPlanVersionInput[]
-  createMany?: Prisma.PlanPriceCreateManyPlanVersionInputEnvelope
-  set?: Prisma.PlanPriceWhereUniqueInput | Prisma.PlanPriceWhereUniqueInput[]
-  disconnect?: Prisma.PlanPriceWhereUniqueInput | Prisma.PlanPriceWhereUniqueInput[]
-  delete?: Prisma.PlanPriceWhereUniqueInput | Prisma.PlanPriceWhereUniqueInput[]
-  connect?: Prisma.PlanPriceWhereUniqueInput | Prisma.PlanPriceWhereUniqueInput[]
-  update?: Prisma.PlanPriceUpdateWithWhereUniqueWithoutPlanVersionInput | Prisma.PlanPriceUpdateWithWhereUniqueWithoutPlanVersionInput[]
-  updateMany?: Prisma.PlanPriceUpdateManyWithWhereWithoutPlanVersionInput | Prisma.PlanPriceUpdateManyWithWhereWithoutPlanVersionInput[]
-  deleteMany?: Prisma.PlanPriceScalarWhereInput | Prisma.PlanPriceScalarWhereInput[]
+export type BigIntFieldUpdateOperationsInput = {
+  set?: bigint | number
+  increment?: bigint | number
+  decrement?: bigint | number
+  multiply?: bigint | number
+  divide?: bigint | number
 }
 
 export type EnumPriceCadenceFieldUpdateOperationsInput = {
@@ -646,119 +555,6 @@ export type PlanPriceUpdateOneWithoutSubscriptionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PlanPriceUpdateToOneWithWhereWithoutSubscriptionsInput, Prisma.PlanPriceUpdateWithoutSubscriptionsInput>, Prisma.PlanPriceUncheckedUpdateWithoutSubscriptionsInput>
 }
 
-export type PlanPriceCreateNestedOneWithoutChangesFromInput = {
-  create?: Prisma.XOR<Prisma.PlanPriceCreateWithoutChangesFromInput, Prisma.PlanPriceUncheckedCreateWithoutChangesFromInput>
-  connectOrCreate?: Prisma.PlanPriceCreateOrConnectWithoutChangesFromInput
-  connect?: Prisma.PlanPriceWhereUniqueInput
-}
-
-export type PlanPriceCreateNestedOneWithoutChangesToInput = {
-  create?: Prisma.XOR<Prisma.PlanPriceCreateWithoutChangesToInput, Prisma.PlanPriceUncheckedCreateWithoutChangesToInput>
-  connectOrCreate?: Prisma.PlanPriceCreateOrConnectWithoutChangesToInput
-  connect?: Prisma.PlanPriceWhereUniqueInput
-}
-
-export type PlanPriceUpdateOneWithoutChangesFromNestedInput = {
-  create?: Prisma.XOR<Prisma.PlanPriceCreateWithoutChangesFromInput, Prisma.PlanPriceUncheckedCreateWithoutChangesFromInput>
-  connectOrCreate?: Prisma.PlanPriceCreateOrConnectWithoutChangesFromInput
-  upsert?: Prisma.PlanPriceUpsertWithoutChangesFromInput
-  disconnect?: Prisma.PlanPriceWhereInput | boolean
-  delete?: Prisma.PlanPriceWhereInput | boolean
-  connect?: Prisma.PlanPriceWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PlanPriceUpdateToOneWithWhereWithoutChangesFromInput, Prisma.PlanPriceUpdateWithoutChangesFromInput>, Prisma.PlanPriceUncheckedUpdateWithoutChangesFromInput>
-}
-
-export type PlanPriceUpdateOneWithoutChangesToNestedInput = {
-  create?: Prisma.XOR<Prisma.PlanPriceCreateWithoutChangesToInput, Prisma.PlanPriceUncheckedCreateWithoutChangesToInput>
-  connectOrCreate?: Prisma.PlanPriceCreateOrConnectWithoutChangesToInput
-  upsert?: Prisma.PlanPriceUpsertWithoutChangesToInput
-  disconnect?: Prisma.PlanPriceWhereInput | boolean
-  delete?: Prisma.PlanPriceWhereInput | boolean
-  connect?: Prisma.PlanPriceWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PlanPriceUpdateToOneWithWhereWithoutChangesToInput, Prisma.PlanPriceUpdateWithoutChangesToInput>, Prisma.PlanPriceUncheckedUpdateWithoutChangesToInput>
-}
-
-export type PlanPriceCreateWithoutPlanVersionInput = {
-  id?: string
-  key: string
-  amountMinor: bigint | number
-  currency: string
-  cadence: $Enums.PriceCadence
-  intervalCount?: number
-  trialDays?: number | null
-  effectiveFrom?: Date | string
-  effectiveTo?: Date | string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanPriceInput
-  changesFrom?: Prisma.SubscriptionChangeCreateNestedManyWithoutFromPlanPriceInput
-  changesTo?: Prisma.SubscriptionChangeCreateNestedManyWithoutToPlanPriceInput
-}
-
-export type PlanPriceUncheckedCreateWithoutPlanVersionInput = {
-  id?: string
-  key: string
-  amountMinor: bigint | number
-  currency: string
-  cadence: $Enums.PriceCadence
-  intervalCount?: number
-  trialDays?: number | null
-  effectiveFrom?: Date | string
-  effectiveTo?: Date | string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanPriceInput
-  changesFrom?: Prisma.SubscriptionChangeUncheckedCreateNestedManyWithoutFromPlanPriceInput
-  changesTo?: Prisma.SubscriptionChangeUncheckedCreateNestedManyWithoutToPlanPriceInput
-}
-
-export type PlanPriceCreateOrConnectWithoutPlanVersionInput = {
-  where: Prisma.PlanPriceWhereUniqueInput
-  create: Prisma.XOR<Prisma.PlanPriceCreateWithoutPlanVersionInput, Prisma.PlanPriceUncheckedCreateWithoutPlanVersionInput>
-}
-
-export type PlanPriceCreateManyPlanVersionInputEnvelope = {
-  data: Prisma.PlanPriceCreateManyPlanVersionInput | Prisma.PlanPriceCreateManyPlanVersionInput[]
-  skipDuplicates?: boolean
-}
-
-export type PlanPriceUpsertWithWhereUniqueWithoutPlanVersionInput = {
-  where: Prisma.PlanPriceWhereUniqueInput
-  update: Prisma.XOR<Prisma.PlanPriceUpdateWithoutPlanVersionInput, Prisma.PlanPriceUncheckedUpdateWithoutPlanVersionInput>
-  create: Prisma.XOR<Prisma.PlanPriceCreateWithoutPlanVersionInput, Prisma.PlanPriceUncheckedCreateWithoutPlanVersionInput>
-}
-
-export type PlanPriceUpdateWithWhereUniqueWithoutPlanVersionInput = {
-  where: Prisma.PlanPriceWhereUniqueInput
-  data: Prisma.XOR<Prisma.PlanPriceUpdateWithoutPlanVersionInput, Prisma.PlanPriceUncheckedUpdateWithoutPlanVersionInput>
-}
-
-export type PlanPriceUpdateManyWithWhereWithoutPlanVersionInput = {
-  where: Prisma.PlanPriceScalarWhereInput
-  data: Prisma.XOR<Prisma.PlanPriceUpdateManyMutationInput, Prisma.PlanPriceUncheckedUpdateManyWithoutPlanVersionInput>
-}
-
-export type PlanPriceScalarWhereInput = {
-  AND?: Prisma.PlanPriceScalarWhereInput | Prisma.PlanPriceScalarWhereInput[]
-  OR?: Prisma.PlanPriceScalarWhereInput[]
-  NOT?: Prisma.PlanPriceScalarWhereInput | Prisma.PlanPriceScalarWhereInput[]
-  id?: Prisma.UuidFilter<"PlanPrice"> | string
-  key?: Prisma.StringFilter<"PlanPrice"> | string
-  planVersionId?: Prisma.UuidFilter<"PlanPrice"> | string
-  amountMinor?: Prisma.BigIntFilter<"PlanPrice"> | bigint | number
-  currency?: Prisma.StringFilter<"PlanPrice"> | string
-  cadence?: Prisma.EnumPriceCadenceFilter<"PlanPrice"> | $Enums.PriceCadence
-  intervalCount?: Prisma.IntFilter<"PlanPrice"> | number
-  trialDays?: Prisma.IntNullableFilter<"PlanPrice"> | number | null
-  effectiveFrom?: Prisma.DateTimeFilter<"PlanPrice"> | Date | string
-  effectiveTo?: Prisma.DateTimeNullableFilter<"PlanPrice"> | Date | string | null
-  isActive?: Prisma.BoolFilter<"PlanPrice"> | boolean
-  createdAt?: Prisma.DateTimeFilter<"PlanPrice"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"PlanPrice"> | Date | string
-}
-
 export type PlanPriceCreateWithoutSubscriptionsInput = {
   id?: string
   key: string
@@ -772,15 +568,11 @@ export type PlanPriceCreateWithoutSubscriptionsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  planVersion: Prisma.PlanVersionCreateNestedOneWithoutPricesInput
-  changesFrom?: Prisma.SubscriptionChangeCreateNestedManyWithoutFromPlanPriceInput
-  changesTo?: Prisma.SubscriptionChangeCreateNestedManyWithoutToPlanPriceInput
 }
 
 export type PlanPriceUncheckedCreateWithoutSubscriptionsInput = {
   id?: string
   key: string
-  planVersionId: string
   amountMinor: bigint | number
   currency: string
   cadence: $Enums.PriceCadence
@@ -791,8 +583,6 @@ export type PlanPriceUncheckedCreateWithoutSubscriptionsInput = {
   isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  changesFrom?: Prisma.SubscriptionChangeUncheckedCreateNestedManyWithoutFromPlanPriceInput
-  changesTo?: Prisma.SubscriptionChangeUncheckedCreateNestedManyWithoutToPlanPriceInput
 }
 
 export type PlanPriceCreateOrConnectWithoutSubscriptionsInput = {
@@ -824,257 +614,9 @@ export type PlanPriceUpdateWithoutSubscriptionsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  planVersion?: Prisma.PlanVersionUpdateOneRequiredWithoutPricesNestedInput
-  changesFrom?: Prisma.SubscriptionChangeUpdateManyWithoutFromPlanPriceNestedInput
-  changesTo?: Prisma.SubscriptionChangeUpdateManyWithoutToPlanPriceNestedInput
 }
 
 export type PlanPriceUncheckedUpdateWithoutSubscriptionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  key?: Prisma.StringFieldUpdateOperationsInput | string
-  planVersionId?: Prisma.StringFieldUpdateOperationsInput | string
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  cadence?: Prisma.EnumPriceCadenceFieldUpdateOperationsInput | $Enums.PriceCadence
-  intervalCount?: Prisma.IntFieldUpdateOperationsInput | number
-  trialDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  changesFrom?: Prisma.SubscriptionChangeUncheckedUpdateManyWithoutFromPlanPriceNestedInput
-  changesTo?: Prisma.SubscriptionChangeUncheckedUpdateManyWithoutToPlanPriceNestedInput
-}
-
-export type PlanPriceCreateWithoutChangesFromInput = {
-  id?: string
-  key: string
-  amountMinor: bigint | number
-  currency: string
-  cadence: $Enums.PriceCadence
-  intervalCount?: number
-  trialDays?: number | null
-  effectiveFrom?: Date | string
-  effectiveTo?: Date | string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  planVersion: Prisma.PlanVersionCreateNestedOneWithoutPricesInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanPriceInput
-  changesTo?: Prisma.SubscriptionChangeCreateNestedManyWithoutToPlanPriceInput
-}
-
-export type PlanPriceUncheckedCreateWithoutChangesFromInput = {
-  id?: string
-  key: string
-  planVersionId: string
-  amountMinor: bigint | number
-  currency: string
-  cadence: $Enums.PriceCadence
-  intervalCount?: number
-  trialDays?: number | null
-  effectiveFrom?: Date | string
-  effectiveTo?: Date | string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanPriceInput
-  changesTo?: Prisma.SubscriptionChangeUncheckedCreateNestedManyWithoutToPlanPriceInput
-}
-
-export type PlanPriceCreateOrConnectWithoutChangesFromInput = {
-  where: Prisma.PlanPriceWhereUniqueInput
-  create: Prisma.XOR<Prisma.PlanPriceCreateWithoutChangesFromInput, Prisma.PlanPriceUncheckedCreateWithoutChangesFromInput>
-}
-
-export type PlanPriceCreateWithoutChangesToInput = {
-  id?: string
-  key: string
-  amountMinor: bigint | number
-  currency: string
-  cadence: $Enums.PriceCadence
-  intervalCount?: number
-  trialDays?: number | null
-  effectiveFrom?: Date | string
-  effectiveTo?: Date | string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  planVersion: Prisma.PlanVersionCreateNestedOneWithoutPricesInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanPriceInput
-  changesFrom?: Prisma.SubscriptionChangeCreateNestedManyWithoutFromPlanPriceInput
-}
-
-export type PlanPriceUncheckedCreateWithoutChangesToInput = {
-  id?: string
-  key: string
-  planVersionId: string
-  amountMinor: bigint | number
-  currency: string
-  cadence: $Enums.PriceCadence
-  intervalCount?: number
-  trialDays?: number | null
-  effectiveFrom?: Date | string
-  effectiveTo?: Date | string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanPriceInput
-  changesFrom?: Prisma.SubscriptionChangeUncheckedCreateNestedManyWithoutFromPlanPriceInput
-}
-
-export type PlanPriceCreateOrConnectWithoutChangesToInput = {
-  where: Prisma.PlanPriceWhereUniqueInput
-  create: Prisma.XOR<Prisma.PlanPriceCreateWithoutChangesToInput, Prisma.PlanPriceUncheckedCreateWithoutChangesToInput>
-}
-
-export type PlanPriceUpsertWithoutChangesFromInput = {
-  update: Prisma.XOR<Prisma.PlanPriceUpdateWithoutChangesFromInput, Prisma.PlanPriceUncheckedUpdateWithoutChangesFromInput>
-  create: Prisma.XOR<Prisma.PlanPriceCreateWithoutChangesFromInput, Prisma.PlanPriceUncheckedCreateWithoutChangesFromInput>
-  where?: Prisma.PlanPriceWhereInput
-}
-
-export type PlanPriceUpdateToOneWithWhereWithoutChangesFromInput = {
-  where?: Prisma.PlanPriceWhereInput
-  data: Prisma.XOR<Prisma.PlanPriceUpdateWithoutChangesFromInput, Prisma.PlanPriceUncheckedUpdateWithoutChangesFromInput>
-}
-
-export type PlanPriceUpdateWithoutChangesFromInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  key?: Prisma.StringFieldUpdateOperationsInput | string
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  cadence?: Prisma.EnumPriceCadenceFieldUpdateOperationsInput | $Enums.PriceCadence
-  intervalCount?: Prisma.IntFieldUpdateOperationsInput | number
-  trialDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  planVersion?: Prisma.PlanVersionUpdateOneRequiredWithoutPricesNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanPriceNestedInput
-  changesTo?: Prisma.SubscriptionChangeUpdateManyWithoutToPlanPriceNestedInput
-}
-
-export type PlanPriceUncheckedUpdateWithoutChangesFromInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  key?: Prisma.StringFieldUpdateOperationsInput | string
-  planVersionId?: Prisma.StringFieldUpdateOperationsInput | string
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  cadence?: Prisma.EnumPriceCadenceFieldUpdateOperationsInput | $Enums.PriceCadence
-  intervalCount?: Prisma.IntFieldUpdateOperationsInput | number
-  trialDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanPriceNestedInput
-  changesTo?: Prisma.SubscriptionChangeUncheckedUpdateManyWithoutToPlanPriceNestedInput
-}
-
-export type PlanPriceUpsertWithoutChangesToInput = {
-  update: Prisma.XOR<Prisma.PlanPriceUpdateWithoutChangesToInput, Prisma.PlanPriceUncheckedUpdateWithoutChangesToInput>
-  create: Prisma.XOR<Prisma.PlanPriceCreateWithoutChangesToInput, Prisma.PlanPriceUncheckedCreateWithoutChangesToInput>
-  where?: Prisma.PlanPriceWhereInput
-}
-
-export type PlanPriceUpdateToOneWithWhereWithoutChangesToInput = {
-  where?: Prisma.PlanPriceWhereInput
-  data: Prisma.XOR<Prisma.PlanPriceUpdateWithoutChangesToInput, Prisma.PlanPriceUncheckedUpdateWithoutChangesToInput>
-}
-
-export type PlanPriceUpdateWithoutChangesToInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  key?: Prisma.StringFieldUpdateOperationsInput | string
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  cadence?: Prisma.EnumPriceCadenceFieldUpdateOperationsInput | $Enums.PriceCadence
-  intervalCount?: Prisma.IntFieldUpdateOperationsInput | number
-  trialDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  planVersion?: Prisma.PlanVersionUpdateOneRequiredWithoutPricesNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanPriceNestedInput
-  changesFrom?: Prisma.SubscriptionChangeUpdateManyWithoutFromPlanPriceNestedInput
-}
-
-export type PlanPriceUncheckedUpdateWithoutChangesToInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  key?: Prisma.StringFieldUpdateOperationsInput | string
-  planVersionId?: Prisma.StringFieldUpdateOperationsInput | string
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  cadence?: Prisma.EnumPriceCadenceFieldUpdateOperationsInput | $Enums.PriceCadence
-  intervalCount?: Prisma.IntFieldUpdateOperationsInput | number
-  trialDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanPriceNestedInput
-  changesFrom?: Prisma.SubscriptionChangeUncheckedUpdateManyWithoutFromPlanPriceNestedInput
-}
-
-export type PlanPriceCreateManyPlanVersionInput = {
-  id?: string
-  key: string
-  amountMinor: bigint | number
-  currency: string
-  cadence: $Enums.PriceCadence
-  intervalCount?: number
-  trialDays?: number | null
-  effectiveFrom?: Date | string
-  effectiveTo?: Date | string | null
-  isActive?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type PlanPriceUpdateWithoutPlanVersionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  key?: Prisma.StringFieldUpdateOperationsInput | string
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  cadence?: Prisma.EnumPriceCadenceFieldUpdateOperationsInput | $Enums.PriceCadence
-  intervalCount?: Prisma.IntFieldUpdateOperationsInput | number
-  trialDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanPriceNestedInput
-  changesFrom?: Prisma.SubscriptionChangeUpdateManyWithoutFromPlanPriceNestedInput
-  changesTo?: Prisma.SubscriptionChangeUpdateManyWithoutToPlanPriceNestedInput
-}
-
-export type PlanPriceUncheckedUpdateWithoutPlanVersionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  key?: Prisma.StringFieldUpdateOperationsInput | string
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  cadence?: Prisma.EnumPriceCadenceFieldUpdateOperationsInput | $Enums.PriceCadence
-  intervalCount?: Prisma.IntFieldUpdateOperationsInput | number
-  trialDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  effectiveFrom?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  effectiveTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanPriceNestedInput
-  changesFrom?: Prisma.SubscriptionChangeUncheckedUpdateManyWithoutFromPlanPriceNestedInput
-  changesTo?: Prisma.SubscriptionChangeUncheckedUpdateManyWithoutToPlanPriceNestedInput
-}
-
-export type PlanPriceUncheckedUpdateManyWithoutPlanVersionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
   amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -1096,14 +638,10 @@ export type PlanPriceUncheckedUpdateManyWithoutPlanVersionInput = {
 
 export type PlanPriceCountOutputType = {
   subscriptions: number
-  changesFrom: number
-  changesTo: number
 }
 
 export type PlanPriceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   subscriptions?: boolean | PlanPriceCountOutputTypeCountSubscriptionsArgs
-  changesFrom?: boolean | PlanPriceCountOutputTypeCountChangesFromArgs
-  changesTo?: boolean | PlanPriceCountOutputTypeCountChangesToArgs
 }
 
 /**
@@ -1123,25 +661,10 @@ export type PlanPriceCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runti
   where?: Prisma.SubscriptionWhereInput
 }
 
-/**
- * PlanPriceCountOutputType without action
- */
-export type PlanPriceCountOutputTypeCountChangesFromArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SubscriptionChangeWhereInput
-}
-
-/**
- * PlanPriceCountOutputType without action
- */
-export type PlanPriceCountOutputTypeCountChangesToArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SubscriptionChangeWhereInput
-}
-
 
 export type PlanPriceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   key?: boolean
-  planVersionId?: boolean
   amountMinor?: boolean
   currency?: boolean
   cadence?: boolean
@@ -1152,17 +675,13 @@ export type PlanPriceSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  planVersion?: boolean | Prisma.PlanVersionDefaultArgs<ExtArgs>
   subscriptions?: boolean | Prisma.PlanPrice$subscriptionsArgs<ExtArgs>
-  changesFrom?: boolean | Prisma.PlanPrice$changesFromArgs<ExtArgs>
-  changesTo?: boolean | Prisma.PlanPrice$changesToArgs<ExtArgs>
   _count?: boolean | Prisma.PlanPriceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["planPrice"]>
 
 export type PlanPriceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   key?: boolean
-  planVersionId?: boolean
   amountMinor?: boolean
   currency?: boolean
   cadence?: boolean
@@ -1173,13 +692,11 @@ export type PlanPriceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  planVersion?: boolean | Prisma.PlanVersionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["planPrice"]>
 
 export type PlanPriceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   key?: boolean
-  planVersionId?: boolean
   amountMinor?: boolean
   currency?: boolean
   cadence?: boolean
@@ -1190,13 +707,11 @@ export type PlanPriceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  planVersion?: boolean | Prisma.PlanVersionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["planPrice"]>
 
 export type PlanPriceSelectScalar = {
   id?: boolean
   key?: boolean
-  planVersionId?: boolean
   amountMinor?: boolean
   currency?: boolean
   cadence?: boolean
@@ -1209,33 +724,22 @@ export type PlanPriceSelectScalar = {
   updatedAt?: boolean
 }
 
-export type PlanPriceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "key" | "planVersionId" | "amountMinor" | "currency" | "cadence" | "intervalCount" | "trialDays" | "effectiveFrom" | "effectiveTo" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["planPrice"]>
+export type PlanPriceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "key" | "amountMinor" | "currency" | "cadence" | "intervalCount" | "trialDays" | "effectiveFrom" | "effectiveTo" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["planPrice"]>
 export type PlanPriceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  planVersion?: boolean | Prisma.PlanVersionDefaultArgs<ExtArgs>
   subscriptions?: boolean | Prisma.PlanPrice$subscriptionsArgs<ExtArgs>
-  changesFrom?: boolean | Prisma.PlanPrice$changesFromArgs<ExtArgs>
-  changesTo?: boolean | Prisma.PlanPrice$changesToArgs<ExtArgs>
   _count?: boolean | Prisma.PlanPriceCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type PlanPriceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  planVersion?: boolean | Prisma.PlanVersionDefaultArgs<ExtArgs>
-}
-export type PlanPriceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  planVersion?: boolean | Prisma.PlanVersionDefaultArgs<ExtArgs>
-}
+export type PlanPriceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type PlanPriceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $PlanPricePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PlanPrice"
   objects: {
-    planVersion: Prisma.$PlanVersionPayload<ExtArgs>
     subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
-    changesFrom: Prisma.$SubscriptionChangePayload<ExtArgs>[]
-    changesTo: Prisma.$SubscriptionChangePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     key: string
-    planVersionId: string
     amountMinor: bigint
     currency: string
     cadence: $Enums.PriceCadence
@@ -1640,10 +1144,7 @@ readonly fields: PlanPriceFieldRefs;
  */
 export interface Prisma__PlanPriceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  planVersion<T extends Prisma.PlanVersionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlanVersionDefaultArgs<ExtArgs>>): Prisma.Prisma__PlanVersionClient<runtime.Types.Result.GetResult<Prisma.$PlanVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   subscriptions<T extends Prisma.PlanPrice$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlanPrice$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  changesFrom<T extends Prisma.PlanPrice$changesFromArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlanPrice$changesFromArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionChangePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  changesTo<T extends Prisma.PlanPrice$changesToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PlanPrice$changesToArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionChangePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1675,7 +1176,6 @@ export interface Prisma__PlanPriceClient<T, Null = never, ExtArgs extends runtim
 export interface PlanPriceFieldRefs {
   readonly id: Prisma.FieldRef<"PlanPrice", 'String'>
   readonly key: Prisma.FieldRef<"PlanPrice", 'String'>
-  readonly planVersionId: Prisma.FieldRef<"PlanPrice", 'String'>
   readonly amountMinor: Prisma.FieldRef<"PlanPrice", 'BigInt'>
   readonly currency: Prisma.FieldRef<"PlanPrice", 'String'>
   readonly cadence: Prisma.FieldRef<"PlanPrice", 'PriceCadence'>
@@ -1940,10 +1440,6 @@ export type PlanPriceCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    */
   data: Prisma.PlanPriceCreateManyInput | Prisma.PlanPriceCreateManyInput[]
   skipDuplicates?: boolean
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PlanPriceIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2014,10 +1510,6 @@ export type PlanPriceUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    * Limit how many PlanPrices to update.
    */
   limit?: number
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PlanPriceIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2108,54 +1600,6 @@ export type PlanPrice$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
-}
-
-/**
- * PlanPrice.changesFrom
- */
-export type PlanPrice$changesFromArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SubscriptionChange
-   */
-  select?: Prisma.SubscriptionChangeSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SubscriptionChange
-   */
-  omit?: Prisma.SubscriptionChangeOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SubscriptionChangeInclude<ExtArgs> | null
-  where?: Prisma.SubscriptionChangeWhereInput
-  orderBy?: Prisma.SubscriptionChangeOrderByWithRelationInput | Prisma.SubscriptionChangeOrderByWithRelationInput[]
-  cursor?: Prisma.SubscriptionChangeWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SubscriptionChangeScalarFieldEnum | Prisma.SubscriptionChangeScalarFieldEnum[]
-}
-
-/**
- * PlanPrice.changesTo
- */
-export type PlanPrice$changesToArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SubscriptionChange
-   */
-  select?: Prisma.SubscriptionChangeSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SubscriptionChange
-   */
-  omit?: Prisma.SubscriptionChangeOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SubscriptionChangeInclude<ExtArgs> | null
-  where?: Prisma.SubscriptionChangeWhereInput
-  orderBy?: Prisma.SubscriptionChangeOrderByWithRelationInput | Prisma.SubscriptionChangeOrderByWithRelationInput[]
-  cursor?: Prisma.SubscriptionChangeWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SubscriptionChangeScalarFieldEnum | Prisma.SubscriptionChangeScalarFieldEnum[]
 }
 
 /**

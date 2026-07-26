@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import type { EditorCardDTO } from "@/dto";
 import type { TransactionRepositories, UnitOfWork } from "@/repositories";
 import { CreateCardBlock } from "@/use-cases/card-blocks";
-import { orderedVisibleBlocks } from "@/components/themes/DefaultTheme";
+import { resolveRendererSectionOrder } from "@/components/card-renderer";
 import {
   createCardBlockSchema,
   safeCardBlockConfig,
@@ -14,7 +14,6 @@ const id = "0915a8e0-60eb-4cfc-b6dc-adcb01dd249a",
 const source: EditorCardDTO = {
   id,
   customerId: "3d594650-c44b-4f60-8c9a-c0f44f57615d",
-  themeId: null,
   slug: "block-card",
   name: "Block Card",
   status: "PUBLISHED",
@@ -54,18 +53,15 @@ const source: EditorCardDTO = {
 };
 describe("Sprint 14 blocks", () => {
   it("maps legacy sections into compatible ordered blocks", () => {
-    const blocks = orderedVisibleBlocks({
-      ...source,
-      blocks: undefined,
-      appearance: defaultAppearanceSettings,
-      buttons: [],
-      socialLinks: [],
+    const sectionOrder = resolveRendererSectionOrder({
+      sections: source.sections,
     });
-    expect(blocks.map((block) => block.kind)).toEqual([
-      "ABOUT",
-      "HERO",
-      "CTA_BUTTONS",
-      "SOCIAL_LINKS",
+    expect(sectionOrder).toEqual([
+      "bio",
+      "header",
+      "buttons",
+      "socialLinks",
+      "footer",
     ]);
   });
   it("validates configurations independently by block kind", () => {

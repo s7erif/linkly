@@ -117,20 +117,10 @@ export type PaymentSubmission = Prisma.PaymentSubmissionModel
  */
 export type Invoice = Prisma.InvoiceModel
 /**
- * Model InvoiceLine
- * 
- */
-export type InvoiceLine = Prisma.InvoiceLineModel
-/**
  * Model RetryTask
  * 
  */
 export type RetryTask = Prisma.RetryTaskModel
-/**
- * Model BillingTimelineEntry
- * 
- */
-export type BillingTimelineEntry = Prisma.BillingTimelineEntryModel
 /**
  * Model Card
  * 
@@ -156,11 +146,6 @@ export type CardBlock = Prisma.CardBlockModel
  * 
  */
 export type CardBlockMedia = Prisma.CardBlockMediaModel
-/**
- * Model Theme
- * 
- */
-export type Theme = Prisma.ThemeModel
 /**
  * Model SocialLink
  * 
@@ -197,16 +182,6 @@ export type Plan = Prisma.PlanModel
  */
 export type PlanFeature = Prisma.PlanFeatureModel
 /**
- * Model PlanVersion
- * 
- */
-export type PlanVersion = Prisma.PlanVersionModel
-/**
- * Model PlanVersionFeature
- * 
- */
-export type PlanVersionFeature = Prisma.PlanVersionFeatureModel
-/**
  * Model PlanPrice
  * 
  */
@@ -222,16 +197,6 @@ export type Subscription = Prisma.SubscriptionModel
  */
 export type SubscriptionReminder = Prisma.SubscriptionReminderModel
 /**
- * Model SubscriptionPeriod
- * 
- */
-export type SubscriptionPeriod = Prisma.SubscriptionPeriodModel
-/**
- * Model SubscriptionChange
- * 
- */
-export type SubscriptionChange = Prisma.SubscriptionChangeModel
-/**
  * Model MediaAsset
  * 
  */
@@ -242,11 +207,6 @@ export type MediaAsset = Prisma.MediaAssetModel
  */
 export type MediaFolder = Prisma.MediaFolderModel
 /**
- * Model MediaUsage
- * 
- */
-export type MediaUsage = Prisma.MediaUsageModel
-/**
  * Model CardMedia
  * 
  */
@@ -256,11 +216,6 @@ export type CardMedia = Prisma.CardMediaModel
  * 
  */
 export type AnalyticsEvent = Prisma.AnalyticsEventModel
-/**
- * Model AnalyticsAggregate
- * 
- */
-export type AnalyticsAggregate = Prisma.AnalyticsAggregateModel
 /**
  * Model NotificationDelivery
  * 
@@ -282,82 +237,12 @@ export type AuditLog = Prisma.AuditLogModel
  */
 export type LegacyIdentifier = Prisma.LegacyIdentifierModel
 /**
- * Model LegacyUser
- * 
- */
-export type LegacyUser = Prisma.LegacyUserModel
-/**
- * Model LegacyAccount
- * 
- */
-export type LegacyAccount = Prisma.LegacyAccountModel
-/**
- * Model LegacySession
- * 
- */
-export type LegacySession = Prisma.LegacySessionModel
-/**
- * Model LegacyVerificationToken
- * 
- */
-export type LegacyVerificationToken = Prisma.LegacyVerificationTokenModel
-/**
  * Model LegacyBusinessCard
  * 
  */
 export type LegacyBusinessCard = Prisma.LegacyBusinessCardModel
 /**
- * Model LegacySocialLink
- * 
- */
-export type LegacySocialLink = Prisma.LegacySocialLinkModel
-/**
- * Model LegacyAnalytics
- * 
- */
-export type LegacyAnalytics = Prisma.LegacyAnalyticsModel
-/**
  * Model Payment
  * 
  */
 export type Payment = Prisma.PaymentModel
-/**
- * Model PaymentAttempt
- * 
- */
-export type PaymentAttempt = Prisma.PaymentAttemptModel
-/**
- * Model PaymentAllocation
- * 
- */
-export type PaymentAllocation = Prisma.PaymentAllocationModel
-/**
- * Model Refund
- * 
- */
-export type Refund = Prisma.RefundModel
-/**
- * Model PaymentMethodReference
- * 
- */
-export type PaymentMethodReference = Prisma.PaymentMethodReferenceModel
-/**
- * Model EntitlementGrant
- * 
- */
-export type EntitlementGrant = Prisma.EntitlementGrantModel
-/**
- * Model ProviderObjectReference
- * 
- */
-export type ProviderObjectReference = Prisma.ProviderObjectReferenceModel
-/**
- * Model WebhookInbox
- * 
- */
-export type WebhookInbox = Prisma.WebhookInboxModel
-/**
- * Model OutboxEvent
- * 
- */
-export type OutboxEvent = Prisma.OutboxEventModel

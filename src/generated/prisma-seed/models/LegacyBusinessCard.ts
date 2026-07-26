@@ -43,7 +43,6 @@ export type LegacyBusinessCardMinAggregateOutputType = {
   isActive: boolean | null
   createTime: Date | null
   updateTime: Date | null
-  userId: string | null
 }
 
 export type LegacyBusinessCardMaxAggregateOutputType = {
@@ -65,7 +64,6 @@ export type LegacyBusinessCardMaxAggregateOutputType = {
   isActive: boolean | null
   createTime: Date | null
   updateTime: Date | null
-  userId: string | null
 }
 
 export type LegacyBusinessCardCountAggregateOutputType = {
@@ -87,7 +85,6 @@ export type LegacyBusinessCardCountAggregateOutputType = {
   isActive: number
   createTime: number
   updateTime: number
-  userId: number
   _all: number
 }
 
@@ -111,7 +108,6 @@ export type LegacyBusinessCardMinAggregateInputType = {
   isActive?: true
   createTime?: true
   updateTime?: true
-  userId?: true
 }
 
 export type LegacyBusinessCardMaxAggregateInputType = {
@@ -133,7 +129,6 @@ export type LegacyBusinessCardMaxAggregateInputType = {
   isActive?: true
   createTime?: true
   updateTime?: true
-  userId?: true
 }
 
 export type LegacyBusinessCardCountAggregateInputType = {
@@ -155,7 +150,6 @@ export type LegacyBusinessCardCountAggregateInputType = {
   isActive?: true
   createTime?: true
   updateTime?: true
-  userId?: true
   _all?: true
 }
 
@@ -250,7 +244,6 @@ export type LegacyBusinessCardGroupByOutputType = {
   isActive: boolean
   createTime: Date
   updateTime: Date
-  userId: string
   _count: LegacyBusinessCardCountAggregateOutputType | null
   _min: LegacyBusinessCardMinAggregateOutputType | null
   _max: LegacyBusinessCardMaxAggregateOutputType | null
@@ -293,10 +286,6 @@ export type LegacyBusinessCardWhereInput = {
   isActive?: Prisma.BoolFilter<"LegacyBusinessCard"> | boolean
   createTime?: Prisma.DateTimeFilter<"LegacyBusinessCard"> | Date | string
   updateTime?: Prisma.DateTimeFilter<"LegacyBusinessCard"> | Date | string
-  userId?: Prisma.StringFilter<"LegacyBusinessCard"> | string
-  user?: Prisma.XOR<Prisma.LegacyUserScalarRelationFilter, Prisma.LegacyUserWhereInput>
-  socialLinks?: Prisma.LegacySocialLinkListRelationFilter
-  analytics?: Prisma.XOR<Prisma.LegacyAnalyticsNullableScalarRelationFilter, Prisma.LegacyAnalyticsWhereInput> | null
 }
 
 export type LegacyBusinessCardOrderByWithRelationInput = {
@@ -318,10 +307,6 @@ export type LegacyBusinessCardOrderByWithRelationInput = {
   isActive?: Prisma.SortOrder
   createTime?: Prisma.SortOrder
   updateTime?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  user?: Prisma.LegacyUserOrderByWithRelationInput
-  socialLinks?: Prisma.LegacySocialLinkOrderByRelationAggregateInput
-  analytics?: Prisma.LegacyAnalyticsOrderByWithRelationInput
 }
 
 export type LegacyBusinessCardWhereUniqueInput = Prisma.AtLeast<{
@@ -346,10 +331,6 @@ export type LegacyBusinessCardWhereUniqueInput = Prisma.AtLeast<{
   isActive?: Prisma.BoolFilter<"LegacyBusinessCard"> | boolean
   createTime?: Prisma.DateTimeFilter<"LegacyBusinessCard"> | Date | string
   updateTime?: Prisma.DateTimeFilter<"LegacyBusinessCard"> | Date | string
-  userId?: Prisma.StringFilter<"LegacyBusinessCard"> | string
-  user?: Prisma.XOR<Prisma.LegacyUserScalarRelationFilter, Prisma.LegacyUserWhereInput>
-  socialLinks?: Prisma.LegacySocialLinkListRelationFilter
-  analytics?: Prisma.XOR<Prisma.LegacyAnalyticsNullableScalarRelationFilter, Prisma.LegacyAnalyticsWhereInput> | null
 }, "id" | "urlHash" | "slug">
 
 export type LegacyBusinessCardOrderByWithAggregationInput = {
@@ -371,7 +352,6 @@ export type LegacyBusinessCardOrderByWithAggregationInput = {
   isActive?: Prisma.SortOrder
   createTime?: Prisma.SortOrder
   updateTime?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   _count?: Prisma.LegacyBusinessCardCountOrderByAggregateInput
   _max?: Prisma.LegacyBusinessCardMaxOrderByAggregateInput
   _min?: Prisma.LegacyBusinessCardMinOrderByAggregateInput
@@ -399,7 +379,6 @@ export type LegacyBusinessCardScalarWhereWithAggregatesInput = {
   isActive?: Prisma.BoolWithAggregatesFilter<"LegacyBusinessCard"> | boolean
   createTime?: Prisma.DateTimeWithAggregatesFilter<"LegacyBusinessCard"> | Date | string
   updateTime?: Prisma.DateTimeWithAggregatesFilter<"LegacyBusinessCard"> | Date | string
-  userId?: Prisma.StringWithAggregatesFilter<"LegacyBusinessCard"> | string
 }
 
 export type LegacyBusinessCardCreateInput = {
@@ -421,9 +400,6 @@ export type LegacyBusinessCardCreateInput = {
   isActive?: boolean
   createTime?: Date | string
   updateTime: Date | string
-  user: Prisma.LegacyUserCreateNestedOneWithoutCardsInput
-  socialLinks?: Prisma.LegacySocialLinkCreateNestedManyWithoutBusinessCardInput
-  analytics?: Prisma.LegacyAnalyticsCreateNestedOneWithoutBusinessCardInput
 }
 
 export type LegacyBusinessCardUncheckedCreateInput = {
@@ -445,9 +421,6 @@ export type LegacyBusinessCardUncheckedCreateInput = {
   isActive?: boolean
   createTime?: Date | string
   updateTime: Date | string
-  userId: string
-  socialLinks?: Prisma.LegacySocialLinkUncheckedCreateNestedManyWithoutBusinessCardInput
-  analytics?: Prisma.LegacyAnalyticsUncheckedCreateNestedOneWithoutBusinessCardInput
 }
 
 export type LegacyBusinessCardUpdateInput = {
@@ -469,9 +442,6 @@ export type LegacyBusinessCardUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.LegacyUserUpdateOneRequiredWithoutCardsNestedInput
-  socialLinks?: Prisma.LegacySocialLinkUpdateManyWithoutBusinessCardNestedInput
-  analytics?: Prisma.LegacyAnalyticsUpdateOneWithoutBusinessCardNestedInput
 }
 
 export type LegacyBusinessCardUncheckedUpdateInput = {
@@ -493,9 +463,6 @@ export type LegacyBusinessCardUncheckedUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  socialLinks?: Prisma.LegacySocialLinkUncheckedUpdateManyWithoutBusinessCardNestedInput
-  analytics?: Prisma.LegacyAnalyticsUncheckedUpdateOneWithoutBusinessCardNestedInput
 }
 
 export type LegacyBusinessCardCreateManyInput = {
@@ -517,7 +484,6 @@ export type LegacyBusinessCardCreateManyInput = {
   isActive?: boolean
   createTime?: Date | string
   updateTime: Date | string
-  userId: string
 }
 
 export type LegacyBusinessCardUpdateManyMutationInput = {
@@ -560,17 +526,6 @@ export type LegacyBusinessCardUncheckedUpdateManyInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type LegacyBusinessCardListRelationFilter = {
-  every?: Prisma.LegacyBusinessCardWhereInput
-  some?: Prisma.LegacyBusinessCardWhereInput
-  none?: Prisma.LegacyBusinessCardWhereInput
-}
-
-export type LegacyBusinessCardOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type LegacyBusinessCardCountOrderByAggregateInput = {
@@ -592,7 +547,6 @@ export type LegacyBusinessCardCountOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   createTime?: Prisma.SortOrder
   updateTime?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type LegacyBusinessCardMaxOrderByAggregateInput = {
@@ -614,7 +568,6 @@ export type LegacyBusinessCardMaxOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   createTime?: Prisma.SortOrder
   updateTime?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type LegacyBusinessCardMinOrderByAggregateInput = {
@@ -636,514 +589,8 @@ export type LegacyBusinessCardMinOrderByAggregateInput = {
   isActive?: Prisma.SortOrder
   createTime?: Prisma.SortOrder
   updateTime?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
-export type LegacyBusinessCardScalarRelationFilter = {
-  is?: Prisma.LegacyBusinessCardWhereInput
-  isNot?: Prisma.LegacyBusinessCardWhereInput
-}
-
-export type LegacyBusinessCardCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutUserInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutUserInput> | Prisma.LegacyBusinessCardCreateWithoutUserInput[] | Prisma.LegacyBusinessCardUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.LegacyBusinessCardCreateOrConnectWithoutUserInput | Prisma.LegacyBusinessCardCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.LegacyBusinessCardCreateManyUserInputEnvelope
-  connect?: Prisma.LegacyBusinessCardWhereUniqueInput | Prisma.LegacyBusinessCardWhereUniqueInput[]
-}
-
-export type LegacyBusinessCardUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutUserInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutUserInput> | Prisma.LegacyBusinessCardCreateWithoutUserInput[] | Prisma.LegacyBusinessCardUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.LegacyBusinessCardCreateOrConnectWithoutUserInput | Prisma.LegacyBusinessCardCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.LegacyBusinessCardCreateManyUserInputEnvelope
-  connect?: Prisma.LegacyBusinessCardWhereUniqueInput | Prisma.LegacyBusinessCardWhereUniqueInput[]
-}
-
-export type LegacyBusinessCardUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutUserInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutUserInput> | Prisma.LegacyBusinessCardCreateWithoutUserInput[] | Prisma.LegacyBusinessCardUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.LegacyBusinessCardCreateOrConnectWithoutUserInput | Prisma.LegacyBusinessCardCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.LegacyBusinessCardUpsertWithWhereUniqueWithoutUserInput | Prisma.LegacyBusinessCardUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.LegacyBusinessCardCreateManyUserInputEnvelope
-  set?: Prisma.LegacyBusinessCardWhereUniqueInput | Prisma.LegacyBusinessCardWhereUniqueInput[]
-  disconnect?: Prisma.LegacyBusinessCardWhereUniqueInput | Prisma.LegacyBusinessCardWhereUniqueInput[]
-  delete?: Prisma.LegacyBusinessCardWhereUniqueInput | Prisma.LegacyBusinessCardWhereUniqueInput[]
-  connect?: Prisma.LegacyBusinessCardWhereUniqueInput | Prisma.LegacyBusinessCardWhereUniqueInput[]
-  update?: Prisma.LegacyBusinessCardUpdateWithWhereUniqueWithoutUserInput | Prisma.LegacyBusinessCardUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.LegacyBusinessCardUpdateManyWithWhereWithoutUserInput | Prisma.LegacyBusinessCardUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.LegacyBusinessCardScalarWhereInput | Prisma.LegacyBusinessCardScalarWhereInput[]
-}
-
-export type LegacyBusinessCardUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutUserInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutUserInput> | Prisma.LegacyBusinessCardCreateWithoutUserInput[] | Prisma.LegacyBusinessCardUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.LegacyBusinessCardCreateOrConnectWithoutUserInput | Prisma.LegacyBusinessCardCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.LegacyBusinessCardUpsertWithWhereUniqueWithoutUserInput | Prisma.LegacyBusinessCardUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.LegacyBusinessCardCreateManyUserInputEnvelope
-  set?: Prisma.LegacyBusinessCardWhereUniqueInput | Prisma.LegacyBusinessCardWhereUniqueInput[]
-  disconnect?: Prisma.LegacyBusinessCardWhereUniqueInput | Prisma.LegacyBusinessCardWhereUniqueInput[]
-  delete?: Prisma.LegacyBusinessCardWhereUniqueInput | Prisma.LegacyBusinessCardWhereUniqueInput[]
-  connect?: Prisma.LegacyBusinessCardWhereUniqueInput | Prisma.LegacyBusinessCardWhereUniqueInput[]
-  update?: Prisma.LegacyBusinessCardUpdateWithWhereUniqueWithoutUserInput | Prisma.LegacyBusinessCardUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.LegacyBusinessCardUpdateManyWithWhereWithoutUserInput | Prisma.LegacyBusinessCardUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.LegacyBusinessCardScalarWhereInput | Prisma.LegacyBusinessCardScalarWhereInput[]
-}
-
-export type LegacyBusinessCardCreateNestedOneWithoutSocialLinksInput = {
-  create?: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutSocialLinksInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutSocialLinksInput>
-  connectOrCreate?: Prisma.LegacyBusinessCardCreateOrConnectWithoutSocialLinksInput
-  connect?: Prisma.LegacyBusinessCardWhereUniqueInput
-}
-
-export type LegacyBusinessCardUpdateOneRequiredWithoutSocialLinksNestedInput = {
-  create?: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutSocialLinksInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutSocialLinksInput>
-  connectOrCreate?: Prisma.LegacyBusinessCardCreateOrConnectWithoutSocialLinksInput
-  upsert?: Prisma.LegacyBusinessCardUpsertWithoutSocialLinksInput
-  connect?: Prisma.LegacyBusinessCardWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LegacyBusinessCardUpdateToOneWithWhereWithoutSocialLinksInput, Prisma.LegacyBusinessCardUpdateWithoutSocialLinksInput>, Prisma.LegacyBusinessCardUncheckedUpdateWithoutSocialLinksInput>
-}
-
-export type LegacyBusinessCardCreateNestedOneWithoutAnalyticsInput = {
-  create?: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutAnalyticsInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutAnalyticsInput>
-  connectOrCreate?: Prisma.LegacyBusinessCardCreateOrConnectWithoutAnalyticsInput
-  connect?: Prisma.LegacyBusinessCardWhereUniqueInput
-}
-
-export type LegacyBusinessCardUpdateOneRequiredWithoutAnalyticsNestedInput = {
-  create?: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutAnalyticsInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutAnalyticsInput>
-  connectOrCreate?: Prisma.LegacyBusinessCardCreateOrConnectWithoutAnalyticsInput
-  upsert?: Prisma.LegacyBusinessCardUpsertWithoutAnalyticsInput
-  connect?: Prisma.LegacyBusinessCardWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.LegacyBusinessCardUpdateToOneWithWhereWithoutAnalyticsInput, Prisma.LegacyBusinessCardUpdateWithoutAnalyticsInput>, Prisma.LegacyBusinessCardUncheckedUpdateWithoutAnalyticsInput>
-}
-
-export type LegacyBusinessCardCreateWithoutUserInput = {
-  id?: string
-  name: string
-  title: string
-  company: string
-  address?: string | null
-  phone?: string | null
-  email?: string | null
-  website?: string | null
-  bio?: string | null
-  avatar?: string | null
-  backgroundImage?: string | null
-  socialLinksJson: string
-  templateId?: string
-  urlHash?: string
-  slug: string
-  isActive?: boolean
-  createTime?: Date | string
-  updateTime: Date | string
-  socialLinks?: Prisma.LegacySocialLinkCreateNestedManyWithoutBusinessCardInput
-  analytics?: Prisma.LegacyAnalyticsCreateNestedOneWithoutBusinessCardInput
-}
-
-export type LegacyBusinessCardUncheckedCreateWithoutUserInput = {
-  id?: string
-  name: string
-  title: string
-  company: string
-  address?: string | null
-  phone?: string | null
-  email?: string | null
-  website?: string | null
-  bio?: string | null
-  avatar?: string | null
-  backgroundImage?: string | null
-  socialLinksJson: string
-  templateId?: string
-  urlHash?: string
-  slug: string
-  isActive?: boolean
-  createTime?: Date | string
-  updateTime: Date | string
-  socialLinks?: Prisma.LegacySocialLinkUncheckedCreateNestedManyWithoutBusinessCardInput
-  analytics?: Prisma.LegacyAnalyticsUncheckedCreateNestedOneWithoutBusinessCardInput
-}
-
-export type LegacyBusinessCardCreateOrConnectWithoutUserInput = {
-  where: Prisma.LegacyBusinessCardWhereUniqueInput
-  create: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutUserInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutUserInput>
-}
-
-export type LegacyBusinessCardCreateManyUserInputEnvelope = {
-  data: Prisma.LegacyBusinessCardCreateManyUserInput | Prisma.LegacyBusinessCardCreateManyUserInput[]
-  skipDuplicates?: boolean
-}
-
-export type LegacyBusinessCardUpsertWithWhereUniqueWithoutUserInput = {
-  where: Prisma.LegacyBusinessCardWhereUniqueInput
-  update: Prisma.XOR<Prisma.LegacyBusinessCardUpdateWithoutUserInput, Prisma.LegacyBusinessCardUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutUserInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutUserInput>
-}
-
-export type LegacyBusinessCardUpdateWithWhereUniqueWithoutUserInput = {
-  where: Prisma.LegacyBusinessCardWhereUniqueInput
-  data: Prisma.XOR<Prisma.LegacyBusinessCardUpdateWithoutUserInput, Prisma.LegacyBusinessCardUncheckedUpdateWithoutUserInput>
-}
-
-export type LegacyBusinessCardUpdateManyWithWhereWithoutUserInput = {
-  where: Prisma.LegacyBusinessCardScalarWhereInput
-  data: Prisma.XOR<Prisma.LegacyBusinessCardUpdateManyMutationInput, Prisma.LegacyBusinessCardUncheckedUpdateManyWithoutUserInput>
-}
-
-export type LegacyBusinessCardScalarWhereInput = {
-  AND?: Prisma.LegacyBusinessCardScalarWhereInput | Prisma.LegacyBusinessCardScalarWhereInput[]
-  OR?: Prisma.LegacyBusinessCardScalarWhereInput[]
-  NOT?: Prisma.LegacyBusinessCardScalarWhereInput | Prisma.LegacyBusinessCardScalarWhereInput[]
-  id?: Prisma.StringFilter<"LegacyBusinessCard"> | string
-  name?: Prisma.StringFilter<"LegacyBusinessCard"> | string
-  title?: Prisma.StringFilter<"LegacyBusinessCard"> | string
-  company?: Prisma.StringFilter<"LegacyBusinessCard"> | string
-  address?: Prisma.StringNullableFilter<"LegacyBusinessCard"> | string | null
-  phone?: Prisma.StringNullableFilter<"LegacyBusinessCard"> | string | null
-  email?: Prisma.StringNullableFilter<"LegacyBusinessCard"> | string | null
-  website?: Prisma.StringNullableFilter<"LegacyBusinessCard"> | string | null
-  bio?: Prisma.StringNullableFilter<"LegacyBusinessCard"> | string | null
-  avatar?: Prisma.StringNullableFilter<"LegacyBusinessCard"> | string | null
-  backgroundImage?: Prisma.StringNullableFilter<"LegacyBusinessCard"> | string | null
-  socialLinksJson?: Prisma.StringFilter<"LegacyBusinessCard"> | string
-  templateId?: Prisma.StringFilter<"LegacyBusinessCard"> | string
-  urlHash?: Prisma.StringFilter<"LegacyBusinessCard"> | string
-  slug?: Prisma.StringFilter<"LegacyBusinessCard"> | string
-  isActive?: Prisma.BoolFilter<"LegacyBusinessCard"> | boolean
-  createTime?: Prisma.DateTimeFilter<"LegacyBusinessCard"> | Date | string
-  updateTime?: Prisma.DateTimeFilter<"LegacyBusinessCard"> | Date | string
-  userId?: Prisma.StringFilter<"LegacyBusinessCard"> | string
-}
-
-export type LegacyBusinessCardCreateWithoutSocialLinksInput = {
-  id?: string
-  name: string
-  title: string
-  company: string
-  address?: string | null
-  phone?: string | null
-  email?: string | null
-  website?: string | null
-  bio?: string | null
-  avatar?: string | null
-  backgroundImage?: string | null
-  socialLinksJson: string
-  templateId?: string
-  urlHash?: string
-  slug: string
-  isActive?: boolean
-  createTime?: Date | string
-  updateTime: Date | string
-  user: Prisma.LegacyUserCreateNestedOneWithoutCardsInput
-  analytics?: Prisma.LegacyAnalyticsCreateNestedOneWithoutBusinessCardInput
-}
-
-export type LegacyBusinessCardUncheckedCreateWithoutSocialLinksInput = {
-  id?: string
-  name: string
-  title: string
-  company: string
-  address?: string | null
-  phone?: string | null
-  email?: string | null
-  website?: string | null
-  bio?: string | null
-  avatar?: string | null
-  backgroundImage?: string | null
-  socialLinksJson: string
-  templateId?: string
-  urlHash?: string
-  slug: string
-  isActive?: boolean
-  createTime?: Date | string
-  updateTime: Date | string
-  userId: string
-  analytics?: Prisma.LegacyAnalyticsUncheckedCreateNestedOneWithoutBusinessCardInput
-}
-
-export type LegacyBusinessCardCreateOrConnectWithoutSocialLinksInput = {
-  where: Prisma.LegacyBusinessCardWhereUniqueInput
-  create: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutSocialLinksInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutSocialLinksInput>
-}
-
-export type LegacyBusinessCardUpsertWithoutSocialLinksInput = {
-  update: Prisma.XOR<Prisma.LegacyBusinessCardUpdateWithoutSocialLinksInput, Prisma.LegacyBusinessCardUncheckedUpdateWithoutSocialLinksInput>
-  create: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutSocialLinksInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutSocialLinksInput>
-  where?: Prisma.LegacyBusinessCardWhereInput
-}
-
-export type LegacyBusinessCardUpdateToOneWithWhereWithoutSocialLinksInput = {
-  where?: Prisma.LegacyBusinessCardWhereInput
-  data: Prisma.XOR<Prisma.LegacyBusinessCardUpdateWithoutSocialLinksInput, Prisma.LegacyBusinessCardUncheckedUpdateWithoutSocialLinksInput>
-}
-
-export type LegacyBusinessCardUpdateWithoutSocialLinksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  company?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  backgroundImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  socialLinksJson?: Prisma.StringFieldUpdateOperationsInput | string
-  templateId?: Prisma.StringFieldUpdateOperationsInput | string
-  urlHash?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.LegacyUserUpdateOneRequiredWithoutCardsNestedInput
-  analytics?: Prisma.LegacyAnalyticsUpdateOneWithoutBusinessCardNestedInput
-}
-
-export type LegacyBusinessCardUncheckedUpdateWithoutSocialLinksInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  company?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  backgroundImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  socialLinksJson?: Prisma.StringFieldUpdateOperationsInput | string
-  templateId?: Prisma.StringFieldUpdateOperationsInput | string
-  urlHash?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  analytics?: Prisma.LegacyAnalyticsUncheckedUpdateOneWithoutBusinessCardNestedInput
-}
-
-export type LegacyBusinessCardCreateWithoutAnalyticsInput = {
-  id?: string
-  name: string
-  title: string
-  company: string
-  address?: string | null
-  phone?: string | null
-  email?: string | null
-  website?: string | null
-  bio?: string | null
-  avatar?: string | null
-  backgroundImage?: string | null
-  socialLinksJson: string
-  templateId?: string
-  urlHash?: string
-  slug: string
-  isActive?: boolean
-  createTime?: Date | string
-  updateTime: Date | string
-  user: Prisma.LegacyUserCreateNestedOneWithoutCardsInput
-  socialLinks?: Prisma.LegacySocialLinkCreateNestedManyWithoutBusinessCardInput
-}
-
-export type LegacyBusinessCardUncheckedCreateWithoutAnalyticsInput = {
-  id?: string
-  name: string
-  title: string
-  company: string
-  address?: string | null
-  phone?: string | null
-  email?: string | null
-  website?: string | null
-  bio?: string | null
-  avatar?: string | null
-  backgroundImage?: string | null
-  socialLinksJson: string
-  templateId?: string
-  urlHash?: string
-  slug: string
-  isActive?: boolean
-  createTime?: Date | string
-  updateTime: Date | string
-  userId: string
-  socialLinks?: Prisma.LegacySocialLinkUncheckedCreateNestedManyWithoutBusinessCardInput
-}
-
-export type LegacyBusinessCardCreateOrConnectWithoutAnalyticsInput = {
-  where: Prisma.LegacyBusinessCardWhereUniqueInput
-  create: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutAnalyticsInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutAnalyticsInput>
-}
-
-export type LegacyBusinessCardUpsertWithoutAnalyticsInput = {
-  update: Prisma.XOR<Prisma.LegacyBusinessCardUpdateWithoutAnalyticsInput, Prisma.LegacyBusinessCardUncheckedUpdateWithoutAnalyticsInput>
-  create: Prisma.XOR<Prisma.LegacyBusinessCardCreateWithoutAnalyticsInput, Prisma.LegacyBusinessCardUncheckedCreateWithoutAnalyticsInput>
-  where?: Prisma.LegacyBusinessCardWhereInput
-}
-
-export type LegacyBusinessCardUpdateToOneWithWhereWithoutAnalyticsInput = {
-  where?: Prisma.LegacyBusinessCardWhereInput
-  data: Prisma.XOR<Prisma.LegacyBusinessCardUpdateWithoutAnalyticsInput, Prisma.LegacyBusinessCardUncheckedUpdateWithoutAnalyticsInput>
-}
-
-export type LegacyBusinessCardUpdateWithoutAnalyticsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  company?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  backgroundImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  socialLinksJson?: Prisma.StringFieldUpdateOperationsInput | string
-  templateId?: Prisma.StringFieldUpdateOperationsInput | string
-  urlHash?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.LegacyUserUpdateOneRequiredWithoutCardsNestedInput
-  socialLinks?: Prisma.LegacySocialLinkUpdateManyWithoutBusinessCardNestedInput
-}
-
-export type LegacyBusinessCardUncheckedUpdateWithoutAnalyticsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  company?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  backgroundImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  socialLinksJson?: Prisma.StringFieldUpdateOperationsInput | string
-  templateId?: Prisma.StringFieldUpdateOperationsInput | string
-  urlHash?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  socialLinks?: Prisma.LegacySocialLinkUncheckedUpdateManyWithoutBusinessCardNestedInput
-}
-
-export type LegacyBusinessCardCreateManyUserInput = {
-  id?: string
-  name: string
-  title: string
-  company: string
-  address?: string | null
-  phone?: string | null
-  email?: string | null
-  website?: string | null
-  bio?: string | null
-  avatar?: string | null
-  backgroundImage?: string | null
-  socialLinksJson: string
-  templateId?: string
-  urlHash?: string
-  slug: string
-  isActive?: boolean
-  createTime?: Date | string
-  updateTime: Date | string
-}
-
-export type LegacyBusinessCardUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  company?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  backgroundImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  socialLinksJson?: Prisma.StringFieldUpdateOperationsInput | string
-  templateId?: Prisma.StringFieldUpdateOperationsInput | string
-  urlHash?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  socialLinks?: Prisma.LegacySocialLinkUpdateManyWithoutBusinessCardNestedInput
-  analytics?: Prisma.LegacyAnalyticsUpdateOneWithoutBusinessCardNestedInput
-}
-
-export type LegacyBusinessCardUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  company?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  backgroundImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  socialLinksJson?: Prisma.StringFieldUpdateOperationsInput | string
-  templateId?: Prisma.StringFieldUpdateOperationsInput | string
-  urlHash?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  socialLinks?: Prisma.LegacySocialLinkUncheckedUpdateManyWithoutBusinessCardNestedInput
-  analytics?: Prisma.LegacyAnalyticsUncheckedUpdateOneWithoutBusinessCardNestedInput
-}
-
-export type LegacyBusinessCardUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  company?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  backgroundImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  socialLinksJson?: Prisma.StringFieldUpdateOperationsInput | string
-  templateId?: Prisma.StringFieldUpdateOperationsInput | string
-  urlHash?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updateTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-
-/**
- * Count Type LegacyBusinessCardCountOutputType
- */
-
-export type LegacyBusinessCardCountOutputType = {
-  socialLinks: number
-}
-
-export type LegacyBusinessCardCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  socialLinks?: boolean | LegacyBusinessCardCountOutputTypeCountSocialLinksArgs
-}
-
-/**
- * LegacyBusinessCardCountOutputType without action
- */
-export type LegacyBusinessCardCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the LegacyBusinessCardCountOutputType
-   */
-  select?: Prisma.LegacyBusinessCardCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * LegacyBusinessCardCountOutputType without action
- */
-export type LegacyBusinessCardCountOutputTypeCountSocialLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LegacySocialLinkWhereInput
-}
 
 
 export type LegacyBusinessCardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1165,11 +612,6 @@ export type LegacyBusinessCardSelect<ExtArgs extends runtime.Types.Extensions.In
   isActive?: boolean
   createTime?: boolean
   updateTime?: boolean
-  userId?: boolean
-  user?: boolean | Prisma.LegacyUserDefaultArgs<ExtArgs>
-  socialLinks?: boolean | Prisma.LegacyBusinessCard$socialLinksArgs<ExtArgs>
-  analytics?: boolean | Prisma.LegacyBusinessCard$analyticsArgs<ExtArgs>
-  _count?: boolean | Prisma.LegacyBusinessCardCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["legacyBusinessCard"]>
 
 export type LegacyBusinessCardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1191,8 +633,6 @@ export type LegacyBusinessCardSelectCreateManyAndReturn<ExtArgs extends runtime.
   isActive?: boolean
   createTime?: boolean
   updateTime?: boolean
-  userId?: boolean
-  user?: boolean | Prisma.LegacyUserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["legacyBusinessCard"]>
 
 export type LegacyBusinessCardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1214,8 +654,6 @@ export type LegacyBusinessCardSelectUpdateManyAndReturn<ExtArgs extends runtime.
   isActive?: boolean
   createTime?: boolean
   updateTime?: boolean
-  userId?: boolean
-  user?: boolean | Prisma.LegacyUserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["legacyBusinessCard"]>
 
 export type LegacyBusinessCardSelectScalar = {
@@ -1237,30 +675,13 @@ export type LegacyBusinessCardSelectScalar = {
   isActive?: boolean
   createTime?: boolean
   updateTime?: boolean
-  userId?: boolean
 }
 
-export type LegacyBusinessCardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "title" | "company" | "address" | "phone" | "email" | "website" | "bio" | "avatar" | "backgroundImage" | "socialLinksJson" | "templateId" | "urlHash" | "slug" | "isActive" | "createTime" | "updateTime" | "userId", ExtArgs["result"]["legacyBusinessCard"]>
-export type LegacyBusinessCardInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.LegacyUserDefaultArgs<ExtArgs>
-  socialLinks?: boolean | Prisma.LegacyBusinessCard$socialLinksArgs<ExtArgs>
-  analytics?: boolean | Prisma.LegacyBusinessCard$analyticsArgs<ExtArgs>
-  _count?: boolean | Prisma.LegacyBusinessCardCountOutputTypeDefaultArgs<ExtArgs>
-}
-export type LegacyBusinessCardIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.LegacyUserDefaultArgs<ExtArgs>
-}
-export type LegacyBusinessCardIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.LegacyUserDefaultArgs<ExtArgs>
-}
+export type LegacyBusinessCardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "title" | "company" | "address" | "phone" | "email" | "website" | "bio" | "avatar" | "backgroundImage" | "socialLinksJson" | "templateId" | "urlHash" | "slug" | "isActive" | "createTime" | "updateTime", ExtArgs["result"]["legacyBusinessCard"]>
 
 export type $LegacyBusinessCardPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "LegacyBusinessCard"
-  objects: {
-    user: Prisma.$LegacyUserPayload<ExtArgs>
-    socialLinks: Prisma.$LegacySocialLinkPayload<ExtArgs>[]
-    analytics: Prisma.$LegacyAnalyticsPayload<ExtArgs> | null
-  }
+  objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
@@ -1280,7 +701,6 @@ export type $LegacyBusinessCardPayload<ExtArgs extends runtime.Types.Extensions.
     isActive: boolean
     createTime: Date
     updateTime: Date
-    userId: string
   }, ExtArgs["result"]["legacyBusinessCard"]>
   composites: {}
 }
@@ -1675,9 +1095,6 @@ readonly fields: LegacyBusinessCardFieldRefs;
  */
 export interface Prisma__LegacyBusinessCardClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.LegacyUserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LegacyUserDefaultArgs<ExtArgs>>): Prisma.Prisma__LegacyUserClient<runtime.Types.Result.GetResult<Prisma.$LegacyUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  socialLinks<T extends Prisma.LegacyBusinessCard$socialLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LegacyBusinessCard$socialLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LegacySocialLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  analytics<T extends Prisma.LegacyBusinessCard$analyticsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LegacyBusinessCard$analyticsArgs<ExtArgs>>): Prisma.Prisma__LegacyAnalyticsClient<runtime.Types.Result.GetResult<Prisma.$LegacyAnalyticsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1725,7 +1142,6 @@ export interface LegacyBusinessCardFieldRefs {
   readonly isActive: Prisma.FieldRef<"LegacyBusinessCard", 'Boolean'>
   readonly createTime: Prisma.FieldRef<"LegacyBusinessCard", 'DateTime'>
   readonly updateTime: Prisma.FieldRef<"LegacyBusinessCard", 'DateTime'>
-  readonly userId: Prisma.FieldRef<"LegacyBusinessCard", 'String'>
 }
     
 
@@ -1742,10 +1158,6 @@ export type LegacyBusinessCardFindUniqueArgs<ExtArgs extends runtime.Types.Exten
    * Omit specific fields from the LegacyBusinessCard
    */
   omit?: Prisma.LegacyBusinessCardOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacyBusinessCardInclude<ExtArgs> | null
   /**
    * Filter, which LegacyBusinessCard to fetch.
    */
@@ -1765,10 +1177,6 @@ export type LegacyBusinessCardFindUniqueOrThrowArgs<ExtArgs extends runtime.Type
    */
   omit?: Prisma.LegacyBusinessCardOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacyBusinessCardInclude<ExtArgs> | null
-  /**
    * Filter, which LegacyBusinessCard to fetch.
    */
   where: Prisma.LegacyBusinessCardWhereUniqueInput
@@ -1786,10 +1194,6 @@ export type LegacyBusinessCardFindFirstArgs<ExtArgs extends runtime.Types.Extens
    * Omit specific fields from the LegacyBusinessCard
    */
   omit?: Prisma.LegacyBusinessCardOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacyBusinessCardInclude<ExtArgs> | null
   /**
    * Filter, which LegacyBusinessCard to fetch.
    */
@@ -1839,10 +1243,6 @@ export type LegacyBusinessCardFindFirstOrThrowArgs<ExtArgs extends runtime.Types
    */
   omit?: Prisma.LegacyBusinessCardOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacyBusinessCardInclude<ExtArgs> | null
-  /**
    * Filter, which LegacyBusinessCard to fetch.
    */
   where?: Prisma.LegacyBusinessCardWhereInput
@@ -1890,10 +1290,6 @@ export type LegacyBusinessCardFindManyArgs<ExtArgs extends runtime.Types.Extensi
    * Omit specific fields from the LegacyBusinessCard
    */
   omit?: Prisma.LegacyBusinessCardOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacyBusinessCardInclude<ExtArgs> | null
   /**
    * Filter, which LegacyBusinessCards to fetch.
    */
@@ -1943,10 +1339,6 @@ export type LegacyBusinessCardCreateArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.LegacyBusinessCardOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacyBusinessCardInclude<ExtArgs> | null
-  /**
    * The data needed to create a LegacyBusinessCard.
    */
   data: Prisma.XOR<Prisma.LegacyBusinessCardCreateInput, Prisma.LegacyBusinessCardUncheckedCreateInput>
@@ -1980,10 +1372,6 @@ export type LegacyBusinessCardCreateManyAndReturnArgs<ExtArgs extends runtime.Ty
    */
   data: Prisma.LegacyBusinessCardCreateManyInput | Prisma.LegacyBusinessCardCreateManyInput[]
   skipDuplicates?: boolean
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacyBusinessCardIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1998,10 +1386,6 @@ export type LegacyBusinessCardUpdateArgs<ExtArgs extends runtime.Types.Extension
    * Omit specific fields from the LegacyBusinessCard
    */
   omit?: Prisma.LegacyBusinessCardOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacyBusinessCardInclude<ExtArgs> | null
   /**
    * The data needed to update a LegacyBusinessCard.
    */
@@ -2054,10 +1438,6 @@ export type LegacyBusinessCardUpdateManyAndReturnArgs<ExtArgs extends runtime.Ty
    * Limit how many LegacyBusinessCards to update.
    */
   limit?: number
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacyBusinessCardIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -2072,10 +1452,6 @@ export type LegacyBusinessCardUpsertArgs<ExtArgs extends runtime.Types.Extension
    * Omit specific fields from the LegacyBusinessCard
    */
   omit?: Prisma.LegacyBusinessCardOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacyBusinessCardInclude<ExtArgs> | null
   /**
    * The filter to search for the LegacyBusinessCard to update in case it exists.
    */
@@ -2103,10 +1479,6 @@ export type LegacyBusinessCardDeleteArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.LegacyBusinessCardOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacyBusinessCardInclude<ExtArgs> | null
-  /**
    * Filter which LegacyBusinessCard to delete.
    */
   where: Prisma.LegacyBusinessCardWhereUniqueInput
@@ -2127,49 +1499,6 @@ export type LegacyBusinessCardDeleteManyArgs<ExtArgs extends runtime.Types.Exten
 }
 
 /**
- * LegacyBusinessCard.socialLinks
- */
-export type LegacyBusinessCard$socialLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the LegacySocialLink
-   */
-  select?: Prisma.LegacySocialLinkSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the LegacySocialLink
-   */
-  omit?: Prisma.LegacySocialLinkOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacySocialLinkInclude<ExtArgs> | null
-  where?: Prisma.LegacySocialLinkWhereInput
-  orderBy?: Prisma.LegacySocialLinkOrderByWithRelationInput | Prisma.LegacySocialLinkOrderByWithRelationInput[]
-  cursor?: Prisma.LegacySocialLinkWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.LegacySocialLinkScalarFieldEnum | Prisma.LegacySocialLinkScalarFieldEnum[]
-}
-
-/**
- * LegacyBusinessCard.analytics
- */
-export type LegacyBusinessCard$analyticsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the LegacyAnalytics
-   */
-  select?: Prisma.LegacyAnalyticsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the LegacyAnalytics
-   */
-  omit?: Prisma.LegacyAnalyticsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacyAnalyticsInclude<ExtArgs> | null
-  where?: Prisma.LegacyAnalyticsWhereInput
-}
-
-/**
  * LegacyBusinessCard without action
  */
 export type LegacyBusinessCardDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2181,8 +1510,4 @@ export type LegacyBusinessCardDefaultArgs<ExtArgs extends runtime.Types.Extensio
    * Omit specific fields from the LegacyBusinessCard
    */
   omit?: Prisma.LegacyBusinessCardOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LegacyBusinessCardInclude<ExtArgs> | null
 }

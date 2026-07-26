@@ -4,16 +4,6 @@ import type { AppearanceSettings } from "@/types/appearance";
 import { loadAdminWorkspaceCard, loadWorkspaceCard } from "./actions";
 
 const TOKEN_PATTERN = /^[0-9a-f]{64}$/;
-const issuedSessionEnvelope = z.object({
-  success: z.literal(true),
-  data: z.object({
-    session: z.object({
-      cardId: z.string().uuid(),
-      expiresAt: z.string().datetime(),
-    }),
-    token: z.string().regex(TOKEN_PATTERN),
-  }),
-});
 const errorEnvelope = z.object({
   success: z.literal(false),
   error: z.object({ message: z.string() }),
@@ -65,15 +55,6 @@ export function clearEditorSession(cardId: string): void {
 export function rememberWorkspaceCard(slug: string, cardId: string): void {
   sessionStorage.setItem(workspaceCardKey(slug), storedCardId.parse(cardId));
 }
-export function getWorkspaceCardId(slug: string): string | null {
-  const raw = sessionStorage.getItem(workspaceCardKey(slug));
-  const parsed = storedCardId.safeParse(raw);
-  if (!parsed.success) {
-    if (raw) sessionStorage.removeItem(workspaceCardKey(slug));
-    return null;
-  }
-  return parsed.data;
-}
 export function storeEditorSession(
   cardId: string,
   token: string,
@@ -94,87 +75,6 @@ async function responseMessage(
   } catch {
     return fallback;
   }
-}
-async function requestEditorSession(code: string) {
-  const response = await fetch("/editor/session", {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ code, lifetimeSeconds: 3600 }),
-  });
-  if (!response.ok)
-    throw new WorkspaceSessionError(
-      await responseMessage(response, "Unable to create an editor session."),
-      response.status,
-    );
-  return issuedSessionEnvelope.parse(await response.json()).data;
-}
-export async function establishEditorSession(
-  cardId: string,
-  code: string,
-): Promise<void> {
-  if (hasReusableEditorSession(cardId)) return;
-  const issued = await requestEditorSession(code);
-  if (issued.session.cardId !== cardId)
-    throw new WorkspaceSessionError(
-      "This access code belongs to a different card.",
-      403,
-    );
-  storeEditorSession(cardId, issued.token, issued.session.expiresAt);
-}
-async function readAuthorizedCard(
-  cardId: string,
-  token: string,
-): Promise<WorkspaceCardDTO> {
-  const result = await loadWorkspaceCard(cardId, token);
-  if (!result.ok)
-    throw new WorkspaceSessionError(result.message, result.status);
-  return result.card;
-}
-export async function fetchWorkspaceCard(
-  slug: string,
-): Promise<WorkspaceCardDTO> {
-  const cardId = getWorkspaceCardId(slug);
-  if (!cardId)
-    throw new WorkspaceSessionError(
-      "Enter your access code to open this Workspace.",
-      401,
-    );
-  if (isAdminWorkspace(cardId)) {
-    const result = await loadAdminWorkspaceCard(cardId);
-    if (!result.ok)
-      throw new WorkspaceSessionError(result.message, result.status);
-    return result.card;
-  }
-  const token = getEditorSessionToken(cardId);
-  if (!token)
-    throw new WorkspaceSessionError(
-      "Your editor session is missing or expired.",
-      401,
-    );
-  const card = await readAuthorizedCard(cardId, token);
-  if (card.slug !== slug) {
-    clearEditorSession(cardId);
-    sessionStorage.removeItem(workspaceCardKey(slug));
-    throw new WorkspaceSessionError(
-      "This editor session belongs to a different card.",
-      403,
-    );
-  }
-  return card;
-}
-export async function establishWorkspaceSession(
-  slug: string,
-  code: string,
-): Promise<WorkspaceCardDTO> {
-  const issued = await requestEditorSession(code);
-  const card = await readAuthorizedCard(issued.session.cardId, issued.token);
-  if (card.slug !== slug)
-    throw new WorkspaceSessionError(
-      "This access code belongs to a different card.",
-      403,
-    );
-  storeEditorSession(card.id, issued.token, issued.session.expiresAt, slug);
-  return card;
 }
 async function authenticatedUpdate(
   cardId: string,
@@ -237,7 +137,10 @@ async function mutateWorkspaceCard(
       "Your editor session is missing or expired.",
       401,
     );
-  return readAuthorizedCard(cardId, token);
+  const result = await loadWorkspaceCard(cardId, token);
+  if (!result.ok)
+    throw new WorkspaceSessionError(result.message, result.status);
+  return result.card;
 }
 export function saveWorkspaceSections(
   cardId: string,

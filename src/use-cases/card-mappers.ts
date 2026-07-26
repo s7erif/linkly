@@ -6,8 +6,12 @@ import type {
   PublicCardDTO,
   WorkspaceCardDTO,
 } from "@/dto";
+import type { PublicCardProjection } from "@/repositories";
 import { resolveAppearanceSettings } from "@/validation/appearance";
 import { safeCardBlockConfig } from "@/validation/card-block";
+
+type RenderSource = EditorCardDTO | PublicCardProjection;
+type BlockSource = Pick<EditorCardDTO, "sections" | "blocks">;
 const sectionBlock: Record<CardSectionKind, CardBlockKind> = {
   PROFILE: "HERO",
   ABOUT: "ABOUT",
@@ -15,7 +19,7 @@ const sectionBlock: Record<CardSectionKind, CardBlockKind> = {
   BUTTONS: "CTA_BUTTONS",
   SOCIAL_LINKS: "SOCIAL_LINKS",
 };
-function compatibilityBlocks(source: EditorCardDTO): readonly CardBlockDTO[] {
+function compatibilityBlocks(source: BlockSource): readonly CardBlockDTO[] {
   const sections =
     source.sections ??
     (
@@ -45,7 +49,7 @@ function compatibilityBlocks(source: EditorCardDTO): readonly CardBlockDTO[] {
       mediaIds: [],
     }));
 }
-function persistedBlocks(source: EditorCardDTO): readonly CardBlockDTO[] {
+function persistedBlocks(source: BlockSource): readonly CardBlockDTO[] {
   const mapped = (source.blocks ?? []).flatMap((block) => {
     const valid = safeCardBlockConfig(block.kind, block.config);
     return valid
@@ -65,17 +69,26 @@ function persistedBlocks(source: EditorCardDTO): readonly CardBlockDTO[] {
     ? mapped.sort((a, b) => a.position - b.position)
     : compatibilityBlocks(source);
 }
-export function toRenderableCardDTO(source: EditorCardDTO): PublicCardDTO {
-  const {
-    customerId: _customerId,
-    accessVersion: _accessVersion,
-    themeConfig,
-    blocks: _blocks,
-    ...card
-  } = source;
+export function toEditorBlocks(source: BlockSource): readonly CardBlockDTO[] {
+  return persistedBlocks(source);
+}
+export function toRenderableCardDTO(source: RenderSource): PublicCardDTO {
+  const avatar = source.avatarUrl === undefined ? {} : { avatarUrl: source.avatarUrl };
   return {
-    ...card,
-    appearance: resolveAppearanceSettings(themeConfig),
+    id: source.id,
+    slug: source.slug,
+    name: source.name,
+    status: source.status,
+    visibility: source.visibility,
+    publishedAt: source.publishedAt,
+    seoTitle: source.seoTitle,
+    seoDescription: source.seoDescription,
+    profile: source.profile,
+    sections: source.sections,
+    createdAt: source.createdAt,
+    updatedAt: source.updatedAt,
+    ...avatar,
+    appearance: resolveAppearanceSettings(source.themeConfig),
     blocks: persistedBlocks(source).filter((block) => block.isEnabled),
     buttons: source.buttons
       .filter((button) => button.isVisible)

@@ -1,3 +1,0 @@
-"use client";
-import {useState,type FormEvent} from "react";import {useRouter} from "next/navigation";import styles from "./admin-records.module.css";
-export function AdminRecordLookup({kind}:{kind:"customers"|"cards"}){const [id,setId]=useState("");const router=useRouter();function open(event:FormEvent){event.preventDefault();if(id.trim())router.push(`/admin/${kind}/${encodeURIComponent(id.trim())}`)}return <form className={styles.lookup} onSubmit={open}><label htmlFor={`${kind}-record-id`}>Open by record ID</label><div><input id={`${kind}-record-id`} value={id} onChange={event=>setId(event.target.value)} placeholder="UUID"/><button type="submit" disabled={!id.trim()}>Open</button></div></form>}

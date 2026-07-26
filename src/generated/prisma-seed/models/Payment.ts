@@ -265,10 +265,6 @@ export type PaymentWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Payment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Payment"> | Date | string
   billingAccount?: Prisma.XOR<Prisma.BillingAccountNullableScalarRelationFilter, Prisma.BillingAccountWhereInput> | null
-  attempts?: Prisma.PaymentAttemptListRelationFilter
-  allocations?: Prisma.PaymentAllocationListRelationFilter
-  refunds?: Prisma.RefundListRelationFilter
-  providerRefs?: Prisma.ProviderObjectReferenceListRelationFilter
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }
 
@@ -285,10 +281,6 @@ export type PaymentOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   billingAccount?: Prisma.BillingAccountOrderByWithRelationInput
-  attempts?: Prisma.PaymentAttemptOrderByRelationAggregateInput
-  allocations?: Prisma.PaymentAllocationOrderByRelationAggregateInput
-  refunds?: Prisma.RefundOrderByRelationAggregateInput
-  providerRefs?: Prisma.ProviderObjectReferenceOrderByRelationAggregateInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
 }
 
@@ -308,10 +300,6 @@ export type PaymentWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Payment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Payment"> | Date | string
   billingAccount?: Prisma.XOR<Prisma.BillingAccountNullableScalarRelationFilter, Prisma.BillingAccountWhereInput> | null
-  attempts?: Prisma.PaymentAttemptListRelationFilter
-  allocations?: Prisma.PaymentAllocationListRelationFilter
-  refunds?: Prisma.RefundListRelationFilter
-  providerRefs?: Prisma.ProviderObjectReferenceListRelationFilter
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }, "id">
 
@@ -362,10 +350,6 @@ export type PaymentCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutPaymentsInput
-  attempts?: Prisma.PaymentAttemptCreateNestedManyWithoutPaymentInput
-  allocations?: Prisma.PaymentAllocationCreateNestedManyWithoutPaymentInput
-  refunds?: Prisma.RefundCreateNestedManyWithoutPaymentInput
-  providerRefs?: Prisma.ProviderObjectReferenceCreateNestedManyWithoutPaymentInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutPaymentsInput
 }
 
@@ -381,10 +365,6 @@ export type PaymentUncheckedCreateInput = {
   failedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  attempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutPaymentInput
-  allocations?: Prisma.PaymentAllocationUncheckedCreateNestedManyWithoutPaymentInput
-  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutPaymentInput
-  providerRefs?: Prisma.ProviderObjectReferenceUncheckedCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentUpdateInput = {
@@ -398,10 +378,6 @@ export type PaymentUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   billingAccount?: Prisma.BillingAccountUpdateOneWithoutPaymentsNestedInput
-  attempts?: Prisma.PaymentAttemptUpdateManyWithoutPaymentNestedInput
-  allocations?: Prisma.PaymentAllocationUpdateManyWithoutPaymentNestedInput
-  refunds?: Prisma.RefundUpdateManyWithoutPaymentNestedInput
-  providerRefs?: Prisma.ProviderObjectReferenceUpdateManyWithoutPaymentNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutPaymentsNestedInput
 }
 
@@ -417,10 +393,6 @@ export type PaymentUncheckedUpdateInput = {
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  attempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutPaymentNestedInput
-  allocations?: Prisma.PaymentAllocationUncheckedUpdateManyWithoutPaymentNestedInput
-  refunds?: Prisma.RefundUncheckedUpdateManyWithoutPaymentNestedInput
-  providerRefs?: Prisma.ProviderObjectReferenceUncheckedUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentCreateManyInput = {
@@ -523,16 +495,6 @@ export type PaymentSumOrderByAggregateInput = {
   amountMinor?: Prisma.SortOrder
 }
 
-export type PaymentScalarRelationFilter = {
-  is?: Prisma.PaymentWhereInput
-  isNot?: Prisma.PaymentWhereInput
-}
-
-export type PaymentNullableScalarRelationFilter = {
-  is?: Prisma.PaymentWhereInput | null
-  isNot?: Prisma.PaymentWhereInput | null
-}
-
 export type PaymentCreateNestedManyWithoutWorkspaceInput = {
   create?: Prisma.XOR<Prisma.PaymentCreateWithoutWorkspaceInput, Prisma.PaymentUncheckedCreateWithoutWorkspaceInput> | Prisma.PaymentCreateWithoutWorkspaceInput[] | Prisma.PaymentUncheckedCreateWithoutWorkspaceInput[]
   connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutWorkspaceInput | Prisma.PaymentCreateOrConnectWithoutWorkspaceInput[]
@@ -621,64 +583,6 @@ export type EnumPaymentLedgerStatusFieldUpdateOperationsInput = {
   set?: $Enums.PaymentLedgerStatus
 }
 
-export type PaymentCreateNestedOneWithoutAttemptsInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutAttemptsInput, Prisma.PaymentUncheckedCreateWithoutAttemptsInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutAttemptsInput
-  connect?: Prisma.PaymentWhereUniqueInput
-}
-
-export type PaymentUpdateOneRequiredWithoutAttemptsNestedInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutAttemptsInput, Prisma.PaymentUncheckedCreateWithoutAttemptsInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutAttemptsInput
-  upsert?: Prisma.PaymentUpsertWithoutAttemptsInput
-  connect?: Prisma.PaymentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutAttemptsInput, Prisma.PaymentUpdateWithoutAttemptsInput>, Prisma.PaymentUncheckedUpdateWithoutAttemptsInput>
-}
-
-export type PaymentCreateNestedOneWithoutAllocationsInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutAllocationsInput, Prisma.PaymentUncheckedCreateWithoutAllocationsInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutAllocationsInput
-  connect?: Prisma.PaymentWhereUniqueInput
-}
-
-export type PaymentUpdateOneRequiredWithoutAllocationsNestedInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutAllocationsInput, Prisma.PaymentUncheckedCreateWithoutAllocationsInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutAllocationsInput
-  upsert?: Prisma.PaymentUpsertWithoutAllocationsInput
-  connect?: Prisma.PaymentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutAllocationsInput, Prisma.PaymentUpdateWithoutAllocationsInput>, Prisma.PaymentUncheckedUpdateWithoutAllocationsInput>
-}
-
-export type PaymentCreateNestedOneWithoutRefundsInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutRefundsInput, Prisma.PaymentUncheckedCreateWithoutRefundsInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutRefundsInput
-  connect?: Prisma.PaymentWhereUniqueInput
-}
-
-export type PaymentUpdateOneRequiredWithoutRefundsNestedInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutRefundsInput, Prisma.PaymentUncheckedCreateWithoutRefundsInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutRefundsInput
-  upsert?: Prisma.PaymentUpsertWithoutRefundsInput
-  connect?: Prisma.PaymentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutRefundsInput, Prisma.PaymentUpdateWithoutRefundsInput>, Prisma.PaymentUncheckedUpdateWithoutRefundsInput>
-}
-
-export type PaymentCreateNestedOneWithoutProviderRefsInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutProviderRefsInput, Prisma.PaymentUncheckedCreateWithoutProviderRefsInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutProviderRefsInput
-  connect?: Prisma.PaymentWhereUniqueInput
-}
-
-export type PaymentUpdateOneWithoutProviderRefsNestedInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutProviderRefsInput, Prisma.PaymentUncheckedCreateWithoutProviderRefsInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutProviderRefsInput
-  upsert?: Prisma.PaymentUpsertWithoutProviderRefsInput
-  disconnect?: Prisma.PaymentWhereInput | boolean
-  delete?: Prisma.PaymentWhereInput | boolean
-  connect?: Prisma.PaymentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutProviderRefsInput, Prisma.PaymentUpdateWithoutProviderRefsInput>, Prisma.PaymentUncheckedUpdateWithoutProviderRefsInput>
-}
-
 export type PaymentCreateWithoutWorkspaceInput = {
   id?: string
   amountMinor: bigint | number
@@ -690,10 +594,6 @@ export type PaymentCreateWithoutWorkspaceInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutPaymentsInput
-  attempts?: Prisma.PaymentAttemptCreateNestedManyWithoutPaymentInput
-  allocations?: Prisma.PaymentAllocationCreateNestedManyWithoutPaymentInput
-  refunds?: Prisma.RefundCreateNestedManyWithoutPaymentInput
-  providerRefs?: Prisma.ProviderObjectReferenceCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentUncheckedCreateWithoutWorkspaceInput = {
@@ -707,10 +607,6 @@ export type PaymentUncheckedCreateWithoutWorkspaceInput = {
   failedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  attempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutPaymentInput
-  allocations?: Prisma.PaymentAllocationUncheckedCreateNestedManyWithoutPaymentInput
-  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutPaymentInput
-  providerRefs?: Prisma.ProviderObjectReferenceUncheckedCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentCreateOrConnectWithoutWorkspaceInput = {
@@ -766,10 +662,6 @@ export type PaymentCreateWithoutBillingAccountInput = {
   failedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  attempts?: Prisma.PaymentAttemptCreateNestedManyWithoutPaymentInput
-  allocations?: Prisma.PaymentAllocationCreateNestedManyWithoutPaymentInput
-  refunds?: Prisma.RefundCreateNestedManyWithoutPaymentInput
-  providerRefs?: Prisma.ProviderObjectReferenceCreateNestedManyWithoutPaymentInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutPaymentsInput
 }
 
@@ -784,10 +676,6 @@ export type PaymentUncheckedCreateWithoutBillingAccountInput = {
   failedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  attempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutPaymentInput
-  allocations?: Prisma.PaymentAllocationUncheckedCreateNestedManyWithoutPaymentInput
-  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutPaymentInput
-  providerRefs?: Prisma.ProviderObjectReferenceUncheckedCreateNestedManyWithoutPaymentInput
 }
 
 export type PaymentCreateOrConnectWithoutBillingAccountInput = {
@@ -816,342 +704,6 @@ export type PaymentUpdateManyWithWhereWithoutBillingAccountInput = {
   data: Prisma.XOR<Prisma.PaymentUpdateManyMutationInput, Prisma.PaymentUncheckedUpdateManyWithoutBillingAccountInput>
 }
 
-export type PaymentCreateWithoutAttemptsInput = {
-  id?: string
-  amountMinor: bigint | number
-  currency: string
-  status?: $Enums.PaymentLedgerStatus
-  description?: string | null
-  succeededAt?: Date | string | null
-  failedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutPaymentsInput
-  allocations?: Prisma.PaymentAllocationCreateNestedManyWithoutPaymentInput
-  refunds?: Prisma.RefundCreateNestedManyWithoutPaymentInput
-  providerRefs?: Prisma.ProviderObjectReferenceCreateNestedManyWithoutPaymentInput
-  workspace: Prisma.WorkspaceCreateNestedOneWithoutPaymentsInput
-}
-
-export type PaymentUncheckedCreateWithoutAttemptsInput = {
-  id?: string
-  workspaceId: string
-  billingAccountId?: string | null
-  amountMinor: bigint | number
-  currency: string
-  status?: $Enums.PaymentLedgerStatus
-  description?: string | null
-  succeededAt?: Date | string | null
-  failedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  allocations?: Prisma.PaymentAllocationUncheckedCreateNestedManyWithoutPaymentInput
-  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutPaymentInput
-  providerRefs?: Prisma.ProviderObjectReferenceUncheckedCreateNestedManyWithoutPaymentInput
-}
-
-export type PaymentCreateOrConnectWithoutAttemptsInput = {
-  where: Prisma.PaymentWhereUniqueInput
-  create: Prisma.XOR<Prisma.PaymentCreateWithoutAttemptsInput, Prisma.PaymentUncheckedCreateWithoutAttemptsInput>
-}
-
-export type PaymentUpsertWithoutAttemptsInput = {
-  update: Prisma.XOR<Prisma.PaymentUpdateWithoutAttemptsInput, Prisma.PaymentUncheckedUpdateWithoutAttemptsInput>
-  create: Prisma.XOR<Prisma.PaymentCreateWithoutAttemptsInput, Prisma.PaymentUncheckedCreateWithoutAttemptsInput>
-  where?: Prisma.PaymentWhereInput
-}
-
-export type PaymentUpdateToOneWithWhereWithoutAttemptsInput = {
-  where?: Prisma.PaymentWhereInput
-  data: Prisma.XOR<Prisma.PaymentUpdateWithoutAttemptsInput, Prisma.PaymentUncheckedUpdateWithoutAttemptsInput>
-}
-
-export type PaymentUpdateWithoutAttemptsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumPaymentLedgerStatusFieldUpdateOperationsInput | $Enums.PaymentLedgerStatus
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  succeededAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutPaymentsNestedInput
-  allocations?: Prisma.PaymentAllocationUpdateManyWithoutPaymentNestedInput
-  refunds?: Prisma.RefundUpdateManyWithoutPaymentNestedInput
-  providerRefs?: Prisma.ProviderObjectReferenceUpdateManyWithoutPaymentNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutPaymentsNestedInput
-}
-
-export type PaymentUncheckedUpdateWithoutAttemptsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumPaymentLedgerStatusFieldUpdateOperationsInput | $Enums.PaymentLedgerStatus
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  succeededAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  allocations?: Prisma.PaymentAllocationUncheckedUpdateManyWithoutPaymentNestedInput
-  refunds?: Prisma.RefundUncheckedUpdateManyWithoutPaymentNestedInput
-  providerRefs?: Prisma.ProviderObjectReferenceUncheckedUpdateManyWithoutPaymentNestedInput
-}
-
-export type PaymentCreateWithoutAllocationsInput = {
-  id?: string
-  amountMinor: bigint | number
-  currency: string
-  status?: $Enums.PaymentLedgerStatus
-  description?: string | null
-  succeededAt?: Date | string | null
-  failedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutPaymentsInput
-  attempts?: Prisma.PaymentAttemptCreateNestedManyWithoutPaymentInput
-  refunds?: Prisma.RefundCreateNestedManyWithoutPaymentInput
-  providerRefs?: Prisma.ProviderObjectReferenceCreateNestedManyWithoutPaymentInput
-  workspace: Prisma.WorkspaceCreateNestedOneWithoutPaymentsInput
-}
-
-export type PaymentUncheckedCreateWithoutAllocationsInput = {
-  id?: string
-  workspaceId: string
-  billingAccountId?: string | null
-  amountMinor: bigint | number
-  currency: string
-  status?: $Enums.PaymentLedgerStatus
-  description?: string | null
-  succeededAt?: Date | string | null
-  failedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  attempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutPaymentInput
-  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutPaymentInput
-  providerRefs?: Prisma.ProviderObjectReferenceUncheckedCreateNestedManyWithoutPaymentInput
-}
-
-export type PaymentCreateOrConnectWithoutAllocationsInput = {
-  where: Prisma.PaymentWhereUniqueInput
-  create: Prisma.XOR<Prisma.PaymentCreateWithoutAllocationsInput, Prisma.PaymentUncheckedCreateWithoutAllocationsInput>
-}
-
-export type PaymentUpsertWithoutAllocationsInput = {
-  update: Prisma.XOR<Prisma.PaymentUpdateWithoutAllocationsInput, Prisma.PaymentUncheckedUpdateWithoutAllocationsInput>
-  create: Prisma.XOR<Prisma.PaymentCreateWithoutAllocationsInput, Prisma.PaymentUncheckedCreateWithoutAllocationsInput>
-  where?: Prisma.PaymentWhereInput
-}
-
-export type PaymentUpdateToOneWithWhereWithoutAllocationsInput = {
-  where?: Prisma.PaymentWhereInput
-  data: Prisma.XOR<Prisma.PaymentUpdateWithoutAllocationsInput, Prisma.PaymentUncheckedUpdateWithoutAllocationsInput>
-}
-
-export type PaymentUpdateWithoutAllocationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumPaymentLedgerStatusFieldUpdateOperationsInput | $Enums.PaymentLedgerStatus
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  succeededAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutPaymentsNestedInput
-  attempts?: Prisma.PaymentAttemptUpdateManyWithoutPaymentNestedInput
-  refunds?: Prisma.RefundUpdateManyWithoutPaymentNestedInput
-  providerRefs?: Prisma.ProviderObjectReferenceUpdateManyWithoutPaymentNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutPaymentsNestedInput
-}
-
-export type PaymentUncheckedUpdateWithoutAllocationsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumPaymentLedgerStatusFieldUpdateOperationsInput | $Enums.PaymentLedgerStatus
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  succeededAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  attempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutPaymentNestedInput
-  refunds?: Prisma.RefundUncheckedUpdateManyWithoutPaymentNestedInput
-  providerRefs?: Prisma.ProviderObjectReferenceUncheckedUpdateManyWithoutPaymentNestedInput
-}
-
-export type PaymentCreateWithoutRefundsInput = {
-  id?: string
-  amountMinor: bigint | number
-  currency: string
-  status?: $Enums.PaymentLedgerStatus
-  description?: string | null
-  succeededAt?: Date | string | null
-  failedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutPaymentsInput
-  attempts?: Prisma.PaymentAttemptCreateNestedManyWithoutPaymentInput
-  allocations?: Prisma.PaymentAllocationCreateNestedManyWithoutPaymentInput
-  providerRefs?: Prisma.ProviderObjectReferenceCreateNestedManyWithoutPaymentInput
-  workspace: Prisma.WorkspaceCreateNestedOneWithoutPaymentsInput
-}
-
-export type PaymentUncheckedCreateWithoutRefundsInput = {
-  id?: string
-  workspaceId: string
-  billingAccountId?: string | null
-  amountMinor: bigint | number
-  currency: string
-  status?: $Enums.PaymentLedgerStatus
-  description?: string | null
-  succeededAt?: Date | string | null
-  failedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  attempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutPaymentInput
-  allocations?: Prisma.PaymentAllocationUncheckedCreateNestedManyWithoutPaymentInput
-  providerRefs?: Prisma.ProviderObjectReferenceUncheckedCreateNestedManyWithoutPaymentInput
-}
-
-export type PaymentCreateOrConnectWithoutRefundsInput = {
-  where: Prisma.PaymentWhereUniqueInput
-  create: Prisma.XOR<Prisma.PaymentCreateWithoutRefundsInput, Prisma.PaymentUncheckedCreateWithoutRefundsInput>
-}
-
-export type PaymentUpsertWithoutRefundsInput = {
-  update: Prisma.XOR<Prisma.PaymentUpdateWithoutRefundsInput, Prisma.PaymentUncheckedUpdateWithoutRefundsInput>
-  create: Prisma.XOR<Prisma.PaymentCreateWithoutRefundsInput, Prisma.PaymentUncheckedCreateWithoutRefundsInput>
-  where?: Prisma.PaymentWhereInput
-}
-
-export type PaymentUpdateToOneWithWhereWithoutRefundsInput = {
-  where?: Prisma.PaymentWhereInput
-  data: Prisma.XOR<Prisma.PaymentUpdateWithoutRefundsInput, Prisma.PaymentUncheckedUpdateWithoutRefundsInput>
-}
-
-export type PaymentUpdateWithoutRefundsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumPaymentLedgerStatusFieldUpdateOperationsInput | $Enums.PaymentLedgerStatus
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  succeededAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutPaymentsNestedInput
-  attempts?: Prisma.PaymentAttemptUpdateManyWithoutPaymentNestedInput
-  allocations?: Prisma.PaymentAllocationUpdateManyWithoutPaymentNestedInput
-  providerRefs?: Prisma.ProviderObjectReferenceUpdateManyWithoutPaymentNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutPaymentsNestedInput
-}
-
-export type PaymentUncheckedUpdateWithoutRefundsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumPaymentLedgerStatusFieldUpdateOperationsInput | $Enums.PaymentLedgerStatus
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  succeededAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  attempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutPaymentNestedInput
-  allocations?: Prisma.PaymentAllocationUncheckedUpdateManyWithoutPaymentNestedInput
-  providerRefs?: Prisma.ProviderObjectReferenceUncheckedUpdateManyWithoutPaymentNestedInput
-}
-
-export type PaymentCreateWithoutProviderRefsInput = {
-  id?: string
-  amountMinor: bigint | number
-  currency: string
-  status?: $Enums.PaymentLedgerStatus
-  description?: string | null
-  succeededAt?: Date | string | null
-  failedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutPaymentsInput
-  attempts?: Prisma.PaymentAttemptCreateNestedManyWithoutPaymentInput
-  allocations?: Prisma.PaymentAllocationCreateNestedManyWithoutPaymentInput
-  refunds?: Prisma.RefundCreateNestedManyWithoutPaymentInput
-  workspace: Prisma.WorkspaceCreateNestedOneWithoutPaymentsInput
-}
-
-export type PaymentUncheckedCreateWithoutProviderRefsInput = {
-  id?: string
-  workspaceId: string
-  billingAccountId?: string | null
-  amountMinor: bigint | number
-  currency: string
-  status?: $Enums.PaymentLedgerStatus
-  description?: string | null
-  succeededAt?: Date | string | null
-  failedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  attempts?: Prisma.PaymentAttemptUncheckedCreateNestedManyWithoutPaymentInput
-  allocations?: Prisma.PaymentAllocationUncheckedCreateNestedManyWithoutPaymentInput
-  refunds?: Prisma.RefundUncheckedCreateNestedManyWithoutPaymentInput
-}
-
-export type PaymentCreateOrConnectWithoutProviderRefsInput = {
-  where: Prisma.PaymentWhereUniqueInput
-  create: Prisma.XOR<Prisma.PaymentCreateWithoutProviderRefsInput, Prisma.PaymentUncheckedCreateWithoutProviderRefsInput>
-}
-
-export type PaymentUpsertWithoutProviderRefsInput = {
-  update: Prisma.XOR<Prisma.PaymentUpdateWithoutProviderRefsInput, Prisma.PaymentUncheckedUpdateWithoutProviderRefsInput>
-  create: Prisma.XOR<Prisma.PaymentCreateWithoutProviderRefsInput, Prisma.PaymentUncheckedCreateWithoutProviderRefsInput>
-  where?: Prisma.PaymentWhereInput
-}
-
-export type PaymentUpdateToOneWithWhereWithoutProviderRefsInput = {
-  where?: Prisma.PaymentWhereInput
-  data: Prisma.XOR<Prisma.PaymentUpdateWithoutProviderRefsInput, Prisma.PaymentUncheckedUpdateWithoutProviderRefsInput>
-}
-
-export type PaymentUpdateWithoutProviderRefsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumPaymentLedgerStatusFieldUpdateOperationsInput | $Enums.PaymentLedgerStatus
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  succeededAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutPaymentsNestedInput
-  attempts?: Prisma.PaymentAttemptUpdateManyWithoutPaymentNestedInput
-  allocations?: Prisma.PaymentAllocationUpdateManyWithoutPaymentNestedInput
-  refunds?: Prisma.RefundUpdateManyWithoutPaymentNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutPaymentsNestedInput
-}
-
-export type PaymentUncheckedUpdateWithoutProviderRefsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  amountMinor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.EnumPaymentLedgerStatusFieldUpdateOperationsInput | $Enums.PaymentLedgerStatus
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  succeededAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  attempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutPaymentNestedInput
-  allocations?: Prisma.PaymentAllocationUncheckedUpdateManyWithoutPaymentNestedInput
-  refunds?: Prisma.RefundUncheckedUpdateManyWithoutPaymentNestedInput
-}
-
 export type PaymentCreateManyWorkspaceInput = {
   id?: string
   billingAccountId?: string | null
@@ -1176,10 +728,6 @@ export type PaymentUpdateWithoutWorkspaceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   billingAccount?: Prisma.BillingAccountUpdateOneWithoutPaymentsNestedInput
-  attempts?: Prisma.PaymentAttemptUpdateManyWithoutPaymentNestedInput
-  allocations?: Prisma.PaymentAllocationUpdateManyWithoutPaymentNestedInput
-  refunds?: Prisma.RefundUpdateManyWithoutPaymentNestedInput
-  providerRefs?: Prisma.ProviderObjectReferenceUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentUncheckedUpdateWithoutWorkspaceInput = {
@@ -1193,10 +741,6 @@ export type PaymentUncheckedUpdateWithoutWorkspaceInput = {
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  attempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutPaymentNestedInput
-  allocations?: Prisma.PaymentAllocationUncheckedUpdateManyWithoutPaymentNestedInput
-  refunds?: Prisma.RefundUncheckedUpdateManyWithoutPaymentNestedInput
-  providerRefs?: Prisma.ProviderObjectReferenceUncheckedUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentUncheckedUpdateManyWithoutWorkspaceInput = {
@@ -1235,10 +779,6 @@ export type PaymentUpdateWithoutBillingAccountInput = {
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  attempts?: Prisma.PaymentAttemptUpdateManyWithoutPaymentNestedInput
-  allocations?: Prisma.PaymentAllocationUpdateManyWithoutPaymentNestedInput
-  refunds?: Prisma.RefundUpdateManyWithoutPaymentNestedInput
-  providerRefs?: Prisma.ProviderObjectReferenceUpdateManyWithoutPaymentNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutPaymentsNestedInput
 }
 
@@ -1253,10 +793,6 @@ export type PaymentUncheckedUpdateWithoutBillingAccountInput = {
   failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  attempts?: Prisma.PaymentAttemptUncheckedUpdateManyWithoutPaymentNestedInput
-  allocations?: Prisma.PaymentAllocationUncheckedUpdateManyWithoutPaymentNestedInput
-  refunds?: Prisma.RefundUncheckedUpdateManyWithoutPaymentNestedInput
-  providerRefs?: Prisma.ProviderObjectReferenceUncheckedUpdateManyWithoutPaymentNestedInput
 }
 
 export type PaymentUncheckedUpdateManyWithoutBillingAccountInput = {
@@ -1273,62 +809,6 @@ export type PaymentUncheckedUpdateManyWithoutBillingAccountInput = {
 }
 
 
-/**
- * Count Type PaymentCountOutputType
- */
-
-export type PaymentCountOutputType = {
-  attempts: number
-  allocations: number
-  refunds: number
-  providerRefs: number
-}
-
-export type PaymentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  attempts?: boolean | PaymentCountOutputTypeCountAttemptsArgs
-  allocations?: boolean | PaymentCountOutputTypeCountAllocationsArgs
-  refunds?: boolean | PaymentCountOutputTypeCountRefundsArgs
-  providerRefs?: boolean | PaymentCountOutputTypeCountProviderRefsArgs
-}
-
-/**
- * PaymentCountOutputType without action
- */
-export type PaymentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PaymentCountOutputType
-   */
-  select?: Prisma.PaymentCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * PaymentCountOutputType without action
- */
-export type PaymentCountOutputTypeCountAttemptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentAttemptWhereInput
-}
-
-/**
- * PaymentCountOutputType without action
- */
-export type PaymentCountOutputTypeCountAllocationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentAllocationWhereInput
-}
-
-/**
- * PaymentCountOutputType without action
- */
-export type PaymentCountOutputTypeCountRefundsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.RefundWhereInput
-}
-
-/**
- * PaymentCountOutputType without action
- */
-export type PaymentCountOutputTypeCountProviderRefsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ProviderObjectReferenceWhereInput
-}
-
 
 export type PaymentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1343,12 +823,7 @@ export type PaymentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   createdAt?: boolean
   updatedAt?: boolean
   billingAccount?: boolean | Prisma.Payment$billingAccountArgs<ExtArgs>
-  attempts?: boolean | Prisma.Payment$attemptsArgs<ExtArgs>
-  allocations?: boolean | Prisma.Payment$allocationsArgs<ExtArgs>
-  refunds?: boolean | Prisma.Payment$refundsArgs<ExtArgs>
-  providerRefs?: boolean | Prisma.Payment$providerRefsArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
-  _count?: boolean | Prisma.PaymentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["payment"]>
 
 export type PaymentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1400,12 +875,7 @@ export type PaymentSelectScalar = {
 export type PaymentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "billingAccountId" | "amountMinor" | "currency" | "status" | "description" | "succeededAt" | "failedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["payment"]>
 export type PaymentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   billingAccount?: boolean | Prisma.Payment$billingAccountArgs<ExtArgs>
-  attempts?: boolean | Prisma.Payment$attemptsArgs<ExtArgs>
-  allocations?: boolean | Prisma.Payment$allocationsArgs<ExtArgs>
-  refunds?: boolean | Prisma.Payment$refundsArgs<ExtArgs>
-  providerRefs?: boolean | Prisma.Payment$providerRefsArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
-  _count?: boolean | Prisma.PaymentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PaymentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   billingAccount?: boolean | Prisma.Payment$billingAccountArgs<ExtArgs>
@@ -1420,10 +890,6 @@ export type $PaymentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Payment"
   objects: {
     billingAccount: Prisma.$BillingAccountPayload<ExtArgs> | null
-    attempts: Prisma.$PaymentAttemptPayload<ExtArgs>[]
-    allocations: Prisma.$PaymentAllocationPayload<ExtArgs>[]
-    refunds: Prisma.$RefundPayload<ExtArgs>[]
-    providerRefs: Prisma.$ProviderObjectReferencePayload<ExtArgs>[]
     workspace: Prisma.$WorkspacePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1833,10 +1299,6 @@ readonly fields: PaymentFieldRefs;
 export interface Prisma__PaymentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   billingAccount<T extends Prisma.Payment$billingAccountArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Payment$billingAccountArgs<ExtArgs>>): Prisma.Prisma__BillingAccountClient<runtime.Types.Result.GetResult<Prisma.$BillingAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  attempts<T extends Prisma.Payment$attemptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Payment$attemptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentAttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  allocations<T extends Prisma.Payment$allocationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Payment$allocationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentAllocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  refunds<T extends Prisma.Payment$refundsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Payment$refundsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RefundPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  providerRefs<T extends Prisma.Payment$providerRefsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Payment$providerRefsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProviderObjectReferencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2295,102 +1757,6 @@ export type Payment$billingAccountArgs<ExtArgs extends runtime.Types.Extensions.
    */
   include?: Prisma.BillingAccountInclude<ExtArgs> | null
   where?: Prisma.BillingAccountWhereInput
-}
-
-/**
- * Payment.attempts
- */
-export type Payment$attemptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PaymentAttempt
-   */
-  select?: Prisma.PaymentAttemptSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PaymentAttempt
-   */
-  omit?: Prisma.PaymentAttemptOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PaymentAttemptInclude<ExtArgs> | null
-  where?: Prisma.PaymentAttemptWhereInput
-  orderBy?: Prisma.PaymentAttemptOrderByWithRelationInput | Prisma.PaymentAttemptOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentAttemptWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PaymentAttemptScalarFieldEnum | Prisma.PaymentAttemptScalarFieldEnum[]
-}
-
-/**
- * Payment.allocations
- */
-export type Payment$allocationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PaymentAllocation
-   */
-  select?: Prisma.PaymentAllocationSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PaymentAllocation
-   */
-  omit?: Prisma.PaymentAllocationOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PaymentAllocationInclude<ExtArgs> | null
-  where?: Prisma.PaymentAllocationWhereInput
-  orderBy?: Prisma.PaymentAllocationOrderByWithRelationInput | Prisma.PaymentAllocationOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentAllocationWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PaymentAllocationScalarFieldEnum | Prisma.PaymentAllocationScalarFieldEnum[]
-}
-
-/**
- * Payment.refunds
- */
-export type Payment$refundsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Refund
-   */
-  select?: Prisma.RefundSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Refund
-   */
-  omit?: Prisma.RefundOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.RefundInclude<ExtArgs> | null
-  where?: Prisma.RefundWhereInput
-  orderBy?: Prisma.RefundOrderByWithRelationInput | Prisma.RefundOrderByWithRelationInput[]
-  cursor?: Prisma.RefundWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.RefundScalarFieldEnum | Prisma.RefundScalarFieldEnum[]
-}
-
-/**
- * Payment.providerRefs
- */
-export type Payment$providerRefsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ProviderObjectReference
-   */
-  select?: Prisma.ProviderObjectReferenceSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ProviderObjectReference
-   */
-  omit?: Prisma.ProviderObjectReferenceOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProviderObjectReferenceInclude<ExtArgs> | null
-  where?: Prisma.ProviderObjectReferenceWhereInput
-  orderBy?: Prisma.ProviderObjectReferenceOrderByWithRelationInput | Prisma.ProviderObjectReferenceOrderByWithRelationInput[]
-  cursor?: Prisma.ProviderObjectReferenceWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ProviderObjectReferenceScalarFieldEnum | Prisma.ProviderObjectReferenceScalarFieldEnum[]
 }
 
 /**

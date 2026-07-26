@@ -48,9 +48,15 @@ export const updateCardSectionsSchema = authorized
   .strict();
 export const createCardButtonSchema = authorized
   .extend({
+    id: uuidSchema,
     label: z.string().trim().min(1).max(80),
     url: destination,
+    type: z.string().trim().max(40).default("CUSTOM"),
+    displayMode: z.enum(["BUTTON", "ICON"]).default("BUTTON"),
+    color: z.string().regex(/^#[0-9a-fA-F]{6}$/).nullable().default(null),
     isVisible: z.boolean().default(true),
+    openInNewTab: z.boolean().default(false),
+    analyticsEnabled: z.boolean().default(false),
   })
   .strict();
 export const updateCardButtonSchema = authorized
@@ -58,14 +64,24 @@ export const updateCardButtonSchema = authorized
     buttonId: uuidSchema,
     label: z.string().trim().min(1).max(80).optional(),
     url: destination.optional(),
+    type: z.string().trim().max(40).optional(),
+    displayMode: z.enum(["BUTTON", "ICON"]).optional(),
+    color: z.string().regex(/^#[0-9a-fA-F]{6}$/).nullable().optional(),
     isVisible: z.boolean().optional(),
+    openInNewTab: z.boolean().optional(),
+    analyticsEnabled: z.boolean().optional(),
   })
   .strict()
   .refine(
     (value) =>
       value.label !== undefined ||
       value.url !== undefined ||
-      value.isVisible !== undefined,
+      value.type !== undefined ||
+      value.displayMode !== undefined ||
+      value.color !== undefined ||
+      value.isVisible !== undefined ||
+      value.openInNewTab !== undefined ||
+      value.analyticsEnabled !== undefined,
     "Provide a button change",
   );
 export const deleteCardButtonSchema = authorized
@@ -81,6 +97,7 @@ export const reorderCardButtonsSchema = authorized
   .strict();
 export const createSocialLinkSchema = authorized
   .extend({
+    id: uuidSchema,
     platform: z.string().trim().min(1).max(40),
     label: z.string().trim().max(80).nullable().optional(),
     url: destination,

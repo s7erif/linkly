@@ -57,9 +57,17 @@
   background: var(--oi-component-action-primary);
   border-color: var(--oi-component-action-primary);
   color: var(--oi-component-action-primary-text);
+  box-shadow: 
+    0 8px 16px -4px rgba(0, 0, 0, 0.15),
+    0 4px 20px -2px color-mix(in srgb, var(--oi-color-accent) 25%, transparent);
 }
 
-.buttonPrimary:hover { background: var(--oi-component-action-primary-hover); }
+.buttonPrimary:hover { 
+  background: var(--oi-component-action-primary-hover); 
+  box-shadow: 
+    0 12px 24px -6px rgba(0, 0, 0, 0.2),
+    0 6px 28px -2px color-mix(in srgb, var(--oi-color-accent) 35%, transparent);
+}
 .buttonPrimary:active { background: var(--oi-component-action-primary-pressed); }
 
 .buttonSecondary {
@@ -109,13 +117,21 @@
 }
 
 .buttonLink {
-  background: var(--oi-component-action-link);
+  background: var(--oi-color-transparent);
   border-color: var(--oi-color-transparent);
-  color: var(--oi-component-action-link-text);
+  color: var(--oi-color-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(124, 92, 255, 0.4);
   padding-inline: var(--oi-space-0);
+  transition: all 0.2s;
 }
 
-.buttonLink:hover { color: var(--oi-component-action-link-hover); }
+.buttonLink:hover { 
+  color: var(--oi-color-neutral-950);
+  text-decoration-color: var(--oi-color-primary);
+}
 .buttonLink:active { color: var(--oi-color-accent); }
 
 .buttonFull { inline-size: 100%; }
@@ -157,8 +173,9 @@
 }
 
 .fieldLabel {
-  color: var(--oi-color-text);
-  font-weight: var(--oi-font-weight-medium);
+  color: var(--oi-color-neutral-950, #000);
+  font-weight: 700;
+  font-size: 0.85rem;
 }
 
 .fieldFrame {
@@ -176,12 +193,39 @@
     box-shadow var(--oi-duration-fast) var(--oi-ease-standard);
 }
 
-.fieldFrame:hover { border-color: var(--oi-component-field-border-hover); }
+.fieldStandard {
+  background: var(--oi-component-field-background);
+  border-color: var(--oi-component-field-border);
+}
+
+.fieldStandard:hover { border-color: var(--oi-component-field-border-hover); }
+
+.fieldGlass {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 
+    inset 0 2px 5px rgba(0, 0, 0, 0.05),
+    0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.fieldGlass:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.fieldGlass:focus-within {
+  background: #ffffff;
+  border-color: var(--oi-color-primary);
+  box-shadow: 
+    0 0 0 3px color-mix(in srgb, var(--oi-color-primary) 20%, transparent),
+    inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
 .fieldError { border-color: var(--oi-component-field-border-error); }
 .fieldSuccess { border-color: var(--oi-component-field-border-success); }
 .fieldDisabled {
   cursor: not-allowed;
-  opacity: var(--oi-opacity-disabled);
+  opacity: 0.65;
+  filter: grayscale(20%);
 }
 .fieldReadOnly { background: var(--oi-surface-raised); }
 
@@ -203,17 +247,46 @@
 .fieldControl {
   background: var(--oi-color-transparent);
   border-width: var(--oi-border-width-none);
-  color: var(--oi-color-text);
+  color: var(--oi-color-neutral-950, #09090b);
   flex: 1;
   font-family: var(--oi-font-family-sans);
   font-size: var(--oi-font-size-sm);
+  font-weight: 600;
   inline-size: 100%;
   min-inline-size: var(--oi-space-0);
   outline: var(--oi-border-width-none);
   padding: var(--oi-space-0);
+  caret-color: var(--oi-color-primary);
 }
 
-.fieldControl::placeholder { color: var(--oi-color-text-subtle); }
+.fieldControl::placeholder { 
+  color: #52525b; /* High contrast gray for WCAG AA */
+  opacity: 1;
+}
+
+/* Fix browser autofill styling */
+.fieldControl:-webkit-autofill,
+.fieldControl:-webkit-autofill:hover,
+.fieldControl:-webkit-autofill:focus,
+.fieldControl:-webkit-autofill:active {
+  transition: background-color 999999s ease-in-out 0s, color 999999s ease-in-out 0s;
+  -webkit-text-fill-color: var(--oi-color-text) !important;
+  caret-color: var(--oi-color-text) !important;
+}
+
+/* Password field specific readability improvements */
+.fieldControl[type="password"] {
+  letter-spacing: 0.2em;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
+}
+
+.fieldControl[type="password"]::placeholder {
+  letter-spacing: normal;
+  font-family: var(--oi-font-family-sans);
+  font-weight: 500;
+}
+
 .fieldControl:disabled { cursor: not-allowed; }
 .fieldTextarea {
   min-block-size: var(--oi-textarea-min-block-size);

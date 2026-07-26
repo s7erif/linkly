@@ -1,0 +1,142 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Workspace V2 — Utility Classes & Style Primitives (Quiet Luxury Identity)
+   Extends the existing oi-* token system with workspace-specific classes.
+
+   Tailwind @theme tokens are defined in globals.css.
+   This file provides CSS-custom-property fallbacks and reusable utility classes.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── CSS Custom Properties (standalone, no Tailwind dependency) ────────── */
+:root {
+  --ws-surface: #FCFCFD;
+  --ws-surface-overlay: #FFFFFF;
+  --ws-surface-dim: #F7F7F8;
+  --ws-surface-raised: #FAFAFB;
+  --ws-outline: #ECECEC;
+  --ws-outline-strong: #D4D4D8;
+  --ws-primary: #6D5DF6;
+  --ws-primary-hover: #5B4DE0;
+  --ws-primary-muted: #EDE9FE;
+  --ws-text-primary: #1A1A1A;
+  --ws-text-secondary: #52525B;
+  --ws-text-muted: #6B7280;
+  --ws-text-inverse: #FFFFFF;
+  --ws-radius-studio: 1.5rem;
+  --ws-radius-card: 1rem;
+  --ws-radius-control: 0.75rem;
+  --ws-radius-chip: 9999px;
+  --ws-sidebar-width: 260px;
+  --ws-inspector-width: 420px;
+}
+
+/* ── Liquid Glass utility ─────────────────────────────────────────────── */
+.workspace-glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(236, 236, 236, 0.5);
+}
+
+.workspace-glass-strong {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(236, 236, 236, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+/* ── Ambient subtle card ──────────────────────────────────────────────── */
+.workspace-card {
+  background: var(--ws-surface-overlay);
+  border: 1px solid var(--ws-outline);
+  border-radius: var(--ws-radius-studio);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.03);
+  transition: box-shadow var(--oi-duration-fast, 120ms) var(--oi-ease-standard, cubic-bezier(0.2, 0, 0, 1)),
+              transform var(--oi-duration-fast, 120ms) var(--oi-ease-standard, cubic-bezier(0.2, 0, 0, 1));
+}
+
+.workspace-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.04);
+  transform: translateY(-1px);
+}
+
+/* ── Studio stamp (small architectural labels) ────────────────────────── */
+.studio-stamp {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 2px 8px;
+  border: 0.5px solid var(--ws-outline);
+  border-radius: 4px;
+  color: var(--ws-text-muted);
+  font-weight: 700;
+  display: inline-block;
+}
+
+/* ── Custom scrollbar (subtle, on-brand) ──────────────────────────────── */
+.workspace-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ws-outline) transparent;
+}
+
+.workspace-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.workspace-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.workspace-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--ws-outline);
+  border-radius: 10px;
+}
+
+.workspace-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--ws-outline-strong);
+}
+
+/* ── Focus ring (lavender, accessible) ────────────────────────────────── */
+.workspace-focus-ring:focus-visible {
+  outline: 2px solid var(--ws-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Field card (interactive input wrapper) ───────────────────────────── */
+.workspace-field-card {
+  background: var(--ws-surface-dim);
+  border: 1px solid rgba(236, 236, 236, 0.5);
+  border-radius: var(--ws-radius-card);
+  transition: transform var(--oi-duration-fast, 120ms) var(--oi-ease-standard, cubic-bezier(0.2, 0, 0, 1)),
+              box-shadow var(--oi-duration-fast, 120ms) var(--oi-ease-standard, cubic-bezier(0.2, 0, 0, 1)),
+              background var(--oi-duration-fast, 120ms) var(--oi-ease-standard, cubic-bezier(0.2, 0, 0, 1)),
+              border-color var(--oi-duration-fast, 120ms) var(--oi-ease-standard, cubic-bezier(0.2, 0, 0, 1));
+}
+
+.workspace-field-card:focus-within {
+  background: var(--ws-surface-overlay);
+  border-color: rgba(109, 93, 246, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px rgba(109, 93, 246, 0.1);
+}
+
+/* ── Canvas phone mockup dashed border ───────────────────────────────── */
+.canvas-dashed {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='40' ry='40' stroke='%23ECECEC' stroke-width='1' stroke-dasharray='8%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  border-radius: 40px;
+}
+
+/* ── Phone preview ambient shadow ────────────────────────────────────── */
+.phone-preview-shadow {
+  box-shadow: 0 60px 120px -30px rgba(109, 93, 246, 0.12);
+}
+
+/* ── No scrollbar (for phone mockup) ─────────────────────────────────── */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

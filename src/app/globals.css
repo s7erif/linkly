@@ -1,4 +1,49 @@
 @import "tailwindcss";
+
+/* ── Workspace V2 Design Tokens (Tailwind v4 @theme) ─────────────────── */
+@theme {
+  /* Colors — Quiet Luxury palette */
+  --color-workspace-surface: #FCFCFD;
+  --color-workspace-surface-overlay: #FFFFFF;
+  --color-workspace-surface-dim: #F7F7F8;
+  --color-workspace-surface-raised: #FAFAFB;
+  --color-workspace-outline: #ECECEC;
+  --color-workspace-outline-strong: #D4D4D8;
+  --color-workspace-primary: #6D5DF6;
+  --color-workspace-primary-hover: #5B4DE0;
+  --color-workspace-primary-muted: #EDE9FE;
+  --color-workspace-text-primary: #1A1A1A;
+  --color-workspace-text-secondary: #52525B;
+  --color-workspace-text-muted: #6B7280;
+  --color-workspace-text-inverse: #FFFFFF;
+
+  /* Spacing — 8px unit grid */
+  --spacing-workspace-unit: 0.5rem;
+  --spacing-workspace-gutter: 1.5rem;
+  --spacing-workspace-section: 2rem;
+
+  /* Radius — Quiet Luxury identity */
+  --radius-workspace-studio: 1.5rem;
+  --radius-workspace-card: 1rem;
+  --radius-workspace-control: 0.75rem;
+  --radius-workspace-chip: 9999px;
+
+  /* Shadows — ambient, diffused, low-opacity */
+  --shadow-workspace-premium: 0 20px 50px rgba(0, 0, 0, 0.04);
+  --shadow-workspace-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.03);
+  --shadow-workspace-hover: 0 4px 16px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.04);
+  --shadow-workspace-floating: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.03);
+  --shadow-workspace-phone: 0 60px 120px -30px rgba(109, 93, 246, 0.12);
+
+  /* Container sizes */
+  --container-workspace-sidebar: 260px;
+  --container-workspace-inspector: 420px;
+
+  /* Z-index layers */
+  --z-workspace-toolbar: 30;
+  --z-workspace-sidebar: 20;
+  --z-workspace-inspector: 20;
+}
 @import "../design/index.css";
 
 @layer base {
@@ -91,4 +136,11 @@
 
 .animate-avatar-ring {
   animation: avatarRing 3s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+/* ── Public Profile Canvas ────────────────────────────────── */
+.profile-canvas {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, color-mix(in srgb, var(--primary, #7C5CFF) 4%, transparent) 0%, transparent 70%),
+    var(--color-bg-page, #FAFAFB);
 }

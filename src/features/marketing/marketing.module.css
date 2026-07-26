@@ -9,8 +9,8 @@
 .landing,
 .publicPage {
   overflow-y: auto;
-  background: #FAFAFB;
-  color: #111111;
+  background: var(--oi-color-background);
+  color: var(--oi-color-neutral-950);
 }
 
 /* ── Aurora ambient background ──────────────────────────────── */
@@ -95,23 +95,24 @@
 .hero h1 {
   max-width: 680px;
   margin: 22px 0 0;
+  font-family: var(--oi-font-family-display);
   font-size: clamp(3rem, 6vw, 5.6rem);
-  line-height: 0.96;
-  letter-spacing: -0.07em;
-  color: #111111;
+  line-height: var(--oi-line-height-tight);
+  letter-spacing: var(--oi-letter-spacing-tight);
+  color: var(--oi-color-neutral-950);
 }
 
 .hero h1 span {
-  /* Solid purple — no gradient */
-  color: #7C5CFF;
+  color: var(--oi-color-primary);
 }
 
 .heroCopy {
   max-width: 570px;
   margin: 24px 0 0;
-  color: #666666;
+  color: var(--oi-color-neutral-600);
+  font-family: var(--oi-font-family-sans);
   font-size: 1.02rem;
-  line-height: 1.75;
+  line-height: var(--oi-line-height-relaxed);
 }
 
 .heroActions {
@@ -130,40 +131,41 @@
   align-items: center;
   justify-content: center;
   padding: 0 20px;
-  border-radius: 24px;
-  font-size: 0.78rem;
-  font-weight: 650;
+  border-radius: var(--oi-radius-full);
+  font-family: var(--oi-font-family-sans);
+  font-size: var(--oi-font-size-sm);
+  font-weight: var(--oi-font-weight-semibold);
   text-decoration: none;
   box-sizing: border-box;
-  transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+  transition: transform var(--oi-motion-hover-duration) var(--oi-motion-hover-easing), box-shadow var(--oi-motion-hover-duration) var(--oi-motion-hover-easing), background var(--oi-motion-hover-duration) var(--oi-motion-hover-easing);
 }
 
 /* Primary — solid black */
 .primaryCta {
-  background: #111111;
-  color: #ffffff;
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  background: var(--oi-color-neutral-950);
+  color: var(--oi-color-white);
+  box-shadow: var(--oi-shadow-md);
 }
 
 .primaryCta:hover {
-  background: #000000;
-  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.16);
-  transform: translateY(-2px);
+  background: var(--oi-color-black);
+  box-shadow: var(--oi-shadow-lg);
+  transform: translateY(var(--oi-motion-hover-lift));
 }
 
 /* Secondary — Liquid Glass (light) */
 .secondaryCta {
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  color: #111111;
+  border: var(--oi-border-width-standard) var(--oi-border-style-standard) var(--oi-glass-lg-border);
+  background: var(--oi-glass-lg-background);
+  backdrop-filter: blur(var(--oi-glass-lg-blur)) saturate(var(--oi-glass-lg-saturation));
+  -webkit-backdrop-filter: blur(var(--oi-glass-lg-blur)) saturate(var(--oi-glass-lg-saturation));
+  color: var(--oi-color-neutral-950);
 }
 
 .secondaryCta:hover {
-  border-color: rgba(0, 0, 0, 0.14);
-  background: rgba(255, 255, 255, 0.75);
-  transform: translateY(-2px);
+  border-color: var(--oi-glass-lg-hover-border);
+  background: var(--oi-glass-lg-hover-background);
+  transform: translateY(var(--oi-motion-hover-lift));
 }
 
 .microcopy {
@@ -299,7 +301,7 @@
 /* ── Sections ───────────────────────────────────────────────── */
 
 .section {
-  padding: 90px 24px;
+  padding: var(--oi-section-spacing) 24px;
 }
 
 .sectionAlt {
@@ -327,10 +329,11 @@
 
 .sectionHead h2 {
   margin: 0;
+  font-family: var(--oi-font-family-display);
   font-size: clamp(2rem, 4vw, 3.1rem);
-  line-height: 1.08;
-  letter-spacing: -0.05em;
-  color: #111111;
+  line-height: var(--oi-line-height-tight);
+  letter-spacing: var(--oi-letter-spacing-tight);
+  color: var(--oi-color-neutral-950);
 }
 
 .sectionHead p {
@@ -459,18 +462,19 @@
 /* ── Final CTA ──────────────────────────────────────────────── */
 
 .finalCta {
-  padding: 90px 24px;
-  background: #111111;
-  color: #ffffff;
+  padding: var(--oi-section-spacing) 24px;
+  background: var(--oi-color-neutral-950);
+  color: var(--oi-color-white);
   text-align: center;
 }
 
 .finalCta h2 {
   max-width: 700px;
   margin: auto;
+  font-family: var(--oi-font-family-display);
   font-size: clamp(2.2rem, 5vw, 4rem);
-  line-height: 1;
-  letter-spacing: -0.055em;
+  line-height: var(--oi-line-height-tight);
+  letter-spacing: var(--oi-letter-spacing-tight);
 }
 
 .finalCta p {

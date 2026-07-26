@@ -201,7 +201,9 @@ export default function HeroSection({ brandName }: HeroSectionProps) {
 
       {/* ── Hero content ──────────────────────────────────────── */}
       <section className={styles.hero} aria-labelledby="hero-headline">
-      <motion.h1
+        {/* Left column — text content grouped together */}
+        <div className={styles.textZone}>
+          <motion.h1
             id="hero-headline"
             className={styles.headline}
             initial={{ opacity: 0, y: 20 }}
@@ -212,6 +214,20 @@ export default function HeroSection({ brandName }: HeroSectionProps) {
             <br className={styles.headlineBr} />
             <span className={styles.textGradient}>Instant connection.</span>
           </motion.h1>
+
+          <motion.div
+            className={styles.actions}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: T.actions, ease: spring }}
+          >
+            <Link href="/products" className={styles.primaryCta}>
+              Browse Our Products
+            </Link>
+            <Link href="/login" className={styles.secondaryCta}>
+              Sign In
+            </Link>
+          </motion.div>
 
           <motion.p
             className={styles.body}
@@ -224,20 +240,6 @@ export default function HeroSection({ brandName }: HeroSectionProps) {
           </motion.p>
 
           <motion.div
-            className={styles.actions}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: T.actions, ease: spring }}
-          >
-            <Link href="/register" className={styles.primaryCta}>
-              Create Your Card
-            </Link>
-            <Link href="/login" className={styles.secondaryCta}>
-              Sign In
-            </Link>
-          </motion.div>
-
-          <motion.div
             className={styles.trustRow}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -247,7 +249,7 @@ export default function HeroSection({ brandName }: HeroSectionProps) {
             <span className={styles.trustStat}>Update anytime</span>
             <span className={styles.trustStat}>Share by NFC • QR • Link</span>
           </motion.div>
-
+        </div>
 
         {/* Right column — NFC interaction scene */}
         <PhoneScene brandName={brandName} />

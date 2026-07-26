@@ -1,5 +1,5 @@
 import { changeCardSlug, validateCardSlug } from "@/lib/composition-root";
-import { handlePublicCardMutationRoute } from "@/features/public-card/public-card-mutation-route.server";
+import { handlePublicCardMutationRoute, shouldReturnEditorForMutation } from "@/features/public-card/public-card-mutation-route.server";
 import { getWorkspaceAdminAuthorization } from "@/lib/workspace-admin-authorization.server";
 import { handleRoute, parseJsonBody, parseRouteParams } from "@/transport/http";
 import { changeCardSlugSchema } from "@/validation/card-builder";
@@ -27,6 +27,6 @@ export async function PUT(
       parseRouteParams(context.params, params),
       parseJsonBody(request, body),
     ]);
-    return { data: await changeCardSlug.execute({ cardId: id, ...input }, await getWorkspaceAdminAuthorization()) };
+    return { data: await changeCardSlug.execute({ cardId: id, ...input }, await getWorkspaceAdminAuthorization(), shouldReturnEditorForMutation(request)) };
   });
 }

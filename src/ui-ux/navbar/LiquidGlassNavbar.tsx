@@ -22,7 +22,7 @@ interface LiquidGlassNavbarProps {
 const NAV_LINKS: NavLinkItem[] = [
   { label: "Experience", href: "/#features" },
   { label: "The Card", href: "/#how-it-works" },
-  { label: "Enterprise", href: "/#pricing" },
+  { label: "Our Products", href: "/products" },
   { label: "Support", href: "/#contact" },
 ];
 

@@ -5,6 +5,7 @@ import type { ActivationRepository } from "@/repositories/contracts";
 import { createHmacSecretHasher, secureAccessCodeGenerator, secureSessionTokenGenerator, type SecretHasher } from "@/services/credential-security.service";
 import { activationLoginSchema, activationRegistrationSchema, activationTokenSchema, activationUsernameSchema, passwordResetRequestSchema, passwordResetSchema, customerLoginSchema, customerRegistrationSchema } from "@/validation/activation";
 import { generateAccountUsername } from "@/lib/slug-generator";
+import { AccountNotFoundError, AccountNotProvisionedError, AccountNotActivatedError, InvalidPasswordError } from "@/lib/errors";
 
 const scrypt = promisify(scryptCallback);
 const sessionLifetime = 60 * 60 * 24 * 30;
@@ -55,7 +56,10 @@ export class ActivationService {
   async loginCustomer(input: unknown) {
     const value = customerLoginSchema.parse(input);
     const account = await this.repository.findAccountByEmail(value.email);
-    if (!account || !account.passwordHash || !account.passwordSalt || !await this.verifyPassword(value.password, account.passwordHash, account.passwordSalt) || !account.workspace) throw new Error("Email or password is incorrect");
+    if (!account) throw new AccountNotFoundError();
+    if (!account.passwordHash || !account.passwordSalt) throw new AccountNotProvisionedError();
+    if (!account.workspace) throw new AccountNotActivatedError();
+    if (!await this.verifyPassword(value.password, account.passwordHash, account.passwordSalt)) throw new InvalidPasswordError();
     const token = secureSessionTokenGenerator.generate();
     const expiresAt = new Date(Date.now() + (value.rememberMe ? 30 : 1) * 24 * 60 * 60 * 1000);
     await this.repository.createSession(account.id, await secureSessionTokenGenerator.hash(token), expiresAt);

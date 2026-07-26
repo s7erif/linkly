@@ -117,6 +117,7 @@ import {
   UpdateCardAppearance,
   UpdateCardProfile,
   UpdateCardPublication,
+  UploadCardAvatar,
   UpdateCardSections,
   CreateCardButton,
   UpdateCardButton,
@@ -332,6 +333,7 @@ export const dashboardProjectionService = new DashboardProjectionService();
 const environment = getEnvironment();
 const storageProvider = environment.SUPABASE_URL && environment.SUPABASE_SERVICE_ROLE_KEY && environment.SUPABASE_STORAGE_BUCKET ? new SupabaseStorageProvider(environment) : new LocalStorageProvider();
 export const mediaService = new MediaService(new PrismaMediaRepository(prisma), storageProvider);
+export const uploadCardAvatar = new UploadCardAvatar(unitOfWork, mediaService, secureSessionTokenGenerator);
 
 // ── Email Platform ────────────────────────────────────────────
 import { createEmailService } from "@/features/email";

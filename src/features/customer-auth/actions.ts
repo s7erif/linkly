@@ -7,8 +7,9 @@ import { getBaseUrl } from "@/lib/public-links";
 import { getEnvironment } from "@/lib/env";
 import { ResendEmailProvider } from "@/notifications/resend-email.provider";
 import { secureSessionTokenGenerator } from "@/services/credential-security.service";
+import { AccountNotFoundError, AccountNotProvisionedError, AccountNotActivatedError, InvalidPasswordError } from "@/lib/errors";
 
-export type AuthResult = { ok: boolean; message: string; pending?: boolean; showWelcome?: boolean; fieldErrors?: Partial<Record<"firstName" | "lastName" | "email" | "password" | "confirmPassword", string>> };
+export type AuthResult = { ok: boolean; message: string; pending?: boolean; fieldErrors?: Partial<Record<"firstName" | "lastName" | "email" | "password" | "confirmPassword", string>> };
 const attempts = new Map<string, { count: number; resetAt: number }>();
 async function limited(scope: string, max = 8) {
   const h = await headers();
@@ -39,13 +40,34 @@ export async function customerLoginAction(form: FormData): Promise<AuthResult> {
   try {
     const result = await getActivationService().loginCustomer({ email, password: form.get("password"), rememberMe: form.get("rememberMe") === "on" });
     await setSession(result.token, result.expiresAt);
-    const showWelcome = (await cookies()).get("oi_welcome_seen")?.value !== "1";
-    return { ok: true, message: "Signed in.", showWelcome };
-  } catch {
-    // Distinguish a pending (not-yet-approved) digital registration from a genuine auth failure.
-    if (email && await registrationReadService.pendingRegistrationByEmail(email)) {
-      return { ok: false, pending: true, message: "Your registration is currently under review. You will be able to sign in once an administrator approves your account." };
+    return { ok: true, message: "Signed in." };
+  } catch (error) {
+    // ── Explicit auth errors — every case is handled individually ──────
+    if (error instanceof InvalidPasswordError) {
+      return { ok: false, message: "Email or password is incorrect." };
     }
+    if (error instanceof AccountNotProvisionedError) {
+      // Account row exists but was never fully provisioned (missing credentials).
+      if (email && await registrationReadService.pendingRegistrationByEmail(email)) {
+        return { ok: false, pending: true, message: "Your registration is currently under review. You will be able to sign in once an administrator approves your account." };
+      }
+      return { ok: false, message: "Email or password is incorrect." };
+    }
+    if (error instanceof AccountNotActivatedError) {
+      // Account exists with credentials but workspace membership is missing.
+      if (email && await registrationReadService.pendingRegistrationByEmail(email)) {
+        return { ok: false, pending: true, message: "Your registration is currently under review. You will be able to sign in once an administrator approves your account." };
+      }
+      return { ok: false, message: "Email or password is incorrect." };
+    }
+    if (error instanceof AccountNotFoundError) {
+      // No account at all — check for a pending registration order.
+      if (email && await registrationReadService.pendingRegistrationByEmail(email)) {
+        return { ok: false, pending: true, message: "Your registration is currently under review. You will be able to sign in once an administrator approves your account." };
+      }
+      return { ok: false, message: "Email or password is incorrect." };
+    }
+    // Unexpected error — don't leak internal details.
     return { ok: false, message: "Email or password is incorrect." };
   }
 }

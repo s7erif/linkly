@@ -1,10 +1,10 @@
 import { describe, expect, it, vi } from "vitest";
 import type { EditorCardDTO, PublicCardDTO } from "@/dto";
-import { orderedVisibleBlocks } from "@/components/themes/DefaultTheme";
+import { resolveRendererSectionOrder } from "@/components/card-renderer";
 import { defaultAppearanceSettings } from "@/validation/appearance";
 import { createCardButtonSchema } from "@/validation/card-builder";
 import { updateCardProfileSchema } from "@/validation/use-cases";
-import { ChangeCardSlug, UpdateCardSections } from "@/use-cases/card-builder";
+import { ChangeCardSlug, CreateCardButton, UpdateCardSections } from "@/use-cases/card-builder";
 import type { TransactionRepositories, UnitOfWork } from "@/repositories";
 const cardId = "0915a8e0-60eb-4cfc-b6dc-adcb01dd249a",
   now = new Date("2026-07-20T12:00:00Z"),
@@ -12,7 +12,6 @@ const cardId = "0915a8e0-60eb-4cfc-b6dc-adcb01dd249a",
 const source: EditorCardDTO = {
   id: cardId,
   customerId: "3d594650-c44b-4f60-8c9a-c0f44f57615d",
-  themeId: null,
   slug: "ada-card",
   name: "Ada",
   status: "PUBLISHED",
@@ -52,7 +51,9 @@ const source: EditorCardDTO = {
 function deps() {
   const cards = {
     findEditorById: vi.fn(async () => source),
+    findEditorForMutationById: vi.fn(async () => source),
     replaceSections: vi.fn(async () => source),
+    createButton: vi.fn(async () => ({ id: cardId })),
     slugExists: vi.fn(async () => false),
     updateSettings: vi.fn(async () => ({ ...source, slug: "new-slug" })),
   };
@@ -83,12 +84,13 @@ describe("Sprint 13 card builder", () => {
       buttons: [],
       socialLinks: [],
     };
-    expect(orderedVisibleBlocks(card).map((block) => block.kind)).toEqual([
-      "ABOUT",
-      "HERO",
-      "CONTACT",
-      "CTA_BUTTONS",
-      "SOCIAL_LINKS",
+    expect(resolveRendererSectionOrder(card)).toEqual([
+      "bio",
+      "header",
+      "contact",
+      "buttons",
+      "socialLinks",
+      "footer",
     ]);
   });
   it("updates section order only through the transaction repository", async () => {
@@ -118,7 +120,37 @@ describe("Sprint 13 card builder", () => {
         }),
       ]),
     );
+    expect(cards.findEditorForMutationById).toHaveBeenCalledWith(cardId, null);
   });
+  it("skips the post-mutation editor reload for minimal save responses", async () => {
+    const { cards, unitOfWork } = deps();
+    const result = await new CreateCardButton(
+      unitOfWork,
+      { generate: () => "", hash: async () => new Uint8Array([1]) },
+      () => now,
+    ).execute(
+      {
+        id: "872a294a-5de6-47ac-95e2-4af9b32a79bb",
+        cardId,
+        sessionToken: token,
+        label: "Website",
+        url: "https://example.com",
+        type: "WEBSITE",
+        displayMode: "BUTTON",
+        color: null,
+        isVisible: true,
+        openInNewTab: true,
+        analyticsEnabled: true,
+      },
+      undefined,
+      false,
+    );
+
+    expect(result).toEqual({ id: cardId, slug: source.slug });
+    expect(cards.findEditorForMutationById).toHaveBeenCalledTimes(1);
+    expect(cards.findEditorById).not.toHaveBeenCalled();
+  });
+
   it("validates slug uniqueness through the use case", async () => {
     const { cards, unitOfWork } = deps();
     await new ChangeCardSlug(

@@ -65,7 +65,6 @@ const profileSelect = {
 const editorCardSelect = {
   id: true,
   customerId: true,
-  themeId: true,
   slug: true,
   name: true,
   status: true,
@@ -85,6 +84,11 @@ const editorCardSelect = {
       url: true,
       position: true,
       isVisible: true,
+      type: true,
+      displayMode: true,
+      color: true,
+      openInNewTab: true,
+      analyticsEnabled: true,
     },
   },
   socialLinks: {
@@ -149,7 +153,6 @@ function mapEditorCard(row: EditorCardRow): EditorCardDTO {
   return {
     id: row.id,
     customerId: row.customerId,
-    themeId: row.themeId,
     slug: row.slug,
     name: row.name,
     status: row.status,
@@ -540,7 +543,6 @@ export class PrismaAdminReadRepository implements AdminReadRepository {
         owner: { id: row.customer.id, displayName: row.customer.displayName },
         createdAt: row.createdAt,
         updatedAt: row.updatedAt,
-        themeId: row.themeId,
         publishedAt: row.publishedAt,
       },
       owner: row.customer,

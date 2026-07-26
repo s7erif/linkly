@@ -50,3 +50,4 @@ export * from "./authorize-admin-action";
 
 export * from "./editor-authorization";
 export * from "./update-card-publication";
+export * from "./upload-card-avatar";

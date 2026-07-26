@@ -204,7 +204,6 @@ export type WorkspaceWhereInput = {
   nfcCards?: Prisma.NfcCardListRelationFilter
   memberships?: Prisma.WorkspaceMembershipListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
-  entitlements?: Prisma.EntitlementGrantListRelationFilter
   ownedCustomers?: Prisma.CustomerListRelationFilter
   orders?: Prisma.OrderListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
@@ -215,10 +214,8 @@ export type WorkspaceWhereInput = {
   mediaFolders?: Prisma.MediaFolderListRelationFilter
   notifications?: Prisma.NotificationDeliveryListRelationFilter
   settings?: Prisma.SettingListRelationFilter
-  billingTimeline?: Prisma.BillingTimelineEntryListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
   analyticsEvents?: Prisma.AnalyticsEventListRelationFilter
-  analyticsAggregates?: Prisma.AnalyticsAggregateListRelationFilter
   subscriptionReminders?: Prisma.SubscriptionReminderListRelationFilter
 }
 
@@ -236,7 +233,6 @@ export type WorkspaceOrderByWithRelationInput = {
   nfcCards?: Prisma.NfcCardOrderByRelationAggregateInput
   memberships?: Prisma.WorkspaceMembershipOrderByRelationAggregateInput
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
-  entitlements?: Prisma.EntitlementGrantOrderByRelationAggregateInput
   ownedCustomers?: Prisma.CustomerOrderByRelationAggregateInput
   orders?: Prisma.OrderOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
@@ -247,10 +243,8 @@ export type WorkspaceOrderByWithRelationInput = {
   mediaFolders?: Prisma.MediaFolderOrderByRelationAggregateInput
   notifications?: Prisma.NotificationDeliveryOrderByRelationAggregateInput
   settings?: Prisma.SettingOrderByRelationAggregateInput
-  billingTimeline?: Prisma.BillingTimelineEntryOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
   analyticsEvents?: Prisma.AnalyticsEventOrderByRelationAggregateInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateOrderByRelationAggregateInput
   subscriptionReminders?: Prisma.SubscriptionReminderOrderByRelationAggregateInput
 }
 
@@ -271,7 +265,6 @@ export type WorkspaceWhereUniqueInput = Prisma.AtLeast<{
   nfcCards?: Prisma.NfcCardListRelationFilter
   memberships?: Prisma.WorkspaceMembershipListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
-  entitlements?: Prisma.EntitlementGrantListRelationFilter
   ownedCustomers?: Prisma.CustomerListRelationFilter
   orders?: Prisma.OrderListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
@@ -282,10 +275,8 @@ export type WorkspaceWhereUniqueInput = Prisma.AtLeast<{
   mediaFolders?: Prisma.MediaFolderListRelationFilter
   notifications?: Prisma.NotificationDeliveryListRelationFilter
   settings?: Prisma.SettingListRelationFilter
-  billingTimeline?: Prisma.BillingTimelineEntryListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
   analyticsEvents?: Prisma.AnalyticsEventListRelationFilter
-  analyticsAggregates?: Prisma.AnalyticsAggregateListRelationFilter
   subscriptionReminders?: Prisma.SubscriptionReminderListRelationFilter
 }, "id" | "primaryCardId">
 
@@ -326,7 +317,6 @@ export type WorkspaceCreateInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -337,10 +327,8 @@ export type WorkspaceCreateInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -355,7 +343,6 @@ export type WorkspaceUncheckedCreateInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -366,10 +353,8 @@ export type WorkspaceUncheckedCreateInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -384,7 +369,6 @@ export type WorkspaceUpdateInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -395,10 +379,8 @@ export type WorkspaceUpdateInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -413,7 +395,6 @@ export type WorkspaceUncheckedUpdateInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -424,10 +405,8 @@ export type WorkspaceUncheckedUpdateInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -678,20 +657,6 @@ export type WorkspaceUpdateOneRequiredWithoutInvoicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutInvoicesInput, Prisma.WorkspaceUpdateWithoutInvoicesInput>, Prisma.WorkspaceUncheckedUpdateWithoutInvoicesInput>
 }
 
-export type WorkspaceCreateNestedOneWithoutBillingTimelineInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutBillingTimelineInput, Prisma.WorkspaceUncheckedCreateWithoutBillingTimelineInput>
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutBillingTimelineInput
-  connect?: Prisma.WorkspaceWhereUniqueInput
-}
-
-export type WorkspaceUpdateOneRequiredWithoutBillingTimelineNestedInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutBillingTimelineInput, Prisma.WorkspaceUncheckedCreateWithoutBillingTimelineInput>
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutBillingTimelineInput
-  upsert?: Prisma.WorkspaceUpsertWithoutBillingTimelineInput
-  connect?: Prisma.WorkspaceWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutBillingTimelineInput, Prisma.WorkspaceUpdateWithoutBillingTimelineInput>, Prisma.WorkspaceUncheckedUpdateWithoutBillingTimelineInput>
-}
-
 export type WorkspaceCreateNestedOneWithoutPrimaryCardInput = {
   create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutPrimaryCardInput, Prisma.WorkspaceUncheckedCreateWithoutPrimaryCardInput>
   connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutPrimaryCardInput
@@ -808,20 +773,6 @@ export type WorkspaceUpdateOneRequiredWithoutAnalyticsEventsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutAnalyticsEventsInput, Prisma.WorkspaceUpdateWithoutAnalyticsEventsInput>, Prisma.WorkspaceUncheckedUpdateWithoutAnalyticsEventsInput>
 }
 
-export type WorkspaceCreateNestedOneWithoutAnalyticsAggregatesInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutAnalyticsAggregatesInput, Prisma.WorkspaceUncheckedCreateWithoutAnalyticsAggregatesInput>
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutAnalyticsAggregatesInput
-  connect?: Prisma.WorkspaceWhereUniqueInput
-}
-
-export type WorkspaceUpdateOneRequiredWithoutAnalyticsAggregatesNestedInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutAnalyticsAggregatesInput, Prisma.WorkspaceUncheckedCreateWithoutAnalyticsAggregatesInput>
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutAnalyticsAggregatesInput
-  upsert?: Prisma.WorkspaceUpsertWithoutAnalyticsAggregatesInput
-  connect?: Prisma.WorkspaceWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutAnalyticsAggregatesInput, Prisma.WorkspaceUpdateWithoutAnalyticsAggregatesInput>, Prisma.WorkspaceUncheckedUpdateWithoutAnalyticsAggregatesInput>
-}
-
 export type WorkspaceCreateNestedOneWithoutNotificationsInput = {
   create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutNotificationsInput, Prisma.WorkspaceUncheckedCreateWithoutNotificationsInput>
   connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutNotificationsInput
@@ -882,20 +833,6 @@ export type WorkspaceUpdateOneRequiredWithoutPaymentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutPaymentsInput, Prisma.WorkspaceUpdateWithoutPaymentsInput>, Prisma.WorkspaceUncheckedUpdateWithoutPaymentsInput>
 }
 
-export type WorkspaceCreateNestedOneWithoutEntitlementsInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutEntitlementsInput, Prisma.WorkspaceUncheckedCreateWithoutEntitlementsInput>
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutEntitlementsInput
-  connect?: Prisma.WorkspaceWhereUniqueInput
-}
-
-export type WorkspaceUpdateOneRequiredWithoutEntitlementsNestedInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutEntitlementsInput, Prisma.WorkspaceUncheckedCreateWithoutEntitlementsInput>
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutEntitlementsInput
-  upsert?: Prisma.WorkspaceUpsertWithoutEntitlementsInput
-  connect?: Prisma.WorkspaceWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutEntitlementsInput, Prisma.WorkspaceUpdateWithoutEntitlementsInput>, Prisma.WorkspaceUncheckedUpdateWithoutEntitlementsInput>
-}
-
 export type WorkspaceCreateWithoutCustomerInput = {
   id?: string
   createdAt?: Date | string
@@ -906,7 +843,6 @@ export type WorkspaceCreateWithoutCustomerInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -917,10 +853,8 @@ export type WorkspaceCreateWithoutCustomerInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -934,7 +868,6 @@ export type WorkspaceUncheckedCreateWithoutCustomerInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -945,10 +878,8 @@ export type WorkspaceUncheckedCreateWithoutCustomerInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -973,7 +904,6 @@ export type WorkspaceCreateWithoutOwnedCustomersInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
@@ -983,10 +913,8 @@ export type WorkspaceCreateWithoutOwnedCustomersInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1001,7 +929,6 @@ export type WorkspaceUncheckedCreateWithoutOwnedCustomersInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -1011,10 +938,8 @@ export type WorkspaceUncheckedCreateWithoutOwnedCustomersInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1074,7 +999,6 @@ export type WorkspaceUpdateWithoutOwnedCustomersInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
@@ -1084,10 +1008,8 @@ export type WorkspaceUpdateWithoutOwnedCustomersInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -1102,7 +1024,6 @@ export type WorkspaceUncheckedUpdateWithoutOwnedCustomersInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -1112,10 +1033,8 @@ export type WorkspaceUncheckedUpdateWithoutOwnedCustomersInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -1129,7 +1048,6 @@ export type WorkspaceCreateWithoutNfcCardsInput = {
   billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -1140,10 +1058,8 @@ export type WorkspaceCreateWithoutNfcCardsInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1157,7 +1073,6 @@ export type WorkspaceUncheckedCreateWithoutNfcCardsInput = {
   archivedAt?: Date | string | null
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -1168,10 +1083,8 @@ export type WorkspaceUncheckedCreateWithoutNfcCardsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1201,7 +1114,6 @@ export type WorkspaceUpdateWithoutNfcCardsInput = {
   billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -1212,10 +1124,8 @@ export type WorkspaceUpdateWithoutNfcCardsInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -1229,7 +1139,6 @@ export type WorkspaceUncheckedUpdateWithoutNfcCardsInput = {
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -1240,10 +1149,8 @@ export type WorkspaceUncheckedUpdateWithoutNfcCardsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -1257,7 +1164,6 @@ export type WorkspaceCreateWithoutMembershipsInput = {
   billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -1268,10 +1174,8 @@ export type WorkspaceCreateWithoutMembershipsInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1285,7 +1189,6 @@ export type WorkspaceUncheckedCreateWithoutMembershipsInput = {
   archivedAt?: Date | string | null
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -1296,10 +1199,8 @@ export type WorkspaceUncheckedCreateWithoutMembershipsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1329,7 +1230,6 @@ export type WorkspaceUpdateWithoutMembershipsInput = {
   billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -1340,10 +1240,8 @@ export type WorkspaceUpdateWithoutMembershipsInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -1357,7 +1255,6 @@ export type WorkspaceUncheckedUpdateWithoutMembershipsInput = {
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -1368,10 +1265,8 @@ export type WorkspaceUncheckedUpdateWithoutMembershipsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -1385,7 +1280,6 @@ export type WorkspaceCreateWithoutBillingAccountInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -1396,10 +1290,8 @@ export type WorkspaceCreateWithoutBillingAccountInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1413,7 +1305,6 @@ export type WorkspaceUncheckedCreateWithoutBillingAccountInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -1424,10 +1315,8 @@ export type WorkspaceUncheckedCreateWithoutBillingAccountInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1468,7 +1357,6 @@ export type WorkspaceCreateWithoutOrdersInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
@@ -1478,10 +1366,8 @@ export type WorkspaceCreateWithoutOrdersInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1496,7 +1382,6 @@ export type WorkspaceUncheckedCreateWithoutOrdersInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -1506,10 +1391,8 @@ export type WorkspaceUncheckedCreateWithoutOrdersInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1540,7 +1423,6 @@ export type WorkspaceUpdateWithoutOrdersInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
@@ -1550,10 +1432,8 @@ export type WorkspaceUpdateWithoutOrdersInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -1568,7 +1448,6 @@ export type WorkspaceUncheckedUpdateWithoutOrdersInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -1578,10 +1457,8 @@ export type WorkspaceUncheckedUpdateWithoutOrdersInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -1596,7 +1473,6 @@ export type WorkspaceCreateWithoutPaymentSubmissionsInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -1606,10 +1482,8 @@ export type WorkspaceCreateWithoutPaymentSubmissionsInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1624,7 +1498,6 @@ export type WorkspaceUncheckedCreateWithoutPaymentSubmissionsInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -1634,10 +1507,8 @@ export type WorkspaceUncheckedCreateWithoutPaymentSubmissionsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1668,7 +1539,6 @@ export type WorkspaceUpdateWithoutPaymentSubmissionsInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -1678,10 +1548,8 @@ export type WorkspaceUpdateWithoutPaymentSubmissionsInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -1696,7 +1564,6 @@ export type WorkspaceUncheckedUpdateWithoutPaymentSubmissionsInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -1706,10 +1573,8 @@ export type WorkspaceUncheckedUpdateWithoutPaymentSubmissionsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -1724,7 +1589,6 @@ export type WorkspaceCreateWithoutInvoicesInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
@@ -1734,10 +1598,8 @@ export type WorkspaceCreateWithoutInvoicesInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1752,7 +1614,6 @@ export type WorkspaceUncheckedCreateWithoutInvoicesInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -1762,10 +1623,8 @@ export type WorkspaceUncheckedCreateWithoutInvoicesInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1796,7 +1655,6 @@ export type WorkspaceUpdateWithoutInvoicesInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
@@ -1806,10 +1664,8 @@ export type WorkspaceUpdateWithoutInvoicesInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -1824,7 +1680,6 @@ export type WorkspaceUncheckedUpdateWithoutInvoicesInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -1834,138 +1689,8 @@ export type WorkspaceUncheckedUpdateWithoutInvoicesInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
-}
-
-export type WorkspaceCreateWithoutBillingTimelineInput = {
-  id?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
-  settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
-  subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
-}
-
-export type WorkspaceUncheckedCreateWithoutBillingTimelineInput = {
-  id?: string
-  customerId?: string | null
-  primaryCardId?: string | null
-  billingAccountId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
-}
-
-export type WorkspaceCreateOrConnectWithoutBillingTimelineInput = {
-  where: Prisma.WorkspaceWhereUniqueInput
-  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutBillingTimelineInput, Prisma.WorkspaceUncheckedCreateWithoutBillingTimelineInput>
-}
-
-export type WorkspaceUpsertWithoutBillingTimelineInput = {
-  update: Prisma.XOR<Prisma.WorkspaceUpdateWithoutBillingTimelineInput, Prisma.WorkspaceUncheckedUpdateWithoutBillingTimelineInput>
-  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutBillingTimelineInput, Prisma.WorkspaceUncheckedCreateWithoutBillingTimelineInput>
-  where?: Prisma.WorkspaceWhereInput
-}
-
-export type WorkspaceUpdateToOneWithWhereWithoutBillingTimelineInput = {
-  where?: Prisma.WorkspaceWhereInput
-  data: Prisma.XOR<Prisma.WorkspaceUpdateWithoutBillingTimelineInput, Prisma.WorkspaceUncheckedUpdateWithoutBillingTimelineInput>
-}
-
-export type WorkspaceUpdateWithoutBillingTimelineInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
-}
-
-export type WorkspaceUncheckedUpdateWithoutBillingTimelineInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -1979,7 +1704,6 @@ export type WorkspaceCreateWithoutPrimaryCardInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -1990,10 +1714,8 @@ export type WorkspaceCreateWithoutPrimaryCardInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -2007,7 +1729,6 @@ export type WorkspaceUncheckedCreateWithoutPrimaryCardInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -2018,10 +1739,8 @@ export type WorkspaceUncheckedCreateWithoutPrimaryCardInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -2041,7 +1760,6 @@ export type WorkspaceCreateWithoutCardsInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -2051,10 +1769,8 @@ export type WorkspaceCreateWithoutCardsInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -2069,7 +1785,6 @@ export type WorkspaceUncheckedCreateWithoutCardsInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -2079,10 +1794,8 @@ export type WorkspaceUncheckedCreateWithoutCardsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -2112,7 +1825,6 @@ export type WorkspaceUpdateWithoutPrimaryCardInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -2123,10 +1835,8 @@ export type WorkspaceUpdateWithoutPrimaryCardInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -2140,7 +1850,6 @@ export type WorkspaceUncheckedUpdateWithoutPrimaryCardInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -2151,10 +1860,8 @@ export type WorkspaceUncheckedUpdateWithoutPrimaryCardInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -2180,7 +1887,6 @@ export type WorkspaceUpdateWithoutCardsInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -2190,10 +1896,8 @@ export type WorkspaceUpdateWithoutCardsInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -2208,7 +1912,6 @@ export type WorkspaceUncheckedUpdateWithoutCardsInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -2218,10 +1921,8 @@ export type WorkspaceUncheckedUpdateWithoutCardsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -2235,7 +1936,6 @@ export type WorkspaceCreateWithoutSubscriptionsInput = {
   billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -2246,10 +1946,8 @@ export type WorkspaceCreateWithoutSubscriptionsInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -2263,7 +1961,6 @@ export type WorkspaceUncheckedCreateWithoutSubscriptionsInput = {
   archivedAt?: Date | string | null
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -2274,10 +1971,8 @@ export type WorkspaceUncheckedCreateWithoutSubscriptionsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -2307,7 +2002,6 @@ export type WorkspaceUpdateWithoutSubscriptionsInput = {
   billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -2318,10 +2012,8 @@ export type WorkspaceUpdateWithoutSubscriptionsInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -2335,7 +2027,6 @@ export type WorkspaceUncheckedUpdateWithoutSubscriptionsInput = {
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -2346,10 +2037,8 @@ export type WorkspaceUncheckedUpdateWithoutSubscriptionsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -2364,7 +2053,6 @@ export type WorkspaceCreateWithoutSubscriptionRemindersInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -2375,10 +2063,8 @@ export type WorkspaceCreateWithoutSubscriptionRemindersInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutSubscriptionRemindersInput = {
@@ -2392,7 +2078,6 @@ export type WorkspaceUncheckedCreateWithoutSubscriptionRemindersInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -2403,10 +2088,8 @@ export type WorkspaceUncheckedCreateWithoutSubscriptionRemindersInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutSubscriptionRemindersInput = {
@@ -2436,7 +2119,6 @@ export type WorkspaceUpdateWithoutSubscriptionRemindersInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -2447,10 +2129,8 @@ export type WorkspaceUpdateWithoutSubscriptionRemindersInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutSubscriptionRemindersInput = {
@@ -2464,7 +2144,6 @@ export type WorkspaceUncheckedUpdateWithoutSubscriptionRemindersInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -2475,10 +2154,8 @@ export type WorkspaceUncheckedUpdateWithoutSubscriptionRemindersInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutMediaAssetsInput = {
@@ -2492,7 +2169,6 @@ export type WorkspaceCreateWithoutMediaAssetsInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -2502,10 +2178,8 @@ export type WorkspaceCreateWithoutMediaAssetsInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -2520,7 +2194,6 @@ export type WorkspaceUncheckedCreateWithoutMediaAssetsInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -2530,10 +2203,8 @@ export type WorkspaceUncheckedCreateWithoutMediaAssetsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -2564,7 +2235,6 @@ export type WorkspaceUpdateWithoutMediaAssetsInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -2574,10 +2244,8 @@ export type WorkspaceUpdateWithoutMediaAssetsInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -2592,7 +2260,6 @@ export type WorkspaceUncheckedUpdateWithoutMediaAssetsInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -2602,10 +2269,8 @@ export type WorkspaceUncheckedUpdateWithoutMediaAssetsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -2620,7 +2285,6 @@ export type WorkspaceCreateWithoutMediaFoldersInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -2630,10 +2294,8 @@ export type WorkspaceCreateWithoutMediaFoldersInput = {
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -2648,7 +2310,6 @@ export type WorkspaceUncheckedCreateWithoutMediaFoldersInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -2658,10 +2319,8 @@ export type WorkspaceUncheckedCreateWithoutMediaFoldersInput = {
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -2692,7 +2351,6 @@ export type WorkspaceUpdateWithoutMediaFoldersInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -2702,10 +2360,8 @@ export type WorkspaceUpdateWithoutMediaFoldersInput = {
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -2720,7 +2376,6 @@ export type WorkspaceUncheckedUpdateWithoutMediaFoldersInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -2730,10 +2385,8 @@ export type WorkspaceUncheckedUpdateWithoutMediaFoldersInput = {
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -2748,7 +2401,6 @@ export type WorkspaceCreateWithoutAnalyticsEventsInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -2759,9 +2411,7 @@ export type WorkspaceCreateWithoutAnalyticsEventsInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -2776,7 +2426,6 @@ export type WorkspaceUncheckedCreateWithoutAnalyticsEventsInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -2787,9 +2436,7 @@ export type WorkspaceUncheckedCreateWithoutAnalyticsEventsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -2820,7 +2467,6 @@ export type WorkspaceUpdateWithoutAnalyticsEventsInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -2831,9 +2477,7 @@ export type WorkspaceUpdateWithoutAnalyticsEventsInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -2848,7 +2492,6 @@ export type WorkspaceUncheckedUpdateWithoutAnalyticsEventsInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -2859,137 +2502,7 @@ export type WorkspaceUncheckedUpdateWithoutAnalyticsEventsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
-}
-
-export type WorkspaceCreateWithoutAnalyticsAggregatesInput = {
-  id?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
-  settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
-}
-
-export type WorkspaceUncheckedCreateWithoutAnalyticsAggregatesInput = {
-  id?: string
-  customerId?: string | null
-  primaryCardId?: string | null
-  billingAccountId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
-}
-
-export type WorkspaceCreateOrConnectWithoutAnalyticsAggregatesInput = {
-  where: Prisma.WorkspaceWhereUniqueInput
-  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutAnalyticsAggregatesInput, Prisma.WorkspaceUncheckedCreateWithoutAnalyticsAggregatesInput>
-}
-
-export type WorkspaceUpsertWithoutAnalyticsAggregatesInput = {
-  update: Prisma.XOR<Prisma.WorkspaceUpdateWithoutAnalyticsAggregatesInput, Prisma.WorkspaceUncheckedUpdateWithoutAnalyticsAggregatesInput>
-  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutAnalyticsAggregatesInput, Prisma.WorkspaceUncheckedCreateWithoutAnalyticsAggregatesInput>
-  where?: Prisma.WorkspaceWhereInput
-}
-
-export type WorkspaceUpdateToOneWithWhereWithoutAnalyticsAggregatesInput = {
-  where?: Prisma.WorkspaceWhereInput
-  data: Prisma.XOR<Prisma.WorkspaceUpdateWithoutAnalyticsAggregatesInput, Prisma.WorkspaceUncheckedUpdateWithoutAnalyticsAggregatesInput>
-}
-
-export type WorkspaceUpdateWithoutAnalyticsAggregatesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
-}
-
-export type WorkspaceUncheckedUpdateWithoutAnalyticsAggregatesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -3004,7 +2517,6 @@ export type WorkspaceCreateWithoutNotificationsInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -3014,10 +2526,8 @@ export type WorkspaceCreateWithoutNotificationsInput = {
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -3032,7 +2542,6 @@ export type WorkspaceUncheckedCreateWithoutNotificationsInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -3042,10 +2551,8 @@ export type WorkspaceUncheckedCreateWithoutNotificationsInput = {
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -3076,7 +2583,6 @@ export type WorkspaceUpdateWithoutNotificationsInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -3086,10 +2592,8 @@ export type WorkspaceUpdateWithoutNotificationsInput = {
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -3104,7 +2608,6 @@ export type WorkspaceUncheckedUpdateWithoutNotificationsInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -3114,10 +2617,8 @@ export type WorkspaceUncheckedUpdateWithoutNotificationsInput = {
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -3132,7 +2633,6 @@ export type WorkspaceCreateWithoutSettingsInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -3142,10 +2642,8 @@ export type WorkspaceCreateWithoutSettingsInput = {
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -3160,7 +2658,6 @@ export type WorkspaceUncheckedCreateWithoutSettingsInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -3170,10 +2667,8 @@ export type WorkspaceUncheckedCreateWithoutSettingsInput = {
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -3204,7 +2699,6 @@ export type WorkspaceUpdateWithoutSettingsInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -3214,10 +2708,8 @@ export type WorkspaceUpdateWithoutSettingsInput = {
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -3232,7 +2724,6 @@ export type WorkspaceUncheckedUpdateWithoutSettingsInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -3242,10 +2733,8 @@ export type WorkspaceUncheckedUpdateWithoutSettingsInput = {
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -3260,7 +2749,6 @@ export type WorkspaceCreateWithoutAuditLogsInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -3271,9 +2759,7 @@ export type WorkspaceCreateWithoutAuditLogsInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -3288,7 +2774,6 @@ export type WorkspaceUncheckedCreateWithoutAuditLogsInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -3299,9 +2784,7 @@ export type WorkspaceUncheckedCreateWithoutAuditLogsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -3332,7 +2815,6 @@ export type WorkspaceUpdateWithoutAuditLogsInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -3343,9 +2825,7 @@ export type WorkspaceUpdateWithoutAuditLogsInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -3360,7 +2840,6 @@ export type WorkspaceUncheckedUpdateWithoutAuditLogsInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -3371,9 +2850,7 @@ export type WorkspaceUncheckedUpdateWithoutAuditLogsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -3388,7 +2865,6 @@ export type WorkspaceCreateWithoutPaymentsInput = {
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
@@ -3398,10 +2874,8 @@ export type WorkspaceCreateWithoutPaymentsInput = {
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -3416,7 +2890,6 @@ export type WorkspaceUncheckedCreateWithoutPaymentsInput = {
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  entitlements?: Prisma.EntitlementGrantUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -3426,10 +2899,8 @@ export type WorkspaceUncheckedCreateWithoutPaymentsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -3460,7 +2931,6 @@ export type WorkspaceUpdateWithoutPaymentsInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -3470,10 +2940,8 @@ export type WorkspaceUpdateWithoutPaymentsInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -3488,7 +2956,6 @@ export type WorkspaceUncheckedUpdateWithoutPaymentsInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -3498,138 +2965,8 @@ export type WorkspaceUncheckedUpdateWithoutPaymentsInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
-}
-
-export type WorkspaceCreateWithoutEntitlementsInput = {
-  id?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
-  settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateCreateNestedManyWithoutWorkspaceInput
-  subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
-}
-
-export type WorkspaceUncheckedCreateWithoutEntitlementsInput = {
-  id?: string
-  customerId?: string | null
-  primaryCardId?: string | null
-  billingAccountId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
-}
-
-export type WorkspaceCreateOrConnectWithoutEntitlementsInput = {
-  where: Prisma.WorkspaceWhereUniqueInput
-  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutEntitlementsInput, Prisma.WorkspaceUncheckedCreateWithoutEntitlementsInput>
-}
-
-export type WorkspaceUpsertWithoutEntitlementsInput = {
-  update: Prisma.XOR<Prisma.WorkspaceUpdateWithoutEntitlementsInput, Prisma.WorkspaceUncheckedUpdateWithoutEntitlementsInput>
-  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutEntitlementsInput, Prisma.WorkspaceUncheckedCreateWithoutEntitlementsInput>
-  where?: Prisma.WorkspaceWhereInput
-}
-
-export type WorkspaceUpdateToOneWithWhereWithoutEntitlementsInput = {
-  where?: Prisma.WorkspaceWhereInput
-  data: Prisma.XOR<Prisma.WorkspaceUpdateWithoutEntitlementsInput, Prisma.WorkspaceUncheckedUpdateWithoutEntitlementsInput>
-}
-
-export type WorkspaceUpdateWithoutEntitlementsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
-}
-
-export type WorkspaceUncheckedUpdateWithoutEntitlementsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -3652,7 +2989,6 @@ export type WorkspaceUpdateWithoutCustomerInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -3663,10 +2999,8 @@ export type WorkspaceUpdateWithoutCustomerInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -3680,7 +3014,6 @@ export type WorkspaceUncheckedUpdateWithoutCustomerInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -3691,10 +3024,8 @@ export type WorkspaceUncheckedUpdateWithoutCustomerInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -3726,7 +3057,6 @@ export type WorkspaceUpdateWithoutBillingAccountInput = {
   nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
@@ -3737,10 +3067,8 @@ export type WorkspaceUpdateWithoutBillingAccountInput = {
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -3754,7 +3082,6 @@ export type WorkspaceUncheckedUpdateWithoutBillingAccountInput = {
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  entitlements?: Prisma.EntitlementGrantUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -3765,10 +3092,8 @@ export type WorkspaceUncheckedUpdateWithoutBillingAccountInput = {
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  billingTimeline?: Prisma.BillingTimelineEntryUncheckedUpdateManyWithoutWorkspaceNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsAggregates?: Prisma.AnalyticsAggregateUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -3790,7 +3115,6 @@ export type WorkspaceCountOutputType = {
   nfcCards: number
   memberships: number
   subscriptions: number
-  entitlements: number
   ownedCustomers: number
   orders: number
   invoices: number
@@ -3801,10 +3125,8 @@ export type WorkspaceCountOutputType = {
   mediaFolders: number
   notifications: number
   settings: number
-  billingTimeline: number
   auditLogs: number
   analyticsEvents: number
-  analyticsAggregates: number
   subscriptionReminders: number
 }
 
@@ -3812,7 +3134,6 @@ export type WorkspaceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensi
   nfcCards?: boolean | WorkspaceCountOutputTypeCountNfcCardsArgs
   memberships?: boolean | WorkspaceCountOutputTypeCountMembershipsArgs
   subscriptions?: boolean | WorkspaceCountOutputTypeCountSubscriptionsArgs
-  entitlements?: boolean | WorkspaceCountOutputTypeCountEntitlementsArgs
   ownedCustomers?: boolean | WorkspaceCountOutputTypeCountOwnedCustomersArgs
   orders?: boolean | WorkspaceCountOutputTypeCountOrdersArgs
   invoices?: boolean | WorkspaceCountOutputTypeCountInvoicesArgs
@@ -3823,10 +3144,8 @@ export type WorkspaceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensi
   mediaFolders?: boolean | WorkspaceCountOutputTypeCountMediaFoldersArgs
   notifications?: boolean | WorkspaceCountOutputTypeCountNotificationsArgs
   settings?: boolean | WorkspaceCountOutputTypeCountSettingsArgs
-  billingTimeline?: boolean | WorkspaceCountOutputTypeCountBillingTimelineArgs
   auditLogs?: boolean | WorkspaceCountOutputTypeCountAuditLogsArgs
   analyticsEvents?: boolean | WorkspaceCountOutputTypeCountAnalyticsEventsArgs
-  analyticsAggregates?: boolean | WorkspaceCountOutputTypeCountAnalyticsAggregatesArgs
   subscriptionReminders?: boolean | WorkspaceCountOutputTypeCountSubscriptionRemindersArgs
 }
 
@@ -3859,13 +3178,6 @@ export type WorkspaceCountOutputTypeCountMembershipsArgs<ExtArgs extends runtime
  */
 export type WorkspaceCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.SubscriptionWhereInput
-}
-
-/**
- * WorkspaceCountOutputType without action
- */
-export type WorkspaceCountOutputTypeCountEntitlementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.EntitlementGrantWhereInput
 }
 
 /**
@@ -3941,13 +3253,6 @@ export type WorkspaceCountOutputTypeCountSettingsArgs<ExtArgs extends runtime.Ty
 /**
  * WorkspaceCountOutputType without action
  */
-export type WorkspaceCountOutputTypeCountBillingTimelineArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BillingTimelineEntryWhereInput
-}
-
-/**
- * WorkspaceCountOutputType without action
- */
 export type WorkspaceCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AuditLogWhereInput
 }
@@ -3957,13 +3262,6 @@ export type WorkspaceCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.T
  */
 export type WorkspaceCountOutputTypeCountAnalyticsEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AnalyticsEventWhereInput
-}
-
-/**
- * WorkspaceCountOutputType without action
- */
-export type WorkspaceCountOutputTypeCountAnalyticsAggregatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AnalyticsAggregateWhereInput
 }
 
 /**
@@ -3988,7 +3286,6 @@ export type WorkspaceSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   nfcCards?: boolean | Prisma.Workspace$nfcCardsArgs<ExtArgs>
   memberships?: boolean | Prisma.Workspace$membershipsArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Workspace$subscriptionsArgs<ExtArgs>
-  entitlements?: boolean | Prisma.Workspace$entitlementsArgs<ExtArgs>
   ownedCustomers?: boolean | Prisma.Workspace$ownedCustomersArgs<ExtArgs>
   orders?: boolean | Prisma.Workspace$ordersArgs<ExtArgs>
   invoices?: boolean | Prisma.Workspace$invoicesArgs<ExtArgs>
@@ -3999,10 +3296,8 @@ export type WorkspaceSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   mediaFolders?: boolean | Prisma.Workspace$mediaFoldersArgs<ExtArgs>
   notifications?: boolean | Prisma.Workspace$notificationsArgs<ExtArgs>
   settings?: boolean | Prisma.Workspace$settingsArgs<ExtArgs>
-  billingTimeline?: boolean | Prisma.Workspace$billingTimelineArgs<ExtArgs>
   auditLogs?: boolean | Prisma.Workspace$auditLogsArgs<ExtArgs>
   analyticsEvents?: boolean | Prisma.Workspace$analyticsEventsArgs<ExtArgs>
-  analyticsAggregates?: boolean | Prisma.Workspace$analyticsAggregatesArgs<ExtArgs>
   subscriptionReminders?: boolean | Prisma.Workspace$subscriptionRemindersArgs<ExtArgs>
   _count?: boolean | Prisma.WorkspaceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["workspace"]>
@@ -4051,7 +3346,6 @@ export type WorkspaceInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   nfcCards?: boolean | Prisma.Workspace$nfcCardsArgs<ExtArgs>
   memberships?: boolean | Prisma.Workspace$membershipsArgs<ExtArgs>
   subscriptions?: boolean | Prisma.Workspace$subscriptionsArgs<ExtArgs>
-  entitlements?: boolean | Prisma.Workspace$entitlementsArgs<ExtArgs>
   ownedCustomers?: boolean | Prisma.Workspace$ownedCustomersArgs<ExtArgs>
   orders?: boolean | Prisma.Workspace$ordersArgs<ExtArgs>
   invoices?: boolean | Prisma.Workspace$invoicesArgs<ExtArgs>
@@ -4062,10 +3356,8 @@ export type WorkspaceInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   mediaFolders?: boolean | Prisma.Workspace$mediaFoldersArgs<ExtArgs>
   notifications?: boolean | Prisma.Workspace$notificationsArgs<ExtArgs>
   settings?: boolean | Prisma.Workspace$settingsArgs<ExtArgs>
-  billingTimeline?: boolean | Prisma.Workspace$billingTimelineArgs<ExtArgs>
   auditLogs?: boolean | Prisma.Workspace$auditLogsArgs<ExtArgs>
   analyticsEvents?: boolean | Prisma.Workspace$analyticsEventsArgs<ExtArgs>
-  analyticsAggregates?: boolean | Prisma.Workspace$analyticsAggregatesArgs<ExtArgs>
   subscriptionReminders?: boolean | Prisma.Workspace$subscriptionRemindersArgs<ExtArgs>
   _count?: boolean | Prisma.WorkspaceCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -4089,7 +3381,6 @@ export type $WorkspacePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     nfcCards: Prisma.$NfcCardPayload<ExtArgs>[]
     memberships: Prisma.$WorkspaceMembershipPayload<ExtArgs>[]
     subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
-    entitlements: Prisma.$EntitlementGrantPayload<ExtArgs>[]
     ownedCustomers: Prisma.$CustomerPayload<ExtArgs>[]
     orders: Prisma.$OrderPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
@@ -4100,10 +3391,8 @@ export type $WorkspacePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     mediaFolders: Prisma.$MediaFolderPayload<ExtArgs>[]
     notifications: Prisma.$NotificationDeliveryPayload<ExtArgs>[]
     settings: Prisma.$SettingPayload<ExtArgs>[]
-    billingTimeline: Prisma.$BillingTimelineEntryPayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
     analyticsEvents: Prisma.$AnalyticsEventPayload<ExtArgs>[]
-    analyticsAggregates: Prisma.$AnalyticsAggregatePayload<ExtArgs>[]
     subscriptionReminders: Prisma.$SubscriptionReminderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -4514,7 +3803,6 @@ export interface Prisma__WorkspaceClient<T, Null = never, ExtArgs extends runtim
   nfcCards<T extends Prisma.Workspace$nfcCardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$nfcCardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NfcCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   memberships<T extends Prisma.Workspace$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkspaceMembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptions<T extends Prisma.Workspace$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  entitlements<T extends Prisma.Workspace$entitlementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$entitlementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntitlementGrantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ownedCustomers<T extends Prisma.Workspace$ownedCustomersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$ownedCustomersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orders<T extends Prisma.Workspace$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.Workspace$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -4525,10 +3813,8 @@ export interface Prisma__WorkspaceClient<T, Null = never, ExtArgs extends runtim
   mediaFolders<T extends Prisma.Workspace$mediaFoldersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$mediaFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.Workspace$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationDeliveryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   settings<T extends Prisma.Workspace$settingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$settingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  billingTimeline<T extends Prisma.Workspace$billingTimelineArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$billingTimelineArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillingTimelineEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.Workspace$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   analyticsEvents<T extends Prisma.Workspace$analyticsEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$analyticsEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  analyticsAggregates<T extends Prisma.Workspace$analyticsAggregatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$analyticsAggregatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AnalyticsAggregatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptionReminders<T extends Prisma.Workspace$subscriptionRemindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$subscriptionRemindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5096,30 +4382,6 @@ export type Workspace$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
- * Workspace.entitlements
- */
-export type Workspace$entitlementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the EntitlementGrant
-   */
-  select?: Prisma.EntitlementGrantSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the EntitlementGrant
-   */
-  omit?: Prisma.EntitlementGrantOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.EntitlementGrantInclude<ExtArgs> | null
-  where?: Prisma.EntitlementGrantWhereInput
-  orderBy?: Prisma.EntitlementGrantOrderByWithRelationInput | Prisma.EntitlementGrantOrderByWithRelationInput[]
-  cursor?: Prisma.EntitlementGrantWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.EntitlementGrantScalarFieldEnum | Prisma.EntitlementGrantScalarFieldEnum[]
-}
-
-/**
  * Workspace.ownedCustomers
  */
 export type Workspace$ownedCustomersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5360,30 +4622,6 @@ export type Workspace$settingsArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Workspace.billingTimeline
- */
-export type Workspace$billingTimelineArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the BillingTimelineEntry
-   */
-  select?: Prisma.BillingTimelineEntrySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the BillingTimelineEntry
-   */
-  omit?: Prisma.BillingTimelineEntryOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BillingTimelineEntryInclude<ExtArgs> | null
-  where?: Prisma.BillingTimelineEntryWhereInput
-  orderBy?: Prisma.BillingTimelineEntryOrderByWithRelationInput | Prisma.BillingTimelineEntryOrderByWithRelationInput[]
-  cursor?: Prisma.BillingTimelineEntryWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.BillingTimelineEntryScalarFieldEnum | Prisma.BillingTimelineEntryScalarFieldEnum[]
-}
-
-/**
  * Workspace.auditLogs
  */
 export type Workspace$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5429,30 +4667,6 @@ export type Workspace$analyticsEventsArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.AnalyticsEventScalarFieldEnum | Prisma.AnalyticsEventScalarFieldEnum[]
-}
-
-/**
- * Workspace.analyticsAggregates
- */
-export type Workspace$analyticsAggregatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AnalyticsAggregate
-   */
-  select?: Prisma.AnalyticsAggregateSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the AnalyticsAggregate
-   */
-  omit?: Prisma.AnalyticsAggregateOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AnalyticsAggregateInclude<ExtArgs> | null
-  where?: Prisma.AnalyticsAggregateWhereInput
-  orderBy?: Prisma.AnalyticsAggregateOrderByWithRelationInput | Prisma.AnalyticsAggregateOrderByWithRelationInput[]
-  cursor?: Prisma.AnalyticsAggregateWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AnalyticsAggregateScalarFieldEnum | Prisma.AnalyticsAggregateScalarFieldEnum[]
 }
 
 /**

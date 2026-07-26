@@ -10,7 +10,7 @@ const CODE_ID = "32ca1ea0-f889-49ff-aa1a-ab72691492e9";
 const SESSION_ID = "ee50b035-0824-4551-a2ea-dfc7a40f62f0";
 const NOW = new Date("2026-07-20T10:00:00.000Z");
 const customer: CustomerDTO = { id: CUSTOMER_ID, displayName: "Ada", email: null, phone: null, status: "ACTIVE", locale: "en", timezone: "UTC", createdAt: NOW, updatedAt: NOW };
-const card: CardDTO = { id: CARD_ID, customerId: CUSTOMER_ID, themeId: null, slug: "ada", name: "Ada", status: "DRAFT", visibility: "PRIVATE", publishedAt: null, accessVersion: 1, profile: { fullName: "Ada", headline: null, company: null, bio: null, email: null, phone: null, website: null, address: null, countryCode: null }, createdAt: NOW, updatedAt: NOW };
+const card: CardDTO = { id: CARD_ID, customerId: CUSTOMER_ID, slug: "ada", name: "Ada", status: "DRAFT", visibility: "PRIVATE", publishedAt: null, accessVersion: 1, profile: { fullName: "Ada", headline: null, company: null, bio: null, email: null, phone: null, website: null, address: null, countryCode: null }, createdAt: NOW, updatedAt: NOW };
 const accessCode: AccessCodeDTO = { id: CODE_ID, cardId: CARD_ID, version: 1, status: "ACTIVE", expiresAt: new Date("2026-07-21T10:00:00.000Z"), lastUsedAt: null, useCount: 0, createdAt: NOW, revokedAt: null };
 
 function makeRepositories(overrides: Partial<TransactionRepositories> = {}): TransactionRepositories {
@@ -112,10 +112,11 @@ describe("Sprint 2 application use cases", () => {
   });
 
   it("ReadPublicCard returns only PublicCardDTO and filters hidden actions", async () => {
-    const source: EditorCardDTO = { ...card, status: "PUBLISHED", visibility: "PUBLIC", themeConfig: { private: true }, buttons: [{ id: "b1", label: "Visible", url: "https://example.com", position: 0, isVisible: true }, { id: "b2", label: "Hidden", url: "https://example.com/h", position: 1, isVisible: false }], socialLinks: [{ id: "s1", platform: "x", label: null, url: "https://x.com/a", position: 0, isVisible: true }] };
+    const source: EditorCardDTO = { ...card, status: "PUBLISHED", visibility: "PUBLIC", themeConfig: { private: true }, buttons: [{ id: "b1", label: "Visible", url: "https://example.com", position: 0, isVisible: true, type: "WEBSITE", displayMode: "BUTTON", color: null, openInNewTab: false, analyticsEnabled: false }, { id: "b2", label: "Hidden", url: "https://example.com/h", position: 1, isVisible: false, type: "WEBSITE", displayMode: "BUTTON", color: null, openInNewTab: false, analyticsEnabled: false }], socialLinks: [{ id: "s1", platform: "x", label: null, url: "https://x.com/a", position: 0, isVisible: true }] };
     const cards = { findById: vi.fn(), findEditorById: vi.fn(), findRenderSourceBySlug: vi.fn().mockResolvedValue(source) };
     const result = await new ReadPublicCard(cards).execute({ slug: "ada" });
-    expect(result.buttons).toEqual([{ id: "b1", label: "Visible", url: "https://example.com", position: 0 }]);
+    expect(result.buttons).toEqual([expect.objectContaining({ id: "b1", label: "Visible", url: "https://example.com", position: 0 })]);
+    expect(result.buttons).not.toEqual(expect.arrayContaining([expect.objectContaining({ id: "b2" })]));
     expect(result).not.toHaveProperty("customerId");
     expect(result).not.toHaveProperty("accessVersion");
     expect(result).not.toHaveProperty("themeConfig");

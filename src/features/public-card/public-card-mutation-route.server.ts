@@ -5,17 +5,12 @@ import {
   invalidatePublicCard,
 } from "./public-card-cache.server";
 
-function hasSlug(value: unknown): value is { slug: string } {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    "slug" in value &&
-    typeof value.slug === "string"
-  );
+export function shouldReturnEditorForMutation(request: Request): boolean {
+  return new URL(request.url).searchParams.get("save") !== "true";
 }
 
 /** Transport policy for successful card writes; application use cases stay cache-agnostic. */
-export function handlePublicCardMutationRoute<T>(
+export function handlePublicCardMutationRoute<T extends { slug: string }>(
   request: Request,
   operation: (requestId: string) => Promise<RouteResult<T>>,
 ): Promise<Response> {
@@ -24,7 +19,7 @@ export function handlePublicCardMutationRoute<T>(
     const pathname = new URL(request.url).pathname;
     if (request.method === "PUT" && pathname.endsWith("/slug")) {
       invalidateAllPublicCards();
-    } else if (hasSlug(result.data)) {
+    } else {
       invalidatePublicCard(result.data.slug);
     }
     return result;

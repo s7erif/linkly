@@ -338,7 +338,7 @@ Production Launch
 
 ## Sprint 8 Product Separation (2026-07-20)
 
-OI Platform now has three explicit products: Admin Platform under `/admin`, Customer Workspace under `/workspace`, and Public Card Experience under `/{username}`. Administrator NextAuth credentials and customer EditorSession credentials remain separate and are never exchanged or impersonated. The legacy Gallery is compatibility-only and no longer serves as the Admin product.
+OI Platform now has three explicit products: Admin Platform under `/admin`, Customer Workspace under `/workspace`, and Public Card Experience under `/@{username}`. Administrator NextAuth credentials and customer EditorSession credentials remain separate and are never exchanged or impersonated. The legacy Gallery is compatibility-only and no longer serves as the Admin product.
 
 ## Sprint 9 Product Experience (2026-07-20)
 
@@ -350,7 +350,7 @@ Order fulfillment sends a one-time Welcome email after customer, card, and acces
 
 ## Sprint 13 Visual Card Builder
 
-The Customer Workspace is the canonical visual editor for profile, contact, social links, action buttons, appearance, SEO, visibility, and persisted section order. Every mutation requires the existing card-scoped EditorSession. The live preview uses the same PublicCardDTO and DefaultTheme as the public experience and refreshes from the authorized read model after successful persistence.
+The Customer Workspace is the canonical visual editor for profile, contact, social links, action buttons, appearance, SEO, visibility, and persisted section order. Every mutation requires the existing card-scoped EditorSession. The live preview and canonical public profile both render through the shared `CardRenderer`; the Workspace supplies reactive editor state while the public route supplies the published `PublicCardDTO` read model.
 
 ## Sprint 14 Card Blocks
 
@@ -363,6 +363,12 @@ The platform exposes one Workspace product at `/workspace`. Customers enter with
 ## Publication Lifecycle
 
 Cards are edited as Drafts. Saving never publishes. A dedicated publication command transitions Draft to Published, makes visibility Public, and records the publication timestamp. Unpublish returns the card to Draft/Private. Archived cards must be restored to Draft before publishing. The public reader serves only cards that are simultaneously Published and Public.
+
+### Workspace Publish Review
+
+The Workspace Publish section is the final review surface for the canonical `/@username` profile. It reuses the existing slug validation and card slug routes, generates downloadable PNG and SVG QR codes locally with the installed `qrcode` package, and previews the current profile metadata. Draft cards invoke the existing Publish command. For published cards, dirty editor state is saved through the existing autosave pipeline; a saved published card has no additional publication action and does not rewrite `publishedAt`.
+
+NFC activation is outside the Publish section. The permanent `/a/{activationToken}` route resolves the activated card’s current slug and redirects to `/@username`, so later username changes do not invalidate the physical card URL.
 
 ## Sprint 15 Activation-Driven Customer Provisioning
 

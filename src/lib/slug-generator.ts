@@ -1,17 +1,7 @@
 import { randomBytes } from "node:crypto";
+import { RESERVED_SLUGS } from "@/domain/card-slug";
 
-/**
- * Slugs that are reserved and cannot be used as card public links.
- * Merged from activation reserved set + route conflicts.
- */
-export const RESERVED_SLUGS = new Set([
-  // Existing from activation validation
-  "activate", "admin", "api", "app", "auth", "billing", "card", "cards",
-  "dashboard", "help", "login", "logout", "register", "reset-password",
-  "settings", "support", "workspace", "www",
-  // Additional route conflicts (user spec)
-  "welcome", "register", "create-card", "profile",
-]);
+export { RESERVED_SLUGS, isSlugReserved } from "@/domain/card-slug";
 
 /** Readable suffixes tried in order when generating additional card slugs. */
 const READABLE_SUFFIXES = [
@@ -36,11 +26,6 @@ export function slugify(text: string, maxLen: number): string {
     .replace(/^-|-$/g, "")
     .slice(0, maxLen)
     .replace(/-$/g, "");
-}
-
-/** Check whether a slug is in the reserved set. */
-export function isSlugReserved(slug: string): boolean {
-  return RESERVED_SLUGS.has(slug);
 }
 
 /**

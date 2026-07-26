@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState, useTransition, type FormEvent } from "react";
-import styles from "@/features/marketing/marketing.module.css";
-import cardStyles from "./create-card-flow.module.css";
+import styles from "./create-card-flow.module.css";
 import type { PlanDTO, BillingIntervalDTO } from "@/dto/subscription.dto";
 import { checkRegistrationEmail, submitCardOrder } from "./actions";
 
@@ -159,13 +158,13 @@ export function CreateCardFlow({ plans, currency }: { plans: readonly PlanDTO[];
 
   if (result) {
     return (
-      <div className={styles.orderShell}>
+      <div className={styles.glassContainer}>
         <section className={styles.orderCard}>
-          <p className={styles.kicker}>Registration received</p>
-          <h2>Your application is pending admin approval.</h2>
+          <p className={styles.kicker}>Application received</p>
+          <h2>Your profile is pending admin approval.</h2>
           <p>
-            Your order <strong>{result.orderNumber}</strong> was received. Once an administrator approves it, you can sign
-            in to your Workspace with your email and password.
+            Your request <strong>{result.orderNumber}</strong> was received. Once approved, you can sign
+            in to your Workspace and manage your digital identity.
           </p>
         </section>
       </div>
@@ -173,11 +172,12 @@ export function CreateCardFlow({ plans, currency }: { plans: readonly PlanDTO[];
   }
 
   return (
-    <div className={styles.orderShell}>
+    <div className={styles.glassContainer}>
       <div className={styles.orderFlow}>
-        {["Create account", "Choose plan", "Payment", "Review & submit"].map((label, index) => (
+        {["Create your profile", "Choose your card", "Activate your card", "Review & Launch"].map((label, index) => (
           <span key={label} className={step === index + 1 ? styles.flowActive : ""}>
-            {index + 1}. {label}
+            <span className={styles.stepNum}>{index + 1}</span>
+            <span className={styles.stepLabel}>{label}</span>
           </span>
         ))}
       </div>
@@ -195,9 +195,9 @@ export function CreateCardFlow({ plans, currency }: { plans: readonly PlanDTO[];
             <label className={styles.spanTwo}>
               Email
               <input type="email" value={details.email} onChange={(e) => patch("email", e.target.value)} required />
-              {emailStatus === "checking" && <span className={cardStyles.fieldHint}>Checking availability…</span>}
-              {emailStatus === "taken" && <span className={cardStyles.fieldHint} style={{ color: "#b42318" }}>{emailMessage}</span>}
-              {emailStatus === "ok" && <span className={cardStyles.fieldHint} style={{ color: "#29804b" }}>This email is available.</span>}
+              {emailStatus === "checking" && <span className={styles.fieldHint}>Checking availability…</span>}
+              {emailStatus === "taken" && <span className={styles.fieldHint} style={{ color: "#b42318" }}>{emailMessage}</span>}
+              {emailStatus === "ok" && <span className={styles.fieldHint} style={{ color: "#29804b" }}>This email is available.</span>}
             </label>
             <label>
               Password
@@ -209,7 +209,7 @@ export function CreateCardFlow({ plans, currency }: { plans: readonly PlanDTO[];
                 minLength={8}
                 autoComplete="new-password"
               />
-              <span className={cardStyles.fieldHint}>Use uppercase, lowercase and a number (8+ characters).</span>
+              <span className={styles.fieldHint}>Use uppercase, lowercase and a number (8+ characters).</span>
             </label>
             <label>
               Confirm password
@@ -283,16 +283,16 @@ export function CreateCardFlow({ plans, currency }: { plans: readonly PlanDTO[];
 
         {step === 3 && (
           <div>
-            <div className={cardStyles.paymentOptions}>
+            <div className={styles.paymentOptions}>
               <button
                 type="button"
-                className={`${cardStyles.paymentCard} ${cardStyles.paymentCardSelected}`}
+                className={`${styles.paymentCard} ${styles.paymentCardSelected}`}
                 onClick={() => patch("paymentMethod", "INSTAPAY")}
                 aria-pressed
               >
-                <span className={cardStyles.paymentCardHead}>
-                  <span className={cardStyles.paymentCardTitle}>Manual bank transfer</span>
-                  <span className={cardStyles.comingSoon}>Required</span>
+                <span className={styles.paymentCardHead}>
+                  <span className={styles.paymentCardTitle}>Manual bank transfer</span>
+                  <span className={styles.comingSoon}>Required</span>
                 </span>
                 <select
                   value={details.paymentMethod}
@@ -304,12 +304,12 @@ export function CreateCardFlow({ plans, currency }: { plans: readonly PlanDTO[];
                 </select>
               </button>
 
-              <div className={`${cardStyles.paymentCard} ${cardStyles.paymentCardDisabled}`} aria-disabled="true">
-                <span className={cardStyles.paymentCardHead}>
-                  <span className={cardStyles.paymentCardTitle}>Card payment</span>
-                  <span className={cardStyles.comingSoon}>Coming soon</span>
+              <div className={`${styles.paymentCard} ${styles.paymentCardDisabled}`} aria-disabled="true">
+                <span className={styles.paymentCardHead}>
+                  <span className={styles.paymentCardTitle}>Card payment</span>
+                  <span className={styles.comingSoon}>Coming soon</span>
                 </span>
-                <span className={cardStyles.cardBrands}>Visa · Mastercard</span>
+                <span className={styles.cardBrands}>Visa · Mastercard</span>
               </div>
             </div>
 
@@ -339,7 +339,7 @@ export function CreateCardFlow({ plans, currency }: { plans: readonly PlanDTO[];
                 />
               </label>
               {uploadedUrl ? (
-                <p className={`${cardStyles.fieldHint} ${styles.spanTwo}`}>
+                <p className={`${styles.fieldHint} ${styles.spanTwo}`}>
                   Uploaded: <a href={uploadedUrl} target="_blank" rel="noopener noreferrer">View receipt</a>
                 </p>
               ) : null}
@@ -349,7 +349,7 @@ export function CreateCardFlow({ plans, currency }: { plans: readonly PlanDTO[];
 
         {step === 4 && (
           <div>
-            <p className={styles.kicker}>Review your registration</p>
+            <p className={styles.kicker}>Review your profile</p>
             <h3>{selectedPlan?.name ?? "Plan"}</h3>
             <p>
               {details.firstName} {details.lastName} · {details.email} · {details.billingInterval.toLowerCase()}
@@ -361,17 +361,17 @@ export function CreateCardFlow({ plans, currency }: { plans: readonly PlanDTO[];
 
         <div className={styles.orderActions}>
           {step > 1 ? (
-            <button type="button" onClick={() => setStep((v) => v - 1)} disabled={pending || uploading}>
+            <button type="button" className={styles.secondaryCta} onClick={() => setStep((v) => v - 1)} disabled={pending || uploading}>
               Back
             </button>
           ) : null}
           {step < 4 ? (
-            <button type="submit" disabled={uploading || (step === 2 && !details.planId)}>
+            <button type="submit" className={styles.primaryCta} disabled={uploading || (step === 2 && !details.planId)}>
               {uploading ? "Uploading…" : "Continue →"}
             </button>
           ) : (
-            <button type="button" onClick={submit} disabled={pending}>
-              {pending ? "Submitting…" : "Submit registration"}
+            <button type="button" className={styles.primaryCta} onClick={submit} disabled={pending}>
+              {pending ? "Submitting…" : "Launch your card"}
             </button>
           )}
         </div>

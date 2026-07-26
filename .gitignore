@@ -20,6 +20,10 @@
 # production
 /build
 
+# runtime local media (directory retained for Next.js public serving)
+/public/uploads/*
+!/public/uploads/.gitkeep
+
 # misc
 .DS_Store
 *.pem

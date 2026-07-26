@@ -12,6 +12,7 @@ export interface CardProfileDTO {
   website: string | null;
   address: string | null;
   countryCode: string | null;
+  avatarUrl?: string | null;
 }
 export type CardSectionKind =
   "PROFILE" | "ABOUT" | "CONTACT" | "BUTTONS" | "SOCIAL_LINKS";
@@ -25,7 +26,6 @@ export interface CardSectionDTO {
 export interface CardDTO {
   id: string;
   customerId: string;
-  themeId: string | null;
   slug: string;
   name: string;
   status: CardStatus;
@@ -42,12 +42,17 @@ export interface PublicCardDTO extends Omit<
   CardDTO,
   "customerId" | "accessVersion"
 > {
+  /** Resolved public avatar media URL. */
+  avatarUrl?: string | null;
   appearance: AppearanceSettings;
   buttons: ReadonlyArray<{
     id: string;
     label: string;
     url: string;
     position: number;
+    type?: string;
+    displayMode?: string;
+    color?: string | null;
   }>;
   socialLinks: ReadonlyArray<{
     id: string;
@@ -67,6 +72,11 @@ export interface EditorCardDTO extends CardDTO {
     url: string;
     position: number;
     isVisible: boolean;
+    type: string;
+    displayMode: string;
+    color: string | null;
+    openInNewTab: boolean;
+    analyticsEnabled: boolean;
   }>;
   socialLinks: ReadonlyArray<{
     id: string;
@@ -78,8 +88,11 @@ export interface EditorCardDTO extends CardDTO {
   }>;
   sections?: readonly CardSectionDTO[];
   blocks?: readonly EditorCardBlockDTO[];
+  /** Avatar media URL — resolved from CardMedia (role: AVATAR). */
+  avatarUrl?: string | null;
 }
 export interface WorkspaceCardDTO extends PublicCardDTO {
+  avatarUrl?: string | null;
   plan?: import("./subscription.dto").CustomerPlanSummaryDTO;
   editorButtons?: EditorCardDTO["buttons"];
   editorSocialLinks?: EditorCardDTO["socialLinks"];

@@ -27,13 +27,14 @@ export class UpdateCardPublication {
   ): Promise<WorkspaceCardDTO> {
     const command = parseUseCaseInput(cardPublicationSchema, input);
     return this.unitOfWork.execute(async (repositories) => {
-      const current = await authorizeEditorAccess(
+      const { card: current, actor } = await authorizeEditorAccess(
         repositories,
         this.tokens,
         command.cardId,
         command.sessionToken,
         this.now(),
         authorization,
+        "PUBLISH",
       );
       if (command.action === "PUBLISH" && !["DRAFT", "UNPUBLISHED"].includes(current.status))
         throw new ConflictError(`Cannot publish a ${current.status.toLowerCase()} card`);
@@ -47,11 +48,11 @@ export class UpdateCardPublication {
           ? { status: "PUBLISHED" as const, visibility: "PUBLIC" as const, publishedAt: now }
           : { status: "DRAFT" as const, visibility: "PRIVATE" as const, publishedAt: null };
       await repositories.cards.update(command.cardId, update);
-      const saved = await repositories.cards.findEditorById(command.cardId, null);
+      const saved = await (repositories.cards.findWorkspaceById?.(command.cardId, null) ?? repositories.cards.findEditorById(command.cardId, null));
       if (!saved) throw new NotFoundError("Card", command.cardId);
       await auditAdminWorkspaceEdit(
         repositories,
-        authorization,
+        actor,
         command.cardId,
         `PUBLICATION_${command.action}`,
       );

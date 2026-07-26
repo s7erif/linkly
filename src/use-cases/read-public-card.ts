@@ -9,7 +9,7 @@ export class ReadPublicCard {
   constructor(private readonly cards: CardReadRepository) {}
   async execute(input: ReadPublicCardInput): Promise<PublicCardDTO> {
     const { slug } = parseUseCaseInput(readPublicCardSchema, input);
-    const source = await this.cards.findRenderSourceBySlug({ slug, statuses: ["PUBLISHED"], visibilities: ["PUBLIC"], deletedAt: null });
+    const source = await (this.cards.findPublicBySlug?.({ slug, statuses: ["PUBLISHED"], visibilities: ["PUBLIC"], deletedAt: null }) ?? this.cards.findRenderSourceBySlug({ slug, statuses: ["PUBLISHED"], visibilities: ["PUBLIC"], deletedAt: null }));
     if (!source) throw new NotFoundError("Card", slug);
     return toRenderableCardDTO(source);
   }

@@ -1,0 +1,218 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { CardRenderer, toCardRendererProps } from "@/components/card-renderer";
+import { adminReadService } from "@/lib/composition-root";
+import { NotFoundError } from "@/lib/errors";
+import { buildProfileUrl } from "@/lib/public-links";
+import s from "@/features/admin/admin-records.module.css";
+import {
+  Breadcrumbs,
+  StatusBadge,
+  label,
+} from "@/features/admin/AdminReadUI";
+import { IssueCardPanel } from "@/features/admin/IssueCardPanel";
+import { manageCardAction } from "@/features/admin/card-actions";
+
+export default async function AdminCardDetail({
+  params,
+}: {
+  params: Promise<{ cardId: string }>;
+}) {
+  const { cardId } = await params;
+  let data;
+  try {
+    data = await adminReadService.getCard(cardId);
+  } catch (error) {
+    if (error instanceof NotFoundError) notFound();
+    throw error;
+  }
+
+  const card = data.card;
+  return (
+    <>
+      <Breadcrumbs
+        items={[
+          { label: "Overview", href: "/admin" },
+          { label: "Cards", href: "/admin/cards" },
+          { label: card.name },
+        ]}
+      />
+      <header className={s.pageHeader}>
+        <div>
+          <p className={s.eyebrow}>Card record</p>
+          <h1>{card.name}</h1>
+          <p>Owner, profile, appearance, and renderer preview for this OI Card.</p>
+        </div>
+        <div className={s.actions}>
+          <Link
+            className={s.secondary}
+            href={buildProfileUrl(card.slug)}
+            target="_blank"
+          >
+            Public URL ↗
+          </Link>
+          <Link
+            className={s.primary}
+            href={`/workspace?adminCardId=${card.id}`}
+            target="_blank"
+            title="Admin authorization; no customer session"
+          >
+            Admin Workspace ↗
+          </Link>
+        </div>
+      </header>
+
+      <section className={s.panel} style={{ marginBottom: 14 }}>
+        <div className={s.panelHeader}>
+          <h2>Card management</h2>
+        </div>
+        <form action={manageCardAction} className={s.actions}>
+          <input type="hidden" name="cardId" value={card.id} />
+          {[
+            "PUBLISH",
+            "UNPUBLISH",
+            "ARCHIVE",
+            "RESTORE",
+            "DUPLICATE",
+            "DELETE",
+          ].map((action) => (
+            <button
+              className={action === "DELETE" ? s.danger : s.secondary}
+              name="action"
+              value={action}
+              key={action}
+            >
+              {action.toLowerCase()}
+            </button>
+          ))}
+        </form>
+        <IssueCardPanel cardId={card.id} cardName={card.name} />
+      </section>
+
+      <div className={s.grid}>
+        <section className={s.panel}>
+          <div className={s.panelHeader}>
+            <h2>Card & owner</h2>
+            <StatusBadge tone={card.status === "PUBLISHED" ? "success" : "neutral"}>
+              {label(card.status)}
+            </StatusBadge>
+          </div>
+          <div className={s.details}>
+            <div className={s.detail}>
+              <span>Slug</span>
+              <code>{card.slug}</code>
+            </div>
+            <div className={s.detail}>
+              <span>Visibility</span>
+              <strong>{label(card.visibility)}</strong>
+            </div>
+            <div className={s.detail}>
+              <span>Owner</span>
+              <button
+                className={s.secondary}
+                data-customer-detail={data.owner.id}
+                type="button"
+              >
+                {data.owner.displayName}
+              </button>
+            </div>
+            <div className={s.detail}>
+              <span>Owner email</span>
+              <strong>{data.owner.email ?? "—"}</strong>
+            </div>
+            <div className={s.detail}>
+              <span>Created</span>
+              <strong>{card.createdAt.toLocaleString()}</strong>
+            </div>
+            <div className={s.detail}>
+              <span>Order</span>
+              <strong>
+                {data.order ? (
+                  <button
+                    className={s.secondary}
+                    data-order-detail={data.order.id}
+                    type="button"
+                  >
+                    {data.order.orderNumber}
+                  </button>
+                ) : (
+                  "Legacy / none"
+                )}
+              </strong>
+            </div>
+          </div>
+        </section>
+
+        <section className={s.panel}>
+          <div className={s.panelHeader}>
+            <h2>Profile summary</h2>
+          </div>
+          <div className={s.sectionStack}>
+            {[
+              ["Full name", data.profile?.fullName ?? "—"],
+              ["Headline", data.profile?.headline ?? "—"],
+              ["Company", data.profile?.company ?? "—"],
+              ["Email", data.profile?.email ?? "—"],
+              ["Phone", data.profile?.phone ?? "—"],
+            ].map(([name, value]) => (
+              <div className={s.summaryCard} key={name}>
+                <span>{name}</span>
+                <strong>{value}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <div className={s.grid}>
+        <section className={s.panel}>
+          <div className={s.panelHeader}>
+            <h2>Appearance summary</h2>
+          </div>
+          <div className={s.details}>
+            {Object.entries(data.appearance).map(([name, value]) => (
+              <div className={s.detail} key={name}>
+                <span>{label(name)}</span>
+                <strong>{String(value)}</strong>
+              </div>
+            ))}
+          </div>
+          {data.accessCode && (
+            <div className={s.warning} style={{ marginTop: 14 }}>
+              Active access code version {data.accessCode.version}; issued{" "}
+              {data.accessCode.createdAt.toLocaleDateString()}. Plaintext is not
+              recoverable.
+            </div>
+          )}
+        </section>
+
+        <section className={s.panel}>
+          <div className={s.panelHeader}>
+            <h2>URLs</h2>
+          </div>
+          <div className={s.sectionStack}>
+            <div className={s.summaryCard}>
+              <span>Public</span>
+              <strong>{buildProfileUrl(card.slug)}</strong>
+            </div>
+            <div className={s.summaryCard}>
+              <span>Workspace (admin-visible link)</span>
+              <strong>/workspace?adminCardId={card.id}</strong>
+              <small>Admin session authorization; no customer EditorSession is created.</small>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section className={s.panel} style={{ marginTop: 14 }}>
+        <div className={s.panelHeader}>
+          <h2>Preview</h2>
+          <span className={s.adminBadge}>CardRenderer</span>
+        </div>
+        <div className={s.adminPreview}>
+          <CardRenderer {...toCardRendererProps(data.preview)} />
+        </div>
+      </section>
+    </>
+  );
+}

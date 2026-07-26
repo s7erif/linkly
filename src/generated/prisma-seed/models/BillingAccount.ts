@@ -227,7 +227,6 @@ export type BillingAccountWhereInput = {
   subscriptions?: Prisma.SubscriptionListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
-  paymentMethods?: Prisma.PaymentMethodReferenceListRelationFilter
 }
 
 export type BillingAccountOrderByWithRelationInput = {
@@ -246,7 +245,6 @@ export type BillingAccountOrderByWithRelationInput = {
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
   payments?: Prisma.PaymentOrderByRelationAggregateInput
-  paymentMethods?: Prisma.PaymentMethodReferenceOrderByRelationAggregateInput
 }
 
 export type BillingAccountWhereUniqueInput = Prisma.AtLeast<{
@@ -268,7 +266,6 @@ export type BillingAccountWhereUniqueInput = Prisma.AtLeast<{
   subscriptions?: Prisma.SubscriptionListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
-  paymentMethods?: Prisma.PaymentMethodReferenceListRelationFilter
 }, "id">
 
 export type BillingAccountOrderByWithAggregationInput = {
@@ -318,7 +315,6 @@ export type BillingAccountCreateInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentCreateNestedManyWithoutBillingAccountInput
-  paymentMethods?: Prisma.PaymentMethodReferenceCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUncheckedCreateInput = {
@@ -336,7 +332,6 @@ export type BillingAccountUncheckedCreateInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutBillingAccountInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUncheckedCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUpdateInput = {
@@ -354,7 +349,6 @@ export type BillingAccountUpdateInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutBillingAccountNestedInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateInput = {
@@ -372,7 +366,6 @@ export type BillingAccountUncheckedUpdateInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutBillingAccountNestedInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUncheckedUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountCreateManyInput = {
@@ -465,11 +458,6 @@ export type BillingAccountMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
-}
-
-export type BillingAccountScalarRelationFilter = {
-  is?: Prisma.BillingAccountWhereInput
-  isNot?: Prisma.BillingAccountWhereInput
 }
 
 export type BillingAccountCreateNestedManyWithoutCustomerInput = {
@@ -578,20 +566,6 @@ export type BillingAccountUpdateOneWithoutPaymentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.BillingAccountUpdateToOneWithWhereWithoutPaymentsInput, Prisma.BillingAccountUpdateWithoutPaymentsInput>, Prisma.BillingAccountUncheckedUpdateWithoutPaymentsInput>
 }
 
-export type BillingAccountCreateNestedOneWithoutPaymentMethodsInput = {
-  create?: Prisma.XOR<Prisma.BillingAccountCreateWithoutPaymentMethodsInput, Prisma.BillingAccountUncheckedCreateWithoutPaymentMethodsInput>
-  connectOrCreate?: Prisma.BillingAccountCreateOrConnectWithoutPaymentMethodsInput
-  connect?: Prisma.BillingAccountWhereUniqueInput
-}
-
-export type BillingAccountUpdateOneRequiredWithoutPaymentMethodsNestedInput = {
-  create?: Prisma.XOR<Prisma.BillingAccountCreateWithoutPaymentMethodsInput, Prisma.BillingAccountUncheckedCreateWithoutPaymentMethodsInput>
-  connectOrCreate?: Prisma.BillingAccountCreateOrConnectWithoutPaymentMethodsInput
-  upsert?: Prisma.BillingAccountUpsertWithoutPaymentMethodsInput
-  connect?: Prisma.BillingAccountWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.BillingAccountUpdateToOneWithWhereWithoutPaymentMethodsInput, Prisma.BillingAccountUpdateWithoutPaymentMethodsInput>, Prisma.BillingAccountUncheckedUpdateWithoutPaymentMethodsInput>
-}
-
 export type BillingAccountCreateWithoutCustomerInput = {
   id?: string
   displayName: string
@@ -606,7 +580,6 @@ export type BillingAccountCreateWithoutCustomerInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentCreateNestedManyWithoutBillingAccountInput
-  paymentMethods?: Prisma.PaymentMethodReferenceCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUncheckedCreateWithoutCustomerInput = {
@@ -623,7 +596,6 @@ export type BillingAccountUncheckedCreateWithoutCustomerInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutBillingAccountInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUncheckedCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountCreateOrConnectWithoutCustomerInput = {
@@ -682,7 +654,6 @@ export type BillingAccountCreateWithoutWorkspacesInput = {
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentCreateNestedManyWithoutBillingAccountInput
-  paymentMethods?: Prisma.PaymentMethodReferenceCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUncheckedCreateWithoutWorkspacesInput = {
@@ -699,7 +670,6 @@ export type BillingAccountUncheckedCreateWithoutWorkspacesInput = {
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutBillingAccountInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUncheckedCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountCreateOrConnectWithoutWorkspacesInput = {
@@ -732,7 +702,6 @@ export type BillingAccountUpdateWithoutWorkspacesInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutBillingAccountNestedInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateWithoutWorkspacesInput = {
@@ -749,7 +718,6 @@ export type BillingAccountUncheckedUpdateWithoutWorkspacesInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutBillingAccountNestedInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUncheckedUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountCreateWithoutInvoicesInput = {
@@ -766,7 +734,6 @@ export type BillingAccountCreateWithoutInvoicesInput = {
   workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentCreateNestedManyWithoutBillingAccountInput
-  paymentMethods?: Prisma.PaymentMethodReferenceCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUncheckedCreateWithoutInvoicesInput = {
@@ -783,7 +750,6 @@ export type BillingAccountUncheckedCreateWithoutInvoicesInput = {
   workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutBillingAccountInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUncheckedCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountCreateOrConnectWithoutInvoicesInput = {
@@ -816,7 +782,6 @@ export type BillingAccountUpdateWithoutInvoicesInput = {
   workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutBillingAccountNestedInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateWithoutInvoicesInput = {
@@ -833,7 +798,6 @@ export type BillingAccountUncheckedUpdateWithoutInvoicesInput = {
   workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutBillingAccountNestedInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUncheckedUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountCreateWithoutSubscriptionsInput = {
@@ -850,7 +814,6 @@ export type BillingAccountCreateWithoutSubscriptionsInput = {
   workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentCreateNestedManyWithoutBillingAccountInput
-  paymentMethods?: Prisma.PaymentMethodReferenceCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUncheckedCreateWithoutSubscriptionsInput = {
@@ -867,7 +830,6 @@ export type BillingAccountUncheckedCreateWithoutSubscriptionsInput = {
   workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutBillingAccountInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUncheckedCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountCreateOrConnectWithoutSubscriptionsInput = {
@@ -900,7 +862,6 @@ export type BillingAccountUpdateWithoutSubscriptionsInput = {
   workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutBillingAccountNestedInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateWithoutSubscriptionsInput = {
@@ -917,7 +878,6 @@ export type BillingAccountUncheckedUpdateWithoutSubscriptionsInput = {
   workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutBillingAccountNestedInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUncheckedUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountCreateWithoutPaymentsInput = {
@@ -934,7 +894,6 @@ export type BillingAccountCreateWithoutPaymentsInput = {
   workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutBillingAccountInput
-  paymentMethods?: Prisma.PaymentMethodReferenceCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUncheckedCreateWithoutPaymentsInput = {
@@ -951,7 +910,6 @@ export type BillingAccountUncheckedCreateWithoutPaymentsInput = {
   workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBillingAccountInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUncheckedCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountCreateOrConnectWithoutPaymentsInput = {
@@ -984,7 +942,6 @@ export type BillingAccountUpdateWithoutPaymentsInput = {
   workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutBillingAccountNestedInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateWithoutPaymentsInput = {
@@ -1001,91 +958,6 @@ export type BillingAccountUncheckedUpdateWithoutPaymentsInput = {
   workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBillingAccountNestedInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUncheckedUpdateManyWithoutBillingAccountNestedInput
-}
-
-export type BillingAccountCreateWithoutPaymentMethodsInput = {
-  id?: string
-  displayName: string
-  billingEmail: string
-  countryCode?: string | null
-  taxIdentifier?: string | null
-  defaultCurrency: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutBillingAccountsInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutBillingAccountInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutBillingAccountInput
-}
-
-export type BillingAccountUncheckedCreateWithoutPaymentMethodsInput = {
-  id?: string
-  customerId?: string | null
-  displayName: string
-  billingEmail: string
-  countryCode?: string | null
-  taxIdentifier?: string | null
-  defaultCurrency: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  archivedAt?: Date | string | null
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBillingAccountInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutBillingAccountInput
-}
-
-export type BillingAccountCreateOrConnectWithoutPaymentMethodsInput = {
-  where: Prisma.BillingAccountWhereUniqueInput
-  create: Prisma.XOR<Prisma.BillingAccountCreateWithoutPaymentMethodsInput, Prisma.BillingAccountUncheckedCreateWithoutPaymentMethodsInput>
-}
-
-export type BillingAccountUpsertWithoutPaymentMethodsInput = {
-  update: Prisma.XOR<Prisma.BillingAccountUpdateWithoutPaymentMethodsInput, Prisma.BillingAccountUncheckedUpdateWithoutPaymentMethodsInput>
-  create: Prisma.XOR<Prisma.BillingAccountCreateWithoutPaymentMethodsInput, Prisma.BillingAccountUncheckedCreateWithoutPaymentMethodsInput>
-  where?: Prisma.BillingAccountWhereInput
-}
-
-export type BillingAccountUpdateToOneWithWhereWithoutPaymentMethodsInput = {
-  where?: Prisma.BillingAccountWhereInput
-  data: Prisma.XOR<Prisma.BillingAccountUpdateWithoutPaymentMethodsInput, Prisma.BillingAccountUncheckedUpdateWithoutPaymentMethodsInput>
-}
-
-export type BillingAccountUpdateWithoutPaymentMethodsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  displayName?: Prisma.StringFieldUpdateOperationsInput | string
-  billingEmail?: Prisma.StringFieldUpdateOperationsInput | string
-  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  taxIdentifier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  defaultCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutBillingAccountsNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutBillingAccountNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutBillingAccountNestedInput
-}
-
-export type BillingAccountUncheckedUpdateWithoutPaymentMethodsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  displayName?: Prisma.StringFieldUpdateOperationsInput | string
-  billingEmail?: Prisma.StringFieldUpdateOperationsInput | string
-  countryCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  taxIdentifier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  defaultCurrency?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBillingAccountNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountCreateManyCustomerInput = {
@@ -1114,7 +986,6 @@ export type BillingAccountUpdateWithoutCustomerInput = {
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutBillingAccountNestedInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateWithoutCustomerInput = {
@@ -1131,7 +1002,6 @@ export type BillingAccountUncheckedUpdateWithoutCustomerInput = {
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutBillingAccountNestedInput
-  paymentMethods?: Prisma.PaymentMethodReferenceUncheckedUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateManyWithoutCustomerInput = {
@@ -1156,7 +1026,6 @@ export type BillingAccountCountOutputType = {
   subscriptions: number
   invoices: number
   payments: number
-  paymentMethods: number
 }
 
 export type BillingAccountCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1164,7 +1033,6 @@ export type BillingAccountCountOutputTypeSelect<ExtArgs extends runtime.Types.Ex
   subscriptions?: boolean | BillingAccountCountOutputTypeCountSubscriptionsArgs
   invoices?: boolean | BillingAccountCountOutputTypeCountInvoicesArgs
   payments?: boolean | BillingAccountCountOutputTypeCountPaymentsArgs
-  paymentMethods?: boolean | BillingAccountCountOutputTypeCountPaymentMethodsArgs
 }
 
 /**
@@ -1205,13 +1073,6 @@ export type BillingAccountCountOutputTypeCountPaymentsArgs<ExtArgs extends runti
   where?: Prisma.PaymentWhereInput
 }
 
-/**
- * BillingAccountCountOutputType without action
- */
-export type BillingAccountCountOutputTypeCountPaymentMethodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentMethodReferenceWhereInput
-}
-
 
 export type BillingAccountSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1229,7 +1090,6 @@ export type BillingAccountSelect<ExtArgs extends runtime.Types.Extensions.Intern
   subscriptions?: boolean | Prisma.BillingAccount$subscriptionsArgs<ExtArgs>
   invoices?: boolean | Prisma.BillingAccount$invoicesArgs<ExtArgs>
   payments?: boolean | Prisma.BillingAccount$paymentsArgs<ExtArgs>
-  paymentMethods?: boolean | Prisma.BillingAccount$paymentMethodsArgs<ExtArgs>
   _count?: boolean | Prisma.BillingAccountCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["billingAccount"]>
 
@@ -1281,7 +1141,6 @@ export type BillingAccountInclude<ExtArgs extends runtime.Types.Extensions.Inter
   subscriptions?: boolean | Prisma.BillingAccount$subscriptionsArgs<ExtArgs>
   invoices?: boolean | Prisma.BillingAccount$invoicesArgs<ExtArgs>
   payments?: boolean | Prisma.BillingAccount$paymentsArgs<ExtArgs>
-  paymentMethods?: boolean | Prisma.BillingAccount$paymentMethodsArgs<ExtArgs>
   _count?: boolean | Prisma.BillingAccountCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BillingAccountIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1299,7 +1158,6 @@ export type $BillingAccountPayload<ExtArgs extends runtime.Types.Extensions.Inte
     subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
     payments: Prisma.$PaymentPayload<ExtArgs>[]
-    paymentMethods: Prisma.$PaymentMethodReferencePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1711,7 +1569,6 @@ export interface Prisma__BillingAccountClient<T, Null = never, ExtArgs extends r
   subscriptions<T extends Prisma.BillingAccount$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BillingAccount$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.BillingAccount$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BillingAccount$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payments<T extends Prisma.BillingAccount$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BillingAccount$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  paymentMethods<T extends Prisma.BillingAccount$paymentMethodsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BillingAccount$paymentMethodsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentMethodReferencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2264,30 +2121,6 @@ export type BillingAccount$paymentsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
-}
-
-/**
- * BillingAccount.paymentMethods
- */
-export type BillingAccount$paymentMethodsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PaymentMethodReference
-   */
-  select?: Prisma.PaymentMethodReferenceSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PaymentMethodReference
-   */
-  omit?: Prisma.PaymentMethodReferenceOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PaymentMethodReferenceInclude<ExtArgs> | null
-  where?: Prisma.PaymentMethodReferenceWhereInput
-  orderBy?: Prisma.PaymentMethodReferenceOrderByWithRelationInput | Prisma.PaymentMethodReferenceOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentMethodReferenceWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PaymentMethodReferenceScalarFieldEnum | Prisma.PaymentMethodReferenceScalarFieldEnum[]
 }
 
 /**

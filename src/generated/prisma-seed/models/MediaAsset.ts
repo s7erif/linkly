@@ -369,7 +369,6 @@ export type MediaAssetWhereInput = {
   folder?: Prisma.XOR<Prisma.MediaFolderNullableScalarRelationFilter, Prisma.MediaFolderWhereInput> | null
   cards?: Prisma.CardMediaListRelationFilter
   cardBlockMedias?: Prisma.CardBlockMediaListRelationFilter
-  usages?: Prisma.MediaUsageListRelationFilter
   paymentProofs?: Prisma.PaymentSubmissionListRelationFilter
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }
@@ -403,7 +402,6 @@ export type MediaAssetOrderByWithRelationInput = {
   folder?: Prisma.MediaFolderOrderByWithRelationInput
   cards?: Prisma.CardMediaOrderByRelationAggregateInput
   cardBlockMedias?: Prisma.CardBlockMediaOrderByRelationAggregateInput
-  usages?: Prisma.MediaUsageOrderByRelationAggregateInput
   paymentProofs?: Prisma.PaymentSubmissionOrderByRelationAggregateInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
 }
@@ -440,7 +438,6 @@ export type MediaAssetWhereUniqueInput = Prisma.AtLeast<{
   folder?: Prisma.XOR<Prisma.MediaFolderNullableScalarRelationFilter, Prisma.MediaFolderWhereInput> | null
   cards?: Prisma.CardMediaListRelationFilter
   cardBlockMedias?: Prisma.CardBlockMediaListRelationFilter
-  usages?: Prisma.MediaUsageListRelationFilter
   paymentProofs?: Prisma.PaymentSubmissionListRelationFilter
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }, "id" | "storageKey">
@@ -530,7 +527,6 @@ export type MediaAssetCreateInput = {
   folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
 }
@@ -561,7 +557,6 @@ export type MediaAssetUncheckedCreateInput = {
   deletedAt?: Date | string | null
   cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -590,7 +585,6 @@ export type MediaAssetUpdateInput = {
   folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
 }
@@ -621,7 +615,6 @@ export type MediaAssetUncheckedUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
@@ -1030,20 +1023,6 @@ export type MediaAssetUncheckedUpdateManyWithoutFolderNestedInput = {
   deleteMany?: Prisma.MediaAssetScalarWhereInput | Prisma.MediaAssetScalarWhereInput[]
 }
 
-export type MediaAssetCreateNestedOneWithoutUsagesInput = {
-  create?: Prisma.XOR<Prisma.MediaAssetCreateWithoutUsagesInput, Prisma.MediaAssetUncheckedCreateWithoutUsagesInput>
-  connectOrCreate?: Prisma.MediaAssetCreateOrConnectWithoutUsagesInput
-  connect?: Prisma.MediaAssetWhereUniqueInput
-}
-
-export type MediaAssetUpdateOneRequiredWithoutUsagesNestedInput = {
-  create?: Prisma.XOR<Prisma.MediaAssetCreateWithoutUsagesInput, Prisma.MediaAssetUncheckedCreateWithoutUsagesInput>
-  connectOrCreate?: Prisma.MediaAssetCreateOrConnectWithoutUsagesInput
-  upsert?: Prisma.MediaAssetUpsertWithoutUsagesInput
-  connect?: Prisma.MediaAssetWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.MediaAssetUpdateToOneWithWhereWithoutUsagesInput, Prisma.MediaAssetUpdateWithoutUsagesInput>, Prisma.MediaAssetUncheckedUpdateWithoutUsagesInput>
-}
-
 export type MediaAssetCreateNestedOneWithoutCardsInput = {
   create?: Prisma.XOR<Prisma.MediaAssetCreateWithoutCardsInput, Prisma.MediaAssetUncheckedCreateWithoutCardsInput>
   connectOrCreate?: Prisma.MediaAssetCreateOrConnectWithoutCardsInput
@@ -1082,7 +1061,6 @@ export type MediaAssetCreateWithoutCreatedByAdminInput = {
   folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
 }
@@ -1112,7 +1090,6 @@ export type MediaAssetUncheckedCreateWithoutCreatedByAdminInput = {
   deletedAt?: Date | string | null
   cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -1195,7 +1172,6 @@ export type MediaAssetCreateWithoutCustomerInput = {
   folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
 }
@@ -1225,7 +1201,6 @@ export type MediaAssetUncheckedCreateWithoutCustomerInput = {
   deletedAt?: Date | string | null
   cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -1280,7 +1255,6 @@ export type MediaAssetCreateWithoutWorkspaceInput = {
   folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -1309,7 +1283,6 @@ export type MediaAssetUncheckedCreateWithoutWorkspaceInput = {
   deletedAt?: Date | string | null
   cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -1364,7 +1337,6 @@ export type MediaAssetCreateWithoutPaymentProofsInput = {
   folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageCreateNestedManyWithoutMediaAssetInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
 }
 
@@ -1394,7 +1366,6 @@ export type MediaAssetUncheckedCreateWithoutPaymentProofsInput = {
   deletedAt?: Date | string | null
   cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageUncheckedCreateNestedManyWithoutMediaAssetInput
 }
 
 export type MediaAssetCreateOrConnectWithoutPaymentProofsInput = {
@@ -1438,7 +1409,6 @@ export type MediaAssetUpdateWithoutPaymentProofsInput = {
   folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUpdateManyWithoutMediaAssetNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
 }
 
@@ -1468,7 +1438,6 @@ export type MediaAssetUncheckedUpdateWithoutPaymentProofsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUncheckedUpdateManyWithoutMediaAssetNestedInput
 }
 
 export type MediaAssetCreateWithoutCardBlockMediasInput = {
@@ -1495,7 +1464,6 @@ export type MediaAssetCreateWithoutCardBlockMediasInput = {
   createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
   folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
 }
@@ -1525,7 +1493,6 @@ export type MediaAssetUncheckedCreateWithoutCardBlockMediasInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -1569,7 +1536,6 @@ export type MediaAssetUpdateWithoutCardBlockMediasInput = {
   createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
   folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
 }
@@ -1599,7 +1565,6 @@ export type MediaAssetUncheckedUpdateWithoutCardBlockMediasInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
@@ -1627,7 +1592,6 @@ export type MediaAssetCreateWithoutFolderInput = {
   createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
   cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
 }
@@ -1657,7 +1621,6 @@ export type MediaAssetUncheckedCreateWithoutFolderInput = {
   deletedAt?: Date | string | null
   cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -1687,138 +1650,6 @@ export type MediaAssetUpdateManyWithWhereWithoutFolderInput = {
   data: Prisma.XOR<Prisma.MediaAssetUpdateManyMutationInput, Prisma.MediaAssetUncheckedUpdateManyWithoutFolderInput>
 }
 
-export type MediaAssetCreateWithoutUsagesInput = {
-  id?: string
-  kind: $Enums.MediaKind
-  status?: $Enums.MediaStatus
-  storageKey: string
-  publicUrl?: string | null
-  fileName: string
-  originalFilename?: string | null
-  extension?: string | null
-  contentType: string
-  byteSize: bigint | number
-  checksum?: string | null
-  width?: number | null
-  height?: number | null
-  altText?: string | null
-  caption?: string | null
-  tags?: Prisma.MediaAssetCreatetagsInput | string[]
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
-  createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
-  folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
-  cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
-  cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
-  paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
-  workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
-}
-
-export type MediaAssetUncheckedCreateWithoutUsagesInput = {
-  id?: string
-  workspaceId: string
-  customerId?: string | null
-  createdByAdminId?: string | null
-  folderId?: string | null
-  kind: $Enums.MediaKind
-  status?: $Enums.MediaStatus
-  storageKey: string
-  publicUrl?: string | null
-  fileName: string
-  originalFilename?: string | null
-  extension?: string | null
-  contentType: string
-  byteSize: bigint | number
-  checksum?: string | null
-  width?: number | null
-  height?: number | null
-  altText?: string | null
-  caption?: string | null
-  tags?: Prisma.MediaAssetCreatetagsInput | string[]
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
-  cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
-  paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
-}
-
-export type MediaAssetCreateOrConnectWithoutUsagesInput = {
-  where: Prisma.MediaAssetWhereUniqueInput
-  create: Prisma.XOR<Prisma.MediaAssetCreateWithoutUsagesInput, Prisma.MediaAssetUncheckedCreateWithoutUsagesInput>
-}
-
-export type MediaAssetUpsertWithoutUsagesInput = {
-  update: Prisma.XOR<Prisma.MediaAssetUpdateWithoutUsagesInput, Prisma.MediaAssetUncheckedUpdateWithoutUsagesInput>
-  create: Prisma.XOR<Prisma.MediaAssetCreateWithoutUsagesInput, Prisma.MediaAssetUncheckedCreateWithoutUsagesInput>
-  where?: Prisma.MediaAssetWhereInput
-}
-
-export type MediaAssetUpdateToOneWithWhereWithoutUsagesInput = {
-  where?: Prisma.MediaAssetWhereInput
-  data: Prisma.XOR<Prisma.MediaAssetUpdateWithoutUsagesInput, Prisma.MediaAssetUncheckedUpdateWithoutUsagesInput>
-}
-
-export type MediaAssetUpdateWithoutUsagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  kind?: Prisma.EnumMediaKindFieldUpdateOperationsInput | $Enums.MediaKind
-  status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
-  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
-  publicUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fileName?: Prisma.StringFieldUpdateOperationsInput | string
-  originalFilename?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  extension?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contentType?: Prisma.StringFieldUpdateOperationsInput | string
-  byteSize?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  checksum?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  width?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  altText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  caption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tags?: Prisma.MediaAssetUpdatetagsInput | string[]
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
-  createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
-  folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
-  cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
-  cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
-  paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
-}
-
-export type MediaAssetUncheckedUpdateWithoutUsagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  kind?: Prisma.EnumMediaKindFieldUpdateOperationsInput | $Enums.MediaKind
-  status?: Prisma.EnumMediaStatusFieldUpdateOperationsInput | $Enums.MediaStatus
-  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
-  publicUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fileName?: Prisma.StringFieldUpdateOperationsInput | string
-  originalFilename?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  extension?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contentType?: Prisma.StringFieldUpdateOperationsInput | string
-  byteSize?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  checksum?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  width?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  altText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  caption?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tags?: Prisma.MediaAssetUpdatetagsInput | string[]
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
-  cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
-  paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
-}
-
 export type MediaAssetCreateWithoutCardsInput = {
   id?: string
   kind: $Enums.MediaKind
@@ -1843,7 +1674,6 @@ export type MediaAssetCreateWithoutCardsInput = {
   createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
   folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
 }
@@ -1873,7 +1703,6 @@ export type MediaAssetUncheckedCreateWithoutCardsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
-  usages?: Prisma.MediaUsageUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -1917,7 +1746,6 @@ export type MediaAssetUpdateWithoutCardsInput = {
   createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
   folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
 }
@@ -1947,7 +1775,6 @@ export type MediaAssetUncheckedUpdateWithoutCardsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
@@ -2000,7 +1827,6 @@ export type MediaAssetUpdateWithoutCreatedByAdminInput = {
   folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
 }
@@ -2030,7 +1856,6 @@ export type MediaAssetUncheckedUpdateWithoutCreatedByAdminInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
@@ -2108,7 +1933,6 @@ export type MediaAssetUpdateWithoutCustomerInput = {
   folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
 }
@@ -2138,7 +1962,6 @@ export type MediaAssetUncheckedUpdateWithoutCustomerInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
@@ -2217,7 +2040,6 @@ export type MediaAssetUpdateWithoutWorkspaceInput = {
   folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
@@ -2246,7 +2068,6 @@ export type MediaAssetUncheckedUpdateWithoutWorkspaceInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
@@ -2324,7 +2145,6 @@ export type MediaAssetUpdateWithoutFolderInput = {
   createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
   cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
 }
@@ -2354,7 +2174,6 @@ export type MediaAssetUncheckedUpdateWithoutFolderInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
-  usages?: Prisma.MediaUsageUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
@@ -2391,14 +2210,12 @@ export type MediaAssetUncheckedUpdateManyWithoutFolderInput = {
 export type MediaAssetCountOutputType = {
   cards: number
   cardBlockMedias: number
-  usages: number
   paymentProofs: number
 }
 
 export type MediaAssetCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cards?: boolean | MediaAssetCountOutputTypeCountCardsArgs
   cardBlockMedias?: boolean | MediaAssetCountOutputTypeCountCardBlockMediasArgs
-  usages?: boolean | MediaAssetCountOutputTypeCountUsagesArgs
   paymentProofs?: boolean | MediaAssetCountOutputTypeCountPaymentProofsArgs
 }
 
@@ -2424,13 +2241,6 @@ export type MediaAssetCountOutputTypeCountCardsArgs<ExtArgs extends runtime.Type
  */
 export type MediaAssetCountOutputTypeCountCardBlockMediasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CardBlockMediaWhereInput
-}
-
-/**
- * MediaAssetCountOutputType without action
- */
-export type MediaAssetCountOutputTypeCountUsagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MediaUsageWhereInput
 }
 
 /**
@@ -2470,7 +2280,6 @@ export type MediaAssetSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   folder?: boolean | Prisma.MediaAsset$folderArgs<ExtArgs>
   cards?: boolean | Prisma.MediaAsset$cardsArgs<ExtArgs>
   cardBlockMedias?: boolean | Prisma.MediaAsset$cardBlockMediasArgs<ExtArgs>
-  usages?: boolean | Prisma.MediaAsset$usagesArgs<ExtArgs>
   paymentProofs?: boolean | Prisma.MediaAsset$paymentProofsArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.MediaAssetCountOutputTypeDefaultArgs<ExtArgs>
@@ -2569,7 +2378,6 @@ export type MediaAssetInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   folder?: boolean | Prisma.MediaAsset$folderArgs<ExtArgs>
   cards?: boolean | Prisma.MediaAsset$cardsArgs<ExtArgs>
   cardBlockMedias?: boolean | Prisma.MediaAsset$cardBlockMediasArgs<ExtArgs>
-  usages?: boolean | Prisma.MediaAsset$usagesArgs<ExtArgs>
   paymentProofs?: boolean | Prisma.MediaAsset$paymentProofsArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.MediaAssetCountOutputTypeDefaultArgs<ExtArgs>
@@ -2595,7 +2403,6 @@ export type $MediaAssetPayload<ExtArgs extends runtime.Types.Extensions.Internal
     folder: Prisma.$MediaFolderPayload<ExtArgs> | null
     cards: Prisma.$CardMediaPayload<ExtArgs>[]
     cardBlockMedias: Prisma.$CardBlockMediaPayload<ExtArgs>[]
-    usages: Prisma.$MediaUsagePayload<ExtArgs>[]
     paymentProofs: Prisma.$PaymentSubmissionPayload<ExtArgs>[]
     workspace: Prisma.$WorkspacePayload<ExtArgs>
   }
@@ -3022,7 +2829,6 @@ export interface Prisma__MediaAssetClient<T, Null = never, ExtArgs extends runti
   folder<T extends Prisma.MediaAsset$folderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$folderArgs<ExtArgs>>): Prisma.Prisma__MediaFolderClient<runtime.Types.Result.GetResult<Prisma.$MediaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   cards<T extends Prisma.MediaAsset$cardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$cardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardMediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cardBlockMedias<T extends Prisma.MediaAsset$cardBlockMediasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$cardBlockMediasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardBlockMediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  usages<T extends Prisma.MediaAsset$usagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$usagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   paymentProofs<T extends Prisma.MediaAsset$paymentProofsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$paymentProofsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -3580,30 +3386,6 @@ export type MediaAsset$cardBlockMediasArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.CardBlockMediaScalarFieldEnum | Prisma.CardBlockMediaScalarFieldEnum[]
-}
-
-/**
- * MediaAsset.usages
- */
-export type MediaAsset$usagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the MediaUsage
-   */
-  select?: Prisma.MediaUsageSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the MediaUsage
-   */
-  omit?: Prisma.MediaUsageOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MediaUsageInclude<ExtArgs> | null
-  where?: Prisma.MediaUsageWhereInput
-  orderBy?: Prisma.MediaUsageOrderByWithRelationInput | Prisma.MediaUsageOrderByWithRelationInput[]
-  cursor?: Prisma.MediaUsageWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MediaUsageScalarFieldEnum | Prisma.MediaUsageScalarFieldEnum[]
 }
 
 /**

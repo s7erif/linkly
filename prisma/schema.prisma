@@ -167,11 +167,6 @@ enum BillingInterval {
   YEARLY
 }
 
-enum PlanVersionStatus {
-  DRAFT
-  PUBLISHED
-  RETIRED
-}
 
 enum PriceCadence {
   FREE
@@ -194,36 +189,9 @@ enum WorkspaceRole {
   VIEWER
 }
 
-enum SubscriptionPeriodKind {
-  TRIAL
-  PAID
-  FREE
-  COMPLIMENTARY
-  LIFETIME
-}
 
-enum SubscriptionChangeType {
-  UPGRADE
-  DOWNGRADE
-  CADENCE_CHANGE
-  CANCEL
-  REACTIVATE
-}
 
-enum SubscriptionChangeStatus {
-  SCHEDULED
-  APPLIED
-  CANCELED
-  FAILED
-}
 
-enum InvoiceLineType {
-  BASE
-  DISCOUNT
-  TAX
-  PRORATION
-  CREDIT
-}
 
 enum PaymentLedgerStatus {
   PENDING
@@ -235,57 +203,12 @@ enum PaymentLedgerStatus {
   REFUNDED
 }
 
-enum PaymentAttemptStatus {
-  PENDING
-  PROCESSING
-  SUCCEEDED
-  FAILED
-  CANCELED
-}
 
-enum RefundStatus {
-  PENDING
-  SUCCEEDED
-  FAILED
-  CANCELED
-}
 
-enum WebhookInboxStatus {
-  RECEIVED
-  PROCESSING
-  PROCESSED
-  FAILED
-  IGNORED
-}
 
-enum OutboxEventStatus {
-  PENDING
-  PROCESSING
-  PUBLISHED
-  FAILED
-}
 
-enum EntitlementGrantSource {
-  SUBSCRIPTION
-  ADMIN
-}
 
-enum ProviderObjectType {
-  CUSTOMER
-  SUBSCRIPTION
-  PAYMENT
-  PAYMENT_METHOD
-  INVOICE
-  REFUND
-}
 
-enum ProviderMappingInternalType {
-  BILLING_ACCOUNT
-  SUBSCRIPTION
-  PAYMENT
-  INVOICE
-  REFUND
-}
 
 enum AnalyticsEventType {
   VISIT
@@ -430,18 +353,18 @@ model NfcCard {
 }
 
 model CustomerAccount {
-  id           String                @id @default(uuid()) @db.Uuid
-  customerId   String                @unique @db.Uuid
-  email        String                @unique
-  passwordHash Bytes?
-  passwordSalt Bytes?
-  createdAt    DateTime              @default(now())
-  updatedAt    DateTime              @updatedAt
-  customer     Customer              @relation(fields: [customerId], references: [id], onDelete: Restrict)
-  sessions     CustomerSession[]     @relation("CustomerAccountSessions")
+  id             String                  @id @default(uuid()) @db.Uuid
+  customerId     String                  @unique @db.Uuid
+  email          String                  @unique
+  passwordHash   Bytes?
+  passwordSalt   Bytes?
+  createdAt      DateTime                @default(now())
+  updatedAt      DateTime                @updatedAt
+  customer       Customer                @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  sessions       CustomerSession[]       @relation("CustomerAccountSessions")
   passwordResets CustomerPasswordReset[] @relation("CustomerAccountPasswordResets")
-  memberships  WorkspaceMembership[] @relation("AccountWorkspaceMemberships")
-  oauthAccounts CustomerOAuthAccount[] @relation("CustomerAccountOAuth")
+  memberships    WorkspaceMembership[]   @relation("AccountWorkspaceMemberships")
+  oauthAccounts  CustomerOAuthAccount[]  @relation("CustomerAccountOAuth")
 }
 
 model CustomerPasswordReset {
@@ -497,7 +420,6 @@ model Workspace {
   nfcCards              NfcCard[]              @relation("WorkspaceNfcCards")
   memberships           WorkspaceMembership[]  @relation("WorkspaceMemberships")
   subscriptions         Subscription[]         @relation("WorkspaceSubscriptions")
-  entitlements          EntitlementGrant[]     @relation("WorkspaceEntitlements")
   ownedCustomers        Customer[]             @relation("WorkspaceCustomers")
   orders                Order[]                @relation("WorkspaceOrders")
   invoices              Invoice[]              @relation("WorkspaceInvoices")
@@ -508,10 +430,8 @@ model Workspace {
   mediaFolders          MediaFolder[]          @relation("WorkspaceMediaFolders")
   notifications         NotificationDelivery[] @relation("WorkspaceNotifications")
   settings              Setting[]              @relation("WorkspaceSettings")
-  billingTimeline       BillingTimelineEntry[] @relation("WorkspaceBillingTimeline")
   auditLogs             AuditLog[]             @relation("WorkspaceAuditLogs")
   analyticsEvents       AnalyticsEvent[]       @relation("WorkspaceAnalyticsEvents")
-  analyticsAggregates   AnalyticsAggregate[]   @relation("WorkspaceAnalyticsAggregates")
   subscriptionReminders SubscriptionReminder[]
 
   @@index([customerId, createdAt])
@@ -551,7 +471,6 @@ model BillingAccount {
   subscriptions   Subscription[]           @relation("BillingAccountSubscriptions")
   invoices        Invoice[]                @relation("BillingAccountInvoices")
   payments        Payment[]                @relation("BillingAccountPayments")
-  paymentMethods  PaymentMethodReference[] @relation("BillingAccountPaymentMethods")
 
   @@index([customerId, archivedAt])
   @@index([billingEmail])
@@ -668,8 +587,6 @@ model Invoice {
   customer           Customer            @relation("CustomerInvoices", fields: [customerId], references: [id], onDelete: Restrict)
   subscription       Subscription?       @relation("SubscriptionInvoices", fields: [subscriptionId], references: [id], onDelete: Restrict)
   billingAccount     BillingAccount?     @relation("BillingAccountInvoices", fields: [billingAccountId], references: [id], onDelete: Restrict)
-  lines              InvoiceLine[]       @relation("InvoiceLines")
-  paymentAllocations PaymentAllocation[] @relation("InvoicePaymentAllocations")
   workspace          Workspace           @relation("WorkspaceInvoices", fields: [workspaceId], references: [id], onDelete: Restrict)
 
   @@index([workspaceId, issuedAt])
@@ -681,21 +598,6 @@ model Invoice {
   @@index([status, dueAt])
 }
 
-model InvoiceLine {
-  id              String          @id @default(uuid()) @db.Uuid
-  invoiceId       String          @db.Uuid
-  type            InvoiceLineType
-  description     String
-  quantity        Int             @default(1)
-  unitAmountMinor BigInt
-  amountMinor     BigInt
-  currency        String          @db.VarChar(3)
-  metadata        Json?
-  createdAt       DateTime        @default(now())
-  invoice         Invoice         @relation("InvoiceLines", fields: [invoiceId], references: [id], onDelete: Cascade)
-
-  @@index([invoiceId, type])
-}
 
 model RetryTask {
   id         String          @id @default(uuid()) @db.Uuid
@@ -714,29 +616,12 @@ model RetryTask {
   @@index([entityType, entityId, operation])
 }
 
-model BillingTimelineEntry {
-  id          String    @id @default(uuid()) @db.Uuid
-  workspaceId String    @db.Uuid
-  orderId     String    @db.Uuid
-  event       String
-  entityType  String
-  entityId    String
-  metadata    Json?
-  createdAt   DateTime  @default(now())
-  workspace   Workspace @relation("WorkspaceBillingTimeline", fields: [workspaceId], references: [id], onDelete: Restrict)
-
-  @@unique([workspaceId, orderId, event, entityType, entityId])
-  @@unique([orderId, event, entityType, entityId])
-  @@index([workspaceId, createdAt])
-  @@index([orderId, createdAt])
-}
 
 model Card {
   id                String                 @id @default(uuid()) @db.Uuid
   workspaceId       String                 @db.Uuid
   customerId        String                 @db.Uuid
   orderId           String?                @db.Uuid
-  themeId           String?                @db.Uuid
   slug              String                 @unique
   name              String
   status            CardStatus             @default(DRAFT)
@@ -751,7 +636,6 @@ model Card {
   deletedAt         DateTime?
   customer          Customer               @relation("CustomerCards", fields: [customerId], references: [id], onDelete: Restrict)
   order             Order?                 @relation("OrderCards", fields: [orderId], references: [id], onDelete: Restrict)
-  theme             Theme?                 @relation("ThemeCards", fields: [themeId], references: [id], onDelete: SetNull)
   profile           CardProfile?
   buttons           CardButton[]           @relation("CardButtons")
   socialLinks       SocialLink[]           @relation("CardSocialLinks")
@@ -761,11 +645,10 @@ model Card {
   editorSessions    EditorSession[]        @relation("CardEditorSessions")
   media             CardMedia[]            @relation("CardMediaLinks")
   events            AnalyticsEvent[]       @relation("CardEvents")
-  aggregates        AnalyticsAggregate[]   @relation("CardAggregates")
   legacyIdentifiers LegacyIdentifier[]     @relation("CardLegacyIdentifiers")
   settings          Setting[]              @relation("CardSettings")
   notifications     NotificationDelivery[] @relation("CardNotifications")
-  nfcCards          NfcCard[]               @relation("CardNfcCards")
+  nfcCards          NfcCard[]              @relation("CardNfcCards")
   workspace         Workspace?             @relation("WorkspacePrimaryCard")
   tenantWorkspace   Workspace              @relation("WorkspaceCards", fields: [workspaceId], references: [id], onDelete: Restrict)
 
@@ -774,7 +657,6 @@ model Card {
   @@index([customerId, deletedAt])
   @@index([orderId])
   @@index([status, visibility, deletedAt])
-  @@index([themeId])
   @@index([name(ops: raw("gin_trgm_ops"))], type: Gin, map: "Card_name_trgm_idx")
   @@index([slug(ops: raw("gin_trgm_ops"))], type: Gin, map: "Card_slug_trgm_idx")
 }
@@ -843,19 +725,6 @@ model CardBlockMedia {
   @@index([mediaAssetId])
 }
 
-model Theme {
-  id           String      @id @default(uuid()) @db.Uuid
-  key          String      @unique
-  name         String
-  version      Int         @default(1)
-  status       ThemeStatus @default(DRAFT)
-  configSchema Json?
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  cards        Card[]      @relation("ThemeCards")
-
-  @@index([status])
-}
 
 model SocialLink {
   id        String           @id @default(uuid()) @db.Uuid
@@ -877,17 +746,22 @@ model SocialLink {
 }
 
 model CardButton {
-  id        String           @id @default(uuid()) @db.Uuid
-  cardId    String           @db.Uuid
-  label     String
-  url       String
-  position  Int
-  isVisible Boolean          @default(true)
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @updatedAt
-  deletedAt DateTime?
-  card      Card             @relation("CardButtons", fields: [cardId], references: [id], onDelete: Cascade)
-  events    AnalyticsEvent[] @relation("ButtonEvents")
+  id               String           @id @default(uuid()) @db.Uuid
+  cardId           String           @db.Uuid
+  type             String           @default("CUSTOM")
+  label            String
+  url              String
+  position         Int
+  isVisible        Boolean          @default(true)
+  displayMode      String           @default("BUTTON")
+  color            String?
+  openInNewTab     Boolean          @default(false)
+  analyticsEnabled Boolean          @default(false)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  deletedAt        DateTime?
+  card             Card             @relation("CardButtons", fields: [cardId], references: [id], onDelete: Cascade)
+  events           AnalyticsEvent[] @relation("ButtonEvents")
 
   @@unique([cardId, position])
   @@index([cardId, isVisible, position])
@@ -972,7 +846,6 @@ model Plan {
   subscriptions  Subscription[] @relation("PlanSubscriptions")
   features       PlanFeature[]  @relation("PlanFeatures")
   orders         Order[]        @relation("OrderPlan")
-  versions       PlanVersion[]  @relation("PlanVersions")
 
   @@unique([sortOrder])
   @@index([isActive, sortOrder])
@@ -992,45 +865,11 @@ model PlanFeature {
   @@index([key, enabled])
 }
 
-model PlanVersion {
-  id            String               @id @default(uuid()) @db.Uuid
-  planId        String               @db.Uuid
-  version       Int
-  status        PlanVersionStatus    @default(DRAFT)
-  name          String
-  description   String?
-  limits        Json                 @default("{}")
-  effectiveFrom DateTime?
-  effectiveTo   DateTime?
-  publishedAt   DateTime?
-  createdAt     DateTime             @default(now())
-  updatedAt     DateTime             @updatedAt
-  plan          Plan                 @relation("PlanVersions", fields: [planId], references: [id], onDelete: Restrict)
-  features      PlanVersionFeature[] @relation("PlanVersionFeatures")
-  prices        PlanPrice[]          @relation("PlanVersionPrices")
 
-  @@unique([planId, version])
-  @@index([planId, status, effectiveFrom])
-}
-
-model PlanVersionFeature {
-  id            String      @id @default(uuid()) @db.Uuid
-  planVersionId String      @db.Uuid
-  key           String
-  enabled       Boolean     @default(true)
-  limitValue    Int?
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  planVersion   PlanVersion @relation("PlanVersionFeatures", fields: [planVersionId], references: [id], onDelete: Cascade)
-
-  @@unique([planVersionId, key])
-  @@index([key, enabled])
-}
 
 model PlanPrice {
   id            String               @id @default(uuid()) @db.Uuid
   key           String               @unique
-  planVersionId String               @db.Uuid
   amountMinor   BigInt
   currency      String               @db.VarChar(3)
   cadence       PriceCadence
@@ -1041,13 +880,8 @@ model PlanPrice {
   isActive      Boolean              @default(true)
   createdAt     DateTime             @default(now())
   updatedAt     DateTime             @updatedAt
-  planVersion   PlanVersion          @relation("PlanVersionPrices", fields: [planVersionId], references: [id], onDelete: Restrict)
   subscriptions Subscription[]       @relation("SubscriptionPlanPrice")
-  changesFrom   SubscriptionChange[] @relation("SubscriptionChangeFromPrice")
-  changesTo     SubscriptionChange[] @relation("SubscriptionChangeToPrice")
 
-  @@unique([planVersionId, currency, cadence, intervalCount, effectiveFrom])
-  @@index([planVersionId, isActive, effectiveFrom])
   @@index([currency, cadence, isActive])
 }
 
@@ -1087,10 +921,7 @@ model Subscription {
   planPrice          PlanPrice?             @relation("SubscriptionPlanPrice", fields: [planPriceId], references: [id], onDelete: Restrict)
   billingAccount     BillingAccount?        @relation("BillingAccountSubscriptions", fields: [billingAccountId], references: [id], onDelete: Restrict)
   originOrder        Order?                 @relation("SubscriptionOriginOrder", fields: [originOrderId], references: [id], onDelete: Restrict)
-  periods            SubscriptionPeriod[]   @relation("SubscriptionPeriods")
-  changes            SubscriptionChange[]   @relation("SubscriptionChanges")
   invoices           Invoice[]              @relation("SubscriptionInvoices")
-  entitlements       EntitlementGrant[]     @relation("SubscriptionEntitlements")
   reminders          SubscriptionReminder[]
 
   @@index([customerId, status])
@@ -1129,40 +960,7 @@ model SubscriptionReminder {
   @@index([status, lastAttemptAt])
 }
 
-model SubscriptionPeriod {
-  id             String                 @id @default(uuid()) @db.Uuid
-  subscriptionId String                 @db.Uuid
-  kind           SubscriptionPeriodKind
-  startsAt       DateTime
-  endsAt         DateTime?
-  createdAt      DateTime               @default(now())
-  subscription   Subscription           @relation("SubscriptionPeriods", fields: [subscriptionId], references: [id], onDelete: Restrict)
 
-  @@unique([subscriptionId, startsAt, kind])
-  @@index([subscriptionId, endsAt])
-  @@index([kind, endsAt])
-}
-
-model SubscriptionChange {
-  id              String                   @id @default(uuid()) @db.Uuid
-  subscriptionId  String                   @db.Uuid
-  type            SubscriptionChangeType
-  status          SubscriptionChangeStatus @default(SCHEDULED)
-  fromPlanPriceId String?                  @db.Uuid
-  toPlanPriceId   String?                  @db.Uuid
-  effectiveAt     DateTime
-  requestedAt     DateTime                 @default(now())
-  appliedAt       DateTime?
-  canceledAt      DateTime?
-  reason          String?
-  metadata        Json?
-  subscription    Subscription             @relation("SubscriptionChanges", fields: [subscriptionId], references: [id], onDelete: Restrict)
-  fromPlanPrice   PlanPrice?               @relation("SubscriptionChangeFromPrice", fields: [fromPlanPriceId], references: [id], onDelete: Restrict)
-  toPlanPrice     PlanPrice?               @relation("SubscriptionChangeToPrice", fields: [toPlanPriceId], references: [id], onDelete: Restrict)
-
-  @@index([subscriptionId, status, effectiveAt])
-  @@index([toPlanPriceId])
-}
 
 model MediaAsset {
   id               String              @id @default(uuid()) @db.Uuid
@@ -1193,7 +991,6 @@ model MediaAsset {
   folder           MediaFolder?        @relation("FolderAssets", fields: [folderId], references: [id], onDelete: SetNull)
   cards            CardMedia[]         @relation("MediaCardLinks")
   cardBlockMedias  CardBlockMedia[]    @relation("MediaBlocks")
-  usages           MediaUsage[]        @relation("AssetUsages")
   paymentProofs    PaymentSubmission[] @relation("PaymentProof")
   workspace        Workspace           @relation("WorkspaceMediaAssets", fields: [workspaceId], references: [id], onDelete: Restrict)
 
@@ -1223,18 +1020,6 @@ model MediaFolder {
   @@index([parentId])
 }
 
-model MediaUsage {
-  id           String     @id @default(uuid()) @db.Uuid
-  mediaAssetId String     @db.Uuid
-  entityType   String
-  entityId     String
-  field        String
-  createdAt    DateTime   @default(now())
-  mediaAsset   MediaAsset @relation("AssetUsages", fields: [mediaAssetId], references: [id], onDelete: Cascade)
-
-  @@unique([mediaAssetId, entityType, entityId, field])
-  @@index([entityType, entityId])
-}
 
 model CardMedia {
   cardId       String     @db.Uuid
@@ -1280,27 +1065,6 @@ model AnalyticsEvent {
   @@index([cardId, countryCode, occurredAt])
 }
 
-model AnalyticsAggregate {
-  id             String             @id @default(uuid()) @db.Uuid
-  workspaceId    String             @db.Uuid
-  cardId         String             @db.Uuid
-  period         String
-  bucketStart    DateTime
-  eventType      AnalyticsEventType
-  dimension      String
-  dimensionValue String
-  count          BigInt             @default(0)
-  uniqueCount    BigInt?
-  createdAt      DateTime           @default(now())
-  updatedAt      DateTime           @updatedAt
-  card           Card               @relation("CardAggregates", fields: [cardId], references: [id], onDelete: Cascade)
-  workspace      Workspace          @relation("WorkspaceAnalyticsAggregates", fields: [workspaceId], references: [id], onDelete: Restrict)
-
-  @@unique([workspaceId, cardId, period, bucketStart, eventType, dimension, dimensionValue])
-  @@unique([cardId, period, bucketStart, eventType, dimension, dimensionValue])
-  @@index([workspaceId, period, bucketStart])
-  @@index([cardId, period, bucketStart])
-}
 
 model NotificationDelivery {
   id                String               @id @default(uuid()) @db.Uuid
@@ -1395,56 +1159,9 @@ model LegacyIdentifier {
 }
 
 // Prototype compatibility tables remain mapped until migration is verified.
-model LegacyUser {
-  id            String               @id @default(cuid())
-  name          String?
-  email         String?              @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      LegacyAccount[]
-  sessions      LegacySession[]
-  cards         LegacyBusinessCard[]
 
-  @@map("User")
-}
 
-model LegacyAccount {
-  id                String     @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
-  user              LegacyUser @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([provider, providerAccountId])
-  @@map("Account")
-}
-
-model LegacySession {
-  id           String     @id @default(cuid())
-  sessionToken String     @unique
-  userId       String
-  expires      DateTime
-  user         LegacyUser @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("Session")
-}
-
-model LegacyVerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
-  @@map("VerificationToken")
-}
 
 model LegacyBusinessCard {
   id              String             @id @default(cuid())
@@ -1465,39 +1182,11 @@ model LegacyBusinessCard {
   isActive        Boolean            @default(true)
   createTime      DateTime           @default(now())
   updateTime      DateTime
-  userId          String
-  user            LegacyUser         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  socialLinks     LegacySocialLink[]
-  analytics       LegacyAnalytics?
 
   @@map("BusinessCard")
 }
 
-model LegacySocialLink {
-  id             String             @id @default(cuid())
-  businessCardId String
-  platform       String
-  url            String
-  order          Int                @default(0)
-  createdAt      DateTime           @default(now())
-  businessCard   LegacyBusinessCard @relation(fields: [businessCardId], references: [id], onDelete: Cascade)
 
-  @@index([businessCardId])
-  @@map("SocialLink")
-}
-
-model LegacyAnalytics {
-  id             String             @id @default(cuid())
-  businessCardId String             @unique
-  pageViews      Int                @default(0)
-  qrScans        Int                @default(0)
-  linkClicks     Int                @default(0)
-  createdAt      DateTime           @default(now())
-  updatedAt      DateTime
-  businessCard   LegacyBusinessCard @relation(fields: [businessCardId], references: [id], onDelete: Cascade)
-
-  @@map("Analytics")
-}
 
 model Payment {
   id               String                    @id @default(uuid()) @db.Uuid
@@ -1512,10 +1201,6 @@ model Payment {
   createdAt        DateTime                  @default(now())
   updatedAt        DateTime                  @updatedAt
   billingAccount   BillingAccount?           @relation("BillingAccountPayments", fields: [billingAccountId], references: [id], onDelete: Restrict)
-  attempts         PaymentAttempt[]          @relation("PaymentAttempts")
-  allocations      PaymentAllocation[]       @relation("PaymentAllocations")
-  refunds          Refund[]                  @relation("PaymentRefunds")
-  providerRefs     ProviderObjectReference[] @relation("PaymentProviderRefs")
   workspace        Workspace                 @relation("WorkspacePayments", fields: [workspaceId], references: [id], onDelete: Restrict)
 
   @@index([workspaceId, createdAt])
@@ -1524,133 +1209,10 @@ model Payment {
   @@index([billingAccountId, createdAt])
 }
 
-model PaymentAttempt {
-  id                String               @id @default(uuid()) @db.Uuid
-  paymentId         String               @db.Uuid
-  provider          String
-  idempotencyKey    String               @unique
-  providerAttemptId String?
-  status            PaymentAttemptStatus @default(PENDING)
-  failureCode       String?
-  failureMessage    String?
-  nextRetryAt       DateTime?
-  createdAt         DateTime             @default(now())
-  updatedAt         DateTime             @updatedAt
-  payment           Payment              @relation("PaymentAttempts", fields: [paymentId], references: [id], onDelete: Restrict)
 
-  @@index([paymentId, createdAt])
-  @@index([provider, status, nextRetryAt])
-}
 
-model PaymentAllocation {
-  id          String   @id @default(uuid()) @db.Uuid
-  paymentId   String   @db.Uuid
-  invoiceId   String   @db.Uuid
-  amountMinor BigInt
-  createdAt   DateTime @default(now())
-  payment     Payment  @relation("PaymentAllocations", fields: [paymentId], references: [id], onDelete: Restrict)
-  invoice     Invoice  @relation("InvoicePaymentAllocations", fields: [invoiceId], references: [id], onDelete: Restrict)
 
-  @@unique([paymentId, invoiceId])
-  @@index([invoiceId, createdAt])
-}
 
-model Refund {
-  id          String       @id @default(uuid()) @db.Uuid
-  paymentId   String       @db.Uuid
-  amountMinor BigInt
-  currency    String       @db.VarChar(3)
-  status      RefundStatus @default(PENDING)
-  reason      String?
-  providerRef String?
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  payment     Payment      @relation("PaymentRefunds", fields: [paymentId], references: [id], onDelete: Restrict)
 
-  @@index([paymentId, createdAt])
-  @@index([status, createdAt])
-}
 
-model PaymentMethodReference {
-  id               String         @id @default(uuid()) @db.Uuid
-  billingAccountId String         @db.Uuid
-  provider         String
-  providerObjectId String
-  type             String?
-  last4            String?
-  brand            String?
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
-  billingAccount   BillingAccount @relation("BillingAccountPaymentMethods", fields: [billingAccountId], references: [id], onDelete: Restrict)
 
-  @@unique([provider, providerObjectId])
-  @@index([billingAccountId, createdAt])
-}
-
-model EntitlementGrant {
-  id             String                 @id @default(uuid()) @db.Uuid
-  workspaceId    String                 @db.Uuid
-  subscriptionId String?                @db.Uuid
-  key            String
-  limitValue     Int?
-  source         EntitlementGrantSource @default(SUBSCRIPTION)
-  startsAt       DateTime
-  endsAt         DateTime?
-  createdAt      DateTime               @default(now())
-  updatedAt      DateTime               @updatedAt
-  workspace      Workspace              @relation("WorkspaceEntitlements", fields: [workspaceId], references: [id], onDelete: Restrict)
-  subscription   Subscription?          @relation("SubscriptionEntitlements", fields: [subscriptionId], references: [id], onDelete: Restrict)
-
-  @@index([workspaceId, key, startsAt, endsAt])
-  @@index([subscriptionId, key])
-}
-
-model ProviderObjectReference {
-  id                 String                      @id @default(uuid()) @db.Uuid
-  provider           String
-  providerObjectType ProviderObjectType
-  externalId         String
-  internalType       ProviderMappingInternalType
-  internalId         String                      @db.Uuid
-  paymentId          String?                     @db.Uuid
-  createdAt          DateTime                    @default(now())
-  updatedAt          DateTime                    @updatedAt
-  payment            Payment?                    @relation("PaymentProviderRefs", fields: [paymentId], references: [id], onDelete: Restrict)
-
-  @@unique([provider, providerObjectType, externalId])
-  @@unique([provider, internalType, internalId, providerObjectType])
-  @@index([internalType, internalId])
-}
-
-model WebhookInbox {
-  id              String             @id @default(uuid()) @db.Uuid
-  provider        String
-  providerEventId String
-  eventType       String
-  payload         Json?
-  status          WebhookInboxStatus @default(RECEIVED)
-  receivedAt      DateTime           @default(now())
-  processedAt     DateTime?
-  errorMessage    String?
-
-  @@unique([provider, providerEventId])
-  @@index([status, receivedAt])
-}
-
-model OutboxEvent {
-  id             String            @id @default(uuid()) @db.Uuid
-  idempotencyKey String            @unique
-  aggregateType  String
-  aggregateId    String
-  eventType      String
-  payload        Json
-  status         OutboxEventStatus @default(PENDING)
-  availableAt    DateTime          @default(now())
-  occurredAt     DateTime          @default(now())
-  publishedAt    DateTime?
-  attempts       Int               @default(0)
-  lastError      String?
-
-  @@index([status, availableAt])
-  @@index([aggregateType, aggregateId, occurredAt])
-}

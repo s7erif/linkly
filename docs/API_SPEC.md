@@ -54,7 +54,7 @@ Protected Routes
 
 Public Routes
 
-/{username}
+/@{username}
 /api/public/*
 /api/qr/*
 /api/vcard/*
@@ -569,9 +569,11 @@ Every new API endpoint must:
 
 ## Sprint 3 Transport Routes (2026-07-20)
 
-The initial application transport exposes POST /customers, POST /cards, POST /access/verify, POST /editor/session, and GET /card/[slug]. Responses use a standard success/error JSON envelope and x-request-id header. Domain errors are mapped centrally. The public card route returns PublicCardDTO. Publication state is correctness-critical, so successful public responses are marked no-store and publication changes are visible immediately.
+The original Sprint 3 transport exposed POST /customers, POST /cards, POST /access/verify, POST /editor/session, and GET /card/[slug]. The access-verification and editor-session prototype routes have since been retired in favor of NFC activation, server-issued EditorSessions, and the canonical public profile route.
 
-No authentication middleware, analytics ingestion, dashboard transport, editor UI, or React UI is included. SPRINT_3_REVIEW.md is the verification record.
+The legacy `/api/cards` GET, POST, and DELETE handlers now return `410 GONE`. They must not query the database or recreate authorization from the removed prototype User/Card ownership relationship. Current card creation and mutation remain available only through the documented order, activation, Workspace, and Admin flows.
+
+Responses use the standard success/error JSON envelope and x-request-id header. Domain errors are mapped centrally. Publication state is correctness-critical, so successful public responses are marked no-store and publication changes are visible immediately.
 
 # Sprint 10 Order Presentation Contract
 
@@ -589,6 +591,10 @@ Administrative order actions are Server Actions protected by NextAuth on every i
 ## Sprint 13 Workspace Mutation Routes
 
 All routes below require the existing plaintext EditorSession token in the request body and call composed application use cases only. Existing profile and appearance routes are unchanged.
+
+Workspace autosave requests append `?save=true`; successful mutating requests return the lightweight `{ "id": "<card-id>", "slug": "<card-slug>" }` result because the autosave caller does not consume a refreshed editor DTO. The slug preserves public-card cache invalidation without an editor reload. Requests without `save=true` retain the existing refreshed editor response.
+
+Every successful write that can change the rendered public aggregate—including appearance and avatar upload—must return the affected card slug and use the shared public-card mutation transport. The transport expires the slug-tagged public cache only after the write transaction commits. The canonical public reader is cached for one hour, so this post-commit invalidation is a correctness contract rather than an optional optimization.
 
 - `PUT /cards/[id]/sections` — visibility and complete section order.
 - `POST|PUT /cards/[id]/buttons` — create or reorder buttons.
@@ -629,8 +635,8 @@ Legacy `UNPUBLISHED` records may publish as Draft-compatible input, but new unpu
 
 ## Short NFC activation routes
 
-- `GET /a/{activationToken}` is the permanent physical-card address. Available or Reserved cards render account activation; Activated cards resolve their linked Workspace and render the same public profile in the original request without redirecting. Disabled, Lost, and Archived cards do not expose a profile.
-- `GET /{username}` is the canonical public profile route. The legacy `/c/{username}` route has been removed.
+- `GET /a/{activationToken}` is the permanent physical-card address. Available or Reserved cards render account activation; Activated cards resolve their linked card’s current slug and redirect to its canonical public profile. The physical URL remains valid when the username changes. Disabled, Lost, and Archived cards do not expose a profile.
+- `GET /@{username}` is the canonical public profile route. The legacy `/c/{username}` route has been removed.
 - `GET /api/admin/cards/export` exports the filtered activation-token inventory projection and requires an authenticated administrator.
 - Admin generation and lifecycle mutations remain authenticated Server Actions. They call `NfcCardService`; pages never import repositories or Prisma.
 

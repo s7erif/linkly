@@ -6,7 +6,7 @@ import { getWorkspaceAdminAuthorization } from "@/lib/workspace-admin-authorizat
 import { readWorkspaceCard } from "@/lib/composition-root";
 import { AppError } from "@/lib/errors";
 
-export type WorkspaceCardResult =
+type WorkspaceCardResult =
   | { ok: true; card: WorkspaceCardDTO }
   | { ok: false; status: number; message: string };
 export async function loadWorkspaceCard(

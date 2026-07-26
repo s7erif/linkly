@@ -1,6 +1,7 @@
 import type { Prisma, PrismaClient } from "@/generated/prisma/client";
 import type { BillingIntervalDTO, PlanDTO, PlanFeatureDTO, PlanLimitsDTO, SubscriptionDTO, SubscriptionStatusDTO } from "@/dto/subscription.dto";
 import type { PlatformSettings } from "@/types/platform-settings";
+import { platformSettingsSchema } from "@/validation/platform-settings";
 
 export type AdminPermission = "CARD_MANAGE"|"CARD_SUPPORT_EDIT"|"ACCESS_CODE_MANAGE"|"PLAN_MANAGE"|"SUBSCRIPTION_MANAGE"|"ORDER_APPROVE"|"AUDIT_READ";
 export type AdminActor = { id:string; email:string; roles:readonly string[] };
@@ -34,7 +35,34 @@ const planSelect={id:true,key:true,name:true,description:true,priceMinor:true,in
 const subscriptionBaseSelect={id:true,workspaceId:true,customerId:true,planId:true,status:true,billingInterval:true,startsAt:true,expiresAt:true,activatedAt:true,expiredAt:true,currentPeriodStart:true,currentPeriodEnd:true,canceledAt:true,cancelledAt:true,suspendedAt:true,renewedAt:true,createdAt:true,updatedAt:true,customer:{select:{displayName:true,email:true}}} satisfies Prisma.SubscriptionSelect;
 const subscriptionSelect={id:true,workspaceId:true,customerId:true,status:true,billingInterval:true,startsAt:true,expiresAt:true,activatedAt:true,expiredAt:true,currentPeriodStart:true,currentPeriodEnd:true,canceledAt:true,cancelledAt:true,suspendedAt:true,renewedAt:true,createdAt:true,updatedAt:true,customer:{select:{displayName:true,email:true}},plan:{select:planSelect}} satisfies Prisma.SubscriptionSelect;
 type Db=PrismaClient|Prisma.TransactionClient; type PlanRow=Prisma.PlanGetPayload<{select:typeof planSelect}>; type SubRow=Prisma.SubscriptionGetPayload<{select:typeof subscriptionSelect}>;
-const mapPlan=(r:PlanRow):PlanDTO=>({...r,active:r.isActive,popular:r.isPopular,limits:r.limits as PlanLimitsDTO,features:r.features.map(x=>({...x}))});
+function parsePlanLimits(value:Prisma.JsonValue):PlanLimitsDTO{
+ if(!value||typeof value!=="object"||Array.isArray(value))throw new Error("Plan limits must be a JSON object");
+ const limits:PlanLimitsDTO={};
+ for(const [key,item] of Object.entries(value)){
+  if(typeof item!=="number"&&typeof item!=="boolean")throw new Error(`Invalid plan limit: ${key}`);
+  limits[key]=item;
+ }
+ return limits;
+}
+function serializePlanLimits(limits:PlanLimitsDTO):Prisma.InputJsonObject{
+ const value:Record<string,Prisma.InputJsonValue|null>={};
+ for(const [key,item] of Object.entries(limits))if(item!==undefined)value[key]=item;
+ return value;
+}
+function toInputJsonValue(value:unknown):Prisma.InputJsonValue|null{
+ if(value===null||typeof value==="string"||typeof value==="number"||typeof value==="boolean")return value;
+ if(Array.isArray(value))return value.map(toInputJsonValue);
+ if(typeof value==="object"){
+  return toInputJsonObject(value);
+ }
+ throw new Error("Unsupported JSON value");
+}
+function toInputJsonObject(value:object):Prisma.InputJsonObject{
+ const result:Record<string,Prisma.InputJsonValue|null>={};
+ for(const [key,item] of Object.entries(value))if(item!==undefined)result[key]=toInputJsonValue(item);
+ return result;
+}
+const mapPlan=(r:PlanRow):PlanDTO=>({...r,active:r.isActive,popular:r.isPopular,limits:parsePlanLimits(r.limits),features:r.features.map(x=>({...x}))});
 const mapSub=(r:SubRow):SubscriptionDTO=>{const {customer,...rest}=r;return{...rest,customerName:customer.displayName,customerEmail:customer.email,plan:mapPlan(r.plan)}};
 export class PrismaPlatformManagementRepository implements PlatformManagementRepository {
  constructor(private readonly db:Db){}
@@ -43,8 +71,8 @@ export class PrismaPlatformManagementRepository implements PlatformManagementRep
  async ensureBootstrapRole(adminUserId:string){const role=await this.db.adminRole.upsert({where:{key:"SUPER_ADMIN"},create:{key:"SUPER_ADMIN",name:"Super Admin"},update:{},select:{id:true}});await this.db.adminUserRole.upsert({where:{adminUserId_roleId:{adminUserId,roleId:role.id}},create:{adminUserId,roleId:role.id},update:{}})}
  async listPlans(activeOnly:boolean){return (await this.db.plan.findMany({where:activeOnly?{isActive:true,archivedAt:null}:undefined,orderBy:[{sortOrder:"asc"},{name:"asc"}],select:planSelect})).map(mapPlan)}
  async findPlan(id:string){const r=await this.db.plan.findUnique({where:{id},select:planSelect});return r?mapPlan(r):null}
- async savePlan(id:string|undefined,input:PlanWrite){const price=input.monthlyMinor??input.yearlyMinor??0;const data={key:input.key,name:input.name,description:input.description??null,currency:input.currency,monthlyMinor:input.monthlyMinor??null,quarterlyMinor:input.quarterlyMinor??null,yearlyMinor:input.yearlyMinor??null,priceMinor:price,intervalMonths:1,isActive:input.active,isPopular:input.popular,badge:input.badge??null,limits:input.limits as Prisma.InputJsonValue,sortOrder:input.sortOrder,archivedAt:null};if(input.popular)await this.db.plan.updateMany({where:{id:id?{not:id}:undefined,isPopular:true},data:{isPopular:false}});const r=id?await this.db.plan.update({where:{id},data:{...data,features:{deleteMany:{},create:input.features.map(f=>({...f}))}},select:planSelect}):await this.db.plan.create({data:{...data,features:{create:input.features.map(f=>({...f}))}},select:planSelect});return mapPlan(r)}
- async duplicatePlan(id:string){const source=await this.db.plan.findUniqueOrThrow({where:{id},select:planSelect});const last=await this.db.plan.aggregate({_max:{sortOrder:true}});return mapPlan(await this.db.plan.create({data:{key:source.key+"-copy-"+Date.now().toString(36),name:source.name+" Copy",description:source.description,priceMinor:source.priceMinor,currency:source.currency,intervalMonths:source.intervalMonths,monthlyMinor:source.monthlyMinor,quarterlyMinor:source.quarterlyMinor,yearlyMinor:source.yearlyMinor,isActive:false,isPopular:false,badge:source.badge,limits:source.limits as Prisma.InputJsonValue,sortOrder:(last._max.sortOrder??-1)+1,features:{create:source.features.map(({key,enabled,limitValue})=>({key,enabled,limitValue}))}},select:planSelect}))}
+ async savePlan(id:string|undefined,input:PlanWrite){const price=input.monthlyMinor??input.yearlyMinor??0;const data={key:input.key,name:input.name,description:input.description??null,currency:input.currency,monthlyMinor:input.monthlyMinor??null,quarterlyMinor:input.quarterlyMinor??null,yearlyMinor:input.yearlyMinor??null,priceMinor:price,intervalMonths:1,isActive:input.active,isPopular:input.popular,badge:input.badge??null,limits:serializePlanLimits(input.limits),sortOrder:input.sortOrder,archivedAt:null};if(input.popular)await this.db.plan.updateMany({where:{id:id?{not:id}:undefined,isPopular:true},data:{isPopular:false}});const r=id?await this.db.plan.update({where:{id},data:{...data,features:{deleteMany:{},create:input.features.map(f=>({...f}))}},select:planSelect}):await this.db.plan.create({data:{...data,features:{create:input.features.map(f=>({...f}))}},select:planSelect});return mapPlan(r)}
+ async duplicatePlan(id:string){const source=await this.db.plan.findUniqueOrThrow({where:{id},select:planSelect});const last=await this.db.plan.aggregate({_max:{sortOrder:true}});return mapPlan(await this.db.plan.create({data:{key:source.key+"-copy-"+Date.now().toString(36),name:source.name+" Copy",description:source.description,priceMinor:source.priceMinor,currency:source.currency,intervalMonths:source.intervalMonths,monthlyMinor:source.monthlyMinor,quarterlyMinor:source.quarterlyMinor,yearlyMinor:source.yearlyMinor,isActive:false,isPopular:false,badge:source.badge,limits:serializePlanLimits(parsePlanLimits(source.limits)),sortOrder:(last._max.sortOrder??-1)+1,features:{create:source.features.map(({key,enabled,limitValue})=>({key,enabled,limitValue}))}},select:planSelect}))}
  async archivePlan(id:string){return mapPlan(await this.db.plan.update({where:{id},data:{isActive:false,isPopular:false,archivedAt:new Date()},select:planSelect}))}
  async setPlanActive(id:string,active:boolean){return mapPlan(await this.db.plan.update({where:{id},data:{isActive:active,archivedAt:active?null:undefined},select:planSelect}))}
  async listSubscriptions(criteria:SubscriptionListCriteria={}){return (await this.db.subscription.findMany({where:{...(criteria.status?{status:criteria.status}:{}),...(criteria.workspaceId?{workspaceId:criteria.workspaceId}:{}),...((criteria.expiresFrom||criteria.expiresTo)?{expiresAt:{...(criteria.expiresFrom?{gte:criteria.expiresFrom}:{}),...(criteria.expiresTo?{lte:criteria.expiresTo}:{})}}:{})},orderBy:[{expiresAt:"asc"},{createdAt:"desc"}],select:subscriptionSelect})).map(mapSub)}
@@ -58,7 +86,7 @@ export class PrismaPlatformManagementRepository implements PlatformManagementRep
   return mapSub(await this.db.subscription.create({data:{workspaceId:customer.workspaceId,customerId:input.customerId,planId:input.planId,status:input.status,billingInterval:input.billingInterval,startsAt:input.currentPeriodStart,expiresAt:input.currentPeriodEnd,activatedAt:input.status==="ACTIVE"?input.currentPeriodStart:null,currentPeriodStart:input.currentPeriodStart,currentPeriodEnd:input.currentPeriodEnd,provider:"OI_MANUAL"},select:subscriptionSelect}));
  }
  async updateSubscription(id:string,input:Parameters<PlatformManagementRepository["updateSubscription"]>[1]){return mapSub(await this.db.subscription.update({where:{id},data:input,select:subscriptionSelect}))}
- async audit(input:Parameters<PlatformManagementRepository["audit"]>[0]){await this.db.auditLog.create({data:{actorType:input.actorId?"ADMIN":"SYSTEM",adminUserId:input.actorId,workspaceId:input.workspaceId,action:input.action,resourceType:input.resourceType,resourceId:input.resourceId,metadata:input.metadata as Prisma.InputJsonValue|undefined}})}
- async getPlatformSettings(){const row=await this.db.setting.findFirst({where:{scope:"PLATFORM",customerId:null,cardId:null,key:"CONFIG"},orderBy:{updatedAt:"desc"},select:{value:true}});return row?.value as PlatformSettings|null}
- async savePlatformSettings(settings:PlatformSettings){const existing=await this.db.setting.findFirst({where:{scope:"PLATFORM",customerId:null,cardId:null,key:"CONFIG"},orderBy:{updatedAt:"desc"},select:{id:true}});const value=settings as unknown as Prisma.InputJsonValue;if(existing)await this.db.setting.update({where:{id:existing.id},data:{value}});else await this.db.setting.create({data:{scope:"PLATFORM",key:"CONFIG",value}});return settings}
+ async audit(input:Parameters<PlatformManagementRepository["audit"]>[0]){await this.db.auditLog.create({data:{actorType:input.actorId?"ADMIN":"SYSTEM",adminUserId:input.actorId,workspaceId:input.workspaceId,action:input.action,resourceType:input.resourceType,resourceId:input.resourceId,metadata:input.metadata?toInputJsonObject(input.metadata):undefined}})}
+ async getPlatformSettings(){const row=await this.db.setting.findFirst({where:{scope:"PLATFORM",customerId:null,cardId:null,key:"CONFIG"},orderBy:{updatedAt:"desc"},select:{value:true}});return row?platformSettingsSchema.parse(row.value):null}
+ async savePlatformSettings(settings:PlatformSettings){const existing=await this.db.setting.findFirst({where:{scope:"PLATFORM",customerId:null,cardId:null,key:"CONFIG"},orderBy:{updatedAt:"desc"},select:{id:true}});const value=toInputJsonObject(platformSettingsSchema.parse(settings));if(existing)await this.db.setting.update({where:{id:existing.id},data:{value}});else await this.db.setting.create({data:{scope:"PLATFORM",key:"CONFIG",value}});return settings}
 }

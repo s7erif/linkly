@@ -1,5 +1,6 @@
 import { AppError } from "@/lib/errors";
 import { logger } from "@/lib/logger";
+import { runWithRequestContext } from "@/lib/request-context";
 import type { ErrorEnvelope, RouteResult, SuccessEnvelope } from "./contracts";
 
 const REQUEST_ID_PATTERN = /^[A-Za-z0-9._:-]{1,128}$/;
@@ -15,20 +16,28 @@ function responseHeaders(requestId: string, additions?: HeadersInit): Headers {
 }
 function errorResponse(error: unknown, requestId: string): Response {
   if (error instanceof AppError) {
-    const publicServerError = error.statusCode >= 500;
-    const body: ErrorEnvelope = { success: false, error: { code: publicServerError ? "INTERNAL_ERROR" : error.code, message: publicServerError ? "Internal server error" : error.message, ...(!publicServerError && error.details ? { details: error.details } : {}) } };
+    const body: ErrorEnvelope = { success: false, error: { code: error.code, message: error.message, ...(error.details ? { details: error.details } : {}) } };
+    console.error("[handleRoute] AppError:", { code: error.code, message: error.message, statusCode: error.statusCode });
     return Response.json(body, { status: error.statusCode, headers: responseHeaders(requestId, { "cache-control": "no-store" }) });
   }
-  const body: ErrorEnvelope = { success: false, error: { code: "INTERNAL_ERROR", message: "Internal server error" } };
+  console.error("[handleRoute] Unknown error:", {
+    name: (error as any)?.name,
+    message: error instanceof Error ? error.message : String(error),
+    code: (error as any)?.code,
+    meta: (error as any)?.meta,
+  });
+  const message = error instanceof Error ? error.message : "Internal server error";
+  const body: ErrorEnvelope = { success: false, error: { code: "INTERNAL_ERROR", message } };
   return Response.json(body, { status: 500, headers: responseHeaders(requestId, { "cache-control": "no-store" }) });
 }
 export async function handleRoute<T>(request: Request, operation: (requestId: string) => Promise<RouteResult<T>>): Promise<Response> {
   const requestId = requestIdFor(request);
+  const route = `${request.method} ${new URL(request.url).pathname}`;
   const startedAt = performance.now();
   const context = { requestId, method: request.method, path: new URL(request.url).pathname };
   logger.info("http.request.started", context);
   try {
-    const result = await operation(requestId);
+    const result = await runWithRequestContext(requestId, route, () => operation(requestId));
     const body: SuccessEnvelope<T> = { success: true, data: result.data };
     const response = Response.json(body, { status: result.status ?? 200, headers: responseHeaders(requestId, result.headers) });
     logger.info("http.request.completed", { ...context, status: response.status, durationMs: Math.round(performance.now() - startedAt) });

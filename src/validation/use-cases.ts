@@ -4,6 +4,7 @@ import { createCardSchema } from "./card";
 import { createCustomerSchema } from "./customer";
 import { slugSchema, uuidSchema } from "./common";
 import { appearanceSettingsSchema } from "./appearance";
+import { profileFieldsSchema } from "./fields";
 
 const optionalHash = z.instanceof(Uint8Array).optional();
 export const createCustomerUseCaseSchema = createCustomerSchema;
@@ -42,23 +43,7 @@ export const readWorkspaceCardSchema = z.object({
 export const updateCardProfileSchema = z.object({
   cardId: uuidSchema,
   sessionToken: z.string().regex(/^[0-9a-f]{64}$/),
-  profile: z
-    .object({
-      fullName: z.string().trim().min(1).max(120),
-      headline: z.string().trim().max(160).nullable(),
-      company: z.string().trim().max(160).nullable(),
-      bio: z.string().trim().max(2000).nullable(),
-      email: z.string().email().nullable(),
-      phone: z
-        .string()
-        .trim()
-        .regex(/^\+?[0-9 ()\-.]{7,40}$/, "Enter a valid phone number")
-        .nullable(),
-      website: z.string().url().nullable(),
-      address: z.string().trim().max(300).nullable(),
-      countryCode: z.string().length(2).nullable(),
-    })
-    .strict(),
+  profile: profileFieldsSchema.strict(),
 });
 export const updateCardAppearanceSchema = z.object({
   cardId: uuidSchema,

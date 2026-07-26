@@ -17,6 +17,22 @@ describe("card repository workspace isolation", () => {
     expect(card.findFirst).toHaveBeenNthCalledWith(2, expect.objectContaining({ where: expect.not.objectContaining({ workspaceId: expect.anything() }) }));
   });
 
+  it("excludes avatar media from the mutation editor selection", async () => {
+    const card = { findFirst: vi.fn().mockResolvedValue(null) };
+    const repository = new PrismaWorkspaceCardReadRepository(
+      { card } as never,
+      WORKSPACE_A,
+    );
+
+    await repository.findEditorForMutationById(CARD_ID, null);
+
+    const selection = card.findFirst.mock.calls[0][0].select;
+    expect(selection).not.toHaveProperty("media");
+    expect(selection).toHaveProperty("buttons");
+    expect(selection).toHaveProperty("socialLinks");
+    expect(selection).toHaveProperty("blocks");
+  });
+
   it("rejects a cross-workspace mutation before issuing the update", async () => {
     const card = { findFirstOrThrow: vi.fn().mockRejectedValue(new Error("not found")), update: vi.fn() };
     const repository = new PrismaWorkspaceCardTransactionRepository({ card } as never, WORKSPACE_A);
