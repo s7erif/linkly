@@ -28,6 +28,7 @@ export type LinkTypeId =
   | "CALENDLY"
   | "PAYPAL"
   | "STRIPE"
+  | "GOOGLE_MAPS"
   | "EMAIL"
   | "PHONE"
   | "CUSTOM";
@@ -39,6 +40,7 @@ export type LinkCategory =
   | "Developer"
   | "Streaming"
   | "Commerce"
+  | "Location"
   | "Other";
 
 export interface LinkTypeDefinition {
@@ -64,6 +66,7 @@ export const LINK_CATEGORIES: readonly LinkCategory[] = [
   "Developer",
   "Streaming",
   "Commerce",
+  "Location",
   "Other",
 ];
 
@@ -90,8 +93,9 @@ export const LINK_REGISTRY: readonly LinkTypeDefinition[] = [
   { id: "CALENDLY",   label: "Calendly",   category: "Business",       defaultColor: "#006BFF", urlPlaceholder: "https://calendly.com/username",   urlPrefix: "https://calendly.com/", icon: "Calendar" },
   { id: "PAYPAL",     label: "PayPal",     category: "Commerce",       defaultColor: "#003087", urlPlaceholder: "https://paypal.me/username",      urlPrefix: "https://paypal.me/",    icon: "Paypal" },
   { id: "STRIPE",     label: "Stripe",     category: "Commerce",       defaultColor: "#635BFF", urlPlaceholder: "https://buy.stripe.com/...",      icon: "Stripe" },
+  { id: "GOOGLE_MAPS",label: "Google Maps",category: "Location",       defaultColor: "#4285F4", urlPlaceholder: "https://maps.google.com/...",      icon: "MapPin", pattern: /^https?:\/\/(maps\.google\.com|www\.google\.com\/maps|goo\.gl\/maps|maps\.app\.goo\.gl)\// },
   { id: "EMAIL",      label: "Email",      category: "Communication",  defaultColor: "#EA4335", urlPlaceholder: "mailto:hello@example.com",       icon: "Mail" },
-  { id: "PHONE",      label: "Phone",      category: "Communication",  defaultColor: "#16A34A", urlPlaceholder: "tel:+1234567890",               icon: "Phone" },
+  { id: "PHONE",      label: "Phone",      category: "Communication",  defaultColor: "#16A34A", urlPlaceholder: "tel:+1234567890",               urlPrefix: "tel:",                   icon: "Phone" },
   { id: "CUSTOM",     label: "Custom Link",category: "Other",          defaultColor: "#64748B", urlPlaceholder: "https://...",                   icon: "Link" },
 ];
 

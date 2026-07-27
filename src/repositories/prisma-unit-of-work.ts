@@ -1,5 +1,5 @@
 import { Prisma, type PrismaClient } from "@/generated/prisma/client";
-import { ConflictError } from "@/lib/errors";
+import { UniqueConstraintError } from "@/lib/errors";
 import { requestTag } from "@/lib/request-context";
 import type { TransactionRepositories, UnitOfWork } from "./contracts";
 import { PrismaAccessCodeTransactionRepository } from "./access-code.repository";
@@ -60,7 +60,13 @@ export class PrismaUnitOfWork implements UnitOfWork {
     } catch (error) {
       const failMs = Math.round(performance.now() - t0);
       console.error(`${requestTag()} [tx] FAILED after: ${failMs}ms`, (error as any)?.code, (error as any)?.message?.slice(0, 80));
-      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") throw new ConflictError("A unique value already exists");
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+        const target = (error.meta?.target as string[] | undefined) ?? [];
+        throw new UniqueConstraintError(
+          `A record with this ${target.join(", ") || "value"} already exists.`,
+          target,
+        );
+      }
       throw error;
     }
   }

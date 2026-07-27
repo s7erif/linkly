@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Reveal } from "./Motion";
+import { useLanguage } from "@/i18n/context";
 import styles from "./feature-grid.module.css";
 
 /* ── Inline SVG icons ──────────────────────────────────────── */
@@ -60,26 +61,31 @@ const icons: Record<string, React.FC> = {
 };
 
 const features = [
-  { icon: "User", label: "Public Profile" },
-  { icon: "Wifi", label: "NFC Sharing" },
-  { icon: "QrCode", label: "QR Code" },
-  { icon: "BarChart3", label: "Analytics" },
-  { icon: "Folder", label: "Portfolio" },
-  { icon: "Contact", label: "Contacts" },
-  { icon: "Palette", label: "Themes" },
-  { icon: "Link2", label: "Social Links" },
+  { icon: "User", key: "publicProfile" },
+  { icon: "Wifi", key: "nfcSharing" },
+  { icon: "QrCode", key: "qrCode" },
+  { icon: "BarChart3", key: "analytics" },
+  { icon: "Folder", key: "portfolio" },
+  { icon: "Contact", key: "contacts" },
+  { icon: "Palette", key: "themes" },
+  { icon: "Link2", key: "socialLinks" },
 ];
 
 /* ── Main component ─────────────────────────────────────────── */
 
 export default function FeatureGrid() {
+  const { t } = useLanguage();
+
   return (
     <section className={styles.section}>
       <Reveal className={styles.headWrap}>
         <h2 className={styles.heading}>
-          Everything you need.
-          <br />
-          Nothing you don&apos;t.
+          {t("title", "features").split('\n').map((line, i) => (
+            <span key={i}>
+              {line}
+              {i === 0 && <br />}
+            </span>
+          ))}
         </h2>
       </Reveal>
 
@@ -97,7 +103,7 @@ export default function FeatureGrid() {
           const Icon = icons[f.icon];
           return (
             <motion.div
-              key={f.label}
+              key={f.key}
               variants={{
                 hidden: { opacity: 0, y: 18, filter: "blur(10px)" },
                 show: {
@@ -112,7 +118,7 @@ export default function FeatureGrid() {
               <div className={styles.cardIcon}>
                 <Icon />
               </div>
-              <span className={styles.cardLabel}>{f.label}</span>
+              <span className={styles.cardLabel}>{t(`items.${f.key}`, "features")}</span>
               <div className={styles.cardShine} />
             </motion.div>
           );

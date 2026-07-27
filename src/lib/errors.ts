@@ -27,6 +27,20 @@ export class ForbiddenError extends AppError {
 export class ConflictError extends AppError {
   constructor(message: string, details?: ErrorDetails) { super(message, 409, "CONFLICT", details); }
 }
+
+/**
+ * Thrown when a Prisma P2002 unique-constraint violation is detected.
+ * Carries the database column(s) that caused the violation so callers can
+ * decide whether to retry with a different value.
+ */
+export class UniqueConstraintError extends ConflictError {
+  constructor(
+    message: string,
+    readonly target: readonly string[],
+  ) {
+    super(message, { target });
+  }
+}
 export class ConfigurationError extends AppError {
   constructor(message: string) { super(message, 500, "CONFIGURATION_ERROR"); }
 }

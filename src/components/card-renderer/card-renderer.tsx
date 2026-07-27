@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { motion } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "./theme/theme-provider";
 import { useTheme } from "./theme/use-theme"; // still used by ProfileCard etc internally
@@ -115,7 +115,7 @@ function InnerRenderer({ data, avatarUrl, layout }: InnerProps) {
         const cols = (block.config.columns as number) ?? 3;
         const count = block.mediaIds?.length ?? 0;
         return (
-          <div key="gallery" className="w-full">
+          <section key="gallery" className="w-full">
             {block.config.heading && <h3 className="font-semibold mb-3" style={{ fontSize: theme.typography.headingSize, color: theme.colors.text }}>{block.config.heading}</h3>}
             {count > 0 ? (
               <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, gap: "0.5rem" }}>
@@ -128,12 +128,12 @@ function InnerRenderer({ data, avatarUrl, layout }: InnerProps) {
             ) : (
               <p className="text-xs" style={{ color: theme.colors.mutedText }}>Add images via the Media Library.</p>
             )}
-          </div>
+          </section>
         );
       }
       case "VIDEO":
         return (
-          <div key="video" className="w-full">
+          <section key="video" className="w-full">
             {block.config.heading && <h3 className="font-semibold mb-3" style={{ fontSize: theme.typography.headingSize, color: theme.colors.text }}>{block.config.heading}</h3>}
             {block.config.url ? (
               <video controls preload="metadata" src={block.config.url as string} className="w-full rounded-lg" style={{ borderRadius: theme.shape.radius }} />
@@ -143,7 +143,7 @@ function InnerRenderer({ data, avatarUrl, layout }: InnerProps) {
               </div>
             )}
             {block.config.caption && <p className="text-xs mt-2" style={{ color: theme.colors.mutedText }}>{block.config.caption as string}</p>}
-          </div>
+          </section>
         );
       case "LOCATION_MAP": {
         const address = (block.config.address as string) ?? "";
@@ -168,17 +168,17 @@ function InnerRenderer({ data, avatarUrl, layout }: InnerProps) {
     }
   }
 
-  const sectionOrder = layout.sectionOrder ?? ["header", "bio", "buttons", "socialLinks", "footer"];
+  const sectionOrder = layout.sectionOrder ?? ["header", "bio", "socialLinks", "buttons", "footer"];
   const layoutAlign = layout.alignment ?? "CENTER";
   const layoutWidth = layout.width ?? "MEDIUM";
   const layoutSpacing = layout.spacing ?? "COMFORTABLE";
 
   const alignClass = layoutAlign === "LEFT" ? "text-left items-start" : layoutAlign === "RIGHT" ? "text-right items-end" : "text-center items-center";
   const widthClass = layoutWidth === "NARROW" ? "max-w-[280px]" : layoutWidth === "WIDE" ? "max-w-[440px]" : layoutWidth === "FULL" ? "max-w-full" : "max-w-[360px]";
-  const spacing = layoutSpacing === "COMPACT" ? "0.75rem" : layoutSpacing === "SPACIOUS" ? "2.5rem" : "1.5rem";
+  const spacing = layoutSpacing === "COMPACT" ? "0.75rem" : layoutSpacing === "SPACIOUS" ? "2.5rem" : "1.25rem";
 
   return (
-    <ProfileCard className="w-full overflow-hidden relative">
+    <ProfileCard className="w-full overflow-hidden relative max-md:flex-1">
       <div
         className="absolute top-0 left-0 right-0 h-[320px] pointer-events-none transition-colors duration-700"
         style={{
@@ -186,20 +186,24 @@ function InnerRenderer({ data, avatarUrl, layout }: InnerProps) {
         }}
       />
 
-      <motion.div
+      <m.div
         key={`preview-${profile?.fullName ?? "empty"}-${buttons.length}`}
-        initial={{ opacity: 0.92, scale: 0.995 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.18, ease: "easeOut" }}
-        className="relative flex flex-col w-full pt-12 pb-12 px-6 box-border z-10"
-        style={{ alignItems: layoutAlign === "LEFT" ? "flex-start" : layoutAlign === "RIGHT" ? "flex-end" : "center", padding: theme.spacing.section ? `48px 24px 48px 24px` : undefined }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+        className="relative flex flex-col w-full px-4 md:px-6 box-border z-10 max-md:flex-1"
+        style={{
+          alignItems: layoutAlign === "LEFT" ? "flex-start" : layoutAlign === "RIGHT" ? "flex-end" : "center",
+          paddingTop: theme.spacing.section ? `calc(env(safe-area-inset-top, 0px) + 48px)` : `calc(env(safe-area-inset-top, 0px) + 32px)`,
+          paddingBottom: theme.spacing.section ? `calc(env(safe-area-inset-bottom, 0px) + 48px)` : `calc(env(safe-area-inset-bottom, 0px) + 32px)`,
+        }}
       >
-        <div className={`flex flex-col w-full mb-8 mt-2 ${widthClass} mx-auto ${alignClass}`}>
+        <div className={`flex flex-col w-full mb-4 mt-2 ${widthClass} mx-auto ${alignClass}`}>
           {/* Avatar */}
           <ProfileAvatar src={avatarUrl} fallback={fallback} size="lg" />
 
           {/* Typography Group (Unified Composition) */}
-          <div className="mt-5 flex flex-col items-center w-full">
+          <header className="mt-4 md:mt-5 flex flex-col items-center w-full">
             {layout.showHeader && profile && (
               <ProfileHeader
                 fullName={profile.fullName}
@@ -211,23 +215,33 @@ function InnerRenderer({ data, avatarUrl, layout }: InnerProps) {
 
             {/* Bio */}
             {layout.showBio && profile?.bio && (
-              <div className="mt-3 w-full">
+              <div className="mt-4 w-full">
                 <ProfileBio text={profile.bio} />
               </div>
             )}
-          </div>
+          </header>
         </div>
 
         {/* Continuous Flow Spacer (No flexible gap) */}
-        <div className="h-6 w-full pointer-events-none shrink-0" />
+        <div className="h-6 md:h-7 w-full pointer-events-none shrink-0" />
 
-        {/* 3. Action Sections */}
-        <div className={`flex flex-col w-full mb-2 ${widthClass} mx-auto`} style={{ alignItems: layoutAlign === "LEFT" ? "flex-start" : layoutAlign === "RIGHT" ? "flex-end" : "center", gap: spacing }}>
+        {/* 3. Action Sections (excluding footer) */}
+        <nav aria-label="Profile Links" className={`flex flex-col w-full mb-2 ${widthClass} mx-auto`} style={{ alignItems: layoutAlign === "LEFT" ? "flex-start" : layoutAlign === "RIGHT" ? "flex-end" : "center", gap: spacing }}>
           {sectionOrder
-            .filter((kind) => kind !== "header" && kind !== "bio")
+            .filter((kind) => kind !== "header" && kind !== "bio" && kind !== "footer")
             .map((kind) => renderSection(kind))}
-        </div>
-      </motion.div>
+        </nav>
+
+        {/* Flexible spacer before footer on mobile */}
+        <div className="max-md:flex-1" />
+
+        {/* Footer */}
+        {layout.showFooter && sectionOrder.includes("footer") && (
+          <footer className={`flex flex-col w-full mt-4 ${widthClass} mx-auto`} style={{ alignItems: layoutAlign === "LEFT" ? "flex-start" : layoutAlign === "RIGHT" ? "flex-end" : "center" }}>
+            {renderSection("footer")}
+          </footer>
+        )}
+      </m.div>
     </ProfileCard>
   );
 }
@@ -261,9 +275,11 @@ export function CardRenderer({
 
   return (
     <ThemeProvider appearance={appearance}>
-      <div className={cn("w-full max-w-[90vw] sm:max-w-[480px] md:max-w-[500px] lg:max-w-[540px] mx-auto", className)}>
-        <InnerRenderer data={data} avatarUrl={avatarUrl} layout={layout} />
-      </div>
+      <LazyMotion features={domAnimation} strict>
+        <div className={cn("w-full max-md:max-w-none md:max-w-[500px] lg:max-w-[540px] mx-auto max-md:flex max-md:flex-col max-md:flex-1", className)}>
+          <InnerRenderer data={data} avatarUrl={avatarUrl} layout={layout} />
+        </div>
+      </LazyMotion>
     </ThemeProvider>
   );
 }

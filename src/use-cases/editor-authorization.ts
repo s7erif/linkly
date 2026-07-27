@@ -1,11 +1,12 @@
-import{ForbiddenError,NotFoundError,UnauthorizedError}from"@/lib/errors";import type{AutosaveCardProjection,BuilderCardProjection,TransactionRepositories}from"@/repositories";import type{AdminActor}from"@/repositories/platform-management.repository";import type{SessionTokenGenerator}from"@/services/credential-security.service";import{requireAdmin}from"./subscription-platform";
+import{ForbiddenError,NotFoundError,UnauthorizedError}from"@/lib/errors";import type{AutosaveCardProjection,BuilderCardProjection,PublishCardProjection,TransactionRepositories}from"@/repositories";import type{AdminActor}from"@/repositories/platform-management.repository";import type{SessionTokenGenerator}from"@/services/credential-security.service";import{requireAdmin}from"./subscription-platform";
 import { requestTag } from "@/lib/request-context";
 export interface EditorAuthorizationContext{adminEmail:string}
 export type EditorMutationActor={kind:"CUSTOMER"}|{kind:"ADMIN";actor:AdminActor};
 export interface AuthorizedEditorAccess<T>{card:T;actor:EditorMutationActor}
-export function authorizeEditorAccess(repositories:TransactionRepositories,tokens:SessionTokenGenerator,cardId:string,sessionToken:string,now:Date,authorization:EditorAuthorizationContext|undefined,projection:"AUTOSAVE"|"PUBLISH"):Promise<AuthorizedEditorAccess<AutosaveCardProjection>>;
+export function authorizeEditorAccess(repositories:TransactionRepositories,tokens:SessionTokenGenerator,cardId:string,sessionToken:string,now:Date,authorization:EditorAuthorizationContext|undefined,projection:"AUTOSAVE"):Promise<AuthorizedEditorAccess<AutosaveCardProjection>>;
+export function authorizeEditorAccess(repositories:TransactionRepositories,tokens:SessionTokenGenerator,cardId:string,sessionToken:string,now:Date,authorization:EditorAuthorizationContext|undefined,projection:"PUBLISH"):Promise<AuthorizedEditorAccess<PublishCardProjection>>;
 export function authorizeEditorAccess(repositories:TransactionRepositories,tokens:SessionTokenGenerator,cardId:string,sessionToken:string,now:Date,authorization?:EditorAuthorizationContext,projection?:"BUILDER"):Promise<AuthorizedEditorAccess<BuilderCardProjection>>;
-export async function authorizeEditorAccess(repositories:TransactionRepositories,tokens:SessionTokenGenerator,cardId:string,sessionToken:string,now:Date,authorization?:EditorAuthorizationContext,projection:"AUTOSAVE"|"PUBLISH"|"BUILDER"="BUILDER"):Promise<AuthorizedEditorAccess<AutosaveCardProjection|BuilderCardProjection>>{
+export async function authorizeEditorAccess(repositories:TransactionRepositories,tokens:SessionTokenGenerator,cardId:string,sessionToken:string,now:Date,authorization?:EditorAuthorizationContext,projection:"AUTOSAVE"|"PUBLISH"|"BUILDER"="BUILDER"):Promise<AuthorizedEditorAccess<AutosaveCardProjection|PublishCardProjection|BuilderCardProjection>>{
 const t0=performance.now();
 let actor:EditorMutationActor;
 if(authorization){
@@ -22,12 +23,15 @@ const session=await repositories.editorSessions.findByTokenHash(hash);
 if (process.env.NODE_ENV==="development") console.log(`${requestTag()} [auth] findSessionByTokenHash: ${Math.round(performance.now()-tb)}ms`);
 if(!session||session.status!=="ACTIVE"||session.expiresAt<=now)throw new UnauthorizedError("Editor session is invalid or expired");
 if(session.cardId!==cardId)throw new ForbiddenError("Editor session does not grant access to this card");actor={kind:"CUSTOMER"}}
-let card:AutosaveCardProjection|BuilderCardProjection|null;
+let card:AutosaveCardProjection|PublishCardProjection|BuilderCardProjection|null;
 if(projection==="BUILDER"){
 const source=await(repositories.cards.findBuilderById?.(cardId,null)??repositories.cards.findEditorForMutationById?.(cardId,null)??repositories.cards.findEditorById(cardId,null));
 card=source?"buttonIds"in source?source:{id:source.id,slug:source.slug,status:source.status,sections:source.sections??[],blocks:source.blocks??[],buttonIds:source.buttons.map(button=>button.id),socialLinkIds:source.socialLinks.map(link=>link.id)}:null;
+}else if(projection==="PUBLISH"){
+const source=await(repositories.cards.findPublishById?.(cardId,null)??repositories.cards.findEditorForMutationById?.(cardId,null)??repositories.cards.findEditorById(cardId,null));
+card=source?{status:source.status}:null;
 }else{
-const source=await((projection==="PUBLISH"?repositories.cards.findPublishById?.(cardId,null):repositories.cards.findAutosaveById?.(cardId,null))??repositories.cards.findEditorForMutationById?.(cardId,null)??repositories.cards.findEditorById(cardId,null));
+const source=await(repositories.cards.findAutosaveById?.(cardId,null)??repositories.cards.findEditorForMutationById?.(cardId,null)??repositories.cards.findEditorById(cardId,null));
 card=source?{id:source.id,slug:source.slug,status:source.status}:null;
 }
 if(!card)throw new NotFoundError("Card",cardId);

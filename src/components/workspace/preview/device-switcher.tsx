@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, type ReactNode } from "react";
+import { memo, useState, useEffect, type ReactNode } from "react";
 import { useWorkspaceStore } from "@/store/use-workspace-store";
 import type { DeviceType, CanvasBackground } from "@/types/workspace";
 import { cn } from "@/lib/utils";
@@ -34,7 +34,7 @@ export const DeviceSwitcherBar = memo(function DeviceSwitcherBar() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      className="flex items-center gap-2.5 h-[58px] min-w-[320px] px-2.5 rounded-full bg-white/[0.92] dark:bg-slate-900/[0.92] backdrop-blur-[18px] border border-white/70 dark:border-white/10 shadow-[0_14px_40px_rgba(0,0,0,0.1)]"
+      className="hidden lg:flex items-center gap-2.5 h-[58px] min-w-[320px] px-2.5 rounded-full bg-white/[0.92] dark:bg-slate-900/[0.92] backdrop-blur-[18px] border border-white/70 dark:border-white/10 shadow-[0_14px_40px_rgba(0,0,0,0.1)]"
     >
       {DEVICES.map((d) => {
         const Icon = d.icon;
@@ -73,18 +73,50 @@ import { motion } from "framer-motion";
 import { AnimatedDeviceFrame } from "./device-frames";
 
 // ═══════════════════════════════════════════════════════════════════════════
+// useIsDesktop — matchMedia hook so mobile never mounts the device frame
+// ═══════════════════════════════════════════════════════════════════════════
+
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    setIsDesktop(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return isDesktop;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 // Preview canvas — renders the active device + background
 // ═══════════════════════════════════════════════════════════════════════════
 
 export function PreviewCanvas({ children }: { children: ReactNode }) {
   const deviceType = useWorkspaceStore((s) => s.deviceType);
   const canvasBg = useWorkspaceStore((s) => s.canvasBackground);
+  const isDesktop = useIsDesktop();
 
+  // Desktop: device frame with fixed phone/tablet/desktop bezel
+  if (isDesktop) {
+    return (
+      <div className={cn("flex items-center justify-center w-full h-full transition-colors overflow-hidden", BG_CLASSES[canvasBg])}>
+        <AnimatedDeviceFrame type={deviceType}>
+          {children}
+        </AnimatedDeviceFrame>
+      </div>
+    );
+  }
+
+  // Mobile: fluid, responsive preview — no fixed dimensions
   return (
-    <div className={cn("flex items-center justify-center w-full h-full transition-colors overflow-hidden", BG_CLASSES[canvasBg])}>
-      <AnimatedDeviceFrame type={deviceType}>
+    <div
+      className="flex flex-col w-full h-full overflow-y-auto"
+      style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
+    >
+      <div className="w-full flex-1 flex flex-col">
         {children}
-      </AnimatedDeviceFrame>
+      </div>
     </div>
   );
 }

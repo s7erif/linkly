@@ -315,3 +315,60 @@
   --oi-motion-press-scale: 0.985;
   --oi-motion-floating-distance: 6px;
 }
+
+/* ── Arabic Typography Overrides (Premium Editorial) ──────────────────
+   Alexandria is used. It's geometric, so bold can feel heavy.
+   We soften weights, increase line heights for readability, and 
+   remove negative letter spacing which breaks Arabic cursivity. 
+   ─────────────────────────────────────────────────────────────────── */
+:lang(ar) {
+  --oi-font-family-sans: var(--font-alexandria, Alexandria), system-ui, -apple-system, sans-serif;
+  --oi-font-family-display: var(--font-alexandria, Alexandria), system-ui, sans-serif;
+  --font-sans: var(--font-alexandria, Alexandria), system-ui, sans-serif;
+  --font-outfit: var(--font-alexandria, Alexandria), system-ui, sans-serif;
+  
+  /* Softer font weights for elegant typography */
+  --oi-font-weight-bold: 600;
+  --oi-font-weight-semibold: 500;
+  --oi-font-weight-medium: 400;
+  
+  /* Taller line heights for Arabic descenders/ascenders */
+  --oi-line-height-tight: 1.4;
+  --oi-line-height-normal: 1.7;
+  --oi-line-height-relaxed: 1.9;
+  
+  /* Remove tight letter spacing */
+  --oi-letter-spacing-tight: 0em;
+  --oi-letter-spacing-normal: 0em;
+}
+
+/* Target specific components if they hardcode styles */
+:lang(ar) h1, 
+:lang(ar) h2, 
+:lang(ar) h3, 
+:lang(ar) h4, 
+:lang(ar) h5, 
+:lang(ar) h6 {
+  letter-spacing: 0 !important;
+}
+
+/* Ensure buttons remain legible and elegant */
+:lang(ar) button, 
+:lang(ar) .btn, 
+:lang(ar) [class*="ctaButton"], 
+:lang(ar) [class*="primaryCta"], 
+:lang(ar) [class*="secondaryCta"] {
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+}
+
+/* Nav links */
+:lang(ar) .navLink,
+:lang(ar) [class*="navLink"] {
+  font-weight: 400 !important;
+}
+
+:lang(ar) .navLinkActive,
+:lang(ar) [class*="navLinkActive"] {
+  font-weight: 600 !important;
+}

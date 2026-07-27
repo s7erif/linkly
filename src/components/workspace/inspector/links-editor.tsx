@@ -19,6 +19,7 @@ import {
   type LinkCategory,
 } from "@/features/links/link-registry";
 import { cn } from "@/lib/utils";
+import { normalizePhoneForUrl } from "@/lib/phone";
 
 // ═══════════════════════════════════════════════════════════════════════════
 // Brand Meta & Subtitles
@@ -53,6 +54,7 @@ const PLATFORM_META: Record<string, PlatformMeta> = {
   CALENDLY: { color: "#006BFF", bgColor: "#EFF6FF", subtitle: "Book Meetings" },
   PAYPAL: { color: "#003087", bgColor: "#EFF6FF", subtitle: "Send Payment" },
   STRIPE: { color: "#635BFF", bgColor: "#EEF2FF", subtitle: "Checkout Link" },
+  GOOGLE_MAPS: { color: "#4285F4", bgColor: "#EFF6FF", subtitle: "Business Location" },
   EMAIL: { color: "#EA4335", bgColor: "#FEF2F2", subtitle: "Send Email" },
   PHONE: { color: "#16A34A", bgColor: "#F0FDF4", subtitle: "Call Direct" },
   CUSTOM: { color: "#64748B", bgColor: "#F8FAFC", subtitle: "Custom URL" },
@@ -73,16 +75,38 @@ interface FieldErrors {
   url?: string;
 }
 
-function validateLink(data: { label: string; url: string }): FieldErrors {
+function validateLink(data: { label: string; url: string; type?: LinkTypeId }): FieldErrors {
   const errors: FieldErrors = {};
   if (!data.label.trim()) errors.label = "Title is required";
   if (!data.url.trim()) {
     errors.url = "URL is required";
   } else {
-    try {
-      new URL(data.url.startsWith("http") || data.url.startsWith("mailto:") || data.url.startsWith("tel:") ? data.url : `https://${data.url}`);
-    } catch {
-      errors.url = "Enter a valid URL";
+    const value = data.url.trim();
+    // Phone numbers — use the shared normaliser for accurate validation
+    if (value.startsWith("tel:") || normalizePhoneForUrl(value)) {
+      const normalized = normalizePhoneForUrl(value.replace(/^tel:/, ""));
+      if (!normalized) errors.url = "Enter a valid phone number";
+      // else: valid phone — no error
+    } else {
+      try {
+        const parsed = new URL(value.startsWith("http") || value.startsWith("mailto:") ? value : `https://${value}`);
+        // Google Maps — validate domain
+        if (data.type === "GOOGLE_MAPS") {
+          const host = parsed.hostname;
+          const path = parsed.pathname;
+          const full = `${host}${path}`;
+          const valid =
+            host === "maps.google.com" ||
+            host === "www.google.com" && path.startsWith("/maps/") ||
+            host === "goo.gl" && path.startsWith("/maps/") ||
+            host === "maps.app.goo.gl";
+          if (!valid) {
+            errors.url = "Enter a valid Google Maps URL (maps.google.com, google.com/maps, goo.gl/maps, or maps.app.goo.gl)";
+          }
+        }
+      } catch {
+        errors.url = "Enter a valid URL";
+      }
     }
   }
   return errors;
@@ -251,11 +275,16 @@ function LinkConfigurationForm({
 
   const handleSave = () => {
     let fullUrl = url.trim();
-    if (fullUrl && def.urlPrefix && !fullUrl.startsWith("http") && !fullUrl.startsWith("mailto:") && !fullUrl.startsWith("tel:")) {
+    // Phone numbers: normalise before constructing the URL.
+    // Strips spaces / dashes / parentheses and prepends tel:.
+    if (initial.type === "PHONE" && fullUrl) {
+      const normalized = normalizePhoneForUrl(fullUrl);
+      if (normalized) fullUrl = normalized;
+    } else if (fullUrl && def.urlPrefix && !fullUrl.startsWith("http") && !fullUrl.startsWith("mailto:") && !fullUrl.startsWith("tel:")) {
       fullUrl = `${def.urlPrefix}${fullUrl.replace(/^@/, "")}`;
     }
 
-    const ve = validateLink({ label, url: fullUrl });
+    const ve = validateLink({ label, url: fullUrl, type: initial.type });
     setErrors(ve);
     if (Object.keys(ve).length > 0) return;
     onSave({ type: initial.type, label: label.trim(), url: fullUrl, displayMode, color, isVisible, openInNewTab, analyticsEnabled });

@@ -8,17 +8,18 @@ export interface ScrollableAreaProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const ScrollableArea = forwardRef<HTMLDivElement, ScrollableAreaProps>(
-  ({ orientation = "vertical", className, children, ...props }, ref) => {
+  ({ orientation = "vertical", className, children, style, ...props }, ref) => {
     return (
       <div
         ref={ref}
         className={cn(
-          "workspace-scrollbar",
+          "workspace-scrollbar overscroll-contain",
           orientation === "vertical" && "overflow-y-auto overflow-x-hidden",
           orientation === "horizontal" && "overflow-x-auto overflow-y-hidden",
           orientation === "both" && "overflow-auto",
           className,
         )}
+        style={{ WebkitOverflowScrolling: "touch", ...style }}
         {...props}
       >
         {children}

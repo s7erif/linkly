@@ -80,7 +80,7 @@ export function PreviewSync({ layout, avatarUrl }: PreviewSyncProps) {
   // Render with real data
   return (
     <PreviewCanvas>
-      <div className="w-full h-full">
+      <div className="w-full h-full flex flex-col">
         <CardRenderer
           data={previewData}
           appearance={appearance}

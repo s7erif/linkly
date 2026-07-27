@@ -19,6 +19,10 @@ export interface WorkspaceUIState {
   selectedPanel: InspectorPanelId;
   deviceType: DeviceType;
   canvasBackground: CanvasBackground;
+  /** Mobile: sidebar drawer open state (false on desktop) */
+  mobileSidebarOpen: boolean;
+  /** Mobile: inspector sheet open state (false on desktop) */
+  mobileInspectorOpen: boolean;
 }
 
 /** Actions available on the workspace store. */
@@ -30,6 +34,10 @@ export interface WorkspaceUIActions {
   setSelectedPanel: (panel: InspectorPanelId) => void;
   setDeviceType: (device: DeviceType) => void;
   setCanvasBackground: (bg: CanvasBackground) => void;
+  /** Mobile: open/close sidebar drawer */
+  setMobileSidebarOpen: (open: boolean) => void;
+  /** Mobile: open/close inspector sheet */
+  setMobileInspectorOpen: (open: boolean) => void;
 }
 
 export type WorkspaceStore = WorkspaceUIState & WorkspaceUIActions;

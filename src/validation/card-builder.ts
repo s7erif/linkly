@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { slugSchema, uuidSchema } from "./common";
+import { normalizePhoneForUrl } from "@/lib/phone";
 
 const sessionToken = z.string().regex(/^[0-9a-f]{64}$/);
 const authorized = z.object({ cardId: uuidSchema, sessionToken });
@@ -8,6 +9,19 @@ const destination = z
   .trim()
   .min(1)
   .max(2048)
+  .transform((value) => {
+    // Normalize tel: URLs — strip formatting from phone numbers
+    // (spaces, dashes, parentheses) so they survive `new URL()`.
+    if (value.startsWith("tel:")) {
+      const normalized = normalizePhoneForUrl(value.slice(4));
+      if (normalized) return normalized;
+    }
+    // Defence in depth: if a raw plausible phone number arrives
+    // (client bypassed form validation), normalise to a tel: URL.
+    const phoneNormalized = normalizePhoneForUrl(value);
+    if (phoneNormalized) return phoneNormalized;
+    return value;
+  })
   .refine((value) => {
     try {
       const url = new URL(value);

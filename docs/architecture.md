@@ -678,3 +678,19 @@ The obsolete `/admin/orders/[orderId]` and `/admin/customers/[customerId]` pages
 ### Drawer reliability
 
 Entity drawer loads are coalesced per record and cached for 60 seconds inside the mounted Admin layout. Table and activity triggers provide safe summary fields for immediate Order drawer identity while the complete read model loads. Successful Order mutations explicitly invalidate and refresh the affected cached record. Digital Orders constrain their list query to the Digital package, while the global Order drawer accepts any Order surfaced by another Admin operational view.
+
+
+## Phase 1 P0-2 single authorization resolution
+
+Workspace mutations resolve their authorization strategy once per transaction. The shared editor authorization boundary returns an `AuthorizedEditorAccess<T>` containing the operation projection and a discriminated `EditorMutationActor`: customer mutations carry `{ kind: "CUSTOMER" }`, while Admin mutations carry `{ kind: "ADMIN", actor: AdminActor }` after the unchanged `CARD_SUPPORT_EDIT` permission check.
+
+Mutation use cases retain that actor through the write and pass it to `auditAdminWorkspaceEdit`. The audit helper never resolves an email or permission again; it records the already-authorized Admin ID, and customer mutations remain unaudited exactly as before. Direct Admin use cases already followed this pattern and remain unchanged. Transactions, permissions, audit actions, metadata, routes, DTOs, and response contracts are unchanged.
+
+
+## Phase 1 P0-3 minimal publish flow
+
+Publication transition validation owns a dedicated `PublishCardProjection` containing only `status`. Card identity, soft-delete state, and tenant ownership remain enforced in the Prisma `where` clause and authorization boundary rather than being returned as projection payload. The Publish branch of `authorizeEditorAccess` retains this operation-specific type and the P0-2 resolved actor.
+
+Publication persistence uses `updatePublication`, which accepts only `status`, `visibility`, and `publishedAt` and selects only `id` from Prisma. This avoids the generic Card DTO and profile relation payload that the publication use case discarded. The existing generic update remains a compatibility fallback for non-Prisma repository implementations.
+
+The final Workspace graph read is intentionally retained because the existing publication route returns `WorkspaceCardDTO` and the client replaces its canonical editor card from that response. Removing it would change the API/DTO/UI contract. Publication rules, authorization, audit semantics, transaction boundaries, public-card data, caching, rendering, Theme Engine, and schema remain unchanged.

@@ -17,6 +17,47 @@ describe("card repository workspace isolation", () => {
     expect(card.findFirst).toHaveBeenNthCalledWith(2, expect.objectContaining({ where: expect.not.objectContaining({ workspaceId: expect.anything() }) }));
   });
 
+  it("selects only publication status for transition validation", async () => {
+    const card = { findFirst: vi.fn().mockResolvedValue({ status: "DRAFT" }) };
+    const repository = new PrismaWorkspaceCardReadRepository(
+      { card } as never,
+      WORKSPACE_A,
+    );
+
+    await expect(repository.findPublishById(CARD_ID, null)).resolves.toEqual({
+      status: "DRAFT",
+    });
+    expect(card.findFirst).toHaveBeenCalledWith({
+      where: { id: CARD_ID, workspaceId: WORKSPACE_A, deletedAt: null },
+      select: { status: true },
+    });
+  });
+
+  it("writes publication state with a minimal result projection", async () => {
+    const publication = {
+      status: "PUBLISHED" as const,
+      visibility: "PUBLIC" as const,
+      publishedAt: new Date("2026-07-26T12:00:00.000Z"),
+    };
+    const card = {
+      findFirstOrThrow: vi.fn().mockResolvedValue({ id: CARD_ID }),
+      update: vi.fn().mockResolvedValue({ id: CARD_ID }),
+    };
+    const repository = new PrismaWorkspaceCardTransactionRepository(
+      { card } as never,
+      WORKSPACE_A,
+    );
+
+    await expect(repository.updatePublication(CARD_ID, publication)).resolves.toEqual({
+      id: CARD_ID,
+    });
+    expect(card.update).toHaveBeenCalledWith({
+      where: { id: CARD_ID },
+      data: publication,
+      select: { id: true },
+    });
+  });
+
   it("excludes avatar media from the mutation editor selection", async () => {
     const card = { findFirst: vi.fn().mockResolvedValue(null) };
     const repository = new PrismaWorkspaceCardReadRepository(

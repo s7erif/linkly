@@ -22,6 +22,8 @@ export const WorkspaceCanvas = forwardRef<HTMLElement, WorkspaceCanvasProps>(
           "flex-1 flex flex-col items-center justify-start relative overflow-x-hidden overflow-y-auto min-h-0 bg-[#FAFAFC]",
           // Layered subtle ambient light bloom
           "bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(109,93,246,0.04),transparent_60%),radial-gradient(ellipse_70%_50%_at_20%_40%,rgba(237,233,254,0.3),transparent_70%),radial-gradient(ellipse_60%_50%_at_80%_70%,rgba(243,244,246,0.5),transparent_60%)]",
+          // Mobile: full-width, no extra padding
+          "max-lg:p-0",
           className,
         )}
         {...props}

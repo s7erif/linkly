@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Reveal } from "./Motion";
+import { useLanguage } from "@/i18n/context";
 import styles from "./everything-cards.module.css";
 
 /* ── Inline SVG icons (no lucide-react dependency) ──────────── */
@@ -120,38 +121,43 @@ function StepRow({ steps }: { steps: Step[] }) {
 /* ── Main component ─────────────────────────────────────────── */
 
 export default function EverythingCards() {
+  const { t } = useLanguage();
+
   const digital: Step[] = [
-    { icon: IconUserPlus, label: "Register" },
-    { icon: IconCheckCircle, label: "Choose Plan" },
-    { icon: IconCreditCard, label: "Payment" },
-    { icon: IconBriefcase, label: "Workspace" },
+    { icon: IconUserPlus, label: t("steps.register", "everythingCards") },
+    { icon: IconCheckCircle, label: t("steps.choosePlan", "everythingCards") },
+    { icon: IconCreditCard, label: t("steps.payment", "everythingCards") },
+    { icon: IconBriefcase, label: t("steps.workspace", "everythingCards") },
   ];
   const nfc: Step[] = [
-    { icon: IconPower, label: "Activate" },
-    { icon: IconBriefcase, label: "Workspace" },
-    { icon: IconShare2, label: "Share" },
+    { icon: IconPower, label: t("steps.activate", "everythingCards") },
+    { icon: IconBriefcase, label: t("steps.workspace", "everythingCards") },
+    { icon: IconShare2, label: t("steps.share", "everythingCards") },
   ];
 
   return (
     <section id="features" className={styles.section}>
       <Reveal className={styles.headWrap}>
         <h2 className={styles.heading}>
-          Everything you need.
-          <br />
-          Nothing you don&apos;t.
+          {t("title", "features").split('\n').map((line, i) => (
+            <span key={i}>
+              {line}
+              {i === 0 && <br />}
+            </span>
+          ))}
         </h2>
       </Reveal>
 
       <div className={styles.grid}>
         <Reveal delay={0.05}>
           <div className={styles.card}>
-            <div className={styles.cardTitle}>Digital</div>
+            <div className={styles.cardTitle}>{t("digital", "everythingCards")}</div>
             <StepRow steps={digital} />
           </div>
         </Reveal>
         <Reveal delay={0.12}>
           <div className={styles.card}>
-            <div className={styles.cardTitle}>NFC Card</div>
+            <div className={styles.cardTitle}>{t("nfcCard", "everythingCards")}</div>
             <StepRow steps={nfc} />
           </div>
         </Reveal>

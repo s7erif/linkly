@@ -1,0 +1,150 @@
+export default {
+  navbar: {
+    experience: "Experience",
+    theCard: "The Card",
+    products: "Our Products",
+    support: "Support",
+    login: "Sign In",
+    getStarted: "Get Started",
+  },
+  hero: {
+    headlineStart: "One tap.",
+    headlineEnd: "Instant connection.",
+    subtitle: "The most elegant way to share who you are. Designed for the modern professional.",
+    browseProducts: "Browse Our Products",
+    signIn: "Sign In",
+    trust: {
+      noApp: "No app required",
+      updateAnytime: "Update anytime",
+      shareBy: "Share by NFC • QR • Link",
+    },
+    profile: {
+      saveContact: "Save Contact",
+      viewPortfolio: "View Portfolio",
+    },
+  },
+  features: {
+    title: "Everything you need.\nNothing you don't.",
+    items: {
+      publicProfile: "Public Profile",
+      nfcSharing: "NFC Sharing",
+      qrCode: "QR Code",
+      analytics: "Analytics",
+      portfolio: "Portfolio",
+      contacts: "Contacts",
+      themes: "Themes",
+      socialLinks: "Social Links",
+    }
+  },
+  everythingCards: {
+    digital: "Digital",
+    nfcCard: "NFC Card",
+    steps: {
+      register: "Register",
+      choosePlan: "Choose Plan",
+      payment: "Payment",
+      workspace: "Workspace",
+      activate: "Activate",
+      share: "Share"
+    }
+  },
+  timeline: {
+    title: "How it works.",
+    subtitle: "Designed to be effortless.",
+    steps: {
+      claim: {
+        title: "Claim your link",
+        desc: "Choose a memorable handle and start building your premium digital profile in seconds.",
+        details: "Instant Setup • Custom URL"
+      },
+      customize: {
+        title: "Make it yours",
+        desc: "Select a theme that matches your personal brand. Add your links, bio, and portfolio.",
+        details: "Premium Themes • Real-time Preview"
+      },
+      connect: {
+        title: "Connect instantly",
+        desc: "Share your profile via NFC, QR code, or link. No app required for the receiver.",
+        details: "Cross-platform • Always Updated"
+      }
+    }
+  },
+  logos: {
+    title: "Trusted by creative professionals at",
+  },
+  cta: {
+    title: "Your identity.\nReady in one tap.",
+    button: "Start with Linkly",
+  },
+  footer: {
+    links: "Links",
+    about: "About",
+    term: "Term",
+    contact: "Contact",
+  },
+  auth: {
+    login: {
+      eyebrow: "Customer Workspace",
+      title: "Welcome back",
+      subtitle: "Enter your credentials to access your account",
+      email: "Email address",
+      password: "Password",
+      submit: "Sign In",
+      forgotPassword: "Forgot password?",
+      noAccount: "Don't have an account?",
+      signUp: "Sign up",
+      loading: "Signing in...",
+      success: "Successfully signed in",
+      error: "Invalid email or password",
+    },
+    register: {
+      title: "Create an account",
+      subtitle: "Enter your details to get started",
+      name: "Full Name",
+      email: "Email address",
+      password: "Password",
+      submit: "Create Account",
+      hasAccount: "Already have an account?",
+      signIn: "Sign in",
+      loading: "Creating account...",
+      success: "Account created successfully",
+      error: "Something went wrong",
+      terms: "By creating an account, you agree to our Terms of Service and Privacy Policy."
+    },
+    forgotPassword: {
+      eyebrow: "Customer Workspace",
+      title: "Reset your password",
+      subtitle: "Enter your email and we will send a secure reset link."
+    },
+    resetPassword: {
+      eyebrow: "Customer Workspace",
+      title: "Choose a new password",
+      subtitle: "Make sure it's strong and unique."
+    },
+    customer: {
+      title: "Access your purchase",
+      subtitle: "Enter your email and order number",
+      email: "Email address",
+      orderId: "Order Number",
+      submit: "Access Order",
+      noOrderNumber: "Don't have your order number?",
+      contactSupport: "Contact support",
+    }
+  },
+  registerPage: {
+    headline: "Let's build your digital identity.",
+    subtitle: "Set up your profile, choose your card, and launch your premium presence.",
+    unavailable: {
+      errorTitle: "Plans are temporarily unavailable.",
+      errorDesc: "Please try again shortly.",
+      emptyTitle: "No subscription plans are currently available.",
+      emptyDesc: "Please check back soon for available options."
+    }
+  },
+  common: {
+    loading: "Loading...",
+    error: "An error occurred",
+    save: "Save",
+    cancel: "Cancel",
+  }
+};

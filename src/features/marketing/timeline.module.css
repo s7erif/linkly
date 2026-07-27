@@ -123,17 +123,17 @@
 }
 
 .chipLeft {
-  left: 8px;
+  inset-inline-start: 8px;
   top: 24px;
 }
 
 .chipRight {
-  right: 8px;
+  inset-inline-end: 8px;
   top: 96px;
 }
 
 .chipBottom {
-  right: 16px;
+  inset-inline-end: 16px;
   bottom: 64px;
 }
 

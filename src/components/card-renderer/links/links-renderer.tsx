@@ -42,7 +42,7 @@ export function LinksRenderer({ buttons }: LinksRendererProps) {
   if (buttons.length === 0) return null;
 
   return (
-    <div className="w-full space-y-3">
+    <div className="w-full space-y-3 md:space-y-4">
       {/* Button-style links */}
       {groups.buttons.map((b, i) => (
         <ButtonRenderer key={b.id} button={b} primary={i === 0} />

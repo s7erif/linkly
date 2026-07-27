@@ -38,6 +38,7 @@ export const WorkspaceToolbar = forwardRef<HTMLElement, WorkspaceToolbarProps>(
   ) => {
     const zoom = useWorkspaceStore((s) => s.zoom);
     const setZoom = useWorkspaceStore((s) => s.setZoom);
+    const setMobileSidebarOpen = useWorkspaceStore((s) => s.setMobileSidebarOpen);
 
     const cycleZoom = () => {
       const currentIdx = ZOOM_STOPS.indexOf(zoom as typeof ZOOM_STOPS[number]);
@@ -56,19 +57,32 @@ export const WorkspaceToolbar = forwardRef<HTMLElement, WorkspaceToolbarProps>(
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
-          "flex items-center gap-2 md:gap-4 px-2 py-2 h-[56px] rounded-[22px]",
+          "flex items-center gap-1 md:gap-4 px-2 py-2 h-[56px] rounded-[22px]",
           "bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl",
           "border border-white/60 dark:border-white/10",
           "shadow-[0_4px_24px_-2px_rgba(0,0,0,0.04),0_0_1px_rgba(0,0,0,0.1)]",
-          "transition-all duration-300",
+          "motion-safe:transition-all motion-safe:duration-300",
           className,
         )}
         role="toolbar"
         aria-label="Workspace toolbar"
         {...props as any}
       >
-        {/* Undo / Redo */}
-        <div className="flex items-center gap-1 pl-1">
+        {/* Mobile hamburger menu button */}
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setMobileSidebarOpen(true)}
+          className="lg:hidden w-11 h-11 flex items-center justify-center rounded-full text-slate-600 hover:bg-slate-100 transition-colors shrink-0 focus-visible:ring-2 focus-visible:ring-workspace-primary focus-visible:ring-offset-2"
+          aria-label="Open navigation menu"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </motion.button>
+
+        {/* Undo / Redo — hidden on mobile */}
+        <div className="hidden lg:flex items-center gap-1 pl-1">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -89,14 +103,14 @@ export const WorkspaceToolbar = forwardRef<HTMLElement, WorkspaceToolbarProps>(
           </motion.button>
         </div>
 
-        <div className="w-px h-5 bg-slate-200 dark:bg-slate-800 shrink-0" />
+        <div className="hidden lg:block w-px h-5 bg-slate-200 dark:bg-slate-800 shrink-0" />
 
-        {/* Zoom */}
+        {/* Zoom — hidden on mobile */}
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={cycleZoom}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0"
+          className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shrink-0"
         >
           <span className="font-mono text-[11px] font-bold text-slate-600 dark:text-slate-300 w-[4ch] text-center">
             {Math.round(zoom * 100)}%
@@ -104,10 +118,10 @@ export const WorkspaceToolbar = forwardRef<HTMLElement, WorkspaceToolbarProps>(
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </motion.button>
 
-        <div className="w-px h-5 bg-slate-200 dark:bg-slate-800 shrink-0" />
+        <div className="hidden lg:block w-px h-5 bg-slate-200 dark:bg-slate-800 shrink-0" />
 
         {/* Workspace Name */}
-        <div className="flex items-center gap-2.5 px-2 max-w-[220px] shrink-0">
+        <div className="flex items-center gap-2.5 px-2 max-w-[220px] max-lg:max-w-[140px] shrink-0">
           <div className="w-6 h-6 rounded flex items-center justify-center bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold text-[10px] ring-1 ring-indigo-500/20">
             W
           </div>
@@ -116,10 +130,10 @@ export const WorkspaceToolbar = forwardRef<HTMLElement, WorkspaceToolbarProps>(
           </span>
         </div>
 
-        <div className="w-px h-5 bg-slate-200 dark:bg-slate-800 shrink-0 hidden md:block" />
+        <div className="w-px h-5 bg-slate-200 dark:bg-slate-800 shrink-0 hidden lg:block" />
 
         {/* Status */}
-        <div className="flex items-center justify-center min-w-[90px] shrink-0">
+        <div className="flex items-center justify-center min-w-[90px] max-lg:min-w-[auto] shrink-0">
           <AnimatePresence mode="wait">
             {saving ? (
               <motion.div key="saving" initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full">
@@ -140,8 +154,8 @@ export const WorkspaceToolbar = forwardRef<HTMLElement, WorkspaceToolbarProps>(
           </AnimatePresence>
         </div>
 
-        {/* Publish */}
-        <div className="pl-1 shrink-0">
+        {/* Publish — hidden on mobile */}
+        <div className="hidden lg:block pl-1 shrink-0">
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}

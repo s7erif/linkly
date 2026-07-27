@@ -1,8 +1,9 @@
 "use client";
 
 import { type ReactNode } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { useTheme } from "../theme/use-theme";
+import { interaction } from "../design-system";
 import { cn } from "@/lib/utils";
 
 export interface ProfileCardProps {
@@ -15,21 +16,21 @@ export function ProfileCard({ children, className }: ProfileCardProps) {
   const reduced = useReducedMotion();
 
   return (
-    <motion.div
-      className={cn("flex flex-col items-center w-full overflow-hidden", className)}
+    <m.div
+      className={cn("flex flex-col items-center w-full overflow-hidden max-md:!rounded-none max-md:!shadow-none max-md:min-h-[100dvh]", className)}
       style={{
         background: theme.surface.background,
         borderRadius: theme.shape.radius,
         boxShadow: theme.shadow.card,
         fontFamily: theme.typography.fontFamily,
       }}
-      initial={reduced ? undefined : { opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      initial={reduced ? undefined : { opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={interaction.transitions.pageFade}
     >
-      <div className="flex flex-col items-center w-full">
+      <div className="flex flex-col items-center w-full max-md:flex-1">
         {children}
       </div>
-    </motion.div>
+    </m.div>
   );
 }

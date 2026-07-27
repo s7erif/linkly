@@ -13,6 +13,7 @@ import {
 } from "./shell";
 import { InspectorCard } from "./shared";
 import { Divider } from "@/components/ui/divider";
+import { ScrollableArea } from "@/components/ui/scroll-area";
 import { IdentityEditorSection } from "./inspector/identity-editor";
 import { InspectorShell } from "./inspector/inspector-shell";
 import { LinksEditor } from "./inspector/links-editor";
@@ -53,11 +54,35 @@ function ContentInspector() {
 }
 
 const INSPECTOR_CONTENT: Record<WorkspaceSection, ReactNode> = {
-  identity: <IdentityEditorSection />,
+  identity: (
+    <ScrollableArea className="flex-1 px-8 pb-12">
+      <div className="space-y-8">
+        <IdentityEditorSection />
+      </div>
+    </ScrollableArea>
+  ),
   design: <InspectorShell />,
-  links: <LinksEditor />,
-  content: <ContentInspector />,
-  publish: <PublishReview />,
+  links: (
+    <ScrollableArea className="flex-1 px-8 pb-12">
+      <div className="space-y-8">
+        <LinksEditor />
+      </div>
+    </ScrollableArea>
+  ),
+  content: (
+    <ScrollableArea className="flex-1 px-8 pb-12">
+      <div className="space-y-8">
+        <ContentInspector />
+      </div>
+    </ScrollableArea>
+  ),
+  publish: (
+    <ScrollableArea className="flex-1 px-8 pb-12">
+      <div className="space-y-8">
+        <PublishReview />
+      </div>
+    </ScrollableArea>
+  ),
 };
 
 const SECTION_TITLES: Record<WorkspaceSection, { title: string; description: string; badge: string }> = {
@@ -81,6 +106,7 @@ export function WorkspaceShell({ children }: WorkspaceShellProps) {
   const isHydrated = useCardEditorStore((s) => s.isHydrated);
   const isHydrating = !isHydrated;
   const slug = useCardEditorStore((s) => s.slug);
+  const setMobileInspectorOpen = useWorkspaceStore((s) => s.setMobileInspectorOpen);
   const undo = useCardEditorStore((s) => s.undo);
   const redo = useCardEditorStore((s) => s.redo);
   const canUndo = useCardEditorStore((s) => s.canUndo);
@@ -140,6 +166,11 @@ export function WorkspaceShell({ children }: WorkspaceShellProps) {
           title={sectionMeta.title}
           description={sectionMeta.description}
           badge={sectionMeta.badge}
+          onClose={() => {
+            setMobileInspectorOpen(false);
+            // Also toggle desktop inspector so it still collapses
+            useWorkspaceStore.getState().toggleInspector();
+          }}
         >
           <ErrorBoundary
             fallback={(error, reset) => (

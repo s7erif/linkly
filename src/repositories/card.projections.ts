@@ -123,8 +123,10 @@ export const autosaveCardSelect = {
   status: true,
 } satisfies Prisma.CardSelect;
 
-/** Publication transition validation uses the same minimal state as autosave. */
-export const publishCardSelect = autosaveCardSelect;
+/** Publication transition validation requires only the current lifecycle state. */
+export const publishCardSelect = {
+  status: true,
+} satisfies Prisma.CardSelect;
 
 /** Mutation validation state; excludes profile, theme, avatar and unrelated card scalars. */
 export const builderCardSelect = {
@@ -179,6 +181,9 @@ export type DuplicateCardRow = Prisma.CardGetPayload<{
 }>;
 export type AutosaveCardRow = Prisma.CardGetPayload<{
   select: typeof autosaveCardSelect;
+}>;
+export type PublishCardRow = Prisma.CardGetPayload<{
+  select: typeof publishCardSelect;
 }>;
 export type BuilderCardRow = Prisma.CardGetPayload<{
   select: typeof builderCardSelect;

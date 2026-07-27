@@ -10,5 +10,9 @@ import { WorkspaceShell } from "@/components/workspace/workspace-shell";
  * feature migration in later phases.
  */
 export default function WorkspaceLayout({ children }: { children: ReactNode }) {
-  return <WorkspaceShell>{children}</WorkspaceShell>;
+  return (
+    <div dir="ltr" lang="en" className="h-full w-full">
+      <WorkspaceShell>{children}</WorkspaceShell>
+    </div>
+  );
 }

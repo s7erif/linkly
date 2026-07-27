@@ -6,6 +6,7 @@ import { useWorkspaceStore } from "@/store/use-workspace-store";
 import { useCardEditorStore } from "@/store/use-card-editor-store";
 import { cn } from "@/lib/utils";
 import { CardSelector } from "../inspector/card-selector";
+import { AccountCenter, useAccountData } from "./account-center";
 import type { WorkspaceSection, NavItem } from "@/types/workspace";
 
 const NAV_ITEMS: NavItem[] = [
@@ -48,17 +49,16 @@ const NavIcon: Record<string, React.ReactNode> = {
   ),
 };
 
-export interface WorkspaceSidebarProps extends HTMLAttributes<HTMLElement> {
-  /** Optional user avatar URL */
-  userAvatar?: string | null;
-  /** Optional user display name */
-  userName?: string;
-  /** Optional plan label */
-  userPlan?: string;
-}
+export interface WorkspaceSidebarProps extends HTMLAttributes<HTMLElement> {}
 
+let sidebarRenderCount = 0;
 export const WorkspaceSidebar = forwardRef<HTMLElement, WorkspaceSidebarProps>(
-  ({ userAvatar, userName = "User", userPlan = "Pro", className, ...props }, ref) => {
+  ({ className, ...props }, ref) => {
+    sidebarRenderCount++;
+    const accountData = useAccountData();
+    console.log("[TRACE:WorkspaceSidebar] RENDER #" + sidebarRenderCount + " — accountData:", accountData);
+    console.log("[TRACE:WorkspaceSidebar] RENDER #" + sidebarRenderCount + " — accountData type:", typeof accountData, ", is null?", accountData === null, ", is undefined?", accountData === undefined);
+    console.log("[TRACE:WorkspaceSidebar] RENDER #" + sidebarRenderCount + " — accountData JSON:", JSON.stringify(accountData));
     const router = useRouter();
     const activeSection = useWorkspaceStore((s) => s.activeSection);
     const setActiveSection = useWorkspaceStore((s) => s.setActiveSection);
@@ -89,8 +89,12 @@ export const WorkspaceSidebar = forwardRef<HTMLElement, WorkspaceSidebarProps>(
       <aside
         ref={ref}
         className={cn(
-          "flex flex-col h-full bg-white/70 backdrop-blur-2xl border-r border-slate-200/40 z-20 shrink-0 transition-all duration-300 ease-out",
+          "flex flex-col h-full bg-white/70 backdrop-blur-2xl z-20 shrink-0 motion-safe:transition-all motion-safe:duration-300 ease-out",
+          // Desktop: border on right, fixed width
+          "border-r border-slate-200/40",
           collapsed ? "w-[72px]" : "w-[260px]",
+          // Mobile: full-width inside drawer, no border
+          "max-lg:border-r-0 max-lg:w-full",
           className,
         )}
         {...props}
@@ -122,7 +126,7 @@ export const WorkspaceSidebar = forwardRef<HTMLElement, WorkspaceSidebarProps>(
             <button
               type="button"
               onClick={handleBackToCards}
-              className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-workspace-text-muted hover:text-workspace-primary hover:bg-workspace-surface-dim transition-all group"
+              className="w-full flex items-center gap-2 px-3 py-3 min-h-[44px] rounded-lg text-workspace-text-muted hover:text-workspace-primary hover:bg-workspace-surface-dim transition-all group"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:-translate-x-0.5 transition-transform">
                 <polyline points="15 18 9 12 15 6" />
@@ -142,7 +146,7 @@ export const WorkspaceSidebar = forwardRef<HTMLElement, WorkspaceSidebarProps>(
                 type="button"
                 onClick={() => handleNav(item.id)}
                 className={cn(
-                  "w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-fast group",
+                  "w-full flex items-center gap-3 px-4 py-3.5 min-h-[44px] rounded-xl transition-all duration-fast group",
                   isActive
                     ? "bg-workspace-primary-muted/60 text-workspace-primary font-semibold shadow-sm"
                     : "text-workspace-text-secondary font-medium hover:bg-workspace-surface-dim hover:text-workspace-primary",
@@ -173,42 +177,29 @@ export const WorkspaceSidebar = forwardRef<HTMLElement, WorkspaceSidebarProps>(
         {/* Card selector (visible when user has multiple cards) */}
         <CardSelector />
 
-        {/* Bottom user section */}
-        <div className={cn("px-6 py-8 mt-auto border-t border-workspace-outline/20", collapsed && "px-4")}>
-          {!collapsed ? (
-            <div className="bg-workspace-surface-dim p-4 rounded-2xl flex flex-col gap-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-workspace-primary-muted flex items-center justify-center text-workspace-primary font-semibold text-sm overflow-hidden">
-                  {userAvatar ? (
-                    <img src={userAvatar} alt={userName} className="w-full h-full object-cover" />
-                  ) : (
-                    userName.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
-                  )}
-                </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="text-xs font-bold text-workspace-text-primary leading-tight truncate">
-                    {userName}
-                  </span>
-                  <span className="text-[10px] text-workspace-text-muted">{userPlan} Plan Active</span>
-                </div>
-              </div>
-              <button
-                type="button"
-                className="w-full py-2 bg-white text-workspace-text-secondary border border-workspace-outline/30 rounded-xl text-[11px] font-semibold hover:shadow-sm transition-all active:scale-95"
-              >
-                Settings
-              </button>
-            </div>
+        {/* Bottom account section */}
+        <div className={cn("mt-auto border-t border-workspace-outline/20", collapsed ? "px-3 py-4" : "px-4 py-3")}>
+          {collapsed ? (
+            /* Collapsed: avatar-only trigger */
+            <button
+              type="button"
+              onClick={() => {
+                // On collapsed sidebar, toggle to expanded to show account center
+                useWorkspaceStore.getState().toggleSidebar();
+              }}
+              className="w-10 h-10 mx-auto rounded-full border-2 border-white shadow-sm bg-workspace-primary-muted flex items-center justify-center text-workspace-primary font-semibold text-xs overflow-hidden hover:shadow-md transition-shadow"
+              aria-label="Open account menu"
+            >
+              {accountData?.user.avatarUrl ? (
+                <img src={accountData.user.avatarUrl} alt={accountData.user.displayName} className="w-full h-full object-cover" />
+              ) : (
+                (accountData?.user.displayName ?? "U")
+                  .split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
+              )}
+            </button>
           ) : (
-            <div className="flex flex-col items-center gap-4">
-              <div className="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-workspace-primary-muted flex items-center justify-center text-workspace-primary font-semibold text-xs overflow-hidden">
-                {userAvatar ? (
-                  <img src={userAvatar} alt={userName} className="w-full h-full object-cover" />
-                ) : (
-                  userName.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
-                )}
-              </div>
-            </div>
+            /* Expanded: full AccountCenter trigger + panel */
+            <AccountCenter data={accountData ?? null} />
           )}
         </div>
       </aside>

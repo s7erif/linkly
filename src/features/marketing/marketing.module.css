@@ -449,7 +449,7 @@
 .productNumber {
   position: absolute;
   top: 22px;
-  right: 26px;
+  inset-inline-end: 26px;
   color: rgba(0, 0, 0, 0.1);
   font-size: 4rem;
   font-weight: 900;
@@ -831,7 +831,7 @@
   border-radius: 18px;
   background: #ffffff;
   color: #111111;
-  text-align: left;
+  text-align: start;
   cursor: pointer;
   transition: border-color 0.16s, box-shadow 0.16s, transform 0.16s;
 }
@@ -946,7 +946,7 @@
 .productCard[role="button"],
 button.productCard {
   border: 0;
-  text-align: left;
+  text-align: start;
   cursor: pointer;
   font-family: inherit;
 }

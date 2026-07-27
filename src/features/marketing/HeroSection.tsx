@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useLanguage } from "@/i18n/context";
 import styles from "./hero.module.css";
 
 /* ── Types ────────────────────────────────────────────────────── */
@@ -42,6 +43,7 @@ function ProfileCard({ brandName }: { brandName: string }) {
     .join("")
     .slice(0, 2)
     .toUpperCase();
+  const { t } = useLanguage();
 
   return (
     <div className={styles.profileCard}>
@@ -74,8 +76,8 @@ function ProfileCard({ brandName }: { brandName: string }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: T.profileActions, ease: spring }}
       >
-        <span className={styles.profileActionPrimary}>Save Contact</span>
-        <span className={styles.profileActionSecondary}>View Portfolio</span>
+        <span className={styles.profileActionPrimary}>{t("profile.saveContact", "hero")}</span>
+        <span className={styles.profileActionSecondary}>{t("profile.viewPortfolio", "hero")}</span>
       </motion.div>
       <motion.div
         className={styles.profileIcons}
@@ -194,6 +196,8 @@ function PhoneScene({ brandName }: { brandName: string }) {
 /* ── Main component ───────────────────────────────────────────── */
 
 export default function HeroSection({ brandName }: HeroSectionProps) {
+  const { t } = useLanguage();
+
   return (
     <>
       {/* ── Ambient background layer (fixed) ──────────────────── */}
@@ -210,9 +214,9 @@ export default function HeroSection({ brandName }: HeroSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: T.headline, ease: spring }}
           >
-            One tap.{" "}
+            {t("headlineStart", "hero")}{" "}
             <br className={styles.headlineBr} />
-            <span className={styles.textGradient}>Instant connection.</span>
+            <span className={styles.textGradient}>{t("headlineEnd", "hero")}</span>
           </motion.h1>
 
           <motion.div
@@ -222,10 +226,10 @@ export default function HeroSection({ brandName }: HeroSectionProps) {
             transition={{ duration: 0.4, delay: T.actions, ease: spring }}
           >
             <Link href="/products" className={styles.primaryCta}>
-              Browse Our Products
+              {t("browseProducts", "hero")}
             </Link>
             <Link href="/login" className={styles.secondaryCta}>
-              Sign In
+              {t("signIn", "hero")}
             </Link>
           </motion.div>
 
@@ -235,8 +239,7 @@ export default function HeroSection({ brandName }: HeroSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: T.body, ease: spring }}
           >
-            The most elegant way to share who you are.
-            Designed for the modern professional.
+            {t("subtitle", "hero")}
           </motion.p>
 
           <motion.div
@@ -245,9 +248,9 @@ export default function HeroSection({ brandName }: HeroSectionProps) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: T.trust, ease: spring }}
           >
-            <span className={styles.trustStat}>No app required</span>
-            <span className={styles.trustStat}>Update anytime</span>
-            <span className={styles.trustStat}>Share by NFC • QR • Link</span>
+            <span className={styles.trustStat}>{t("trust.noApp", "hero")}</span>
+            <span className={styles.trustStat}>{t("trust.updateAnytime", "hero")}</span>
+            <span className={styles.trustStat}>{t("trust.shareBy", "hero")}</span>
           </motion.div>
         </div>
 

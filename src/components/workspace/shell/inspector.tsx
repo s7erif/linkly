@@ -3,7 +3,7 @@
 import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import { useWorkspaceStore } from "@/store/use-workspace-store";
 import { cn } from "@/lib/utils";
-import { ScrollableArea } from "@/components/ui/scroll-area";
+
 
 export interface WorkspaceInspectorProps extends HTMLAttributes<HTMLElement> {
   /** Inspector title */
@@ -47,7 +47,7 @@ export const WorkspaceInspector = forwardRef<HTMLElement, WorkspaceInspectorProp
         <aside
           ref={ref}
           className={cn(
-            "w-8 flex flex-col items-center justify-center border-l border-workspace-outline/20 bg-white transition-all duration-slow",
+            "w-8 hidden lg:flex flex-col items-center justify-center border-l border-workspace-outline/20 bg-white transition-all duration-slow",
             className,
           )}
           {...props}
@@ -71,7 +71,7 @@ export const WorkspaceInspector = forwardRef<HTMLElement, WorkspaceInspectorProp
       <aside
         ref={ref}
         className={cn(
-          "w-[420px] h-full bg-white border-l border-workspace-outline/20 flex flex-col z-20 shrink-0",
+          "w-[420px] max-lg:w-full h-full bg-white border-l border-workspace-outline/20 max-lg:border-l-0 flex flex-col z-20 shrink-0",
           className,
         )}
         {...props}
@@ -94,7 +94,7 @@ export const WorkspaceInspector = forwardRef<HTMLElement, WorkspaceInspectorProp
           <button
             type="button"
             onClick={handleClose}
-            className="p-2 rounded-full hover:bg-workspace-surface-dim transition-colors text-workspace-text-muted"
+            className="min-w-[44px] min-h-[44px] p-2 rounded-full hover:bg-workspace-surface-dim transition-colors text-workspace-text-muted focus-visible:ring-2 focus-visible:ring-workspace-primary focus-visible:ring-offset-2"
             aria-label="Close inspector"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -104,11 +104,9 @@ export const WorkspaceInspector = forwardRef<HTMLElement, WorkspaceInspectorProp
         </div>
 
         {/* Body */}
-        <ScrollableArea className="flex-1 px-8 pb-12">
-          <div className="space-y-8">
-            {children}
-          </div>
-        </ScrollableArea>
+        <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
+          {children}
+        </div>
       </aside>
     );
   },

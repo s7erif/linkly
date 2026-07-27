@@ -20,6 +20,10 @@ export function useWorkspaceKeyboard() {
   const canRedo = useCardEditorStore((s) => s.canRedo);
   const toggleInspector = useWorkspaceStore((s) => s.toggleInspector);
   const collapsedInspector = useWorkspaceStore((s) => s.collapsedInspector);
+  const mobileSidebarOpen = useWorkspaceStore((s) => s.mobileSidebarOpen);
+  const mobileInspectorOpen = useWorkspaceStore((s) => s.mobileInspectorOpen);
+  const setMobileSidebarOpen = useWorkspaceStore((s) => s.setMobileSidebarOpen);
+  const setMobileInspectorOpen = useWorkspaceStore((s) => s.setMobileInspectorOpen);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -46,18 +50,19 @@ export function useWorkspaceKeyboard() {
         return;
       }
 
-      // Escape — Close inspector (if open)
-      if (e.key === "Escape" && !collapsedInspector) {
-        // Only close if not inside an input/textarea/select
+      // Escape — Close mobile overlays first, then desktop inspector
+      if (e.key === "Escape") {
         const tag = (e.target as HTMLElement)?.tagName;
-        if (tag !== "INPUT" && tag !== "TEXTAREA" && tag !== "SELECT") {
-          e.preventDefault();
-          toggleInspector();
-        }
+        if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+        // Close mobile overlays first
+        if (mobileSidebarOpen) { e.preventDefault(); setMobileSidebarOpen(false); return; }
+        if (mobileInspectorOpen) { e.preventDefault(); setMobileInspectorOpen(false); return; }
+        // Close desktop inspector
+        if (!collapsedInspector) { e.preventDefault(); toggleInspector(); }
       }
     };
 
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [saveCard, undo, redo, canUndo, canRedo, toggleInspector, collapsedInspector]);
+  }, [saveCard, undo, redo, canUndo, canRedo, toggleInspector, collapsedInspector, mobileSidebarOpen, mobileInspectorOpen, setMobileSidebarOpen, setMobileInspectorOpen]);
 }

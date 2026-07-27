@@ -206,7 +206,7 @@ export interface CardReadRepository {
   findRenderSourceBySlug(
     criteria: CardLookupCriteria,
   ): Promise<EditorCardDTO | null>;
-  slugExists?(slug: string, excludeCardId?: string): Promise<boolean>;
+  slugExists(slug: string, excludeCardId?: string): Promise<boolean>;
   mediaIdsBelongToCardCustomer?(
     cardId: string,
     mediaIds: readonly string[],
@@ -221,7 +221,9 @@ export interface AutosaveCardProjection {
   slug: string;
   status: CardStatus;
 }
-export type PublishCardProjection = AutosaveCardProjection;
+export interface PublishCardProjection {
+  status: CardStatus;
+}
 export interface BuilderCardProjection extends AutosaveCardProjection {
   sections: NonNullable<EditorCardDTO["sections"]>;
   blocks: NonNullable<EditorCardDTO["blocks"]>;
@@ -240,6 +242,11 @@ export type PublicCardMutationResult = MutationResult & { slug: string };
 export interface CardWriteRepository {
   create(command: CreateCardCommand): Promise<CardDTO>;
   update(id: string, command: UpdateCardCommand): Promise<CardDTO>;
+  /** Persists only publication lifecycle fields and returns no card aggregate. */
+  updatePublication?(
+    id: string,
+    command: Pick<UpdateCardCommand, "status" | "visibility" | "publishedAt">,
+  ): Promise<MutationResult>;
   incrementAccessVersion(cardId: string): Promise<void>;
   updateAppearance(cardId: string, appearance: AppearanceSettings): Promise<PublicCardMutationResult>;
   updateSettings?(cardId: string, command: UpdateCardSettingsCommand): Promise<MutationResult>;

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useLanguage } from "@/i18n/context";
 import styles from "./footer-section.module.css";
 
 interface FooterProps {
@@ -10,6 +11,7 @@ interface FooterProps {
 
 export default function FooterSection({ brandName }: FooterProps) {
   const initial = brandName.charAt(0).toUpperCase();
+  const { t } = useLanguage();
 
   return (
     <motion.footer
@@ -24,10 +26,10 @@ export default function FooterSection({ brandName }: FooterProps) {
         {brandName}
       </Link>
       <div className={styles.links}>
-        <Link href="/" className={styles.link}>Links</Link>
-        <Link href="/" className={styles.link}>About</Link>
-        <Link href="/" className={styles.link}>Term</Link>
-        <Link href="/" className={styles.link}>Contact</Link>
+        <Link href="/" className={styles.link}>{t("links", "footer")}</Link>
+        <Link href="/" className={styles.link}>{t("about", "footer")}</Link>
+        <Link href="/" className={styles.link}>{t("term", "footer")}</Link>
+        <Link href="/" className={styles.link}>{t("contact", "footer")}</Link>
       </div>
     </motion.footer>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { useTheme } from "../theme/use-theme";
 import { cn } from "@/lib/utils";
 
@@ -25,6 +25,12 @@ const PLATFORM_ICONS: Record<string, React.ReactNode> = {
   email: (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="2" y="4" width="20" height="16" rx="2" /><path d="M22 4L12 13 2 4" />
+    </svg>
+  ),
+  google_maps: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+      <circle cx="12" cy="9" r="2.5" />
     </svg>
   ),
   linkedin: (
@@ -55,9 +61,9 @@ export function SocialIcons({ links, className }: SocialIconsProps) {
   if (!links.length) return null;
 
   return (
-    <nav className={cn("flex justify-center gap-4 sm:gap-6", className)}>
+    <nav className={cn("flex justify-center gap-3 sm:gap-4 lg:gap-5 md:mt-1", className)}>
       {links.map((link, i) => (
-        <motion.a
+        <m.a
           key={link.id}
           href={link.url}
           target="_blank"
@@ -74,23 +80,23 @@ export function SocialIcons({ links, className }: SocialIconsProps) {
           whileHover={reduced ? undefined : {
             color: theme.colors.primary,
             background: `linear-gradient(135deg, ${theme.colors.primary}1A, ${theme.colors.primary}08)`,
-            scale: 1.1,
+            scale: 1.12,
             rotate: 3,
             y: -2,
             boxShadow: `0 4px 12px ${theme.colors.primary}25`
           }}
-          whileTap={reduced ? undefined : { scale: 0.92, rotate: 0 }}
+          whileTap={reduced ? undefined : { scale: 0.95, rotate: 0 }}
           initial={reduced ? undefined : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={reduced ? undefined : { 
             opacity: { delay: 0.1 * i, duration: 0.3 },
             y: { delay: 0.1 * i, duration: 0.3, ease: "easeOut" },
-            scale: { type: "spring", stiffness: 500, damping: 25 },
-            rotate: { type: "spring", stiffness: 500, damping: 25 },
+            scale: { type: "spring", stiffness: 350, damping: 30 },
+            rotate: { type: "spring", stiffness: 350, damping: 30 },
           }}
         >
           {iconFor(link.platform)}
-        </motion.a>
+        </m.a>
       ))}
     </nav>
   );

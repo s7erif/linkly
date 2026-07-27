@@ -41,11 +41,13 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
   selectedPanel: "properties",
   deviceType: "phone",
   canvasBackground: "white",
+  mobileSidebarOpen: false,
+  mobileInspectorOpen: false,
 
   // ── Actions ────────────────────────────────────────────────────────
   setActiveSection: (section: WorkspaceSection) => {
     persist(STORAGE_SECTION, section);
-    set({ activeSection: section });
+    set({ activeSection: section, mobileSidebarOpen: false, mobileInspectorOpen: true });
   },
 
   toggleSidebar: () =>
@@ -65,6 +67,9 @@ export const useWorkspaceStore = create<WorkspaceStore>((set) => ({
 
   setDeviceType: (deviceType) => set({ deviceType }),
   setCanvasBackground: (canvasBackground) => set({ canvasBackground }),
+
+  setMobileSidebarOpen: (open: boolean) => set({ mobileSidebarOpen: open }),
+  setMobileInspectorOpen: (open: boolean) => set({ mobileInspectorOpen: open }),
 }));
 
 /**

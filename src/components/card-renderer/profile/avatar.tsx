@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { useTheme } from "../theme/use-theme";
 import { cn } from "@/lib/utils";
 
@@ -10,7 +10,7 @@ type AvatarSize = "sm" | "md" | "lg" | "xl";
 const sizeMap: Record<AvatarSize, string> = {
   sm: "w-[72px] h-[72px]",
   md: "w-[96px] h-[96px]",
-  lg: "w-[132px] h-[132px] sm:w-[144px] sm:h-[144px] lg:w-[156px] lg:h-[156px]",
+  lg: "w-[120px] h-[120px] sm:w-[132px] sm:h-[132px] lg:w-[144px] lg:h-[144px]",
   xl: "w-[164px] h-[164px]",
 };
 
@@ -26,8 +26,7 @@ export interface ProfileAvatarProps {
  * ProfileAvatar — Premium Identity Focal Point featuring:
  * - Responsive sizing (112px to 132px)
  * - Token-driven radial glow and layered shadow
- * - 4.5s subtle breathing idle animation (translateY 0 -> -3 -> 0)
- * - 1.03 scale hover lift on editor
+ * - Token-driven radial glow and layered shadow
  * - Crossfade blur-out transition on image load
  * - Tasteful silhouette placeholder for empty state
  */
@@ -53,8 +52,8 @@ export function ProfileAvatar({
         }}
       />
 
-      {/* 2. Avatar Container with Breathing Idle & Hover Lift */}
-      <motion.div
+      {/* 2. Avatar Container */}
+      <m.div
         className={cn(
           "relative w-full h-full transition-shadow duration-300",
           selected
@@ -65,14 +64,9 @@ export function ProfileAvatar({
           borderRadius: theme.shape.avatarRadius,
           ...(selected ? { ringColor: theme.colors.primary } : {}),
         }}
-        initial={reduced ? undefined : { opacity: 0, scale: 0.92, y: 0 }}
-        animate={reduced ? { opacity: 1 } : { opacity: 1, scale: 1, y: [0, -3, 0] }}
-        whileHover={reduced ? undefined : { scale: 1.03 }}
-        transition={{
-          opacity: { duration: 0.4 },
-          scale: { type: "spring", stiffness: 300, damping: 25 },
-          y: { duration: 4.5, repeat: Infinity, ease: "easeInOut" },
-        }}
+        initial={reduced ? undefined : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
       >
         {/* 3. Pure Image Frame with Sub-pixel Border */}
         <div
@@ -80,7 +74,7 @@ export function ProfileAvatar({
           style={{ borderRadius: theme.shape.avatarRadius }}
         >
           {/* 4. Crossfade & Blur Image Transition */}
-          <motion.div
+          <m.div
             key={src ?? "empty"}
             initial={{ opacity: 0, filter: "blur(4px)", scale: 0.96 }}
             animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
@@ -90,7 +84,9 @@ export function ProfileAvatar({
             {!showFallback ? (
               <img
                 src={src!}
-                alt={fallback}
+                alt={`Profile photo of ${fallback}`}
+                fetchPriority="high"
+                loading="eager"
                 className="w-full h-full object-cover transition-transform duration-700"
                 onError={() => setError(true)}
               />
@@ -101,6 +97,7 @@ export function ProfileAvatar({
               >
                 {/* Small Elegant User Glyph */}
                 <svg
+                  aria-hidden="true"
                   className="w-[28%] h-[28%] text-slate-400/80 dark:text-slate-500/80"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -114,9 +111,9 @@ export function ProfileAvatar({
                 </svg>
               </div>
             )}
-          </motion.div>
+          </m.div>
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

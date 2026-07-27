@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { useTheme } from "../theme/use-theme";
 import { cn } from "@/lib/utils";
 
@@ -23,15 +23,15 @@ export function ProfileHeader({ fullName, headline, company, address, className 
   const roleText = roleParts.join(" • ");
 
   return (
-    <motion.div
-      className={cn("flex flex-col items-center text-center space-y-1", className)}
+    <m.div
+      className={cn("flex flex-col items-center text-center", className)}
       initial={reduced ? undefined : { opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1, duration: 0.4, ease: "easeOut" }}
     >
-      {/* 2. Display Name: 26-28px, Semibold, modern tight tracking */}
+      {/* 2. Display Name: Strongest visual element */}
       <h1
-        className="text-[26px] sm:text-[28px] font-semibold tracking-tight leading-none"
+        className="text-[26px] sm:text-[28px] md:text-[30px] font-bold tracking-tight leading-tight"
         style={{
           fontFamily: theme.typography.fontFamily,
           color: theme.colors.text,
@@ -40,10 +40,10 @@ export function ProfileHeader({ fullName, headline, company, address, className 
         {fullName}
       </h1>
 
-      {/* 3. Role & Company: Higher contrast, Uppercase */}
+      {/* 3. Role & Company: Supporting information */}
       {roleText && (
         <span
-          className="text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.1em] pt-1.5 opacity-75"
+          className="mt-2 md:mt-2.5 text-[10px] sm:text-[11px] md:text-[12px] font-semibold uppercase tracking-wider opacity-60"
           style={{
             fontFamily: theme.typography.fontFamily,
             color: theme.colors.text,
@@ -56,7 +56,7 @@ export function ProfileHeader({ fullName, headline, company, address, className 
       {/* 4. Location: Muted, Centered with minimal icon */}
       {address && (
         <div
-          className="flex items-center justify-center gap-1.5 pt-0.5 opacity-80"
+          className="flex items-center justify-center gap-1.5 mt-2 opacity-70"
           style={{ color: theme.colors.mutedText }}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -71,6 +71,6 @@ export function ProfileHeader({ fullName, headline, company, address, className 
           </span>
         </div>
       )}
-    </motion.div>
+    </m.div>
   );
 }

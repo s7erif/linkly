@@ -9,6 +9,7 @@ import type {
 import type {
   AutosaveCardProjection,
   BuilderCardProjection,
+  PublishCardProjection,
   PublicCardProjection,
   CardLookupCriteria,
   CardReadRepository,
@@ -41,6 +42,7 @@ import {
   type CardRow,
   type DuplicateCardRow,
   type PublicCardRow,
+  type PublishCardRow,
   type WorkspaceCardRow,
 } from "./card.projections";
 
@@ -224,11 +226,12 @@ abstract class CardRepositoryBase implements CardReadRepository {
   async findPublishById(
     id: string,
     deletedAt: null | Date,
-  ): Promise<AutosaveCardProjection | null> {
-    return this.db.card.findFirst({
+  ): Promise<PublishCardProjection | null> {
+    const row: PublishCardRow | null = await this.db.card.findFirst({
       where: { ...this.ownedWhere(id), deletedAt },
       select: publishCardSelect,
     });
+    return row;
   }
   async findBuilderById(
     id: string,
@@ -402,6 +405,20 @@ export class PrismaCardTransactionRepository
         select: cardBaseSelect,
       }),
     );
+  }
+  async updatePublication(
+    id: string,
+    command: Pick<
+      UpdateCardCommand,
+      "status" | "visibility" | "publishedAt"
+    >,
+  ): Promise<MutationResult> {
+    await this.assertOwned(id);
+    return this.db.card.update({
+      where: { id },
+      data: command,
+      select: { id: true },
+    });
   }
   async updateAppearance(
     cardId: string,

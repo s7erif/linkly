@@ -47,7 +47,10 @@ export class UpdateCardPublication {
         command.action === "PUBLISH"
           ? { status: "PUBLISHED" as const, visibility: "PUBLIC" as const, publishedAt: now }
           : { status: "DRAFT" as const, visibility: "PRIVATE" as const, publishedAt: null };
-      await repositories.cards.update(command.cardId, update);
+      await (
+        repositories.cards.updatePublication?.(command.cardId, update) ??
+        repositories.cards.update(command.cardId, update)
+      );
       const saved = await (repositories.cards.findWorkspaceById?.(command.cardId, null) ?? repositories.cards.findEditorById(command.cardId, null));
       if (!saved) throw new NotFoundError("Card", command.cardId);
       await auditAdminWorkspaceEdit(

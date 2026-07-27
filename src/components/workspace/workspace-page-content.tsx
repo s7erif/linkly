@@ -7,7 +7,9 @@ import { PreviewSync } from "./preview/preview-sync";
 import { useCardEditorStore } from "@/store/use-card-editor-store";
 import { EmptyWorkspace } from "./empty-workspace";
 import { WorkspaceCardSelector } from "./workspace-card-selector";
+import { AccountDataProvider } from "./shell/account-center";
 import type { WorkspaceCardDTO } from "@/dto";
+import type { AccountCenterData } from "@/types/account-center";
 import { buildWorkspaceBuilderPath } from "@/lib/public-links";
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -28,6 +30,8 @@ export interface WorkspacePageContentProps {
   slug?: string;
   editorToken?: string;
   editorExpiresAt?: string;
+  /** Account center data (user, subscription, usage, workspace, account) */
+  accountData?: AccountCenterData | null;
 }
 
 export function WorkspacePageContent({
@@ -36,10 +40,17 @@ export function WorkspacePageContent({
   slug,
   editorToken,
   editorExpiresAt,
+  accountData,
 }: WorkspacePageContentProps) {
   const setCards = useCardEditorStore((s) => s.setAvailableCards);
   const resetStore = useCardEditorStore((s) => s.reset);
   const preparedCards = useCardEditorStore((s) => s.availableCards);
+
+  console.log("[TRACE:WorkspacePageContent] RENDER — accountData:", accountData);
+  console.log("[TRACE:WorkspacePageContent] RENDER — slug:", slug);
+  console.log("[TRACE:WorkspacePageContent] RENDER — cards.length:", cards.length);
+  console.log("[TRACE:WorkspacePageContent] RENDER — accountData type:", typeof accountData, ", is null?", accountData === null, ", is undefined?", accountData === undefined);
+  console.log("[TRACE:WorkspacePageContent] RENDER — accountData JSON:", JSON.stringify(accountData));
 
   // When entering a different route state (picker or editor), reset the
   // editor-only Zustand state synchronously BEFORE paint.  This must run
@@ -65,23 +76,33 @@ export function WorkspacePageContent({
 
   // ── No cards ──────────────────────────────────────────────────────
   if (cards.length === 0) {
-    return <EmptyWorkspace />;
+    return (
+      <AccountDataProvider data={accountData ?? null}>
+        <EmptyWorkspace />
+      </AccountDataProvider>
+    );
   }
 
   // ── Multiple cards, no slug selected yet ──────────────────────────
   if (!slug) {
-    return <WorkspaceCardSelector cards={cards} />;
+    return (
+      <AccountDataProvider data={accountData ?? null}>
+        <WorkspaceCardSelector cards={cards} />
+      </AccountDataProvider>
+    );
   }
 
   // ── Card selected — full editor ───────────────────────────────────
   return (
-    <CardEditorProvider
-      initialCard={initialCard}
-      slug={slug}
-      editorToken={editorToken}
-      editorExpiresAt={editorExpiresAt}
-    >
-      <PreviewSync />
-    </CardEditorProvider>
+    <AccountDataProvider data={accountData ?? null}>
+      <CardEditorProvider
+        initialCard={initialCard}
+        slug={slug}
+        editorToken={editorToken}
+        editorExpiresAt={editorExpiresAt}
+      >
+        <PreviewSync />
+      </CardEditorProvider>
+    </AccountDataProvider>
   );
 }

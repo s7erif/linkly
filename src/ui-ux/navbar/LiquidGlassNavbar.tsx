@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLanguage } from "@/i18n/context";
 import styles from "./liquid-glass-navbar.module.css";
 
 /* ── Types ────────────────────────────────────────────────────── */
 
 interface NavLinkItem {
-  label: string;
+  key: string;
   href: string;
 }
 
@@ -20,10 +21,10 @@ interface LiquidGlassNavbarProps {
 /* ── Nav data ─────────────────────────────────────────────────── */
 
 const NAV_LINKS: NavLinkItem[] = [
-  { label: "Experience", href: "/#features" },
-  { label: "The Card", href: "/#how-it-works" },
-  { label: "Our Products", href: "/products" },
-  { label: "Support", href: "/#contact" },
+  { key: "experience", href: "/#features" },
+  { key: "theCard", href: "/#how-it-works" },
+  { key: "products", href: "/products" },
+  { key: "support", href: "/#contact" },
 ];
 
 /* ── Scroll glass hook ────────────────────────────────────────── */
@@ -72,10 +73,37 @@ function HamburgerIcon({ open }: { open: boolean }) {
   );
 }
 
+/* ── Language Switcher ────────────────────────────────────────── */
+
+function LanguageSwitcher() {
+  const { locale, setLanguage } = useLanguage();
+  
+  return (
+    <div className={styles.languageSwitcher} dir="ltr">
+      <button 
+        onClick={() => setLanguage("en")} 
+        className={`${styles.langBtn} ${locale === "en" ? styles.langActive : ""}`}
+        aria-label="Switch to English"
+      >
+        EN
+      </button>
+      <span className={styles.langDivider}>|</span>
+      <button 
+        onClick={() => setLanguage("ar")} 
+        className={`${styles.langBtn} ${locale === "ar" ? styles.langActive : ""}`}
+        aria-label="Switch to Arabic"
+      >
+        عربي
+      </button>
+    </div>
+  );
+}
+
 /* ── Desktop nav links ────────────────────────────────────────── */
 
 function DesktopNav() {
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   return (
     <ul className={styles.navList}>
@@ -90,7 +118,7 @@ function DesktopNav() {
               href={link.href}
               className={`${styles.navLink} ${isActive ? styles.navLinkActive : ""}`}
             >
-              {link.label}
+              {t(link.key, "navbar")}
             </Link>
           </li>
         );
@@ -102,10 +130,18 @@ function DesktopNav() {
 /* ── Desktop CTA ──────────────────────────────────────────────── */
 
 function DesktopActions() {
+  const { t } = useLanguage();
+  
   return (
-    <Link href="/register" className={styles.ctaButton}>
-      Get Started
-    </Link>
+    <div className={styles.actionsWrapper}>
+      <LanguageSwitcher />
+      <Link href="/login" className={styles.navLink}>
+        {t("login", "navbar")}
+      </Link>
+      <Link href="/register" className={styles.ctaButton}>
+        {t("getStarted", "navbar")}
+      </Link>
+    </div>
   );
 }
 
@@ -119,6 +155,7 @@ function MobileDrawer({
   onClose: () => void;
 }) {
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (open) {
@@ -175,23 +212,28 @@ function MobileDrawer({
                     }
                     onClick={onClose}
                   >
-                    {link.label}
+                    {t(link.key, "navbar")}
                   </Link>
                 );
               })}
+              
+              <div className={styles.mobileLanguageWrapper}>
+                <LanguageSwitcher />
+              </div>
+
               <Link
                 href="/login"
                 className={styles.mobileNavLink}
                 onClick={onClose}
               >
-                Sign In
+                {t("login", "navbar")}
               </Link>
               <Link
                 href="/register"
                 className={styles.mobileCtaButton}
                 onClick={onClose}
               >
-                Get Started
+                {t("getStarted", "navbar")}
               </Link>
             </nav>
           </motion.div>

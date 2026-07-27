@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Reveal } from "./Motion";
+import { useLanguage } from "@/i18n/context";
 import styles from "./timeline.module.css";
 
 /* ── Inline SVG icons ──────────────────────────────────────── */
@@ -74,23 +75,26 @@ function IconCheck() {
 
 type Step = { icon: React.FC; label: string };
 
-const steps: Step[] = [
-  { icon: IconUserPlus, label: "Register" },
-  { icon: IconCheckCircle, label: "Choose Plan" },
-  { icon: IconCreditCard, label: "Payment" },
-  { icon: IconBriefcase, label: "Workspace" },
+const getSteps = (t: (k: string, n?: string) => string): Step[] => [
+  { icon: IconUserPlus, label: t("steps.register", "everythingCards") },
+  { icon: IconCheckCircle, label: t("steps.choosePlan", "everythingCards") },
+  { icon: IconCreditCard, label: t("steps.payment", "everythingCards") },
+  { icon: IconBriefcase, label: t("steps.workspace", "everythingCards") },
 ];
 
 /* ── Main component ─────────────────────────────────────────── */
 
 export default function Timeline() {
+  const { t } = useLanguage();
+  const steps = getSteps(t);
+
   return (
     <section id="how" className={styles.section}>
       <div className={styles.grid}>
         {/* Left: Steps */}
         <Reveal>
           <div>
-            <h3 className={styles.heading}>Digital</h3>
+            <h3 className={styles.heading}>{t("digital", "everythingCards")}</h3>
             <div className={styles.stepRow}>
               {steps.map((s, i) => (
                 <div key={s.label} className={styles.stepItem}>

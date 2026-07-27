@@ -217,6 +217,30 @@ export function getPlatformIcon(
         </svg>
       );
 
+    case "GOOGLE_MAPS":
+      return (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+          {/* Pin body */}
+          <path
+            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+            fill={color ?? "#4285F4"}
+            stroke={color ?? "#4285F4"}
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          {/* Inner circle */}
+          <circle
+            cx="12"
+            cy="9"
+            r="2.5"
+            fill="#FFFFFF"
+            stroke="#FFFFFF"
+            strokeWidth="0.5"
+          />
+        </svg>
+      );
+
     case "WEBSITE":
       return (
         <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? "#4F46E5"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
