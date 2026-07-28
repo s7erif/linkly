@@ -26,58 +26,58 @@ export type AggregateMediaFolder = {
 
 export type MediaFolderMinAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   name: string | null
   parentId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  workspaceId: string | null
 }
 
 export type MediaFolderMaxAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   name: string | null
   parentId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  workspaceId: string | null
 }
 
 export type MediaFolderCountAggregateOutputType = {
   id: number
-  workspaceId: number
   name: number
   parentId: number
   createdAt: number
   updatedAt: number
+  workspaceId: number
   _all: number
 }
 
 
 export type MediaFolderMinAggregateInputType = {
   id?: true
-  workspaceId?: true
   name?: true
   parentId?: true
   createdAt?: true
   updatedAt?: true
+  workspaceId?: true
 }
 
 export type MediaFolderMaxAggregateInputType = {
   id?: true
-  workspaceId?: true
   name?: true
   parentId?: true
   createdAt?: true
   updatedAt?: true
+  workspaceId?: true
 }
 
 export type MediaFolderCountAggregateInputType = {
   id?: true
-  workspaceId?: true
   name?: true
   parentId?: true
   createdAt?: true
   updatedAt?: true
+  workspaceId?: true
   _all?: true
 }
 
@@ -155,11 +155,11 @@ export type MediaFolderGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 
 export type MediaFolderGroupByOutputType = {
   id: string
-  workspaceId: string
   name: string
   parentId: string | null
   createdAt: Date
   updatedAt: Date
+  workspaceId: string
   _count: MediaFolderCountAggregateOutputType | null
   _min: MediaFolderMinAggregateOutputType | null
   _max: MediaFolderMaxAggregateOutputType | null
@@ -185,27 +185,27 @@ export type MediaFolderWhereInput = {
   OR?: Prisma.MediaFolderWhereInput[]
   NOT?: Prisma.MediaFolderWhereInput | Prisma.MediaFolderWhereInput[]
   id?: Prisma.UuidFilter<"MediaFolder"> | string
-  workspaceId?: Prisma.UuidFilter<"MediaFolder"> | string
   name?: Prisma.StringFilter<"MediaFolder"> | string
   parentId?: Prisma.UuidNullableFilter<"MediaFolder"> | string | null
   createdAt?: Prisma.DateTimeFilter<"MediaFolder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MediaFolder"> | Date | string
+  workspaceId?: Prisma.UuidFilter<"MediaFolder"> | string
+  assets?: Prisma.MediaAssetListRelationFilter
   parent?: Prisma.XOR<Prisma.MediaFolderNullableScalarRelationFilter, Prisma.MediaFolderWhereInput> | null
   children?: Prisma.MediaFolderListRelationFilter
-  assets?: Prisma.MediaAssetListRelationFilter
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }
 
 export type MediaFolderOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   parentId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
+  assets?: Prisma.MediaAssetOrderByRelationAggregateInput
   parent?: Prisma.MediaFolderOrderByWithRelationInput
   children?: Prisma.MediaFolderOrderByRelationAggregateInput
-  assets?: Prisma.MediaAssetOrderByRelationAggregateInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
 }
 
@@ -216,24 +216,24 @@ export type MediaFolderWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.MediaFolderWhereInput | Prisma.MediaFolderWhereInput[]
   OR?: Prisma.MediaFolderWhereInput[]
   NOT?: Prisma.MediaFolderWhereInput | Prisma.MediaFolderWhereInput[]
-  workspaceId?: Prisma.UuidFilter<"MediaFolder"> | string
   name?: Prisma.StringFilter<"MediaFolder"> | string
   parentId?: Prisma.UuidNullableFilter<"MediaFolder"> | string | null
   createdAt?: Prisma.DateTimeFilter<"MediaFolder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MediaFolder"> | Date | string
+  workspaceId?: Prisma.UuidFilter<"MediaFolder"> | string
+  assets?: Prisma.MediaAssetListRelationFilter
   parent?: Prisma.XOR<Prisma.MediaFolderNullableScalarRelationFilter, Prisma.MediaFolderWhereInput> | null
   children?: Prisma.MediaFolderListRelationFilter
-  assets?: Prisma.MediaAssetListRelationFilter
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }, "id" | "workspaceId_parentId_name" | "parentId_name">
 
 export type MediaFolderOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   parentId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
   _count?: Prisma.MediaFolderCountOrderByAggregateInput
   _max?: Prisma.MediaFolderMaxOrderByAggregateInput
   _min?: Prisma.MediaFolderMinOrderByAggregateInput
@@ -244,11 +244,11 @@ export type MediaFolderScalarWhereWithAggregatesInput = {
   OR?: Prisma.MediaFolderScalarWhereWithAggregatesInput[]
   NOT?: Prisma.MediaFolderScalarWhereWithAggregatesInput | Prisma.MediaFolderScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"MediaFolder"> | string
-  workspaceId?: Prisma.UuidWithAggregatesFilter<"MediaFolder"> | string
   name?: Prisma.StringWithAggregatesFilter<"MediaFolder"> | string
   parentId?: Prisma.UuidNullableWithAggregatesFilter<"MediaFolder"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"MediaFolder"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"MediaFolder"> | Date | string
+  workspaceId?: Prisma.UuidWithAggregatesFilter<"MediaFolder"> | string
 }
 
 export type MediaFolderCreateInput = {
@@ -256,21 +256,21 @@ export type MediaFolderCreateInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  assets?: Prisma.MediaAssetCreateNestedManyWithoutFolderInput
   parent?: Prisma.MediaFolderCreateNestedOneWithoutChildrenInput
   children?: Prisma.MediaFolderCreateNestedManyWithoutParentInput
-  assets?: Prisma.MediaAssetCreateNestedManyWithoutFolderInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaFoldersInput
 }
 
 export type MediaFolderUncheckedCreateInput = {
   id?: string
-  workspaceId: string
   name: string
   parentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  children?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutParentInput
+  workspaceId: string
   assets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutFolderInput
+  children?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutParentInput
 }
 
 export type MediaFolderUpdateInput = {
@@ -278,30 +278,30 @@ export type MediaFolderUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assets?: Prisma.MediaAssetUpdateManyWithoutFolderNestedInput
   parent?: Prisma.MediaFolderUpdateOneWithoutChildrenNestedInput
   children?: Prisma.MediaFolderUpdateManyWithoutParentNestedInput
-  assets?: Prisma.MediaAssetUpdateManyWithoutFolderNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaFoldersNestedInput
 }
 
 export type MediaFolderUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  children?: Prisma.MediaFolderUncheckedUpdateManyWithoutParentNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   assets?: Prisma.MediaAssetUncheckedUpdateManyWithoutFolderNestedInput
+  children?: Prisma.MediaFolderUncheckedUpdateManyWithoutParentNestedInput
 }
 
 export type MediaFolderCreateManyInput = {
   id?: string
-  workspaceId: string
   name: string
   parentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
 }
 
 export type MediaFolderUpdateManyMutationInput = {
@@ -313,11 +313,11 @@ export type MediaFolderUpdateManyMutationInput = {
 
 export type MediaFolderUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MediaFolderListRelationFilter = {
@@ -348,29 +348,29 @@ export type MediaFolderParentIdNameCompoundUniqueInput = {
 
 export type MediaFolderCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type MediaFolderMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type MediaFolderMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   parentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type MediaFolderCreateNestedManyWithoutWorkspaceInput = {
@@ -494,9 +494,9 @@ export type MediaFolderCreateWithoutWorkspaceInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  assets?: Prisma.MediaAssetCreateNestedManyWithoutFolderInput
   parent?: Prisma.MediaFolderCreateNestedOneWithoutChildrenInput
   children?: Prisma.MediaFolderCreateNestedManyWithoutParentInput
-  assets?: Prisma.MediaAssetCreateNestedManyWithoutFolderInput
 }
 
 export type MediaFolderUncheckedCreateWithoutWorkspaceInput = {
@@ -505,8 +505,8 @@ export type MediaFolderUncheckedCreateWithoutWorkspaceInput = {
   parentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  children?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutParentInput
   assets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutFolderInput
+  children?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutParentInput
 }
 
 export type MediaFolderCreateOrConnectWithoutWorkspaceInput = {
@@ -540,11 +540,11 @@ export type MediaFolderScalarWhereInput = {
   OR?: Prisma.MediaFolderScalarWhereInput[]
   NOT?: Prisma.MediaFolderScalarWhereInput | Prisma.MediaFolderScalarWhereInput[]
   id?: Prisma.UuidFilter<"MediaFolder"> | string
-  workspaceId?: Prisma.UuidFilter<"MediaFolder"> | string
   name?: Prisma.StringFilter<"MediaFolder"> | string
   parentId?: Prisma.UuidNullableFilter<"MediaFolder"> | string | null
   createdAt?: Prisma.DateTimeFilter<"MediaFolder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MediaFolder"> | Date | string
+  workspaceId?: Prisma.UuidFilter<"MediaFolder"> | string
 }
 
 export type MediaFolderCreateWithoutAssetsInput = {
@@ -559,11 +559,11 @@ export type MediaFolderCreateWithoutAssetsInput = {
 
 export type MediaFolderUncheckedCreateWithoutAssetsInput = {
   id?: string
-  workspaceId: string
   name: string
   parentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
   children?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutParentInput
 }
 
@@ -595,11 +595,11 @@ export type MediaFolderUpdateWithoutAssetsInput = {
 
 export type MediaFolderUncheckedUpdateWithoutAssetsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   children?: Prisma.MediaFolderUncheckedUpdateManyWithoutParentNestedInput
 }
 
@@ -608,18 +608,18 @@ export type MediaFolderCreateWithoutChildrenInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  parent?: Prisma.MediaFolderCreateNestedOneWithoutChildrenInput
   assets?: Prisma.MediaAssetCreateNestedManyWithoutFolderInput
+  parent?: Prisma.MediaFolderCreateNestedOneWithoutChildrenInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaFoldersInput
 }
 
 export type MediaFolderUncheckedCreateWithoutChildrenInput = {
   id?: string
-  workspaceId: string
   name: string
   parentId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
   assets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutFolderInput
 }
 
@@ -633,19 +633,19 @@ export type MediaFolderCreateWithoutParentInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  children?: Prisma.MediaFolderCreateNestedManyWithoutParentInput
   assets?: Prisma.MediaAssetCreateNestedManyWithoutFolderInput
+  children?: Prisma.MediaFolderCreateNestedManyWithoutParentInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaFoldersInput
 }
 
 export type MediaFolderUncheckedCreateWithoutParentInput = {
   id?: string
-  workspaceId: string
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  children?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutParentInput
+  workspaceId: string
   assets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutFolderInput
+  children?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutParentInput
 }
 
 export type MediaFolderCreateOrConnectWithoutParentInput = {
@@ -674,18 +674,18 @@ export type MediaFolderUpdateWithoutChildrenInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  parent?: Prisma.MediaFolderUpdateOneWithoutChildrenNestedInput
   assets?: Prisma.MediaAssetUpdateManyWithoutFolderNestedInput
+  parent?: Prisma.MediaFolderUpdateOneWithoutChildrenNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaFoldersNestedInput
 }
 
 export type MediaFolderUncheckedUpdateWithoutChildrenInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   assets?: Prisma.MediaAssetUncheckedUpdateManyWithoutFolderNestedInput
 }
 
@@ -718,9 +718,9 @@ export type MediaFolderUpdateWithoutWorkspaceInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assets?: Prisma.MediaAssetUpdateManyWithoutFolderNestedInput
   parent?: Prisma.MediaFolderUpdateOneWithoutChildrenNestedInput
   children?: Prisma.MediaFolderUpdateManyWithoutParentNestedInput
-  assets?: Prisma.MediaAssetUpdateManyWithoutFolderNestedInput
 }
 
 export type MediaFolderUncheckedUpdateWithoutWorkspaceInput = {
@@ -729,8 +729,8 @@ export type MediaFolderUncheckedUpdateWithoutWorkspaceInput = {
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  children?: Prisma.MediaFolderUncheckedUpdateManyWithoutParentNestedInput
   assets?: Prisma.MediaAssetUncheckedUpdateManyWithoutFolderNestedInput
+  children?: Prisma.MediaFolderUncheckedUpdateManyWithoutParentNestedInput
 }
 
 export type MediaFolderUncheckedUpdateManyWithoutWorkspaceInput = {
@@ -743,10 +743,10 @@ export type MediaFolderUncheckedUpdateManyWithoutWorkspaceInput = {
 
 export type MediaFolderCreateManyParentInput = {
   id?: string
-  workspaceId: string
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
 }
 
 export type MediaFolderUpdateWithoutParentInput = {
@@ -754,27 +754,27 @@ export type MediaFolderUpdateWithoutParentInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  children?: Prisma.MediaFolderUpdateManyWithoutParentNestedInput
   assets?: Prisma.MediaAssetUpdateManyWithoutFolderNestedInput
+  children?: Prisma.MediaFolderUpdateManyWithoutParentNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaFoldersNestedInput
 }
 
 export type MediaFolderUncheckedUpdateWithoutParentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  children?: Prisma.MediaFolderUncheckedUpdateManyWithoutParentNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   assets?: Prisma.MediaAssetUncheckedUpdateManyWithoutFolderNestedInput
+  children?: Prisma.MediaFolderUncheckedUpdateManyWithoutParentNestedInput
 }
 
 export type MediaFolderUncheckedUpdateManyWithoutParentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -783,13 +783,13 @@ export type MediaFolderUncheckedUpdateManyWithoutParentInput = {
  */
 
 export type MediaFolderCountOutputType = {
-  children: number
   assets: number
+  children: number
 }
 
 export type MediaFolderCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  children?: boolean | MediaFolderCountOutputTypeCountChildrenArgs
   assets?: boolean | MediaFolderCountOutputTypeCountAssetsArgs
+  children?: boolean | MediaFolderCountOutputTypeCountChildrenArgs
 }
 
 /**
@@ -805,68 +805,68 @@ export type MediaFolderCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.
 /**
  * MediaFolderCountOutputType without action
  */
-export type MediaFolderCountOutputTypeCountChildrenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MediaFolderWhereInput
+export type MediaFolderCountOutputTypeCountAssetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MediaAssetWhereInput
 }
 
 /**
  * MediaFolderCountOutputType without action
  */
-export type MediaFolderCountOutputTypeCountAssetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MediaAssetWhereInput
+export type MediaFolderCountOutputTypeCountChildrenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MediaFolderWhereInput
 }
 
 
 export type MediaFolderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   name?: boolean
   parentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  workspaceId?: boolean
+  assets?: boolean | Prisma.MediaFolder$assetsArgs<ExtArgs>
   parent?: boolean | Prisma.MediaFolder$parentArgs<ExtArgs>
   children?: boolean | Prisma.MediaFolder$childrenArgs<ExtArgs>
-  assets?: boolean | Prisma.MediaFolder$assetsArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.MediaFolderCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mediaFolder"]>
 
 export type MediaFolderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   name?: boolean
   parentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  workspaceId?: boolean
   parent?: boolean | Prisma.MediaFolder$parentArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mediaFolder"]>
 
 export type MediaFolderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   name?: boolean
   parentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  workspaceId?: boolean
   parent?: boolean | Prisma.MediaFolder$parentArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mediaFolder"]>
 
 export type MediaFolderSelectScalar = {
   id?: boolean
-  workspaceId?: boolean
   name?: boolean
   parentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  workspaceId?: boolean
 }
 
-export type MediaFolderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "name" | "parentId" | "createdAt" | "updatedAt", ExtArgs["result"]["mediaFolder"]>
+export type MediaFolderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "parentId" | "createdAt" | "updatedAt" | "workspaceId", ExtArgs["result"]["mediaFolder"]>
 export type MediaFolderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  assets?: boolean | Prisma.MediaFolder$assetsArgs<ExtArgs>
   parent?: boolean | Prisma.MediaFolder$parentArgs<ExtArgs>
   children?: boolean | Prisma.MediaFolder$childrenArgs<ExtArgs>
-  assets?: boolean | Prisma.MediaFolder$assetsArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.MediaFolderCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -882,18 +882,18 @@ export type MediaFolderIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type $MediaFolderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "MediaFolder"
   objects: {
+    assets: Prisma.$MediaAssetPayload<ExtArgs>[]
     parent: Prisma.$MediaFolderPayload<ExtArgs> | null
     children: Prisma.$MediaFolderPayload<ExtArgs>[]
-    assets: Prisma.$MediaAssetPayload<ExtArgs>[]
     workspace: Prisma.$WorkspacePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    workspaceId: string
     name: string
     parentId: string | null
     createdAt: Date
     updatedAt: Date
+    workspaceId: string
   }, ExtArgs["result"]["mediaFolder"]>
   composites: {}
 }
@@ -1288,9 +1288,9 @@ readonly fields: MediaFolderFieldRefs;
  */
 export interface Prisma__MediaFolderClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  assets<T extends Prisma.MediaFolder$assetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaFolder$assetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   parent<T extends Prisma.MediaFolder$parentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaFolder$parentArgs<ExtArgs>>): Prisma.Prisma__MediaFolderClient<runtime.Types.Result.GetResult<Prisma.$MediaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   children<T extends Prisma.MediaFolder$childrenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaFolder$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  assets<T extends Prisma.MediaFolder$assetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaFolder$assetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1322,11 +1322,11 @@ export interface Prisma__MediaFolderClient<T, Null = never, ExtArgs extends runt
  */
 export interface MediaFolderFieldRefs {
   readonly id: Prisma.FieldRef<"MediaFolder", 'String'>
-  readonly workspaceId: Prisma.FieldRef<"MediaFolder", 'String'>
   readonly name: Prisma.FieldRef<"MediaFolder", 'String'>
   readonly parentId: Prisma.FieldRef<"MediaFolder", 'String'>
   readonly createdAt: Prisma.FieldRef<"MediaFolder", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"MediaFolder", 'DateTime'>
+  readonly workspaceId: Prisma.FieldRef<"MediaFolder", 'String'>
 }
     
 
@@ -1728,6 +1728,30 @@ export type MediaFolderDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
+ * MediaFolder.assets
+ */
+export type MediaFolder$assetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MediaAsset
+   */
+  select?: Prisma.MediaAssetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MediaAsset
+   */
+  omit?: Prisma.MediaAssetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MediaAssetInclude<ExtArgs> | null
+  where?: Prisma.MediaAssetWhereInput
+  orderBy?: Prisma.MediaAssetOrderByWithRelationInput | Prisma.MediaAssetOrderByWithRelationInput[]
+  cursor?: Prisma.MediaAssetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MediaAssetScalarFieldEnum | Prisma.MediaAssetScalarFieldEnum[]
+}
+
+/**
  * MediaFolder.parent
  */
 export type MediaFolder$parentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1768,30 +1792,6 @@ export type MediaFolder$childrenArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.MediaFolderScalarFieldEnum | Prisma.MediaFolderScalarFieldEnum[]
-}
-
-/**
- * MediaFolder.assets
- */
-export type MediaFolder$assetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the MediaAsset
-   */
-  select?: Prisma.MediaAssetSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the MediaAsset
-   */
-  omit?: Prisma.MediaAssetOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MediaAssetInclude<ExtArgs> | null
-  where?: Prisma.MediaAssetWhereInput
-  orderBy?: Prisma.MediaAssetOrderByWithRelationInput | Prisma.MediaAssetOrderByWithRelationInput[]
-  cursor?: Prisma.MediaAssetWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MediaAssetScalarFieldEnum | Prisma.MediaAssetScalarFieldEnum[]
 }
 
 /**

@@ -26,7 +26,6 @@ export type AggregateCustomer = {
 
 export type CustomerMinAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   displayName: string | null
   email: string | null
   phone: string | null
@@ -36,11 +35,11 @@ export type CustomerMinAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
+  workspaceId: string | null
 }
 
 export type CustomerMaxAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   displayName: string | null
   email: string | null
   phone: string | null
@@ -50,11 +49,11 @@ export type CustomerMaxAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
+  workspaceId: string | null
 }
 
 export type CustomerCountAggregateOutputType = {
   id: number
-  workspaceId: number
   displayName: number
   email: number
   phone: number
@@ -64,13 +63,13 @@ export type CustomerCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   deletedAt: number
+  workspaceId: number
   _all: number
 }
 
 
 export type CustomerMinAggregateInputType = {
   id?: true
-  workspaceId?: true
   displayName?: true
   email?: true
   phone?: true
@@ -80,11 +79,11 @@ export type CustomerMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  workspaceId?: true
 }
 
 export type CustomerMaxAggregateInputType = {
   id?: true
-  workspaceId?: true
   displayName?: true
   email?: true
   phone?: true
@@ -94,11 +93,11 @@ export type CustomerMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  workspaceId?: true
 }
 
 export type CustomerCountAggregateInputType = {
   id?: true
-  workspaceId?: true
   displayName?: true
   email?: true
   phone?: true
@@ -108,6 +107,7 @@ export type CustomerCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  workspaceId?: true
   _all?: true
 }
 
@@ -185,7 +185,6 @@ export type CustomerGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type CustomerGroupByOutputType = {
   id: string
-  workspaceId: string
   displayName: string
   email: string | null
   phone: string | null
@@ -195,6 +194,7 @@ export type CustomerGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
+  workspaceId: string
   _count: CustomerCountAggregateOutputType | null
   _min: CustomerMinAggregateOutputType | null
   _max: CustomerMaxAggregateOutputType | null
@@ -220,7 +220,6 @@ export type CustomerWhereInput = {
   OR?: Prisma.CustomerWhereInput[]
   NOT?: Prisma.CustomerWhereInput | Prisma.CustomerWhereInput[]
   id?: Prisma.UuidFilter<"Customer"> | string
-  workspaceId?: Prisma.UuidFilter<"Customer"> | string
   displayName?: Prisma.StringFilter<"Customer"> | string
   email?: Prisma.StringNullableFilter<"Customer"> | string | null
   phone?: Prisma.StringNullableFilter<"Customer"> | string | null
@@ -230,24 +229,24 @@ export type CustomerWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
-  cards?: Prisma.CardListRelationFilter
-  subscriptions?: Prisma.SubscriptionListRelationFilter
-  media?: Prisma.MediaAssetListRelationFilter
-  settings?: Prisma.SettingListRelationFilter
-  orders?: Prisma.OrderListRelationFilter
-  notifications?: Prisma.NotificationDeliveryListRelationFilter
-  paymentSubmissions?: Prisma.PaymentSubmissionListRelationFilter
-  invoices?: Prisma.InvoiceListRelationFilter
-  nfcCards?: Prisma.NfcCardListRelationFilter
-  account?: Prisma.XOR<Prisma.CustomerAccountNullableScalarRelationFilter, Prisma.CustomerAccountWhereInput> | null
-  workspaces?: Prisma.WorkspaceListRelationFilter
+  workspaceId?: Prisma.UuidFilter<"Customer"> | string
   billingAccounts?: Prisma.BillingAccountListRelationFilter
+  cards?: Prisma.CardListRelationFilter
   tenantWorkspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
+  account?: Prisma.XOR<Prisma.CustomerAccountNullableScalarRelationFilter, Prisma.CustomerAccountWhereInput> | null
+  invoices?: Prisma.InvoiceListRelationFilter
+  media?: Prisma.MediaAssetListRelationFilter
+  nfcCards?: Prisma.NfcCardListRelationFilter
+  notifications?: Prisma.NotificationDeliveryListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
+  paymentSubmissions?: Prisma.PaymentSubmissionListRelationFilter
+  settings?: Prisma.SettingListRelationFilter
+  subscriptions?: Prisma.SubscriptionListRelationFilter
+  workspaces?: Prisma.XOR<Prisma.WorkspaceNullableScalarRelationFilter, Prisma.WorkspaceWhereInput> | null
 }
 
 export type CustomerOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   displayName?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -257,19 +256,20 @@ export type CustomerOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  cards?: Prisma.CardOrderByRelationAggregateInput
-  subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
-  media?: Prisma.MediaAssetOrderByRelationAggregateInput
-  settings?: Prisma.SettingOrderByRelationAggregateInput
-  orders?: Prisma.OrderOrderByRelationAggregateInput
-  notifications?: Prisma.NotificationDeliveryOrderByRelationAggregateInput
-  paymentSubmissions?: Prisma.PaymentSubmissionOrderByRelationAggregateInput
-  invoices?: Prisma.InvoiceOrderByRelationAggregateInput
-  nfcCards?: Prisma.NfcCardOrderByRelationAggregateInput
-  account?: Prisma.CustomerAccountOrderByWithRelationInput
-  workspaces?: Prisma.WorkspaceOrderByRelationAggregateInput
+  workspaceId?: Prisma.SortOrder
   billingAccounts?: Prisma.BillingAccountOrderByRelationAggregateInput
+  cards?: Prisma.CardOrderByRelationAggregateInput
   tenantWorkspace?: Prisma.WorkspaceOrderByWithRelationInput
+  account?: Prisma.CustomerAccountOrderByWithRelationInput
+  invoices?: Prisma.InvoiceOrderByRelationAggregateInput
+  media?: Prisma.MediaAssetOrderByRelationAggregateInput
+  nfcCards?: Prisma.NfcCardOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationDeliveryOrderByRelationAggregateInput
+  orders?: Prisma.OrderOrderByRelationAggregateInput
+  paymentSubmissions?: Prisma.PaymentSubmissionOrderByRelationAggregateInput
+  settings?: Prisma.SettingOrderByRelationAggregateInput
+  subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
+  workspaces?: Prisma.WorkspaceOrderByWithRelationInput
 }
 
 export type CustomerWhereUniqueInput = Prisma.AtLeast<{
@@ -278,7 +278,6 @@ export type CustomerWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.CustomerWhereInput | Prisma.CustomerWhereInput[]
   OR?: Prisma.CustomerWhereInput[]
   NOT?: Prisma.CustomerWhereInput | Prisma.CustomerWhereInput[]
-  workspaceId?: Prisma.UuidFilter<"Customer"> | string
   displayName?: Prisma.StringFilter<"Customer"> | string
   email?: Prisma.StringNullableFilter<"Customer"> | string | null
   phone?: Prisma.StringNullableFilter<"Customer"> | string | null
@@ -288,24 +287,24 @@ export type CustomerWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
-  cards?: Prisma.CardListRelationFilter
-  subscriptions?: Prisma.SubscriptionListRelationFilter
-  media?: Prisma.MediaAssetListRelationFilter
-  settings?: Prisma.SettingListRelationFilter
-  orders?: Prisma.OrderListRelationFilter
-  notifications?: Prisma.NotificationDeliveryListRelationFilter
-  paymentSubmissions?: Prisma.PaymentSubmissionListRelationFilter
-  invoices?: Prisma.InvoiceListRelationFilter
-  nfcCards?: Prisma.NfcCardListRelationFilter
-  account?: Prisma.XOR<Prisma.CustomerAccountNullableScalarRelationFilter, Prisma.CustomerAccountWhereInput> | null
-  workspaces?: Prisma.WorkspaceListRelationFilter
+  workspaceId?: Prisma.UuidFilter<"Customer"> | string
   billingAccounts?: Prisma.BillingAccountListRelationFilter
+  cards?: Prisma.CardListRelationFilter
   tenantWorkspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
+  account?: Prisma.XOR<Prisma.CustomerAccountNullableScalarRelationFilter, Prisma.CustomerAccountWhereInput> | null
+  invoices?: Prisma.InvoiceListRelationFilter
+  media?: Prisma.MediaAssetListRelationFilter
+  nfcCards?: Prisma.NfcCardListRelationFilter
+  notifications?: Prisma.NotificationDeliveryListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
+  paymentSubmissions?: Prisma.PaymentSubmissionListRelationFilter
+  settings?: Prisma.SettingListRelationFilter
+  subscriptions?: Prisma.SubscriptionListRelationFilter
+  workspaces?: Prisma.XOR<Prisma.WorkspaceNullableScalarRelationFilter, Prisma.WorkspaceWhereInput> | null
 }, "id" | "workspaceId_email">
 
 export type CustomerOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   displayName?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -315,6 +314,7 @@ export type CustomerOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
   _count?: Prisma.CustomerCountOrderByAggregateInput
   _max?: Prisma.CustomerMaxOrderByAggregateInput
   _min?: Prisma.CustomerMinOrderByAggregateInput
@@ -325,7 +325,6 @@ export type CustomerScalarWhereWithAggregatesInput = {
   OR?: Prisma.CustomerScalarWhereWithAggregatesInput[]
   NOT?: Prisma.CustomerScalarWhereWithAggregatesInput | Prisma.CustomerScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Customer"> | string
-  workspaceId?: Prisma.UuidWithAggregatesFilter<"Customer"> | string
   displayName?: Prisma.StringWithAggregatesFilter<"Customer"> | string
   email?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
   phone?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
@@ -335,6 +334,7 @@ export type CustomerScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Customer"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Customer"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Customer"> | Date | string | null
+  workspaceId?: Prisma.UuidWithAggregatesFilter<"Customer"> | string
 }
 
 export type CustomerCreateInput = {
@@ -348,24 +348,23 @@ export type CustomerCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutCustomerInput
   billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateInput = {
   id?: string
-  workspaceId: string
   displayName: string
   email?: string | null
   phone?: string | null
@@ -375,18 +374,19 @@ export type CustomerUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutCustomerInput
+  workspaceId: string
   billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
+  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUpdateInput = {
@@ -400,24 +400,23 @@ export type CustomerUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutCustomerNestedInput
   billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -427,23 +426,23 @@ export type CustomerUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
+  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerCreateManyInput = {
   id?: string
-  workspaceId: string
   displayName: string
   email?: string | null
   phone?: string | null
@@ -453,6 +452,7 @@ export type CustomerCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
 }
 
 export type CustomerUpdateManyMutationInput = {
@@ -470,7 +470,6 @@ export type CustomerUpdateManyMutationInput = {
 
 export type CustomerUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -480,6 +479,7 @@ export type CustomerUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CustomerWorkspaceIdEmailCompoundUniqueInput = {
@@ -489,7 +489,6 @@ export type CustomerWorkspaceIdEmailCompoundUniqueInput = {
 
 export type CustomerCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   displayName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
@@ -499,11 +498,11 @@ export type CustomerCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type CustomerMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   displayName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
@@ -513,11 +512,11 @@ export type CustomerMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type CustomerMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   displayName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
@@ -527,6 +526,7 @@ export type CustomerMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type CustomerNullableScalarRelationFilter = {
@@ -583,12 +583,6 @@ export type CustomerUpdateOneRequiredWithoutAccountNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CustomerUpdateToOneWithWhereWithoutAccountInput, Prisma.CustomerUpdateWithoutAccountInput>, Prisma.CustomerUncheckedUpdateWithoutAccountInput>
 }
 
-export type CustomerCreateNestedOneWithoutWorkspacesInput = {
-  create?: Prisma.XOR<Prisma.CustomerCreateWithoutWorkspacesInput, Prisma.CustomerUncheckedCreateWithoutWorkspacesInput>
-  connectOrCreate?: Prisma.CustomerCreateOrConnectWithoutWorkspacesInput
-  connect?: Prisma.CustomerWhereUniqueInput
-}
-
 export type CustomerCreateNestedManyWithoutTenantWorkspaceInput = {
   create?: Prisma.XOR<Prisma.CustomerCreateWithoutTenantWorkspaceInput, Prisma.CustomerUncheckedCreateWithoutTenantWorkspaceInput> | Prisma.CustomerCreateWithoutTenantWorkspaceInput[] | Prisma.CustomerUncheckedCreateWithoutTenantWorkspaceInput[]
   connectOrCreate?: Prisma.CustomerCreateOrConnectWithoutTenantWorkspaceInput | Prisma.CustomerCreateOrConnectWithoutTenantWorkspaceInput[]
@@ -596,21 +590,17 @@ export type CustomerCreateNestedManyWithoutTenantWorkspaceInput = {
   connect?: Prisma.CustomerWhereUniqueInput | Prisma.CustomerWhereUniqueInput[]
 }
 
+export type CustomerCreateNestedOneWithoutWorkspacesInput = {
+  create?: Prisma.XOR<Prisma.CustomerCreateWithoutWorkspacesInput, Prisma.CustomerUncheckedCreateWithoutWorkspacesInput>
+  connectOrCreate?: Prisma.CustomerCreateOrConnectWithoutWorkspacesInput
+  connect?: Prisma.CustomerWhereUniqueInput
+}
+
 export type CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput = {
   create?: Prisma.XOR<Prisma.CustomerCreateWithoutTenantWorkspaceInput, Prisma.CustomerUncheckedCreateWithoutTenantWorkspaceInput> | Prisma.CustomerCreateWithoutTenantWorkspaceInput[] | Prisma.CustomerUncheckedCreateWithoutTenantWorkspaceInput[]
   connectOrCreate?: Prisma.CustomerCreateOrConnectWithoutTenantWorkspaceInput | Prisma.CustomerCreateOrConnectWithoutTenantWorkspaceInput[]
   createMany?: Prisma.CustomerCreateManyTenantWorkspaceInputEnvelope
   connect?: Prisma.CustomerWhereUniqueInput | Prisma.CustomerWhereUniqueInput[]
-}
-
-export type CustomerUpdateOneWithoutWorkspacesNestedInput = {
-  create?: Prisma.XOR<Prisma.CustomerCreateWithoutWorkspacesInput, Prisma.CustomerUncheckedCreateWithoutWorkspacesInput>
-  connectOrCreate?: Prisma.CustomerCreateOrConnectWithoutWorkspacesInput
-  upsert?: Prisma.CustomerUpsertWithoutWorkspacesInput
-  disconnect?: Prisma.CustomerWhereInput | boolean
-  delete?: Prisma.CustomerWhereInput | boolean
-  connect?: Prisma.CustomerWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CustomerUpdateToOneWithWhereWithoutWorkspacesInput, Prisma.CustomerUpdateWithoutWorkspacesInput>, Prisma.CustomerUncheckedUpdateWithoutWorkspacesInput>
 }
 
 export type CustomerUpdateManyWithoutTenantWorkspaceNestedInput = {
@@ -625,6 +615,16 @@ export type CustomerUpdateManyWithoutTenantWorkspaceNestedInput = {
   update?: Prisma.CustomerUpdateWithWhereUniqueWithoutTenantWorkspaceInput | Prisma.CustomerUpdateWithWhereUniqueWithoutTenantWorkspaceInput[]
   updateMany?: Prisma.CustomerUpdateManyWithWhereWithoutTenantWorkspaceInput | Prisma.CustomerUpdateManyWithWhereWithoutTenantWorkspaceInput[]
   deleteMany?: Prisma.CustomerScalarWhereInput | Prisma.CustomerScalarWhereInput[]
+}
+
+export type CustomerUpdateOneWithoutWorkspacesNestedInput = {
+  create?: Prisma.XOR<Prisma.CustomerCreateWithoutWorkspacesInput, Prisma.CustomerUncheckedCreateWithoutWorkspacesInput>
+  connectOrCreate?: Prisma.CustomerCreateOrConnectWithoutWorkspacesInput
+  upsert?: Prisma.CustomerUpsertWithoutWorkspacesInput
+  disconnect?: Prisma.CustomerWhereInput | boolean
+  delete?: Prisma.CustomerWhereInput | boolean
+  connect?: Prisma.CustomerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CustomerUpdateToOneWithWhereWithoutWorkspacesInput, Prisma.CustomerUpdateWithoutWorkspacesInput>, Prisma.CustomerUncheckedUpdateWithoutWorkspacesInput>
 }
 
 export type CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput = {
@@ -788,23 +788,22 @@ export type CustomerCreateWithoutNfcCardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutCustomerInput
   billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateWithoutNfcCardsInput = {
   id?: string
-  workspaceId: string
   displayName: string
   email?: string | null
   phone?: string | null
@@ -814,17 +813,18 @@ export type CustomerUncheckedCreateWithoutNfcCardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutCustomerInput
+  workspaceId: string
   billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
+  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerCreateOrConnectWithoutNfcCardsInput = {
@@ -854,23 +854,22 @@ export type CustomerUpdateWithoutNfcCardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutCustomerNestedInput
   billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutNfcCardsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -880,17 +879,18 @@ export type CustomerUncheckedUpdateWithoutNfcCardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
+  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerCreateWithoutAccountInput = {
@@ -904,23 +904,22 @@ export type CustomerCreateWithoutAccountInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutCustomerInput
   billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateWithoutAccountInput = {
   id?: string
-  workspaceId: string
   displayName: string
   email?: string | null
   phone?: string | null
@@ -930,17 +929,18 @@ export type CustomerUncheckedCreateWithoutAccountInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutCustomerInput
+  workspaceId: string
   billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerCreateOrConnectWithoutAccountInput = {
@@ -970,23 +970,22 @@ export type CustomerUpdateWithoutAccountInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutCustomerNestedInput
   billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -996,72 +995,18 @@ export type CustomerUncheckedUpdateWithoutAccountInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
-}
-
-export type CustomerCreateWithoutWorkspacesInput = {
-  id?: string
-  displayName: string
-  email?: string | null
-  phone?: string | null
-  status?: $Enums.CustomerStatus
-  locale?: string
-  timezone?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
-  billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
-  tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
-}
-
-export type CustomerUncheckedCreateWithoutWorkspacesInput = {
-  id?: string
-  workspaceId: string
-  displayName: string
-  email?: string | null
-  phone?: string | null
-  status?: $Enums.CustomerStatus
-  locale?: string
-  timezone?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
-  billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
-}
-
-export type CustomerCreateOrConnectWithoutWorkspacesInput = {
-  where: Prisma.CustomerWhereUniqueInput
-  create: Prisma.XOR<Prisma.CustomerCreateWithoutWorkspacesInput, Prisma.CustomerUncheckedCreateWithoutWorkspacesInput>
+  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerCreateWithoutTenantWorkspaceInput = {
@@ -1075,18 +1020,18 @@ export type CustomerCreateWithoutTenantWorkspaceInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutCustomerInput
   billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
+  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateWithoutTenantWorkspaceInput = {
@@ -1100,18 +1045,18 @@ export type CustomerUncheckedCreateWithoutTenantWorkspaceInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutCustomerInput
   billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
+  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerCreateOrConnectWithoutTenantWorkspaceInput = {
@@ -1122,6 +1067,94 @@ export type CustomerCreateOrConnectWithoutTenantWorkspaceInput = {
 export type CustomerCreateManyTenantWorkspaceInputEnvelope = {
   data: Prisma.CustomerCreateManyTenantWorkspaceInput | Prisma.CustomerCreateManyTenantWorkspaceInput[]
   skipDuplicates?: boolean
+}
+
+export type CustomerCreateWithoutWorkspacesInput = {
+  id?: string
+  displayName: string
+  email?: string | null
+  phone?: string | null
+  status?: $Enums.CustomerStatus
+  locale?: string
+  timezone?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
+  tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+}
+
+export type CustomerUncheckedCreateWithoutWorkspacesInput = {
+  id?: string
+  displayName: string
+  email?: string | null
+  phone?: string | null
+  status?: $Enums.CustomerStatus
+  locale?: string
+  timezone?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  workspaceId: string
+  billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
+  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+}
+
+export type CustomerCreateOrConnectWithoutWorkspacesInput = {
+  where: Prisma.CustomerWhereUniqueInput
+  create: Prisma.XOR<Prisma.CustomerCreateWithoutWorkspacesInput, Prisma.CustomerUncheckedCreateWithoutWorkspacesInput>
+}
+
+export type CustomerUpsertWithWhereUniqueWithoutTenantWorkspaceInput = {
+  where: Prisma.CustomerWhereUniqueInput
+  update: Prisma.XOR<Prisma.CustomerUpdateWithoutTenantWorkspaceInput, Prisma.CustomerUncheckedUpdateWithoutTenantWorkspaceInput>
+  create: Prisma.XOR<Prisma.CustomerCreateWithoutTenantWorkspaceInput, Prisma.CustomerUncheckedCreateWithoutTenantWorkspaceInput>
+}
+
+export type CustomerUpdateWithWhereUniqueWithoutTenantWorkspaceInput = {
+  where: Prisma.CustomerWhereUniqueInput
+  data: Prisma.XOR<Prisma.CustomerUpdateWithoutTenantWorkspaceInput, Prisma.CustomerUncheckedUpdateWithoutTenantWorkspaceInput>
+}
+
+export type CustomerUpdateManyWithWhereWithoutTenantWorkspaceInput = {
+  where: Prisma.CustomerScalarWhereInput
+  data: Prisma.XOR<Prisma.CustomerUpdateManyMutationInput, Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceInput>
+}
+
+export type CustomerScalarWhereInput = {
+  AND?: Prisma.CustomerScalarWhereInput | Prisma.CustomerScalarWhereInput[]
+  OR?: Prisma.CustomerScalarWhereInput[]
+  NOT?: Prisma.CustomerScalarWhereInput | Prisma.CustomerScalarWhereInput[]
+  id?: Prisma.UuidFilter<"Customer"> | string
+  displayName?: Prisma.StringFilter<"Customer"> | string
+  email?: Prisma.StringNullableFilter<"Customer"> | string | null
+  phone?: Prisma.StringNullableFilter<"Customer"> | string | null
+  status?: Prisma.EnumCustomerStatusFilter<"Customer"> | $Enums.CustomerStatus
+  locale?: Prisma.StringFilter<"Customer"> | string
+  timezone?: Prisma.StringFilter<"Customer"> | string
+  createdAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
+  workspaceId?: Prisma.UuidFilter<"Customer"> | string
 }
 
 export type CustomerUpsertWithoutWorkspacesInput = {
@@ -1146,23 +1179,22 @@ export type CustomerUpdateWithoutWorkspacesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
   billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutWorkspacesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1172,50 +1204,18 @@ export type CustomerUncheckedUpdateWithoutWorkspacesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
-}
-
-export type CustomerUpsertWithWhereUniqueWithoutTenantWorkspaceInput = {
-  where: Prisma.CustomerWhereUniqueInput
-  update: Prisma.XOR<Prisma.CustomerUpdateWithoutTenantWorkspaceInput, Prisma.CustomerUncheckedUpdateWithoutTenantWorkspaceInput>
-  create: Prisma.XOR<Prisma.CustomerCreateWithoutTenantWorkspaceInput, Prisma.CustomerUncheckedCreateWithoutTenantWorkspaceInput>
-}
-
-export type CustomerUpdateWithWhereUniqueWithoutTenantWorkspaceInput = {
-  where: Prisma.CustomerWhereUniqueInput
-  data: Prisma.XOR<Prisma.CustomerUpdateWithoutTenantWorkspaceInput, Prisma.CustomerUncheckedUpdateWithoutTenantWorkspaceInput>
-}
-
-export type CustomerUpdateManyWithWhereWithoutTenantWorkspaceInput = {
-  where: Prisma.CustomerScalarWhereInput
-  data: Prisma.XOR<Prisma.CustomerUpdateManyMutationInput, Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceInput>
-}
-
-export type CustomerScalarWhereInput = {
-  AND?: Prisma.CustomerScalarWhereInput | Prisma.CustomerScalarWhereInput[]
-  OR?: Prisma.CustomerScalarWhereInput[]
-  NOT?: Prisma.CustomerScalarWhereInput | Prisma.CustomerScalarWhereInput[]
-  id?: Prisma.UuidFilter<"Customer"> | string
-  workspaceId?: Prisma.UuidFilter<"Customer"> | string
-  displayName?: Prisma.StringFilter<"Customer"> | string
-  email?: Prisma.StringNullableFilter<"Customer"> | string | null
-  phone?: Prisma.StringNullableFilter<"Customer"> | string | null
-  status?: Prisma.EnumCustomerStatusFilter<"Customer"> | $Enums.CustomerStatus
-  locale?: Prisma.StringFilter<"Customer"> | string
-  timezone?: Prisma.StringFilter<"Customer"> | string
-  createdAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Customer"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
+  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
+  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 export type CustomerCreateWithoutBillingAccountsInput = {
@@ -1230,22 +1230,21 @@ export type CustomerCreateWithoutBillingAccountsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutCustomerInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateWithoutBillingAccountsInput = {
   id?: string
-  workspaceId: string
   displayName: string
   email?: string | null
   phone?: string | null
@@ -1255,17 +1254,18 @@ export type CustomerUncheckedCreateWithoutBillingAccountsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
   account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutCustomerInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerCreateOrConnectWithoutBillingAccountsInput = {
@@ -1296,22 +1296,21 @@ export type CustomerUpdateWithoutBillingAccountsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutCustomerNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutBillingAccountsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1321,17 +1320,18 @@ export type CustomerUncheckedUpdateWithoutBillingAccountsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
   account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerCreateWithoutOrdersInput = {
@@ -1345,23 +1345,22 @@ export type CustomerCreateWithoutOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
   cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
   media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
   paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutCustomerInput
-  billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
-  tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateWithoutOrdersInput = {
   id?: string
-  workspaceId: string
   displayName: string
   email?: string | null
   phone?: string | null
@@ -1371,17 +1370,18 @@ export type CustomerUncheckedCreateWithoutOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
+  billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
   media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutCustomerInput
-  billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerCreateOrConnectWithoutOrdersInput = {
@@ -1411,23 +1411,22 @@ export type CustomerUpdateWithoutOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
   cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
   media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutCustomerNestedInput
-  billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
-  tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutOrdersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1437,17 +1436,18 @@ export type CustomerUncheckedUpdateWithoutOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
   media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput
-  billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerCreateWithoutPaymentSubmissionsInput = {
@@ -1461,23 +1461,22 @@ export type CustomerCreateWithoutPaymentSubmissionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutCustomerInput
   billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateWithoutPaymentSubmissionsInput = {
   id?: string
-  workspaceId: string
   displayName: string
   email?: string | null
   phone?: string | null
@@ -1487,17 +1486,18 @@ export type CustomerUncheckedCreateWithoutPaymentSubmissionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutCustomerInput
+  workspaceId: string
   billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
+  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerCreateOrConnectWithoutPaymentSubmissionsInput = {
@@ -1527,23 +1527,22 @@ export type CustomerUpdateWithoutPaymentSubmissionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutCustomerNestedInput
   billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutPaymentSubmissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1553,17 +1552,18 @@ export type CustomerUncheckedUpdateWithoutPaymentSubmissionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
+  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerCreateWithoutInvoicesInput = {
@@ -1577,23 +1577,22 @@ export type CustomerCreateWithoutInvoicesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutCustomerInput
   billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
+  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateWithoutInvoicesInput = {
   id?: string
-  workspaceId: string
   displayName: string
   email?: string | null
   phone?: string | null
@@ -1603,17 +1602,18 @@ export type CustomerUncheckedCreateWithoutInvoicesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutCustomerInput
+  workspaceId: string
   billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
+  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
+  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerCreateOrConnectWithoutInvoicesInput = {
@@ -1643,23 +1643,22 @@ export type CustomerUpdateWithoutInvoicesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutCustomerNestedInput
   billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutInvoicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1669,17 +1668,18 @@ export type CustomerUncheckedUpdateWithoutInvoicesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
+  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerCreateWithoutCardsInput = {
@@ -1693,23 +1693,22 @@ export type CustomerCreateWithoutCardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutCustomerInput
   billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateWithoutCardsInput = {
   id?: string
-  workspaceId: string
   displayName: string
   email?: string | null
   phone?: string | null
@@ -1719,17 +1718,18 @@ export type CustomerUncheckedCreateWithoutCardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutCustomerInput
+  workspaceId: string
   billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
+  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerCreateOrConnectWithoutCardsInput = {
@@ -1759,23 +1759,22 @@ export type CustomerUpdateWithoutCardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutCustomerNestedInput
   billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutCardsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1785,17 +1784,18 @@ export type CustomerUncheckedUpdateWithoutCardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
+  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerCreateWithoutSubscriptionsInput = {
@@ -1809,23 +1809,22 @@ export type CustomerCreateWithoutSubscriptionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutCustomerInput
   billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateWithoutSubscriptionsInput = {
   id?: string
-  workspaceId: string
   displayName: string
   email?: string | null
   phone?: string | null
@@ -1835,17 +1834,18 @@ export type CustomerUncheckedCreateWithoutSubscriptionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutCustomerInput
+  workspaceId: string
   billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
+  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerCreateOrConnectWithoutSubscriptionsInput = {
@@ -1875,23 +1875,22 @@ export type CustomerUpdateWithoutSubscriptionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutCustomerNestedInput
   billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1901,17 +1900,18 @@ export type CustomerUncheckedUpdateWithoutSubscriptionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
+  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerCreateWithoutMediaInput = {
@@ -1925,23 +1925,22 @@ export type CustomerCreateWithoutMediaInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
   cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
+  tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutCustomerInput
-  billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
-  tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateWithoutMediaInput = {
   id?: string
-  workspaceId: string
   displayName: string
   email?: string | null
   phone?: string | null
@@ -1951,17 +1950,18 @@ export type CustomerUncheckedCreateWithoutMediaInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
+  billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
+  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutCustomerInput
-  billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerCreateOrConnectWithoutMediaInput = {
@@ -1991,23 +1991,22 @@ export type CustomerUpdateWithoutMediaInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
   cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
+  tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
   nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutCustomerNestedInput
-  billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
-  tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutMediaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2017,17 +2016,18 @@ export type CustomerUncheckedUpdateWithoutMediaInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
+  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput
-  billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerCreateWithoutNotificationsInput = {
@@ -2041,23 +2041,22 @@ export type CustomerCreateWithoutNotificationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
   cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
   media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
   orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
   paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutCustomerInput
-  billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
-  tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateWithoutNotificationsInput = {
   id?: string
-  workspaceId: string
   displayName: string
   email?: string | null
   phone?: string | null
@@ -2067,17 +2066,18 @@ export type CustomerUncheckedCreateWithoutNotificationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
+  billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
   media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutCustomerInput
-  billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerCreateOrConnectWithoutNotificationsInput = {
@@ -2107,23 +2107,22 @@ export type CustomerUpdateWithoutNotificationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
   cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
   media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
   orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutCustomerNestedInput
-  billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
-  tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutNotificationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2133,17 +2132,18 @@ export type CustomerUncheckedUpdateWithoutNotificationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
   media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput
-  billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerCreateWithoutSettingsInput = {
@@ -2157,23 +2157,22 @@ export type CustomerCreateWithoutSettingsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutCustomerInput
   billingAccounts?: Prisma.BillingAccountCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardCreateNestedManyWithoutCustomerInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutOwnedCustomersInput
+  account?: Prisma.CustomerAccountCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateWithoutSettingsInput = {
   id?: string
-  workspaceId: string
   displayName: string
   email?: string | null
   phone?: string | null
@@ -2183,17 +2182,18 @@ export type CustomerUncheckedCreateWithoutSettingsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
-  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
-  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutCustomerInput
+  workspaceId: string
   billingAccounts?: Prisma.BillingAccountUncheckedCreateNestedManyWithoutCustomerInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutCustomerInput
+  account?: Prisma.CustomerAccountUncheckedCreateNestedOneWithoutCustomerInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutCustomerInput
+  media?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCustomerInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCustomerInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCustomerInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutCustomerInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutCustomerInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutCustomerInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutCustomerInput
 }
 
 export type CustomerCreateOrConnectWithoutSettingsInput = {
@@ -2223,23 +2223,22 @@ export type CustomerUpdateWithoutSettingsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutCustomerNestedInput
   billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput
+  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutSettingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   displayName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2249,17 +2248,18 @@ export type CustomerUncheckedUpdateWithoutSettingsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
+  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerCreateManyTenantWorkspaceInput = {
@@ -2286,18 +2286,18 @@ export type CustomerUpdateWithoutTenantWorkspaceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutCustomerNestedInput
   billingAccounts?: Prisma.BillingAccountUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUpdateManyWithoutCustomerNestedInput
+  account?: Prisma.CustomerAccountUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutTenantWorkspaceInput = {
@@ -2311,18 +2311,18 @@ export type CustomerUncheckedUpdateWithoutTenantWorkspaceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
-  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
-  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput
   billingAccounts?: Prisma.BillingAccountUncheckedUpdateManyWithoutCustomerNestedInput
+  cards?: Prisma.CardUncheckedUpdateManyWithoutCustomerNestedInput
+  account?: Prisma.CustomerAccountUncheckedUpdateOneWithoutCustomerNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutCustomerNestedInput
+  media?: Prisma.MediaAssetUncheckedUpdateManyWithoutCustomerNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCustomerNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCustomerNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutCustomerNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutCustomerNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCustomerNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutCustomerNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateManyWithoutTenantWorkspaceInput = {
@@ -2344,31 +2344,29 @@ export type CustomerUncheckedUpdateManyWithoutTenantWorkspaceInput = {
  */
 
 export type CustomerCountOutputType = {
-  cards: number
-  subscriptions: number
-  media: number
-  settings: number
-  orders: number
-  notifications: number
-  paymentSubmissions: number
-  invoices: number
-  nfcCards: number
-  workspaces: number
   billingAccounts: number
+  cards: number
+  invoices: number
+  media: number
+  nfcCards: number
+  notifications: number
+  orders: number
+  paymentSubmissions: number
+  settings: number
+  subscriptions: number
 }
 
 export type CustomerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  cards?: boolean | CustomerCountOutputTypeCountCardsArgs
-  subscriptions?: boolean | CustomerCountOutputTypeCountSubscriptionsArgs
-  media?: boolean | CustomerCountOutputTypeCountMediaArgs
-  settings?: boolean | CustomerCountOutputTypeCountSettingsArgs
-  orders?: boolean | CustomerCountOutputTypeCountOrdersArgs
-  notifications?: boolean | CustomerCountOutputTypeCountNotificationsArgs
-  paymentSubmissions?: boolean | CustomerCountOutputTypeCountPaymentSubmissionsArgs
-  invoices?: boolean | CustomerCountOutputTypeCountInvoicesArgs
-  nfcCards?: boolean | CustomerCountOutputTypeCountNfcCardsArgs
-  workspaces?: boolean | CustomerCountOutputTypeCountWorkspacesArgs
   billingAccounts?: boolean | CustomerCountOutputTypeCountBillingAccountsArgs
+  cards?: boolean | CustomerCountOutputTypeCountCardsArgs
+  invoices?: boolean | CustomerCountOutputTypeCountInvoicesArgs
+  media?: boolean | CustomerCountOutputTypeCountMediaArgs
+  nfcCards?: boolean | CustomerCountOutputTypeCountNfcCardsArgs
+  notifications?: boolean | CustomerCountOutputTypeCountNotificationsArgs
+  orders?: boolean | CustomerCountOutputTypeCountOrdersArgs
+  paymentSubmissions?: boolean | CustomerCountOutputTypeCountPaymentSubmissionsArgs
+  settings?: boolean | CustomerCountOutputTypeCountSettingsArgs
+  subscriptions?: boolean | CustomerCountOutputTypeCountSubscriptionsArgs
 }
 
 /**
@@ -2384,50 +2382,15 @@ export type CustomerCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * CustomerCountOutputType without action
  */
+export type CustomerCountOutputTypeCountBillingAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BillingAccountWhereInput
+}
+
+/**
+ * CustomerCountOutputType without action
+ */
 export type CustomerCountOutputTypeCountCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CardWhereInput
-}
-
-/**
- * CustomerCountOutputType without action
- */
-export type CustomerCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SubscriptionWhereInput
-}
-
-/**
- * CustomerCountOutputType without action
- */
-export type CustomerCountOutputTypeCountMediaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MediaAssetWhereInput
-}
-
-/**
- * CustomerCountOutputType without action
- */
-export type CustomerCountOutputTypeCountSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SettingWhereInput
-}
-
-/**
- * CustomerCountOutputType without action
- */
-export type CustomerCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OrderWhereInput
-}
-
-/**
- * CustomerCountOutputType without action
- */
-export type CustomerCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.NotificationDeliveryWhereInput
-}
-
-/**
- * CustomerCountOutputType without action
- */
-export type CustomerCountOutputTypeCountPaymentSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentSubmissionWhereInput
 }
 
 /**
@@ -2440,6 +2403,13 @@ export type CustomerCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Typ
 /**
  * CustomerCountOutputType without action
  */
+export type CustomerCountOutputTypeCountMediaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MediaAssetWhereInput
+}
+
+/**
+ * CustomerCountOutputType without action
+ */
 export type CustomerCountOutputTypeCountNfcCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.NfcCardWhereInput
 }
@@ -2447,21 +2417,41 @@ export type CustomerCountOutputTypeCountNfcCardsArgs<ExtArgs extends runtime.Typ
 /**
  * CustomerCountOutputType without action
  */
-export type CustomerCountOutputTypeCountWorkspacesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.WorkspaceWhereInput
+export type CustomerCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificationDeliveryWhereInput
 }
 
 /**
  * CustomerCountOutputType without action
  */
-export type CustomerCountOutputTypeCountBillingAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BillingAccountWhereInput
+export type CustomerCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderWhereInput
+}
+
+/**
+ * CustomerCountOutputType without action
+ */
+export type CustomerCountOutputTypeCountPaymentSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentSubmissionWhereInput
+}
+
+/**
+ * CustomerCountOutputType without action
+ */
+export type CustomerCountOutputTypeCountSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SettingWhereInput
+}
+
+/**
+ * CustomerCountOutputType without action
+ */
+export type CustomerCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriptionWhereInput
 }
 
 
 export type CustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   displayName?: boolean
   email?: boolean
   phone?: boolean
@@ -2471,25 +2461,25 @@ export type CustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  cards?: boolean | Prisma.Customer$cardsArgs<ExtArgs>
-  subscriptions?: boolean | Prisma.Customer$subscriptionsArgs<ExtArgs>
-  media?: boolean | Prisma.Customer$mediaArgs<ExtArgs>
-  settings?: boolean | Prisma.Customer$settingsArgs<ExtArgs>
-  orders?: boolean | Prisma.Customer$ordersArgs<ExtArgs>
-  notifications?: boolean | Prisma.Customer$notificationsArgs<ExtArgs>
-  paymentSubmissions?: boolean | Prisma.Customer$paymentSubmissionsArgs<ExtArgs>
-  invoices?: boolean | Prisma.Customer$invoicesArgs<ExtArgs>
-  nfcCards?: boolean | Prisma.Customer$nfcCardsArgs<ExtArgs>
-  account?: boolean | Prisma.Customer$accountArgs<ExtArgs>
-  workspaces?: boolean | Prisma.Customer$workspacesArgs<ExtArgs>
+  workspaceId?: boolean
   billingAccounts?: boolean | Prisma.Customer$billingAccountsArgs<ExtArgs>
+  cards?: boolean | Prisma.Customer$cardsArgs<ExtArgs>
   tenantWorkspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  account?: boolean | Prisma.Customer$accountArgs<ExtArgs>
+  invoices?: boolean | Prisma.Customer$invoicesArgs<ExtArgs>
+  media?: boolean | Prisma.Customer$mediaArgs<ExtArgs>
+  nfcCards?: boolean | Prisma.Customer$nfcCardsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Customer$notificationsArgs<ExtArgs>
+  orders?: boolean | Prisma.Customer$ordersArgs<ExtArgs>
+  paymentSubmissions?: boolean | Prisma.Customer$paymentSubmissionsArgs<ExtArgs>
+  settings?: boolean | Prisma.Customer$settingsArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.Customer$subscriptionsArgs<ExtArgs>
+  workspaces?: boolean | Prisma.Customer$workspacesArgs<ExtArgs>
   _count?: boolean | Prisma.CustomerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["customer"]>
 
 export type CustomerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   displayName?: boolean
   email?: boolean
   phone?: boolean
@@ -2499,12 +2489,12 @@ export type CustomerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  workspaceId?: boolean
   tenantWorkspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["customer"]>
 
 export type CustomerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   displayName?: boolean
   email?: boolean
   phone?: boolean
@@ -2514,12 +2504,12 @@ export type CustomerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  workspaceId?: boolean
   tenantWorkspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["customer"]>
 
 export type CustomerSelectScalar = {
   id?: boolean
-  workspaceId?: boolean
   displayName?: boolean
   email?: boolean
   phone?: boolean
@@ -2529,23 +2519,24 @@ export type CustomerSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  workspaceId?: boolean
 }
 
-export type CustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "displayName" | "email" | "phone" | "status" | "locale" | "timezone" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["customer"]>
+export type CustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "displayName" | "email" | "phone" | "status" | "locale" | "timezone" | "createdAt" | "updatedAt" | "deletedAt" | "workspaceId", ExtArgs["result"]["customer"]>
 export type CustomerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  cards?: boolean | Prisma.Customer$cardsArgs<ExtArgs>
-  subscriptions?: boolean | Prisma.Customer$subscriptionsArgs<ExtArgs>
-  media?: boolean | Prisma.Customer$mediaArgs<ExtArgs>
-  settings?: boolean | Prisma.Customer$settingsArgs<ExtArgs>
-  orders?: boolean | Prisma.Customer$ordersArgs<ExtArgs>
-  notifications?: boolean | Prisma.Customer$notificationsArgs<ExtArgs>
-  paymentSubmissions?: boolean | Prisma.Customer$paymentSubmissionsArgs<ExtArgs>
-  invoices?: boolean | Prisma.Customer$invoicesArgs<ExtArgs>
-  nfcCards?: boolean | Prisma.Customer$nfcCardsArgs<ExtArgs>
-  account?: boolean | Prisma.Customer$accountArgs<ExtArgs>
-  workspaces?: boolean | Prisma.Customer$workspacesArgs<ExtArgs>
   billingAccounts?: boolean | Prisma.Customer$billingAccountsArgs<ExtArgs>
+  cards?: boolean | Prisma.Customer$cardsArgs<ExtArgs>
   tenantWorkspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  account?: boolean | Prisma.Customer$accountArgs<ExtArgs>
+  invoices?: boolean | Prisma.Customer$invoicesArgs<ExtArgs>
+  media?: boolean | Prisma.Customer$mediaArgs<ExtArgs>
+  nfcCards?: boolean | Prisma.Customer$nfcCardsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Customer$notificationsArgs<ExtArgs>
+  orders?: boolean | Prisma.Customer$ordersArgs<ExtArgs>
+  paymentSubmissions?: boolean | Prisma.Customer$paymentSubmissionsArgs<ExtArgs>
+  settings?: boolean | Prisma.Customer$settingsArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.Customer$subscriptionsArgs<ExtArgs>
+  workspaces?: boolean | Prisma.Customer$workspacesArgs<ExtArgs>
   _count?: boolean | Prisma.CustomerCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CustomerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2558,23 +2549,22 @@ export type CustomerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type $CustomerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Customer"
   objects: {
-    cards: Prisma.$CardPayload<ExtArgs>[]
-    subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
-    media: Prisma.$MediaAssetPayload<ExtArgs>[]
-    settings: Prisma.$SettingPayload<ExtArgs>[]
-    orders: Prisma.$OrderPayload<ExtArgs>[]
-    notifications: Prisma.$NotificationDeliveryPayload<ExtArgs>[]
-    paymentSubmissions: Prisma.$PaymentSubmissionPayload<ExtArgs>[]
-    invoices: Prisma.$InvoicePayload<ExtArgs>[]
-    nfcCards: Prisma.$NfcCardPayload<ExtArgs>[]
-    account: Prisma.$CustomerAccountPayload<ExtArgs> | null
-    workspaces: Prisma.$WorkspacePayload<ExtArgs>[]
     billingAccounts: Prisma.$BillingAccountPayload<ExtArgs>[]
+    cards: Prisma.$CardPayload<ExtArgs>[]
     tenantWorkspace: Prisma.$WorkspacePayload<ExtArgs>
+    account: Prisma.$CustomerAccountPayload<ExtArgs> | null
+    invoices: Prisma.$InvoicePayload<ExtArgs>[]
+    media: Prisma.$MediaAssetPayload<ExtArgs>[]
+    nfcCards: Prisma.$NfcCardPayload<ExtArgs>[]
+    notifications: Prisma.$NotificationDeliveryPayload<ExtArgs>[]
+    orders: Prisma.$OrderPayload<ExtArgs>[]
+    paymentSubmissions: Prisma.$PaymentSubmissionPayload<ExtArgs>[]
+    settings: Prisma.$SettingPayload<ExtArgs>[]
+    subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
+    workspaces: Prisma.$WorkspacePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    workspaceId: string
     displayName: string
     email: string | null
     phone: string | null
@@ -2584,6 +2574,7 @@ export type $CustomerPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
+    workspaceId: string
   }, ExtArgs["result"]["customer"]>
   composites: {}
 }
@@ -2978,19 +2969,19 @@ readonly fields: CustomerFieldRefs;
  */
 export interface Prisma__CustomerClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  cards<T extends Prisma.Customer$cardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$cardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  subscriptions<T extends Prisma.Customer$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  media<T extends Prisma.Customer$mediaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$mediaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  settings<T extends Prisma.Customer$settingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$settingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  orders<T extends Prisma.Customer$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  notifications<T extends Prisma.Customer$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationDeliveryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  paymentSubmissions<T extends Prisma.Customer$paymentSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$paymentSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  invoices<T extends Prisma.Customer$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  nfcCards<T extends Prisma.Customer$nfcCardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$nfcCardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NfcCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  account<T extends Prisma.Customer$accountArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$accountArgs<ExtArgs>>): Prisma.Prisma__CustomerAccountClient<runtime.Types.Result.GetResult<Prisma.$CustomerAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  workspaces<T extends Prisma.Customer$workspacesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$workspacesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   billingAccounts<T extends Prisma.Customer$billingAccountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$billingAccountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BillingAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  cards<T extends Prisma.Customer$cardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$cardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tenantWorkspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  account<T extends Prisma.Customer$accountArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$accountArgs<ExtArgs>>): Prisma.Prisma__CustomerAccountClient<runtime.Types.Result.GetResult<Prisma.$CustomerAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  invoices<T extends Prisma.Customer$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  media<T extends Prisma.Customer$mediaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$mediaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  nfcCards<T extends Prisma.Customer$nfcCardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$nfcCardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NfcCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.Customer$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationDeliveryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orders<T extends Prisma.Customer$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  paymentSubmissions<T extends Prisma.Customer$paymentSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$paymentSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  settings<T extends Prisma.Customer$settingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$settingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscriptions<T extends Prisma.Customer$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workspaces<T extends Prisma.Customer$workspacesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$workspacesArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3021,7 +3012,6 @@ export interface Prisma__CustomerClient<T, Null = never, ExtArgs extends runtime
  */
 export interface CustomerFieldRefs {
   readonly id: Prisma.FieldRef<"Customer", 'String'>
-  readonly workspaceId: Prisma.FieldRef<"Customer", 'String'>
   readonly displayName: Prisma.FieldRef<"Customer", 'String'>
   readonly email: Prisma.FieldRef<"Customer", 'String'>
   readonly phone: Prisma.FieldRef<"Customer", 'String'>
@@ -3031,6 +3021,7 @@ export interface CustomerFieldRefs {
   readonly createdAt: Prisma.FieldRef<"Customer", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Customer", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Customer", 'DateTime'>
+  readonly workspaceId: Prisma.FieldRef<"Customer", 'String'>
 }
     
 
@@ -3432,6 +3423,30 @@ export type CustomerDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
+ * Customer.billingAccounts
+ */
+export type Customer$billingAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BillingAccount
+   */
+  select?: Prisma.BillingAccountSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BillingAccount
+   */
+  omit?: Prisma.BillingAccountOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BillingAccountInclude<ExtArgs> | null
+  where?: Prisma.BillingAccountWhereInput
+  orderBy?: Prisma.BillingAccountOrderByWithRelationInput | Prisma.BillingAccountOrderByWithRelationInput[]
+  cursor?: Prisma.BillingAccountWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BillingAccountScalarFieldEnum | Prisma.BillingAccountScalarFieldEnum[]
+}
+
+/**
  * Customer.cards
  */
 export type Customer$cardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3456,147 +3471,22 @@ export type Customer$cardsArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Customer.subscriptions
+ * Customer.account
  */
-export type Customer$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Customer$accountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Subscription
+   * Select specific fields to fetch from the CustomerAccount
    */
-  select?: Prisma.SubscriptionSelect<ExtArgs> | null
+  select?: Prisma.CustomerAccountSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Subscription
+   * Omit specific fields from the CustomerAccount
    */
-  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
+  omit?: Prisma.CustomerAccountOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SubscriptionInclude<ExtArgs> | null
-  where?: Prisma.SubscriptionWhereInput
-  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
-  cursor?: Prisma.SubscriptionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
-}
-
-/**
- * Customer.media
- */
-export type Customer$mediaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the MediaAsset
-   */
-  select?: Prisma.MediaAssetSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the MediaAsset
-   */
-  omit?: Prisma.MediaAssetOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MediaAssetInclude<ExtArgs> | null
-  where?: Prisma.MediaAssetWhereInput
-  orderBy?: Prisma.MediaAssetOrderByWithRelationInput | Prisma.MediaAssetOrderByWithRelationInput[]
-  cursor?: Prisma.MediaAssetWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MediaAssetScalarFieldEnum | Prisma.MediaAssetScalarFieldEnum[]
-}
-
-/**
- * Customer.settings
- */
-export type Customer$settingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Setting
-   */
-  select?: Prisma.SettingSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Setting
-   */
-  omit?: Prisma.SettingOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SettingInclude<ExtArgs> | null
-  where?: Prisma.SettingWhereInput
-  orderBy?: Prisma.SettingOrderByWithRelationInput | Prisma.SettingOrderByWithRelationInput[]
-  cursor?: Prisma.SettingWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SettingScalarFieldEnum | Prisma.SettingScalarFieldEnum[]
-}
-
-/**
- * Customer.orders
- */
-export type Customer$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Order
-   */
-  select?: Prisma.OrderSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Order
-   */
-  omit?: Prisma.OrderOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OrderInclude<ExtArgs> | null
-  where?: Prisma.OrderWhereInput
-  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
-  cursor?: Prisma.OrderWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
-}
-
-/**
- * Customer.notifications
- */
-export type Customer$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the NotificationDelivery
-   */
-  select?: Prisma.NotificationDeliverySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the NotificationDelivery
-   */
-  omit?: Prisma.NotificationDeliveryOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.NotificationDeliveryInclude<ExtArgs> | null
-  where?: Prisma.NotificationDeliveryWhereInput
-  orderBy?: Prisma.NotificationDeliveryOrderByWithRelationInput | Prisma.NotificationDeliveryOrderByWithRelationInput[]
-  cursor?: Prisma.NotificationDeliveryWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.NotificationDeliveryScalarFieldEnum | Prisma.NotificationDeliveryScalarFieldEnum[]
-}
-
-/**
- * Customer.paymentSubmissions
- */
-export type Customer$paymentSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PaymentSubmission
-   */
-  select?: Prisma.PaymentSubmissionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PaymentSubmission
-   */
-  omit?: Prisma.PaymentSubmissionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PaymentSubmissionInclude<ExtArgs> | null
-  where?: Prisma.PaymentSubmissionWhereInput
-  orderBy?: Prisma.PaymentSubmissionOrderByWithRelationInput | Prisma.PaymentSubmissionOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentSubmissionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PaymentSubmissionScalarFieldEnum | Prisma.PaymentSubmissionScalarFieldEnum[]
+  include?: Prisma.CustomerAccountInclude<ExtArgs> | null
+  where?: Prisma.CustomerAccountWhereInput
 }
 
 /**
@@ -3624,6 +3514,30 @@ export type Customer$invoicesArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
+ * Customer.media
+ */
+export type Customer$mediaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MediaAsset
+   */
+  select?: Prisma.MediaAssetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MediaAsset
+   */
+  omit?: Prisma.MediaAssetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MediaAssetInclude<ExtArgs> | null
+  where?: Prisma.MediaAssetWhereInput
+  orderBy?: Prisma.MediaAssetOrderByWithRelationInput | Prisma.MediaAssetOrderByWithRelationInput[]
+  cursor?: Prisma.MediaAssetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MediaAssetScalarFieldEnum | Prisma.MediaAssetScalarFieldEnum[]
+}
+
+/**
  * Customer.nfcCards
  */
 export type Customer$nfcCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3648,22 +3562,123 @@ export type Customer$nfcCardsArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Customer.account
+ * Customer.notifications
  */
-export type Customer$accountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Customer$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the CustomerAccount
+   * Select specific fields to fetch from the NotificationDelivery
    */
-  select?: Prisma.CustomerAccountSelect<ExtArgs> | null
+  select?: Prisma.NotificationDeliverySelect<ExtArgs> | null
   /**
-   * Omit specific fields from the CustomerAccount
+   * Omit specific fields from the NotificationDelivery
    */
-  omit?: Prisma.CustomerAccountOmit<ExtArgs> | null
+  omit?: Prisma.NotificationDeliveryOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CustomerAccountInclude<ExtArgs> | null
-  where?: Prisma.CustomerAccountWhereInput
+  include?: Prisma.NotificationDeliveryInclude<ExtArgs> | null
+  where?: Prisma.NotificationDeliveryWhereInput
+  orderBy?: Prisma.NotificationDeliveryOrderByWithRelationInput | Prisma.NotificationDeliveryOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationDeliveryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationDeliveryScalarFieldEnum | Prisma.NotificationDeliveryScalarFieldEnum[]
+}
+
+/**
+ * Customer.orders
+ */
+export type Customer$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Order
+   */
+  select?: Prisma.OrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Order
+   */
+  omit?: Prisma.OrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderInclude<ExtArgs> | null
+  where?: Prisma.OrderWhereInput
+  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
+  cursor?: Prisma.OrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
+}
+
+/**
+ * Customer.paymentSubmissions
+ */
+export type Customer$paymentSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PaymentSubmission
+   */
+  select?: Prisma.PaymentSubmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PaymentSubmission
+   */
+  omit?: Prisma.PaymentSubmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentSubmissionInclude<ExtArgs> | null
+  where?: Prisma.PaymentSubmissionWhereInput
+  orderBy?: Prisma.PaymentSubmissionOrderByWithRelationInput | Prisma.PaymentSubmissionOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentSubmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentSubmissionScalarFieldEnum | Prisma.PaymentSubmissionScalarFieldEnum[]
+}
+
+/**
+ * Customer.settings
+ */
+export type Customer$settingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Setting
+   */
+  select?: Prisma.SettingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Setting
+   */
+  omit?: Prisma.SettingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SettingInclude<ExtArgs> | null
+  where?: Prisma.SettingWhereInput
+  orderBy?: Prisma.SettingOrderByWithRelationInput | Prisma.SettingOrderByWithRelationInput[]
+  cursor?: Prisma.SettingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SettingScalarFieldEnum | Prisma.SettingScalarFieldEnum[]
+}
+
+/**
+ * Customer.subscriptions
+ */
+export type Customer$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Subscription
+   */
+  select?: Prisma.SubscriptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Subscription
+   */
+  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriptionInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionWhereInput
+  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriptionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
 }
 
 /**
@@ -3683,35 +3698,6 @@ export type Customer$workspacesArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   include?: Prisma.WorkspaceInclude<ExtArgs> | null
   where?: Prisma.WorkspaceWhereInput
-  orderBy?: Prisma.WorkspaceOrderByWithRelationInput | Prisma.WorkspaceOrderByWithRelationInput[]
-  cursor?: Prisma.WorkspaceWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.WorkspaceScalarFieldEnum | Prisma.WorkspaceScalarFieldEnum[]
-}
-
-/**
- * Customer.billingAccounts
- */
-export type Customer$billingAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the BillingAccount
-   */
-  select?: Prisma.BillingAccountSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the BillingAccount
-   */
-  omit?: Prisma.BillingAccountOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BillingAccountInclude<ExtArgs> | null
-  where?: Prisma.BillingAccountWhereInput
-  orderBy?: Prisma.BillingAccountOrderByWithRelationInput | Prisma.BillingAccountOrderByWithRelationInput[]
-  cursor?: Prisma.BillingAccountWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.BillingAccountScalarFieldEnum | Prisma.BillingAccountScalarFieldEnum[]
 }
 
 /**

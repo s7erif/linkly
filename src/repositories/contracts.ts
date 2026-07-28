@@ -306,7 +306,7 @@ export interface ActivationRepository {
   revokeSession(hash: Uint8Array<ArrayBuffer>, now: Date): Promise<void>;
   createSession(accountId: string, tokenHash: Uint8Array<ArrayBuffer>, expiresAt: Date): Promise<void>;
   registerCustomerAccount(input: { displayName: string; email: string; passwordHash: Uint8Array<ArrayBuffer>; passwordSalt: Uint8Array<ArrayBuffer>; sessionHash: Uint8Array<ArrayBuffer>; sessionExpiresAt: Date }): Promise<{ accountId: string; customerId: string; workspaceId: string }>;
-  createDigitalCardForAccount(input: { accountId: string; customerId: string; workspaceId: string; displayName: string; email: string; slug: string; accessCodeHash: Uint8Array<ArrayBuffer>; editorSessionHash: Uint8Array<ArrayBuffer>; editorSessionExpiresAt: Date }): Promise<import("@/types/activation").CustomerCardSessionRecord>;
+  createDigitalCardForAccount(input: { accountId: string; customerId: string; workspaceId: string; displayName: string; email: string; slug: string; editorSessionHash: Uint8Array<ArrayBuffer>; editorSessionExpiresAt: Date }): Promise<import("@/types/activation").CustomerCardSessionRecord>;
   createEditorSessionForAccount(input: { accountId: string; customerId: string; workspaceId: string; cardId: string; editorSessionHash: Uint8Array<ArrayBuffer>; editorSessionExpiresAt: Date }): Promise<import("@/types/activation").CustomerCardSessionRecord>;
 }
 
@@ -349,7 +349,7 @@ export interface AccessCodeWriteRepository {
 }
 export interface CreateEditorSessionCommand {
   cardId: string;
-  accessCodeId: string;
+  accessCodeId: string | null;
   tokenHash: Uint8Array<ArrayBuffer>;
   expiresAt: Date;
 }

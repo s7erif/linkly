@@ -208,8 +208,8 @@ export type AdminUserWhereInput = {
   deletedAt?: Prisma.DateTimeNullableFilter<"AdminUser"> | Date | string | null
   roles?: Prisma.AdminUserRoleListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
-  paymentVerifications?: Prisma.PaymentSubmissionListRelationFilter
   mediaCreated?: Prisma.MediaAssetListRelationFilter
+  paymentVerifications?: Prisma.PaymentSubmissionListRelationFilter
 }
 
 export type AdminUserOrderByWithRelationInput = {
@@ -223,8 +223,8 @@ export type AdminUserOrderByWithRelationInput = {
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   roles?: Prisma.AdminUserRoleOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
-  paymentVerifications?: Prisma.PaymentSubmissionOrderByRelationAggregateInput
   mediaCreated?: Prisma.MediaAssetOrderByRelationAggregateInput
+  paymentVerifications?: Prisma.PaymentSubmissionOrderByRelationAggregateInput
 }
 
 export type AdminUserWhereUniqueInput = Prisma.AtLeast<{
@@ -241,8 +241,8 @@ export type AdminUserWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"AdminUser"> | Date | string | null
   roles?: Prisma.AdminUserRoleListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
-  paymentVerifications?: Prisma.PaymentSubmissionListRelationFilter
   mediaCreated?: Prisma.MediaAssetListRelationFilter
+  paymentVerifications?: Prisma.PaymentSubmissionListRelationFilter
 }, "id" | "email">
 
 export type AdminUserOrderByWithAggregationInput = {
@@ -284,8 +284,8 @@ export type AdminUserCreateInput = {
   deletedAt?: Date | string | null
   roles?: Prisma.AdminUserRoleCreateNestedManyWithoutAdminUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutAdminUserInput
-  paymentVerifications?: Prisma.PaymentSubmissionCreateNestedManyWithoutVerifiedAdminInput
   mediaCreated?: Prisma.MediaAssetCreateNestedManyWithoutCreatedByAdminInput
+  paymentVerifications?: Prisma.PaymentSubmissionCreateNestedManyWithoutVerifiedAdminInput
 }
 
 export type AdminUserUncheckedCreateInput = {
@@ -299,8 +299,8 @@ export type AdminUserUncheckedCreateInput = {
   deletedAt?: Date | string | null
   roles?: Prisma.AdminUserRoleUncheckedCreateNestedManyWithoutAdminUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutAdminUserInput
-  paymentVerifications?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutVerifiedAdminInput
   mediaCreated?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCreatedByAdminInput
+  paymentVerifications?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutVerifiedAdminInput
 }
 
 export type AdminUserUpdateInput = {
@@ -314,8 +314,8 @@ export type AdminUserUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   roles?: Prisma.AdminUserRoleUpdateManyWithoutAdminUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutAdminUserNestedInput
-  paymentVerifications?: Prisma.PaymentSubmissionUpdateManyWithoutVerifiedAdminNestedInput
   mediaCreated?: Prisma.MediaAssetUpdateManyWithoutCreatedByAdminNestedInput
+  paymentVerifications?: Prisma.PaymentSubmissionUpdateManyWithoutVerifiedAdminNestedInput
 }
 
 export type AdminUserUncheckedUpdateInput = {
@@ -329,8 +329,8 @@ export type AdminUserUncheckedUpdateInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   roles?: Prisma.AdminUserRoleUncheckedUpdateManyWithoutAdminUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutAdminUserNestedInput
-  paymentVerifications?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutVerifiedAdminNestedInput
   mediaCreated?: Prisma.MediaAssetUncheckedUpdateManyWithoutCreatedByAdminNestedInput
+  paymentVerifications?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutVerifiedAdminNestedInput
 }
 
 export type AdminUserCreateManyInput = {
@@ -501,8 +501,8 @@ export type AdminUserCreateWithoutRolesInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutAdminUserInput
-  paymentVerifications?: Prisma.PaymentSubmissionCreateNestedManyWithoutVerifiedAdminInput
   mediaCreated?: Prisma.MediaAssetCreateNestedManyWithoutCreatedByAdminInput
+  paymentVerifications?: Prisma.PaymentSubmissionCreateNestedManyWithoutVerifiedAdminInput
 }
 
 export type AdminUserUncheckedCreateWithoutRolesInput = {
@@ -515,8 +515,8 @@ export type AdminUserUncheckedCreateWithoutRolesInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutAdminUserInput
-  paymentVerifications?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutVerifiedAdminInput
   mediaCreated?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCreatedByAdminInput
+  paymentVerifications?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutVerifiedAdminInput
 }
 
 export type AdminUserCreateOrConnectWithoutRolesInput = {
@@ -545,8 +545,8 @@ export type AdminUserUpdateWithoutRolesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   auditLogs?: Prisma.AuditLogUpdateManyWithoutAdminUserNestedInput
-  paymentVerifications?: Prisma.PaymentSubmissionUpdateManyWithoutVerifiedAdminNestedInput
   mediaCreated?: Prisma.MediaAssetUpdateManyWithoutCreatedByAdminNestedInput
+  paymentVerifications?: Prisma.PaymentSubmissionUpdateManyWithoutVerifiedAdminNestedInput
 }
 
 export type AdminUserUncheckedUpdateWithoutRolesInput = {
@@ -559,8 +559,8 @@ export type AdminUserUncheckedUpdateWithoutRolesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutAdminUserNestedInput
-  paymentVerifications?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutVerifiedAdminNestedInput
   mediaCreated?: Prisma.MediaAssetUncheckedUpdateManyWithoutCreatedByAdminNestedInput
+  paymentVerifications?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutVerifiedAdminNestedInput
 }
 
 export type AdminUserCreateWithoutPaymentVerificationsInput = {
@@ -717,8 +717,8 @@ export type AdminUserCreateWithoutAuditLogsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   roles?: Prisma.AdminUserRoleCreateNestedManyWithoutAdminUserInput
-  paymentVerifications?: Prisma.PaymentSubmissionCreateNestedManyWithoutVerifiedAdminInput
   mediaCreated?: Prisma.MediaAssetCreateNestedManyWithoutCreatedByAdminInput
+  paymentVerifications?: Prisma.PaymentSubmissionCreateNestedManyWithoutVerifiedAdminInput
 }
 
 export type AdminUserUncheckedCreateWithoutAuditLogsInput = {
@@ -731,8 +731,8 @@ export type AdminUserUncheckedCreateWithoutAuditLogsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   roles?: Prisma.AdminUserRoleUncheckedCreateNestedManyWithoutAdminUserInput
-  paymentVerifications?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutVerifiedAdminInput
   mediaCreated?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutCreatedByAdminInput
+  paymentVerifications?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutVerifiedAdminInput
 }
 
 export type AdminUserCreateOrConnectWithoutAuditLogsInput = {
@@ -761,8 +761,8 @@ export type AdminUserUpdateWithoutAuditLogsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   roles?: Prisma.AdminUserRoleUpdateManyWithoutAdminUserNestedInput
-  paymentVerifications?: Prisma.PaymentSubmissionUpdateManyWithoutVerifiedAdminNestedInput
   mediaCreated?: Prisma.MediaAssetUpdateManyWithoutCreatedByAdminNestedInput
+  paymentVerifications?: Prisma.PaymentSubmissionUpdateManyWithoutVerifiedAdminNestedInput
 }
 
 export type AdminUserUncheckedUpdateWithoutAuditLogsInput = {
@@ -775,8 +775,8 @@ export type AdminUserUncheckedUpdateWithoutAuditLogsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   roles?: Prisma.AdminUserRoleUncheckedUpdateManyWithoutAdminUserNestedInput
-  paymentVerifications?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutVerifiedAdminNestedInput
   mediaCreated?: Prisma.MediaAssetUncheckedUpdateManyWithoutCreatedByAdminNestedInput
+  paymentVerifications?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutVerifiedAdminNestedInput
 }
 
 
@@ -787,15 +787,15 @@ export type AdminUserUncheckedUpdateWithoutAuditLogsInput = {
 export type AdminUserCountOutputType = {
   roles: number
   auditLogs: number
-  paymentVerifications: number
   mediaCreated: number
+  paymentVerifications: number
 }
 
 export type AdminUserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   roles?: boolean | AdminUserCountOutputTypeCountRolesArgs
   auditLogs?: boolean | AdminUserCountOutputTypeCountAuditLogsArgs
-  paymentVerifications?: boolean | AdminUserCountOutputTypeCountPaymentVerificationsArgs
   mediaCreated?: boolean | AdminUserCountOutputTypeCountMediaCreatedArgs
+  paymentVerifications?: boolean | AdminUserCountOutputTypeCountPaymentVerificationsArgs
 }
 
 /**
@@ -825,15 +825,15 @@ export type AdminUserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.T
 /**
  * AdminUserCountOutputType without action
  */
-export type AdminUserCountOutputTypeCountPaymentVerificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentSubmissionWhereInput
+export type AdminUserCountOutputTypeCountMediaCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MediaAssetWhereInput
 }
 
 /**
  * AdminUserCountOutputType without action
  */
-export type AdminUserCountOutputTypeCountMediaCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MediaAssetWhereInput
+export type AdminUserCountOutputTypeCountPaymentVerificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentSubmissionWhereInput
 }
 
 
@@ -848,8 +848,8 @@ export type AdminUserSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   deletedAt?: boolean
   roles?: boolean | Prisma.AdminUser$rolesArgs<ExtArgs>
   auditLogs?: boolean | Prisma.AdminUser$auditLogsArgs<ExtArgs>
-  paymentVerifications?: boolean | Prisma.AdminUser$paymentVerificationsArgs<ExtArgs>
   mediaCreated?: boolean | Prisma.AdminUser$mediaCreatedArgs<ExtArgs>
+  paymentVerifications?: boolean | Prisma.AdminUser$paymentVerificationsArgs<ExtArgs>
   _count?: boolean | Prisma.AdminUserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["adminUser"]>
 
@@ -890,8 +890,8 @@ export type AdminUserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type AdminUserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   roles?: boolean | Prisma.AdminUser$rolesArgs<ExtArgs>
   auditLogs?: boolean | Prisma.AdminUser$auditLogsArgs<ExtArgs>
-  paymentVerifications?: boolean | Prisma.AdminUser$paymentVerificationsArgs<ExtArgs>
   mediaCreated?: boolean | Prisma.AdminUser$mediaCreatedArgs<ExtArgs>
+  paymentVerifications?: boolean | Prisma.AdminUser$paymentVerificationsArgs<ExtArgs>
   _count?: boolean | Prisma.AdminUserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AdminUserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -902,8 +902,8 @@ export type $AdminUserPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     roles: Prisma.$AdminUserRolePayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
-    paymentVerifications: Prisma.$PaymentSubmissionPayload<ExtArgs>[]
     mediaCreated: Prisma.$MediaAssetPayload<ExtArgs>[]
+    paymentVerifications: Prisma.$PaymentSubmissionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1310,8 +1310,8 @@ export interface Prisma__AdminUserClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   roles<T extends Prisma.AdminUser$rolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdminUser$rolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdminUserRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.AdminUser$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdminUser$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  paymentVerifications<T extends Prisma.AdminUser$paymentVerificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdminUser$paymentVerificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   mediaCreated<T extends Prisma.AdminUser$mediaCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdminUser$mediaCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  paymentVerifications<T extends Prisma.AdminUser$paymentVerificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdminUser$paymentVerificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1790,30 +1790,6 @@ export type AdminUser$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * AdminUser.paymentVerifications
- */
-export type AdminUser$paymentVerificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PaymentSubmission
-   */
-  select?: Prisma.PaymentSubmissionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PaymentSubmission
-   */
-  omit?: Prisma.PaymentSubmissionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PaymentSubmissionInclude<ExtArgs> | null
-  where?: Prisma.PaymentSubmissionWhereInput
-  orderBy?: Prisma.PaymentSubmissionOrderByWithRelationInput | Prisma.PaymentSubmissionOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentSubmissionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PaymentSubmissionScalarFieldEnum | Prisma.PaymentSubmissionScalarFieldEnum[]
-}
-
-/**
  * AdminUser.mediaCreated
  */
 export type AdminUser$mediaCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1835,6 +1811,30 @@ export type AdminUser$mediaCreatedArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.MediaAssetScalarFieldEnum | Prisma.MediaAssetScalarFieldEnum[]
+}
+
+/**
+ * AdminUser.paymentVerifications
+ */
+export type AdminUser$paymentVerificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PaymentSubmission
+   */
+  select?: Prisma.PaymentSubmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PaymentSubmission
+   */
+  omit?: Prisma.PaymentSubmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentSubmissionInclude<ExtArgs> | null
+  where?: Prisma.PaymentSubmissionWhereInput
+  orderBy?: Prisma.PaymentSubmissionOrderByWithRelationInput | Prisma.PaymentSubmissionOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentSubmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentSubmissionScalarFieldEnum | Prisma.PaymentSubmissionScalarFieldEnum[]
 }
 
 /**

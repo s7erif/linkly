@@ -44,7 +44,6 @@ export type InvoiceSumAggregateOutputType = {
 
 export type InvoiceMinAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   invoiceNumber: string | null
   orderId: string | null
   customerId: string | null
@@ -58,18 +57,18 @@ export type InvoiceMinAggregateOutputType = {
   issuedAt: Date | null
   pdfPath: string | null
   generatedBy: string | null
-  subscriptionId: string | null
   billingAccountId: string | null
-  periodStart: Date | null
-  periodEnd: Date | null
   dueAt: Date | null
   paidAt: Date | null
+  periodEnd: Date | null
+  periodStart: Date | null
+  subscriptionId: string | null
   version: number | null
+  workspaceId: string | null
 }
 
 export type InvoiceMaxAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   invoiceNumber: string | null
   orderId: string | null
   customerId: string | null
@@ -83,18 +82,18 @@ export type InvoiceMaxAggregateOutputType = {
   issuedAt: Date | null
   pdfPath: string | null
   generatedBy: string | null
-  subscriptionId: string | null
   billingAccountId: string | null
-  periodStart: Date | null
-  periodEnd: Date | null
   dueAt: Date | null
   paidAt: Date | null
+  periodEnd: Date | null
+  periodStart: Date | null
+  subscriptionId: string | null
   version: number | null
+  workspaceId: string | null
 }
 
 export type InvoiceCountAggregateOutputType = {
   id: number
-  workspaceId: number
   invoiceNumber: number
   orderId: number
   customerId: number
@@ -108,13 +107,14 @@ export type InvoiceCountAggregateOutputType = {
   issuedAt: number
   pdfPath: number
   generatedBy: number
-  subscriptionId: number
   billingAccountId: number
-  periodStart: number
-  periodEnd: number
   dueAt: number
   paidAt: number
+  periodEnd: number
+  periodStart: number
+  subscriptionId: number
   version: number
+  workspaceId: number
   _all: number
 }
 
@@ -137,7 +137,6 @@ export type InvoiceSumAggregateInputType = {
 
 export type InvoiceMinAggregateInputType = {
   id?: true
-  workspaceId?: true
   invoiceNumber?: true
   orderId?: true
   customerId?: true
@@ -151,18 +150,18 @@ export type InvoiceMinAggregateInputType = {
   issuedAt?: true
   pdfPath?: true
   generatedBy?: true
-  subscriptionId?: true
   billingAccountId?: true
-  periodStart?: true
-  periodEnd?: true
   dueAt?: true
   paidAt?: true
+  periodEnd?: true
+  periodStart?: true
+  subscriptionId?: true
   version?: true
+  workspaceId?: true
 }
 
 export type InvoiceMaxAggregateInputType = {
   id?: true
-  workspaceId?: true
   invoiceNumber?: true
   orderId?: true
   customerId?: true
@@ -176,18 +175,18 @@ export type InvoiceMaxAggregateInputType = {
   issuedAt?: true
   pdfPath?: true
   generatedBy?: true
-  subscriptionId?: true
   billingAccountId?: true
-  periodStart?: true
-  periodEnd?: true
   dueAt?: true
   paidAt?: true
+  periodEnd?: true
+  periodStart?: true
+  subscriptionId?: true
   version?: true
+  workspaceId?: true
 }
 
 export type InvoiceCountAggregateInputType = {
   id?: true
-  workspaceId?: true
   invoiceNumber?: true
   orderId?: true
   customerId?: true
@@ -201,13 +200,14 @@ export type InvoiceCountAggregateInputType = {
   issuedAt?: true
   pdfPath?: true
   generatedBy?: true
-  subscriptionId?: true
   billingAccountId?: true
-  periodStart?: true
-  periodEnd?: true
   dueAt?: true
   paidAt?: true
+  periodEnd?: true
+  periodStart?: true
+  subscriptionId?: true
   version?: true
+  workspaceId?: true
   _all?: true
 }
 
@@ -299,7 +299,6 @@ export type InvoiceGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type InvoiceGroupByOutputType = {
   id: string
-  workspaceId: string
   invoiceNumber: string
   orderId: string
   customerId: string
@@ -313,13 +312,14 @@ export type InvoiceGroupByOutputType = {
   issuedAt: Date
   pdfPath: string | null
   generatedBy: string | null
-  subscriptionId: string | null
   billingAccountId: string | null
-  periodStart: Date | null
-  periodEnd: Date | null
   dueAt: Date | null
   paidAt: Date | null
+  periodEnd: Date | null
+  periodStart: Date | null
+  subscriptionId: string | null
   version: number
+  workspaceId: string
   _count: InvoiceCountAggregateOutputType | null
   _avg: InvoiceAvgAggregateOutputType | null
   _sum: InvoiceSumAggregateOutputType | null
@@ -347,7 +347,6 @@ export type InvoiceWhereInput = {
   OR?: Prisma.InvoiceWhereInput[]
   NOT?: Prisma.InvoiceWhereInput | Prisma.InvoiceWhereInput[]
   id?: Prisma.UuidFilter<"Invoice"> | string
-  workspaceId?: Prisma.UuidFilter<"Invoice"> | string
   invoiceNumber?: Prisma.StringFilter<"Invoice"> | string
   orderId?: Prisma.UuidFilter<"Invoice"> | string
   customerId?: Prisma.UuidFilter<"Invoice"> | string
@@ -361,23 +360,23 @@ export type InvoiceWhereInput = {
   issuedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   pdfPath?: Prisma.StringNullableFilter<"Invoice"> | string | null
   generatedBy?: Prisma.StringNullableFilter<"Invoice"> | string | null
-  subscriptionId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
   billingAccountId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
-  periodStart?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
-  periodEnd?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   dueAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   paidAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  periodEnd?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  periodStart?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  subscriptionId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
   version?: Prisma.IntFilter<"Invoice"> | number
-  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
-  customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
-  subscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
+  workspaceId?: Prisma.UuidFilter<"Invoice"> | string
   billingAccount?: Prisma.XOR<Prisma.BillingAccountNullableScalarRelationFilter, Prisma.BillingAccountWhereInput> | null
+  customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
+  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
+  subscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }
 
 export type InvoiceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   invoiceNumber?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
@@ -391,17 +390,18 @@ export type InvoiceOrderByWithRelationInput = {
   issuedAt?: Prisma.SortOrder
   pdfPath?: Prisma.SortOrderInput | Prisma.SortOrder
   generatedBy?: Prisma.SortOrderInput | Prisma.SortOrder
-  subscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
   billingAccountId?: Prisma.SortOrderInput | Prisma.SortOrder
-  periodStart?: Prisma.SortOrderInput | Prisma.SortOrder
-  periodEnd?: Prisma.SortOrderInput | Prisma.SortOrder
   dueAt?: Prisma.SortOrderInput | Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  periodEnd?: Prisma.SortOrderInput | Prisma.SortOrder
+  periodStart?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
   version?: Prisma.SortOrder
-  order?: Prisma.OrderOrderByWithRelationInput
-  customer?: Prisma.CustomerOrderByWithRelationInput
-  subscription?: Prisma.SubscriptionOrderByWithRelationInput
+  workspaceId?: Prisma.SortOrder
   billingAccount?: Prisma.BillingAccountOrderByWithRelationInput
+  customer?: Prisma.CustomerOrderByWithRelationInput
+  order?: Prisma.OrderOrderByWithRelationInput
+  subscription?: Prisma.SubscriptionOrderByWithRelationInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
 }
 
@@ -411,7 +411,6 @@ export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.InvoiceWhereInput | Prisma.InvoiceWhereInput[]
   OR?: Prisma.InvoiceWhereInput[]
   NOT?: Prisma.InvoiceWhereInput | Prisma.InvoiceWhereInput[]
-  workspaceId?: Prisma.UuidFilter<"Invoice"> | string
   orderId?: Prisma.UuidFilter<"Invoice"> | string
   customerId?: Prisma.UuidFilter<"Invoice"> | string
   planNameSnapshot?: Prisma.StringFilter<"Invoice"> | string
@@ -424,23 +423,23 @@ export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
   issuedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   pdfPath?: Prisma.StringNullableFilter<"Invoice"> | string | null
   generatedBy?: Prisma.StringNullableFilter<"Invoice"> | string | null
-  subscriptionId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
   billingAccountId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
-  periodStart?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
-  periodEnd?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   dueAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   paidAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  periodEnd?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  periodStart?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  subscriptionId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
   version?: Prisma.IntFilter<"Invoice"> | number
-  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
-  customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
-  subscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
+  workspaceId?: Prisma.UuidFilter<"Invoice"> | string
   billingAccount?: Prisma.XOR<Prisma.BillingAccountNullableScalarRelationFilter, Prisma.BillingAccountWhereInput> | null
+  customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
+  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
+  subscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }, "id" | "invoiceNumber">
 
 export type InvoiceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   invoiceNumber?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
@@ -454,13 +453,14 @@ export type InvoiceOrderByWithAggregationInput = {
   issuedAt?: Prisma.SortOrder
   pdfPath?: Prisma.SortOrderInput | Prisma.SortOrder
   generatedBy?: Prisma.SortOrderInput | Prisma.SortOrder
-  subscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
   billingAccountId?: Prisma.SortOrderInput | Prisma.SortOrder
-  periodStart?: Prisma.SortOrderInput | Prisma.SortOrder
-  periodEnd?: Prisma.SortOrderInput | Prisma.SortOrder
   dueAt?: Prisma.SortOrderInput | Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  periodEnd?: Prisma.SortOrderInput | Prisma.SortOrder
+  periodStart?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionId?: Prisma.SortOrderInput | Prisma.SortOrder
   version?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
   _count?: Prisma.InvoiceCountOrderByAggregateInput
   _avg?: Prisma.InvoiceAvgOrderByAggregateInput
   _max?: Prisma.InvoiceMaxOrderByAggregateInput
@@ -473,7 +473,6 @@ export type InvoiceScalarWhereWithAggregatesInput = {
   OR?: Prisma.InvoiceScalarWhereWithAggregatesInput[]
   NOT?: Prisma.InvoiceScalarWhereWithAggregatesInput | Prisma.InvoiceScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Invoice"> | string
-  workspaceId?: Prisma.UuidWithAggregatesFilter<"Invoice"> | string
   invoiceNumber?: Prisma.StringWithAggregatesFilter<"Invoice"> | string
   orderId?: Prisma.UuidWithAggregatesFilter<"Invoice"> | string
   customerId?: Prisma.UuidWithAggregatesFilter<"Invoice"> | string
@@ -487,13 +486,14 @@ export type InvoiceScalarWhereWithAggregatesInput = {
   issuedAt?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string
   pdfPath?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null
   generatedBy?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null
-  subscriptionId?: Prisma.UuidNullableWithAggregatesFilter<"Invoice"> | string | null
   billingAccountId?: Prisma.UuidNullableWithAggregatesFilter<"Invoice"> | string | null
-  periodStart?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
-  periodEnd?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
   dueAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
   paidAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
+  periodEnd?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
+  periodStart?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
+  subscriptionId?: Prisma.UuidNullableWithAggregatesFilter<"Invoice"> | string | null
   version?: Prisma.IntWithAggregatesFilter<"Invoice"> | number
+  workspaceId?: Prisma.UuidWithAggregatesFilter<"Invoice"> | string
 }
 
 export type InvoiceCreateInput = {
@@ -509,21 +509,20 @@ export type InvoiceCreateInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
   version?: number
-  order: Prisma.OrderCreateNestedOneWithoutInvoicesInput
-  customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput
-  subscription?: Prisma.SubscriptionCreateNestedOneWithoutInvoicesInput
   billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutInvoicesInput
+  customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput
+  order: Prisma.OrderCreateNestedOneWithoutInvoicesInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutInvoicesInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutInvoicesInput
 }
 
 export type InvoiceUncheckedCreateInput = {
   id?: string
-  workspaceId: string
   invoiceNumber: string
   orderId: string
   customerId: string
@@ -537,13 +536,14 @@ export type InvoiceUncheckedCreateInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  subscriptionId?: string | null
   billingAccountId?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
+  subscriptionId?: string | null
   version?: number
+  workspaceId: string
 }
 
 export type InvoiceUpdateInput = {
@@ -559,21 +559,20 @@ export type InvoiceUpdateInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
-  order?: Prisma.OrderUpdateOneRequiredWithoutInvoicesNestedInput
-  customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput
-  subscription?: Prisma.SubscriptionUpdateOneWithoutInvoicesNestedInput
   billingAccount?: Prisma.BillingAccountUpdateOneWithoutInvoicesNestedInput
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput
+  order?: Prisma.OrderUpdateOneRequiredWithoutInvoicesNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutInvoicesNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutInvoicesNestedInput
 }
 
 export type InvoiceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -587,18 +586,18 @@ export type InvoiceUncheckedUpdateInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type InvoiceCreateManyInput = {
   id?: string
-  workspaceId: string
   invoiceNumber: string
   orderId: string
   customerId: string
@@ -612,13 +611,14 @@ export type InvoiceCreateManyInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  subscriptionId?: string | null
   billingAccountId?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
+  subscriptionId?: string | null
   version?: number
+  workspaceId: string
 }
 
 export type InvoiceUpdateManyMutationInput = {
@@ -634,16 +634,15 @@ export type InvoiceUpdateManyMutationInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type InvoiceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -657,13 +656,14 @@ export type InvoiceUncheckedUpdateManyInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type InvoiceListRelationFilter = {
@@ -678,7 +678,6 @@ export type InvoiceOrderByRelationAggregateInput = {
 
 export type InvoiceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   invoiceNumber?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
@@ -692,13 +691,14 @@ export type InvoiceCountOrderByAggregateInput = {
   issuedAt?: Prisma.SortOrder
   pdfPath?: Prisma.SortOrder
   generatedBy?: Prisma.SortOrder
-  subscriptionId?: Prisma.SortOrder
   billingAccountId?: Prisma.SortOrder
-  periodStart?: Prisma.SortOrder
-  periodEnd?: Prisma.SortOrder
   dueAt?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
+  periodEnd?: Prisma.SortOrder
+  periodStart?: Prisma.SortOrder
+  subscriptionId?: Prisma.SortOrder
   version?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type InvoiceAvgOrderByAggregateInput = {
@@ -711,7 +711,6 @@ export type InvoiceAvgOrderByAggregateInput = {
 
 export type InvoiceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   invoiceNumber?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
@@ -725,18 +724,18 @@ export type InvoiceMaxOrderByAggregateInput = {
   issuedAt?: Prisma.SortOrder
   pdfPath?: Prisma.SortOrder
   generatedBy?: Prisma.SortOrder
-  subscriptionId?: Prisma.SortOrder
   billingAccountId?: Prisma.SortOrder
-  periodStart?: Prisma.SortOrder
-  periodEnd?: Prisma.SortOrder
   dueAt?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
+  periodEnd?: Prisma.SortOrder
+  periodStart?: Prisma.SortOrder
+  subscriptionId?: Prisma.SortOrder
   version?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type InvoiceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   invoiceNumber?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
@@ -750,13 +749,14 @@ export type InvoiceMinOrderByAggregateInput = {
   issuedAt?: Prisma.SortOrder
   pdfPath?: Prisma.SortOrder
   generatedBy?: Prisma.SortOrder
-  subscriptionId?: Prisma.SortOrder
   billingAccountId?: Prisma.SortOrder
-  periodStart?: Prisma.SortOrder
-  periodEnd?: Prisma.SortOrder
   dueAt?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
+  periodEnd?: Prisma.SortOrder
+  periodStart?: Prisma.SortOrder
+  subscriptionId?: Prisma.SortOrder
   version?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type InvoiceSumOrderByAggregateInput = {
@@ -994,20 +994,19 @@ export type InvoiceCreateWithoutCustomerInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
   version?: number
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutInvoicesInput
   order: Prisma.OrderCreateNestedOneWithoutInvoicesInput
   subscription?: Prisma.SubscriptionCreateNestedOneWithoutInvoicesInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutInvoicesInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutInvoicesInput
 }
 
 export type InvoiceUncheckedCreateWithoutCustomerInput = {
   id?: string
-  workspaceId: string
   invoiceNumber: string
   orderId: string
   planNameSnapshot: string
@@ -1020,13 +1019,14 @@ export type InvoiceUncheckedCreateWithoutCustomerInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  subscriptionId?: string | null
   billingAccountId?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
+  subscriptionId?: string | null
   version?: number
+  workspaceId: string
 }
 
 export type InvoiceCreateOrConnectWithoutCustomerInput = {
@@ -1060,7 +1060,6 @@ export type InvoiceScalarWhereInput = {
   OR?: Prisma.InvoiceScalarWhereInput[]
   NOT?: Prisma.InvoiceScalarWhereInput | Prisma.InvoiceScalarWhereInput[]
   id?: Prisma.UuidFilter<"Invoice"> | string
-  workspaceId?: Prisma.UuidFilter<"Invoice"> | string
   invoiceNumber?: Prisma.StringFilter<"Invoice"> | string
   orderId?: Prisma.UuidFilter<"Invoice"> | string
   customerId?: Prisma.UuidFilter<"Invoice"> | string
@@ -1074,13 +1073,14 @@ export type InvoiceScalarWhereInput = {
   issuedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   pdfPath?: Prisma.StringNullableFilter<"Invoice"> | string | null
   generatedBy?: Prisma.StringNullableFilter<"Invoice"> | string | null
-  subscriptionId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
   billingAccountId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
-  periodStart?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
-  periodEnd?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   dueAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   paidAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  periodEnd?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  periodStart?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  subscriptionId?: Prisma.UuidNullableFilter<"Invoice"> | string | null
   version?: Prisma.IntFilter<"Invoice"> | number
+  workspaceId?: Prisma.UuidFilter<"Invoice"> | string
 }
 
 export type InvoiceCreateWithoutWorkspaceInput = {
@@ -1096,15 +1096,15 @@ export type InvoiceCreateWithoutWorkspaceInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
   version?: number
-  order: Prisma.OrderCreateNestedOneWithoutInvoicesInput
-  customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput
-  subscription?: Prisma.SubscriptionCreateNestedOneWithoutInvoicesInput
   billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutInvoicesInput
+  customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput
+  order: Prisma.OrderCreateNestedOneWithoutInvoicesInput
+  subscription?: Prisma.SubscriptionCreateNestedOneWithoutInvoicesInput
 }
 
 export type InvoiceUncheckedCreateWithoutWorkspaceInput = {
@@ -1122,12 +1122,12 @@ export type InvoiceUncheckedCreateWithoutWorkspaceInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  subscriptionId?: string | null
   billingAccountId?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
+  subscriptionId?: string | null
   version?: number
 }
 
@@ -1170,20 +1170,19 @@ export type InvoiceCreateWithoutBillingAccountInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
   version?: number
-  order: Prisma.OrderCreateNestedOneWithoutInvoicesInput
   customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput
+  order: Prisma.OrderCreateNestedOneWithoutInvoicesInput
   subscription?: Prisma.SubscriptionCreateNestedOneWithoutInvoicesInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutInvoicesInput
 }
 
 export type InvoiceUncheckedCreateWithoutBillingAccountInput = {
   id?: string
-  workspaceId: string
   invoiceNumber: string
   orderId: string
   customerId: string
@@ -1197,12 +1196,13 @@ export type InvoiceUncheckedCreateWithoutBillingAccountInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  subscriptionId?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
+  subscriptionId?: string | null
   version?: number
+  workspaceId: string
 }
 
 export type InvoiceCreateOrConnectWithoutBillingAccountInput = {
@@ -1244,20 +1244,19 @@ export type InvoiceCreateWithoutOrderInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
   version?: number
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutInvoicesInput
   customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput
   subscription?: Prisma.SubscriptionCreateNestedOneWithoutInvoicesInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutInvoicesInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutInvoicesInput
 }
 
 export type InvoiceUncheckedCreateWithoutOrderInput = {
   id?: string
-  workspaceId: string
   invoiceNumber: string
   customerId: string
   planNameSnapshot: string
@@ -1270,13 +1269,14 @@ export type InvoiceUncheckedCreateWithoutOrderInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  subscriptionId?: string | null
   billingAccountId?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
+  subscriptionId?: string | null
   version?: number
+  workspaceId: string
 }
 
 export type InvoiceCreateOrConnectWithoutOrderInput = {
@@ -1318,20 +1318,19 @@ export type InvoiceCreateWithoutSubscriptionInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
   version?: number
-  order: Prisma.OrderCreateNestedOneWithoutInvoicesInput
-  customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput
   billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutInvoicesInput
+  customer: Prisma.CustomerCreateNestedOneWithoutInvoicesInput
+  order: Prisma.OrderCreateNestedOneWithoutInvoicesInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutInvoicesInput
 }
 
 export type InvoiceUncheckedCreateWithoutSubscriptionInput = {
   id?: string
-  workspaceId: string
   invoiceNumber: string
   orderId: string
   customerId: string
@@ -1346,11 +1345,12 @@ export type InvoiceUncheckedCreateWithoutSubscriptionInput = {
   pdfPath?: string | null
   generatedBy?: string | null
   billingAccountId?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
   version?: number
+  workspaceId: string
 }
 
 export type InvoiceCreateOrConnectWithoutSubscriptionInput = {
@@ -1381,7 +1381,6 @@ export type InvoiceUpdateManyWithWhereWithoutSubscriptionInput = {
 
 export type InvoiceCreateManyCustomerInput = {
   id?: string
-  workspaceId: string
   invoiceNumber: string
   orderId: string
   planNameSnapshot: string
@@ -1394,13 +1393,14 @@ export type InvoiceCreateManyCustomerInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  subscriptionId?: string | null
   billingAccountId?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
+  subscriptionId?: string | null
   version?: number
+  workspaceId: string
 }
 
 export type InvoiceUpdateWithoutCustomerInput = {
@@ -1416,20 +1416,19 @@ export type InvoiceUpdateWithoutCustomerInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutInvoicesNestedInput
   order?: Prisma.OrderUpdateOneRequiredWithoutInvoicesNestedInput
   subscription?: Prisma.SubscriptionUpdateOneWithoutInvoicesNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutInvoicesNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutInvoicesNestedInput
 }
 
 export type InvoiceUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   planNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1442,18 +1441,18 @@ export type InvoiceUncheckedUpdateWithoutCustomerInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type InvoiceUncheckedUpdateManyWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   planNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1466,13 +1465,14 @@ export type InvoiceUncheckedUpdateManyWithoutCustomerInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type InvoiceCreateManyWorkspaceInput = {
@@ -1490,12 +1490,12 @@ export type InvoiceCreateManyWorkspaceInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  subscriptionId?: string | null
   billingAccountId?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
+  subscriptionId?: string | null
   version?: number
 }
 
@@ -1512,15 +1512,15 @@ export type InvoiceUpdateWithoutWorkspaceInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
-  order?: Prisma.OrderUpdateOneRequiredWithoutInvoicesNestedInput
-  customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput
-  subscription?: Prisma.SubscriptionUpdateOneWithoutInvoicesNestedInput
   billingAccount?: Prisma.BillingAccountUpdateOneWithoutInvoicesNestedInput
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput
+  order?: Prisma.OrderUpdateOneRequiredWithoutInvoicesNestedInput
+  subscription?: Prisma.SubscriptionUpdateOneWithoutInvoicesNestedInput
 }
 
 export type InvoiceUncheckedUpdateWithoutWorkspaceInput = {
@@ -1538,12 +1538,12 @@ export type InvoiceUncheckedUpdateWithoutWorkspaceInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -1562,18 +1562,17 @@ export type InvoiceUncheckedUpdateManyWithoutWorkspaceInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type InvoiceCreateManyBillingAccountInput = {
   id?: string
-  workspaceId: string
   invoiceNumber: string
   orderId: string
   customerId: string
@@ -1587,12 +1586,13 @@ export type InvoiceCreateManyBillingAccountInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  subscriptionId?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
+  subscriptionId?: string | null
   version?: number
+  workspaceId: string
 }
 
 export type InvoiceUpdateWithoutBillingAccountInput = {
@@ -1608,20 +1608,19 @@ export type InvoiceUpdateWithoutBillingAccountInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
-  order?: Prisma.OrderUpdateOneRequiredWithoutInvoicesNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput
+  order?: Prisma.OrderUpdateOneRequiredWithoutInvoicesNestedInput
   subscription?: Prisma.SubscriptionUpdateOneWithoutInvoicesNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutInvoicesNestedInput
 }
 
 export type InvoiceUncheckedUpdateWithoutBillingAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1635,17 +1634,17 @@ export type InvoiceUncheckedUpdateWithoutBillingAccountInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type InvoiceUncheckedUpdateManyWithoutBillingAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1659,17 +1658,17 @@ export type InvoiceUncheckedUpdateManyWithoutBillingAccountInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type InvoiceCreateManyOrderInput = {
   id?: string
-  workspaceId: string
   invoiceNumber: string
   customerId: string
   planNameSnapshot: string
@@ -1682,13 +1681,14 @@ export type InvoiceCreateManyOrderInput = {
   issuedAt?: Date | string
   pdfPath?: string | null
   generatedBy?: string | null
-  subscriptionId?: string | null
   billingAccountId?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
+  subscriptionId?: string | null
   version?: number
+  workspaceId: string
 }
 
 export type InvoiceUpdateWithoutOrderInput = {
@@ -1704,20 +1704,19 @@ export type InvoiceUpdateWithoutOrderInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutInvoicesNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput
   subscription?: Prisma.SubscriptionUpdateOneWithoutInvoicesNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutInvoicesNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutInvoicesNestedInput
 }
 
 export type InvoiceUncheckedUpdateWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   planNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1730,18 +1729,18 @@ export type InvoiceUncheckedUpdateWithoutOrderInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type InvoiceUncheckedUpdateManyWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   planNameSnapshot?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1754,18 +1753,18 @@ export type InvoiceUncheckedUpdateManyWithoutOrderInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type InvoiceCreateManySubscriptionInput = {
   id?: string
-  workspaceId: string
   invoiceNumber: string
   orderId: string
   customerId: string
@@ -1780,11 +1779,12 @@ export type InvoiceCreateManySubscriptionInput = {
   pdfPath?: string | null
   generatedBy?: string | null
   billingAccountId?: string | null
-  periodStart?: Date | string | null
-  periodEnd?: Date | string | null
   dueAt?: Date | string | null
   paidAt?: Date | string | null
+  periodEnd?: Date | string | null
+  periodStart?: Date | string | null
   version?: number
+  workspaceId: string
 }
 
 export type InvoiceUpdateWithoutSubscriptionInput = {
@@ -1800,20 +1800,19 @@ export type InvoiceUpdateWithoutSubscriptionInput = {
   issuedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
-  order?: Prisma.OrderUpdateOneRequiredWithoutInvoicesNestedInput
-  customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput
   billingAccount?: Prisma.BillingAccountUpdateOneWithoutInvoicesNestedInput
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutInvoicesNestedInput
+  order?: Prisma.OrderUpdateOneRequiredWithoutInvoicesNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutInvoicesNestedInput
 }
 
 export type InvoiceUncheckedUpdateWithoutSubscriptionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1828,16 +1827,16 @@ export type InvoiceUncheckedUpdateWithoutSubscriptionInput = {
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type InvoiceUncheckedUpdateManyWithoutSubscriptionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1852,18 +1851,18 @@ export type InvoiceUncheckedUpdateManyWithoutSubscriptionInput = {
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   generatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   dueAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodEnd?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  periodStart?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   version?: Prisma.IntFieldUpdateOperationsInput | number
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
 
 export type InvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   invoiceNumber?: boolean
   orderId?: boolean
   customerId?: boolean
@@ -1877,23 +1876,23 @@ export type InvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   issuedAt?: boolean
   pdfPath?: boolean
   generatedBy?: boolean
-  subscriptionId?: boolean
   billingAccountId?: boolean
-  periodStart?: boolean
-  periodEnd?: boolean
   dueAt?: boolean
   paidAt?: boolean
+  periodEnd?: boolean
+  periodStart?: boolean
+  subscriptionId?: boolean
   version?: boolean
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.Invoice$subscriptionArgs<ExtArgs>
+  workspaceId?: boolean
   billingAccount?: boolean | Prisma.Invoice$billingAccountArgs<ExtArgs>
+  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
+  subscription?: boolean | Prisma.Invoice$subscriptionArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["invoice"]>
 
 export type InvoiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   invoiceNumber?: boolean
   orderId?: boolean
   customerId?: boolean
@@ -1907,23 +1906,23 @@ export type InvoiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   issuedAt?: boolean
   pdfPath?: boolean
   generatedBy?: boolean
-  subscriptionId?: boolean
   billingAccountId?: boolean
-  periodStart?: boolean
-  periodEnd?: boolean
   dueAt?: boolean
   paidAt?: boolean
+  periodEnd?: boolean
+  periodStart?: boolean
+  subscriptionId?: boolean
   version?: boolean
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.Invoice$subscriptionArgs<ExtArgs>
+  workspaceId?: boolean
   billingAccount?: boolean | Prisma.Invoice$billingAccountArgs<ExtArgs>
+  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
+  subscription?: boolean | Prisma.Invoice$subscriptionArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["invoice"]>
 
 export type InvoiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   invoiceNumber?: boolean
   orderId?: boolean
   customerId?: boolean
@@ -1937,23 +1936,23 @@ export type InvoiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   issuedAt?: boolean
   pdfPath?: boolean
   generatedBy?: boolean
-  subscriptionId?: boolean
   billingAccountId?: boolean
-  periodStart?: boolean
-  periodEnd?: boolean
   dueAt?: boolean
   paidAt?: boolean
+  periodEnd?: boolean
+  periodStart?: boolean
+  subscriptionId?: boolean
   version?: boolean
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.Invoice$subscriptionArgs<ExtArgs>
+  workspaceId?: boolean
   billingAccount?: boolean | Prisma.Invoice$billingAccountArgs<ExtArgs>
+  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
+  subscription?: boolean | Prisma.Invoice$subscriptionArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["invoice"]>
 
 export type InvoiceSelectScalar = {
   id?: boolean
-  workspaceId?: boolean
   invoiceNumber?: boolean
   orderId?: boolean
   customerId?: boolean
@@ -1967,50 +1966,50 @@ export type InvoiceSelectScalar = {
   issuedAt?: boolean
   pdfPath?: boolean
   generatedBy?: boolean
-  subscriptionId?: boolean
   billingAccountId?: boolean
-  periodStart?: boolean
-  periodEnd?: boolean
   dueAt?: boolean
   paidAt?: boolean
+  periodEnd?: boolean
+  periodStart?: boolean
+  subscriptionId?: boolean
   version?: boolean
+  workspaceId?: boolean
 }
 
-export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "invoiceNumber" | "orderId" | "customerId" | "planNameSnapshot" | "subtotal" | "discount" | "tax" | "total" | "currency" | "status" | "issuedAt" | "pdfPath" | "generatedBy" | "subscriptionId" | "billingAccountId" | "periodStart" | "periodEnd" | "dueAt" | "paidAt" | "version", ExtArgs["result"]["invoice"]>
+export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "invoiceNumber" | "orderId" | "customerId" | "planNameSnapshot" | "subtotal" | "discount" | "tax" | "total" | "currency" | "status" | "issuedAt" | "pdfPath" | "generatedBy" | "billingAccountId" | "dueAt" | "paidAt" | "periodEnd" | "periodStart" | "subscriptionId" | "version" | "workspaceId", ExtArgs["result"]["invoice"]>
 export type InvoiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.Invoice$subscriptionArgs<ExtArgs>
   billingAccount?: boolean | Prisma.Invoice$billingAccountArgs<ExtArgs>
+  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
+  subscription?: boolean | Prisma.Invoice$subscriptionArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 export type InvoiceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.Invoice$subscriptionArgs<ExtArgs>
   billingAccount?: boolean | Prisma.Invoice$billingAccountArgs<ExtArgs>
+  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
+  subscription?: boolean | Prisma.Invoice$subscriptionArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 export type InvoiceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
-  subscription?: boolean | Prisma.Invoice$subscriptionArgs<ExtArgs>
   billingAccount?: boolean | Prisma.Invoice$billingAccountArgs<ExtArgs>
+  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
+  subscription?: boolean | Prisma.Invoice$subscriptionArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 
 export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Invoice"
   objects: {
-    order: Prisma.$OrderPayload<ExtArgs>
-    customer: Prisma.$CustomerPayload<ExtArgs>
-    subscription: Prisma.$SubscriptionPayload<ExtArgs> | null
     billingAccount: Prisma.$BillingAccountPayload<ExtArgs> | null
+    customer: Prisma.$CustomerPayload<ExtArgs>
+    order: Prisma.$OrderPayload<ExtArgs>
+    subscription: Prisma.$SubscriptionPayload<ExtArgs> | null
     workspace: Prisma.$WorkspacePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    workspaceId: string
     invoiceNumber: string
     orderId: string
     customerId: string
@@ -2024,13 +2023,14 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     issuedAt: Date
     pdfPath: string | null
     generatedBy: string | null
-    subscriptionId: string | null
     billingAccountId: string | null
-    periodStart: Date | null
-    periodEnd: Date | null
     dueAt: Date | null
     paidAt: Date | null
+    periodEnd: Date | null
+    periodStart: Date | null
+    subscriptionId: string | null
     version: number
+    workspaceId: string
   }, ExtArgs["result"]["invoice"]>
   composites: {}
 }
@@ -2425,10 +2425,10 @@ readonly fields: InvoiceFieldRefs;
  */
 export interface Prisma__InvoiceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  order<T extends Prisma.OrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrderDefaultArgs<ExtArgs>>): Prisma.Prisma__OrderClient<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  subscription<T extends Prisma.Invoice$subscriptionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$subscriptionArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   billingAccount<T extends Prisma.Invoice$billingAccountArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$billingAccountArgs<ExtArgs>>): Prisma.Prisma__BillingAccountClient<runtime.Types.Result.GetResult<Prisma.$BillingAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  order<T extends Prisma.OrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrderDefaultArgs<ExtArgs>>): Prisma.Prisma__OrderClient<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  subscription<T extends Prisma.Invoice$subscriptionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$subscriptionArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2460,7 +2460,6 @@ export interface Prisma__InvoiceClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface InvoiceFieldRefs {
   readonly id: Prisma.FieldRef<"Invoice", 'String'>
-  readonly workspaceId: Prisma.FieldRef<"Invoice", 'String'>
   readonly invoiceNumber: Prisma.FieldRef<"Invoice", 'String'>
   readonly orderId: Prisma.FieldRef<"Invoice", 'String'>
   readonly customerId: Prisma.FieldRef<"Invoice", 'String'>
@@ -2474,13 +2473,14 @@ export interface InvoiceFieldRefs {
   readonly issuedAt: Prisma.FieldRef<"Invoice", 'DateTime'>
   readonly pdfPath: Prisma.FieldRef<"Invoice", 'String'>
   readonly generatedBy: Prisma.FieldRef<"Invoice", 'String'>
-  readonly subscriptionId: Prisma.FieldRef<"Invoice", 'String'>
   readonly billingAccountId: Prisma.FieldRef<"Invoice", 'String'>
-  readonly periodStart: Prisma.FieldRef<"Invoice", 'DateTime'>
-  readonly periodEnd: Prisma.FieldRef<"Invoice", 'DateTime'>
   readonly dueAt: Prisma.FieldRef<"Invoice", 'DateTime'>
   readonly paidAt: Prisma.FieldRef<"Invoice", 'DateTime'>
+  readonly periodEnd: Prisma.FieldRef<"Invoice", 'DateTime'>
+  readonly periodStart: Prisma.FieldRef<"Invoice", 'DateTime'>
+  readonly subscriptionId: Prisma.FieldRef<"Invoice", 'String'>
   readonly version: Prisma.FieldRef<"Invoice", 'Int'>
+  readonly workspaceId: Prisma.FieldRef<"Invoice", 'String'>
 }
     
 
@@ -2882,25 +2882,6 @@ export type InvoiceDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Invoice.subscription
- */
-export type Invoice$subscriptionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Subscription
-   */
-  select?: Prisma.SubscriptionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Subscription
-   */
-  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SubscriptionInclude<ExtArgs> | null
-  where?: Prisma.SubscriptionWhereInput
-}
-
-/**
  * Invoice.billingAccount
  */
 export type Invoice$billingAccountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2917,6 +2898,25 @@ export type Invoice$billingAccountArgs<ExtArgs extends runtime.Types.Extensions.
    */
   include?: Prisma.BillingAccountInclude<ExtArgs> | null
   where?: Prisma.BillingAccountWhereInput
+}
+
+/**
+ * Invoice.subscription
+ */
+export type Invoice$subscriptionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Subscription
+   */
+  select?: Prisma.SubscriptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Subscription
+   */
+  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriptionInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionWhereInput
 }
 
 /**

@@ -26,7 +26,6 @@ export type AggregateAuditLog = {
 
 export type AuditLogMinAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   actorType: $Enums.AuditActorType | null
   adminUserId: string | null
   editorSessionId: string | null
@@ -36,11 +35,11 @@ export type AuditLogMinAggregateOutputType = {
   success: boolean | null
   ipHash: runtime.Bytes | null
   createdAt: Date | null
+  workspaceId: string | null
 }
 
 export type AuditLogMaxAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   actorType: $Enums.AuditActorType | null
   adminUserId: string | null
   editorSessionId: string | null
@@ -50,11 +49,11 @@ export type AuditLogMaxAggregateOutputType = {
   success: boolean | null
   ipHash: runtime.Bytes | null
   createdAt: Date | null
+  workspaceId: string | null
 }
 
 export type AuditLogCountAggregateOutputType = {
   id: number
-  workspaceId: number
   actorType: number
   adminUserId: number
   editorSessionId: number
@@ -65,13 +64,13 @@ export type AuditLogCountAggregateOutputType = {
   ipHash: number
   metadata: number
   createdAt: number
+  workspaceId: number
   _all: number
 }
 
 
 export type AuditLogMinAggregateInputType = {
   id?: true
-  workspaceId?: true
   actorType?: true
   adminUserId?: true
   editorSessionId?: true
@@ -81,11 +80,11 @@ export type AuditLogMinAggregateInputType = {
   success?: true
   ipHash?: true
   createdAt?: true
+  workspaceId?: true
 }
 
 export type AuditLogMaxAggregateInputType = {
   id?: true
-  workspaceId?: true
   actorType?: true
   adminUserId?: true
   editorSessionId?: true
@@ -95,11 +94,11 @@ export type AuditLogMaxAggregateInputType = {
   success?: true
   ipHash?: true
   createdAt?: true
+  workspaceId?: true
 }
 
 export type AuditLogCountAggregateInputType = {
   id?: true
-  workspaceId?: true
   actorType?: true
   adminUserId?: true
   editorSessionId?: true
@@ -110,6 +109,7 @@ export type AuditLogCountAggregateInputType = {
   ipHash?: true
   metadata?: true
   createdAt?: true
+  workspaceId?: true
   _all?: true
 }
 
@@ -187,7 +187,6 @@ export type AuditLogGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type AuditLogGroupByOutputType = {
   id: string
-  workspaceId: string | null
   actorType: $Enums.AuditActorType
   adminUserId: string | null
   editorSessionId: string | null
@@ -198,6 +197,7 @@ export type AuditLogGroupByOutputType = {
   ipHash: runtime.Bytes | null
   metadata: runtime.JsonValue | null
   createdAt: Date
+  workspaceId: string | null
   _count: AuditLogCountAggregateOutputType | null
   _min: AuditLogMinAggregateOutputType | null
   _max: AuditLogMaxAggregateOutputType | null
@@ -223,7 +223,6 @@ export type AuditLogWhereInput = {
   OR?: Prisma.AuditLogWhereInput[]
   NOT?: Prisma.AuditLogWhereInput | Prisma.AuditLogWhereInput[]
   id?: Prisma.UuidFilter<"AuditLog"> | string
-  workspaceId?: Prisma.UuidNullableFilter<"AuditLog"> | string | null
   actorType?: Prisma.EnumAuditActorTypeFilter<"AuditLog"> | $Enums.AuditActorType
   adminUserId?: Prisma.UuidNullableFilter<"AuditLog"> | string | null
   editorSessionId?: Prisma.UuidNullableFilter<"AuditLog"> | string | null
@@ -234,13 +233,13 @@ export type AuditLogWhereInput = {
   ipHash?: Prisma.BytesNullableFilter<"AuditLog"> | runtime.Bytes | null
   metadata?: Prisma.JsonNullableFilter<"AuditLog">
   createdAt?: Prisma.DateTimeFilter<"AuditLog"> | Date | string
+  workspaceId?: Prisma.UuidNullableFilter<"AuditLog"> | string | null
   adminUser?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceNullableScalarRelationFilter, Prisma.WorkspaceWhereInput> | null
 }
 
 export type AuditLogOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
   actorType?: Prisma.SortOrder
   adminUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   editorSessionId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -251,6 +250,7 @@ export type AuditLogOrderByWithRelationInput = {
   ipHash?: Prisma.SortOrderInput | Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
   adminUser?: Prisma.AdminUserOrderByWithRelationInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
 }
@@ -260,7 +260,6 @@ export type AuditLogWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.AuditLogWhereInput | Prisma.AuditLogWhereInput[]
   OR?: Prisma.AuditLogWhereInput[]
   NOT?: Prisma.AuditLogWhereInput | Prisma.AuditLogWhereInput[]
-  workspaceId?: Prisma.UuidNullableFilter<"AuditLog"> | string | null
   actorType?: Prisma.EnumAuditActorTypeFilter<"AuditLog"> | $Enums.AuditActorType
   adminUserId?: Prisma.UuidNullableFilter<"AuditLog"> | string | null
   editorSessionId?: Prisma.UuidNullableFilter<"AuditLog"> | string | null
@@ -271,13 +270,13 @@ export type AuditLogWhereUniqueInput = Prisma.AtLeast<{
   ipHash?: Prisma.BytesNullableFilter<"AuditLog"> | runtime.Bytes | null
   metadata?: Prisma.JsonNullableFilter<"AuditLog">
   createdAt?: Prisma.DateTimeFilter<"AuditLog"> | Date | string
+  workspaceId?: Prisma.UuidNullableFilter<"AuditLog"> | string | null
   adminUser?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceNullableScalarRelationFilter, Prisma.WorkspaceWhereInput> | null
 }, "id">
 
 export type AuditLogOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
   actorType?: Prisma.SortOrder
   adminUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   editorSessionId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -288,6 +287,7 @@ export type AuditLogOrderByWithAggregationInput = {
   ipHash?: Prisma.SortOrderInput | Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.AuditLogCountOrderByAggregateInput
   _max?: Prisma.AuditLogMaxOrderByAggregateInput
   _min?: Prisma.AuditLogMinOrderByAggregateInput
@@ -298,7 +298,6 @@ export type AuditLogScalarWhereWithAggregatesInput = {
   OR?: Prisma.AuditLogScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AuditLogScalarWhereWithAggregatesInput | Prisma.AuditLogScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"AuditLog"> | string
-  workspaceId?: Prisma.UuidNullableWithAggregatesFilter<"AuditLog"> | string | null
   actorType?: Prisma.EnumAuditActorTypeWithAggregatesFilter<"AuditLog"> | $Enums.AuditActorType
   adminUserId?: Prisma.UuidNullableWithAggregatesFilter<"AuditLog"> | string | null
   editorSessionId?: Prisma.UuidNullableWithAggregatesFilter<"AuditLog"> | string | null
@@ -309,6 +308,7 @@ export type AuditLogScalarWhereWithAggregatesInput = {
   ipHash?: Prisma.BytesNullableWithAggregatesFilter<"AuditLog"> | runtime.Bytes | null
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"AuditLog">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AuditLog"> | Date | string
+  workspaceId?: Prisma.UuidNullableWithAggregatesFilter<"AuditLog"> | string | null
 }
 
 export type AuditLogCreateInput = {
@@ -328,7 +328,6 @@ export type AuditLogCreateInput = {
 
 export type AuditLogUncheckedCreateInput = {
   id?: string
-  workspaceId?: string | null
   actorType: $Enums.AuditActorType
   adminUserId?: string | null
   editorSessionId?: string | null
@@ -339,6 +338,7 @@ export type AuditLogUncheckedCreateInput = {
   ipHash?: runtime.Bytes | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  workspaceId?: string | null
 }
 
 export type AuditLogUpdateInput = {
@@ -358,7 +358,6 @@ export type AuditLogUpdateInput = {
 
 export type AuditLogUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   actorType?: Prisma.EnumAuditActorTypeFieldUpdateOperationsInput | $Enums.AuditActorType
   adminUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editorSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -369,11 +368,11 @@ export type AuditLogUncheckedUpdateInput = {
   ipHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AuditLogCreateManyInput = {
   id?: string
-  workspaceId?: string | null
   actorType: $Enums.AuditActorType
   adminUserId?: string | null
   editorSessionId?: string | null
@@ -384,6 +383,7 @@ export type AuditLogCreateManyInput = {
   ipHash?: runtime.Bytes | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  workspaceId?: string | null
 }
 
 export type AuditLogUpdateManyMutationInput = {
@@ -401,7 +401,6 @@ export type AuditLogUpdateManyMutationInput = {
 
 export type AuditLogUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   actorType?: Prisma.EnumAuditActorTypeFieldUpdateOperationsInput | $Enums.AuditActorType
   adminUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editorSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -412,6 +411,7 @@ export type AuditLogUncheckedUpdateManyInput = {
   ipHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AuditLogListRelationFilter = {
@@ -426,7 +426,6 @@ export type AuditLogOrderByRelationAggregateInput = {
 
 export type AuditLogCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   actorType?: Prisma.SortOrder
   adminUserId?: Prisma.SortOrder
   editorSessionId?: Prisma.SortOrder
@@ -437,11 +436,11 @@ export type AuditLogCountOrderByAggregateInput = {
   ipHash?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type AuditLogMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   actorType?: Prisma.SortOrder
   adminUserId?: Prisma.SortOrder
   editorSessionId?: Prisma.SortOrder
@@ -451,11 +450,11 @@ export type AuditLogMaxOrderByAggregateInput = {
   success?: Prisma.SortOrder
   ipHash?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type AuditLogMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   actorType?: Prisma.SortOrder
   adminUserId?: Prisma.SortOrder
   editorSessionId?: Prisma.SortOrder
@@ -465,6 +464,7 @@ export type AuditLogMinOrderByAggregateInput = {
   success?: Prisma.SortOrder
   ipHash?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type AuditLogCreateNestedManyWithoutAdminUserInput = {
@@ -571,7 +571,6 @@ export type AuditLogCreateWithoutAdminUserInput = {
 
 export type AuditLogUncheckedCreateWithoutAdminUserInput = {
   id?: string
-  workspaceId?: string | null
   actorType: $Enums.AuditActorType
   editorSessionId?: string | null
   action: string
@@ -581,6 +580,7 @@ export type AuditLogUncheckedCreateWithoutAdminUserInput = {
   ipHash?: runtime.Bytes | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  workspaceId?: string | null
 }
 
 export type AuditLogCreateOrConnectWithoutAdminUserInput = {
@@ -614,7 +614,6 @@ export type AuditLogScalarWhereInput = {
   OR?: Prisma.AuditLogScalarWhereInput[]
   NOT?: Prisma.AuditLogScalarWhereInput | Prisma.AuditLogScalarWhereInput[]
   id?: Prisma.UuidFilter<"AuditLog"> | string
-  workspaceId?: Prisma.UuidNullableFilter<"AuditLog"> | string | null
   actorType?: Prisma.EnumAuditActorTypeFilter<"AuditLog"> | $Enums.AuditActorType
   adminUserId?: Prisma.UuidNullableFilter<"AuditLog"> | string | null
   editorSessionId?: Prisma.UuidNullableFilter<"AuditLog"> | string | null
@@ -625,6 +624,7 @@ export type AuditLogScalarWhereInput = {
   ipHash?: Prisma.BytesNullableFilter<"AuditLog"> | runtime.Bytes | null
   metadata?: Prisma.JsonNullableFilter<"AuditLog">
   createdAt?: Prisma.DateTimeFilter<"AuditLog"> | Date | string
+  workspaceId?: Prisma.UuidNullableFilter<"AuditLog"> | string | null
 }
 
 export type AuditLogCreateWithoutWorkspaceInput = {
@@ -683,7 +683,6 @@ export type AuditLogUpdateManyWithWhereWithoutWorkspaceInput = {
 
 export type AuditLogCreateManyAdminUserInput = {
   id?: string
-  workspaceId?: string | null
   actorType: $Enums.AuditActorType
   editorSessionId?: string | null
   action: string
@@ -693,6 +692,7 @@ export type AuditLogCreateManyAdminUserInput = {
   ipHash?: runtime.Bytes | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  workspaceId?: string | null
 }
 
 export type AuditLogUpdateWithoutAdminUserInput = {
@@ -711,7 +711,6 @@ export type AuditLogUpdateWithoutAdminUserInput = {
 
 export type AuditLogUncheckedUpdateWithoutAdminUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   actorType?: Prisma.EnumAuditActorTypeFieldUpdateOperationsInput | $Enums.AuditActorType
   editorSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   action?: Prisma.StringFieldUpdateOperationsInput | string
@@ -721,11 +720,11 @@ export type AuditLogUncheckedUpdateWithoutAdminUserInput = {
   ipHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AuditLogUncheckedUpdateManyWithoutAdminUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   actorType?: Prisma.EnumAuditActorTypeFieldUpdateOperationsInput | $Enums.AuditActorType
   editorSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   action?: Prisma.StringFieldUpdateOperationsInput | string
@@ -735,6 +734,7 @@ export type AuditLogUncheckedUpdateManyWithoutAdminUserInput = {
   ipHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type AuditLogCreateManyWorkspaceInput = {
@@ -797,7 +797,6 @@ export type AuditLogUncheckedUpdateManyWithoutWorkspaceInput = {
 
 export type AuditLogSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   actorType?: boolean
   adminUserId?: boolean
   editorSessionId?: boolean
@@ -808,13 +807,13 @@ export type AuditLogSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   ipHash?: boolean
   metadata?: boolean
   createdAt?: boolean
+  workspaceId?: boolean
   adminUser?: boolean | Prisma.AuditLog$adminUserArgs<ExtArgs>
   workspace?: boolean | Prisma.AuditLog$workspaceArgs<ExtArgs>
 }, ExtArgs["result"]["auditLog"]>
 
 export type AuditLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   actorType?: boolean
   adminUserId?: boolean
   editorSessionId?: boolean
@@ -825,13 +824,13 @@ export type AuditLogSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   ipHash?: boolean
   metadata?: boolean
   createdAt?: boolean
+  workspaceId?: boolean
   adminUser?: boolean | Prisma.AuditLog$adminUserArgs<ExtArgs>
   workspace?: boolean | Prisma.AuditLog$workspaceArgs<ExtArgs>
 }, ExtArgs["result"]["auditLog"]>
 
 export type AuditLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   actorType?: boolean
   adminUserId?: boolean
   editorSessionId?: boolean
@@ -842,13 +841,13 @@ export type AuditLogSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   ipHash?: boolean
   metadata?: boolean
   createdAt?: boolean
+  workspaceId?: boolean
   adminUser?: boolean | Prisma.AuditLog$adminUserArgs<ExtArgs>
   workspace?: boolean | Prisma.AuditLog$workspaceArgs<ExtArgs>
 }, ExtArgs["result"]["auditLog"]>
 
 export type AuditLogSelectScalar = {
   id?: boolean
-  workspaceId?: boolean
   actorType?: boolean
   adminUserId?: boolean
   editorSessionId?: boolean
@@ -859,9 +858,10 @@ export type AuditLogSelectScalar = {
   ipHash?: boolean
   metadata?: boolean
   createdAt?: boolean
+  workspaceId?: boolean
 }
 
-export type AuditLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "actorType" | "adminUserId" | "editorSessionId" | "action" | "resourceType" | "resourceId" | "success" | "ipHash" | "metadata" | "createdAt", ExtArgs["result"]["auditLog"]>
+export type AuditLogOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "actorType" | "adminUserId" | "editorSessionId" | "action" | "resourceType" | "resourceId" | "success" | "ipHash" | "metadata" | "createdAt" | "workspaceId", ExtArgs["result"]["auditLog"]>
 export type AuditLogInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   adminUser?: boolean | Prisma.AuditLog$adminUserArgs<ExtArgs>
   workspace?: boolean | Prisma.AuditLog$workspaceArgs<ExtArgs>
@@ -883,7 +883,6 @@ export type $AuditLogPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    workspaceId: string | null
     actorType: $Enums.AuditActorType
     adminUserId: string | null
     editorSessionId: string | null
@@ -894,6 +893,7 @@ export type $AuditLogPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     ipHash: runtime.Bytes | null
     metadata: runtime.JsonValue | null
     createdAt: Date
+    workspaceId: string | null
   }, ExtArgs["result"]["auditLog"]>
   composites: {}
 }
@@ -1320,7 +1320,6 @@ export interface Prisma__AuditLogClient<T, Null = never, ExtArgs extends runtime
  */
 export interface AuditLogFieldRefs {
   readonly id: Prisma.FieldRef<"AuditLog", 'String'>
-  readonly workspaceId: Prisma.FieldRef<"AuditLog", 'String'>
   readonly actorType: Prisma.FieldRef<"AuditLog", 'AuditActorType'>
   readonly adminUserId: Prisma.FieldRef<"AuditLog", 'String'>
   readonly editorSessionId: Prisma.FieldRef<"AuditLog", 'String'>
@@ -1331,6 +1330,7 @@ export interface AuditLogFieldRefs {
   readonly ipHash: Prisma.FieldRef<"AuditLog", 'Bytes'>
   readonly metadata: Prisma.FieldRef<"AuditLog", 'Json'>
   readonly createdAt: Prisma.FieldRef<"AuditLog", 'DateTime'>
+  readonly workspaceId: Prisma.FieldRef<"AuditLog", 'String'>
 }
     
 

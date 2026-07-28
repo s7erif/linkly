@@ -70,28 +70,33 @@ export class ActivationService {
     const account = await this.accountForSession(sessionToken);
     if (!account?.workspace) throw new Error("Workspace membership is required");
     const editorToken = secureSessionTokenGenerator.generate();
-    const accessCode = secureAccessCodeGenerator.generate();
     const editorExpiresAt = new Date(Date.now() + editorLifetime * 1000);
     const card = await this.repository.createDigitalCardForAccount({
       accountId: account.id, customerId: account.customerId, workspaceId: account.workspace.id,
       displayName: account.displayName?.trim() || "OI Customer", email: account.email,
       slug: generateAccountUsername(account.displayName?.trim() || "my-card"),
-      accessCodeHash: await this.hasher.hash(accessCode),
       editorSessionHash: await secureSessionTokenGenerator.hash(editorToken), editorSessionExpiresAt: editorExpiresAt,
     });
     return { ...card, editorToken, editorExpiresAt };
   }
 
   async openCardForSession(sessionToken: string, cardId: string) {
+    console.log("[TRACE] entering openCardForSession");
     const account = await this.accountForSession(sessionToken);
-    if (!account?.workspace) throw new Error("Workspace membership is required");
+    console.log("[TRACE] accountForSession returned account:", account?.id);
+    if (!account?.workspace) {
+      console.error("[TRACE] Workspace membership is required, account:", account);
+      throw new Error("Workspace membership is required");
+    }
     const editorToken = secureSessionTokenGenerator.generate();
     const editorExpiresAt = new Date(Date.now() + editorLifetime * 1000);
+    console.log("[TRACE] calling createEditorSessionForAccount with cardId:", cardId);
     const card = await this.repository.createEditorSessionForAccount({
       accountId: account.id, customerId: account.customerId, workspaceId: account.workspace.id,
       cardId: z.string().uuid().parse(cardId),
       editorSessionHash: await secureSessionTokenGenerator.hash(editorToken), editorSessionExpiresAt: editorExpiresAt,
     });
+    console.log("[TRACE] createEditorSessionForAccount returned successfully");
     return { ...card, editorToken, editorExpiresAt };
   }
 

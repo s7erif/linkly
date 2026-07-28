@@ -113,8 +113,8 @@ describe("Sprint 2 application use cases", () => {
 
   it("ReadPublicCard returns only PublicCardDTO and filters hidden actions", async () => {
     const source: EditorCardDTO = { ...card, status: "PUBLISHED", visibility: "PUBLIC", themeConfig: { private: true }, buttons: [{ id: "b1", label: "Visible", url: "https://example.com", position: 0, isVisible: true, type: "WEBSITE", displayMode: "BUTTON", color: null, openInNewTab: false, analyticsEnabled: false }, { id: "b2", label: "Hidden", url: "https://example.com/h", position: 1, isVisible: false, type: "WEBSITE", displayMode: "BUTTON", color: null, openInNewTab: false, analyticsEnabled: false }], socialLinks: [{ id: "s1", platform: "x", label: null, url: "https://x.com/a", position: 0, isVisible: true }] };
-    const cards = { findById: vi.fn(), findEditorById: vi.fn(), findRenderSourceBySlug: vi.fn().mockResolvedValue(source) };
-    const result = await new ReadPublicCard(cards).execute({ slug: "ada" });
+    const cards = { findById: vi.fn(), findEditorById: vi.fn(), findRenderSourceBySlug: vi.fn().mockResolvedValue(source), slugExists: vi.fn() as any };
+    const result = await new ReadPublicCard(cards as any).execute({ slug: "ada" });
     expect(result.buttons).toEqual([expect.objectContaining({ id: "b1", label: "Visible", url: "https://example.com", position: 0 })]);
     expect(result.buttons).not.toEqual(expect.arrayContaining([expect.objectContaining({ id: "b2" })]));
     expect(result).not.toHaveProperty("customerId");

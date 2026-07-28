@@ -56,12 +56,12 @@ export type PlanMinAggregateOutputType = {
   quarterlyMinor: number | null
   yearlyMinor: number | null
   isActive: boolean | null
-  isPopular: boolean | null
-  badge: string | null
   sortOrder: number | null
-  archivedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  isPopular: boolean | null
+  badge: string | null
+  archivedAt: Date | null
 }
 
 export type PlanMaxAggregateOutputType = {
@@ -76,12 +76,12 @@ export type PlanMaxAggregateOutputType = {
   quarterlyMinor: number | null
   yearlyMinor: number | null
   isActive: boolean | null
-  isPopular: boolean | null
-  badge: string | null
   sortOrder: number | null
-  archivedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  isPopular: boolean | null
+  badge: string | null
+  archivedAt: Date | null
 }
 
 export type PlanCountAggregateOutputType = {
@@ -96,13 +96,13 @@ export type PlanCountAggregateOutputType = {
   quarterlyMinor: number
   yearlyMinor: number
   isActive: number
+  sortOrder: number
+  createdAt: number
+  updatedAt: number
   isPopular: number
   badge: number
   limits: number
-  sortOrder: number
   archivedAt: number
-  createdAt: number
-  updatedAt: number
   _all: number
 }
 
@@ -137,12 +137,12 @@ export type PlanMinAggregateInputType = {
   quarterlyMinor?: true
   yearlyMinor?: true
   isActive?: true
-  isPopular?: true
-  badge?: true
   sortOrder?: true
-  archivedAt?: true
   createdAt?: true
   updatedAt?: true
+  isPopular?: true
+  badge?: true
+  archivedAt?: true
 }
 
 export type PlanMaxAggregateInputType = {
@@ -157,12 +157,12 @@ export type PlanMaxAggregateInputType = {
   quarterlyMinor?: true
   yearlyMinor?: true
   isActive?: true
-  isPopular?: true
-  badge?: true
   sortOrder?: true
-  archivedAt?: true
   createdAt?: true
   updatedAt?: true
+  isPopular?: true
+  badge?: true
+  archivedAt?: true
 }
 
 export type PlanCountAggregateInputType = {
@@ -177,13 +177,13 @@ export type PlanCountAggregateInputType = {
   quarterlyMinor?: true
   yearlyMinor?: true
   isActive?: true
+  sortOrder?: true
+  createdAt?: true
+  updatedAt?: true
   isPopular?: true
   badge?: true
   limits?: true
-  sortOrder?: true
   archivedAt?: true
-  createdAt?: true
-  updatedAt?: true
   _all?: true
 }
 
@@ -285,13 +285,13 @@ export type PlanGroupByOutputType = {
   quarterlyMinor: number | null
   yearlyMinor: number | null
   isActive: boolean
+  sortOrder: number
+  createdAt: Date
+  updatedAt: Date
   isPopular: boolean
   badge: string | null
   limits: runtime.JsonValue
-  sortOrder: number
   archivedAt: Date | null
-  createdAt: Date
-  updatedAt: Date
   _count: PlanCountAggregateOutputType | null
   _avg: PlanAvgAggregateOutputType | null
   _sum: PlanSumAggregateOutputType | null
@@ -329,16 +329,16 @@ export type PlanWhereInput = {
   quarterlyMinor?: Prisma.IntNullableFilter<"Plan"> | number | null
   yearlyMinor?: Prisma.IntNullableFilter<"Plan"> | number | null
   isActive?: Prisma.BoolFilter<"Plan"> | boolean
+  sortOrder?: Prisma.IntFilter<"Plan"> | number
+  createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   isPopular?: Prisma.BoolFilter<"Plan"> | boolean
   badge?: Prisma.StringNullableFilter<"Plan"> | string | null
   limits?: Prisma.JsonFilter<"Plan">
-  sortOrder?: Prisma.IntFilter<"Plan"> | number
   archivedAt?: Prisma.DateTimeNullableFilter<"Plan"> | Date | string | null
-  createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
-  subscriptions?: Prisma.SubscriptionListRelationFilter
-  features?: Prisma.PlanFeatureListRelationFilter
   orders?: Prisma.OrderListRelationFilter
+  features?: Prisma.PlanFeatureListRelationFilter
+  subscriptions?: Prisma.SubscriptionListRelationFilter
 }
 
 export type PlanOrderByWithRelationInput = {
@@ -353,16 +353,16 @@ export type PlanOrderByWithRelationInput = {
   quarterlyMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   yearlyMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  sortOrder?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   isPopular?: Prisma.SortOrder
   badge?: Prisma.SortOrderInput | Prisma.SortOrder
   limits?: Prisma.SortOrder
-  sortOrder?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-  subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
-  features?: Prisma.PlanFeatureOrderByRelationAggregateInput
   orders?: Prisma.OrderOrderByRelationAggregateInput
+  features?: Prisma.PlanFeatureOrderByRelationAggregateInput
+  subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
 }
 
 export type PlanWhereUniqueInput = Prisma.AtLeast<{
@@ -381,15 +381,15 @@ export type PlanWhereUniqueInput = Prisma.AtLeast<{
   quarterlyMinor?: Prisma.IntNullableFilter<"Plan"> | number | null
   yearlyMinor?: Prisma.IntNullableFilter<"Plan"> | number | null
   isActive?: Prisma.BoolFilter<"Plan"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
   isPopular?: Prisma.BoolFilter<"Plan"> | boolean
   badge?: Prisma.StringNullableFilter<"Plan"> | string | null
   limits?: Prisma.JsonFilter<"Plan">
   archivedAt?: Prisma.DateTimeNullableFilter<"Plan"> | Date | string | null
-  createdAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Plan"> | Date | string
-  subscriptions?: Prisma.SubscriptionListRelationFilter
-  features?: Prisma.PlanFeatureListRelationFilter
   orders?: Prisma.OrderListRelationFilter
+  features?: Prisma.PlanFeatureListRelationFilter
+  subscriptions?: Prisma.SubscriptionListRelationFilter
 }, "id" | "key" | "sortOrder">
 
 export type PlanOrderByWithAggregationInput = {
@@ -404,13 +404,13 @@ export type PlanOrderByWithAggregationInput = {
   quarterlyMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   yearlyMinor?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  sortOrder?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   isPopular?: Prisma.SortOrder
   badge?: Prisma.SortOrderInput | Prisma.SortOrder
   limits?: Prisma.SortOrder
-  sortOrder?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   _count?: Prisma.PlanCountOrderByAggregateInput
   _avg?: Prisma.PlanAvgOrderByAggregateInput
   _max?: Prisma.PlanMaxOrderByAggregateInput
@@ -433,13 +433,13 @@ export type PlanScalarWhereWithAggregatesInput = {
   quarterlyMinor?: Prisma.IntNullableWithAggregatesFilter<"Plan"> | number | null
   yearlyMinor?: Prisma.IntNullableWithAggregatesFilter<"Plan"> | number | null
   isActive?: Prisma.BoolWithAggregatesFilter<"Plan"> | boolean
+  sortOrder?: Prisma.IntWithAggregatesFilter<"Plan"> | number
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
   isPopular?: Prisma.BoolWithAggregatesFilter<"Plan"> | boolean
   badge?: Prisma.StringNullableWithAggregatesFilter<"Plan"> | string | null
   limits?: Prisma.JsonWithAggregatesFilter<"Plan">
-  sortOrder?: Prisma.IntWithAggregatesFilter<"Plan"> | number
   archivedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Plan"> | Date | string | null
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Plan"> | Date | string
 }
 
 export type PlanCreateInput = {
@@ -454,16 +454,16 @@ export type PlanCreateInput = {
   quarterlyMinor?: number | null
   yearlyMinor?: number | null
   isActive?: boolean
+  sortOrder?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   isPopular?: boolean
   badge?: string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: number
   archivedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
-  features?: Prisma.PlanFeatureCreateNestedManyWithoutPlanInput
   orders?: Prisma.OrderCreateNestedManyWithoutPlanInput
+  features?: Prisma.PlanFeatureCreateNestedManyWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateInput = {
@@ -478,16 +478,16 @@ export type PlanUncheckedCreateInput = {
   quarterlyMinor?: number | null
   yearlyMinor?: number | null
   isActive?: boolean
+  sortOrder?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   isPopular?: boolean
   badge?: string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: number
   archivedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
-  features?: Prisma.PlanFeatureUncheckedCreateNestedManyWithoutPlanInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutPlanInput
+  features?: Prisma.PlanFeatureUncheckedCreateNestedManyWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUpdateInput = {
@@ -502,16 +502,16 @@ export type PlanUpdateInput = {
   quarterlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   yearlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPopular?: Prisma.BoolFieldUpdateOperationsInput | boolean
   badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
-  features?: Prisma.PlanFeatureUpdateManyWithoutPlanNestedInput
   orders?: Prisma.OrderUpdateManyWithoutPlanNestedInput
+  features?: Prisma.PlanFeatureUpdateManyWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateInput = {
@@ -526,16 +526,16 @@ export type PlanUncheckedUpdateInput = {
   quarterlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   yearlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPopular?: Prisma.BoolFieldUpdateOperationsInput | boolean
   badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
-  features?: Prisma.PlanFeatureUncheckedUpdateManyWithoutPlanNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutPlanNestedInput
+  features?: Prisma.PlanFeatureUncheckedUpdateManyWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateManyInput = {
@@ -550,13 +550,13 @@ export type PlanCreateManyInput = {
   quarterlyMinor?: number | null
   yearlyMinor?: number | null
   isActive?: boolean
+  sortOrder?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   isPopular?: boolean
   badge?: string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: number
   archivedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type PlanUpdateManyMutationInput = {
@@ -571,13 +571,13 @@ export type PlanUpdateManyMutationInput = {
   quarterlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   yearlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPopular?: Prisma.BoolFieldUpdateOperationsInput | boolean
   badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PlanUncheckedUpdateManyInput = {
@@ -592,13 +592,13 @@ export type PlanUncheckedUpdateManyInput = {
   quarterlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   yearlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPopular?: Prisma.BoolFieldUpdateOperationsInput | boolean
   badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type PlanNullableScalarRelationFilter = {
@@ -618,13 +618,13 @@ export type PlanCountOrderByAggregateInput = {
   quarterlyMinor?: Prisma.SortOrder
   yearlyMinor?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  sortOrder?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   isPopular?: Prisma.SortOrder
   badge?: Prisma.SortOrder
   limits?: Prisma.SortOrder
-  sortOrder?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
 }
 
 export type PlanAvgOrderByAggregateInput = {
@@ -648,12 +648,12 @@ export type PlanMaxOrderByAggregateInput = {
   quarterlyMinor?: Prisma.SortOrder
   yearlyMinor?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  isPopular?: Prisma.SortOrder
-  badge?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
-  archivedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isPopular?: Prisma.SortOrder
+  badge?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
 }
 
 export type PlanMinOrderByAggregateInput = {
@@ -668,12 +668,12 @@ export type PlanMinOrderByAggregateInput = {
   quarterlyMinor?: Prisma.SortOrder
   yearlyMinor?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
-  isPopular?: Prisma.SortOrder
-  badge?: Prisma.SortOrder
   sortOrder?: Prisma.SortOrder
-  archivedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  isPopular?: Prisma.SortOrder
+  badge?: Prisma.SortOrder
+  archivedAt?: Prisma.SortOrder
 }
 
 export type PlanSumOrderByAggregateInput = {
@@ -746,15 +746,15 @@ export type PlanCreateWithoutOrdersInput = {
   quarterlyMinor?: number | null
   yearlyMinor?: number | null
   isActive?: boolean
+  sortOrder?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   isPopular?: boolean
   badge?: string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: number
   archivedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
   features?: Prisma.PlanFeatureCreateNestedManyWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutOrdersInput = {
@@ -769,15 +769,15 @@ export type PlanUncheckedCreateWithoutOrdersInput = {
   quarterlyMinor?: number | null
   yearlyMinor?: number | null
   isActive?: boolean
+  sortOrder?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   isPopular?: boolean
   badge?: string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: number
   archivedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
   features?: Prisma.PlanFeatureUncheckedCreateNestedManyWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutOrdersInput = {
@@ -808,15 +808,15 @@ export type PlanUpdateWithoutOrdersInput = {
   quarterlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   yearlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPopular?: Prisma.BoolFieldUpdateOperationsInput | boolean
   badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
   features?: Prisma.PlanFeatureUpdateManyWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutOrdersInput = {
@@ -831,15 +831,15 @@ export type PlanUncheckedUpdateWithoutOrdersInput = {
   quarterlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   yearlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPopular?: Prisma.BoolFieldUpdateOperationsInput | boolean
   badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
   features?: Prisma.PlanFeatureUncheckedUpdateManyWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutFeaturesInput = {
@@ -854,15 +854,15 @@ export type PlanCreateWithoutFeaturesInput = {
   quarterlyMinor?: number | null
   yearlyMinor?: number | null
   isActive?: boolean
+  sortOrder?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   isPopular?: boolean
   badge?: string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: number
   archivedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
   orders?: Prisma.OrderCreateNestedManyWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutFeaturesInput = {
@@ -877,15 +877,15 @@ export type PlanUncheckedCreateWithoutFeaturesInput = {
   quarterlyMinor?: number | null
   yearlyMinor?: number | null
   isActive?: boolean
+  sortOrder?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   isPopular?: boolean
   badge?: string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: number
   archivedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutPlanInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutFeaturesInput = {
@@ -916,15 +916,15 @@ export type PlanUpdateWithoutFeaturesInput = {
   quarterlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   yearlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPopular?: Prisma.BoolFieldUpdateOperationsInput | boolean
   badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
   orders?: Prisma.OrderUpdateManyWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutFeaturesInput = {
@@ -939,15 +939,15 @@ export type PlanUncheckedUpdateWithoutFeaturesInput = {
   quarterlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   yearlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPopular?: Prisma.BoolFieldUpdateOperationsInput | boolean
   badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutPlanNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanCreateWithoutSubscriptionsInput = {
@@ -962,15 +962,15 @@ export type PlanCreateWithoutSubscriptionsInput = {
   quarterlyMinor?: number | null
   yearlyMinor?: number | null
   isActive?: boolean
+  sortOrder?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   isPopular?: boolean
   badge?: string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: number
   archivedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  features?: Prisma.PlanFeatureCreateNestedManyWithoutPlanInput
   orders?: Prisma.OrderCreateNestedManyWithoutPlanInput
+  features?: Prisma.PlanFeatureCreateNestedManyWithoutPlanInput
 }
 
 export type PlanUncheckedCreateWithoutSubscriptionsInput = {
@@ -985,15 +985,15 @@ export type PlanUncheckedCreateWithoutSubscriptionsInput = {
   quarterlyMinor?: number | null
   yearlyMinor?: number | null
   isActive?: boolean
+  sortOrder?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   isPopular?: boolean
   badge?: string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: number
   archivedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  features?: Prisma.PlanFeatureUncheckedCreateNestedManyWithoutPlanInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutPlanInput
+  features?: Prisma.PlanFeatureUncheckedCreateNestedManyWithoutPlanInput
 }
 
 export type PlanCreateOrConnectWithoutSubscriptionsInput = {
@@ -1024,15 +1024,15 @@ export type PlanUpdateWithoutSubscriptionsInput = {
   quarterlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   yearlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPopular?: Prisma.BoolFieldUpdateOperationsInput | boolean
   badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  features?: Prisma.PlanFeatureUpdateManyWithoutPlanNestedInput
   orders?: Prisma.OrderUpdateManyWithoutPlanNestedInput
+  features?: Prisma.PlanFeatureUpdateManyWithoutPlanNestedInput
 }
 
 export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
@@ -1047,15 +1047,15 @@ export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
   quarterlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   yearlyMinor?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPopular?: Prisma.BoolFieldUpdateOperationsInput | boolean
   badge?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limits?: Prisma.JsonNullValueInput | runtime.InputJsonValue
-  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  features?: Prisma.PlanFeatureUncheckedUpdateManyWithoutPlanNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutPlanNestedInput
+  features?: Prisma.PlanFeatureUncheckedUpdateManyWithoutPlanNestedInput
 }
 
 
@@ -1064,15 +1064,15 @@ export type PlanUncheckedUpdateWithoutSubscriptionsInput = {
  */
 
 export type PlanCountOutputType = {
-  subscriptions: number
-  features: number
   orders: number
+  features: number
+  subscriptions: number
 }
 
 export type PlanCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  subscriptions?: boolean | PlanCountOutputTypeCountSubscriptionsArgs
-  features?: boolean | PlanCountOutputTypeCountFeaturesArgs
   orders?: boolean | PlanCountOutputTypeCountOrdersArgs
+  features?: boolean | PlanCountOutputTypeCountFeaturesArgs
+  subscriptions?: boolean | PlanCountOutputTypeCountSubscriptionsArgs
 }
 
 /**
@@ -1088,8 +1088,8 @@ export type PlanCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * PlanCountOutputType without action
  */
-export type PlanCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SubscriptionWhereInput
+export type PlanCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderWhereInput
 }
 
 /**
@@ -1102,8 +1102,8 @@ export type PlanCountOutputTypeCountFeaturesArgs<ExtArgs extends runtime.Types.E
 /**
  * PlanCountOutputType without action
  */
-export type PlanCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OrderWhereInput
+export type PlanCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriptionWhereInput
 }
 
 
@@ -1119,16 +1119,16 @@ export type PlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   quarterlyMinor?: boolean
   yearlyMinor?: boolean
   isActive?: boolean
+  sortOrder?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   isPopular?: boolean
   badge?: boolean
   limits?: boolean
-  sortOrder?: boolean
   archivedAt?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
-  subscriptions?: boolean | Prisma.Plan$subscriptionsArgs<ExtArgs>
-  features?: boolean | Prisma.Plan$featuresArgs<ExtArgs>
   orders?: boolean | Prisma.Plan$ordersArgs<ExtArgs>
+  features?: boolean | Prisma.Plan$featuresArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.Plan$subscriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.PlanCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["plan"]>
 
@@ -1144,13 +1144,13 @@ export type PlanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   quarterlyMinor?: boolean
   yearlyMinor?: boolean
   isActive?: boolean
+  sortOrder?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   isPopular?: boolean
   badge?: boolean
   limits?: boolean
-  sortOrder?: boolean
   archivedAt?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
 }, ExtArgs["result"]["plan"]>
 
 export type PlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1165,13 +1165,13 @@ export type PlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   quarterlyMinor?: boolean
   yearlyMinor?: boolean
   isActive?: boolean
+  sortOrder?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   isPopular?: boolean
   badge?: boolean
   limits?: boolean
-  sortOrder?: boolean
   archivedAt?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
 }, ExtArgs["result"]["plan"]>
 
 export type PlanSelectScalar = {
@@ -1186,20 +1186,20 @@ export type PlanSelectScalar = {
   quarterlyMinor?: boolean
   yearlyMinor?: boolean
   isActive?: boolean
+  sortOrder?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   isPopular?: boolean
   badge?: boolean
   limits?: boolean
-  sortOrder?: boolean
   archivedAt?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
 }
 
-export type PlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "key" | "name" | "description" | "priceMinor" | "currency" | "intervalMonths" | "monthlyMinor" | "quarterlyMinor" | "yearlyMinor" | "isActive" | "isPopular" | "badge" | "limits" | "sortOrder" | "archivedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["plan"]>
+export type PlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "key" | "name" | "description" | "priceMinor" | "currency" | "intervalMonths" | "monthlyMinor" | "quarterlyMinor" | "yearlyMinor" | "isActive" | "sortOrder" | "createdAt" | "updatedAt" | "isPopular" | "badge" | "limits" | "archivedAt", ExtArgs["result"]["plan"]>
 export type PlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  subscriptions?: boolean | Prisma.Plan$subscriptionsArgs<ExtArgs>
-  features?: boolean | Prisma.Plan$featuresArgs<ExtArgs>
   orders?: boolean | Prisma.Plan$ordersArgs<ExtArgs>
+  features?: boolean | Prisma.Plan$featuresArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.Plan$subscriptionsArgs<ExtArgs>
   _count?: boolean | Prisma.PlanCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PlanIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1208,9 +1208,9 @@ export type PlanIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $PlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Plan"
   objects: {
-    subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
-    features: Prisma.$PlanFeaturePayload<ExtArgs>[]
     orders: Prisma.$OrderPayload<ExtArgs>[]
+    features: Prisma.$PlanFeaturePayload<ExtArgs>[]
+    subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1224,13 +1224,13 @@ export type $PlanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     quarterlyMinor: number | null
     yearlyMinor: number | null
     isActive: boolean
+    sortOrder: number
+    createdAt: Date
+    updatedAt: Date
     isPopular: boolean
     badge: string | null
     limits: runtime.JsonValue
-    sortOrder: number
     archivedAt: Date | null
-    createdAt: Date
-    updatedAt: Date
   }, ExtArgs["result"]["plan"]>
   composites: {}
 }
@@ -1625,9 +1625,9 @@ readonly fields: PlanFieldRefs;
  */
 export interface Prisma__PlanClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  subscriptions<T extends Prisma.Plan$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  features<T extends Prisma.Plan$featuresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$featuresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanFeaturePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orders<T extends Prisma.Plan$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  features<T extends Prisma.Plan$featuresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$featuresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanFeaturePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscriptions<T extends Prisma.Plan$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Plan$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1668,13 +1668,13 @@ export interface PlanFieldRefs {
   readonly quarterlyMinor: Prisma.FieldRef<"Plan", 'Int'>
   readonly yearlyMinor: Prisma.FieldRef<"Plan", 'Int'>
   readonly isActive: Prisma.FieldRef<"Plan", 'Boolean'>
+  readonly sortOrder: Prisma.FieldRef<"Plan", 'Int'>
+  readonly createdAt: Prisma.FieldRef<"Plan", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Plan", 'DateTime'>
   readonly isPopular: Prisma.FieldRef<"Plan", 'Boolean'>
   readonly badge: Prisma.FieldRef<"Plan", 'String'>
   readonly limits: Prisma.FieldRef<"Plan", 'Json'>
-  readonly sortOrder: Prisma.FieldRef<"Plan", 'Int'>
   readonly archivedAt: Prisma.FieldRef<"Plan", 'DateTime'>
-  readonly createdAt: Prisma.FieldRef<"Plan", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"Plan", 'DateTime'>
 }
     
 
@@ -2068,27 +2068,27 @@ export type PlanDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Plan.subscriptions
+ * Plan.orders
  */
-export type Plan$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Plan$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Subscription
+   * Select specific fields to fetch from the Order
    */
-  select?: Prisma.SubscriptionSelect<ExtArgs> | null
+  select?: Prisma.OrderSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Subscription
+   * Omit specific fields from the Order
    */
-  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
+  omit?: Prisma.OrderOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SubscriptionInclude<ExtArgs> | null
-  where?: Prisma.SubscriptionWhereInput
-  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
-  cursor?: Prisma.SubscriptionWhereUniqueInput
+  include?: Prisma.OrderInclude<ExtArgs> | null
+  where?: Prisma.OrderWhereInput
+  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
+  cursor?: Prisma.OrderWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
+  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
 }
 
 /**
@@ -2116,27 +2116,27 @@ export type Plan$featuresArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * Plan.orders
+ * Plan.subscriptions
  */
-export type Plan$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Plan$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Order
+   * Select specific fields to fetch from the Subscription
    */
-  select?: Prisma.OrderSelect<ExtArgs> | null
+  select?: Prisma.SubscriptionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Order
+   * Omit specific fields from the Subscription
    */
-  omit?: Prisma.OrderOmit<ExtArgs> | null
+  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.OrderInclude<ExtArgs> | null
-  where?: Prisma.OrderWhereInput
-  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
-  cursor?: Prisma.OrderWhereUniqueInput
+  include?: Prisma.SubscriptionInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionWhereInput
+  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriptionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
+  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
 }
 
 /**

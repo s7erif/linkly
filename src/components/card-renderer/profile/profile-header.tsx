@@ -31,7 +31,10 @@ export function ProfileHeader({ fullName, headline, company, address, className 
     >
       {/* 2. Display Name: Strongest visual element */}
       <h1
-        className="text-[26px] sm:text-[28px] md:text-[30px] font-bold tracking-tight leading-tight"
+        className={cn(
+          "font-bold tracking-tight leading-tight",
+          "text-[26px] sm:text-[28px] md:text-[30px] lg:text-[var(--header-title-scale,30px)]"
+        )}
         style={{
           fontFamily: theme.typography.fontFamily,
           color: theme.colors.text,
@@ -43,7 +46,11 @@ export function ProfileHeader({ fullName, headline, company, address, className 
       {/* 3. Role & Company: Supporting information */}
       {roleText && (
         <span
-          className="mt-2 md:mt-2.5 text-[10px] sm:text-[11px] md:text-[12px] font-semibold uppercase tracking-wider opacity-60"
+          className={cn(
+            "mt-2 md:mt-2.5 font-semibold uppercase tracking-wider opacity-60",
+            "text-[10px] sm:text-[11px] md:text-[12px] lg:text-[var(--header-subtitle-scale,12px)]",
+            "lg:tracking-[var(--header-subtitle-tracking,0.05em)]"
+          )}
           style={{
             fontFamily: theme.typography.fontFamily,
             color: theme.colors.text,

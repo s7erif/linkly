@@ -26,70 +26,70 @@ export type AggregateNfcCard = {
 
 export type NfcCardMinAggregateOutputType = {
   id: string | null
-  activationToken: string | null
   status: $Enums.NfcCardStatus | null
   customerId: string | null
-  workspaceId: string | null
-  cardId: string | null
-  activatedAt: Date | null
   createdAt: Date | null
+  activatedAt: Date | null
+  workspaceId: string | null
+  activationToken: string | null
+  cardId: string | null
 }
 
 export type NfcCardMaxAggregateOutputType = {
   id: string | null
-  activationToken: string | null
   status: $Enums.NfcCardStatus | null
   customerId: string | null
-  workspaceId: string | null
-  cardId: string | null
-  activatedAt: Date | null
   createdAt: Date | null
+  activatedAt: Date | null
+  workspaceId: string | null
+  activationToken: string | null
+  cardId: string | null
 }
 
 export type NfcCardCountAggregateOutputType = {
   id: number
-  activationToken: number
   status: number
   customerId: number
-  workspaceId: number
-  cardId: number
-  activatedAt: number
   createdAt: number
+  activatedAt: number
+  workspaceId: number
+  activationToken: number
+  cardId: number
   _all: number
 }
 
 
 export type NfcCardMinAggregateInputType = {
   id?: true
-  activationToken?: true
   status?: true
   customerId?: true
-  workspaceId?: true
-  cardId?: true
-  activatedAt?: true
   createdAt?: true
+  activatedAt?: true
+  workspaceId?: true
+  activationToken?: true
+  cardId?: true
 }
 
 export type NfcCardMaxAggregateInputType = {
   id?: true
-  activationToken?: true
   status?: true
   customerId?: true
-  workspaceId?: true
-  cardId?: true
-  activatedAt?: true
   createdAt?: true
+  activatedAt?: true
+  workspaceId?: true
+  activationToken?: true
+  cardId?: true
 }
 
 export type NfcCardCountAggregateInputType = {
   id?: true
-  activationToken?: true
   status?: true
   customerId?: true
-  workspaceId?: true
-  cardId?: true
-  activatedAt?: true
   createdAt?: true
+  activatedAt?: true
+  workspaceId?: true
+  activationToken?: true
+  cardId?: true
   _all?: true
 }
 
@@ -167,13 +167,13 @@ export type NfcCardGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type NfcCardGroupByOutputType = {
   id: string
-  activationToken: string
   status: $Enums.NfcCardStatus
   customerId: string | null
-  workspaceId: string | null
-  cardId: string | null
-  activatedAt: Date | null
   createdAt: Date
+  activatedAt: Date | null
+  workspaceId: string | null
+  activationToken: string
+  cardId: string | null
   _count: NfcCardCountAggregateOutputType | null
   _min: NfcCardMinAggregateOutputType | null
   _max: NfcCardMaxAggregateOutputType | null
@@ -199,30 +199,30 @@ export type NfcCardWhereInput = {
   OR?: Prisma.NfcCardWhereInput[]
   NOT?: Prisma.NfcCardWhereInput | Prisma.NfcCardWhereInput[]
   id?: Prisma.UuidFilter<"NfcCard"> | string
-  activationToken?: Prisma.StringFilter<"NfcCard"> | string
   status?: Prisma.EnumNfcCardStatusFilter<"NfcCard"> | $Enums.NfcCardStatus
   customerId?: Prisma.UuidNullableFilter<"NfcCard"> | string | null
-  workspaceId?: Prisma.UuidNullableFilter<"NfcCard"> | string | null
-  cardId?: Prisma.UuidNullableFilter<"NfcCard"> | string | null
-  activatedAt?: Prisma.DateTimeNullableFilter<"NfcCard"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"NfcCard"> | Date | string
+  activatedAt?: Prisma.DateTimeNullableFilter<"NfcCard"> | Date | string | null
+  workspaceId?: Prisma.UuidNullableFilter<"NfcCard"> | string | null
+  activationToken?: Prisma.StringFilter<"NfcCard"> | string
+  cardId?: Prisma.UuidNullableFilter<"NfcCard"> | string | null
+  card?: Prisma.XOR<Prisma.CardNullableScalarRelationFilter, Prisma.CardWhereInput> | null
   customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceNullableScalarRelationFilter, Prisma.WorkspaceWhereInput> | null
-  card?: Prisma.XOR<Prisma.CardNullableScalarRelationFilter, Prisma.CardWhereInput> | null
 }
 
 export type NfcCardOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  activationToken?: Prisma.SortOrder
   status?: Prisma.SortOrder
   customerId?: Prisma.SortOrderInput | Prisma.SortOrder
-  workspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
-  cardId?: Prisma.SortOrderInput | Prisma.SortOrder
-  activatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  activatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  workspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  activationToken?: Prisma.SortOrder
+  cardId?: Prisma.SortOrderInput | Prisma.SortOrder
+  card?: Prisma.CardOrderByWithRelationInput
   customer?: Prisma.CustomerOrderByWithRelationInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
-  card?: Prisma.CardOrderByWithRelationInput
 }
 
 export type NfcCardWhereUniqueInput = Prisma.AtLeast<{
@@ -233,24 +233,24 @@ export type NfcCardWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.NfcCardWhereInput | Prisma.NfcCardWhereInput[]
   status?: Prisma.EnumNfcCardStatusFilter<"NfcCard"> | $Enums.NfcCardStatus
   customerId?: Prisma.UuidNullableFilter<"NfcCard"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"NfcCard"> | Date | string
+  activatedAt?: Prisma.DateTimeNullableFilter<"NfcCard"> | Date | string | null
   workspaceId?: Prisma.UuidNullableFilter<"NfcCard"> | string | null
   cardId?: Prisma.UuidNullableFilter<"NfcCard"> | string | null
-  activatedAt?: Prisma.DateTimeNullableFilter<"NfcCard"> | Date | string | null
-  createdAt?: Prisma.DateTimeFilter<"NfcCard"> | Date | string
+  card?: Prisma.XOR<Prisma.CardNullableScalarRelationFilter, Prisma.CardWhereInput> | null
   customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceNullableScalarRelationFilter, Prisma.WorkspaceWhereInput> | null
-  card?: Prisma.XOR<Prisma.CardNullableScalarRelationFilter, Prisma.CardWhereInput> | null
 }, "id" | "activationToken">
 
 export type NfcCardOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  activationToken?: Prisma.SortOrder
   status?: Prisma.SortOrder
   customerId?: Prisma.SortOrderInput | Prisma.SortOrder
-  workspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
-  cardId?: Prisma.SortOrderInput | Prisma.SortOrder
-  activatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  activatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  workspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
+  activationToken?: Prisma.SortOrder
+  cardId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.NfcCardCountOrderByAggregateInput
   _max?: Prisma.NfcCardMaxOrderByAggregateInput
   _min?: Prisma.NfcCardMinOrderByAggregateInput
@@ -261,87 +261,87 @@ export type NfcCardScalarWhereWithAggregatesInput = {
   OR?: Prisma.NfcCardScalarWhereWithAggregatesInput[]
   NOT?: Prisma.NfcCardScalarWhereWithAggregatesInput | Prisma.NfcCardScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"NfcCard"> | string
-  activationToken?: Prisma.StringWithAggregatesFilter<"NfcCard"> | string
   status?: Prisma.EnumNfcCardStatusWithAggregatesFilter<"NfcCard"> | $Enums.NfcCardStatus
   customerId?: Prisma.UuidNullableWithAggregatesFilter<"NfcCard"> | string | null
-  workspaceId?: Prisma.UuidNullableWithAggregatesFilter<"NfcCard"> | string | null
-  cardId?: Prisma.UuidNullableWithAggregatesFilter<"NfcCard"> | string | null
-  activatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"NfcCard"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"NfcCard"> | Date | string
+  activatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"NfcCard"> | Date | string | null
+  workspaceId?: Prisma.UuidNullableWithAggregatesFilter<"NfcCard"> | string | null
+  activationToken?: Prisma.StringWithAggregatesFilter<"NfcCard"> | string
+  cardId?: Prisma.UuidNullableWithAggregatesFilter<"NfcCard"> | string | null
 }
 
 export type NfcCardCreateInput = {
   id?: string
-  activationToken: string
   status?: $Enums.NfcCardStatus
-  activatedAt?: Date | string | null
   createdAt?: Date | string
+  activatedAt?: Date | string | null
+  activationToken: string
+  card?: Prisma.CardCreateNestedOneWithoutNfcCardsInput
   customer?: Prisma.CustomerCreateNestedOneWithoutNfcCardsInput
   workspace?: Prisma.WorkspaceCreateNestedOneWithoutNfcCardsInput
-  card?: Prisma.CardCreateNestedOneWithoutNfcCardsInput
 }
 
 export type NfcCardUncheckedCreateInput = {
   id?: string
-  activationToken: string
   status?: $Enums.NfcCardStatus
   customerId?: string | null
-  workspaceId?: string | null
-  cardId?: string | null
-  activatedAt?: Date | string | null
   createdAt?: Date | string
+  activatedAt?: Date | string | null
+  workspaceId?: string | null
+  activationToken: string
+  cardId?: string | null
 }
 
 export type NfcCardUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumNfcCardStatusFieldUpdateOperationsInput | $Enums.NfcCardStatus
-  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
+  card?: Prisma.CardUpdateOneWithoutNfcCardsNestedInput
   customer?: Prisma.CustomerUpdateOneWithoutNfcCardsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneWithoutNfcCardsNestedInput
-  card?: Prisma.CardUpdateOneWithoutNfcCardsNestedInput
 }
 
 export type NfcCardUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumNfcCardStatusFieldUpdateOperationsInput | $Enums.NfcCardStatus
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type NfcCardCreateManyInput = {
   id?: string
-  activationToken: string
   status?: $Enums.NfcCardStatus
   customerId?: string | null
-  workspaceId?: string | null
-  cardId?: string | null
-  activatedAt?: Date | string | null
   createdAt?: Date | string
+  activatedAt?: Date | string | null
+  workspaceId?: string | null
+  activationToken: string
+  cardId?: string | null
 }
 
 export type NfcCardUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumNfcCardStatusFieldUpdateOperationsInput | $Enums.NfcCardStatus
-  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NfcCardUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumNfcCardStatusFieldUpdateOperationsInput | $Enums.NfcCardStatus
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type NfcCardListRelationFilter = {
@@ -356,35 +356,35 @@ export type NfcCardOrderByRelationAggregateInput = {
 
 export type NfcCardCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  activationToken?: Prisma.SortOrder
   status?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
-  cardId?: Prisma.SortOrder
-  activatedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  activatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
+  activationToken?: Prisma.SortOrder
+  cardId?: Prisma.SortOrder
 }
 
 export type NfcCardMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  activationToken?: Prisma.SortOrder
   status?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
-  cardId?: Prisma.SortOrder
-  activatedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  activatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
+  activationToken?: Prisma.SortOrder
+  cardId?: Prisma.SortOrder
 }
 
 export type NfcCardMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  activationToken?: Prisma.SortOrder
   status?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
-  cardId?: Prisma.SortOrder
-  activatedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  activatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
+  activationToken?: Prisma.SortOrder
+  cardId?: Prisma.SortOrder
 }
 
 export type NfcCardCreateNestedManyWithoutCustomerInput = {
@@ -519,22 +519,22 @@ export type NfcCardUncheckedUpdateManyWithoutCardNestedInput = {
 
 export type NfcCardCreateWithoutCustomerInput = {
   id?: string
-  activationToken: string
   status?: $Enums.NfcCardStatus
-  activatedAt?: Date | string | null
   createdAt?: Date | string
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutNfcCardsInput
+  activatedAt?: Date | string | null
+  activationToken: string
   card?: Prisma.CardCreateNestedOneWithoutNfcCardsInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutNfcCardsInput
 }
 
 export type NfcCardUncheckedCreateWithoutCustomerInput = {
   id?: string
-  activationToken: string
   status?: $Enums.NfcCardStatus
-  workspaceId?: string | null
-  cardId?: string | null
-  activatedAt?: Date | string | null
   createdAt?: Date | string
+  activatedAt?: Date | string | null
+  workspaceId?: string | null
+  activationToken: string
+  cardId?: string | null
 }
 
 export type NfcCardCreateOrConnectWithoutCustomerInput = {
@@ -568,33 +568,33 @@ export type NfcCardScalarWhereInput = {
   OR?: Prisma.NfcCardScalarWhereInput[]
   NOT?: Prisma.NfcCardScalarWhereInput | Prisma.NfcCardScalarWhereInput[]
   id?: Prisma.UuidFilter<"NfcCard"> | string
-  activationToken?: Prisma.StringFilter<"NfcCard"> | string
   status?: Prisma.EnumNfcCardStatusFilter<"NfcCard"> | $Enums.NfcCardStatus
   customerId?: Prisma.UuidNullableFilter<"NfcCard"> | string | null
-  workspaceId?: Prisma.UuidNullableFilter<"NfcCard"> | string | null
-  cardId?: Prisma.UuidNullableFilter<"NfcCard"> | string | null
-  activatedAt?: Prisma.DateTimeNullableFilter<"NfcCard"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"NfcCard"> | Date | string
+  activatedAt?: Prisma.DateTimeNullableFilter<"NfcCard"> | Date | string | null
+  workspaceId?: Prisma.UuidNullableFilter<"NfcCard"> | string | null
+  activationToken?: Prisma.StringFilter<"NfcCard"> | string
+  cardId?: Prisma.UuidNullableFilter<"NfcCard"> | string | null
 }
 
 export type NfcCardCreateWithoutWorkspaceInput = {
   id?: string
-  activationToken: string
   status?: $Enums.NfcCardStatus
-  activatedAt?: Date | string | null
   createdAt?: Date | string
-  customer?: Prisma.CustomerCreateNestedOneWithoutNfcCardsInput
+  activatedAt?: Date | string | null
+  activationToken: string
   card?: Prisma.CardCreateNestedOneWithoutNfcCardsInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutNfcCardsInput
 }
 
 export type NfcCardUncheckedCreateWithoutWorkspaceInput = {
   id?: string
-  activationToken: string
   status?: $Enums.NfcCardStatus
   customerId?: string | null
-  cardId?: string | null
-  activatedAt?: Date | string | null
   createdAt?: Date | string
+  activatedAt?: Date | string | null
+  activationToken: string
+  cardId?: string | null
 }
 
 export type NfcCardCreateOrConnectWithoutWorkspaceInput = {
@@ -625,22 +625,22 @@ export type NfcCardUpdateManyWithWhereWithoutWorkspaceInput = {
 
 export type NfcCardCreateWithoutCardInput = {
   id?: string
-  activationToken: string
   status?: $Enums.NfcCardStatus
-  activatedAt?: Date | string | null
   createdAt?: Date | string
+  activatedAt?: Date | string | null
+  activationToken: string
   customer?: Prisma.CustomerCreateNestedOneWithoutNfcCardsInput
   workspace?: Prisma.WorkspaceCreateNestedOneWithoutNfcCardsInput
 }
 
 export type NfcCardUncheckedCreateWithoutCardInput = {
   id?: string
-  activationToken: string
   status?: $Enums.NfcCardStatus
   customerId?: string | null
-  workspaceId?: string | null
-  activatedAt?: Date | string | null
   createdAt?: Date | string
+  activatedAt?: Date | string | null
+  workspaceId?: string | null
+  activationToken: string
 }
 
 export type NfcCardCreateOrConnectWithoutCardInput = {
@@ -671,212 +671,212 @@ export type NfcCardUpdateManyWithWhereWithoutCardInput = {
 
 export type NfcCardCreateManyCustomerInput = {
   id?: string
-  activationToken: string
   status?: $Enums.NfcCardStatus
-  workspaceId?: string | null
-  cardId?: string | null
-  activatedAt?: Date | string | null
   createdAt?: Date | string
+  activatedAt?: Date | string | null
+  workspaceId?: string | null
+  activationToken: string
+  cardId?: string | null
 }
 
 export type NfcCardUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumNfcCardStatusFieldUpdateOperationsInput | $Enums.NfcCardStatus
-  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  workspace?: Prisma.WorkspaceUpdateOneWithoutNfcCardsNestedInput
+  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   card?: Prisma.CardUpdateOneWithoutNfcCardsNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutNfcCardsNestedInput
 }
 
 export type NfcCardUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumNfcCardStatusFieldUpdateOperationsInput | $Enums.NfcCardStatus
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type NfcCardUncheckedUpdateManyWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumNfcCardStatusFieldUpdateOperationsInput | $Enums.NfcCardStatus
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type NfcCardCreateManyWorkspaceInput = {
   id?: string
-  activationToken: string
   status?: $Enums.NfcCardStatus
   customerId?: string | null
-  cardId?: string | null
-  activatedAt?: Date | string | null
   createdAt?: Date | string
+  activatedAt?: Date | string | null
+  activationToken: string
+  cardId?: string | null
 }
 
 export type NfcCardUpdateWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumNfcCardStatusFieldUpdateOperationsInput | $Enums.NfcCardStatus
-  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  customer?: Prisma.CustomerUpdateOneWithoutNfcCardsNestedInput
+  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   card?: Prisma.CardUpdateOneWithoutNfcCardsNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutNfcCardsNestedInput
 }
 
 export type NfcCardUncheckedUpdateWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumNfcCardStatusFieldUpdateOperationsInput | $Enums.NfcCardStatus
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type NfcCardUncheckedUpdateManyWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumNfcCardStatusFieldUpdateOperationsInput | $Enums.NfcCardStatus
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
+  cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type NfcCardCreateManyCardInput = {
   id?: string
-  activationToken: string
   status?: $Enums.NfcCardStatus
   customerId?: string | null
-  workspaceId?: string | null
-  activatedAt?: Date | string | null
   createdAt?: Date | string
+  activatedAt?: Date | string | null
+  workspaceId?: string | null
+  activationToken: string
 }
 
 export type NfcCardUpdateWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumNfcCardStatusFieldUpdateOperationsInput | $Enums.NfcCardStatus
-  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   customer?: Prisma.CustomerUpdateOneWithoutNfcCardsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneWithoutNfcCardsNestedInput
 }
 
 export type NfcCardUncheckedUpdateWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumNfcCardStatusFieldUpdateOperationsInput | $Enums.NfcCardStatus
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NfcCardUncheckedUpdateManyWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumNfcCardStatusFieldUpdateOperationsInput | $Enums.NfcCardStatus
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activationToken?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
 
 export type NfcCardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  activationToken?: boolean
   status?: boolean
   customerId?: boolean
-  workspaceId?: boolean
-  cardId?: boolean
-  activatedAt?: boolean
   createdAt?: boolean
+  activatedAt?: boolean
+  workspaceId?: boolean
+  activationToken?: boolean
+  cardId?: boolean
+  card?: boolean | Prisma.NfcCard$cardArgs<ExtArgs>
   customer?: boolean | Prisma.NfcCard$customerArgs<ExtArgs>
   workspace?: boolean | Prisma.NfcCard$workspaceArgs<ExtArgs>
-  card?: boolean | Prisma.NfcCard$cardArgs<ExtArgs>
 }, ExtArgs["result"]["nfcCard"]>
 
 export type NfcCardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  activationToken?: boolean
   status?: boolean
   customerId?: boolean
-  workspaceId?: boolean
-  cardId?: boolean
-  activatedAt?: boolean
   createdAt?: boolean
+  activatedAt?: boolean
+  workspaceId?: boolean
+  activationToken?: boolean
+  cardId?: boolean
+  card?: boolean | Prisma.NfcCard$cardArgs<ExtArgs>
   customer?: boolean | Prisma.NfcCard$customerArgs<ExtArgs>
   workspace?: boolean | Prisma.NfcCard$workspaceArgs<ExtArgs>
-  card?: boolean | Prisma.NfcCard$cardArgs<ExtArgs>
 }, ExtArgs["result"]["nfcCard"]>
 
 export type NfcCardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  activationToken?: boolean
   status?: boolean
   customerId?: boolean
-  workspaceId?: boolean
-  cardId?: boolean
-  activatedAt?: boolean
   createdAt?: boolean
+  activatedAt?: boolean
+  workspaceId?: boolean
+  activationToken?: boolean
+  cardId?: boolean
+  card?: boolean | Prisma.NfcCard$cardArgs<ExtArgs>
   customer?: boolean | Prisma.NfcCard$customerArgs<ExtArgs>
   workspace?: boolean | Prisma.NfcCard$workspaceArgs<ExtArgs>
-  card?: boolean | Prisma.NfcCard$cardArgs<ExtArgs>
 }, ExtArgs["result"]["nfcCard"]>
 
 export type NfcCardSelectScalar = {
   id?: boolean
-  activationToken?: boolean
   status?: boolean
   customerId?: boolean
-  workspaceId?: boolean
-  cardId?: boolean
-  activatedAt?: boolean
   createdAt?: boolean
+  activatedAt?: boolean
+  workspaceId?: boolean
+  activationToken?: boolean
+  cardId?: boolean
 }
 
-export type NfcCardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "activationToken" | "status" | "customerId" | "workspaceId" | "cardId" | "activatedAt" | "createdAt", ExtArgs["result"]["nfcCard"]>
+export type NfcCardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "status" | "customerId" | "createdAt" | "activatedAt" | "workspaceId" | "activationToken" | "cardId", ExtArgs["result"]["nfcCard"]>
 export type NfcCardInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  card?: boolean | Prisma.NfcCard$cardArgs<ExtArgs>
   customer?: boolean | Prisma.NfcCard$customerArgs<ExtArgs>
   workspace?: boolean | Prisma.NfcCard$workspaceArgs<ExtArgs>
-  card?: boolean | Prisma.NfcCard$cardArgs<ExtArgs>
 }
 export type NfcCardIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  card?: boolean | Prisma.NfcCard$cardArgs<ExtArgs>
   customer?: boolean | Prisma.NfcCard$customerArgs<ExtArgs>
   workspace?: boolean | Prisma.NfcCard$workspaceArgs<ExtArgs>
-  card?: boolean | Prisma.NfcCard$cardArgs<ExtArgs>
 }
 export type NfcCardIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  card?: boolean | Prisma.NfcCard$cardArgs<ExtArgs>
   customer?: boolean | Prisma.NfcCard$customerArgs<ExtArgs>
   workspace?: boolean | Prisma.NfcCard$workspaceArgs<ExtArgs>
-  card?: boolean | Prisma.NfcCard$cardArgs<ExtArgs>
 }
 
 export type $NfcCardPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "NfcCard"
   objects: {
+    card: Prisma.$CardPayload<ExtArgs> | null
     customer: Prisma.$CustomerPayload<ExtArgs> | null
     workspace: Prisma.$WorkspacePayload<ExtArgs> | null
-    card: Prisma.$CardPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    activationToken: string
     status: $Enums.NfcCardStatus
     customerId: string | null
-    workspaceId: string | null
-    cardId: string | null
-    activatedAt: Date | null
     createdAt: Date
+    activatedAt: Date | null
+    workspaceId: string | null
+    activationToken: string
+    cardId: string | null
   }, ExtArgs["result"]["nfcCard"]>
   composites: {}
 }
@@ -1271,9 +1271,9 @@ readonly fields: NfcCardFieldRefs;
  */
 export interface Prisma__NfcCardClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  card<T extends Prisma.NfcCard$cardArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.NfcCard$cardArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   customer<T extends Prisma.NfcCard$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.NfcCard$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   workspace<T extends Prisma.NfcCard$workspaceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.NfcCard$workspaceArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  card<T extends Prisma.NfcCard$cardArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.NfcCard$cardArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1304,13 +1304,13 @@ export interface Prisma__NfcCardClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface NfcCardFieldRefs {
   readonly id: Prisma.FieldRef<"NfcCard", 'String'>
-  readonly activationToken: Prisma.FieldRef<"NfcCard", 'String'>
   readonly status: Prisma.FieldRef<"NfcCard", 'NfcCardStatus'>
   readonly customerId: Prisma.FieldRef<"NfcCard", 'String'>
-  readonly workspaceId: Prisma.FieldRef<"NfcCard", 'String'>
-  readonly cardId: Prisma.FieldRef<"NfcCard", 'String'>
-  readonly activatedAt: Prisma.FieldRef<"NfcCard", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"NfcCard", 'DateTime'>
+  readonly activatedAt: Prisma.FieldRef<"NfcCard", 'DateTime'>
+  readonly workspaceId: Prisma.FieldRef<"NfcCard", 'String'>
+  readonly activationToken: Prisma.FieldRef<"NfcCard", 'String'>
+  readonly cardId: Prisma.FieldRef<"NfcCard", 'String'>
 }
     
 
@@ -1712,6 +1712,25 @@ export type NfcCardDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
+ * NfcCard.card
+ */
+export type NfcCard$cardArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Card
+   */
+  select?: Prisma.CardSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Card
+   */
+  omit?: Prisma.CardOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CardInclude<ExtArgs> | null
+  where?: Prisma.CardWhereInput
+}
+
+/**
  * NfcCard.customer
  */
 export type NfcCard$customerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1747,25 +1766,6 @@ export type NfcCard$workspaceArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   include?: Prisma.WorkspaceInclude<ExtArgs> | null
   where?: Prisma.WorkspaceWhereInput
-}
-
-/**
- * NfcCard.card
- */
-export type NfcCard$cardArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Card
-   */
-  select?: Prisma.CardSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Card
-   */
-  omit?: Prisma.CardOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CardInclude<ExtArgs> | null
-  where?: Prisma.CardWhereInput
 }
 
 /**

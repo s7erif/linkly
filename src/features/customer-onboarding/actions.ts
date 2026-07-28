@@ -38,11 +38,16 @@ export async function createDigitalCardAction(): Promise<CustomerOnboardingResul
 }
 
 export async function openCustomerCardAction(cardId: string): Promise<CustomerOnboardingResult> {
+  console.log("[TRACE] entering openCustomerCardAction, cardId:", cardId);
   try {
     const session = await customerSession();
+    console.log("[TRACE] customerSession returned:", session ? "present" : "null");
     if (!session) return { ok: false, message: "Sign in to continue." };
-    return success(await getActivationService().openCardForSession(session, cardId));
-  } catch {
+    const result = await getActivationService().openCardForSession(session, cardId);
+    console.log("[TRACE] openCardForSession returned successfully");
+    return success(result);
+  } catch (error) {
+    console.error("[TRACE] exception in openCustomerCardAction:", error);
     return { ok: false, message: "Unable to open this card. Please try again." };
   }
 }

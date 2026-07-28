@@ -180,7 +180,7 @@ export type EditorSessionGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 export type EditorSessionGroupByOutputType = {
   id: string
   cardId: string
-  accessCodeId: string
+  accessCodeId: string | null
   tokenHash: runtime.Bytes
   status: $Enums.EditorSessionStatus
   expiresAt: Date
@@ -214,7 +214,7 @@ export type EditorSessionWhereInput = {
   NOT?: Prisma.EditorSessionWhereInput | Prisma.EditorSessionWhereInput[]
   id?: Prisma.UuidFilter<"EditorSession"> | string
   cardId?: Prisma.UuidFilter<"EditorSession"> | string
-  accessCodeId?: Prisma.UuidFilter<"EditorSession"> | string
+  accessCodeId?: Prisma.UuidNullableFilter<"EditorSession"> | string | null
   tokenHash?: Prisma.BytesFilter<"EditorSession"> | runtime.Bytes
   status?: Prisma.EnumEditorSessionStatusFilter<"EditorSession"> | $Enums.EditorSessionStatus
   expiresAt?: Prisma.DateTimeFilter<"EditorSession"> | Date | string
@@ -222,14 +222,14 @@ export type EditorSessionWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"EditorSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EditorSession"> | Date | string
   revokedAt?: Prisma.DateTimeNullableFilter<"EditorSession"> | Date | string | null
+  accessCode?: Prisma.XOR<Prisma.AccessCodeNullableScalarRelationFilter, Prisma.AccessCodeWhereInput> | null
   card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
-  accessCode?: Prisma.XOR<Prisma.AccessCodeScalarRelationFilter, Prisma.AccessCodeWhereInput>
 }
 
 export type EditorSessionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
-  accessCodeId?: Prisma.SortOrder
+  accessCodeId?: Prisma.SortOrderInput | Prisma.SortOrder
   tokenHash?: Prisma.SortOrder
   status?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
@@ -237,8 +237,8 @@ export type EditorSessionOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   revokedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  card?: Prisma.CardOrderByWithRelationInput
   accessCode?: Prisma.AccessCodeOrderByWithRelationInput
+  card?: Prisma.CardOrderByWithRelationInput
 }
 
 export type EditorSessionWhereUniqueInput = Prisma.AtLeast<{
@@ -248,21 +248,21 @@ export type EditorSessionWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.EditorSessionWhereInput[]
   NOT?: Prisma.EditorSessionWhereInput | Prisma.EditorSessionWhereInput[]
   cardId?: Prisma.UuidFilter<"EditorSession"> | string
-  accessCodeId?: Prisma.UuidFilter<"EditorSession"> | string
+  accessCodeId?: Prisma.UuidNullableFilter<"EditorSession"> | string | null
   status?: Prisma.EnumEditorSessionStatusFilter<"EditorSession"> | $Enums.EditorSessionStatus
   expiresAt?: Prisma.DateTimeFilter<"EditorSession"> | Date | string
   lastSeenAt?: Prisma.DateTimeNullableFilter<"EditorSession"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"EditorSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EditorSession"> | Date | string
   revokedAt?: Prisma.DateTimeNullableFilter<"EditorSession"> | Date | string | null
+  accessCode?: Prisma.XOR<Prisma.AccessCodeNullableScalarRelationFilter, Prisma.AccessCodeWhereInput> | null
   card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
-  accessCode?: Prisma.XOR<Prisma.AccessCodeScalarRelationFilter, Prisma.AccessCodeWhereInput>
 }, "id" | "tokenHash">
 
 export type EditorSessionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
-  accessCodeId?: Prisma.SortOrder
+  accessCodeId?: Prisma.SortOrderInput | Prisma.SortOrder
   tokenHash?: Prisma.SortOrder
   status?: Prisma.SortOrder
   expiresAt?: Prisma.SortOrder
@@ -281,7 +281,7 @@ export type EditorSessionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.EditorSessionScalarWhereWithAggregatesInput | Prisma.EditorSessionScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"EditorSession"> | string
   cardId?: Prisma.UuidWithAggregatesFilter<"EditorSession"> | string
-  accessCodeId?: Prisma.UuidWithAggregatesFilter<"EditorSession"> | string
+  accessCodeId?: Prisma.UuidNullableWithAggregatesFilter<"EditorSession"> | string | null
   tokenHash?: Prisma.BytesWithAggregatesFilter<"EditorSession"> | runtime.Bytes
   status?: Prisma.EnumEditorSessionStatusWithAggregatesFilter<"EditorSession"> | $Enums.EditorSessionStatus
   expiresAt?: Prisma.DateTimeWithAggregatesFilter<"EditorSession"> | Date | string
@@ -300,14 +300,14 @@ export type EditorSessionCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   revokedAt?: Date | string | null
+  accessCode?: Prisma.AccessCodeCreateNestedOneWithoutSessionsInput
   card: Prisma.CardCreateNestedOneWithoutEditorSessionsInput
-  accessCode: Prisma.AccessCodeCreateNestedOneWithoutSessionsInput
 }
 
 export type EditorSessionUncheckedCreateInput = {
   id?: string
   cardId: string
-  accessCodeId: string
+  accessCodeId?: string | null
   tokenHash: runtime.Bytes
   status?: $Enums.EditorSessionStatus
   expiresAt: Date | string
@@ -326,14 +326,14 @@ export type EditorSessionUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCode?: Prisma.AccessCodeUpdateOneWithoutSessionsNestedInput
   card?: Prisma.CardUpdateOneRequiredWithoutEditorSessionsNestedInput
-  accessCode?: Prisma.AccessCodeUpdateOneRequiredWithoutSessionsNestedInput
 }
 
 export type EditorSessionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
-  accessCodeId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   status?: Prisma.EnumEditorSessionStatusFieldUpdateOperationsInput | $Enums.EditorSessionStatus
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -346,7 +346,7 @@ export type EditorSessionUncheckedUpdateInput = {
 export type EditorSessionCreateManyInput = {
   id?: string
   cardId: string
-  accessCodeId: string
+  accessCodeId?: string | null
   tokenHash: runtime.Bytes
   status?: $Enums.EditorSessionStatus
   expiresAt: Date | string
@@ -370,7 +370,7 @@ export type EditorSessionUpdateManyMutationInput = {
 export type EditorSessionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
-  accessCodeId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   status?: Prisma.EnumEditorSessionStatusFieldUpdateOperationsInput | $Enums.EditorSessionStatus
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -526,12 +526,12 @@ export type EditorSessionCreateWithoutCardInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   revokedAt?: Date | string | null
-  accessCode: Prisma.AccessCodeCreateNestedOneWithoutSessionsInput
+  accessCode?: Prisma.AccessCodeCreateNestedOneWithoutSessionsInput
 }
 
 export type EditorSessionUncheckedCreateWithoutCardInput = {
   id?: string
-  accessCodeId: string
+  accessCodeId?: string | null
   tokenHash: runtime.Bytes
   status?: $Enums.EditorSessionStatus
   expiresAt: Date | string
@@ -573,7 +573,7 @@ export type EditorSessionScalarWhereInput = {
   NOT?: Prisma.EditorSessionScalarWhereInput | Prisma.EditorSessionScalarWhereInput[]
   id?: Prisma.UuidFilter<"EditorSession"> | string
   cardId?: Prisma.UuidFilter<"EditorSession"> | string
-  accessCodeId?: Prisma.UuidFilter<"EditorSession"> | string
+  accessCodeId?: Prisma.UuidNullableFilter<"EditorSession"> | string | null
   tokenHash?: Prisma.BytesFilter<"EditorSession"> | runtime.Bytes
   status?: Prisma.EnumEditorSessionStatusFilter<"EditorSession"> | $Enums.EditorSessionStatus
   expiresAt?: Prisma.DateTimeFilter<"EditorSession"> | Date | string
@@ -635,7 +635,7 @@ export type EditorSessionUpdateManyWithWhereWithoutAccessCodeInput = {
 
 export type EditorSessionCreateManyCardInput = {
   id?: string
-  accessCodeId: string
+  accessCodeId?: string | null
   tokenHash: runtime.Bytes
   status?: $Enums.EditorSessionStatus
   expiresAt: Date | string
@@ -654,12 +654,12 @@ export type EditorSessionUpdateWithoutCardInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  accessCode?: Prisma.AccessCodeUpdateOneRequiredWithoutSessionsNestedInput
+  accessCode?: Prisma.AccessCodeUpdateOneWithoutSessionsNestedInput
 }
 
 export type EditorSessionUncheckedUpdateWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  accessCodeId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   status?: Prisma.EnumEditorSessionStatusFieldUpdateOperationsInput | $Enums.EditorSessionStatus
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -671,7 +671,7 @@ export type EditorSessionUncheckedUpdateWithoutCardInput = {
 
 export type EditorSessionUncheckedUpdateManyWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  accessCodeId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
   status?: Prisma.EnumEditorSessionStatusFieldUpdateOperationsInput | $Enums.EditorSessionStatus
   expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -742,8 +742,8 @@ export type EditorSessionSelect<ExtArgs extends runtime.Types.Extensions.Interna
   createdAt?: boolean
   updatedAt?: boolean
   revokedAt?: boolean
+  accessCode?: boolean | Prisma.EditorSession$accessCodeArgs<ExtArgs>
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
-  accessCode?: boolean | Prisma.AccessCodeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["editorSession"]>
 
 export type EditorSessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -757,8 +757,8 @@ export type EditorSessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   createdAt?: boolean
   updatedAt?: boolean
   revokedAt?: boolean
+  accessCode?: boolean | Prisma.EditorSession$accessCodeArgs<ExtArgs>
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
-  accessCode?: boolean | Prisma.AccessCodeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["editorSession"]>
 
 export type EditorSessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -772,8 +772,8 @@ export type EditorSessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   createdAt?: boolean
   updatedAt?: boolean
   revokedAt?: boolean
+  accessCode?: boolean | Prisma.EditorSession$accessCodeArgs<ExtArgs>
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
-  accessCode?: boolean | Prisma.AccessCodeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["editorSession"]>
 
 export type EditorSessionSelectScalar = {
@@ -791,28 +791,28 @@ export type EditorSessionSelectScalar = {
 
 export type EditorSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cardId" | "accessCodeId" | "tokenHash" | "status" | "expiresAt" | "lastSeenAt" | "createdAt" | "updatedAt" | "revokedAt", ExtArgs["result"]["editorSession"]>
 export type EditorSessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  accessCode?: boolean | Prisma.EditorSession$accessCodeArgs<ExtArgs>
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
-  accessCode?: boolean | Prisma.AccessCodeDefaultArgs<ExtArgs>
 }
 export type EditorSessionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  accessCode?: boolean | Prisma.EditorSession$accessCodeArgs<ExtArgs>
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
-  accessCode?: boolean | Prisma.AccessCodeDefaultArgs<ExtArgs>
 }
 export type EditorSessionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  accessCode?: boolean | Prisma.EditorSession$accessCodeArgs<ExtArgs>
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
-  accessCode?: boolean | Prisma.AccessCodeDefaultArgs<ExtArgs>
 }
 
 export type $EditorSessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "EditorSession"
   objects: {
+    accessCode: Prisma.$AccessCodePayload<ExtArgs> | null
     card: Prisma.$CardPayload<ExtArgs>
-    accessCode: Prisma.$AccessCodePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     cardId: string
-    accessCodeId: string
+    accessCodeId: string | null
     tokenHash: runtime.Bytes
     status: $Enums.EditorSessionStatus
     expiresAt: Date
@@ -1214,8 +1214,8 @@ readonly fields: EditorSessionFieldRefs;
  */
 export interface Prisma__EditorSessionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  accessCode<T extends Prisma.EditorSession$accessCodeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EditorSession$accessCodeArgs<ExtArgs>>): Prisma.Prisma__AccessCodeClient<runtime.Types.Result.GetResult<Prisma.$AccessCodePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   card<T extends Prisma.CardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CardDefaultArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  accessCode<T extends Prisma.AccessCodeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessCodeDefaultArgs<ExtArgs>>): Prisma.Prisma__AccessCodeClient<runtime.Types.Result.GetResult<Prisma.$AccessCodePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1653,6 +1653,25 @@ export type EditorSessionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many EditorSessions to delete.
    */
   limit?: number
+}
+
+/**
+ * EditorSession.accessCode
+ */
+export type EditorSession$accessCodeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AccessCode
+   */
+  select?: Prisma.AccessCodeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AccessCode
+   */
+  omit?: Prisma.AccessCodeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AccessCodeInclude<ExtArgs> | null
+  where?: Prisma.AccessCodeWhereInput
 }
 
 /**

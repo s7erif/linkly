@@ -40,7 +40,6 @@ export type MediaAssetSumAggregateOutputType = {
 
 export type MediaAssetMinAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   customerId: string | null
   createdByAdminId: string | null
   folderId: string | null
@@ -61,11 +60,11 @@ export type MediaAssetMinAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
+  workspaceId: string | null
 }
 
 export type MediaAssetMaxAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   customerId: string | null
   createdByAdminId: string | null
   folderId: string | null
@@ -86,11 +85,11 @@ export type MediaAssetMaxAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
+  workspaceId: string | null
 }
 
 export type MediaAssetCountAggregateOutputType = {
   id: number
-  workspaceId: number
   customerId: number
   createdByAdminId: number
   folderId: number
@@ -112,6 +111,7 @@ export type MediaAssetCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   deletedAt: number
+  workspaceId: number
   _all: number
 }
 
@@ -130,7 +130,6 @@ export type MediaAssetSumAggregateInputType = {
 
 export type MediaAssetMinAggregateInputType = {
   id?: true
-  workspaceId?: true
   customerId?: true
   createdByAdminId?: true
   folderId?: true
@@ -151,11 +150,11 @@ export type MediaAssetMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  workspaceId?: true
 }
 
 export type MediaAssetMaxAggregateInputType = {
   id?: true
-  workspaceId?: true
   customerId?: true
   createdByAdminId?: true
   folderId?: true
@@ -176,11 +175,11 @@ export type MediaAssetMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  workspaceId?: true
 }
 
 export type MediaAssetCountAggregateInputType = {
   id?: true
-  workspaceId?: true
   customerId?: true
   createdByAdminId?: true
   folderId?: true
@@ -202,6 +201,7 @@ export type MediaAssetCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  workspaceId?: true
   _all?: true
 }
 
@@ -293,7 +293,6 @@ export type MediaAssetGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 
 export type MediaAssetGroupByOutputType = {
   id: string
-  workspaceId: string
   customerId: string | null
   createdByAdminId: string | null
   folderId: string | null
@@ -315,6 +314,7 @@ export type MediaAssetGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
+  workspaceId: string
   _count: MediaAssetCountAggregateOutputType | null
   _avg: MediaAssetAvgAggregateOutputType | null
   _sum: MediaAssetSumAggregateOutputType | null
@@ -342,7 +342,6 @@ export type MediaAssetWhereInput = {
   OR?: Prisma.MediaAssetWhereInput[]
   NOT?: Prisma.MediaAssetWhereInput | Prisma.MediaAssetWhereInput[]
   id?: Prisma.UuidFilter<"MediaAsset"> | string
-  workspaceId?: Prisma.UuidFilter<"MediaAsset"> | string
   customerId?: Prisma.UuidNullableFilter<"MediaAsset"> | string | null
   createdByAdminId?: Prisma.UuidNullableFilter<"MediaAsset"> | string | null
   folderId?: Prisma.UuidNullableFilter<"MediaAsset"> | string | null
@@ -364,18 +363,18 @@ export type MediaAssetWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"MediaAsset"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MediaAsset"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"MediaAsset"> | Date | string | null
-  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
-  createdByAdmin?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
-  folder?: Prisma.XOR<Prisma.MediaFolderNullableScalarRelationFilter, Prisma.MediaFolderWhereInput> | null
-  cards?: Prisma.CardMediaListRelationFilter
+  workspaceId?: Prisma.UuidFilter<"MediaAsset"> | string
   cardBlockMedias?: Prisma.CardBlockMediaListRelationFilter
-  paymentProofs?: Prisma.PaymentSubmissionListRelationFilter
+  cards?: Prisma.CardMediaListRelationFilter
+  createdByAdmin?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
+  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
+  folder?: Prisma.XOR<Prisma.MediaFolderNullableScalarRelationFilter, Prisma.MediaFolderWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
+  paymentProofs?: Prisma.PaymentSubmissionListRelationFilter
 }
 
 export type MediaAssetOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   customerId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdByAdminId?: Prisma.SortOrderInput | Prisma.SortOrder
   folderId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -397,13 +396,14 @@ export type MediaAssetOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  customer?: Prisma.CustomerOrderByWithRelationInput
-  createdByAdmin?: Prisma.AdminUserOrderByWithRelationInput
-  folder?: Prisma.MediaFolderOrderByWithRelationInput
-  cards?: Prisma.CardMediaOrderByRelationAggregateInput
+  workspaceId?: Prisma.SortOrder
   cardBlockMedias?: Prisma.CardBlockMediaOrderByRelationAggregateInput
-  paymentProofs?: Prisma.PaymentSubmissionOrderByRelationAggregateInput
+  cards?: Prisma.CardMediaOrderByRelationAggregateInput
+  createdByAdmin?: Prisma.AdminUserOrderByWithRelationInput
+  customer?: Prisma.CustomerOrderByWithRelationInput
+  folder?: Prisma.MediaFolderOrderByWithRelationInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
+  paymentProofs?: Prisma.PaymentSubmissionOrderByRelationAggregateInput
 }
 
 export type MediaAssetWhereUniqueInput = Prisma.AtLeast<{
@@ -412,7 +412,6 @@ export type MediaAssetWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.MediaAssetWhereInput | Prisma.MediaAssetWhereInput[]
   OR?: Prisma.MediaAssetWhereInput[]
   NOT?: Prisma.MediaAssetWhereInput | Prisma.MediaAssetWhereInput[]
-  workspaceId?: Prisma.UuidFilter<"MediaAsset"> | string
   customerId?: Prisma.UuidNullableFilter<"MediaAsset"> | string | null
   createdByAdminId?: Prisma.UuidNullableFilter<"MediaAsset"> | string | null
   folderId?: Prisma.UuidNullableFilter<"MediaAsset"> | string | null
@@ -433,18 +432,18 @@ export type MediaAssetWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"MediaAsset"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MediaAsset"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"MediaAsset"> | Date | string | null
-  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
-  createdByAdmin?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
-  folder?: Prisma.XOR<Prisma.MediaFolderNullableScalarRelationFilter, Prisma.MediaFolderWhereInput> | null
-  cards?: Prisma.CardMediaListRelationFilter
+  workspaceId?: Prisma.UuidFilter<"MediaAsset"> | string
   cardBlockMedias?: Prisma.CardBlockMediaListRelationFilter
-  paymentProofs?: Prisma.PaymentSubmissionListRelationFilter
+  cards?: Prisma.CardMediaListRelationFilter
+  createdByAdmin?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
+  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
+  folder?: Prisma.XOR<Prisma.MediaFolderNullableScalarRelationFilter, Prisma.MediaFolderWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
+  paymentProofs?: Prisma.PaymentSubmissionListRelationFilter
 }, "id" | "storageKey">
 
 export type MediaAssetOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   customerId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdByAdminId?: Prisma.SortOrderInput | Prisma.SortOrder
   folderId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -466,6 +465,7 @@ export type MediaAssetOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
   _count?: Prisma.MediaAssetCountOrderByAggregateInput
   _avg?: Prisma.MediaAssetAvgOrderByAggregateInput
   _max?: Prisma.MediaAssetMaxOrderByAggregateInput
@@ -478,7 +478,6 @@ export type MediaAssetScalarWhereWithAggregatesInput = {
   OR?: Prisma.MediaAssetScalarWhereWithAggregatesInput[]
   NOT?: Prisma.MediaAssetScalarWhereWithAggregatesInput | Prisma.MediaAssetScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"MediaAsset"> | string
-  workspaceId?: Prisma.UuidWithAggregatesFilter<"MediaAsset"> | string
   customerId?: Prisma.UuidNullableWithAggregatesFilter<"MediaAsset"> | string | null
   createdByAdminId?: Prisma.UuidNullableWithAggregatesFilter<"MediaAsset"> | string | null
   folderId?: Prisma.UuidNullableWithAggregatesFilter<"MediaAsset"> | string | null
@@ -500,6 +499,7 @@ export type MediaAssetScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"MediaAsset"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"MediaAsset"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"MediaAsset"> | Date | string | null
+  workspaceId?: Prisma.UuidWithAggregatesFilter<"MediaAsset"> | string
 }
 
 export type MediaAssetCreateInput = {
@@ -522,18 +522,17 @@ export type MediaAssetCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
-  createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
-  folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
-  cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
-  paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
+  cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
+  createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
+  folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
+  paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
 }
 
 export type MediaAssetUncheckedCreateInput = {
   id?: string
-  workspaceId: string
   customerId?: string | null
   createdByAdminId?: string | null
   folderId?: string | null
@@ -555,8 +554,9 @@ export type MediaAssetUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
+  workspaceId: string
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
+  cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -580,18 +580,17 @@ export type MediaAssetUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
-  createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
-  folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
-  cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
-  paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
+  cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
+  createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
+  folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
+  paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
 export type MediaAssetUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -613,14 +612,14 @@ export type MediaAssetUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
+  cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
 export type MediaAssetCreateManyInput = {
   id?: string
-  workspaceId: string
   customerId?: string | null
   createdByAdminId?: string | null
   folderId?: string | null
@@ -642,6 +641,7 @@ export type MediaAssetCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
 }
 
 export type MediaAssetUpdateManyMutationInput = {
@@ -668,7 +668,6 @@ export type MediaAssetUpdateManyMutationInput = {
 
 export type MediaAssetUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -690,6 +689,7 @@ export type MediaAssetUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MediaAssetListRelationFilter = {
@@ -722,7 +722,6 @@ export type StringNullableListFilter<$PrismaModel = never> = {
 
 export type MediaAssetCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   createdByAdminId?: Prisma.SortOrder
   folderId?: Prisma.SortOrder
@@ -744,6 +743,7 @@ export type MediaAssetCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type MediaAssetAvgOrderByAggregateInput = {
@@ -754,7 +754,6 @@ export type MediaAssetAvgOrderByAggregateInput = {
 
 export type MediaAssetMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   createdByAdminId?: Prisma.SortOrder
   folderId?: Prisma.SortOrder
@@ -775,11 +774,11 @@ export type MediaAssetMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type MediaAssetMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   createdByAdminId?: Prisma.SortOrder
   folderId?: Prisma.SortOrder
@@ -800,6 +799,7 @@ export type MediaAssetMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type MediaAssetSumOrderByAggregateInput = {
@@ -1057,17 +1057,16 @@ export type MediaAssetCreateWithoutCreatedByAdminInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
+  cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
   customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
   folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
-  cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
-  cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
-  paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
+  paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
 }
 
 export type MediaAssetUncheckedCreateWithoutCreatedByAdminInput = {
   id?: string
-  workspaceId: string
   customerId?: string | null
   folderId?: string | null
   kind: $Enums.MediaKind
@@ -1088,8 +1087,9 @@ export type MediaAssetUncheckedCreateWithoutCreatedByAdminInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
+  workspaceId: string
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
+  cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -1124,7 +1124,6 @@ export type MediaAssetScalarWhereInput = {
   OR?: Prisma.MediaAssetScalarWhereInput[]
   NOT?: Prisma.MediaAssetScalarWhereInput | Prisma.MediaAssetScalarWhereInput[]
   id?: Prisma.UuidFilter<"MediaAsset"> | string
-  workspaceId?: Prisma.UuidFilter<"MediaAsset"> | string
   customerId?: Prisma.UuidNullableFilter<"MediaAsset"> | string | null
   createdByAdminId?: Prisma.UuidNullableFilter<"MediaAsset"> | string | null
   folderId?: Prisma.UuidNullableFilter<"MediaAsset"> | string | null
@@ -1146,6 +1145,7 @@ export type MediaAssetScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"MediaAsset"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MediaAsset"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"MediaAsset"> | Date | string | null
+  workspaceId?: Prisma.UuidFilter<"MediaAsset"> | string
 }
 
 export type MediaAssetCreateWithoutCustomerInput = {
@@ -1168,17 +1168,16 @@ export type MediaAssetCreateWithoutCustomerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
+  cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
   createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
   folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
-  cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
-  cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
-  paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
+  paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
 }
 
 export type MediaAssetUncheckedCreateWithoutCustomerInput = {
   id?: string
-  workspaceId: string
   createdByAdminId?: string | null
   folderId?: string | null
   kind: $Enums.MediaKind
@@ -1199,8 +1198,9 @@ export type MediaAssetUncheckedCreateWithoutCustomerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
+  workspaceId: string
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
+  cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -1250,11 +1250,11 @@ export type MediaAssetCreateWithoutWorkspaceInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
-  createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
-  folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
-  cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
+  cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
+  createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
+  folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -1281,8 +1281,8 @@ export type MediaAssetUncheckedCreateWithoutWorkspaceInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
+  cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -1332,17 +1332,16 @@ export type MediaAssetCreateWithoutPaymentProofsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
-  createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
-  folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
-  cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
+  cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
+  createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
+  folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
 }
 
 export type MediaAssetUncheckedCreateWithoutPaymentProofsInput = {
   id?: string
-  workspaceId: string
   customerId?: string | null
   createdByAdminId?: string | null
   folderId?: string | null
@@ -1364,8 +1363,9 @@ export type MediaAssetUncheckedCreateWithoutPaymentProofsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
+  workspaceId: string
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
+  cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
 }
 
 export type MediaAssetCreateOrConnectWithoutPaymentProofsInput = {
@@ -1404,17 +1404,16 @@ export type MediaAssetUpdateWithoutPaymentProofsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
-  createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
-  folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
-  cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
+  cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
+  createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
+  folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
 }
 
 export type MediaAssetUncheckedUpdateWithoutPaymentProofsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1436,8 +1435,9 @@ export type MediaAssetUncheckedUpdateWithoutPaymentProofsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
+  cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
 }
 
 export type MediaAssetCreateWithoutCardBlockMediasInput = {
@@ -1460,17 +1460,16 @@ export type MediaAssetCreateWithoutCardBlockMediasInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
-  createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
-  folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
-  paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
+  createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
+  folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
+  paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
 }
 
 export type MediaAssetUncheckedCreateWithoutCardBlockMediasInput = {
   id?: string
-  workspaceId: string
   customerId?: string | null
   createdByAdminId?: string | null
   folderId?: string | null
@@ -1492,6 +1491,7 @@ export type MediaAssetUncheckedCreateWithoutCardBlockMediasInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
   cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
@@ -1532,17 +1532,16 @@ export type MediaAssetUpdateWithoutCardBlockMediasInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
-  createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
-  folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
-  paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
+  createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
+  folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
+  paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
 export type MediaAssetUncheckedUpdateWithoutCardBlockMediasInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1564,6 +1563,7 @@ export type MediaAssetUncheckedUpdateWithoutCardBlockMediasInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
@@ -1588,17 +1588,16 @@ export type MediaAssetCreateWithoutFolderInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
-  createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
-  cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
   cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
-  paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
+  cards?: Prisma.CardMediaCreateNestedManyWithoutMediaAssetInput
+  createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
+  paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
 }
 
 export type MediaAssetUncheckedCreateWithoutFolderInput = {
   id?: string
-  workspaceId: string
   customerId?: string | null
   createdByAdminId?: string | null
   kind: $Enums.MediaKind
@@ -1619,8 +1618,9 @@ export type MediaAssetUncheckedCreateWithoutFolderInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
+  workspaceId: string
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
+  cards?: Prisma.CardMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
 
@@ -1670,17 +1670,16 @@ export type MediaAssetCreateWithoutCardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
-  createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
-  folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   cardBlockMedias?: Prisma.CardBlockMediaCreateNestedManyWithoutMediaAssetInput
-  paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
+  createdByAdmin?: Prisma.AdminUserCreateNestedOneWithoutMediaCreatedInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutMediaInput
+  folder?: Prisma.MediaFolderCreateNestedOneWithoutAssetsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMediaAssetsInput
+  paymentProofs?: Prisma.PaymentSubmissionCreateNestedManyWithoutPaymentProofAssetInput
 }
 
 export type MediaAssetUncheckedCreateWithoutCardsInput = {
   id?: string
-  workspaceId: string
   customerId?: string | null
   createdByAdminId?: string | null
   folderId?: string | null
@@ -1702,6 +1701,7 @@ export type MediaAssetUncheckedCreateWithoutCardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedCreateNestedManyWithoutMediaAssetInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutPaymentProofAssetInput
 }
@@ -1742,17 +1742,16 @@ export type MediaAssetUpdateWithoutCardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
-  createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
-  folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
-  paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
+  createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
+  folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
+  paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
 export type MediaAssetUncheckedUpdateWithoutCardsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1774,13 +1773,13 @@ export type MediaAssetUncheckedUpdateWithoutCardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
 export type MediaAssetCreateManyCreatedByAdminInput = {
   id?: string
-  workspaceId: string
   customerId?: string | null
   folderId?: string | null
   kind: $Enums.MediaKind
@@ -1801,6 +1800,7 @@ export type MediaAssetCreateManyCreatedByAdminInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
 }
 
 export type MediaAssetUpdateWithoutCreatedByAdminInput = {
@@ -1823,17 +1823,16 @@ export type MediaAssetUpdateWithoutCreatedByAdminInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
+  cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
   customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
   folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
-  cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
-  cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
-  paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
+  paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
 export type MediaAssetUncheckedUpdateWithoutCreatedByAdminInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kind?: Prisma.EnumMediaKindFieldUpdateOperationsInput | $Enums.MediaKind
@@ -1854,14 +1853,14 @@ export type MediaAssetUncheckedUpdateWithoutCreatedByAdminInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
+  cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
 export type MediaAssetUncheckedUpdateManyWithoutCreatedByAdminInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kind?: Prisma.EnumMediaKindFieldUpdateOperationsInput | $Enums.MediaKind
@@ -1882,11 +1881,11 @@ export type MediaAssetUncheckedUpdateManyWithoutCreatedByAdminInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MediaAssetCreateManyCustomerInput = {
   id?: string
-  workspaceId: string
   createdByAdminId?: string | null
   folderId?: string | null
   kind: $Enums.MediaKind
@@ -1907,6 +1906,7 @@ export type MediaAssetCreateManyCustomerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
 }
 
 export type MediaAssetUpdateWithoutCustomerInput = {
@@ -1929,17 +1929,16 @@ export type MediaAssetUpdateWithoutCustomerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
+  cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
   createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
   folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
-  cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
-  cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
-  paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
+  paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
 export type MediaAssetUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   createdByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kind?: Prisma.EnumMediaKindFieldUpdateOperationsInput | $Enums.MediaKind
@@ -1960,14 +1959,14 @@ export type MediaAssetUncheckedUpdateWithoutCustomerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
+  cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
 export type MediaAssetUncheckedUpdateManyWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   createdByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   folderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kind?: Prisma.EnumMediaKindFieldUpdateOperationsInput | $Enums.MediaKind
@@ -1988,6 +1987,7 @@ export type MediaAssetUncheckedUpdateManyWithoutCustomerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MediaAssetCreateManyWorkspaceInput = {
@@ -2035,11 +2035,11 @@ export type MediaAssetUpdateWithoutWorkspaceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
-  createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
-  folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
-  cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
+  cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
+  createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
+  folder?: Prisma.MediaFolderUpdateOneWithoutAssetsNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
@@ -2066,8 +2066,8 @@ export type MediaAssetUncheckedUpdateWithoutWorkspaceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
+  cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
@@ -2098,7 +2098,6 @@ export type MediaAssetUncheckedUpdateManyWithoutWorkspaceInput = {
 
 export type MediaAssetCreateManyFolderInput = {
   id?: string
-  workspaceId: string
   customerId?: string | null
   createdByAdminId?: string | null
   kind: $Enums.MediaKind
@@ -2119,6 +2118,7 @@ export type MediaAssetCreateManyFolderInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
 }
 
 export type MediaAssetUpdateWithoutFolderInput = {
@@ -2141,17 +2141,16 @@ export type MediaAssetUpdateWithoutFolderInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
-  createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
-  cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
   cardBlockMedias?: Prisma.CardBlockMediaUpdateManyWithoutMediaAssetNestedInput
-  paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
+  cards?: Prisma.CardMediaUpdateManyWithoutMediaAssetNestedInput
+  createdByAdmin?: Prisma.AdminUserUpdateOneWithoutMediaCreatedNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutMediaNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMediaAssetsNestedInput
+  paymentProofs?: Prisma.PaymentSubmissionUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
 export type MediaAssetUncheckedUpdateWithoutFolderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kind?: Prisma.EnumMediaKindFieldUpdateOperationsInput | $Enums.MediaKind
@@ -2172,14 +2171,14 @@ export type MediaAssetUncheckedUpdateWithoutFolderInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cardBlockMedias?: Prisma.CardBlockMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
+  cards?: Prisma.CardMediaUncheckedUpdateManyWithoutMediaAssetNestedInput
   paymentProofs?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetNestedInput
 }
 
 export type MediaAssetUncheckedUpdateManyWithoutFolderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdByAdminId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kind?: Prisma.EnumMediaKindFieldUpdateOperationsInput | $Enums.MediaKind
@@ -2200,6 +2199,7 @@ export type MediaAssetUncheckedUpdateManyWithoutFolderInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -2208,14 +2208,14 @@ export type MediaAssetUncheckedUpdateManyWithoutFolderInput = {
  */
 
 export type MediaAssetCountOutputType = {
-  cards: number
   cardBlockMedias: number
+  cards: number
   paymentProofs: number
 }
 
 export type MediaAssetCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  cards?: boolean | MediaAssetCountOutputTypeCountCardsArgs
   cardBlockMedias?: boolean | MediaAssetCountOutputTypeCountCardBlockMediasArgs
+  cards?: boolean | MediaAssetCountOutputTypeCountCardsArgs
   paymentProofs?: boolean | MediaAssetCountOutputTypeCountPaymentProofsArgs
 }
 
@@ -2232,15 +2232,15 @@ export type MediaAssetCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.E
 /**
  * MediaAssetCountOutputType without action
  */
-export type MediaAssetCountOutputTypeCountCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CardMediaWhereInput
+export type MediaAssetCountOutputTypeCountCardBlockMediasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CardBlockMediaWhereInput
 }
 
 /**
  * MediaAssetCountOutputType without action
  */
-export type MediaAssetCountOutputTypeCountCardBlockMediasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CardBlockMediaWhereInput
+export type MediaAssetCountOutputTypeCountCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CardMediaWhereInput
 }
 
 /**
@@ -2253,7 +2253,6 @@ export type MediaAssetCountOutputTypeCountPaymentProofsArgs<ExtArgs extends runt
 
 export type MediaAssetSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   customerId?: boolean
   createdByAdminId?: boolean
   folderId?: boolean
@@ -2275,19 +2274,19 @@ export type MediaAssetSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  customer?: boolean | Prisma.MediaAsset$customerArgs<ExtArgs>
-  createdByAdmin?: boolean | Prisma.MediaAsset$createdByAdminArgs<ExtArgs>
-  folder?: boolean | Prisma.MediaAsset$folderArgs<ExtArgs>
-  cards?: boolean | Prisma.MediaAsset$cardsArgs<ExtArgs>
+  workspaceId?: boolean
   cardBlockMedias?: boolean | Prisma.MediaAsset$cardBlockMediasArgs<ExtArgs>
-  paymentProofs?: boolean | Prisma.MediaAsset$paymentProofsArgs<ExtArgs>
+  cards?: boolean | Prisma.MediaAsset$cardsArgs<ExtArgs>
+  createdByAdmin?: boolean | Prisma.MediaAsset$createdByAdminArgs<ExtArgs>
+  customer?: boolean | Prisma.MediaAsset$customerArgs<ExtArgs>
+  folder?: boolean | Prisma.MediaAsset$folderArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  paymentProofs?: boolean | Prisma.MediaAsset$paymentProofsArgs<ExtArgs>
   _count?: boolean | Prisma.MediaAssetCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mediaAsset"]>
 
 export type MediaAssetSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   customerId?: boolean
   createdByAdminId?: boolean
   folderId?: boolean
@@ -2309,15 +2308,15 @@ export type MediaAssetSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  customer?: boolean | Prisma.MediaAsset$customerArgs<ExtArgs>
+  workspaceId?: boolean
   createdByAdmin?: boolean | Prisma.MediaAsset$createdByAdminArgs<ExtArgs>
+  customer?: boolean | Prisma.MediaAsset$customerArgs<ExtArgs>
   folder?: boolean | Prisma.MediaAsset$folderArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mediaAsset"]>
 
 export type MediaAssetSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   customerId?: boolean
   createdByAdminId?: boolean
   folderId?: boolean
@@ -2339,15 +2338,15 @@ export type MediaAssetSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  customer?: boolean | Prisma.MediaAsset$customerArgs<ExtArgs>
+  workspaceId?: boolean
   createdByAdmin?: boolean | Prisma.MediaAsset$createdByAdminArgs<ExtArgs>
+  customer?: boolean | Prisma.MediaAsset$customerArgs<ExtArgs>
   folder?: boolean | Prisma.MediaAsset$folderArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mediaAsset"]>
 
 export type MediaAssetSelectScalar = {
   id?: boolean
-  workspaceId?: boolean
   customerId?: boolean
   createdByAdminId?: boolean
   folderId?: boolean
@@ -2369,28 +2368,29 @@ export type MediaAssetSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  workspaceId?: boolean
 }
 
-export type MediaAssetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "customerId" | "createdByAdminId" | "folderId" | "kind" | "status" | "storageKey" | "publicUrl" | "fileName" | "originalFilename" | "extension" | "contentType" | "byteSize" | "checksum" | "width" | "height" | "altText" | "caption" | "tags" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["mediaAsset"]>
+export type MediaAssetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customerId" | "createdByAdminId" | "folderId" | "kind" | "status" | "storageKey" | "publicUrl" | "fileName" | "originalFilename" | "extension" | "contentType" | "byteSize" | "checksum" | "width" | "height" | "altText" | "caption" | "tags" | "createdAt" | "updatedAt" | "deletedAt" | "workspaceId", ExtArgs["result"]["mediaAsset"]>
 export type MediaAssetInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  customer?: boolean | Prisma.MediaAsset$customerArgs<ExtArgs>
-  createdByAdmin?: boolean | Prisma.MediaAsset$createdByAdminArgs<ExtArgs>
-  folder?: boolean | Prisma.MediaAsset$folderArgs<ExtArgs>
-  cards?: boolean | Prisma.MediaAsset$cardsArgs<ExtArgs>
   cardBlockMedias?: boolean | Prisma.MediaAsset$cardBlockMediasArgs<ExtArgs>
-  paymentProofs?: boolean | Prisma.MediaAsset$paymentProofsArgs<ExtArgs>
+  cards?: boolean | Prisma.MediaAsset$cardsArgs<ExtArgs>
+  createdByAdmin?: boolean | Prisma.MediaAsset$createdByAdminArgs<ExtArgs>
+  customer?: boolean | Prisma.MediaAsset$customerArgs<ExtArgs>
+  folder?: boolean | Prisma.MediaAsset$folderArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  paymentProofs?: boolean | Prisma.MediaAsset$paymentProofsArgs<ExtArgs>
   _count?: boolean | Prisma.MediaAssetCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MediaAssetIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  customer?: boolean | Prisma.MediaAsset$customerArgs<ExtArgs>
   createdByAdmin?: boolean | Prisma.MediaAsset$createdByAdminArgs<ExtArgs>
+  customer?: boolean | Prisma.MediaAsset$customerArgs<ExtArgs>
   folder?: boolean | Prisma.MediaAsset$folderArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 export type MediaAssetIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  customer?: boolean | Prisma.MediaAsset$customerArgs<ExtArgs>
   createdByAdmin?: boolean | Prisma.MediaAsset$createdByAdminArgs<ExtArgs>
+  customer?: boolean | Prisma.MediaAsset$customerArgs<ExtArgs>
   folder?: boolean | Prisma.MediaAsset$folderArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
@@ -2398,17 +2398,16 @@ export type MediaAssetIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type $MediaAssetPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "MediaAsset"
   objects: {
-    customer: Prisma.$CustomerPayload<ExtArgs> | null
-    createdByAdmin: Prisma.$AdminUserPayload<ExtArgs> | null
-    folder: Prisma.$MediaFolderPayload<ExtArgs> | null
-    cards: Prisma.$CardMediaPayload<ExtArgs>[]
     cardBlockMedias: Prisma.$CardBlockMediaPayload<ExtArgs>[]
-    paymentProofs: Prisma.$PaymentSubmissionPayload<ExtArgs>[]
+    cards: Prisma.$CardMediaPayload<ExtArgs>[]
+    createdByAdmin: Prisma.$AdminUserPayload<ExtArgs> | null
+    customer: Prisma.$CustomerPayload<ExtArgs> | null
+    folder: Prisma.$MediaFolderPayload<ExtArgs> | null
     workspace: Prisma.$WorkspacePayload<ExtArgs>
+    paymentProofs: Prisma.$PaymentSubmissionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    workspaceId: string
     customerId: string | null
     createdByAdminId: string | null
     folderId: string | null
@@ -2430,6 +2429,7 @@ export type $MediaAssetPayload<ExtArgs extends runtime.Types.Extensions.Internal
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
+    workspaceId: string
   }, ExtArgs["result"]["mediaAsset"]>
   composites: {}
 }
@@ -2824,13 +2824,13 @@ readonly fields: MediaAssetFieldRefs;
  */
 export interface Prisma__MediaAssetClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  customer<T extends Prisma.MediaAsset$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  createdByAdmin<T extends Prisma.MediaAsset$createdByAdminArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$createdByAdminArgs<ExtArgs>>): Prisma.Prisma__AdminUserClient<runtime.Types.Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  folder<T extends Prisma.MediaAsset$folderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$folderArgs<ExtArgs>>): Prisma.Prisma__MediaFolderClient<runtime.Types.Result.GetResult<Prisma.$MediaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  cards<T extends Prisma.MediaAsset$cardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$cardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardMediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cardBlockMedias<T extends Prisma.MediaAsset$cardBlockMediasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$cardBlockMediasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardBlockMediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  paymentProofs<T extends Prisma.MediaAsset$paymentProofsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$paymentProofsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  cards<T extends Prisma.MediaAsset$cardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$cardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardMediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdByAdmin<T extends Prisma.MediaAsset$createdByAdminArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$createdByAdminArgs<ExtArgs>>): Prisma.Prisma__AdminUserClient<runtime.Types.Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  customer<T extends Prisma.MediaAsset$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  folder<T extends Prisma.MediaAsset$folderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$folderArgs<ExtArgs>>): Prisma.Prisma__MediaFolderClient<runtime.Types.Result.GetResult<Prisma.$MediaFolderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  paymentProofs<T extends Prisma.MediaAsset$paymentProofsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MediaAsset$paymentProofsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2861,7 +2861,6 @@ export interface Prisma__MediaAssetClient<T, Null = never, ExtArgs extends runti
  */
 export interface MediaAssetFieldRefs {
   readonly id: Prisma.FieldRef<"MediaAsset", 'String'>
-  readonly workspaceId: Prisma.FieldRef<"MediaAsset", 'String'>
   readonly customerId: Prisma.FieldRef<"MediaAsset", 'String'>
   readonly createdByAdminId: Prisma.FieldRef<"MediaAsset", 'String'>
   readonly folderId: Prisma.FieldRef<"MediaAsset", 'String'>
@@ -2883,6 +2882,7 @@ export interface MediaAssetFieldRefs {
   readonly createdAt: Prisma.FieldRef<"MediaAsset", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"MediaAsset", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"MediaAsset", 'DateTime'>
+  readonly workspaceId: Prisma.FieldRef<"MediaAsset", 'String'>
 }
     
 
@@ -3284,60 +3284,27 @@ export type MediaAssetDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * MediaAsset.customer
+ * MediaAsset.cardBlockMedias
  */
-export type MediaAsset$customerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type MediaAsset$cardBlockMediasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Customer
+   * Select specific fields to fetch from the CardBlockMedia
    */
-  select?: Prisma.CustomerSelect<ExtArgs> | null
+  select?: Prisma.CardBlockMediaSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Customer
+   * Omit specific fields from the CardBlockMedia
    */
-  omit?: Prisma.CustomerOmit<ExtArgs> | null
+  omit?: Prisma.CardBlockMediaOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CustomerInclude<ExtArgs> | null
-  where?: Prisma.CustomerWhereInput
-}
-
-/**
- * MediaAsset.createdByAdmin
- */
-export type MediaAsset$createdByAdminArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AdminUser
-   */
-  select?: Prisma.AdminUserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the AdminUser
-   */
-  omit?: Prisma.AdminUserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AdminUserInclude<ExtArgs> | null
-  where?: Prisma.AdminUserWhereInput
-}
-
-/**
- * MediaAsset.folder
- */
-export type MediaAsset$folderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the MediaFolder
-   */
-  select?: Prisma.MediaFolderSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the MediaFolder
-   */
-  omit?: Prisma.MediaFolderOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MediaFolderInclude<ExtArgs> | null
-  where?: Prisma.MediaFolderWhereInput
+  include?: Prisma.CardBlockMediaInclude<ExtArgs> | null
+  where?: Prisma.CardBlockMediaWhereInput
+  orderBy?: Prisma.CardBlockMediaOrderByWithRelationInput | Prisma.CardBlockMediaOrderByWithRelationInput[]
+  cursor?: Prisma.CardBlockMediaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CardBlockMediaScalarFieldEnum | Prisma.CardBlockMediaScalarFieldEnum[]
 }
 
 /**
@@ -3365,27 +3332,60 @@ export type MediaAsset$cardsArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * MediaAsset.cardBlockMedias
+ * MediaAsset.createdByAdmin
  */
-export type MediaAsset$cardBlockMediasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type MediaAsset$createdByAdminArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the CardBlockMedia
+   * Select specific fields to fetch from the AdminUser
    */
-  select?: Prisma.CardBlockMediaSelect<ExtArgs> | null
+  select?: Prisma.AdminUserSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the CardBlockMedia
+   * Omit specific fields from the AdminUser
    */
-  omit?: Prisma.CardBlockMediaOmit<ExtArgs> | null
+  omit?: Prisma.AdminUserOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CardBlockMediaInclude<ExtArgs> | null
-  where?: Prisma.CardBlockMediaWhereInput
-  orderBy?: Prisma.CardBlockMediaOrderByWithRelationInput | Prisma.CardBlockMediaOrderByWithRelationInput[]
-  cursor?: Prisma.CardBlockMediaWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CardBlockMediaScalarFieldEnum | Prisma.CardBlockMediaScalarFieldEnum[]
+  include?: Prisma.AdminUserInclude<ExtArgs> | null
+  where?: Prisma.AdminUserWhereInput
+}
+
+/**
+ * MediaAsset.customer
+ */
+export type MediaAsset$customerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Customer
+   */
+  select?: Prisma.CustomerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Customer
+   */
+  omit?: Prisma.CustomerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CustomerInclude<ExtArgs> | null
+  where?: Prisma.CustomerWhereInput
+}
+
+/**
+ * MediaAsset.folder
+ */
+export type MediaAsset$folderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MediaFolder
+   */
+  select?: Prisma.MediaFolderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MediaFolder
+   */
+  omit?: Prisma.MediaFolderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MediaFolderInclude<ExtArgs> | null
+  where?: Prisma.MediaFolderWhereInput
 }
 
 /**

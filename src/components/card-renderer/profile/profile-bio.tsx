@@ -21,7 +21,9 @@ export function ProfileBio({ text, className }: ProfileBioProps) {
       transition={{ delay: 0.15, duration: 0.4, ease: "easeOut" }}
     >
       <p
-        className="leading-[1.7] max-w-[340px] mx-auto font-normal text-[14px] sm:text-[15px] line-clamp-3 md:line-clamp-4 opacity-85"
+        className={cn(
+          "leading-[1.7] lg:leading-[var(--bio-line-height,1.7)] max-w-[340px] lg:max-w-[var(--bio-max-width,340px)] mx-auto font-normal text-[14px] sm:text-[15px] lg:text-[var(--bio-font-size,15px)] line-clamp-3 md:line-clamp-4 lg:line-clamp-none opacity-85"
+        )}
         style={{
           fontFamily: theme.typography.fontFamily,
           color: theme.colors.text,

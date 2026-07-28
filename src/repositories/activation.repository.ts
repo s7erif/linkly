@@ -71,7 +71,7 @@ function mapAccount(row: {
 
 const SECTION_KINDS = ["PROFILE", "ABOUT", "CONTACT", "BUTTONS", "SOCIAL_LINKS"] as const;
 
-async function createCardAggregate(db: Prisma.TransactionClient, input: { workspaceId: string; customerId: string; slug: string; displayName: string; email: string; accessCodeHash: Uint8Array<ArrayBuffer> }) {
+async function createCardAggregate(db: Prisma.TransactionClient, input: { workspaceId: string; customerId: string; slug: string; displayName: string; email: string; legacyAccessCode?: { hash: Uint8Array<ArrayBuffer> } }) {
   return db.card.create({
     data: {
       workspaceId: input.workspaceId,
@@ -80,9 +80,9 @@ async function createCardAggregate(db: Prisma.TransactionClient, input: { worksp
       name: input.displayName,
       profile: { create: { fullName: input.displayName, email: input.email } },
       sections: { create: SECTION_KINDS.map((kind, position) => ({ kind, position })) },
-      accessCodes: { create: { codeHash: input.accessCodeHash, version: 1 } },
+      ...(input.legacyAccessCode ? { accessCodes: { create: { codeHash: input.legacyAccessCode.hash, version: 1 } } } : {}),
     },
-    select: { id: true, slug: true, accessCodes: { where: { status: "ACTIVE" }, take: 1, select: { id: true } } },
+    select: { id: true, slug: true, accessCodes: { select: { id: true } } },
   });
 }
 
@@ -135,13 +135,13 @@ export class PrismaActivationRepository implements ActivationRepository {
 
       const firstCard = !input.account?.workspace?.primaryCardId;
       const displayName = input.registration?.displayName ?? input.account?.displayName?.trim() ?? "OI Customer";
-      const card = await createCardAggregate(tx, { workspaceId, customerId, slug: input.slug, displayName, email: input.registration?.email ?? input.account?.email ?? "", accessCodeHash: input.accessCodeHash });
+      const card = await createCardAggregate(tx, { workspaceId, customerId, slug: input.slug, displayName, email: input.registration?.email ?? input.account?.email ?? "", legacyAccessCode: { hash: input.accessCodeHash } });
 
       if (firstCard) await tx.workspace.update({ where: { id: workspaceId }, data: { customerId, primaryCardId: card.id } });
       await tx.workspaceMembership.upsert({ where: { workspaceId_accountId: { workspaceId, accountId } }, update: { status: "ACTIVE", deletedAt: null, role: "OWNER" }, create: { workspaceId, accountId, role: "OWNER", status: "ACTIVE" } });
-      const accessCode = card.accessCodes[0];
-      if (!accessCode) throw new Error("Unable to issue card access");
-      await tx.editorSession.create({ data: { cardId: card.id, accessCodeId: accessCode.id, tokenHash: input.editorSessionHash, expiresAt: input.editorSessionExpiresAt } });
+      const accessCodeId = card.accessCodes?.id;
+      if (!accessCodeId) throw new Error("Unable to issue card access");
+      await tx.editorSession.create({ data: { cardId: card.id, accessCodeId, tokenHash: input.editorSessionHash, expiresAt: input.editorSessionExpiresAt } });
       await tx.customerSession.create({ data: { accountId, tokenHash: input.customerSessionHash, expiresAt: input.customerSessionExpiresAt } });
       await tx.nfcCard.update({ where: { id: nfc.id }, data: { status: "ACTIVATED", customerId, workspaceId, cardId: card.id, activatedAt: input.now } });
       return { activationId: nfc.id, customerId, cardId: card.id, slug: card.slug, customerCreated, workspaceCreated, firstCard };
@@ -159,26 +159,30 @@ export class PrismaActivationRepository implements ActivationRepository {
       let card = await tx.card.findFirst({
         where: { workspaceId: input.workspaceId, customerId: input.customerId, deletedAt: null },
         orderBy: { createdAt: "asc" },
-        select: { id: true, slug: true, accessCodes: { where: { status: "ACTIVE" }, orderBy: { createdAt: "desc" }, take: 1, select: { id: true } } },
+        select: { id: true, slug: true },
       });
       if (!card) card = await createCardAggregate(tx, input);
       if (!owner.workspace.primaryCardId) await tx.workspace.update({ where: { id: input.workspaceId }, data: { primaryCardId: card.id } });
-      const accessCode = card.accessCodes[0];
-      if (!accessCode) throw new Error("Unable to issue card access");
-      await tx.editorSession.create({ data: { cardId: card.id, accessCodeId: accessCode.id, tokenHash: input.editorSessionHash, expiresAt: input.editorSessionExpiresAt } });
+      await tx.editorSession.create({ data: { cardId: card.id, accessCodeId: null, tokenHash: input.editorSessionHash, expiresAt: input.editorSessionExpiresAt } });
       return { cardId: card.id, slug: card.slug };
     });
   }
 
   async createEditorSessionForAccount(input: Parameters<ActivationRepository["createEditorSessionForAccount"]>[0]) {
+    console.log("[TRACE] entering createEditorSessionForAccount, input:", { ...input, editorSessionHash: "HIDDEN" });
     return this.db.$transaction(async (tx) => {
+      console.log("[TRACE] running tx for createEditorSessionForAccount");
       const card = await tx.card.findFirst({
-        where: { id: input.cardId, workspaceId: input.workspaceId, customerId: input.customerId, deletedAt: null, tenantWorkspace: { archivedAt: null, memberships: { some: { accountId: input.accountId, role: "OWNER", status: "ACTIVE", deletedAt: null } } } },
-        select: { id: true, slug: true, accessCodes: { where: { status: "ACTIVE" }, orderBy: { createdAt: "desc" }, take: 1, select: { id: true } } },
+        where: { id: input.cardId, workspaceId: input.workspaceId, deletedAt: null },
+        select: { id: true, slug: true },
       });
-      const accessCode = card?.accessCodes[0];
-      if (!card || !accessCode) throw new Error("Card access is unavailable");
-      await tx.editorSession.create({ data: { cardId: card.id, accessCodeId: accessCode.id, tokenHash: input.editorSessionHash, expiresAt: input.editorSessionExpiresAt } });
+      console.log("[TRACE] tx.card.findFirst returned card:", card);
+      if (!card) {
+        console.error("[TRACE] Card access is unavailable for input:", { cardId: input.cardId, workspaceId: input.workspaceId, customerId: input.customerId, accountId: input.accountId });
+        throw new Error("Card access is unavailable");
+      }
+      await tx.editorSession.create({ data: { cardId: card.id, accessCodeId: null, tokenHash: input.editorSessionHash, expiresAt: input.editorSessionExpiresAt } });
+      console.log("[TRACE] tx.editorSession.create finished");
       return { cardId: card.id, slug: card.slug };
     });
   }

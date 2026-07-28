@@ -46,11 +46,7 @@ export function WorkspacePageContent({
   const resetStore = useCardEditorStore((s) => s.reset);
   const preparedCards = useCardEditorStore((s) => s.availableCards);
 
-  console.log("[TRACE:WorkspacePageContent] RENDER — accountData:", accountData);
-  console.log("[TRACE:WorkspacePageContent] RENDER — slug:", slug);
-  console.log("[TRACE:WorkspacePageContent] RENDER — cards.length:", cards.length);
-  console.log("[TRACE:WorkspacePageContent] RENDER — accountData type:", typeof accountData, ", is null?", accountData === null, ", is undefined?", accountData === undefined);
-  console.log("[TRACE:WorkspacePageContent] RENDER — accountData JSON:", JSON.stringify(accountData));
+  console.log("[TRACE] WorkspacePageContent rendered");
 
   // When entering a different route state (picker or editor), reset the
   // editor-only Zustand state synchronously BEFORE paint.  This must run

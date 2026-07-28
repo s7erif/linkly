@@ -36,7 +36,6 @@ export type NotificationDeliverySumAggregateOutputType = {
 
 export type NotificationDeliveryMinAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   orderId: string | null
   customerId: string | null
   cardId: string | null
@@ -54,11 +53,11 @@ export type NotificationDeliveryMinAggregateOutputType = {
   failureMessage: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  workspaceId: string | null
 }
 
 export type NotificationDeliveryMaxAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   orderId: string | null
   customerId: string | null
   cardId: string | null
@@ -76,11 +75,11 @@ export type NotificationDeliveryMaxAggregateOutputType = {
   failureMessage: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  workspaceId: string | null
 }
 
 export type NotificationDeliveryCountAggregateOutputType = {
   id: number
-  workspaceId: number
   orderId: number
   customerId: number
   cardId: number
@@ -98,6 +97,7 @@ export type NotificationDeliveryCountAggregateOutputType = {
   failureMessage: number
   createdAt: number
   updatedAt: number
+  workspaceId: number
   _all: number
 }
 
@@ -112,7 +112,6 @@ export type NotificationDeliverySumAggregateInputType = {
 
 export type NotificationDeliveryMinAggregateInputType = {
   id?: true
-  workspaceId?: true
   orderId?: true
   customerId?: true
   cardId?: true
@@ -130,11 +129,11 @@ export type NotificationDeliveryMinAggregateInputType = {
   failureMessage?: true
   createdAt?: true
   updatedAt?: true
+  workspaceId?: true
 }
 
 export type NotificationDeliveryMaxAggregateInputType = {
   id?: true
-  workspaceId?: true
   orderId?: true
   customerId?: true
   cardId?: true
@@ -152,11 +151,11 @@ export type NotificationDeliveryMaxAggregateInputType = {
   failureMessage?: true
   createdAt?: true
   updatedAt?: true
+  workspaceId?: true
 }
 
 export type NotificationDeliveryCountAggregateInputType = {
   id?: true
-  workspaceId?: true
   orderId?: true
   customerId?: true
   cardId?: true
@@ -174,6 +173,7 @@ export type NotificationDeliveryCountAggregateInputType = {
   failureMessage?: true
   createdAt?: true
   updatedAt?: true
+  workspaceId?: true
   _all?: true
 }
 
@@ -265,7 +265,6 @@ export type NotificationDeliveryGroupByArgs<ExtArgs extends runtime.Types.Extens
 
 export type NotificationDeliveryGroupByOutputType = {
   id: string
-  workspaceId: string
   orderId: string
   customerId: string
   cardId: string
@@ -283,6 +282,7 @@ export type NotificationDeliveryGroupByOutputType = {
   failureMessage: string | null
   createdAt: Date
   updatedAt: Date
+  workspaceId: string
   _count: NotificationDeliveryCountAggregateOutputType | null
   _avg: NotificationDeliveryAvgAggregateOutputType | null
   _sum: NotificationDeliverySumAggregateOutputType | null
@@ -310,7 +310,6 @@ export type NotificationDeliveryWhereInput = {
   OR?: Prisma.NotificationDeliveryWhereInput[]
   NOT?: Prisma.NotificationDeliveryWhereInput | Prisma.NotificationDeliveryWhereInput[]
   id?: Prisma.UuidFilter<"NotificationDelivery"> | string
-  workspaceId?: Prisma.UuidFilter<"NotificationDelivery"> | string
   orderId?: Prisma.UuidFilter<"NotificationDelivery"> | string
   customerId?: Prisma.UuidFilter<"NotificationDelivery"> | string
   cardId?: Prisma.UuidFilter<"NotificationDelivery"> | string
@@ -328,15 +327,15 @@ export type NotificationDeliveryWhereInput = {
   failureMessage?: Prisma.StringNullableFilter<"NotificationDelivery"> | string | null
   createdAt?: Prisma.DateTimeFilter<"NotificationDelivery"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"NotificationDelivery"> | Date | string
-  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
-  customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
+  workspaceId?: Prisma.UuidFilter<"NotificationDelivery"> | string
   card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
+  customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
+  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }
 
 export type NotificationDeliveryOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
@@ -354,9 +353,10 @@ export type NotificationDeliveryOrderByWithRelationInput = {
   failureMessage?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  order?: Prisma.OrderOrderByWithRelationInput
-  customer?: Prisma.CustomerOrderByWithRelationInput
+  workspaceId?: Prisma.SortOrder
   card?: Prisma.CardOrderByWithRelationInput
+  customer?: Prisma.CustomerOrderByWithRelationInput
+  order?: Prisma.OrderOrderByWithRelationInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
 }
 
@@ -368,7 +368,6 @@ export type NotificationDeliveryWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.NotificationDeliveryWhereInput | Prisma.NotificationDeliveryWhereInput[]
   OR?: Prisma.NotificationDeliveryWhereInput[]
   NOT?: Prisma.NotificationDeliveryWhereInput | Prisma.NotificationDeliveryWhereInput[]
-  workspaceId?: Prisma.UuidFilter<"NotificationDelivery"> | string
   orderId?: Prisma.UuidFilter<"NotificationDelivery"> | string
   customerId?: Prisma.UuidFilter<"NotificationDelivery"> | string
   cardId?: Prisma.UuidFilter<"NotificationDelivery"> | string
@@ -385,15 +384,15 @@ export type NotificationDeliveryWhereUniqueInput = Prisma.AtLeast<{
   failureMessage?: Prisma.StringNullableFilter<"NotificationDelivery"> | string | null
   createdAt?: Prisma.DateTimeFilter<"NotificationDelivery"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"NotificationDelivery"> | Date | string
-  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
-  customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
+  workspaceId?: Prisma.UuidFilter<"NotificationDelivery"> | string
   card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
+  customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
+  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }, "id" | "idempotencyKey" | "workspaceId_cardId_channel_template" | "cardId_channel_template">
 
 export type NotificationDeliveryOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
@@ -411,6 +410,7 @@ export type NotificationDeliveryOrderByWithAggregationInput = {
   failureMessage?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
   _count?: Prisma.NotificationDeliveryCountOrderByAggregateInput
   _avg?: Prisma.NotificationDeliveryAvgOrderByAggregateInput
   _max?: Prisma.NotificationDeliveryMaxOrderByAggregateInput
@@ -423,7 +423,6 @@ export type NotificationDeliveryScalarWhereWithAggregatesInput = {
   OR?: Prisma.NotificationDeliveryScalarWhereWithAggregatesInput[]
   NOT?: Prisma.NotificationDeliveryScalarWhereWithAggregatesInput | Prisma.NotificationDeliveryScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"NotificationDelivery"> | string
-  workspaceId?: Prisma.UuidWithAggregatesFilter<"NotificationDelivery"> | string
   orderId?: Prisma.UuidWithAggregatesFilter<"NotificationDelivery"> | string
   customerId?: Prisma.UuidWithAggregatesFilter<"NotificationDelivery"> | string
   cardId?: Prisma.UuidWithAggregatesFilter<"NotificationDelivery"> | string
@@ -441,6 +440,7 @@ export type NotificationDeliveryScalarWhereWithAggregatesInput = {
   failureMessage?: Prisma.StringNullableWithAggregatesFilter<"NotificationDelivery"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"NotificationDelivery"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"NotificationDelivery"> | Date | string
+  workspaceId?: Prisma.UuidWithAggregatesFilter<"NotificationDelivery"> | string
 }
 
 export type NotificationDeliveryCreateInput = {
@@ -459,15 +459,14 @@ export type NotificationDeliveryCreateInput = {
   failureMessage?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  order: Prisma.OrderCreateNestedOneWithoutNotificationsInput
-  customer: Prisma.CustomerCreateNestedOneWithoutNotificationsInput
   card: Prisma.CardCreateNestedOneWithoutNotificationsInput
+  customer: Prisma.CustomerCreateNestedOneWithoutNotificationsInput
+  order: Prisma.OrderCreateNestedOneWithoutNotificationsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutNotificationsInput
 }
 
 export type NotificationDeliveryUncheckedCreateInput = {
   id?: string
-  workspaceId: string
   orderId: string
   customerId: string
   cardId: string
@@ -485,6 +484,7 @@ export type NotificationDeliveryUncheckedCreateInput = {
   failureMessage?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
 }
 
 export type NotificationDeliveryUpdateInput = {
@@ -503,15 +503,14 @@ export type NotificationDeliveryUpdateInput = {
   failureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.OrderUpdateOneRequiredWithoutNotificationsNestedInput
-  customer?: Prisma.CustomerUpdateOneRequiredWithoutNotificationsNestedInput
   card?: Prisma.CardUpdateOneRequiredWithoutNotificationsNestedInput
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutNotificationsNestedInput
+  order?: Prisma.OrderUpdateOneRequiredWithoutNotificationsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutNotificationsNestedInput
 }
 
 export type NotificationDeliveryUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -529,11 +528,11 @@ export type NotificationDeliveryUncheckedUpdateInput = {
   failureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationDeliveryCreateManyInput = {
   id?: string
-  workspaceId: string
   orderId: string
   customerId: string
   cardId: string
@@ -551,6 +550,7 @@ export type NotificationDeliveryCreateManyInput = {
   failureMessage?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
 }
 
 export type NotificationDeliveryUpdateManyMutationInput = {
@@ -573,7 +573,6 @@ export type NotificationDeliveryUpdateManyMutationInput = {
 
 export type NotificationDeliveryUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -591,6 +590,7 @@ export type NotificationDeliveryUncheckedUpdateManyInput = {
   failureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationDeliveryListRelationFilter = {
@@ -618,7 +618,6 @@ export type NotificationDeliveryCardIdChannelTemplateCompoundUniqueInput = {
 
 export type NotificationDeliveryCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
@@ -636,6 +635,7 @@ export type NotificationDeliveryCountOrderByAggregateInput = {
   failureMessage?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type NotificationDeliveryAvgOrderByAggregateInput = {
@@ -644,7 +644,6 @@ export type NotificationDeliveryAvgOrderByAggregateInput = {
 
 export type NotificationDeliveryMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
@@ -662,11 +661,11 @@ export type NotificationDeliveryMaxOrderByAggregateInput = {
   failureMessage?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type NotificationDeliveryMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
@@ -684,6 +683,7 @@ export type NotificationDeliveryMinOrderByAggregateInput = {
   failureMessage?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type NotificationDeliverySumOrderByAggregateInput = {
@@ -882,14 +882,13 @@ export type NotificationDeliveryCreateWithoutCustomerInput = {
   failureMessage?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  order: Prisma.OrderCreateNestedOneWithoutNotificationsInput
   card: Prisma.CardCreateNestedOneWithoutNotificationsInput
+  order: Prisma.OrderCreateNestedOneWithoutNotificationsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutNotificationsInput
 }
 
 export type NotificationDeliveryUncheckedCreateWithoutCustomerInput = {
   id?: string
-  workspaceId: string
   orderId: string
   cardId: string
   channel: $Enums.NotificationChannel
@@ -906,6 +905,7 @@ export type NotificationDeliveryUncheckedCreateWithoutCustomerInput = {
   failureMessage?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
 }
 
 export type NotificationDeliveryCreateOrConnectWithoutCustomerInput = {
@@ -939,7 +939,6 @@ export type NotificationDeliveryScalarWhereInput = {
   OR?: Prisma.NotificationDeliveryScalarWhereInput[]
   NOT?: Prisma.NotificationDeliveryScalarWhereInput | Prisma.NotificationDeliveryScalarWhereInput[]
   id?: Prisma.UuidFilter<"NotificationDelivery"> | string
-  workspaceId?: Prisma.UuidFilter<"NotificationDelivery"> | string
   orderId?: Prisma.UuidFilter<"NotificationDelivery"> | string
   customerId?: Prisma.UuidFilter<"NotificationDelivery"> | string
   cardId?: Prisma.UuidFilter<"NotificationDelivery"> | string
@@ -957,6 +956,7 @@ export type NotificationDeliveryScalarWhereInput = {
   failureMessage?: Prisma.StringNullableFilter<"NotificationDelivery"> | string | null
   createdAt?: Prisma.DateTimeFilter<"NotificationDelivery"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"NotificationDelivery"> | Date | string
+  workspaceId?: Prisma.UuidFilter<"NotificationDelivery"> | string
 }
 
 export type NotificationDeliveryCreateWithoutWorkspaceInput = {
@@ -975,9 +975,9 @@ export type NotificationDeliveryCreateWithoutWorkspaceInput = {
   failureMessage?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  order: Prisma.OrderCreateNestedOneWithoutNotificationsInput
-  customer: Prisma.CustomerCreateNestedOneWithoutNotificationsInput
   card: Prisma.CardCreateNestedOneWithoutNotificationsInput
+  customer: Prisma.CustomerCreateNestedOneWithoutNotificationsInput
+  order: Prisma.OrderCreateNestedOneWithoutNotificationsInput
 }
 
 export type NotificationDeliveryUncheckedCreateWithoutWorkspaceInput = {
@@ -1043,14 +1043,13 @@ export type NotificationDeliveryCreateWithoutOrderInput = {
   failureMessage?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  customer: Prisma.CustomerCreateNestedOneWithoutNotificationsInput
   card: Prisma.CardCreateNestedOneWithoutNotificationsInput
+  customer: Prisma.CustomerCreateNestedOneWithoutNotificationsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutNotificationsInput
 }
 
 export type NotificationDeliveryUncheckedCreateWithoutOrderInput = {
   id?: string
-  workspaceId: string
   customerId: string
   cardId: string
   channel: $Enums.NotificationChannel
@@ -1067,6 +1066,7 @@ export type NotificationDeliveryUncheckedCreateWithoutOrderInput = {
   failureMessage?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
 }
 
 export type NotificationDeliveryCreateOrConnectWithoutOrderInput = {
@@ -1111,14 +1111,13 @@ export type NotificationDeliveryCreateWithoutCardInput = {
   failureMessage?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  order: Prisma.OrderCreateNestedOneWithoutNotificationsInput
   customer: Prisma.CustomerCreateNestedOneWithoutNotificationsInput
+  order: Prisma.OrderCreateNestedOneWithoutNotificationsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutNotificationsInput
 }
 
 export type NotificationDeliveryUncheckedCreateWithoutCardInput = {
   id?: string
-  workspaceId: string
   orderId: string
   customerId: string
   channel: $Enums.NotificationChannel
@@ -1135,6 +1134,7 @@ export type NotificationDeliveryUncheckedCreateWithoutCardInput = {
   failureMessage?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
 }
 
 export type NotificationDeliveryCreateOrConnectWithoutCardInput = {
@@ -1165,7 +1165,6 @@ export type NotificationDeliveryUpdateManyWithWhereWithoutCardInput = {
 
 export type NotificationDeliveryCreateManyCustomerInput = {
   id?: string
-  workspaceId: string
   orderId: string
   cardId: string
   channel: $Enums.NotificationChannel
@@ -1182,6 +1181,7 @@ export type NotificationDeliveryCreateManyCustomerInput = {
   failureMessage?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
 }
 
 export type NotificationDeliveryUpdateWithoutCustomerInput = {
@@ -1200,14 +1200,13 @@ export type NotificationDeliveryUpdateWithoutCustomerInput = {
   failureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.OrderUpdateOneRequiredWithoutNotificationsNestedInput
   card?: Prisma.CardUpdateOneRequiredWithoutNotificationsNestedInput
+  order?: Prisma.OrderUpdateOneRequiredWithoutNotificationsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutNotificationsNestedInput
 }
 
 export type NotificationDeliveryUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
@@ -1224,11 +1223,11 @@ export type NotificationDeliveryUncheckedUpdateWithoutCustomerInput = {
   failureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationDeliveryUncheckedUpdateManyWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
@@ -1245,6 +1244,7 @@ export type NotificationDeliveryUncheckedUpdateManyWithoutCustomerInput = {
   failureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationDeliveryCreateManyWorkspaceInput = {
@@ -1284,9 +1284,9 @@ export type NotificationDeliveryUpdateWithoutWorkspaceInput = {
   failureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.OrderUpdateOneRequiredWithoutNotificationsNestedInput
-  customer?: Prisma.CustomerUpdateOneRequiredWithoutNotificationsNestedInput
   card?: Prisma.CardUpdateOneRequiredWithoutNotificationsNestedInput
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutNotificationsNestedInput
+  order?: Prisma.OrderUpdateOneRequiredWithoutNotificationsNestedInput
 }
 
 export type NotificationDeliveryUncheckedUpdateWithoutWorkspaceInput = {
@@ -1333,7 +1333,6 @@ export type NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceInput = {
 
 export type NotificationDeliveryCreateManyOrderInput = {
   id?: string
-  workspaceId: string
   customerId: string
   cardId: string
   channel: $Enums.NotificationChannel
@@ -1350,6 +1349,7 @@ export type NotificationDeliveryCreateManyOrderInput = {
   failureMessage?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
 }
 
 export type NotificationDeliveryUpdateWithoutOrderInput = {
@@ -1368,14 +1368,13 @@ export type NotificationDeliveryUpdateWithoutOrderInput = {
   failureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  customer?: Prisma.CustomerUpdateOneRequiredWithoutNotificationsNestedInput
   card?: Prisma.CardUpdateOneRequiredWithoutNotificationsNestedInput
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutNotificationsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutNotificationsNestedInput
 }
 
 export type NotificationDeliveryUncheckedUpdateWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
@@ -1392,11 +1391,11 @@ export type NotificationDeliveryUncheckedUpdateWithoutOrderInput = {
   failureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationDeliveryUncheckedUpdateManyWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
@@ -1413,11 +1412,11 @@ export type NotificationDeliveryUncheckedUpdateManyWithoutOrderInput = {
   failureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationDeliveryCreateManyCardInput = {
   id?: string
-  workspaceId: string
   orderId: string
   customerId: string
   channel: $Enums.NotificationChannel
@@ -1434,6 +1433,7 @@ export type NotificationDeliveryCreateManyCardInput = {
   failureMessage?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
 }
 
 export type NotificationDeliveryUpdateWithoutCardInput = {
@@ -1452,14 +1452,13 @@ export type NotificationDeliveryUpdateWithoutCardInput = {
   failureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.OrderUpdateOneRequiredWithoutNotificationsNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutNotificationsNestedInput
+  order?: Prisma.OrderUpdateOneRequiredWithoutNotificationsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutNotificationsNestedInput
 }
 
 export type NotificationDeliveryUncheckedUpdateWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
@@ -1476,11 +1475,11 @@ export type NotificationDeliveryUncheckedUpdateWithoutCardInput = {
   failureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type NotificationDeliveryUncheckedUpdateManyWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
@@ -1497,13 +1496,13 @@ export type NotificationDeliveryUncheckedUpdateManyWithoutCardInput = {
   failureMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
 
 export type NotificationDeliverySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   orderId?: boolean
   customerId?: boolean
   cardId?: boolean
@@ -1521,15 +1520,15 @@ export type NotificationDeliverySelect<ExtArgs extends runtime.Types.Extensions.
   failureMessage?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  workspaceId?: boolean
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["notificationDelivery"]>
 
 export type NotificationDeliverySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   orderId?: boolean
   customerId?: boolean
   cardId?: boolean
@@ -1547,15 +1546,15 @@ export type NotificationDeliverySelectCreateManyAndReturn<ExtArgs extends runtim
   failureMessage?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  workspaceId?: boolean
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["notificationDelivery"]>
 
 export type NotificationDeliverySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   orderId?: boolean
   customerId?: boolean
   cardId?: boolean
@@ -1573,15 +1572,15 @@ export type NotificationDeliverySelectUpdateManyAndReturn<ExtArgs extends runtim
   failureMessage?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  workspaceId?: boolean
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["notificationDelivery"]>
 
 export type NotificationDeliverySelectScalar = {
   id?: boolean
-  workspaceId?: boolean
   orderId?: boolean
   customerId?: boolean
   cardId?: boolean
@@ -1599,39 +1598,39 @@ export type NotificationDeliverySelectScalar = {
   failureMessage?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  workspaceId?: boolean
 }
 
-export type NotificationDeliveryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "orderId" | "customerId" | "cardId" | "channel" | "template" | "recipient" | "status" | "provider" | "providerMessageId" | "idempotencyKey" | "attemptCount" | "lastAttemptAt" | "sentAt" | "failureCode" | "failureMessage" | "createdAt" | "updatedAt", ExtArgs["result"]["notificationDelivery"]>
+export type NotificationDeliveryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "customerId" | "cardId" | "channel" | "template" | "recipient" | "status" | "provider" | "providerMessageId" | "idempotencyKey" | "attemptCount" | "lastAttemptAt" | "sentAt" | "failureCode" | "failureMessage" | "createdAt" | "updatedAt" | "workspaceId", ExtArgs["result"]["notificationDelivery"]>
 export type NotificationDeliveryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 export type NotificationDeliveryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 export type NotificationDeliveryIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
-  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
+  customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
+  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 
 export type $NotificationDeliveryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "NotificationDelivery"
   objects: {
-    order: Prisma.$OrderPayload<ExtArgs>
-    customer: Prisma.$CustomerPayload<ExtArgs>
     card: Prisma.$CardPayload<ExtArgs>
+    customer: Prisma.$CustomerPayload<ExtArgs>
+    order: Prisma.$OrderPayload<ExtArgs>
     workspace: Prisma.$WorkspacePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    workspaceId: string
     orderId: string
     customerId: string
     cardId: string
@@ -1649,6 +1648,7 @@ export type $NotificationDeliveryPayload<ExtArgs extends runtime.Types.Extension
     failureMessage: string | null
     createdAt: Date
     updatedAt: Date
+    workspaceId: string
   }, ExtArgs["result"]["notificationDelivery"]>
   composites: {}
 }
@@ -2043,9 +2043,9 @@ readonly fields: NotificationDeliveryFieldRefs;
  */
 export interface Prisma__NotificationDeliveryClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  order<T extends Prisma.OrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrderDefaultArgs<ExtArgs>>): Prisma.Prisma__OrderClient<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   card<T extends Prisma.CardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CardDefaultArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  order<T extends Prisma.OrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrderDefaultArgs<ExtArgs>>): Prisma.Prisma__OrderClient<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2077,7 +2077,6 @@ export interface Prisma__NotificationDeliveryClient<T, Null = never, ExtArgs ext
  */
 export interface NotificationDeliveryFieldRefs {
   readonly id: Prisma.FieldRef<"NotificationDelivery", 'String'>
-  readonly workspaceId: Prisma.FieldRef<"NotificationDelivery", 'String'>
   readonly orderId: Prisma.FieldRef<"NotificationDelivery", 'String'>
   readonly customerId: Prisma.FieldRef<"NotificationDelivery", 'String'>
   readonly cardId: Prisma.FieldRef<"NotificationDelivery", 'String'>
@@ -2095,6 +2094,7 @@ export interface NotificationDeliveryFieldRefs {
   readonly failureMessage: Prisma.FieldRef<"NotificationDelivery", 'String'>
   readonly createdAt: Prisma.FieldRef<"NotificationDelivery", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"NotificationDelivery", 'DateTime'>
+  readonly workspaceId: Prisma.FieldRef<"NotificationDelivery", 'String'>
 }
     
 

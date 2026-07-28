@@ -28,30 +28,30 @@ export type WorkspaceMinAggregateOutputType = {
   id: string | null
   customerId: string | null
   primaryCardId: string | null
-  billingAccountId: string | null
   createdAt: Date | null
   updatedAt: Date | null
   archivedAt: Date | null
+  billingAccountId: string | null
 }
 
 export type WorkspaceMaxAggregateOutputType = {
   id: string | null
   customerId: string | null
   primaryCardId: string | null
-  billingAccountId: string | null
   createdAt: Date | null
   updatedAt: Date | null
   archivedAt: Date | null
+  billingAccountId: string | null
 }
 
 export type WorkspaceCountAggregateOutputType = {
   id: number
   customerId: number
   primaryCardId: number
-  billingAccountId: number
   createdAt: number
   updatedAt: number
   archivedAt: number
+  billingAccountId: number
   _all: number
 }
 
@@ -60,30 +60,30 @@ export type WorkspaceMinAggregateInputType = {
   id?: true
   customerId?: true
   primaryCardId?: true
-  billingAccountId?: true
   createdAt?: true
   updatedAt?: true
   archivedAt?: true
+  billingAccountId?: true
 }
 
 export type WorkspaceMaxAggregateInputType = {
   id?: true
   customerId?: true
   primaryCardId?: true
-  billingAccountId?: true
   createdAt?: true
   updatedAt?: true
   archivedAt?: true
+  billingAccountId?: true
 }
 
 export type WorkspaceCountAggregateInputType = {
   id?: true
   customerId?: true
   primaryCardId?: true
-  billingAccountId?: true
   createdAt?: true
   updatedAt?: true
   archivedAt?: true
+  billingAccountId?: true
   _all?: true
 }
 
@@ -163,10 +163,10 @@ export type WorkspaceGroupByOutputType = {
   id: string
   customerId: string | null
   primaryCardId: string | null
-  billingAccountId: string | null
   createdAt: Date
   updatedAt: Date
   archivedAt: Date | null
+  billingAccountId: string | null
   _count: WorkspaceCountAggregateOutputType | null
   _min: WorkspaceMinAggregateOutputType | null
   _max: WorkspaceMaxAggregateOutputType | null
@@ -194,100 +194,100 @@ export type WorkspaceWhereInput = {
   id?: Prisma.UuidFilter<"Workspace"> | string
   customerId?: Prisma.UuidNullableFilter<"Workspace"> | string | null
   primaryCardId?: Prisma.UuidNullableFilter<"Workspace"> | string | null
-  billingAccountId?: Prisma.UuidNullableFilter<"Workspace"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
   archivedAt?: Prisma.DateTimeNullableFilter<"Workspace"> | Date | string | null
-  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
-  primaryCard?: Prisma.XOR<Prisma.CardNullableScalarRelationFilter, Prisma.CardWhereInput> | null
-  billingAccount?: Prisma.XOR<Prisma.BillingAccountNullableScalarRelationFilter, Prisma.BillingAccountWhereInput> | null
-  nfcCards?: Prisma.NfcCardListRelationFilter
-  memberships?: Prisma.WorkspaceMembershipListRelationFilter
-  subscriptions?: Prisma.SubscriptionListRelationFilter
-  ownedCustomers?: Prisma.CustomerListRelationFilter
-  orders?: Prisma.OrderListRelationFilter
-  invoices?: Prisma.InvoiceListRelationFilter
-  payments?: Prisma.PaymentListRelationFilter
-  paymentSubmissions?: Prisma.PaymentSubmissionListRelationFilter
+  billingAccountId?: Prisma.UuidNullableFilter<"Workspace"> | string | null
+  analyticsEvents?: Prisma.AnalyticsEventListRelationFilter
+  auditLogs?: Prisma.AuditLogListRelationFilter
   cards?: Prisma.CardListRelationFilter
+  ownedCustomers?: Prisma.CustomerListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
   mediaAssets?: Prisma.MediaAssetListRelationFilter
   mediaFolders?: Prisma.MediaFolderListRelationFilter
+  nfcCards?: Prisma.NfcCardListRelationFilter
   notifications?: Prisma.NotificationDeliveryListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
+  paymentSubmissions?: Prisma.PaymentSubmissionListRelationFilter
   settings?: Prisma.SettingListRelationFilter
-  auditLogs?: Prisma.AuditLogListRelationFilter
-  analyticsEvents?: Prisma.AnalyticsEventListRelationFilter
+  subscriptions?: Prisma.SubscriptionListRelationFilter
   subscriptionReminders?: Prisma.SubscriptionReminderListRelationFilter
+  billingAccount?: Prisma.XOR<Prisma.BillingAccountNullableScalarRelationFilter, Prisma.BillingAccountWhereInput> | null
+  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
+  primaryCard?: Prisma.XOR<Prisma.CardNullableScalarRelationFilter, Prisma.CardWhereInput> | null
+  memberships?: Prisma.XOR<Prisma.WorkspaceMembershipNullableScalarRelationFilter, Prisma.WorkspaceMembershipWhereInput> | null
 }
 
 export type WorkspaceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   customerId?: Prisma.SortOrderInput | Prisma.SortOrder
   primaryCardId?: Prisma.SortOrderInput | Prisma.SortOrder
-  billingAccountId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  customer?: Prisma.CustomerOrderByWithRelationInput
-  primaryCard?: Prisma.CardOrderByWithRelationInput
-  billingAccount?: Prisma.BillingAccountOrderByWithRelationInput
-  nfcCards?: Prisma.NfcCardOrderByRelationAggregateInput
-  memberships?: Prisma.WorkspaceMembershipOrderByRelationAggregateInput
-  subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
-  ownedCustomers?: Prisma.CustomerOrderByRelationAggregateInput
-  orders?: Prisma.OrderOrderByRelationAggregateInput
-  invoices?: Prisma.InvoiceOrderByRelationAggregateInput
-  payments?: Prisma.PaymentOrderByRelationAggregateInput
-  paymentSubmissions?: Prisma.PaymentSubmissionOrderByRelationAggregateInput
+  billingAccountId?: Prisma.SortOrderInput | Prisma.SortOrder
+  analyticsEvents?: Prisma.AnalyticsEventOrderByRelationAggregateInput
+  auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
   cards?: Prisma.CardOrderByRelationAggregateInput
+  ownedCustomers?: Prisma.CustomerOrderByRelationAggregateInput
+  invoices?: Prisma.InvoiceOrderByRelationAggregateInput
   mediaAssets?: Prisma.MediaAssetOrderByRelationAggregateInput
   mediaFolders?: Prisma.MediaFolderOrderByRelationAggregateInput
+  nfcCards?: Prisma.NfcCardOrderByRelationAggregateInput
   notifications?: Prisma.NotificationDeliveryOrderByRelationAggregateInput
+  orders?: Prisma.OrderOrderByRelationAggregateInput
+  payments?: Prisma.PaymentOrderByRelationAggregateInput
+  paymentSubmissions?: Prisma.PaymentSubmissionOrderByRelationAggregateInput
   settings?: Prisma.SettingOrderByRelationAggregateInput
-  auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
-  analyticsEvents?: Prisma.AnalyticsEventOrderByRelationAggregateInput
+  subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
   subscriptionReminders?: Prisma.SubscriptionReminderOrderByRelationAggregateInput
+  billingAccount?: Prisma.BillingAccountOrderByWithRelationInput
+  customer?: Prisma.CustomerOrderByWithRelationInput
+  primaryCard?: Prisma.CardOrderByWithRelationInput
+  memberships?: Prisma.WorkspaceMembershipOrderByWithRelationInput
 }
 
 export type WorkspaceWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  customerId?: string
   primaryCardId?: string
   AND?: Prisma.WorkspaceWhereInput | Prisma.WorkspaceWhereInput[]
   OR?: Prisma.WorkspaceWhereInput[]
   NOT?: Prisma.WorkspaceWhereInput | Prisma.WorkspaceWhereInput[]
-  customerId?: Prisma.UuidNullableFilter<"Workspace"> | string | null
-  billingAccountId?: Prisma.UuidNullableFilter<"Workspace"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
   archivedAt?: Prisma.DateTimeNullableFilter<"Workspace"> | Date | string | null
-  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
-  primaryCard?: Prisma.XOR<Prisma.CardNullableScalarRelationFilter, Prisma.CardWhereInput> | null
-  billingAccount?: Prisma.XOR<Prisma.BillingAccountNullableScalarRelationFilter, Prisma.BillingAccountWhereInput> | null
-  nfcCards?: Prisma.NfcCardListRelationFilter
-  memberships?: Prisma.WorkspaceMembershipListRelationFilter
-  subscriptions?: Prisma.SubscriptionListRelationFilter
-  ownedCustomers?: Prisma.CustomerListRelationFilter
-  orders?: Prisma.OrderListRelationFilter
-  invoices?: Prisma.InvoiceListRelationFilter
-  payments?: Prisma.PaymentListRelationFilter
-  paymentSubmissions?: Prisma.PaymentSubmissionListRelationFilter
+  billingAccountId?: Prisma.UuidNullableFilter<"Workspace"> | string | null
+  analyticsEvents?: Prisma.AnalyticsEventListRelationFilter
+  auditLogs?: Prisma.AuditLogListRelationFilter
   cards?: Prisma.CardListRelationFilter
+  ownedCustomers?: Prisma.CustomerListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
   mediaAssets?: Prisma.MediaAssetListRelationFilter
   mediaFolders?: Prisma.MediaFolderListRelationFilter
+  nfcCards?: Prisma.NfcCardListRelationFilter
   notifications?: Prisma.NotificationDeliveryListRelationFilter
+  orders?: Prisma.OrderListRelationFilter
+  payments?: Prisma.PaymentListRelationFilter
+  paymentSubmissions?: Prisma.PaymentSubmissionListRelationFilter
   settings?: Prisma.SettingListRelationFilter
-  auditLogs?: Prisma.AuditLogListRelationFilter
-  analyticsEvents?: Prisma.AnalyticsEventListRelationFilter
+  subscriptions?: Prisma.SubscriptionListRelationFilter
   subscriptionReminders?: Prisma.SubscriptionReminderListRelationFilter
-}, "id" | "primaryCardId">
+  billingAccount?: Prisma.XOR<Prisma.BillingAccountNullableScalarRelationFilter, Prisma.BillingAccountWhereInput> | null
+  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
+  primaryCard?: Prisma.XOR<Prisma.CardNullableScalarRelationFilter, Prisma.CardWhereInput> | null
+  memberships?: Prisma.XOR<Prisma.WorkspaceMembershipNullableScalarRelationFilter, Prisma.WorkspaceMembershipWhereInput> | null
+}, "id" | "customerId" | "primaryCardId">
 
 export type WorkspaceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   customerId?: Prisma.SortOrderInput | Prisma.SortOrder
   primaryCardId?: Prisma.SortOrderInput | Prisma.SortOrder
-  billingAccountId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  billingAccountId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.WorkspaceCountOrderByAggregateInput
   _max?: Prisma.WorkspaceMaxOrderByAggregateInput
   _min?: Prisma.WorkspaceMinOrderByAggregateInput
@@ -300,10 +300,10 @@ export type WorkspaceScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"Workspace"> | string
   customerId?: Prisma.UuidNullableWithAggregatesFilter<"Workspace"> | string | null
   primaryCardId?: Prisma.UuidNullableWithAggregatesFilter<"Workspace"> | string | null
-  billingAccountId?: Prisma.UuidNullableWithAggregatesFilter<"Workspace"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Workspace"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Workspace"> | Date | string
   archivedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Workspace"> | Date | string | null
+  billingAccountId?: Prisma.UuidNullableWithAggregatesFilter<"Workspace"> | string | null
 }
 
 export type WorkspaceCreateInput = {
@@ -311,51 +311,51 @@ export type WorkspaceCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUpdateInput = {
@@ -363,61 +363,61 @@ export type WorkspaceUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateManyInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
+  billingAccountId?: string | null
 }
 
 export type WorkspaceUpdateManyMutationInput = {
@@ -431,25 +431,15 @@ export type WorkspaceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
-
-export type WorkspaceListRelationFilter = {
-  every?: Prisma.WorkspaceWhereInput
-  some?: Prisma.WorkspaceWhereInput
-  none?: Prisma.WorkspaceWhereInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type WorkspaceScalarRelationFilter = {
   is?: Prisma.WorkspaceWhereInput
   isNot?: Prisma.WorkspaceWhereInput
-}
-
-export type WorkspaceOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type WorkspaceNullableScalarRelationFilter = {
@@ -461,37 +451,40 @@ export type WorkspaceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   primaryCardId?: Prisma.SortOrder
-  billingAccountId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
+  billingAccountId?: Prisma.SortOrder
 }
 
 export type WorkspaceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   primaryCardId?: Prisma.SortOrder
-  billingAccountId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
+  billingAccountId?: Prisma.SortOrder
 }
 
 export type WorkspaceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   primaryCardId?: Prisma.SortOrder
-  billingAccountId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrder
+  billingAccountId?: Prisma.SortOrder
 }
 
-export type WorkspaceCreateNestedManyWithoutCustomerInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutCustomerInput, Prisma.WorkspaceUncheckedCreateWithoutCustomerInput> | Prisma.WorkspaceCreateWithoutCustomerInput[] | Prisma.WorkspaceUncheckedCreateWithoutCustomerInput[]
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutCustomerInput | Prisma.WorkspaceCreateOrConnectWithoutCustomerInput[]
-  createMany?: Prisma.WorkspaceCreateManyCustomerInputEnvelope
-  connect?: Prisma.WorkspaceWhereUniqueInput | Prisma.WorkspaceWhereUniqueInput[]
+export type WorkspaceListRelationFilter = {
+  every?: Prisma.WorkspaceWhereInput
+  some?: Prisma.WorkspaceWhereInput
+  none?: Prisma.WorkspaceWhereInput
+}
+
+export type WorkspaceOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type WorkspaceCreateNestedOneWithoutOwnedCustomersInput = {
@@ -500,25 +493,16 @@ export type WorkspaceCreateNestedOneWithoutOwnedCustomersInput = {
   connect?: Prisma.WorkspaceWhereUniqueInput
 }
 
-export type WorkspaceUncheckedCreateNestedManyWithoutCustomerInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutCustomerInput, Prisma.WorkspaceUncheckedCreateWithoutCustomerInput> | Prisma.WorkspaceCreateWithoutCustomerInput[] | Prisma.WorkspaceUncheckedCreateWithoutCustomerInput[]
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutCustomerInput | Prisma.WorkspaceCreateOrConnectWithoutCustomerInput[]
-  createMany?: Prisma.WorkspaceCreateManyCustomerInputEnvelope
-  connect?: Prisma.WorkspaceWhereUniqueInput | Prisma.WorkspaceWhereUniqueInput[]
+export type WorkspaceCreateNestedOneWithoutCustomerInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutCustomerInput, Prisma.WorkspaceUncheckedCreateWithoutCustomerInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutCustomerInput
+  connect?: Prisma.WorkspaceWhereUniqueInput
 }
 
-export type WorkspaceUpdateManyWithoutCustomerNestedInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutCustomerInput, Prisma.WorkspaceUncheckedCreateWithoutCustomerInput> | Prisma.WorkspaceCreateWithoutCustomerInput[] | Prisma.WorkspaceUncheckedCreateWithoutCustomerInput[]
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutCustomerInput | Prisma.WorkspaceCreateOrConnectWithoutCustomerInput[]
-  upsert?: Prisma.WorkspaceUpsertWithWhereUniqueWithoutCustomerInput | Prisma.WorkspaceUpsertWithWhereUniqueWithoutCustomerInput[]
-  createMany?: Prisma.WorkspaceCreateManyCustomerInputEnvelope
-  set?: Prisma.WorkspaceWhereUniqueInput | Prisma.WorkspaceWhereUniqueInput[]
-  disconnect?: Prisma.WorkspaceWhereUniqueInput | Prisma.WorkspaceWhereUniqueInput[]
-  delete?: Prisma.WorkspaceWhereUniqueInput | Prisma.WorkspaceWhereUniqueInput[]
-  connect?: Prisma.WorkspaceWhereUniqueInput | Prisma.WorkspaceWhereUniqueInput[]
-  update?: Prisma.WorkspaceUpdateWithWhereUniqueWithoutCustomerInput | Prisma.WorkspaceUpdateWithWhereUniqueWithoutCustomerInput[]
-  updateMany?: Prisma.WorkspaceUpdateManyWithWhereWithoutCustomerInput | Prisma.WorkspaceUpdateManyWithWhereWithoutCustomerInput[]
-  deleteMany?: Prisma.WorkspaceScalarWhereInput | Prisma.WorkspaceScalarWhereInput[]
+export type WorkspaceUncheckedCreateNestedOneWithoutCustomerInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutCustomerInput, Prisma.WorkspaceUncheckedCreateWithoutCustomerInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutCustomerInput
+  connect?: Prisma.WorkspaceWhereUniqueInput
 }
 
 export type WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput = {
@@ -529,18 +513,24 @@ export type WorkspaceUpdateOneRequiredWithoutOwnedCustomersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutOwnedCustomersInput, Prisma.WorkspaceUpdateWithoutOwnedCustomersInput>, Prisma.WorkspaceUncheckedUpdateWithoutOwnedCustomersInput>
 }
 
-export type WorkspaceUncheckedUpdateManyWithoutCustomerNestedInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutCustomerInput, Prisma.WorkspaceUncheckedCreateWithoutCustomerInput> | Prisma.WorkspaceCreateWithoutCustomerInput[] | Prisma.WorkspaceUncheckedCreateWithoutCustomerInput[]
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutCustomerInput | Prisma.WorkspaceCreateOrConnectWithoutCustomerInput[]
-  upsert?: Prisma.WorkspaceUpsertWithWhereUniqueWithoutCustomerInput | Prisma.WorkspaceUpsertWithWhereUniqueWithoutCustomerInput[]
-  createMany?: Prisma.WorkspaceCreateManyCustomerInputEnvelope
-  set?: Prisma.WorkspaceWhereUniqueInput | Prisma.WorkspaceWhereUniqueInput[]
-  disconnect?: Prisma.WorkspaceWhereUniqueInput | Prisma.WorkspaceWhereUniqueInput[]
-  delete?: Prisma.WorkspaceWhereUniqueInput | Prisma.WorkspaceWhereUniqueInput[]
-  connect?: Prisma.WorkspaceWhereUniqueInput | Prisma.WorkspaceWhereUniqueInput[]
-  update?: Prisma.WorkspaceUpdateWithWhereUniqueWithoutCustomerInput | Prisma.WorkspaceUpdateWithWhereUniqueWithoutCustomerInput[]
-  updateMany?: Prisma.WorkspaceUpdateManyWithWhereWithoutCustomerInput | Prisma.WorkspaceUpdateManyWithWhereWithoutCustomerInput[]
-  deleteMany?: Prisma.WorkspaceScalarWhereInput | Prisma.WorkspaceScalarWhereInput[]
+export type WorkspaceUpdateOneWithoutCustomerNestedInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutCustomerInput, Prisma.WorkspaceUncheckedCreateWithoutCustomerInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutCustomerInput
+  upsert?: Prisma.WorkspaceUpsertWithoutCustomerInput
+  disconnect?: Prisma.WorkspaceWhereInput | boolean
+  delete?: Prisma.WorkspaceWhereInput | boolean
+  connect?: Prisma.WorkspaceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutCustomerInput, Prisma.WorkspaceUpdateWithoutCustomerInput>, Prisma.WorkspaceUncheckedUpdateWithoutCustomerInput>
+}
+
+export type WorkspaceUncheckedUpdateOneWithoutCustomerNestedInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutCustomerInput, Prisma.WorkspaceUncheckedCreateWithoutCustomerInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutCustomerInput
+  upsert?: Prisma.WorkspaceUpsertWithoutCustomerInput
+  disconnect?: Prisma.WorkspaceWhereInput | boolean
+  delete?: Prisma.WorkspaceWhereInput | boolean
+  connect?: Prisma.WorkspaceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutCustomerInput, Prisma.WorkspaceUpdateWithoutCustomerInput>, Prisma.WorkspaceUncheckedUpdateWithoutCustomerInput>
 }
 
 export type WorkspaceCreateNestedOneWithoutNfcCardsInput = {
@@ -657,15 +647,15 @@ export type WorkspaceUpdateOneRequiredWithoutInvoicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutInvoicesInput, Prisma.WorkspaceUpdateWithoutInvoicesInput>, Prisma.WorkspaceUncheckedUpdateWithoutInvoicesInput>
 }
 
-export type WorkspaceCreateNestedOneWithoutPrimaryCardInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutPrimaryCardInput, Prisma.WorkspaceUncheckedCreateWithoutPrimaryCardInput>
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutPrimaryCardInput
-  connect?: Prisma.WorkspaceWhereUniqueInput
-}
-
 export type WorkspaceCreateNestedOneWithoutCardsInput = {
   create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutCardsInput, Prisma.WorkspaceUncheckedCreateWithoutCardsInput>
   connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutCardsInput
+  connect?: Prisma.WorkspaceWhereUniqueInput
+}
+
+export type WorkspaceCreateNestedOneWithoutPrimaryCardInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutPrimaryCardInput, Prisma.WorkspaceUncheckedCreateWithoutPrimaryCardInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutPrimaryCardInput
   connect?: Prisma.WorkspaceWhereUniqueInput
 }
 
@@ -673,6 +663,14 @@ export type WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput = {
   create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutPrimaryCardInput, Prisma.WorkspaceUncheckedCreateWithoutPrimaryCardInput>
   connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutPrimaryCardInput
   connect?: Prisma.WorkspaceWhereUniqueInput
+}
+
+export type WorkspaceUpdateOneRequiredWithoutCardsNestedInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutCardsInput, Prisma.WorkspaceUncheckedCreateWithoutCardsInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutCardsInput
+  upsert?: Prisma.WorkspaceUpsertWithoutCardsInput
+  connect?: Prisma.WorkspaceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutCardsInput, Prisma.WorkspaceUpdateWithoutCardsInput>, Prisma.WorkspaceUncheckedUpdateWithoutCardsInput>
 }
 
 export type WorkspaceUpdateOneWithoutPrimaryCardNestedInput = {
@@ -683,14 +681,6 @@ export type WorkspaceUpdateOneWithoutPrimaryCardNestedInput = {
   delete?: Prisma.WorkspaceWhereInput | boolean
   connect?: Prisma.WorkspaceWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutPrimaryCardInput, Prisma.WorkspaceUpdateWithoutPrimaryCardInput>, Prisma.WorkspaceUncheckedUpdateWithoutPrimaryCardInput>
-}
-
-export type WorkspaceUpdateOneRequiredWithoutCardsNestedInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutCardsInput, Prisma.WorkspaceUncheckedCreateWithoutCardsInput>
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutCardsInput
-  upsert?: Prisma.WorkspaceUpsertWithoutCardsInput
-  connect?: Prisma.WorkspaceWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutCardsInput, Prisma.WorkspaceUpdateWithoutCardsInput>, Prisma.WorkspaceUncheckedUpdateWithoutCardsInput>
 }
 
 export type WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput = {
@@ -833,114 +823,54 @@ export type WorkspaceUpdateOneRequiredWithoutPaymentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutPaymentsInput, Prisma.WorkspaceUpdateWithoutPaymentsInput>, Prisma.WorkspaceUncheckedUpdateWithoutPaymentsInput>
 }
 
-export type WorkspaceCreateWithoutCustomerInput = {
-  id?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  archivedAt?: Date | string | null
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
-  settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
-}
-
-export type WorkspaceUncheckedCreateWithoutCustomerInput = {
-  id?: string
-  primaryCardId?: string | null
-  billingAccountId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
-}
-
-export type WorkspaceCreateOrConnectWithoutCustomerInput = {
-  where: Prisma.WorkspaceWhereUniqueInput
-  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutCustomerInput, Prisma.WorkspaceUncheckedCreateWithoutCustomerInput>
-}
-
-export type WorkspaceCreateManyCustomerInputEnvelope = {
-  data: Prisma.WorkspaceCreateManyCustomerInput | Prisma.WorkspaceCreateManyCustomerInput[]
-  skipDuplicates?: boolean
-}
-
 export type WorkspaceCreateWithoutOwnedCustomersInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutOwnedCustomersInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutOwnedCustomersInput = {
@@ -948,33 +878,59 @@ export type WorkspaceCreateOrConnectWithoutOwnedCustomersInput = {
   create: Prisma.XOR<Prisma.WorkspaceCreateWithoutOwnedCustomersInput, Prisma.WorkspaceUncheckedCreateWithoutOwnedCustomersInput>
 }
 
-export type WorkspaceUpsertWithWhereUniqueWithoutCustomerInput = {
+export type WorkspaceCreateWithoutCustomerInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  archivedAt?: Date | string | null
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
+  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
+  mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
+  mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
+  subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
+}
+
+export type WorkspaceUncheckedCreateWithoutCustomerInput = {
+  id?: string
+  primaryCardId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  archivedAt?: Date | string | null
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
+  mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
+  mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
+}
+
+export type WorkspaceCreateOrConnectWithoutCustomerInput = {
   where: Prisma.WorkspaceWhereUniqueInput
-  update: Prisma.XOR<Prisma.WorkspaceUpdateWithoutCustomerInput, Prisma.WorkspaceUncheckedUpdateWithoutCustomerInput>
   create: Prisma.XOR<Prisma.WorkspaceCreateWithoutCustomerInput, Prisma.WorkspaceUncheckedCreateWithoutCustomerInput>
-}
-
-export type WorkspaceUpdateWithWhereUniqueWithoutCustomerInput = {
-  where: Prisma.WorkspaceWhereUniqueInput
-  data: Prisma.XOR<Prisma.WorkspaceUpdateWithoutCustomerInput, Prisma.WorkspaceUncheckedUpdateWithoutCustomerInput>
-}
-
-export type WorkspaceUpdateManyWithWhereWithoutCustomerInput = {
-  where: Prisma.WorkspaceScalarWhereInput
-  data: Prisma.XOR<Prisma.WorkspaceUpdateManyMutationInput, Prisma.WorkspaceUncheckedUpdateManyWithoutCustomerInput>
-}
-
-export type WorkspaceScalarWhereInput = {
-  AND?: Prisma.WorkspaceScalarWhereInput | Prisma.WorkspaceScalarWhereInput[]
-  OR?: Prisma.WorkspaceScalarWhereInput[]
-  NOT?: Prisma.WorkspaceScalarWhereInput | Prisma.WorkspaceScalarWhereInput[]
-  id?: Prisma.UuidFilter<"Workspace"> | string
-  customerId?: Prisma.UuidNullableFilter<"Workspace"> | string | null
-  primaryCardId?: Prisma.UuidNullableFilter<"Workspace"> | string | null
-  billingAccountId?: Prisma.UuidNullableFilter<"Workspace"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
-  archivedAt?: Prisma.DateTimeNullableFilter<"Workspace"> | Date | string | null
 }
 
 export type WorkspaceUpsertWithoutOwnedCustomersInput = {
@@ -993,49 +949,110 @@ export type WorkspaceUpdateWithoutOwnedCustomersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutOwnedCustomersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
+}
+
+export type WorkspaceUpsertWithoutCustomerInput = {
+  update: Prisma.XOR<Prisma.WorkspaceUpdateWithoutCustomerInput, Prisma.WorkspaceUncheckedUpdateWithoutCustomerInput>
+  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutCustomerInput, Prisma.WorkspaceUncheckedCreateWithoutCustomerInput>
+  where?: Prisma.WorkspaceWhereInput
+}
+
+export type WorkspaceUpdateToOneWithWhereWithoutCustomerInput = {
+  where?: Prisma.WorkspaceWhereInput
+  data: Prisma.XOR<Prisma.WorkspaceUpdateWithoutCustomerInput, Prisma.WorkspaceUncheckedUpdateWithoutCustomerInput>
+}
+
+export type WorkspaceUpdateWithoutCustomerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
+  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
+  mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
+  mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
+  subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
+}
+
+export type WorkspaceUncheckedUpdateWithoutCustomerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
+  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
+  mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
+  mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutNfcCardsInput = {
@@ -1043,49 +1060,49 @@ export type WorkspaceCreateWithoutNfcCardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutNfcCardsInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutNfcCardsInput = {
@@ -1109,49 +1126,49 @@ export type WorkspaceUpdateWithoutNfcCardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutNfcCardsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutMembershipsInput = {
@@ -1159,48 +1176,48 @@ export type WorkspaceCreateWithoutMembershipsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutMembershipsInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
@@ -1225,48 +1242,48 @@ export type WorkspaceUpdateWithoutMembershipsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutMembershipsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
@@ -1275,24 +1292,24 @@ export type WorkspaceCreateWithoutBillingAccountInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutBillingAccountInput = {
@@ -1302,22 +1319,22 @@ export type WorkspaceUncheckedCreateWithoutBillingAccountInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutBillingAccountInput = {
@@ -1346,54 +1363,67 @@ export type WorkspaceUpdateManyWithWhereWithoutBillingAccountInput = {
   data: Prisma.XOR<Prisma.WorkspaceUpdateManyMutationInput, Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountInput>
 }
 
+export type WorkspaceScalarWhereInput = {
+  AND?: Prisma.WorkspaceScalarWhereInput | Prisma.WorkspaceScalarWhereInput[]
+  OR?: Prisma.WorkspaceScalarWhereInput[]
+  NOT?: Prisma.WorkspaceScalarWhereInput | Prisma.WorkspaceScalarWhereInput[]
+  id?: Prisma.UuidFilter<"Workspace"> | string
+  customerId?: Prisma.UuidNullableFilter<"Workspace"> | string | null
+  primaryCardId?: Prisma.UuidNullableFilter<"Workspace"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
+  archivedAt?: Prisma.DateTimeNullableFilter<"Workspace"> | Date | string | null
+  billingAccountId?: Prisma.UuidNullableFilter<"Workspace"> | string | null
+}
+
 export type WorkspaceCreateWithoutOrdersInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
+  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutOrdersInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutOrdersInput = {
@@ -1417,49 +1447,49 @@ export type WorkspaceUpdateWithoutOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
+  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutOrdersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
+  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutPaymentSubmissionsInput = {
@@ -1467,49 +1497,49 @@ export type WorkspaceCreateWithoutPaymentSubmissionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutPaymentSubmissionsInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutPaymentSubmissionsInput = {
@@ -1533,49 +1563,49 @@ export type WorkspaceUpdateWithoutPaymentSubmissionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutPaymentSubmissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutInvoicesInput = {
@@ -1583,49 +1613,49 @@ export type WorkspaceCreateWithoutInvoicesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
+  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
+  mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
   paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutInvoicesInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
+  mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutInvoicesInput = {
@@ -1649,104 +1679,49 @@ export type WorkspaceUpdateWithoutInvoicesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
+  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
+  mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutInvoicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
+  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
+  mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
-}
-
-export type WorkspaceCreateWithoutPrimaryCardInput = {
-  id?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
-  settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
-  subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
-}
-
-export type WorkspaceUncheckedCreateWithoutPrimaryCardInput = {
-  id?: string
-  customerId?: string | null
-  billingAccountId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
-}
-
-export type WorkspaceCreateOrConnectWithoutPrimaryCardInput = {
-  where: Prisma.WorkspaceWhereUniqueInput
-  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutPrimaryCardInput, Prisma.WorkspaceUncheckedCreateWithoutPrimaryCardInput>
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutCardsInput = {
@@ -1754,49 +1729,49 @@ export type WorkspaceCreateWithoutCardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutCardsInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutCardsInput = {
@@ -1804,65 +1779,59 @@ export type WorkspaceCreateOrConnectWithoutCardsInput = {
   create: Prisma.XOR<Prisma.WorkspaceCreateWithoutCardsInput, Prisma.WorkspaceUncheckedCreateWithoutCardsInput>
 }
 
-export type WorkspaceUpsertWithoutPrimaryCardInput = {
-  update: Prisma.XOR<Prisma.WorkspaceUpdateWithoutPrimaryCardInput, Prisma.WorkspaceUncheckedUpdateWithoutPrimaryCardInput>
+export type WorkspaceCreateWithoutPrimaryCardInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  archivedAt?: Date | string | null
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
+  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
+  mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
+  mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
+  subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
+}
+
+export type WorkspaceUncheckedCreateWithoutPrimaryCardInput = {
+  id?: string
+  customerId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  archivedAt?: Date | string | null
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
+  mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
+  mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
+}
+
+export type WorkspaceCreateOrConnectWithoutPrimaryCardInput = {
+  where: Prisma.WorkspaceWhereUniqueInput
   create: Prisma.XOR<Prisma.WorkspaceCreateWithoutPrimaryCardInput, Prisma.WorkspaceUncheckedCreateWithoutPrimaryCardInput>
-  where?: Prisma.WorkspaceWhereInput
-}
-
-export type WorkspaceUpdateToOneWithWhereWithoutPrimaryCardInput = {
-  where?: Prisma.WorkspaceWhereInput
-  data: Prisma.XOR<Prisma.WorkspaceUpdateWithoutPrimaryCardInput, Prisma.WorkspaceUncheckedUpdateWithoutPrimaryCardInput>
-}
-
-export type WorkspaceUpdateWithoutPrimaryCardInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
-}
-
-export type WorkspaceUncheckedUpdateWithoutPrimaryCardInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUpsertWithoutCardsInput = {
@@ -1881,49 +1850,110 @@ export type WorkspaceUpdateWithoutCardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutCardsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
+}
+
+export type WorkspaceUpsertWithoutPrimaryCardInput = {
+  update: Prisma.XOR<Prisma.WorkspaceUpdateWithoutPrimaryCardInput, Prisma.WorkspaceUncheckedUpdateWithoutPrimaryCardInput>
+  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutPrimaryCardInput, Prisma.WorkspaceUncheckedCreateWithoutPrimaryCardInput>
+  where?: Prisma.WorkspaceWhereInput
+}
+
+export type WorkspaceUpdateToOneWithWhereWithoutPrimaryCardInput = {
+  where?: Prisma.WorkspaceWhereInput
+  data: Prisma.XOR<Prisma.WorkspaceUpdateWithoutPrimaryCardInput, Prisma.WorkspaceUncheckedUpdateWithoutPrimaryCardInput>
+}
+
+export type WorkspaceUpdateWithoutPrimaryCardInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
+  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
+  mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
+  mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
+  subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
+}
+
+export type WorkspaceUncheckedUpdateWithoutPrimaryCardInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
+  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
+  mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
+  mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutSubscriptionsInput = {
@@ -1931,49 +1961,49 @@ export type WorkspaceCreateWithoutSubscriptionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutSubscriptionsInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutSubscriptionsInput = {
@@ -1997,49 +2027,49 @@ export type WorkspaceUpdateWithoutSubscriptionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutSubscriptionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutSubscriptionRemindersInput = {
@@ -2047,49 +2077,49 @@ export type WorkspaceCreateWithoutSubscriptionRemindersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutSubscriptionRemindersInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutSubscriptionRemindersInput = {
@@ -2113,49 +2143,49 @@ export type WorkspaceUpdateWithoutSubscriptionRemindersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutSubscriptionRemindersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutMediaAssetsInput = {
@@ -2163,49 +2193,49 @@ export type WorkspaceCreateWithoutMediaAssetsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
+  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
+  mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
   paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutMediaAssetsInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
+  mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutMediaAssetsInput = {
@@ -2229,49 +2259,49 @@ export type WorkspaceUpdateWithoutMediaAssetsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
+  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
+  mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutMediaAssetsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
+  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
+  mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutMediaFoldersInput = {
@@ -2279,49 +2309,49 @@ export type WorkspaceCreateWithoutMediaFoldersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
+  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
   ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
+  mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
   payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
   paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutMediaFoldersInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
+  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
   ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
+  mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
-  cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutMediaFoldersInput = {
@@ -2345,49 +2375,49 @@ export type WorkspaceUpdateWithoutMediaFoldersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
+  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
+  mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutMediaFoldersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
+  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
   ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
+  mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutAnalyticsEventsInput = {
@@ -2395,49 +2425,49 @@ export type WorkspaceCreateWithoutAnalyticsEventsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutAnalyticsEventsInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutAnalyticsEventsInput = {
@@ -2461,49 +2491,49 @@ export type WorkspaceUpdateWithoutAnalyticsEventsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutAnalyticsEventsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutNotificationsInput = {
@@ -2511,49 +2541,49 @@ export type WorkspaceCreateWithoutNotificationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutNotificationsInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutNotificationsInput = {
@@ -2577,49 +2607,49 @@ export type WorkspaceUpdateWithoutNotificationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutNotificationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutSettingsInput = {
@@ -2627,49 +2657,49 @@ export type WorkspaceCreateWithoutSettingsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutSettingsInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutSettingsInput = {
@@ -2693,49 +2723,49 @@ export type WorkspaceUpdateWithoutSettingsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutSettingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutAuditLogsInput = {
@@ -2743,49 +2773,49 @@ export type WorkspaceCreateWithoutAuditLogsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutAuditLogsInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutAuditLogsInput = {
@@ -2809,49 +2839,49 @@ export type WorkspaceUpdateWithoutAuditLogsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutAuditLogsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutPaymentsInput = {
@@ -2859,49 +2889,49 @@ export type WorkspaceCreateWithoutPaymentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
-  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
-  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
+  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderCreateNestedManyWithoutWorkspaceInput
+  billingAccount?: Prisma.BillingAccountCreateNestedOneWithoutWorkspacesInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutWorkspacesInput
+  primaryCard?: Prisma.CardCreateNestedOneWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutPaymentsInput = {
   id?: string
   customerId?: string | null
   primaryCardId?: string | null
-  billingAccountId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedManyWithoutWorkspaceInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
-  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
+  billingAccountId?: string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  ownedCustomers?: Prisma.CustomerUncheckedCreateNestedManyWithoutTenantWorkspaceInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaAssets?: Prisma.MediaAssetUncheckedCreateNestedManyWithoutWorkspaceInput
   mediaFolders?: Prisma.MediaFolderUncheckedCreateNestedManyWithoutWorkspaceInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutWorkspaceInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutWorkspaceInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutWorkspaceInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutWorkspaceInput
   settings?: Prisma.SettingUncheckedCreateNestedManyWithoutWorkspaceInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutWorkspaceInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutWorkspaceInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedCreateNestedManyWithoutWorkspaceInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedCreateNestedOneWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutPaymentsInput = {
@@ -2925,117 +2955,49 @@ export type WorkspaceUpdateWithoutPaymentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutPaymentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
-}
-
-export type WorkspaceCreateManyCustomerInput = {
-  id?: string
-  primaryCardId?: string | null
-  billingAccountId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  archivedAt?: Date | string | null
-}
-
-export type WorkspaceUpdateWithoutCustomerInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  billingAccount?: Prisma.BillingAccountUpdateOneWithoutWorkspacesNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
-  subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
-}
-
-export type WorkspaceUncheckedUpdateWithoutCustomerInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
-  mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
-}
-
-export type WorkspaceUncheckedUpdateManyWithoutCustomerInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  primaryCardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  billingAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateManyBillingAccountInput = {
@@ -3052,24 +3014,24 @@ export type WorkspaceUpdateWithoutBillingAccountInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
-  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUpdateManyWithoutWorkspaceNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutWorkspacesNestedInput
+  primaryCard?: Prisma.CardUpdateOneWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutBillingAccountInput = {
@@ -3079,22 +3041,22 @@ export type WorkspaceUncheckedUpdateWithoutBillingAccountInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
-  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateManyWithoutWorkspaceNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
-  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
   cards?: Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  ownedCustomers?: Prisma.CustomerUncheckedUpdateManyWithoutTenantWorkspaceNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaAssets?: Prisma.MediaAssetUncheckedUpdateManyWithoutWorkspaceNestedInput
   mediaFolders?: Prisma.MediaFolderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutWorkspaceNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutWorkspaceNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutWorkspaceNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceNestedInput
   settings?: Prisma.SettingUncheckedUpdateManyWithoutWorkspaceNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutWorkspaceNestedInput
-  analyticsEvents?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutWorkspaceNestedInput
   subscriptionReminders?: Prisma.SubscriptionReminderUncheckedUpdateManyWithoutWorkspaceNestedInput
+  memberships?: Prisma.WorkspaceMembershipUncheckedUpdateOneWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateManyWithoutBillingAccountInput = {
@@ -3112,40 +3074,38 @@ export type WorkspaceUncheckedUpdateManyWithoutBillingAccountInput = {
  */
 
 export type WorkspaceCountOutputType = {
-  nfcCards: number
-  memberships: number
-  subscriptions: number
-  ownedCustomers: number
-  orders: number
-  invoices: number
-  payments: number
-  paymentSubmissions: number
+  analyticsEvents: number
+  auditLogs: number
   cards: number
+  ownedCustomers: number
+  invoices: number
   mediaAssets: number
   mediaFolders: number
+  nfcCards: number
   notifications: number
+  orders: number
+  payments: number
+  paymentSubmissions: number
   settings: number
-  auditLogs: number
-  analyticsEvents: number
+  subscriptions: number
   subscriptionReminders: number
 }
 
 export type WorkspaceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  nfcCards?: boolean | WorkspaceCountOutputTypeCountNfcCardsArgs
-  memberships?: boolean | WorkspaceCountOutputTypeCountMembershipsArgs
-  subscriptions?: boolean | WorkspaceCountOutputTypeCountSubscriptionsArgs
-  ownedCustomers?: boolean | WorkspaceCountOutputTypeCountOwnedCustomersArgs
-  orders?: boolean | WorkspaceCountOutputTypeCountOrdersArgs
-  invoices?: boolean | WorkspaceCountOutputTypeCountInvoicesArgs
-  payments?: boolean | WorkspaceCountOutputTypeCountPaymentsArgs
-  paymentSubmissions?: boolean | WorkspaceCountOutputTypeCountPaymentSubmissionsArgs
+  analyticsEvents?: boolean | WorkspaceCountOutputTypeCountAnalyticsEventsArgs
+  auditLogs?: boolean | WorkspaceCountOutputTypeCountAuditLogsArgs
   cards?: boolean | WorkspaceCountOutputTypeCountCardsArgs
+  ownedCustomers?: boolean | WorkspaceCountOutputTypeCountOwnedCustomersArgs
+  invoices?: boolean | WorkspaceCountOutputTypeCountInvoicesArgs
   mediaAssets?: boolean | WorkspaceCountOutputTypeCountMediaAssetsArgs
   mediaFolders?: boolean | WorkspaceCountOutputTypeCountMediaFoldersArgs
+  nfcCards?: boolean | WorkspaceCountOutputTypeCountNfcCardsArgs
   notifications?: boolean | WorkspaceCountOutputTypeCountNotificationsArgs
+  orders?: boolean | WorkspaceCountOutputTypeCountOrdersArgs
+  payments?: boolean | WorkspaceCountOutputTypeCountPaymentsArgs
+  paymentSubmissions?: boolean | WorkspaceCountOutputTypeCountPaymentSubmissionsArgs
   settings?: boolean | WorkspaceCountOutputTypeCountSettingsArgs
-  auditLogs?: boolean | WorkspaceCountOutputTypeCountAuditLogsArgs
-  analyticsEvents?: boolean | WorkspaceCountOutputTypeCountAnalyticsEventsArgs
+  subscriptions?: boolean | WorkspaceCountOutputTypeCountSubscriptionsArgs
   subscriptionReminders?: boolean | WorkspaceCountOutputTypeCountSubscriptionRemindersArgs
 }
 
@@ -3162,22 +3122,22 @@ export type WorkspaceCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
 /**
  * WorkspaceCountOutputType without action
  */
-export type WorkspaceCountOutputTypeCountNfcCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.NfcCardWhereInput
+export type WorkspaceCountOutputTypeCountAnalyticsEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AnalyticsEventWhereInput
 }
 
 /**
  * WorkspaceCountOutputType without action
  */
-export type WorkspaceCountOutputTypeCountMembershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.WorkspaceMembershipWhereInput
+export type WorkspaceCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AuditLogWhereInput
 }
 
 /**
  * WorkspaceCountOutputType without action
  */
-export type WorkspaceCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SubscriptionWhereInput
+export type WorkspaceCountOutputTypeCountCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CardWhereInput
 }
 
 /**
@@ -3190,36 +3150,8 @@ export type WorkspaceCountOutputTypeCountOwnedCustomersArgs<ExtArgs extends runt
 /**
  * WorkspaceCountOutputType without action
  */
-export type WorkspaceCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OrderWhereInput
-}
-
-/**
- * WorkspaceCountOutputType without action
- */
 export type WorkspaceCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.InvoiceWhereInput
-}
-
-/**
- * WorkspaceCountOutputType without action
- */
-export type WorkspaceCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentWhereInput
-}
-
-/**
- * WorkspaceCountOutputType without action
- */
-export type WorkspaceCountOutputTypeCountPaymentSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentSubmissionWhereInput
-}
-
-/**
- * WorkspaceCountOutputType without action
- */
-export type WorkspaceCountOutputTypeCountCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CardWhereInput
 }
 
 /**
@@ -3239,8 +3171,36 @@ export type WorkspaceCountOutputTypeCountMediaFoldersArgs<ExtArgs extends runtim
 /**
  * WorkspaceCountOutputType without action
  */
+export type WorkspaceCountOutputTypeCountNfcCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NfcCardWhereInput
+}
+
+/**
+ * WorkspaceCountOutputType without action
+ */
 export type WorkspaceCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.NotificationDeliveryWhereInput
+}
+
+/**
+ * WorkspaceCountOutputType without action
+ */
+export type WorkspaceCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrderWhereInput
+}
+
+/**
+ * WorkspaceCountOutputType without action
+ */
+export type WorkspaceCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
+}
+
+/**
+ * WorkspaceCountOutputType without action
+ */
+export type WorkspaceCountOutputTypeCountPaymentSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentSubmissionWhereInput
 }
 
 /**
@@ -3253,15 +3213,8 @@ export type WorkspaceCountOutputTypeCountSettingsArgs<ExtArgs extends runtime.Ty
 /**
  * WorkspaceCountOutputType without action
  */
-export type WorkspaceCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AuditLogWhereInput
-}
-
-/**
- * WorkspaceCountOutputType without action
- */
-export type WorkspaceCountOutputTypeCountAnalyticsEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AnalyticsEventWhereInput
+export type WorkspaceCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriptionWhereInput
 }
 
 /**
@@ -3276,29 +3229,29 @@ export type WorkspaceSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   id?: boolean
   customerId?: boolean
   primaryCardId?: boolean
-  billingAccountId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   archivedAt?: boolean
-  customer?: boolean | Prisma.Workspace$customerArgs<ExtArgs>
-  primaryCard?: boolean | Prisma.Workspace$primaryCardArgs<ExtArgs>
-  billingAccount?: boolean | Prisma.Workspace$billingAccountArgs<ExtArgs>
-  nfcCards?: boolean | Prisma.Workspace$nfcCardsArgs<ExtArgs>
-  memberships?: boolean | Prisma.Workspace$membershipsArgs<ExtArgs>
-  subscriptions?: boolean | Prisma.Workspace$subscriptionsArgs<ExtArgs>
-  ownedCustomers?: boolean | Prisma.Workspace$ownedCustomersArgs<ExtArgs>
-  orders?: boolean | Prisma.Workspace$ordersArgs<ExtArgs>
-  invoices?: boolean | Prisma.Workspace$invoicesArgs<ExtArgs>
-  payments?: boolean | Prisma.Workspace$paymentsArgs<ExtArgs>
-  paymentSubmissions?: boolean | Prisma.Workspace$paymentSubmissionsArgs<ExtArgs>
+  billingAccountId?: boolean
+  analyticsEvents?: boolean | Prisma.Workspace$analyticsEventsArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.Workspace$auditLogsArgs<ExtArgs>
   cards?: boolean | Prisma.Workspace$cardsArgs<ExtArgs>
+  ownedCustomers?: boolean | Prisma.Workspace$ownedCustomersArgs<ExtArgs>
+  invoices?: boolean | Prisma.Workspace$invoicesArgs<ExtArgs>
   mediaAssets?: boolean | Prisma.Workspace$mediaAssetsArgs<ExtArgs>
   mediaFolders?: boolean | Prisma.Workspace$mediaFoldersArgs<ExtArgs>
+  nfcCards?: boolean | Prisma.Workspace$nfcCardsArgs<ExtArgs>
   notifications?: boolean | Prisma.Workspace$notificationsArgs<ExtArgs>
+  orders?: boolean | Prisma.Workspace$ordersArgs<ExtArgs>
+  payments?: boolean | Prisma.Workspace$paymentsArgs<ExtArgs>
+  paymentSubmissions?: boolean | Prisma.Workspace$paymentSubmissionsArgs<ExtArgs>
   settings?: boolean | Prisma.Workspace$settingsArgs<ExtArgs>
-  auditLogs?: boolean | Prisma.Workspace$auditLogsArgs<ExtArgs>
-  analyticsEvents?: boolean | Prisma.Workspace$analyticsEventsArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.Workspace$subscriptionsArgs<ExtArgs>
   subscriptionReminders?: boolean | Prisma.Workspace$subscriptionRemindersArgs<ExtArgs>
+  billingAccount?: boolean | Prisma.Workspace$billingAccountArgs<ExtArgs>
+  customer?: boolean | Prisma.Workspace$customerArgs<ExtArgs>
+  primaryCard?: boolean | Prisma.Workspace$primaryCardArgs<ExtArgs>
+  memberships?: boolean | Prisma.Workspace$membershipsArgs<ExtArgs>
   _count?: boolean | Prisma.WorkspaceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["workspace"]>
 
@@ -3306,103 +3259,103 @@ export type WorkspaceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   id?: boolean
   customerId?: boolean
   primaryCardId?: boolean
-  billingAccountId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   archivedAt?: boolean
+  billingAccountId?: boolean
+  billingAccount?: boolean | Prisma.Workspace$billingAccountArgs<ExtArgs>
   customer?: boolean | Prisma.Workspace$customerArgs<ExtArgs>
   primaryCard?: boolean | Prisma.Workspace$primaryCardArgs<ExtArgs>
-  billingAccount?: boolean | Prisma.Workspace$billingAccountArgs<ExtArgs>
 }, ExtArgs["result"]["workspace"]>
 
 export type WorkspaceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   customerId?: boolean
   primaryCardId?: boolean
-  billingAccountId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   archivedAt?: boolean
+  billingAccountId?: boolean
+  billingAccount?: boolean | Prisma.Workspace$billingAccountArgs<ExtArgs>
   customer?: boolean | Prisma.Workspace$customerArgs<ExtArgs>
   primaryCard?: boolean | Prisma.Workspace$primaryCardArgs<ExtArgs>
-  billingAccount?: boolean | Prisma.Workspace$billingAccountArgs<ExtArgs>
 }, ExtArgs["result"]["workspace"]>
 
 export type WorkspaceSelectScalar = {
   id?: boolean
   customerId?: boolean
   primaryCardId?: boolean
-  billingAccountId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   archivedAt?: boolean
+  billingAccountId?: boolean
 }
 
-export type WorkspaceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customerId" | "primaryCardId" | "billingAccountId" | "createdAt" | "updatedAt" | "archivedAt", ExtArgs["result"]["workspace"]>
+export type WorkspaceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customerId" | "primaryCardId" | "createdAt" | "updatedAt" | "archivedAt" | "billingAccountId", ExtArgs["result"]["workspace"]>
 export type WorkspaceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  customer?: boolean | Prisma.Workspace$customerArgs<ExtArgs>
-  primaryCard?: boolean | Prisma.Workspace$primaryCardArgs<ExtArgs>
-  billingAccount?: boolean | Prisma.Workspace$billingAccountArgs<ExtArgs>
-  nfcCards?: boolean | Prisma.Workspace$nfcCardsArgs<ExtArgs>
-  memberships?: boolean | Prisma.Workspace$membershipsArgs<ExtArgs>
-  subscriptions?: boolean | Prisma.Workspace$subscriptionsArgs<ExtArgs>
-  ownedCustomers?: boolean | Prisma.Workspace$ownedCustomersArgs<ExtArgs>
-  orders?: boolean | Prisma.Workspace$ordersArgs<ExtArgs>
-  invoices?: boolean | Prisma.Workspace$invoicesArgs<ExtArgs>
-  payments?: boolean | Prisma.Workspace$paymentsArgs<ExtArgs>
-  paymentSubmissions?: boolean | Prisma.Workspace$paymentSubmissionsArgs<ExtArgs>
+  analyticsEvents?: boolean | Prisma.Workspace$analyticsEventsArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.Workspace$auditLogsArgs<ExtArgs>
   cards?: boolean | Prisma.Workspace$cardsArgs<ExtArgs>
+  ownedCustomers?: boolean | Prisma.Workspace$ownedCustomersArgs<ExtArgs>
+  invoices?: boolean | Prisma.Workspace$invoicesArgs<ExtArgs>
   mediaAssets?: boolean | Prisma.Workspace$mediaAssetsArgs<ExtArgs>
   mediaFolders?: boolean | Prisma.Workspace$mediaFoldersArgs<ExtArgs>
+  nfcCards?: boolean | Prisma.Workspace$nfcCardsArgs<ExtArgs>
   notifications?: boolean | Prisma.Workspace$notificationsArgs<ExtArgs>
+  orders?: boolean | Prisma.Workspace$ordersArgs<ExtArgs>
+  payments?: boolean | Prisma.Workspace$paymentsArgs<ExtArgs>
+  paymentSubmissions?: boolean | Prisma.Workspace$paymentSubmissionsArgs<ExtArgs>
   settings?: boolean | Prisma.Workspace$settingsArgs<ExtArgs>
-  auditLogs?: boolean | Prisma.Workspace$auditLogsArgs<ExtArgs>
-  analyticsEvents?: boolean | Prisma.Workspace$analyticsEventsArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.Workspace$subscriptionsArgs<ExtArgs>
   subscriptionReminders?: boolean | Prisma.Workspace$subscriptionRemindersArgs<ExtArgs>
+  billingAccount?: boolean | Prisma.Workspace$billingAccountArgs<ExtArgs>
+  customer?: boolean | Prisma.Workspace$customerArgs<ExtArgs>
+  primaryCard?: boolean | Prisma.Workspace$primaryCardArgs<ExtArgs>
+  memberships?: boolean | Prisma.Workspace$membershipsArgs<ExtArgs>
   _count?: boolean | Prisma.WorkspaceCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type WorkspaceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  billingAccount?: boolean | Prisma.Workspace$billingAccountArgs<ExtArgs>
   customer?: boolean | Prisma.Workspace$customerArgs<ExtArgs>
   primaryCard?: boolean | Prisma.Workspace$primaryCardArgs<ExtArgs>
-  billingAccount?: boolean | Prisma.Workspace$billingAccountArgs<ExtArgs>
 }
 export type WorkspaceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  billingAccount?: boolean | Prisma.Workspace$billingAccountArgs<ExtArgs>
   customer?: boolean | Prisma.Workspace$customerArgs<ExtArgs>
   primaryCard?: boolean | Prisma.Workspace$primaryCardArgs<ExtArgs>
-  billingAccount?: boolean | Prisma.Workspace$billingAccountArgs<ExtArgs>
 }
 
 export type $WorkspacePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Workspace"
   objects: {
-    customer: Prisma.$CustomerPayload<ExtArgs> | null
-    primaryCard: Prisma.$CardPayload<ExtArgs> | null
-    billingAccount: Prisma.$BillingAccountPayload<ExtArgs> | null
-    nfcCards: Prisma.$NfcCardPayload<ExtArgs>[]
-    memberships: Prisma.$WorkspaceMembershipPayload<ExtArgs>[]
-    subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
-    ownedCustomers: Prisma.$CustomerPayload<ExtArgs>[]
-    orders: Prisma.$OrderPayload<ExtArgs>[]
-    invoices: Prisma.$InvoicePayload<ExtArgs>[]
-    payments: Prisma.$PaymentPayload<ExtArgs>[]
-    paymentSubmissions: Prisma.$PaymentSubmissionPayload<ExtArgs>[]
+    analyticsEvents: Prisma.$AnalyticsEventPayload<ExtArgs>[]
+    auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
     cards: Prisma.$CardPayload<ExtArgs>[]
+    ownedCustomers: Prisma.$CustomerPayload<ExtArgs>[]
+    invoices: Prisma.$InvoicePayload<ExtArgs>[]
     mediaAssets: Prisma.$MediaAssetPayload<ExtArgs>[]
     mediaFolders: Prisma.$MediaFolderPayload<ExtArgs>[]
+    nfcCards: Prisma.$NfcCardPayload<ExtArgs>[]
     notifications: Prisma.$NotificationDeliveryPayload<ExtArgs>[]
+    orders: Prisma.$OrderPayload<ExtArgs>[]
+    payments: Prisma.$PaymentPayload<ExtArgs>[]
+    paymentSubmissions: Prisma.$PaymentSubmissionPayload<ExtArgs>[]
     settings: Prisma.$SettingPayload<ExtArgs>[]
-    auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
-    analyticsEvents: Prisma.$AnalyticsEventPayload<ExtArgs>[]
+    subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
     subscriptionReminders: Prisma.$SubscriptionReminderPayload<ExtArgs>[]
+    billingAccount: Prisma.$BillingAccountPayload<ExtArgs> | null
+    customer: Prisma.$CustomerPayload<ExtArgs> | null
+    primaryCard: Prisma.$CardPayload<ExtArgs> | null
+    memberships: Prisma.$WorkspaceMembershipPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     customerId: string | null
     primaryCardId: string | null
-    billingAccountId: string | null
     createdAt: Date
     updatedAt: Date
     archivedAt: Date | null
+    billingAccountId: string | null
   }, ExtArgs["result"]["workspace"]>
   composites: {}
 }
@@ -3797,25 +3750,25 @@ readonly fields: WorkspaceFieldRefs;
  */
 export interface Prisma__WorkspaceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  customer<T extends Prisma.Workspace$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  primaryCard<T extends Prisma.Workspace$primaryCardArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$primaryCardArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  billingAccount<T extends Prisma.Workspace$billingAccountArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$billingAccountArgs<ExtArgs>>): Prisma.Prisma__BillingAccountClient<runtime.Types.Result.GetResult<Prisma.$BillingAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  nfcCards<T extends Prisma.Workspace$nfcCardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$nfcCardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NfcCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  memberships<T extends Prisma.Workspace$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkspaceMembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  subscriptions<T extends Prisma.Workspace$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  ownedCustomers<T extends Prisma.Workspace$ownedCustomersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$ownedCustomersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  orders<T extends Prisma.Workspace$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  invoices<T extends Prisma.Workspace$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  payments<T extends Prisma.Workspace$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  paymentSubmissions<T extends Prisma.Workspace$paymentSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$paymentSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  analyticsEvents<T extends Prisma.Workspace$analyticsEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$analyticsEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  auditLogs<T extends Prisma.Workspace$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   cards<T extends Prisma.Workspace$cardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$cardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ownedCustomers<T extends Prisma.Workspace$ownedCustomersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$ownedCustomersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invoices<T extends Prisma.Workspace$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   mediaAssets<T extends Prisma.Workspace$mediaAssetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$mediaAssetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   mediaFolders<T extends Prisma.Workspace$mediaFoldersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$mediaFoldersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MediaFolderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  nfcCards<T extends Prisma.Workspace$nfcCardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$nfcCardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NfcCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.Workspace$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationDeliveryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  orders<T extends Prisma.Workspace$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  payments<T extends Prisma.Workspace$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  paymentSubmissions<T extends Prisma.Workspace$paymentSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$paymentSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   settings<T extends Prisma.Workspace$settingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$settingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  auditLogs<T extends Prisma.Workspace$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  analyticsEvents<T extends Prisma.Workspace$analyticsEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$analyticsEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscriptions<T extends Prisma.Workspace$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subscriptionReminders<T extends Prisma.Workspace$subscriptionRemindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$subscriptionRemindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  billingAccount<T extends Prisma.Workspace$billingAccountArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$billingAccountArgs<ExtArgs>>): Prisma.Prisma__BillingAccountClient<runtime.Types.Result.GetResult<Prisma.$BillingAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  customer<T extends Prisma.Workspace$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  primaryCard<T extends Prisma.Workspace$primaryCardArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$primaryCardArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  memberships<T extends Prisma.Workspace$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$membershipsArgs<ExtArgs>>): Prisma.Prisma__WorkspaceMembershipClient<runtime.Types.Result.GetResult<Prisma.$WorkspaceMembershipPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3848,10 +3801,10 @@ export interface WorkspaceFieldRefs {
   readonly id: Prisma.FieldRef<"Workspace", 'String'>
   readonly customerId: Prisma.FieldRef<"Workspace", 'String'>
   readonly primaryCardId: Prisma.FieldRef<"Workspace", 'String'>
-  readonly billingAccountId: Prisma.FieldRef<"Workspace", 'String'>
   readonly createdAt: Prisma.FieldRef<"Workspace", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Workspace", 'DateTime'>
   readonly archivedAt: Prisma.FieldRef<"Workspace", 'DateTime'>
+  readonly billingAccountId: Prisma.FieldRef<"Workspace", 'String'>
 }
     
 
@@ -4253,28 +4206,57 @@ export type WorkspaceDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * Workspace.customer
+ * Workspace.analyticsEvents
  */
-export type Workspace$customerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Workspace$analyticsEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Customer
+   * Select specific fields to fetch from the AnalyticsEvent
    */
-  select?: Prisma.CustomerSelect<ExtArgs> | null
+  select?: Prisma.AnalyticsEventSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Customer
+   * Omit specific fields from the AnalyticsEvent
    */
-  omit?: Prisma.CustomerOmit<ExtArgs> | null
+  omit?: Prisma.AnalyticsEventOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CustomerInclude<ExtArgs> | null
-  where?: Prisma.CustomerWhereInput
+  include?: Prisma.AnalyticsEventInclude<ExtArgs> | null
+  where?: Prisma.AnalyticsEventWhereInput
+  orderBy?: Prisma.AnalyticsEventOrderByWithRelationInput | Prisma.AnalyticsEventOrderByWithRelationInput[]
+  cursor?: Prisma.AnalyticsEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AnalyticsEventScalarFieldEnum | Prisma.AnalyticsEventScalarFieldEnum[]
 }
 
 /**
- * Workspace.primaryCard
+ * Workspace.auditLogs
  */
-export type Workspace$primaryCardArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Workspace$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AuditLog
+   */
+  select?: Prisma.AuditLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AuditLog
+   */
+  omit?: Prisma.AuditLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AuditLogInclude<ExtArgs> | null
+  where?: Prisma.AuditLogWhereInput
+  orderBy?: Prisma.AuditLogOrderByWithRelationInput | Prisma.AuditLogOrderByWithRelationInput[]
+  cursor?: Prisma.AuditLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
+}
+
+/**
+ * Workspace.cards
+ */
+export type Workspace$cardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Card
    */
@@ -4288,97 +4270,11 @@ export type Workspace$primaryCardArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   include?: Prisma.CardInclude<ExtArgs> | null
   where?: Prisma.CardWhereInput
-}
-
-/**
- * Workspace.billingAccount
- */
-export type Workspace$billingAccountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the BillingAccount
-   */
-  select?: Prisma.BillingAccountSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the BillingAccount
-   */
-  omit?: Prisma.BillingAccountOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BillingAccountInclude<ExtArgs> | null
-  where?: Prisma.BillingAccountWhereInput
-}
-
-/**
- * Workspace.nfcCards
- */
-export type Workspace$nfcCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the NfcCard
-   */
-  select?: Prisma.NfcCardSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the NfcCard
-   */
-  omit?: Prisma.NfcCardOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.NfcCardInclude<ExtArgs> | null
-  where?: Prisma.NfcCardWhereInput
-  orderBy?: Prisma.NfcCardOrderByWithRelationInput | Prisma.NfcCardOrderByWithRelationInput[]
-  cursor?: Prisma.NfcCardWhereUniqueInput
+  orderBy?: Prisma.CardOrderByWithRelationInput | Prisma.CardOrderByWithRelationInput[]
+  cursor?: Prisma.CardWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.NfcCardScalarFieldEnum | Prisma.NfcCardScalarFieldEnum[]
-}
-
-/**
- * Workspace.memberships
- */
-export type Workspace$membershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the WorkspaceMembership
-   */
-  select?: Prisma.WorkspaceMembershipSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the WorkspaceMembership
-   */
-  omit?: Prisma.WorkspaceMembershipOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.WorkspaceMembershipInclude<ExtArgs> | null
-  where?: Prisma.WorkspaceMembershipWhereInput
-  orderBy?: Prisma.WorkspaceMembershipOrderByWithRelationInput | Prisma.WorkspaceMembershipOrderByWithRelationInput[]
-  cursor?: Prisma.WorkspaceMembershipWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.WorkspaceMembershipScalarFieldEnum | Prisma.WorkspaceMembershipScalarFieldEnum[]
-}
-
-/**
- * Workspace.subscriptions
- */
-export type Workspace$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Subscription
-   */
-  select?: Prisma.SubscriptionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Subscription
-   */
-  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SubscriptionInclude<ExtArgs> | null
-  where?: Prisma.SubscriptionWhereInput
-  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
-  cursor?: Prisma.SubscriptionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
+  distinct?: Prisma.CardScalarFieldEnum | Prisma.CardScalarFieldEnum[]
 }
 
 /**
@@ -4406,30 +4302,6 @@ export type Workspace$ownedCustomersArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
- * Workspace.orders
- */
-export type Workspace$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Order
-   */
-  select?: Prisma.OrderSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Order
-   */
-  omit?: Prisma.OrderOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OrderInclude<ExtArgs> | null
-  where?: Prisma.OrderWhereInput
-  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
-  cursor?: Prisma.OrderWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
-}
-
-/**
  * Workspace.invoices
  */
 export type Workspace$invoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4451,78 +4323,6 @@ export type Workspace$invoicesArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
-}
-
-/**
- * Workspace.payments
- */
-export type Workspace$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Payment
-   */
-  select?: Prisma.PaymentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Payment
-   */
-  omit?: Prisma.PaymentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PaymentInclude<ExtArgs> | null
-  where?: Prisma.PaymentWhereInput
-  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
-}
-
-/**
- * Workspace.paymentSubmissions
- */
-export type Workspace$paymentSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PaymentSubmission
-   */
-  select?: Prisma.PaymentSubmissionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PaymentSubmission
-   */
-  omit?: Prisma.PaymentSubmissionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PaymentSubmissionInclude<ExtArgs> | null
-  where?: Prisma.PaymentSubmissionWhereInput
-  orderBy?: Prisma.PaymentSubmissionOrderByWithRelationInput | Prisma.PaymentSubmissionOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentSubmissionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PaymentSubmissionScalarFieldEnum | Prisma.PaymentSubmissionScalarFieldEnum[]
-}
-
-/**
- * Workspace.cards
- */
-export type Workspace$cardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Card
-   */
-  select?: Prisma.CardSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Card
-   */
-  omit?: Prisma.CardOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CardInclude<ExtArgs> | null
-  where?: Prisma.CardWhereInput
-  orderBy?: Prisma.CardOrderByWithRelationInput | Prisma.CardOrderByWithRelationInput[]
-  cursor?: Prisma.CardWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CardScalarFieldEnum | Prisma.CardScalarFieldEnum[]
 }
 
 /**
@@ -4574,6 +4374,30 @@ export type Workspace$mediaFoldersArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
+ * Workspace.nfcCards
+ */
+export type Workspace$nfcCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NfcCard
+   */
+  select?: Prisma.NfcCardSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NfcCard
+   */
+  omit?: Prisma.NfcCardOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NfcCardInclude<ExtArgs> | null
+  where?: Prisma.NfcCardWhereInput
+  orderBy?: Prisma.NfcCardOrderByWithRelationInput | Prisma.NfcCardOrderByWithRelationInput[]
+  cursor?: Prisma.NfcCardWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NfcCardScalarFieldEnum | Prisma.NfcCardScalarFieldEnum[]
+}
+
+/**
  * Workspace.notifications
  */
 export type Workspace$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4595,6 +4419,78 @@ export type Workspace$notificationsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.NotificationDeliveryScalarFieldEnum | Prisma.NotificationDeliveryScalarFieldEnum[]
+}
+
+/**
+ * Workspace.orders
+ */
+export type Workspace$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Order
+   */
+  select?: Prisma.OrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Order
+   */
+  omit?: Prisma.OrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderInclude<ExtArgs> | null
+  where?: Prisma.OrderWhereInput
+  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
+  cursor?: Prisma.OrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
+}
+
+/**
+ * Workspace.payments
+ */
+export type Workspace$paymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
+}
+
+/**
+ * Workspace.paymentSubmissions
+ */
+export type Workspace$paymentSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PaymentSubmission
+   */
+  select?: Prisma.PaymentSubmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PaymentSubmission
+   */
+  omit?: Prisma.PaymentSubmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentSubmissionInclude<ExtArgs> | null
+  where?: Prisma.PaymentSubmissionWhereInput
+  orderBy?: Prisma.PaymentSubmissionOrderByWithRelationInput | Prisma.PaymentSubmissionOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentSubmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentSubmissionScalarFieldEnum | Prisma.PaymentSubmissionScalarFieldEnum[]
 }
 
 /**
@@ -4622,51 +4518,27 @@ export type Workspace$settingsArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Workspace.auditLogs
+ * Workspace.subscriptions
  */
-export type Workspace$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Workspace$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AuditLog
+   * Select specific fields to fetch from the Subscription
    */
-  select?: Prisma.AuditLogSelect<ExtArgs> | null
+  select?: Prisma.SubscriptionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AuditLog
+   * Omit specific fields from the Subscription
    */
-  omit?: Prisma.AuditLogOmit<ExtArgs> | null
+  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AuditLogInclude<ExtArgs> | null
-  where?: Prisma.AuditLogWhereInput
-  orderBy?: Prisma.AuditLogOrderByWithRelationInput | Prisma.AuditLogOrderByWithRelationInput[]
-  cursor?: Prisma.AuditLogWhereUniqueInput
+  include?: Prisma.SubscriptionInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionWhereInput
+  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriptionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
-}
-
-/**
- * Workspace.analyticsEvents
- */
-export type Workspace$analyticsEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AnalyticsEvent
-   */
-  select?: Prisma.AnalyticsEventSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the AnalyticsEvent
-   */
-  omit?: Prisma.AnalyticsEventOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AnalyticsEventInclude<ExtArgs> | null
-  where?: Prisma.AnalyticsEventWhereInput
-  orderBy?: Prisma.AnalyticsEventOrderByWithRelationInput | Prisma.AnalyticsEventOrderByWithRelationInput[]
-  cursor?: Prisma.AnalyticsEventWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AnalyticsEventScalarFieldEnum | Prisma.AnalyticsEventScalarFieldEnum[]
+  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
 }
 
 /**
@@ -4691,6 +4563,82 @@ export type Workspace$subscriptionRemindersArgs<ExtArgs extends runtime.Types.Ex
   take?: number
   skip?: number
   distinct?: Prisma.SubscriptionReminderScalarFieldEnum | Prisma.SubscriptionReminderScalarFieldEnum[]
+}
+
+/**
+ * Workspace.billingAccount
+ */
+export type Workspace$billingAccountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BillingAccount
+   */
+  select?: Prisma.BillingAccountSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BillingAccount
+   */
+  omit?: Prisma.BillingAccountOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BillingAccountInclude<ExtArgs> | null
+  where?: Prisma.BillingAccountWhereInput
+}
+
+/**
+ * Workspace.customer
+ */
+export type Workspace$customerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Customer
+   */
+  select?: Prisma.CustomerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Customer
+   */
+  omit?: Prisma.CustomerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CustomerInclude<ExtArgs> | null
+  where?: Prisma.CustomerWhereInput
+}
+
+/**
+ * Workspace.primaryCard
+ */
+export type Workspace$primaryCardArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Card
+   */
+  select?: Prisma.CardSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Card
+   */
+  omit?: Prisma.CardOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CardInclude<ExtArgs> | null
+  where?: Prisma.CardWhereInput
+}
+
+/**
+ * Workspace.memberships
+ */
+export type Workspace$membershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WorkspaceMembership
+   */
+  select?: Prisma.WorkspaceMembershipSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WorkspaceMembership
+   */
+  omit?: Prisma.WorkspaceMembershipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkspaceMembershipInclude<ExtArgs> | null
+  where?: Prisma.WorkspaceMembershipWhereInput
 }
 
 /**

@@ -187,18 +187,18 @@ export type ThemeStatus = (typeof ThemeStatus)[keyof typeof ThemeStatus]
 
 
 export const SubscriptionStatus = {
-  PENDING_PAYMENT: 'PENDING_PAYMENT',
-  DRAFT: 'DRAFT',
-  TRIAL: 'TRIAL',
   TRIALING: 'TRIALING',
   ACTIVE: 'ACTIVE',
   PAST_DUE: 'PAST_DUE',
-  GRACE_PERIOD: 'GRACE_PERIOD',
-  SUSPENDED: 'SUSPENDED',
   PAUSED: 'PAUSED',
   CANCELED: 'CANCELED',
   EXPIRED: 'EXPIRED',
-  ARCHIVED: 'ARCHIVED'
+  DRAFT: 'DRAFT',
+  TRIAL: 'TRIAL',
+  GRACE_PERIOD: 'GRACE_PERIOD',
+  SUSPENDED: 'SUSPENDED',
+  ARCHIVED: 'ARCHIVED',
+  PENDING_PAYMENT: 'PENDING_PAYMENT'
 } as const
 
 export type SubscriptionStatus = (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus]

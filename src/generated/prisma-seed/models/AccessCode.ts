@@ -279,8 +279,8 @@ export type AccessCodeWhereInput = {
   card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
   rotatedFrom?: Prisma.XOR<Prisma.AccessCodeNullableScalarRelationFilter, Prisma.AccessCodeWhereInput> | null
   rotatedTo?: Prisma.XOR<Prisma.AccessCodeNullableScalarRelationFilter, Prisma.AccessCodeWhereInput> | null
-  sessions?: Prisma.EditorSessionListRelationFilter
   usage?: Prisma.AccessCodeUsageListRelationFilter
+  sessions?: Prisma.EditorSessionListRelationFilter
 }
 
 export type AccessCodeOrderByWithRelationInput = {
@@ -299,8 +299,8 @@ export type AccessCodeOrderByWithRelationInput = {
   card?: Prisma.CardOrderByWithRelationInput
   rotatedFrom?: Prisma.AccessCodeOrderByWithRelationInput
   rotatedTo?: Prisma.AccessCodeOrderByWithRelationInput
-  sessions?: Prisma.EditorSessionOrderByRelationAggregateInput
   usage?: Prisma.AccessCodeUsageOrderByRelationAggregateInput
+  sessions?: Prisma.EditorSessionOrderByRelationAggregateInput
 }
 
 export type AccessCodeWhereUniqueInput = Prisma.AtLeast<{
@@ -323,9 +323,9 @@ export type AccessCodeWhereUniqueInput = Prisma.AtLeast<{
   card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
   rotatedFrom?: Prisma.XOR<Prisma.AccessCodeNullableScalarRelationFilter, Prisma.AccessCodeWhereInput> | null
   rotatedTo?: Prisma.XOR<Prisma.AccessCodeNullableScalarRelationFilter, Prisma.AccessCodeWhereInput> | null
-  sessions?: Prisma.EditorSessionListRelationFilter
   usage?: Prisma.AccessCodeUsageListRelationFilter
-}, "id" | "codeHash" | "rotatedFromId" | "cardId_version" | "cardId">
+  sessions?: Prisma.EditorSessionListRelationFilter
+}, "id" | "cardId" | "codeHash" | "rotatedFromId" | "cardId_version">
 
 export type AccessCodeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -379,8 +379,8 @@ export type AccessCodeCreateInput = {
   card: Prisma.CardCreateNestedOneWithoutAccessCodesInput
   rotatedFrom?: Prisma.AccessCodeCreateNestedOneWithoutRotatedToInput
   rotatedTo?: Prisma.AccessCodeCreateNestedOneWithoutRotatedFromInput
-  sessions?: Prisma.EditorSessionCreateNestedManyWithoutAccessCodeInput
   usage?: Prisma.AccessCodeUsageCreateNestedManyWithoutAccessCodeInput
+  sessions?: Prisma.EditorSessionCreateNestedManyWithoutAccessCodeInput
 }
 
 export type AccessCodeUncheckedCreateInput = {
@@ -397,8 +397,8 @@ export type AccessCodeUncheckedCreateInput = {
   updatedAt?: Date | string
   revokedAt?: Date | string | null
   rotatedTo?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutRotatedFromInput
-  sessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutAccessCodeInput
   usage?: Prisma.AccessCodeUsageUncheckedCreateNestedManyWithoutAccessCodeInput
+  sessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutAccessCodeInput
 }
 
 export type AccessCodeUpdateInput = {
@@ -415,8 +415,8 @@ export type AccessCodeUpdateInput = {
   card?: Prisma.CardUpdateOneRequiredWithoutAccessCodesNestedInput
   rotatedFrom?: Prisma.AccessCodeUpdateOneWithoutRotatedToNestedInput
   rotatedTo?: Prisma.AccessCodeUpdateOneWithoutRotatedFromNestedInput
-  sessions?: Prisma.EditorSessionUpdateManyWithoutAccessCodeNestedInput
   usage?: Prisma.AccessCodeUsageUpdateManyWithoutAccessCodeNestedInput
+  sessions?: Prisma.EditorSessionUpdateManyWithoutAccessCodeNestedInput
 }
 
 export type AccessCodeUncheckedUpdateInput = {
@@ -433,8 +433,8 @@ export type AccessCodeUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rotatedTo?: Prisma.AccessCodeUncheckedUpdateOneWithoutRotatedFromNestedInput
-  sessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutAccessCodeNestedInput
   usage?: Prisma.AccessCodeUsageUncheckedUpdateManyWithoutAccessCodeNestedInput
+  sessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutAccessCodeNestedInput
 }
 
 export type AccessCodeCreateManyInput = {
@@ -478,16 +478,6 @@ export type AccessCodeUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
-
-export type AccessCodeListRelationFilter = {
-  every?: Prisma.AccessCodeWhereInput
-  some?: Prisma.AccessCodeWhereInput
-  none?: Prisma.AccessCodeWhereInput
-}
-
-export type AccessCodeOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type AccessCodeNullableScalarRelationFilter = {
@@ -560,46 +550,36 @@ export type AccessCodeScalarRelationFilter = {
   isNot?: Prisma.AccessCodeWhereInput
 }
 
-export type AccessCodeCreateNestedManyWithoutCardInput = {
-  create?: Prisma.XOR<Prisma.AccessCodeCreateWithoutCardInput, Prisma.AccessCodeUncheckedCreateWithoutCardInput> | Prisma.AccessCodeCreateWithoutCardInput[] | Prisma.AccessCodeUncheckedCreateWithoutCardInput[]
-  connectOrCreate?: Prisma.AccessCodeCreateOrConnectWithoutCardInput | Prisma.AccessCodeCreateOrConnectWithoutCardInput[]
-  createMany?: Prisma.AccessCodeCreateManyCardInputEnvelope
-  connect?: Prisma.AccessCodeWhereUniqueInput | Prisma.AccessCodeWhereUniqueInput[]
+export type AccessCodeCreateNestedOneWithoutCardInput = {
+  create?: Prisma.XOR<Prisma.AccessCodeCreateWithoutCardInput, Prisma.AccessCodeUncheckedCreateWithoutCardInput>
+  connectOrCreate?: Prisma.AccessCodeCreateOrConnectWithoutCardInput
+  connect?: Prisma.AccessCodeWhereUniqueInput
 }
 
-export type AccessCodeUncheckedCreateNestedManyWithoutCardInput = {
-  create?: Prisma.XOR<Prisma.AccessCodeCreateWithoutCardInput, Prisma.AccessCodeUncheckedCreateWithoutCardInput> | Prisma.AccessCodeCreateWithoutCardInput[] | Prisma.AccessCodeUncheckedCreateWithoutCardInput[]
-  connectOrCreate?: Prisma.AccessCodeCreateOrConnectWithoutCardInput | Prisma.AccessCodeCreateOrConnectWithoutCardInput[]
-  createMany?: Prisma.AccessCodeCreateManyCardInputEnvelope
-  connect?: Prisma.AccessCodeWhereUniqueInput | Prisma.AccessCodeWhereUniqueInput[]
+export type AccessCodeUncheckedCreateNestedOneWithoutCardInput = {
+  create?: Prisma.XOR<Prisma.AccessCodeCreateWithoutCardInput, Prisma.AccessCodeUncheckedCreateWithoutCardInput>
+  connectOrCreate?: Prisma.AccessCodeCreateOrConnectWithoutCardInput
+  connect?: Prisma.AccessCodeWhereUniqueInput
 }
 
-export type AccessCodeUpdateManyWithoutCardNestedInput = {
-  create?: Prisma.XOR<Prisma.AccessCodeCreateWithoutCardInput, Prisma.AccessCodeUncheckedCreateWithoutCardInput> | Prisma.AccessCodeCreateWithoutCardInput[] | Prisma.AccessCodeUncheckedCreateWithoutCardInput[]
-  connectOrCreate?: Prisma.AccessCodeCreateOrConnectWithoutCardInput | Prisma.AccessCodeCreateOrConnectWithoutCardInput[]
-  upsert?: Prisma.AccessCodeUpsertWithWhereUniqueWithoutCardInput | Prisma.AccessCodeUpsertWithWhereUniqueWithoutCardInput[]
-  createMany?: Prisma.AccessCodeCreateManyCardInputEnvelope
-  set?: Prisma.AccessCodeWhereUniqueInput | Prisma.AccessCodeWhereUniqueInput[]
-  disconnect?: Prisma.AccessCodeWhereUniqueInput | Prisma.AccessCodeWhereUniqueInput[]
-  delete?: Prisma.AccessCodeWhereUniqueInput | Prisma.AccessCodeWhereUniqueInput[]
-  connect?: Prisma.AccessCodeWhereUniqueInput | Prisma.AccessCodeWhereUniqueInput[]
-  update?: Prisma.AccessCodeUpdateWithWhereUniqueWithoutCardInput | Prisma.AccessCodeUpdateWithWhereUniqueWithoutCardInput[]
-  updateMany?: Prisma.AccessCodeUpdateManyWithWhereWithoutCardInput | Prisma.AccessCodeUpdateManyWithWhereWithoutCardInput[]
-  deleteMany?: Prisma.AccessCodeScalarWhereInput | Prisma.AccessCodeScalarWhereInput[]
+export type AccessCodeUpdateOneWithoutCardNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessCodeCreateWithoutCardInput, Prisma.AccessCodeUncheckedCreateWithoutCardInput>
+  connectOrCreate?: Prisma.AccessCodeCreateOrConnectWithoutCardInput
+  upsert?: Prisma.AccessCodeUpsertWithoutCardInput
+  disconnect?: Prisma.AccessCodeWhereInput | boolean
+  delete?: Prisma.AccessCodeWhereInput | boolean
+  connect?: Prisma.AccessCodeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AccessCodeUpdateToOneWithWhereWithoutCardInput, Prisma.AccessCodeUpdateWithoutCardInput>, Prisma.AccessCodeUncheckedUpdateWithoutCardInput>
 }
 
-export type AccessCodeUncheckedUpdateManyWithoutCardNestedInput = {
-  create?: Prisma.XOR<Prisma.AccessCodeCreateWithoutCardInput, Prisma.AccessCodeUncheckedCreateWithoutCardInput> | Prisma.AccessCodeCreateWithoutCardInput[] | Prisma.AccessCodeUncheckedCreateWithoutCardInput[]
-  connectOrCreate?: Prisma.AccessCodeCreateOrConnectWithoutCardInput | Prisma.AccessCodeCreateOrConnectWithoutCardInput[]
-  upsert?: Prisma.AccessCodeUpsertWithWhereUniqueWithoutCardInput | Prisma.AccessCodeUpsertWithWhereUniqueWithoutCardInput[]
-  createMany?: Prisma.AccessCodeCreateManyCardInputEnvelope
-  set?: Prisma.AccessCodeWhereUniqueInput | Prisma.AccessCodeWhereUniqueInput[]
-  disconnect?: Prisma.AccessCodeWhereUniqueInput | Prisma.AccessCodeWhereUniqueInput[]
-  delete?: Prisma.AccessCodeWhereUniqueInput | Prisma.AccessCodeWhereUniqueInput[]
-  connect?: Prisma.AccessCodeWhereUniqueInput | Prisma.AccessCodeWhereUniqueInput[]
-  update?: Prisma.AccessCodeUpdateWithWhereUniqueWithoutCardInput | Prisma.AccessCodeUpdateWithWhereUniqueWithoutCardInput[]
-  updateMany?: Prisma.AccessCodeUpdateManyWithWhereWithoutCardInput | Prisma.AccessCodeUpdateManyWithWhereWithoutCardInput[]
-  deleteMany?: Prisma.AccessCodeScalarWhereInput | Prisma.AccessCodeScalarWhereInput[]
+export type AccessCodeUncheckedUpdateOneWithoutCardNestedInput = {
+  create?: Prisma.XOR<Prisma.AccessCodeCreateWithoutCardInput, Prisma.AccessCodeUncheckedCreateWithoutCardInput>
+  connectOrCreate?: Prisma.AccessCodeCreateOrConnectWithoutCardInput
+  upsert?: Prisma.AccessCodeUpsertWithoutCardInput
+  disconnect?: Prisma.AccessCodeWhereInput | boolean
+  delete?: Prisma.AccessCodeWhereInput | boolean
+  connect?: Prisma.AccessCodeWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AccessCodeUpdateToOneWithWhereWithoutCardInput, Prisma.AccessCodeUpdateWithoutCardInput>, Prisma.AccessCodeUncheckedUpdateWithoutCardInput>
 }
 
 export type AccessCodeCreateNestedOneWithoutRotatedToInput = {
@@ -674,10 +654,12 @@ export type AccessCodeCreateNestedOneWithoutSessionsInput = {
   connect?: Prisma.AccessCodeWhereUniqueInput
 }
 
-export type AccessCodeUpdateOneRequiredWithoutSessionsNestedInput = {
+export type AccessCodeUpdateOneWithoutSessionsNestedInput = {
   create?: Prisma.XOR<Prisma.AccessCodeCreateWithoutSessionsInput, Prisma.AccessCodeUncheckedCreateWithoutSessionsInput>
   connectOrCreate?: Prisma.AccessCodeCreateOrConnectWithoutSessionsInput
   upsert?: Prisma.AccessCodeUpsertWithoutSessionsInput
+  disconnect?: Prisma.AccessCodeWhereInput | boolean
+  delete?: Prisma.AccessCodeWhereInput | boolean
   connect?: Prisma.AccessCodeWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.AccessCodeUpdateToOneWithWhereWithoutSessionsInput, Prisma.AccessCodeUpdateWithoutSessionsInput>, Prisma.AccessCodeUncheckedUpdateWithoutSessionsInput>
 }
@@ -695,8 +677,8 @@ export type AccessCodeCreateWithoutCardInput = {
   revokedAt?: Date | string | null
   rotatedFrom?: Prisma.AccessCodeCreateNestedOneWithoutRotatedToInput
   rotatedTo?: Prisma.AccessCodeCreateNestedOneWithoutRotatedFromInput
-  sessions?: Prisma.EditorSessionCreateNestedManyWithoutAccessCodeInput
   usage?: Prisma.AccessCodeUsageCreateNestedManyWithoutAccessCodeInput
+  sessions?: Prisma.EditorSessionCreateNestedManyWithoutAccessCodeInput
 }
 
 export type AccessCodeUncheckedCreateWithoutCardInput = {
@@ -712,8 +694,8 @@ export type AccessCodeUncheckedCreateWithoutCardInput = {
   updatedAt?: Date | string
   revokedAt?: Date | string | null
   rotatedTo?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutRotatedFromInput
-  sessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutAccessCodeInput
   usage?: Prisma.AccessCodeUsageUncheckedCreateNestedManyWithoutAccessCodeInput
+  sessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutAccessCodeInput
 }
 
 export type AccessCodeCreateOrConnectWithoutCardInput = {
@@ -721,43 +703,49 @@ export type AccessCodeCreateOrConnectWithoutCardInput = {
   create: Prisma.XOR<Prisma.AccessCodeCreateWithoutCardInput, Prisma.AccessCodeUncheckedCreateWithoutCardInput>
 }
 
-export type AccessCodeCreateManyCardInputEnvelope = {
-  data: Prisma.AccessCodeCreateManyCardInput | Prisma.AccessCodeCreateManyCardInput[]
-  skipDuplicates?: boolean
-}
-
-export type AccessCodeUpsertWithWhereUniqueWithoutCardInput = {
-  where: Prisma.AccessCodeWhereUniqueInput
+export type AccessCodeUpsertWithoutCardInput = {
   update: Prisma.XOR<Prisma.AccessCodeUpdateWithoutCardInput, Prisma.AccessCodeUncheckedUpdateWithoutCardInput>
   create: Prisma.XOR<Prisma.AccessCodeCreateWithoutCardInput, Prisma.AccessCodeUncheckedCreateWithoutCardInput>
+  where?: Prisma.AccessCodeWhereInput
 }
 
-export type AccessCodeUpdateWithWhereUniqueWithoutCardInput = {
-  where: Prisma.AccessCodeWhereUniqueInput
+export type AccessCodeUpdateToOneWithWhereWithoutCardInput = {
+  where?: Prisma.AccessCodeWhereInput
   data: Prisma.XOR<Prisma.AccessCodeUpdateWithoutCardInput, Prisma.AccessCodeUncheckedUpdateWithoutCardInput>
 }
 
-export type AccessCodeUpdateManyWithWhereWithoutCardInput = {
-  where: Prisma.AccessCodeScalarWhereInput
-  data: Prisma.XOR<Prisma.AccessCodeUpdateManyMutationInput, Prisma.AccessCodeUncheckedUpdateManyWithoutCardInput>
+export type AccessCodeUpdateWithoutCardInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumAccessCodeStatusFieldUpdateOperationsInput | $Enums.AccessCodeStatus
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastUsedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  useCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rotatedFrom?: Prisma.AccessCodeUpdateOneWithoutRotatedToNestedInput
+  rotatedTo?: Prisma.AccessCodeUpdateOneWithoutRotatedFromNestedInput
+  usage?: Prisma.AccessCodeUsageUpdateManyWithoutAccessCodeNestedInput
+  sessions?: Prisma.EditorSessionUpdateManyWithoutAccessCodeNestedInput
 }
 
-export type AccessCodeScalarWhereInput = {
-  AND?: Prisma.AccessCodeScalarWhereInput | Prisma.AccessCodeScalarWhereInput[]
-  OR?: Prisma.AccessCodeScalarWhereInput[]
-  NOT?: Prisma.AccessCodeScalarWhereInput | Prisma.AccessCodeScalarWhereInput[]
-  id?: Prisma.UuidFilter<"AccessCode"> | string
-  cardId?: Prisma.UuidFilter<"AccessCode"> | string
-  codeHash?: Prisma.BytesFilter<"AccessCode"> | runtime.Bytes
-  version?: Prisma.IntFilter<"AccessCode"> | number
-  status?: Prisma.EnumAccessCodeStatusFilter<"AccessCode"> | $Enums.AccessCodeStatus
-  expiresAt?: Prisma.DateTimeNullableFilter<"AccessCode"> | Date | string | null
-  lastUsedAt?: Prisma.DateTimeNullableFilter<"AccessCode"> | Date | string | null
-  useCount?: Prisma.IntFilter<"AccessCode"> | number
-  rotatedFromId?: Prisma.UuidNullableFilter<"AccessCode"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"AccessCode"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"AccessCode"> | Date | string
-  revokedAt?: Prisma.DateTimeNullableFilter<"AccessCode"> | Date | string | null
+export type AccessCodeUncheckedUpdateWithoutCardInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  codeHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
+  version?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumAccessCodeStatusFieldUpdateOperationsInput | $Enums.AccessCodeStatus
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastUsedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  useCount?: Prisma.IntFieldUpdateOperationsInput | number
+  rotatedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  rotatedTo?: Prisma.AccessCodeUncheckedUpdateOneWithoutRotatedFromNestedInput
+  usage?: Prisma.AccessCodeUsageUncheckedUpdateManyWithoutAccessCodeNestedInput
+  sessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutAccessCodeNestedInput
 }
 
 export type AccessCodeCreateWithoutRotatedToInput = {
@@ -773,8 +761,8 @@ export type AccessCodeCreateWithoutRotatedToInput = {
   revokedAt?: Date | string | null
   card: Prisma.CardCreateNestedOneWithoutAccessCodesInput
   rotatedFrom?: Prisma.AccessCodeCreateNestedOneWithoutRotatedToInput
-  sessions?: Prisma.EditorSessionCreateNestedManyWithoutAccessCodeInput
   usage?: Prisma.AccessCodeUsageCreateNestedManyWithoutAccessCodeInput
+  sessions?: Prisma.EditorSessionCreateNestedManyWithoutAccessCodeInput
 }
 
 export type AccessCodeUncheckedCreateWithoutRotatedToInput = {
@@ -790,8 +778,8 @@ export type AccessCodeUncheckedCreateWithoutRotatedToInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   revokedAt?: Date | string | null
-  sessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutAccessCodeInput
   usage?: Prisma.AccessCodeUsageUncheckedCreateNestedManyWithoutAccessCodeInput
+  sessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutAccessCodeInput
 }
 
 export type AccessCodeCreateOrConnectWithoutRotatedToInput = {
@@ -812,8 +800,8 @@ export type AccessCodeCreateWithoutRotatedFromInput = {
   revokedAt?: Date | string | null
   card: Prisma.CardCreateNestedOneWithoutAccessCodesInput
   rotatedTo?: Prisma.AccessCodeCreateNestedOneWithoutRotatedFromInput
-  sessions?: Prisma.EditorSessionCreateNestedManyWithoutAccessCodeInput
   usage?: Prisma.AccessCodeUsageCreateNestedManyWithoutAccessCodeInput
+  sessions?: Prisma.EditorSessionCreateNestedManyWithoutAccessCodeInput
 }
 
 export type AccessCodeUncheckedCreateWithoutRotatedFromInput = {
@@ -829,8 +817,8 @@ export type AccessCodeUncheckedCreateWithoutRotatedFromInput = {
   updatedAt?: Date | string
   revokedAt?: Date | string | null
   rotatedTo?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutRotatedFromInput
-  sessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutAccessCodeInput
   usage?: Prisma.AccessCodeUsageUncheckedCreateNestedManyWithoutAccessCodeInput
+  sessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutAccessCodeInput
 }
 
 export type AccessCodeCreateOrConnectWithoutRotatedFromInput = {
@@ -862,8 +850,8 @@ export type AccessCodeUpdateWithoutRotatedToInput = {
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   card?: Prisma.CardUpdateOneRequiredWithoutAccessCodesNestedInput
   rotatedFrom?: Prisma.AccessCodeUpdateOneWithoutRotatedToNestedInput
-  sessions?: Prisma.EditorSessionUpdateManyWithoutAccessCodeNestedInput
   usage?: Prisma.AccessCodeUsageUpdateManyWithoutAccessCodeNestedInput
+  sessions?: Prisma.EditorSessionUpdateManyWithoutAccessCodeNestedInput
 }
 
 export type AccessCodeUncheckedUpdateWithoutRotatedToInput = {
@@ -879,8 +867,8 @@ export type AccessCodeUncheckedUpdateWithoutRotatedToInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutAccessCodeNestedInput
   usage?: Prisma.AccessCodeUsageUncheckedUpdateManyWithoutAccessCodeNestedInput
+  sessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutAccessCodeNestedInput
 }
 
 export type AccessCodeUpsertWithoutRotatedFromInput = {
@@ -907,8 +895,8 @@ export type AccessCodeUpdateWithoutRotatedFromInput = {
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   card?: Prisma.CardUpdateOneRequiredWithoutAccessCodesNestedInput
   rotatedTo?: Prisma.AccessCodeUpdateOneWithoutRotatedFromNestedInput
-  sessions?: Prisma.EditorSessionUpdateManyWithoutAccessCodeNestedInput
   usage?: Prisma.AccessCodeUsageUpdateManyWithoutAccessCodeNestedInput
+  sessions?: Prisma.EditorSessionUpdateManyWithoutAccessCodeNestedInput
 }
 
 export type AccessCodeUncheckedUpdateWithoutRotatedFromInput = {
@@ -924,8 +912,8 @@ export type AccessCodeUncheckedUpdateWithoutRotatedFromInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rotatedTo?: Prisma.AccessCodeUncheckedUpdateOneWithoutRotatedFromNestedInput
-  sessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutAccessCodeNestedInput
   usage?: Prisma.AccessCodeUsageUncheckedUpdateManyWithoutAccessCodeNestedInput
+  sessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutAccessCodeNestedInput
 }
 
 export type AccessCodeCreateWithoutUsageInput = {
@@ -1096,81 +1084,19 @@ export type AccessCodeUncheckedUpdateWithoutSessionsInput = {
   usage?: Prisma.AccessCodeUsageUncheckedUpdateManyWithoutAccessCodeNestedInput
 }
 
-export type AccessCodeCreateManyCardInput = {
-  id?: string
-  codeHash: runtime.Bytes
-  version: number
-  status?: $Enums.AccessCodeStatus
-  expiresAt?: Date | string | null
-  lastUsedAt?: Date | string | null
-  useCount?: number
-  rotatedFromId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  revokedAt?: Date | string | null
-}
-
-export type AccessCodeUpdateWithoutCardInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  codeHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.EnumAccessCodeStatusFieldUpdateOperationsInput | $Enums.AccessCodeStatus
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastUsedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  useCount?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  rotatedFrom?: Prisma.AccessCodeUpdateOneWithoutRotatedToNestedInput
-  rotatedTo?: Prisma.AccessCodeUpdateOneWithoutRotatedFromNestedInput
-  sessions?: Prisma.EditorSessionUpdateManyWithoutAccessCodeNestedInput
-  usage?: Prisma.AccessCodeUsageUpdateManyWithoutAccessCodeNestedInput
-}
-
-export type AccessCodeUncheckedUpdateWithoutCardInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  codeHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.EnumAccessCodeStatusFieldUpdateOperationsInput | $Enums.AccessCodeStatus
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastUsedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  useCount?: Prisma.IntFieldUpdateOperationsInput | number
-  rotatedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  rotatedTo?: Prisma.AccessCodeUncheckedUpdateOneWithoutRotatedFromNestedInput
-  sessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutAccessCodeNestedInput
-  usage?: Prisma.AccessCodeUsageUncheckedUpdateManyWithoutAccessCodeNestedInput
-}
-
-export type AccessCodeUncheckedUpdateManyWithoutCardInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  codeHash?: Prisma.BytesFieldUpdateOperationsInput | runtime.Bytes
-  version?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.EnumAccessCodeStatusFieldUpdateOperationsInput | $Enums.AccessCodeStatus
-  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  lastUsedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  useCount?: Prisma.IntFieldUpdateOperationsInput | number
-  rotatedFromId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  revokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
-
 
 /**
  * Count Type AccessCodeCountOutputType
  */
 
 export type AccessCodeCountOutputType = {
-  sessions: number
   usage: number
+  sessions: number
 }
 
 export type AccessCodeCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  sessions?: boolean | AccessCodeCountOutputTypeCountSessionsArgs
   usage?: boolean | AccessCodeCountOutputTypeCountUsageArgs
+  sessions?: boolean | AccessCodeCountOutputTypeCountSessionsArgs
 }
 
 /**
@@ -1186,15 +1112,15 @@ export type AccessCodeCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.E
 /**
  * AccessCodeCountOutputType without action
  */
-export type AccessCodeCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.EditorSessionWhereInput
+export type AccessCodeCountOutputTypeCountUsageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AccessCodeUsageWhereInput
 }
 
 /**
  * AccessCodeCountOutputType without action
  */
-export type AccessCodeCountOutputTypeCountUsageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AccessCodeUsageWhereInput
+export type AccessCodeCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EditorSessionWhereInput
 }
 
 
@@ -1214,8 +1140,8 @@ export type AccessCodeSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   rotatedFrom?: boolean | Prisma.AccessCode$rotatedFromArgs<ExtArgs>
   rotatedTo?: boolean | Prisma.AccessCode$rotatedToArgs<ExtArgs>
-  sessions?: boolean | Prisma.AccessCode$sessionsArgs<ExtArgs>
   usage?: boolean | Prisma.AccessCode$usageArgs<ExtArgs>
+  sessions?: boolean | Prisma.AccessCode$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.AccessCodeCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["accessCode"]>
 
@@ -1273,8 +1199,8 @@ export type AccessCodeInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   rotatedFrom?: boolean | Prisma.AccessCode$rotatedFromArgs<ExtArgs>
   rotatedTo?: boolean | Prisma.AccessCode$rotatedToArgs<ExtArgs>
-  sessions?: boolean | Prisma.AccessCode$sessionsArgs<ExtArgs>
   usage?: boolean | Prisma.AccessCode$usageArgs<ExtArgs>
+  sessions?: boolean | Prisma.AccessCode$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.AccessCodeCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AccessCodeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1292,8 +1218,8 @@ export type $AccessCodePayload<ExtArgs extends runtime.Types.Extensions.Internal
     card: Prisma.$CardPayload<ExtArgs>
     rotatedFrom: Prisma.$AccessCodePayload<ExtArgs> | null
     rotatedTo: Prisma.$AccessCodePayload<ExtArgs> | null
-    sessions: Prisma.$EditorSessionPayload<ExtArgs>[]
     usage: Prisma.$AccessCodeUsagePayload<ExtArgs>[]
+    sessions: Prisma.$EditorSessionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1705,8 +1631,8 @@ export interface Prisma__AccessCodeClient<T, Null = never, ExtArgs extends runti
   card<T extends Prisma.CardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CardDefaultArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   rotatedFrom<T extends Prisma.AccessCode$rotatedFromArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessCode$rotatedFromArgs<ExtArgs>>): Prisma.Prisma__AccessCodeClient<runtime.Types.Result.GetResult<Prisma.$AccessCodePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   rotatedTo<T extends Prisma.AccessCode$rotatedToArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessCode$rotatedToArgs<ExtArgs>>): Prisma.Prisma__AccessCodeClient<runtime.Types.Result.GetResult<Prisma.$AccessCodePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  sessions<T extends Prisma.AccessCode$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessCode$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EditorSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   usage<T extends Prisma.AccessCode$usageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessCode$usageArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessCodeUsagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessions<T extends Prisma.AccessCode$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessCode$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EditorSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2187,30 +2113,6 @@ export type AccessCode$rotatedToArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * AccessCode.sessions
- */
-export type AccessCode$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the EditorSession
-   */
-  select?: Prisma.EditorSessionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the EditorSession
-   */
-  omit?: Prisma.EditorSessionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.EditorSessionInclude<ExtArgs> | null
-  where?: Prisma.EditorSessionWhereInput
-  orderBy?: Prisma.EditorSessionOrderByWithRelationInput | Prisma.EditorSessionOrderByWithRelationInput[]
-  cursor?: Prisma.EditorSessionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.EditorSessionScalarFieldEnum | Prisma.EditorSessionScalarFieldEnum[]
-}
-
-/**
  * AccessCode.usage
  */
 export type AccessCode$usageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2232,6 +2134,30 @@ export type AccessCode$usageArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.AccessCodeUsageScalarFieldEnum | Prisma.AccessCodeUsageScalarFieldEnum[]
+}
+
+/**
+ * AccessCode.sessions
+ */
+export type AccessCode$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EditorSession
+   */
+  select?: Prisma.EditorSessionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EditorSession
+   */
+  omit?: Prisma.EditorSessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EditorSessionInclude<ExtArgs> | null
+  where?: Prisma.EditorSessionWhereInput
+  orderBy?: Prisma.EditorSessionOrderByWithRelationInput | Prisma.EditorSessionOrderByWithRelationInput[]
+  cursor?: Prisma.EditorSessionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EditorSessionScalarFieldEnum | Prisma.EditorSessionScalarFieldEnum[]
 }
 
 /**

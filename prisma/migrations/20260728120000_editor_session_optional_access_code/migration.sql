@@ -1,0 +1,1 @@
+-- AlterTable\nALTER TABLE "EditorSession" ALTER COLUMN "accessCodeId" DROP NOT NULL;

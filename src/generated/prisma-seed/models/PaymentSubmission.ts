@@ -36,7 +36,6 @@ export type PaymentSubmissionSumAggregateOutputType = {
 
 export type PaymentSubmissionMinAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   orderId: string | null
   customerId: string | null
   paymentMethod: $Enums.ManualPaymentMethod | null
@@ -52,11 +51,11 @@ export type PaymentSubmissionMinAggregateOutputType = {
   verifiedAt: Date | null
   verifiedBy: string | null
   rejectionReason: string | null
+  workspaceId: string | null
 }
 
 export type PaymentSubmissionMaxAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   orderId: string | null
   customerId: string | null
   paymentMethod: $Enums.ManualPaymentMethod | null
@@ -72,11 +71,11 @@ export type PaymentSubmissionMaxAggregateOutputType = {
   verifiedAt: Date | null
   verifiedBy: string | null
   rejectionReason: string | null
+  workspaceId: string | null
 }
 
 export type PaymentSubmissionCountAggregateOutputType = {
   id: number
-  workspaceId: number
   orderId: number
   customerId: number
   paymentMethod: number
@@ -92,6 +91,7 @@ export type PaymentSubmissionCountAggregateOutputType = {
   verifiedAt: number
   verifiedBy: number
   rejectionReason: number
+  workspaceId: number
   _all: number
 }
 
@@ -106,7 +106,6 @@ export type PaymentSubmissionSumAggregateInputType = {
 
 export type PaymentSubmissionMinAggregateInputType = {
   id?: true
-  workspaceId?: true
   orderId?: true
   customerId?: true
   paymentMethod?: true
@@ -122,11 +121,11 @@ export type PaymentSubmissionMinAggregateInputType = {
   verifiedAt?: true
   verifiedBy?: true
   rejectionReason?: true
+  workspaceId?: true
 }
 
 export type PaymentSubmissionMaxAggregateInputType = {
   id?: true
-  workspaceId?: true
   orderId?: true
   customerId?: true
   paymentMethod?: true
@@ -142,11 +141,11 @@ export type PaymentSubmissionMaxAggregateInputType = {
   verifiedAt?: true
   verifiedBy?: true
   rejectionReason?: true
+  workspaceId?: true
 }
 
 export type PaymentSubmissionCountAggregateInputType = {
   id?: true
-  workspaceId?: true
   orderId?: true
   customerId?: true
   paymentMethod?: true
@@ -162,6 +161,7 @@ export type PaymentSubmissionCountAggregateInputType = {
   verifiedAt?: true
   verifiedBy?: true
   rejectionReason?: true
+  workspaceId?: true
   _all?: true
 }
 
@@ -253,8 +253,7 @@ export type PaymentSubmissionGroupByArgs<ExtArgs extends runtime.Types.Extension
 
 export type PaymentSubmissionGroupByOutputType = {
   id: string
-  workspaceId: string
-  orderId: string
+  orderId: string | null
   customerId: string | null
   paymentMethod: $Enums.ManualPaymentMethod
   amount: number
@@ -269,6 +268,7 @@ export type PaymentSubmissionGroupByOutputType = {
   verifiedAt: Date | null
   verifiedBy: string | null
   rejectionReason: string | null
+  workspaceId: string
   _count: PaymentSubmissionCountAggregateOutputType | null
   _avg: PaymentSubmissionAvgAggregateOutputType | null
   _sum: PaymentSubmissionSumAggregateOutputType | null
@@ -296,8 +296,7 @@ export type PaymentSubmissionWhereInput = {
   OR?: Prisma.PaymentSubmissionWhereInput[]
   NOT?: Prisma.PaymentSubmissionWhereInput | Prisma.PaymentSubmissionWhereInput[]
   id?: Prisma.UuidFilter<"PaymentSubmission"> | string
-  workspaceId?: Prisma.UuidFilter<"PaymentSubmission"> | string
-  orderId?: Prisma.UuidFilter<"PaymentSubmission"> | string
+  orderId?: Prisma.UuidNullableFilter<"PaymentSubmission"> | string | null
   customerId?: Prisma.UuidNullableFilter<"PaymentSubmission"> | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFilter<"PaymentSubmission"> | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFilter<"PaymentSubmission"> | number
@@ -312,17 +311,17 @@ export type PaymentSubmissionWhereInput = {
   verifiedAt?: Prisma.DateTimeNullableFilter<"PaymentSubmission"> | Date | string | null
   verifiedBy?: Prisma.UuidNullableFilter<"PaymentSubmission"> | string | null
   rejectionReason?: Prisma.StringNullableFilter<"PaymentSubmission"> | string | null
-  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
+  workspaceId?: Prisma.UuidFilter<"PaymentSubmission"> | string
   customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
-  verifiedAdmin?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
+  order?: Prisma.XOR<Prisma.OrderNullableScalarRelationFilter, Prisma.OrderWhereInput> | null
   paymentProofAsset?: Prisma.XOR<Prisma.MediaAssetNullableScalarRelationFilter, Prisma.MediaAssetWhereInput> | null
+  verifiedAdmin?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }
 
 export type PaymentSubmissionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
-  orderId?: Prisma.SortOrder
+  orderId?: Prisma.SortOrderInput | Prisma.SortOrder
   customerId?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
   amount?: Prisma.SortOrder
@@ -337,10 +336,11 @@ export type PaymentSubmissionOrderByWithRelationInput = {
   verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   verifiedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   rejectionReason?: Prisma.SortOrderInput | Prisma.SortOrder
-  order?: Prisma.OrderOrderByWithRelationInput
+  workspaceId?: Prisma.SortOrder
   customer?: Prisma.CustomerOrderByWithRelationInput
-  verifiedAdmin?: Prisma.AdminUserOrderByWithRelationInput
+  order?: Prisma.OrderOrderByWithRelationInput
   paymentProofAsset?: Prisma.MediaAssetOrderByWithRelationInput
+  verifiedAdmin?: Prisma.AdminUserOrderByWithRelationInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
 }
 
@@ -351,8 +351,7 @@ export type PaymentSubmissionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.PaymentSubmissionWhereInput | Prisma.PaymentSubmissionWhereInput[]
   OR?: Prisma.PaymentSubmissionWhereInput[]
   NOT?: Prisma.PaymentSubmissionWhereInput | Prisma.PaymentSubmissionWhereInput[]
-  workspaceId?: Prisma.UuidFilter<"PaymentSubmission"> | string
-  orderId?: Prisma.UuidFilter<"PaymentSubmission"> | string
+  orderId?: Prisma.UuidNullableFilter<"PaymentSubmission"> | string | null
   customerId?: Prisma.UuidNullableFilter<"PaymentSubmission"> | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFilter<"PaymentSubmission"> | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFilter<"PaymentSubmission"> | number
@@ -367,17 +366,17 @@ export type PaymentSubmissionWhereUniqueInput = Prisma.AtLeast<{
   verifiedAt?: Prisma.DateTimeNullableFilter<"PaymentSubmission"> | Date | string | null
   verifiedBy?: Prisma.UuidNullableFilter<"PaymentSubmission"> | string | null
   rejectionReason?: Prisma.StringNullableFilter<"PaymentSubmission"> | string | null
-  order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.OrderWhereInput>
+  workspaceId?: Prisma.UuidFilter<"PaymentSubmission"> | string
   customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
-  verifiedAdmin?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
+  order?: Prisma.XOR<Prisma.OrderNullableScalarRelationFilter, Prisma.OrderWhereInput> | null
   paymentProofAsset?: Prisma.XOR<Prisma.MediaAssetNullableScalarRelationFilter, Prisma.MediaAssetWhereInput> | null
+  verifiedAdmin?: Prisma.XOR<Prisma.AdminUserNullableScalarRelationFilter, Prisma.AdminUserWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }, "id" | "workspaceId_orderId_referenceNumber" | "orderId_referenceNumber">
 
 export type PaymentSubmissionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
-  orderId?: Prisma.SortOrder
+  orderId?: Prisma.SortOrderInput | Prisma.SortOrder
   customerId?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
   amount?: Prisma.SortOrder
@@ -392,6 +391,7 @@ export type PaymentSubmissionOrderByWithAggregationInput = {
   verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   verifiedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   rejectionReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
   _count?: Prisma.PaymentSubmissionCountOrderByAggregateInput
   _avg?: Prisma.PaymentSubmissionAvgOrderByAggregateInput
   _max?: Prisma.PaymentSubmissionMaxOrderByAggregateInput
@@ -404,8 +404,7 @@ export type PaymentSubmissionScalarWhereWithAggregatesInput = {
   OR?: Prisma.PaymentSubmissionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PaymentSubmissionScalarWhereWithAggregatesInput | Prisma.PaymentSubmissionScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"PaymentSubmission"> | string
-  workspaceId?: Prisma.UuidWithAggregatesFilter<"PaymentSubmission"> | string
-  orderId?: Prisma.UuidWithAggregatesFilter<"PaymentSubmission"> | string
+  orderId?: Prisma.UuidNullableWithAggregatesFilter<"PaymentSubmission"> | string | null
   customerId?: Prisma.UuidNullableWithAggregatesFilter<"PaymentSubmission"> | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodWithAggregatesFilter<"PaymentSubmission"> | $Enums.ManualPaymentMethod
   amount?: Prisma.IntWithAggregatesFilter<"PaymentSubmission"> | number
@@ -420,6 +419,7 @@ export type PaymentSubmissionScalarWhereWithAggregatesInput = {
   verifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"PaymentSubmission"> | Date | string | null
   verifiedBy?: Prisma.UuidNullableWithAggregatesFilter<"PaymentSubmission"> | string | null
   rejectionReason?: Prisma.StringNullableWithAggregatesFilter<"PaymentSubmission"> | string | null
+  workspaceId?: Prisma.UuidWithAggregatesFilter<"PaymentSubmission"> | string
 }
 
 export type PaymentSubmissionCreateInput = {
@@ -435,17 +435,16 @@ export type PaymentSubmissionCreateInput = {
   submittedAt?: Date | string
   verifiedAt?: Date | string | null
   rejectionReason?: string | null
-  order: Prisma.OrderCreateNestedOneWithoutPaymentSubmissionsInput
   customer?: Prisma.CustomerCreateNestedOneWithoutPaymentSubmissionsInput
-  verifiedAdmin?: Prisma.AdminUserCreateNestedOneWithoutPaymentVerificationsInput
+  order?: Prisma.OrderCreateNestedOneWithoutPaymentSubmissionsInput
   paymentProofAsset?: Prisma.MediaAssetCreateNestedOneWithoutPaymentProofsInput
+  verifiedAdmin?: Prisma.AdminUserCreateNestedOneWithoutPaymentVerificationsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutPaymentSubmissionsInput
 }
 
 export type PaymentSubmissionUncheckedCreateInput = {
   id?: string
-  workspaceId: string
-  orderId: string
+  orderId?: string | null
   customerId?: string | null
   paymentMethod: $Enums.ManualPaymentMethod
   amount: number
@@ -460,6 +459,7 @@ export type PaymentSubmissionUncheckedCreateInput = {
   verifiedAt?: Date | string | null
   verifiedBy?: string | null
   rejectionReason?: string | null
+  workspaceId: string
 }
 
 export type PaymentSubmissionUpdateInput = {
@@ -475,17 +475,16 @@ export type PaymentSubmissionUpdateInput = {
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  order?: Prisma.OrderUpdateOneRequiredWithoutPaymentSubmissionsNestedInput
   customer?: Prisma.CustomerUpdateOneWithoutPaymentSubmissionsNestedInput
-  verifiedAdmin?: Prisma.AdminUserUpdateOneWithoutPaymentVerificationsNestedInput
+  order?: Prisma.OrderUpdateOneWithoutPaymentSubmissionsNestedInput
   paymentProofAsset?: Prisma.MediaAssetUpdateOneWithoutPaymentProofsNestedInput
+  verifiedAdmin?: Prisma.AdminUserUpdateOneWithoutPaymentVerificationsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutPaymentSubmissionsNestedInput
 }
 
 export type PaymentSubmissionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFieldUpdateOperationsInput | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -500,12 +499,12 @@ export type PaymentSubmissionUncheckedUpdateInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PaymentSubmissionCreateManyInput = {
   id?: string
-  workspaceId: string
-  orderId: string
+  orderId?: string | null
   customerId?: string | null
   paymentMethod: $Enums.ManualPaymentMethod
   amount: number
@@ -520,6 +519,7 @@ export type PaymentSubmissionCreateManyInput = {
   verifiedAt?: Date | string | null
   verifiedBy?: string | null
   rejectionReason?: string | null
+  workspaceId: string
 }
 
 export type PaymentSubmissionUpdateManyMutationInput = {
@@ -539,8 +539,7 @@ export type PaymentSubmissionUpdateManyMutationInput = {
 
 export type PaymentSubmissionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFieldUpdateOperationsInput | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -555,6 +554,7 @@ export type PaymentSubmissionUncheckedUpdateManyInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PaymentSubmissionListRelationFilter = {
@@ -580,7 +580,6 @@ export type PaymentSubmissionOrderIdReferenceNumberCompoundUniqueInput = {
 
 export type PaymentSubmissionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
@@ -596,6 +595,7 @@ export type PaymentSubmissionCountOrderByAggregateInput = {
   verifiedAt?: Prisma.SortOrder
   verifiedBy?: Prisma.SortOrder
   rejectionReason?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type PaymentSubmissionAvgOrderByAggregateInput = {
@@ -604,7 +604,6 @@ export type PaymentSubmissionAvgOrderByAggregateInput = {
 
 export type PaymentSubmissionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
@@ -620,11 +619,11 @@ export type PaymentSubmissionMaxOrderByAggregateInput = {
   verifiedAt?: Prisma.SortOrder
   verifiedBy?: Prisma.SortOrder
   rejectionReason?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type PaymentSubmissionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
@@ -640,6 +639,7 @@ export type PaymentSubmissionMinOrderByAggregateInput = {
   verifiedAt?: Prisma.SortOrder
   verifiedBy?: Prisma.SortOrder
   rejectionReason?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type PaymentSubmissionSumOrderByAggregateInput = {
@@ -877,16 +877,15 @@ export type PaymentSubmissionCreateWithoutVerifiedAdminInput = {
   submittedAt?: Date | string
   verifiedAt?: Date | string | null
   rejectionReason?: string | null
-  order: Prisma.OrderCreateNestedOneWithoutPaymentSubmissionsInput
   customer?: Prisma.CustomerCreateNestedOneWithoutPaymentSubmissionsInput
+  order?: Prisma.OrderCreateNestedOneWithoutPaymentSubmissionsInput
   paymentProofAsset?: Prisma.MediaAssetCreateNestedOneWithoutPaymentProofsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutPaymentSubmissionsInput
 }
 
 export type PaymentSubmissionUncheckedCreateWithoutVerifiedAdminInput = {
   id?: string
-  workspaceId: string
-  orderId: string
+  orderId?: string | null
   customerId?: string | null
   paymentMethod: $Enums.ManualPaymentMethod
   amount: number
@@ -900,6 +899,7 @@ export type PaymentSubmissionUncheckedCreateWithoutVerifiedAdminInput = {
   submittedAt?: Date | string
   verifiedAt?: Date | string | null
   rejectionReason?: string | null
+  workspaceId: string
 }
 
 export type PaymentSubmissionCreateOrConnectWithoutVerifiedAdminInput = {
@@ -933,8 +933,7 @@ export type PaymentSubmissionScalarWhereInput = {
   OR?: Prisma.PaymentSubmissionScalarWhereInput[]
   NOT?: Prisma.PaymentSubmissionScalarWhereInput | Prisma.PaymentSubmissionScalarWhereInput[]
   id?: Prisma.UuidFilter<"PaymentSubmission"> | string
-  workspaceId?: Prisma.UuidFilter<"PaymentSubmission"> | string
-  orderId?: Prisma.UuidFilter<"PaymentSubmission"> | string
+  orderId?: Prisma.UuidNullableFilter<"PaymentSubmission"> | string | null
   customerId?: Prisma.UuidNullableFilter<"PaymentSubmission"> | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFilter<"PaymentSubmission"> | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFilter<"PaymentSubmission"> | number
@@ -949,6 +948,7 @@ export type PaymentSubmissionScalarWhereInput = {
   verifiedAt?: Prisma.DateTimeNullableFilter<"PaymentSubmission"> | Date | string | null
   verifiedBy?: Prisma.UuidNullableFilter<"PaymentSubmission"> | string | null
   rejectionReason?: Prisma.StringNullableFilter<"PaymentSubmission"> | string | null
+  workspaceId?: Prisma.UuidFilter<"PaymentSubmission"> | string
 }
 
 export type PaymentSubmissionCreateWithoutCustomerInput = {
@@ -964,16 +964,15 @@ export type PaymentSubmissionCreateWithoutCustomerInput = {
   submittedAt?: Date | string
   verifiedAt?: Date | string | null
   rejectionReason?: string | null
-  order: Prisma.OrderCreateNestedOneWithoutPaymentSubmissionsInput
-  verifiedAdmin?: Prisma.AdminUserCreateNestedOneWithoutPaymentVerificationsInput
+  order?: Prisma.OrderCreateNestedOneWithoutPaymentSubmissionsInput
   paymentProofAsset?: Prisma.MediaAssetCreateNestedOneWithoutPaymentProofsInput
+  verifiedAdmin?: Prisma.AdminUserCreateNestedOneWithoutPaymentVerificationsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutPaymentSubmissionsInput
 }
 
 export type PaymentSubmissionUncheckedCreateWithoutCustomerInput = {
   id?: string
-  workspaceId: string
-  orderId: string
+  orderId?: string | null
   paymentMethod: $Enums.ManualPaymentMethod
   amount: number
   currency: string
@@ -987,6 +986,7 @@ export type PaymentSubmissionUncheckedCreateWithoutCustomerInput = {
   verifiedAt?: Date | string | null
   verifiedBy?: string | null
   rejectionReason?: string | null
+  workspaceId: string
 }
 
 export type PaymentSubmissionCreateOrConnectWithoutCustomerInput = {
@@ -1028,15 +1028,15 @@ export type PaymentSubmissionCreateWithoutWorkspaceInput = {
   submittedAt?: Date | string
   verifiedAt?: Date | string | null
   rejectionReason?: string | null
-  order: Prisma.OrderCreateNestedOneWithoutPaymentSubmissionsInput
   customer?: Prisma.CustomerCreateNestedOneWithoutPaymentSubmissionsInput
-  verifiedAdmin?: Prisma.AdminUserCreateNestedOneWithoutPaymentVerificationsInput
+  order?: Prisma.OrderCreateNestedOneWithoutPaymentSubmissionsInput
   paymentProofAsset?: Prisma.MediaAssetCreateNestedOneWithoutPaymentProofsInput
+  verifiedAdmin?: Prisma.AdminUserCreateNestedOneWithoutPaymentVerificationsInput
 }
 
 export type PaymentSubmissionUncheckedCreateWithoutWorkspaceInput = {
   id?: string
-  orderId: string
+  orderId?: string | null
   customerId?: string | null
   paymentMethod: $Enums.ManualPaymentMethod
   amount: number
@@ -1093,14 +1093,13 @@ export type PaymentSubmissionCreateWithoutOrderInput = {
   verifiedAt?: Date | string | null
   rejectionReason?: string | null
   customer?: Prisma.CustomerCreateNestedOneWithoutPaymentSubmissionsInput
-  verifiedAdmin?: Prisma.AdminUserCreateNestedOneWithoutPaymentVerificationsInput
   paymentProofAsset?: Prisma.MediaAssetCreateNestedOneWithoutPaymentProofsInput
+  verifiedAdmin?: Prisma.AdminUserCreateNestedOneWithoutPaymentVerificationsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutPaymentSubmissionsInput
 }
 
 export type PaymentSubmissionUncheckedCreateWithoutOrderInput = {
   id?: string
-  workspaceId: string
   customerId?: string | null
   paymentMethod: $Enums.ManualPaymentMethod
   amount: number
@@ -1115,6 +1114,7 @@ export type PaymentSubmissionUncheckedCreateWithoutOrderInput = {
   verifiedAt?: Date | string | null
   verifiedBy?: string | null
   rejectionReason?: string | null
+  workspaceId: string
 }
 
 export type PaymentSubmissionCreateOrConnectWithoutOrderInput = {
@@ -1156,16 +1156,15 @@ export type PaymentSubmissionCreateWithoutPaymentProofAssetInput = {
   submittedAt?: Date | string
   verifiedAt?: Date | string | null
   rejectionReason?: string | null
-  order: Prisma.OrderCreateNestedOneWithoutPaymentSubmissionsInput
   customer?: Prisma.CustomerCreateNestedOneWithoutPaymentSubmissionsInput
+  order?: Prisma.OrderCreateNestedOneWithoutPaymentSubmissionsInput
   verifiedAdmin?: Prisma.AdminUserCreateNestedOneWithoutPaymentVerificationsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutPaymentSubmissionsInput
 }
 
 export type PaymentSubmissionUncheckedCreateWithoutPaymentProofAssetInput = {
   id?: string
-  workspaceId: string
-  orderId: string
+  orderId?: string | null
   customerId?: string | null
   paymentMethod: $Enums.ManualPaymentMethod
   amount: number
@@ -1179,6 +1178,7 @@ export type PaymentSubmissionUncheckedCreateWithoutPaymentProofAssetInput = {
   verifiedAt?: Date | string | null
   verifiedBy?: string | null
   rejectionReason?: string | null
+  workspaceId: string
 }
 
 export type PaymentSubmissionCreateOrConnectWithoutPaymentProofAssetInput = {
@@ -1209,8 +1209,7 @@ export type PaymentSubmissionUpdateManyWithWhereWithoutPaymentProofAssetInput = 
 
 export type PaymentSubmissionCreateManyVerifiedAdminInput = {
   id?: string
-  workspaceId: string
-  orderId: string
+  orderId?: string | null
   customerId?: string | null
   paymentMethod: $Enums.ManualPaymentMethod
   amount: number
@@ -1224,6 +1223,7 @@ export type PaymentSubmissionCreateManyVerifiedAdminInput = {
   submittedAt?: Date | string
   verifiedAt?: Date | string | null
   rejectionReason?: string | null
+  workspaceId: string
 }
 
 export type PaymentSubmissionUpdateWithoutVerifiedAdminInput = {
@@ -1239,16 +1239,15 @@ export type PaymentSubmissionUpdateWithoutVerifiedAdminInput = {
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  order?: Prisma.OrderUpdateOneRequiredWithoutPaymentSubmissionsNestedInput
   customer?: Prisma.CustomerUpdateOneWithoutPaymentSubmissionsNestedInput
+  order?: Prisma.OrderUpdateOneWithoutPaymentSubmissionsNestedInput
   paymentProofAsset?: Prisma.MediaAssetUpdateOneWithoutPaymentProofsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutPaymentSubmissionsNestedInput
 }
 
 export type PaymentSubmissionUncheckedUpdateWithoutVerifiedAdminInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFieldUpdateOperationsInput | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1262,12 +1261,12 @@ export type PaymentSubmissionUncheckedUpdateWithoutVerifiedAdminInput = {
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PaymentSubmissionUncheckedUpdateManyWithoutVerifiedAdminInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFieldUpdateOperationsInput | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1281,12 +1280,12 @@ export type PaymentSubmissionUncheckedUpdateManyWithoutVerifiedAdminInput = {
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PaymentSubmissionCreateManyCustomerInput = {
   id?: string
-  workspaceId: string
-  orderId: string
+  orderId?: string | null
   paymentMethod: $Enums.ManualPaymentMethod
   amount: number
   currency: string
@@ -1300,6 +1299,7 @@ export type PaymentSubmissionCreateManyCustomerInput = {
   verifiedAt?: Date | string | null
   verifiedBy?: string | null
   rejectionReason?: string | null
+  workspaceId: string
 }
 
 export type PaymentSubmissionUpdateWithoutCustomerInput = {
@@ -1315,16 +1315,15 @@ export type PaymentSubmissionUpdateWithoutCustomerInput = {
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  order?: Prisma.OrderUpdateOneRequiredWithoutPaymentSubmissionsNestedInput
-  verifiedAdmin?: Prisma.AdminUserUpdateOneWithoutPaymentVerificationsNestedInput
+  order?: Prisma.OrderUpdateOneWithoutPaymentSubmissionsNestedInput
   paymentProofAsset?: Prisma.MediaAssetUpdateOneWithoutPaymentProofsNestedInput
+  verifiedAdmin?: Prisma.AdminUserUpdateOneWithoutPaymentVerificationsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutPaymentSubmissionsNestedInput
 }
 
 export type PaymentSubmissionUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFieldUpdateOperationsInput | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1338,12 +1337,12 @@ export type PaymentSubmissionUncheckedUpdateWithoutCustomerInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PaymentSubmissionUncheckedUpdateManyWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFieldUpdateOperationsInput | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1357,11 +1356,12 @@ export type PaymentSubmissionUncheckedUpdateManyWithoutCustomerInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PaymentSubmissionCreateManyWorkspaceInput = {
   id?: string
-  orderId: string
+  orderId?: string | null
   customerId?: string | null
   paymentMethod: $Enums.ManualPaymentMethod
   amount: number
@@ -1391,15 +1391,15 @@ export type PaymentSubmissionUpdateWithoutWorkspaceInput = {
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  order?: Prisma.OrderUpdateOneRequiredWithoutPaymentSubmissionsNestedInput
   customer?: Prisma.CustomerUpdateOneWithoutPaymentSubmissionsNestedInput
-  verifiedAdmin?: Prisma.AdminUserUpdateOneWithoutPaymentVerificationsNestedInput
+  order?: Prisma.OrderUpdateOneWithoutPaymentSubmissionsNestedInput
   paymentProofAsset?: Prisma.MediaAssetUpdateOneWithoutPaymentProofsNestedInput
+  verifiedAdmin?: Prisma.AdminUserUpdateOneWithoutPaymentVerificationsNestedInput
 }
 
 export type PaymentSubmissionUncheckedUpdateWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFieldUpdateOperationsInput | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1418,7 +1418,7 @@ export type PaymentSubmissionUncheckedUpdateWithoutWorkspaceInput = {
 
 export type PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFieldUpdateOperationsInput | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1437,7 +1437,6 @@ export type PaymentSubmissionUncheckedUpdateManyWithoutWorkspaceInput = {
 
 export type PaymentSubmissionCreateManyOrderInput = {
   id?: string
-  workspaceId: string
   customerId?: string | null
   paymentMethod: $Enums.ManualPaymentMethod
   amount: number
@@ -1452,6 +1451,7 @@ export type PaymentSubmissionCreateManyOrderInput = {
   verifiedAt?: Date | string | null
   verifiedBy?: string | null
   rejectionReason?: string | null
+  workspaceId: string
 }
 
 export type PaymentSubmissionUpdateWithoutOrderInput = {
@@ -1468,14 +1468,13 @@ export type PaymentSubmissionUpdateWithoutOrderInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customer?: Prisma.CustomerUpdateOneWithoutPaymentSubmissionsNestedInput
-  verifiedAdmin?: Prisma.AdminUserUpdateOneWithoutPaymentVerificationsNestedInput
   paymentProofAsset?: Prisma.MediaAssetUpdateOneWithoutPaymentProofsNestedInput
+  verifiedAdmin?: Prisma.AdminUserUpdateOneWithoutPaymentVerificationsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutPaymentSubmissionsNestedInput
 }
 
 export type PaymentSubmissionUncheckedUpdateWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFieldUpdateOperationsInput | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1490,11 +1489,11 @@ export type PaymentSubmissionUncheckedUpdateWithoutOrderInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PaymentSubmissionUncheckedUpdateManyWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFieldUpdateOperationsInput | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1509,12 +1508,12 @@ export type PaymentSubmissionUncheckedUpdateManyWithoutOrderInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PaymentSubmissionCreateManyPaymentProofAssetInput = {
   id?: string
-  workspaceId: string
-  orderId: string
+  orderId?: string | null
   customerId?: string | null
   paymentMethod: $Enums.ManualPaymentMethod
   amount: number
@@ -1528,6 +1527,7 @@ export type PaymentSubmissionCreateManyPaymentProofAssetInput = {
   verifiedAt?: Date | string | null
   verifiedBy?: string | null
   rejectionReason?: string | null
+  workspaceId: string
 }
 
 export type PaymentSubmissionUpdateWithoutPaymentProofAssetInput = {
@@ -1543,16 +1543,15 @@ export type PaymentSubmissionUpdateWithoutPaymentProofAssetInput = {
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  order?: Prisma.OrderUpdateOneRequiredWithoutPaymentSubmissionsNestedInput
   customer?: Prisma.CustomerUpdateOneWithoutPaymentSubmissionsNestedInput
+  order?: Prisma.OrderUpdateOneWithoutPaymentSubmissionsNestedInput
   verifiedAdmin?: Prisma.AdminUserUpdateOneWithoutPaymentVerificationsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutPaymentSubmissionsNestedInput
 }
 
 export type PaymentSubmissionUncheckedUpdateWithoutPaymentProofAssetInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFieldUpdateOperationsInput | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1566,12 +1565,12 @@ export type PaymentSubmissionUncheckedUpdateWithoutPaymentProofAssetInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentMethod?: Prisma.EnumManualPaymentMethodFieldUpdateOperationsInput | $Enums.ManualPaymentMethod
   amount?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1585,13 +1584,13 @@ export type PaymentSubmissionUncheckedUpdateManyWithoutPaymentProofAssetInput = 
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rejectionReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
 
 export type PaymentSubmissionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   orderId?: boolean
   customerId?: boolean
   paymentMethod?: boolean
@@ -1607,16 +1606,16 @@ export type PaymentSubmissionSelect<ExtArgs extends runtime.Types.Extensions.Int
   verifiedAt?: boolean
   verifiedBy?: boolean
   rejectionReason?: boolean
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
+  workspaceId?: boolean
   customer?: boolean | Prisma.PaymentSubmission$customerArgs<ExtArgs>
-  verifiedAdmin?: boolean | Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>
+  order?: boolean | Prisma.PaymentSubmission$orderArgs<ExtArgs>
   paymentProofAsset?: boolean | Prisma.PaymentSubmission$paymentProofAssetArgs<ExtArgs>
+  verifiedAdmin?: boolean | Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["paymentSubmission"]>
 
 export type PaymentSubmissionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   orderId?: boolean
   customerId?: boolean
   paymentMethod?: boolean
@@ -1632,16 +1631,16 @@ export type PaymentSubmissionSelectCreateManyAndReturn<ExtArgs extends runtime.T
   verifiedAt?: boolean
   verifiedBy?: boolean
   rejectionReason?: boolean
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
+  workspaceId?: boolean
   customer?: boolean | Prisma.PaymentSubmission$customerArgs<ExtArgs>
-  verifiedAdmin?: boolean | Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>
+  order?: boolean | Prisma.PaymentSubmission$orderArgs<ExtArgs>
   paymentProofAsset?: boolean | Prisma.PaymentSubmission$paymentProofAssetArgs<ExtArgs>
+  verifiedAdmin?: boolean | Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["paymentSubmission"]>
 
 export type PaymentSubmissionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   orderId?: boolean
   customerId?: boolean
   paymentMethod?: boolean
@@ -1657,16 +1656,16 @@ export type PaymentSubmissionSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   verifiedAt?: boolean
   verifiedBy?: boolean
   rejectionReason?: boolean
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
+  workspaceId?: boolean
   customer?: boolean | Prisma.PaymentSubmission$customerArgs<ExtArgs>
-  verifiedAdmin?: boolean | Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>
+  order?: boolean | Prisma.PaymentSubmission$orderArgs<ExtArgs>
   paymentProofAsset?: boolean | Prisma.PaymentSubmission$paymentProofAssetArgs<ExtArgs>
+  verifiedAdmin?: boolean | Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["paymentSubmission"]>
 
 export type PaymentSubmissionSelectScalar = {
   id?: boolean
-  workspaceId?: boolean
   orderId?: boolean
   customerId?: boolean
   paymentMethod?: boolean
@@ -1682,44 +1681,44 @@ export type PaymentSubmissionSelectScalar = {
   verifiedAt?: boolean
   verifiedBy?: boolean
   rejectionReason?: boolean
+  workspaceId?: boolean
 }
 
-export type PaymentSubmissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "orderId" | "customerId" | "paymentMethod" | "amount" | "currency" | "senderName" | "senderPhone" | "referenceNumber" | "paymentProofAssetId" | "notes" | "status" | "submittedAt" | "verifiedAt" | "verifiedBy" | "rejectionReason", ExtArgs["result"]["paymentSubmission"]>
+export type PaymentSubmissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "customerId" | "paymentMethod" | "amount" | "currency" | "senderName" | "senderPhone" | "referenceNumber" | "paymentProofAssetId" | "notes" | "status" | "submittedAt" | "verifiedAt" | "verifiedBy" | "rejectionReason" | "workspaceId", ExtArgs["result"]["paymentSubmission"]>
 export type PaymentSubmissionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.PaymentSubmission$customerArgs<ExtArgs>
-  verifiedAdmin?: boolean | Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>
+  order?: boolean | Prisma.PaymentSubmission$orderArgs<ExtArgs>
   paymentProofAsset?: boolean | Prisma.PaymentSubmission$paymentProofAssetArgs<ExtArgs>
+  verifiedAdmin?: boolean | Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 export type PaymentSubmissionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.PaymentSubmission$customerArgs<ExtArgs>
-  verifiedAdmin?: boolean | Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>
+  order?: boolean | Prisma.PaymentSubmission$orderArgs<ExtArgs>
   paymentProofAsset?: boolean | Prisma.PaymentSubmission$paymentProofAssetArgs<ExtArgs>
+  verifiedAdmin?: boolean | Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 export type PaymentSubmissionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.PaymentSubmission$customerArgs<ExtArgs>
-  verifiedAdmin?: boolean | Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>
+  order?: boolean | Prisma.PaymentSubmission$orderArgs<ExtArgs>
   paymentProofAsset?: boolean | Prisma.PaymentSubmission$paymentProofAssetArgs<ExtArgs>
+  verifiedAdmin?: boolean | Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 
 export type $PaymentSubmissionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PaymentSubmission"
   objects: {
-    order: Prisma.$OrderPayload<ExtArgs>
     customer: Prisma.$CustomerPayload<ExtArgs> | null
-    verifiedAdmin: Prisma.$AdminUserPayload<ExtArgs> | null
+    order: Prisma.$OrderPayload<ExtArgs> | null
     paymentProofAsset: Prisma.$MediaAssetPayload<ExtArgs> | null
+    verifiedAdmin: Prisma.$AdminUserPayload<ExtArgs> | null
     workspace: Prisma.$WorkspacePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    workspaceId: string
-    orderId: string
+    orderId: string | null
     customerId: string | null
     paymentMethod: $Enums.ManualPaymentMethod
     amount: number
@@ -1734,6 +1733,7 @@ export type $PaymentSubmissionPayload<ExtArgs extends runtime.Types.Extensions.I
     verifiedAt: Date | null
     verifiedBy: string | null
     rejectionReason: string | null
+    workspaceId: string
   }, ExtArgs["result"]["paymentSubmission"]>
   composites: {}
 }
@@ -2128,10 +2128,10 @@ readonly fields: PaymentSubmissionFieldRefs;
  */
 export interface Prisma__PaymentSubmissionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  order<T extends Prisma.OrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrderDefaultArgs<ExtArgs>>): Prisma.Prisma__OrderClient<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   customer<T extends Prisma.PaymentSubmission$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentSubmission$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  verifiedAdmin<T extends Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>>): Prisma.Prisma__AdminUserClient<runtime.Types.Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  order<T extends Prisma.PaymentSubmission$orderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentSubmission$orderArgs<ExtArgs>>): Prisma.Prisma__OrderClient<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   paymentProofAsset<T extends Prisma.PaymentSubmission$paymentProofAssetArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentSubmission$paymentProofAssetArgs<ExtArgs>>): Prisma.Prisma__MediaAssetClient<runtime.Types.Result.GetResult<Prisma.$MediaAssetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  verifiedAdmin<T extends Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentSubmission$verifiedAdminArgs<ExtArgs>>): Prisma.Prisma__AdminUserClient<runtime.Types.Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2163,7 +2163,6 @@ export interface Prisma__PaymentSubmissionClient<T, Null = never, ExtArgs extend
  */
 export interface PaymentSubmissionFieldRefs {
   readonly id: Prisma.FieldRef<"PaymentSubmission", 'String'>
-  readonly workspaceId: Prisma.FieldRef<"PaymentSubmission", 'String'>
   readonly orderId: Prisma.FieldRef<"PaymentSubmission", 'String'>
   readonly customerId: Prisma.FieldRef<"PaymentSubmission", 'String'>
   readonly paymentMethod: Prisma.FieldRef<"PaymentSubmission", 'ManualPaymentMethod'>
@@ -2179,6 +2178,7 @@ export interface PaymentSubmissionFieldRefs {
   readonly verifiedAt: Prisma.FieldRef<"PaymentSubmission", 'DateTime'>
   readonly verifiedBy: Prisma.FieldRef<"PaymentSubmission", 'String'>
   readonly rejectionReason: Prisma.FieldRef<"PaymentSubmission", 'String'>
+  readonly workspaceId: Prisma.FieldRef<"PaymentSubmission", 'String'>
 }
     
 
@@ -2599,22 +2599,22 @@ export type PaymentSubmission$customerArgs<ExtArgs extends runtime.Types.Extensi
 }
 
 /**
- * PaymentSubmission.verifiedAdmin
+ * PaymentSubmission.order
  */
-export type PaymentSubmission$verifiedAdminArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type PaymentSubmission$orderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AdminUser
+   * Select specific fields to fetch from the Order
    */
-  select?: Prisma.AdminUserSelect<ExtArgs> | null
+  select?: Prisma.OrderSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AdminUser
+   * Omit specific fields from the Order
    */
-  omit?: Prisma.AdminUserOmit<ExtArgs> | null
+  omit?: Prisma.OrderOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AdminUserInclude<ExtArgs> | null
-  where?: Prisma.AdminUserWhereInput
+  include?: Prisma.OrderInclude<ExtArgs> | null
+  where?: Prisma.OrderWhereInput
 }
 
 /**
@@ -2634,6 +2634,25 @@ export type PaymentSubmission$paymentProofAssetArgs<ExtArgs extends runtime.Type
    */
   include?: Prisma.MediaAssetInclude<ExtArgs> | null
   where?: Prisma.MediaAssetWhereInput
+}
+
+/**
+ * PaymentSubmission.verifiedAdmin
+ */
+export type PaymentSubmission$verifiedAdminArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AdminUser
+   */
+  select?: Prisma.AdminUserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AdminUser
+   */
+  omit?: Prisma.AdminUserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AdminUserInclude<ExtArgs> | null
+  where?: Prisma.AdminUserWhereInput
 }
 
 /**

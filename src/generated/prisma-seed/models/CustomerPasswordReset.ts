@@ -381,10 +381,6 @@ export type CustomerPasswordResetUncheckedUpdateManyWithoutAccountNestedInput = 
   deleteMany?: Prisma.CustomerPasswordResetScalarWhereInput | Prisma.CustomerPasswordResetScalarWhereInput[]
 }
 
-export type BytesFieldUpdateOperationsInput = {
-  set?: runtime.Bytes
-}
-
 export type CustomerPasswordResetCreateWithoutAccountInput = {
   id?: string
   tokenHash: runtime.Bytes

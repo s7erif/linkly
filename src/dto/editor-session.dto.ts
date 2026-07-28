@@ -1,7 +1,7 @@
 export interface EditorSessionDTO {
   id: string;
   cardId: string;
-  accessCodeId: string;
+  accessCodeId: string | null;
   status: "ACTIVE" | "REVOKED" | "EXPIRED";
   expiresAt: Date;
   lastSeenAt: Date | null;

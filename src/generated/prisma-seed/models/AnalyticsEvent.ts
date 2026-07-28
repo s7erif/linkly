@@ -26,7 +26,6 @@ export type AggregateAnalyticsEvent = {
 
 export type AnalyticsEventMinAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   cardId: string | null
   type: $Enums.AnalyticsEventType | null
   occurredAt: Date | null
@@ -41,11 +40,11 @@ export type AnalyticsEventMinAggregateOutputType = {
   buttonId: string | null
   socialLinkId: string | null
   referrerHost: string | null
+  workspaceId: string | null
 }
 
 export type AnalyticsEventMaxAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   cardId: string | null
   type: $Enums.AnalyticsEventType | null
   occurredAt: Date | null
@@ -60,11 +59,11 @@ export type AnalyticsEventMaxAggregateOutputType = {
   buttonId: string | null
   socialLinkId: string | null
   referrerHost: string | null
+  workspaceId: string | null
 }
 
 export type AnalyticsEventCountAggregateOutputType = {
   id: number
-  workspaceId: number
   cardId: number
   type: number
   occurredAt: number
@@ -80,13 +79,13 @@ export type AnalyticsEventCountAggregateOutputType = {
   socialLinkId: number
   referrerHost: number
   metadata: number
+  workspaceId: number
   _all: number
 }
 
 
 export type AnalyticsEventMinAggregateInputType = {
   id?: true
-  workspaceId?: true
   cardId?: true
   type?: true
   occurredAt?: true
@@ -101,11 +100,11 @@ export type AnalyticsEventMinAggregateInputType = {
   buttonId?: true
   socialLinkId?: true
   referrerHost?: true
+  workspaceId?: true
 }
 
 export type AnalyticsEventMaxAggregateInputType = {
   id?: true
-  workspaceId?: true
   cardId?: true
   type?: true
   occurredAt?: true
@@ -120,11 +119,11 @@ export type AnalyticsEventMaxAggregateInputType = {
   buttonId?: true
   socialLinkId?: true
   referrerHost?: true
+  workspaceId?: true
 }
 
 export type AnalyticsEventCountAggregateInputType = {
   id?: true
-  workspaceId?: true
   cardId?: true
   type?: true
   occurredAt?: true
@@ -140,6 +139,7 @@ export type AnalyticsEventCountAggregateInputType = {
   socialLinkId?: true
   referrerHost?: true
   metadata?: true
+  workspaceId?: true
   _all?: true
 }
 
@@ -217,7 +217,6 @@ export type AnalyticsEventGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 
 export type AnalyticsEventGroupByOutputType = {
   id: string
-  workspaceId: string
   cardId: string
   type: $Enums.AnalyticsEventType
   occurredAt: Date
@@ -233,6 +232,7 @@ export type AnalyticsEventGroupByOutputType = {
   socialLinkId: string | null
   referrerHost: string | null
   metadata: runtime.JsonValue | null
+  workspaceId: string
   _count: AnalyticsEventCountAggregateOutputType | null
   _min: AnalyticsEventMinAggregateOutputType | null
   _max: AnalyticsEventMaxAggregateOutputType | null
@@ -258,7 +258,6 @@ export type AnalyticsEventWhereInput = {
   OR?: Prisma.AnalyticsEventWhereInput[]
   NOT?: Prisma.AnalyticsEventWhereInput | Prisma.AnalyticsEventWhereInput[]
   id?: Prisma.UuidFilter<"AnalyticsEvent"> | string
-  workspaceId?: Prisma.UuidFilter<"AnalyticsEvent"> | string
   cardId?: Prisma.UuidFilter<"AnalyticsEvent"> | string
   type?: Prisma.EnumAnalyticsEventTypeFilter<"AnalyticsEvent"> | $Enums.AnalyticsEventType
   occurredAt?: Prisma.DateTimeFilter<"AnalyticsEvent"> | Date | string
@@ -274,15 +273,15 @@ export type AnalyticsEventWhereInput = {
   socialLinkId?: Prisma.UuidNullableFilter<"AnalyticsEvent"> | string | null
   referrerHost?: Prisma.StringNullableFilter<"AnalyticsEvent"> | string | null
   metadata?: Prisma.JsonNullableFilter<"AnalyticsEvent">
-  card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
+  workspaceId?: Prisma.UuidFilter<"AnalyticsEvent"> | string
   button?: Prisma.XOR<Prisma.CardButtonNullableScalarRelationFilter, Prisma.CardButtonWhereInput> | null
+  card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
   socialLink?: Prisma.XOR<Prisma.SocialLinkNullableScalarRelationFilter, Prisma.SocialLinkWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }
 
 export type AnalyticsEventOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   occurredAt?: Prisma.SortOrder
@@ -298,8 +297,9 @@ export type AnalyticsEventOrderByWithRelationInput = {
   socialLinkId?: Prisma.SortOrderInput | Prisma.SortOrder
   referrerHost?: Prisma.SortOrderInput | Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
-  card?: Prisma.CardOrderByWithRelationInput
+  workspaceId?: Prisma.SortOrder
   button?: Prisma.CardButtonOrderByWithRelationInput
+  card?: Prisma.CardOrderByWithRelationInput
   socialLink?: Prisma.SocialLinkOrderByWithRelationInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
 }
@@ -309,7 +309,6 @@ export type AnalyticsEventWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.AnalyticsEventWhereInput | Prisma.AnalyticsEventWhereInput[]
   OR?: Prisma.AnalyticsEventWhereInput[]
   NOT?: Prisma.AnalyticsEventWhereInput | Prisma.AnalyticsEventWhereInput[]
-  workspaceId?: Prisma.UuidFilter<"AnalyticsEvent"> | string
   cardId?: Prisma.UuidFilter<"AnalyticsEvent"> | string
   type?: Prisma.EnumAnalyticsEventTypeFilter<"AnalyticsEvent"> | $Enums.AnalyticsEventType
   occurredAt?: Prisma.DateTimeFilter<"AnalyticsEvent"> | Date | string
@@ -325,15 +324,15 @@ export type AnalyticsEventWhereUniqueInput = Prisma.AtLeast<{
   socialLinkId?: Prisma.UuidNullableFilter<"AnalyticsEvent"> | string | null
   referrerHost?: Prisma.StringNullableFilter<"AnalyticsEvent"> | string | null
   metadata?: Prisma.JsonNullableFilter<"AnalyticsEvent">
-  card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
+  workspaceId?: Prisma.UuidFilter<"AnalyticsEvent"> | string
   button?: Prisma.XOR<Prisma.CardButtonNullableScalarRelationFilter, Prisma.CardButtonWhereInput> | null
+  card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
   socialLink?: Prisma.XOR<Prisma.SocialLinkNullableScalarRelationFilter, Prisma.SocialLinkWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }, "id">
 
 export type AnalyticsEventOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   occurredAt?: Prisma.SortOrder
@@ -349,6 +348,7 @@ export type AnalyticsEventOrderByWithAggregationInput = {
   socialLinkId?: Prisma.SortOrderInput | Prisma.SortOrder
   referrerHost?: Prisma.SortOrderInput | Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
   _count?: Prisma.AnalyticsEventCountOrderByAggregateInput
   _max?: Prisma.AnalyticsEventMaxOrderByAggregateInput
   _min?: Prisma.AnalyticsEventMinOrderByAggregateInput
@@ -359,7 +359,6 @@ export type AnalyticsEventScalarWhereWithAggregatesInput = {
   OR?: Prisma.AnalyticsEventScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AnalyticsEventScalarWhereWithAggregatesInput | Prisma.AnalyticsEventScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"AnalyticsEvent"> | string
-  workspaceId?: Prisma.UuidWithAggregatesFilter<"AnalyticsEvent"> | string
   cardId?: Prisma.UuidWithAggregatesFilter<"AnalyticsEvent"> | string
   type?: Prisma.EnumAnalyticsEventTypeWithAggregatesFilter<"AnalyticsEvent"> | $Enums.AnalyticsEventType
   occurredAt?: Prisma.DateTimeWithAggregatesFilter<"AnalyticsEvent"> | Date | string
@@ -375,6 +374,7 @@ export type AnalyticsEventScalarWhereWithAggregatesInput = {
   socialLinkId?: Prisma.UuidNullableWithAggregatesFilter<"AnalyticsEvent"> | string | null
   referrerHost?: Prisma.StringNullableWithAggregatesFilter<"AnalyticsEvent"> | string | null
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"AnalyticsEvent">
+  workspaceId?: Prisma.UuidWithAggregatesFilter<"AnalyticsEvent"> | string
 }
 
 export type AnalyticsEventCreateInput = {
@@ -391,15 +391,14 @@ export type AnalyticsEventCreateInput = {
   botClass?: $Enums.BotClassification
   referrerHost?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  card: Prisma.CardCreateNestedOneWithoutEventsInput
   button?: Prisma.CardButtonCreateNestedOneWithoutEventsInput
+  card: Prisma.CardCreateNestedOneWithoutEventsInput
   socialLink?: Prisma.SocialLinkCreateNestedOneWithoutEventsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutAnalyticsEventsInput
 }
 
 export type AnalyticsEventUncheckedCreateInput = {
   id?: string
-  workspaceId: string
   cardId: string
   type: $Enums.AnalyticsEventType
   occurredAt?: Date | string
@@ -415,6 +414,7 @@ export type AnalyticsEventUncheckedCreateInput = {
   socialLinkId?: string | null
   referrerHost?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId: string
 }
 
 export type AnalyticsEventUpdateInput = {
@@ -431,15 +431,14 @@ export type AnalyticsEventUpdateInput = {
   botClass?: Prisma.EnumBotClassificationFieldUpdateOperationsInput | $Enums.BotClassification
   referrerHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  card?: Prisma.CardUpdateOneRequiredWithoutEventsNestedInput
   button?: Prisma.CardButtonUpdateOneWithoutEventsNestedInput
+  card?: Prisma.CardUpdateOneRequiredWithoutEventsNestedInput
   socialLink?: Prisma.SocialLinkUpdateOneWithoutEventsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutAnalyticsEventsNestedInput
 }
 
 export type AnalyticsEventUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAnalyticsEventTypeFieldUpdateOperationsInput | $Enums.AnalyticsEventType
   occurredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -455,11 +454,11 @@ export type AnalyticsEventUncheckedUpdateInput = {
   socialLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrerHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AnalyticsEventCreateManyInput = {
   id?: string
-  workspaceId: string
   cardId: string
   type: $Enums.AnalyticsEventType
   occurredAt?: Date | string
@@ -475,6 +474,7 @@ export type AnalyticsEventCreateManyInput = {
   socialLinkId?: string | null
   referrerHost?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId: string
 }
 
 export type AnalyticsEventUpdateManyMutationInput = {
@@ -495,7 +495,6 @@ export type AnalyticsEventUpdateManyMutationInput = {
 
 export type AnalyticsEventUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAnalyticsEventTypeFieldUpdateOperationsInput | $Enums.AnalyticsEventType
   occurredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -511,6 +510,7 @@ export type AnalyticsEventUncheckedUpdateManyInput = {
   socialLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrerHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AnalyticsEventListRelationFilter = {
@@ -525,7 +525,6 @@ export type AnalyticsEventOrderByRelationAggregateInput = {
 
 export type AnalyticsEventCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   occurredAt?: Prisma.SortOrder
@@ -541,11 +540,11 @@ export type AnalyticsEventCountOrderByAggregateInput = {
   socialLinkId?: Prisma.SortOrder
   referrerHost?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type AnalyticsEventMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   occurredAt?: Prisma.SortOrder
@@ -560,11 +559,11 @@ export type AnalyticsEventMaxOrderByAggregateInput = {
   buttonId?: Prisma.SortOrder
   socialLinkId?: Prisma.SortOrder
   referrerHost?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type AnalyticsEventMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   occurredAt?: Prisma.SortOrder
@@ -579,6 +578,7 @@ export type AnalyticsEventMinOrderByAggregateInput = {
   buttonId?: Prisma.SortOrder
   socialLinkId?: Prisma.SortOrder
   referrerHost?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type AnalyticsEventCreateNestedManyWithoutWorkspaceInput = {
@@ -775,8 +775,8 @@ export type AnalyticsEventCreateWithoutWorkspaceInput = {
   botClass?: $Enums.BotClassification
   referrerHost?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  card: Prisma.CardCreateNestedOneWithoutEventsInput
   button?: Prisma.CardButtonCreateNestedOneWithoutEventsInput
+  card: Prisma.CardCreateNestedOneWithoutEventsInput
   socialLink?: Prisma.SocialLinkCreateNestedOneWithoutEventsInput
 }
 
@@ -830,7 +830,6 @@ export type AnalyticsEventScalarWhereInput = {
   OR?: Prisma.AnalyticsEventScalarWhereInput[]
   NOT?: Prisma.AnalyticsEventScalarWhereInput | Prisma.AnalyticsEventScalarWhereInput[]
   id?: Prisma.UuidFilter<"AnalyticsEvent"> | string
-  workspaceId?: Prisma.UuidFilter<"AnalyticsEvent"> | string
   cardId?: Prisma.UuidFilter<"AnalyticsEvent"> | string
   type?: Prisma.EnumAnalyticsEventTypeFilter<"AnalyticsEvent"> | $Enums.AnalyticsEventType
   occurredAt?: Prisma.DateTimeFilter<"AnalyticsEvent"> | Date | string
@@ -846,6 +845,7 @@ export type AnalyticsEventScalarWhereInput = {
   socialLinkId?: Prisma.UuidNullableFilter<"AnalyticsEvent"> | string | null
   referrerHost?: Prisma.StringNullableFilter<"AnalyticsEvent"> | string | null
   metadata?: Prisma.JsonNullableFilter<"AnalyticsEvent">
+  workspaceId?: Prisma.UuidFilter<"AnalyticsEvent"> | string
 }
 
 export type AnalyticsEventCreateWithoutCardInput = {
@@ -869,7 +869,6 @@ export type AnalyticsEventCreateWithoutCardInput = {
 
 export type AnalyticsEventUncheckedCreateWithoutCardInput = {
   id?: string
-  workspaceId: string
   type: $Enums.AnalyticsEventType
   occurredAt?: Date | string
   receivedAt?: Date | string
@@ -884,6 +883,7 @@ export type AnalyticsEventUncheckedCreateWithoutCardInput = {
   socialLinkId?: string | null
   referrerHost?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId: string
 }
 
 export type AnalyticsEventCreateOrConnectWithoutCardInput = {
@@ -926,14 +926,13 @@ export type AnalyticsEventCreateWithoutSocialLinkInput = {
   botClass?: $Enums.BotClassification
   referrerHost?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  card: Prisma.CardCreateNestedOneWithoutEventsInput
   button?: Prisma.CardButtonCreateNestedOneWithoutEventsInput
+  card: Prisma.CardCreateNestedOneWithoutEventsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutAnalyticsEventsInput
 }
 
 export type AnalyticsEventUncheckedCreateWithoutSocialLinkInput = {
   id?: string
-  workspaceId: string
   cardId: string
   type: $Enums.AnalyticsEventType
   occurredAt?: Date | string
@@ -948,6 +947,7 @@ export type AnalyticsEventUncheckedCreateWithoutSocialLinkInput = {
   buttonId?: string | null
   referrerHost?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId: string
 }
 
 export type AnalyticsEventCreateOrConnectWithoutSocialLinkInput = {
@@ -997,7 +997,6 @@ export type AnalyticsEventCreateWithoutButtonInput = {
 
 export type AnalyticsEventUncheckedCreateWithoutButtonInput = {
   id?: string
-  workspaceId: string
   cardId: string
   type: $Enums.AnalyticsEventType
   occurredAt?: Date | string
@@ -1012,6 +1011,7 @@ export type AnalyticsEventUncheckedCreateWithoutButtonInput = {
   socialLinkId?: string | null
   referrerHost?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId: string
 }
 
 export type AnalyticsEventCreateOrConnectWithoutButtonInput = {
@@ -1073,8 +1073,8 @@ export type AnalyticsEventUpdateWithoutWorkspaceInput = {
   botClass?: Prisma.EnumBotClassificationFieldUpdateOperationsInput | $Enums.BotClassification
   referrerHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  card?: Prisma.CardUpdateOneRequiredWithoutEventsNestedInput
   button?: Prisma.CardButtonUpdateOneWithoutEventsNestedInput
+  card?: Prisma.CardUpdateOneRequiredWithoutEventsNestedInput
   socialLink?: Prisma.SocialLinkUpdateOneWithoutEventsNestedInput
 }
 
@@ -1118,7 +1118,6 @@ export type AnalyticsEventUncheckedUpdateManyWithoutWorkspaceInput = {
 
 export type AnalyticsEventCreateManyCardInput = {
   id?: string
-  workspaceId: string
   type: $Enums.AnalyticsEventType
   occurredAt?: Date | string
   receivedAt?: Date | string
@@ -1133,6 +1132,7 @@ export type AnalyticsEventCreateManyCardInput = {
   socialLinkId?: string | null
   referrerHost?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId: string
 }
 
 export type AnalyticsEventUpdateWithoutCardInput = {
@@ -1156,7 +1156,6 @@ export type AnalyticsEventUpdateWithoutCardInput = {
 
 export type AnalyticsEventUncheckedUpdateWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAnalyticsEventTypeFieldUpdateOperationsInput | $Enums.AnalyticsEventType
   occurredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   receivedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1171,11 +1170,11 @@ export type AnalyticsEventUncheckedUpdateWithoutCardInput = {
   socialLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrerHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AnalyticsEventUncheckedUpdateManyWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAnalyticsEventTypeFieldUpdateOperationsInput | $Enums.AnalyticsEventType
   occurredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   receivedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1190,11 +1189,11 @@ export type AnalyticsEventUncheckedUpdateManyWithoutCardInput = {
   socialLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrerHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AnalyticsEventCreateManySocialLinkInput = {
   id?: string
-  workspaceId: string
   cardId: string
   type: $Enums.AnalyticsEventType
   occurredAt?: Date | string
@@ -1209,6 +1208,7 @@ export type AnalyticsEventCreateManySocialLinkInput = {
   buttonId?: string | null
   referrerHost?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId: string
 }
 
 export type AnalyticsEventUpdateWithoutSocialLinkInput = {
@@ -1225,14 +1225,13 @@ export type AnalyticsEventUpdateWithoutSocialLinkInput = {
   botClass?: Prisma.EnumBotClassificationFieldUpdateOperationsInput | $Enums.BotClassification
   referrerHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  card?: Prisma.CardUpdateOneRequiredWithoutEventsNestedInput
   button?: Prisma.CardButtonUpdateOneWithoutEventsNestedInput
+  card?: Prisma.CardUpdateOneRequiredWithoutEventsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutAnalyticsEventsNestedInput
 }
 
 export type AnalyticsEventUncheckedUpdateWithoutSocialLinkInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAnalyticsEventTypeFieldUpdateOperationsInput | $Enums.AnalyticsEventType
   occurredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1247,11 +1246,11 @@ export type AnalyticsEventUncheckedUpdateWithoutSocialLinkInput = {
   buttonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrerHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AnalyticsEventUncheckedUpdateManyWithoutSocialLinkInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAnalyticsEventTypeFieldUpdateOperationsInput | $Enums.AnalyticsEventType
   occurredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1266,11 +1265,11 @@ export type AnalyticsEventUncheckedUpdateManyWithoutSocialLinkInput = {
   buttonId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrerHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AnalyticsEventCreateManyButtonInput = {
   id?: string
-  workspaceId: string
   cardId: string
   type: $Enums.AnalyticsEventType
   occurredAt?: Date | string
@@ -1285,6 +1284,7 @@ export type AnalyticsEventCreateManyButtonInput = {
   socialLinkId?: string | null
   referrerHost?: string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId: string
 }
 
 export type AnalyticsEventUpdateWithoutButtonInput = {
@@ -1308,7 +1308,6 @@ export type AnalyticsEventUpdateWithoutButtonInput = {
 
 export type AnalyticsEventUncheckedUpdateWithoutButtonInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAnalyticsEventTypeFieldUpdateOperationsInput | $Enums.AnalyticsEventType
   occurredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1323,11 +1322,11 @@ export type AnalyticsEventUncheckedUpdateWithoutButtonInput = {
   socialLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrerHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AnalyticsEventUncheckedUpdateManyWithoutButtonInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumAnalyticsEventTypeFieldUpdateOperationsInput | $Enums.AnalyticsEventType
   occurredAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1342,13 +1341,13 @@ export type AnalyticsEventUncheckedUpdateManyWithoutButtonInput = {
   socialLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrerHost?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
 
 export type AnalyticsEventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   cardId?: boolean
   type?: boolean
   occurredAt?: boolean
@@ -1364,15 +1363,15 @@ export type AnalyticsEventSelect<ExtArgs extends runtime.Types.Extensions.Intern
   socialLinkId?: boolean
   referrerHost?: boolean
   metadata?: boolean
-  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
+  workspaceId?: boolean
   button?: boolean | Prisma.AnalyticsEvent$buttonArgs<ExtArgs>
+  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   socialLink?: boolean | Prisma.AnalyticsEvent$socialLinkArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["analyticsEvent"]>
 
 export type AnalyticsEventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   cardId?: boolean
   type?: boolean
   occurredAt?: boolean
@@ -1388,15 +1387,15 @@ export type AnalyticsEventSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   socialLinkId?: boolean
   referrerHost?: boolean
   metadata?: boolean
-  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
+  workspaceId?: boolean
   button?: boolean | Prisma.AnalyticsEvent$buttonArgs<ExtArgs>
+  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   socialLink?: boolean | Prisma.AnalyticsEvent$socialLinkArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["analyticsEvent"]>
 
 export type AnalyticsEventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   cardId?: boolean
   type?: boolean
   occurredAt?: boolean
@@ -1412,15 +1411,15 @@ export type AnalyticsEventSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   socialLinkId?: boolean
   referrerHost?: boolean
   metadata?: boolean
-  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
+  workspaceId?: boolean
   button?: boolean | Prisma.AnalyticsEvent$buttonArgs<ExtArgs>
+  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   socialLink?: boolean | Prisma.AnalyticsEvent$socialLinkArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["analyticsEvent"]>
 
 export type AnalyticsEventSelectScalar = {
   id?: boolean
-  workspaceId?: boolean
   cardId?: boolean
   type?: boolean
   occurredAt?: boolean
@@ -1436,24 +1435,25 @@ export type AnalyticsEventSelectScalar = {
   socialLinkId?: boolean
   referrerHost?: boolean
   metadata?: boolean
+  workspaceId?: boolean
 }
 
-export type AnalyticsEventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "cardId" | "type" | "occurredAt" | "receivedAt" | "sessionHash" | "visitorHash" | "countryCode" | "browser" | "os" | "deviceType" | "botClass" | "buttonId" | "socialLinkId" | "referrerHost" | "metadata", ExtArgs["result"]["analyticsEvent"]>
+export type AnalyticsEventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cardId" | "type" | "occurredAt" | "receivedAt" | "sessionHash" | "visitorHash" | "countryCode" | "browser" | "os" | "deviceType" | "botClass" | "buttonId" | "socialLinkId" | "referrerHost" | "metadata" | "workspaceId", ExtArgs["result"]["analyticsEvent"]>
 export type AnalyticsEventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   button?: boolean | Prisma.AnalyticsEvent$buttonArgs<ExtArgs>
+  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   socialLink?: boolean | Prisma.AnalyticsEvent$socialLinkArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 export type AnalyticsEventIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   button?: boolean | Prisma.AnalyticsEvent$buttonArgs<ExtArgs>
+  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   socialLink?: boolean | Prisma.AnalyticsEvent$socialLinkArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 export type AnalyticsEventIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   button?: boolean | Prisma.AnalyticsEvent$buttonArgs<ExtArgs>
+  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   socialLink?: boolean | Prisma.AnalyticsEvent$socialLinkArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
@@ -1461,14 +1461,13 @@ export type AnalyticsEventIncludeUpdateManyAndReturn<ExtArgs extends runtime.Typ
 export type $AnalyticsEventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AnalyticsEvent"
   objects: {
-    card: Prisma.$CardPayload<ExtArgs>
     button: Prisma.$CardButtonPayload<ExtArgs> | null
+    card: Prisma.$CardPayload<ExtArgs>
     socialLink: Prisma.$SocialLinkPayload<ExtArgs> | null
     workspace: Prisma.$WorkspacePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    workspaceId: string
     cardId: string
     type: $Enums.AnalyticsEventType
     occurredAt: Date
@@ -1484,6 +1483,7 @@ export type $AnalyticsEventPayload<ExtArgs extends runtime.Types.Extensions.Inte
     socialLinkId: string | null
     referrerHost: string | null
     metadata: runtime.JsonValue | null
+    workspaceId: string
   }, ExtArgs["result"]["analyticsEvent"]>
   composites: {}
 }
@@ -1878,8 +1878,8 @@ readonly fields: AnalyticsEventFieldRefs;
  */
 export interface Prisma__AnalyticsEventClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  card<T extends Prisma.CardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CardDefaultArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   button<T extends Prisma.AnalyticsEvent$buttonArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AnalyticsEvent$buttonArgs<ExtArgs>>): Prisma.Prisma__CardButtonClient<runtime.Types.Result.GetResult<Prisma.$CardButtonPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  card<T extends Prisma.CardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CardDefaultArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   socialLink<T extends Prisma.AnalyticsEvent$socialLinkArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AnalyticsEvent$socialLinkArgs<ExtArgs>>): Prisma.Prisma__SocialLinkClient<runtime.Types.Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1912,7 +1912,6 @@ export interface Prisma__AnalyticsEventClient<T, Null = never, ExtArgs extends r
  */
 export interface AnalyticsEventFieldRefs {
   readonly id: Prisma.FieldRef<"AnalyticsEvent", 'String'>
-  readonly workspaceId: Prisma.FieldRef<"AnalyticsEvent", 'String'>
   readonly cardId: Prisma.FieldRef<"AnalyticsEvent", 'String'>
   readonly type: Prisma.FieldRef<"AnalyticsEvent", 'AnalyticsEventType'>
   readonly occurredAt: Prisma.FieldRef<"AnalyticsEvent", 'DateTime'>
@@ -1928,6 +1927,7 @@ export interface AnalyticsEventFieldRefs {
   readonly socialLinkId: Prisma.FieldRef<"AnalyticsEvent", 'String'>
   readonly referrerHost: Prisma.FieldRef<"AnalyticsEvent", 'String'>
   readonly metadata: Prisma.FieldRef<"AnalyticsEvent", 'Json'>
+  readonly workspaceId: Prisma.FieldRef<"AnalyticsEvent", 'String'>
 }
     
 

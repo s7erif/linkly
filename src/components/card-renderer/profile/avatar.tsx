@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { m, useReducedMotion } from "framer-motion";
 import { useTheme } from "../theme/use-theme";
 import { cn } from "@/lib/utils";
@@ -10,8 +10,8 @@ type AvatarSize = "sm" | "md" | "lg" | "xl";
 const sizeMap: Record<AvatarSize, string> = {
   sm: "w-[72px] h-[72px]",
   md: "w-[96px] h-[96px]",
-  lg: "w-[120px] h-[120px] sm:w-[132px] sm:h-[132px] lg:w-[144px] lg:h-[144px]",
-  xl: "w-[164px] h-[164px]",
+  lg: "w-[120px] h-[120px] sm:w-[132px] sm:h-[132px] lg:w-[var(--avatar-size,144px)] lg:h-[var(--avatar-size,144px)]",
+  xl: "w-[164px] h-[164px] lg:w-[var(--avatar-size,164px)] lg:h-[var(--avatar-size,164px)]",
 };
 
 export interface ProfileAvatarProps {
@@ -41,6 +41,11 @@ export function ProfileAvatar({
   const [error, setError] = useState(false);
   const showFallback = !src || error;
   const reduced = useReducedMotion();
+
+  // Reset error state when a new src is provided
+  useEffect(() => {
+    setError(false);
+  }, [src]);
 
   return (
     <div className={cn("relative mx-auto shrink-0 group select-none", sizeMap[size], className)}>

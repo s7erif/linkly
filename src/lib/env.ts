@@ -14,6 +14,7 @@ const schema = z.object({
   SUPABASE_URL: z.string().url().optional(),
   SUPABASE_SERVICE_ROLE_KEY: z.string().min(1).optional(),
   SUPABASE_STORAGE_BUCKET: z.string().min(1).optional(),
+  SUPABASE_PRIVATE_STORAGE_BUCKET: z.string().min(1).optional(),
   RESEND_FROM_EMAIL: z
     .string()
     .min(3)

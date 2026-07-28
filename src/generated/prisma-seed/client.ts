@@ -77,11 +77,6 @@ export type CustomerAccount = Prisma.CustomerAccountModel
  */
 export type CustomerPasswordReset = Prisma.CustomerPasswordResetModel
 /**
- * Model CustomerOAuthAccount
- * 
- */
-export type CustomerOAuthAccount = Prisma.CustomerOAuthAccountModel
-/**
  * Model CustomerSession
  * 
  */

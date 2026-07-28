@@ -46,7 +46,6 @@ export type OrderSumAggregateOutputType = {
 
 export type OrderMinAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   orderNumber: string | null
   customerName: string | null
   company: string | null
@@ -70,15 +69,15 @@ export type OrderMinAggregateOutputType = {
   discount: number | null
   tax: number | null
   total: number | null
-  accountPasswordHash: runtime.Bytes | null
-  accountPasswordSalt: runtime.Bytes | null
   createdAt: Date | null
   updatedAt: Date | null
+  workspaceId: string | null
+  accountPasswordHash: runtime.Bytes | null
+  accountPasswordSalt: runtime.Bytes | null
 }
 
 export type OrderMaxAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   orderNumber: string | null
   customerName: string | null
   company: string | null
@@ -102,15 +101,15 @@ export type OrderMaxAggregateOutputType = {
   discount: number | null
   tax: number | null
   total: number | null
-  accountPasswordHash: runtime.Bytes | null
-  accountPasswordSalt: runtime.Bytes | null
   createdAt: Date | null
   updatedAt: Date | null
+  workspaceId: string | null
+  accountPasswordHash: runtime.Bytes | null
+  accountPasswordSalt: runtime.Bytes | null
 }
 
 export type OrderCountAggregateOutputType = {
   id: number
-  workspaceId: number
   orderNumber: number
   customerName: number
   company: number
@@ -134,10 +133,11 @@ export type OrderCountAggregateOutputType = {
   discount: number
   tax: number
   total: number
-  accountPasswordHash: number
-  accountPasswordSalt: number
   createdAt: number
   updatedAt: number
+  workspaceId: number
+  accountPasswordHash: number
+  accountPasswordSalt: number
   _all: number
 }
 
@@ -162,7 +162,6 @@ export type OrderSumAggregateInputType = {
 
 export type OrderMinAggregateInputType = {
   id?: true
-  workspaceId?: true
   orderNumber?: true
   customerName?: true
   company?: true
@@ -186,15 +185,15 @@ export type OrderMinAggregateInputType = {
   discount?: true
   tax?: true
   total?: true
-  accountPasswordHash?: true
-  accountPasswordSalt?: true
   createdAt?: true
   updatedAt?: true
+  workspaceId?: true
+  accountPasswordHash?: true
+  accountPasswordSalt?: true
 }
 
 export type OrderMaxAggregateInputType = {
   id?: true
-  workspaceId?: true
   orderNumber?: true
   customerName?: true
   company?: true
@@ -218,15 +217,15 @@ export type OrderMaxAggregateInputType = {
   discount?: true
   tax?: true
   total?: true
-  accountPasswordHash?: true
-  accountPasswordSalt?: true
   createdAt?: true
   updatedAt?: true
+  workspaceId?: true
+  accountPasswordHash?: true
+  accountPasswordSalt?: true
 }
 
 export type OrderCountAggregateInputType = {
   id?: true
-  workspaceId?: true
   orderNumber?: true
   customerName?: true
   company?: true
@@ -250,10 +249,11 @@ export type OrderCountAggregateInputType = {
   discount?: true
   tax?: true
   total?: true
-  accountPasswordHash?: true
-  accountPasswordSalt?: true
   createdAt?: true
   updatedAt?: true
+  workspaceId?: true
+  accountPasswordHash?: true
+  accountPasswordSalt?: true
   _all?: true
 }
 
@@ -345,7 +345,6 @@ export type OrderGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type OrderGroupByOutputType = {
   id: string
-  workspaceId: string
   orderNumber: string
   customerName: string
   company: string | null
@@ -369,10 +368,11 @@ export type OrderGroupByOutputType = {
   discount: number | null
   tax: number | null
   total: number | null
-  accountPasswordHash: runtime.Bytes | null
-  accountPasswordSalt: runtime.Bytes | null
   createdAt: Date
   updatedAt: Date
+  workspaceId: string
+  accountPasswordHash: runtime.Bytes | null
+  accountPasswordSalt: runtime.Bytes | null
   _count: OrderCountAggregateOutputType | null
   _avg: OrderAvgAggregateOutputType | null
   _sum: OrderSumAggregateOutputType | null
@@ -400,7 +400,6 @@ export type OrderWhereInput = {
   OR?: Prisma.OrderWhereInput[]
   NOT?: Prisma.OrderWhereInput | Prisma.OrderWhereInput[]
   id?: Prisma.UuidFilter<"Order"> | string
-  workspaceId?: Prisma.UuidFilter<"Order"> | string
   orderNumber?: Prisma.StringFilter<"Order"> | string
   customerName?: Prisma.StringFilter<"Order"> | string
   company?: Prisma.StringNullableFilter<"Order"> | string | null
@@ -424,23 +423,23 @@ export type OrderWhereInput = {
   discount?: Prisma.IntNullableFilter<"Order"> | number | null
   tax?: Prisma.IntNullableFilter<"Order"> | number | null
   total?: Prisma.IntNullableFilter<"Order"> | number | null
-  accountPasswordHash?: Prisma.BytesNullableFilter<"Order"> | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.BytesNullableFilter<"Order"> | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
+  workspaceId?: Prisma.UuidFilter<"Order"> | string
+  accountPasswordHash?: Prisma.BytesNullableFilter<"Order"> | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.BytesNullableFilter<"Order"> | runtime.Bytes | null
+  cards?: Prisma.CardListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
+  notifications?: Prisma.NotificationDeliveryListRelationFilter
   customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
   plan?: Prisma.XOR<Prisma.PlanNullableScalarRelationFilter, Prisma.PlanWhereInput> | null
-  cards?: Prisma.CardListRelationFilter
-  notifications?: Prisma.NotificationDeliveryListRelationFilter
-  paymentSubmissions?: Prisma.PaymentSubmissionListRelationFilter
-  invoices?: Prisma.InvoiceListRelationFilter
-  originatedSubscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
+  paymentSubmissions?: Prisma.PaymentSubmissionListRelationFilter
+  originatedSubscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
 }
 
 export type OrderOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   orderNumber?: Prisma.SortOrder
   customerName?: Prisma.SortOrder
   company?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -464,18 +463,19 @@ export type OrderOrderByWithRelationInput = {
   discount?: Prisma.SortOrderInput | Prisma.SortOrder
   tax?: Prisma.SortOrderInput | Prisma.SortOrder
   total?: Prisma.SortOrderInput | Prisma.SortOrder
-  accountPasswordHash?: Prisma.SortOrderInput | Prisma.SortOrder
-  accountPasswordSalt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
+  accountPasswordHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  accountPasswordSalt?: Prisma.SortOrderInput | Prisma.SortOrder
+  cards?: Prisma.CardOrderByRelationAggregateInput
+  invoices?: Prisma.InvoiceOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationDeliveryOrderByRelationAggregateInput
   customer?: Prisma.CustomerOrderByWithRelationInput
   plan?: Prisma.PlanOrderByWithRelationInput
-  cards?: Prisma.CardOrderByRelationAggregateInput
-  notifications?: Prisma.NotificationDeliveryOrderByRelationAggregateInput
-  paymentSubmissions?: Prisma.PaymentSubmissionOrderByRelationAggregateInput
-  invoices?: Prisma.InvoiceOrderByRelationAggregateInput
-  originatedSubscription?: Prisma.SubscriptionOrderByWithRelationInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
+  paymentSubmissions?: Prisma.PaymentSubmissionOrderByRelationAggregateInput
+  originatedSubscription?: Prisma.SubscriptionOrderByWithRelationInput
 }
 
 export type OrderWhereUniqueInput = Prisma.AtLeast<{
@@ -484,7 +484,6 @@ export type OrderWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.OrderWhereInput | Prisma.OrderWhereInput[]
   OR?: Prisma.OrderWhereInput[]
   NOT?: Prisma.OrderWhereInput | Prisma.OrderWhereInput[]
-  workspaceId?: Prisma.UuidFilter<"Order"> | string
   customerName?: Prisma.StringFilter<"Order"> | string
   company?: Prisma.StringNullableFilter<"Order"> | string | null
   email?: Prisma.StringFilter<"Order"> | string
@@ -507,23 +506,23 @@ export type OrderWhereUniqueInput = Prisma.AtLeast<{
   discount?: Prisma.IntNullableFilter<"Order"> | number | null
   tax?: Prisma.IntNullableFilter<"Order"> | number | null
   total?: Prisma.IntNullableFilter<"Order"> | number | null
-  accountPasswordHash?: Prisma.BytesNullableFilter<"Order"> | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.BytesNullableFilter<"Order"> | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
+  workspaceId?: Prisma.UuidFilter<"Order"> | string
+  accountPasswordHash?: Prisma.BytesNullableFilter<"Order"> | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.BytesNullableFilter<"Order"> | runtime.Bytes | null
+  cards?: Prisma.CardListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
+  notifications?: Prisma.NotificationDeliveryListRelationFilter
   customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
   plan?: Prisma.XOR<Prisma.PlanNullableScalarRelationFilter, Prisma.PlanWhereInput> | null
-  cards?: Prisma.CardListRelationFilter
-  notifications?: Prisma.NotificationDeliveryListRelationFilter
-  paymentSubmissions?: Prisma.PaymentSubmissionListRelationFilter
-  invoices?: Prisma.InvoiceListRelationFilter
-  originatedSubscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
+  paymentSubmissions?: Prisma.PaymentSubmissionListRelationFilter
+  originatedSubscription?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
 }, "id" | "orderNumber">
 
 export type OrderOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   orderNumber?: Prisma.SortOrder
   customerName?: Prisma.SortOrder
   company?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -547,10 +546,11 @@ export type OrderOrderByWithAggregationInput = {
   discount?: Prisma.SortOrderInput | Prisma.SortOrder
   tax?: Prisma.SortOrderInput | Prisma.SortOrder
   total?: Prisma.SortOrderInput | Prisma.SortOrder
-  accountPasswordHash?: Prisma.SortOrderInput | Prisma.SortOrder
-  accountPasswordSalt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
+  accountPasswordHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  accountPasswordSalt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.OrderCountOrderByAggregateInput
   _avg?: Prisma.OrderAvgOrderByAggregateInput
   _max?: Prisma.OrderMaxOrderByAggregateInput
@@ -563,7 +563,6 @@ export type OrderScalarWhereWithAggregatesInput = {
   OR?: Prisma.OrderScalarWhereWithAggregatesInput[]
   NOT?: Prisma.OrderScalarWhereWithAggregatesInput | Prisma.OrderScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Order"> | string
-  workspaceId?: Prisma.UuidWithAggregatesFilter<"Order"> | string
   orderNumber?: Prisma.StringWithAggregatesFilter<"Order"> | string
   customerName?: Prisma.StringWithAggregatesFilter<"Order"> | string
   company?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
@@ -587,10 +586,11 @@ export type OrderScalarWhereWithAggregatesInput = {
   discount?: Prisma.IntNullableWithAggregatesFilter<"Order"> | number | null
   tax?: Prisma.IntNullableWithAggregatesFilter<"Order"> | number | null
   total?: Prisma.IntNullableWithAggregatesFilter<"Order"> | number | null
-  accountPasswordHash?: Prisma.BytesNullableWithAggregatesFilter<"Order"> | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.BytesNullableWithAggregatesFilter<"Order"> | runtime.Bytes | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Order"> | Date | string
+  workspaceId?: Prisma.UuidWithAggregatesFilter<"Order"> | string
+  accountPasswordHash?: Prisma.BytesNullableWithAggregatesFilter<"Order"> | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.BytesNullableWithAggregatesFilter<"Order"> | runtime.Bytes | null
 }
 
 export type OrderCreateInput = {
@@ -616,23 +616,22 @@ export type OrderCreateInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
+  cards?: Prisma.CardCreateNestedManyWithoutOrderInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
   customer?: Prisma.CustomerCreateNestedOneWithoutOrdersInput
   plan?: Prisma.PlanCreateNestedOneWithoutOrdersInput
-  cards?: Prisma.CardCreateNestedManyWithoutOrderInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
-  originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutOrdersInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
+  originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
 }
 
 export type OrderUncheckedCreateInput = {
   id?: string
-  workspaceId: string
   orderNumber: string
   customerName: string
   company?: string | null
@@ -656,14 +655,15 @@ export type OrderUncheckedCreateInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutOrderInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutOrderInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutOrderInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
   originatedSubscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutOriginOrderInput
 }
 
@@ -690,23 +690,22 @@ export type OrderUpdateInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  cards?: Prisma.CardUpdateManyWithoutOrderNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
   customer?: Prisma.CustomerUpdateOneWithoutOrdersNestedInput
   plan?: Prisma.PlanUpdateOneWithoutOrdersNestedInput
-  cards?: Prisma.CardUpdateManyWithoutOrderNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
-  originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOrdersNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
+  originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
 }
 
 export type OrderUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -730,20 +729,20 @@ export type OrderUncheckedUpdateInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   cards?: Prisma.CardUncheckedUpdateManyWithoutOrderNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutOrderNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutOrderNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
   originatedSubscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutOriginOrderNestedInput
 }
 
 export type OrderCreateManyInput = {
   id?: string
-  workspaceId: string
   orderNumber: string
   customerName: string
   company?: string | null
@@ -767,10 +766,11 @@ export type OrderCreateManyInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
 }
 
 export type OrderUpdateManyMutationInput = {
@@ -796,15 +796,14 @@ export type OrderUpdateManyMutationInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
 }
 
 export type OrderUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -828,10 +827,11 @@ export type OrderUncheckedUpdateManyInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
 }
 
 export type OrderListRelationFilter = {
@@ -846,7 +846,6 @@ export type OrderOrderByRelationAggregateInput = {
 
 export type OrderCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   orderNumber?: Prisma.SortOrder
   customerName?: Prisma.SortOrder
   company?: Prisma.SortOrder
@@ -870,10 +869,11 @@ export type OrderCountOrderByAggregateInput = {
   discount?: Prisma.SortOrder
   tax?: Prisma.SortOrder
   total?: Prisma.SortOrder
-  accountPasswordHash?: Prisma.SortOrder
-  accountPasswordSalt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
+  accountPasswordHash?: Prisma.SortOrder
+  accountPasswordSalt?: Prisma.SortOrder
 }
 
 export type OrderAvgOrderByAggregateInput = {
@@ -887,7 +887,6 @@ export type OrderAvgOrderByAggregateInput = {
 
 export type OrderMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   orderNumber?: Prisma.SortOrder
   customerName?: Prisma.SortOrder
   company?: Prisma.SortOrder
@@ -911,15 +910,15 @@ export type OrderMaxOrderByAggregateInput = {
   discount?: Prisma.SortOrder
   tax?: Prisma.SortOrder
   total?: Prisma.SortOrder
-  accountPasswordHash?: Prisma.SortOrder
-  accountPasswordSalt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
+  accountPasswordHash?: Prisma.SortOrder
+  accountPasswordSalt?: Prisma.SortOrder
 }
 
 export type OrderMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   orderNumber?: Prisma.SortOrder
   customerName?: Prisma.SortOrder
   company?: Prisma.SortOrder
@@ -943,10 +942,11 @@ export type OrderMinOrderByAggregateInput = {
   discount?: Prisma.SortOrder
   tax?: Prisma.SortOrder
   total?: Prisma.SortOrder
-  accountPasswordHash?: Prisma.SortOrder
-  accountPasswordSalt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
+  accountPasswordHash?: Prisma.SortOrder
+  accountPasswordSalt?: Prisma.SortOrder
 }
 
 export type OrderSumOrderByAggregateInput = {
@@ -958,14 +958,14 @@ export type OrderSumOrderByAggregateInput = {
   total?: Prisma.SortOrder
 }
 
-export type OrderScalarRelationFilter = {
-  is?: Prisma.OrderWhereInput
-  isNot?: Prisma.OrderWhereInput
-}
-
 export type OrderNullableScalarRelationFilter = {
   is?: Prisma.OrderWhereInput | null
   isNot?: Prisma.OrderWhereInput | null
+}
+
+export type OrderScalarRelationFilter = {
+  is?: Prisma.OrderWhereInput
+  isNot?: Prisma.OrderWhereInput
 }
 
 export type OrderCreateNestedManyWithoutCustomerInput = {
@@ -1088,16 +1088,22 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type NullableBytesFieldUpdateOperationsInput = {
+  set?: runtime.Bytes | null
+}
+
 export type OrderCreateNestedOneWithoutPaymentSubmissionsInput = {
   create?: Prisma.XOR<Prisma.OrderCreateWithoutPaymentSubmissionsInput, Prisma.OrderUncheckedCreateWithoutPaymentSubmissionsInput>
   connectOrCreate?: Prisma.OrderCreateOrConnectWithoutPaymentSubmissionsInput
   connect?: Prisma.OrderWhereUniqueInput
 }
 
-export type OrderUpdateOneRequiredWithoutPaymentSubmissionsNestedInput = {
+export type OrderUpdateOneWithoutPaymentSubmissionsNestedInput = {
   create?: Prisma.XOR<Prisma.OrderCreateWithoutPaymentSubmissionsInput, Prisma.OrderUncheckedCreateWithoutPaymentSubmissionsInput>
   connectOrCreate?: Prisma.OrderCreateOrConnectWithoutPaymentSubmissionsInput
   upsert?: Prisma.OrderUpsertWithoutPaymentSubmissionsInput
+  disconnect?: Prisma.OrderWhereInput | boolean
+  delete?: Prisma.OrderWhereInput | boolean
   connect?: Prisma.OrderWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrderUpdateToOneWithWhereWithoutPaymentSubmissionsInput, Prisma.OrderUpdateWithoutPaymentSubmissionsInput>, Prisma.OrderUncheckedUpdateWithoutPaymentSubmissionsInput>
 }
@@ -1227,22 +1233,21 @@ export type OrderCreateWithoutCustomerInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  plan?: Prisma.PlanCreateNestedOneWithoutOrdersInput
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
   cards?: Prisma.CardCreateNestedManyWithoutOrderInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
-  originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
+  plan?: Prisma.PlanCreateNestedOneWithoutOrdersInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutOrdersInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
+  originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
 }
 
 export type OrderUncheckedCreateWithoutCustomerInput = {
   id?: string
-  workspaceId: string
   orderNumber: string
   customerName: string
   company?: string | null
@@ -1265,14 +1270,15 @@ export type OrderUncheckedCreateWithoutCustomerInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutOrderInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutOrderInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutOrderInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
   originatedSubscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutOriginOrderInput
 }
 
@@ -1307,7 +1313,6 @@ export type OrderScalarWhereInput = {
   OR?: Prisma.OrderScalarWhereInput[]
   NOT?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
   id?: Prisma.UuidFilter<"Order"> | string
-  workspaceId?: Prisma.UuidFilter<"Order"> | string
   orderNumber?: Prisma.StringFilter<"Order"> | string
   customerName?: Prisma.StringFilter<"Order"> | string
   company?: Prisma.StringNullableFilter<"Order"> | string | null
@@ -1331,10 +1336,11 @@ export type OrderScalarWhereInput = {
   discount?: Prisma.IntNullableFilter<"Order"> | number | null
   tax?: Prisma.IntNullableFilter<"Order"> | number | null
   total?: Prisma.IntNullableFilter<"Order"> | number | null
-  accountPasswordHash?: Prisma.BytesNullableFilter<"Order"> | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.BytesNullableFilter<"Order"> | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
+  workspaceId?: Prisma.UuidFilter<"Order"> | string
+  accountPasswordHash?: Prisma.BytesNullableFilter<"Order"> | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.BytesNullableFilter<"Order"> | runtime.Bytes | null
 }
 
 export type OrderCreateWithoutWorkspaceInput = {
@@ -1360,16 +1366,16 @@ export type OrderCreateWithoutWorkspaceInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
+  cards?: Prisma.CardCreateNestedManyWithoutOrderInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
   customer?: Prisma.CustomerCreateNestedOneWithoutOrdersInput
   plan?: Prisma.PlanCreateNestedOneWithoutOrdersInput
-  cards?: Prisma.CardCreateNestedManyWithoutOrderInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
   paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
   originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
 }
 
@@ -1398,14 +1404,14 @@ export type OrderUncheckedCreateWithoutWorkspaceInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutOrderInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutOrderInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutOrderInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
   originatedSubscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutOriginOrderInput
 }
 
@@ -1458,22 +1464,21 @@ export type OrderCreateWithoutPaymentSubmissionsInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
+  cards?: Prisma.CardCreateNestedManyWithoutOrderInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
   customer?: Prisma.CustomerCreateNestedOneWithoutOrdersInput
   plan?: Prisma.PlanCreateNestedOneWithoutOrdersInput
-  cards?: Prisma.CardCreateNestedManyWithoutOrderInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
-  originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutOrdersInput
+  originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
 }
 
 export type OrderUncheckedCreateWithoutPaymentSubmissionsInput = {
   id?: string
-  workspaceId: string
   orderNumber: string
   customerName: string
   company?: string | null
@@ -1497,13 +1502,14 @@ export type OrderUncheckedCreateWithoutPaymentSubmissionsInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutOrderInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutOrderInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutOrderInput
   originatedSubscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutOriginOrderInput
 }
 
@@ -1546,22 +1552,21 @@ export type OrderUpdateWithoutPaymentSubmissionsInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  cards?: Prisma.CardUpdateManyWithoutOrderNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
   customer?: Prisma.CustomerUpdateOneWithoutOrdersNestedInput
   plan?: Prisma.PlanUpdateOneWithoutOrdersNestedInput
-  cards?: Prisma.CardUpdateManyWithoutOrderNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
-  originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOrdersNestedInput
+  originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutPaymentSubmissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1585,13 +1590,14 @@ export type OrderUncheckedUpdateWithoutPaymentSubmissionsInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   cards?: Prisma.CardUncheckedUpdateManyWithoutOrderNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutOrderNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutOrderNestedInput
   originatedSubscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutOriginOrderNestedInput
 }
 
@@ -1618,22 +1624,21 @@ export type OrderCreateWithoutInvoicesInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  customer?: Prisma.CustomerCreateNestedOneWithoutOrdersInput
-  plan?: Prisma.PlanCreateNestedOneWithoutOrdersInput
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
   cards?: Prisma.CardCreateNestedManyWithoutOrderInput
   notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutOrdersInput
+  plan?: Prisma.PlanCreateNestedOneWithoutOrdersInput
+  workspace: Prisma.WorkspaceCreateNestedOneWithoutOrdersInput
   paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
   originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
-  workspace: Prisma.WorkspaceCreateNestedOneWithoutOrdersInput
 }
 
 export type OrderUncheckedCreateWithoutInvoicesInput = {
   id?: string
-  workspaceId: string
   orderNumber: string
   customerName: string
   company?: string | null
@@ -1657,10 +1662,11 @@ export type OrderUncheckedCreateWithoutInvoicesInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutOrderInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutOrderInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutOrderInput
@@ -1706,22 +1712,21 @@ export type OrderUpdateWithoutInvoicesInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  customer?: Prisma.CustomerUpdateOneWithoutOrdersNestedInput
-  plan?: Prisma.PlanUpdateOneWithoutOrdersNestedInput
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   cards?: Prisma.CardUpdateManyWithoutOrderNestedInput
   notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutOrdersNestedInput
+  plan?: Prisma.PlanUpdateOneWithoutOrdersNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOrdersNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
   originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOrdersNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutInvoicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1745,10 +1750,11 @@ export type OrderUncheckedUpdateWithoutInvoicesInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   cards?: Prisma.CardUncheckedUpdateManyWithoutOrderNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutOrderNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutOrderNestedInput
@@ -1778,22 +1784,21 @@ export type OrderCreateWithoutCardsInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
   customer?: Prisma.CustomerCreateNestedOneWithoutOrdersInput
   plan?: Prisma.PlanCreateNestedOneWithoutOrdersInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
-  originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutOrdersInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
+  originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
 }
 
 export type OrderUncheckedCreateWithoutCardsInput = {
   id?: string
-  workspaceId: string
   orderNumber: string
   customerName: string
   company?: string | null
@@ -1817,13 +1822,14 @@ export type OrderUncheckedCreateWithoutCardsInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutOrderInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutOrderInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
   originatedSubscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutOriginOrderInput
 }
 
@@ -1866,22 +1872,21 @@ export type OrderUpdateWithoutCardsInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
   customer?: Prisma.CustomerUpdateOneWithoutOrdersNestedInput
   plan?: Prisma.PlanUpdateOneWithoutOrdersNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
-  originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOrdersNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
+  originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutCardsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1905,13 +1910,14 @@ export type OrderUncheckedUpdateWithoutCardsInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutOrderNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutOrderNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
   originatedSubscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutOriginOrderNestedInput
 }
 
@@ -1938,22 +1944,21 @@ export type OrderCreateWithoutPlanInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  customer?: Prisma.CustomerCreateNestedOneWithoutOrdersInput
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
   cards?: Prisma.CardCreateNestedManyWithoutOrderInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
-  originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutOrdersInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutOrdersInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
+  originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
 }
 
 export type OrderUncheckedCreateWithoutPlanInput = {
   id?: string
-  workspaceId: string
   orderNumber: string
   customerName: string
   company?: string | null
@@ -1976,14 +1981,15 @@ export type OrderUncheckedCreateWithoutPlanInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutOrderInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutOrderInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutOrderInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
   originatedSubscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutOriginOrderInput
 }
 
@@ -2036,22 +2042,21 @@ export type OrderCreateWithoutOriginatedSubscriptionInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
+  cards?: Prisma.CardCreateNestedManyWithoutOrderInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
   customer?: Prisma.CustomerCreateNestedOneWithoutOrdersInput
   plan?: Prisma.PlanCreateNestedOneWithoutOrdersInput
-  cards?: Prisma.CardCreateNestedManyWithoutOrderInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutOrderInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutOrdersInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutOriginatedSubscriptionInput = {
   id?: string
-  workspaceId: string
   orderNumber: string
   customerName: string
   company?: string | null
@@ -2075,14 +2080,15 @@ export type OrderUncheckedCreateWithoutOriginatedSubscriptionInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutOrderInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutOrderInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutOrderInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutOriginatedSubscriptionInput = {
@@ -2124,22 +2130,21 @@ export type OrderUpdateWithoutOriginatedSubscriptionInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  cards?: Prisma.CardUpdateManyWithoutOrderNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
   customer?: Prisma.CustomerUpdateOneWithoutOrdersNestedInput
   plan?: Prisma.PlanUpdateOneWithoutOrdersNestedInput
-  cards?: Prisma.CardUpdateManyWithoutOrderNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOrdersNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutOriginatedSubscriptionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2163,14 +2168,15 @@ export type OrderUncheckedUpdateWithoutOriginatedSubscriptionInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   cards?: Prisma.CardUncheckedUpdateManyWithoutOrderNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutOrderNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutOrderNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderCreateWithoutNotificationsInput = {
@@ -2196,22 +2202,21 @@ export type OrderCreateWithoutNotificationsInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
+  cards?: Prisma.CardCreateNestedManyWithoutOrderInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
   customer?: Prisma.CustomerCreateNestedOneWithoutOrdersInput
   plan?: Prisma.PlanCreateNestedOneWithoutOrdersInput
-  cards?: Prisma.CardCreateNestedManyWithoutOrderInput
-  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutOrderInput
-  originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutOrdersInput
+  paymentSubmissions?: Prisma.PaymentSubmissionCreateNestedManyWithoutOrderInput
+  originatedSubscription?: Prisma.SubscriptionCreateNestedOneWithoutOriginOrderInput
 }
 
 export type OrderUncheckedCreateWithoutNotificationsInput = {
   id?: string
-  workspaceId: string
   orderNumber: string
   customerName: string
   company?: string | null
@@ -2235,13 +2240,14 @@ export type OrderUncheckedCreateWithoutNotificationsInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
   cards?: Prisma.CardUncheckedCreateNestedManyWithoutOrderInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutOrderInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutOrderInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedCreateNestedManyWithoutOrderInput
   originatedSubscription?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutOriginOrderInput
 }
 
@@ -2284,22 +2290,21 @@ export type OrderUpdateWithoutNotificationsInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  cards?: Prisma.CardUpdateManyWithoutOrderNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
   customer?: Prisma.CustomerUpdateOneWithoutOrdersNestedInput
   plan?: Prisma.PlanUpdateOneWithoutOrdersNestedInput
-  cards?: Prisma.CardUpdateManyWithoutOrderNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
-  originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOrdersNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
+  originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutNotificationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2323,19 +2328,19 @@ export type OrderUncheckedUpdateWithoutNotificationsInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   cards?: Prisma.CardUncheckedUpdateManyWithoutOrderNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutOrderNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutOrderNestedInput
   originatedSubscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutOriginOrderNestedInput
 }
 
 export type OrderCreateManyCustomerInput = {
   id?: string
-  workspaceId: string
   orderNumber: string
   customerName: string
   company?: string | null
@@ -2358,10 +2363,11 @@ export type OrderCreateManyCustomerInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
 }
 
 export type OrderUpdateWithoutCustomerInput = {
@@ -2387,22 +2393,21 @@ export type OrderUpdateWithoutCustomerInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  plan?: Prisma.PlanUpdateOneWithoutOrdersNestedInput
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   cards?: Prisma.CardUpdateManyWithoutOrderNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
-  originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
+  plan?: Prisma.PlanUpdateOneWithoutOrdersNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOrdersNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
+  originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2425,20 +2430,20 @@ export type OrderUncheckedUpdateWithoutCustomerInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   cards?: Prisma.CardUncheckedUpdateManyWithoutOrderNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutOrderNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutOrderNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
   originatedSubscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutOriginOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2461,10 +2466,11 @@ export type OrderUncheckedUpdateManyWithoutCustomerInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
 }
 
 export type OrderCreateManyWorkspaceInput = {
@@ -2492,10 +2498,10 @@ export type OrderCreateManyWorkspaceInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
 }
 
 export type OrderUpdateWithoutWorkspaceInput = {
@@ -2521,16 +2527,16 @@ export type OrderUpdateWithoutWorkspaceInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  cards?: Prisma.CardUpdateManyWithoutOrderNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
   customer?: Prisma.CustomerUpdateOneWithoutOrdersNestedInput
   plan?: Prisma.PlanUpdateOneWithoutOrdersNestedInput
-  cards?: Prisma.CardUpdateManyWithoutOrderNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
   originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
 }
 
@@ -2559,14 +2565,14 @@ export type OrderUncheckedUpdateWithoutWorkspaceInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   cards?: Prisma.CardUncheckedUpdateManyWithoutOrderNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutOrderNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutOrderNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
   originatedSubscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutOriginOrderNestedInput
 }
 
@@ -2595,15 +2601,14 @@ export type OrderUncheckedUpdateManyWithoutWorkspaceInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
 }
 
 export type OrderCreateManyPlanInput = {
   id?: string
-  workspaceId: string
   orderNumber: string
   customerName: string
   company?: string | null
@@ -2626,10 +2631,11 @@ export type OrderCreateManyPlanInput = {
   discount?: number | null
   tax?: number | null
   total?: number | null
-  accountPasswordHash?: runtime.Bytes | null
-  accountPasswordSalt?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId: string
+  accountPasswordHash?: runtime.Bytes | null
+  accountPasswordSalt?: runtime.Bytes | null
 }
 
 export type OrderUpdateWithoutPlanInput = {
@@ -2655,22 +2661,21 @@ export type OrderUpdateWithoutPlanInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  customer?: Prisma.CustomerUpdateOneWithoutOrdersNestedInput
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   cards?: Prisma.CardUpdateManyWithoutOrderNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
-  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutOrderNestedInput
-  originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutOrderNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutOrdersNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutOrdersNestedInput
+  paymentSubmissions?: Prisma.PaymentSubmissionUpdateManyWithoutOrderNestedInput
+  originatedSubscription?: Prisma.SubscriptionUpdateOneWithoutOriginOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutPlanInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2693,20 +2698,20 @@ export type OrderUncheckedUpdateWithoutPlanInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   cards?: Prisma.CardUncheckedUpdateManyWithoutOrderNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutOrderNestedInput
   paymentSubmissions?: Prisma.PaymentSubmissionUncheckedUpdateManyWithoutOrderNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutOrderNestedInput
   originatedSubscription?: Prisma.SubscriptionUncheckedUpdateOneWithoutOriginOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutPlanInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderNumber?: Prisma.StringFieldUpdateOperationsInput | string
   customerName?: Prisma.StringFieldUpdateOperationsInput | string
   company?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2729,10 +2734,11 @@ export type OrderUncheckedUpdateManyWithoutPlanInput = {
   discount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tax?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
-  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accountPasswordHash?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  accountPasswordSalt?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
 }
 
 
@@ -2742,16 +2748,16 @@ export type OrderUncheckedUpdateManyWithoutPlanInput = {
 
 export type OrderCountOutputType = {
   cards: number
+  invoices: number
   notifications: number
   paymentSubmissions: number
-  invoices: number
 }
 
 export type OrderCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cards?: boolean | OrderCountOutputTypeCountCardsArgs
+  invoices?: boolean | OrderCountOutputTypeCountInvoicesArgs
   notifications?: boolean | OrderCountOutputTypeCountNotificationsArgs
   paymentSubmissions?: boolean | OrderCountOutputTypeCountPaymentSubmissionsArgs
-  invoices?: boolean | OrderCountOutputTypeCountInvoicesArgs
 }
 
 /**
@@ -2774,6 +2780,13 @@ export type OrderCountOutputTypeCountCardsArgs<ExtArgs extends runtime.Types.Ext
 /**
  * OrderCountOutputType without action
  */
+export type OrderCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvoiceWhereInput
+}
+
+/**
+ * OrderCountOutputType without action
+ */
 export type OrderCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.NotificationDeliveryWhereInput
 }
@@ -2785,17 +2798,9 @@ export type OrderCountOutputTypeCountPaymentSubmissionsArgs<ExtArgs extends runt
   where?: Prisma.PaymentSubmissionWhereInput
 }
 
-/**
- * OrderCountOutputType without action
- */
-export type OrderCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.InvoiceWhereInput
-}
-
 
 export type OrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   orderNumber?: boolean
   customerName?: boolean
   company?: boolean
@@ -2819,24 +2824,24 @@ export type OrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   discount?: boolean
   tax?: boolean
   total?: boolean
-  accountPasswordHash?: boolean
-  accountPasswordSalt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  workspaceId?: boolean
+  accountPasswordHash?: boolean
+  accountPasswordSalt?: boolean
+  cards?: boolean | Prisma.Order$cardsArgs<ExtArgs>
+  invoices?: boolean | Prisma.Order$invoicesArgs<ExtArgs>
+  notifications?: boolean | Prisma.Order$notificationsArgs<ExtArgs>
   customer?: boolean | Prisma.Order$customerArgs<ExtArgs>
   plan?: boolean | Prisma.Order$planArgs<ExtArgs>
-  cards?: boolean | Prisma.Order$cardsArgs<ExtArgs>
-  notifications?: boolean | Prisma.Order$notificationsArgs<ExtArgs>
-  paymentSubmissions?: boolean | Prisma.Order$paymentSubmissionsArgs<ExtArgs>
-  invoices?: boolean | Prisma.Order$invoicesArgs<ExtArgs>
-  originatedSubscription?: boolean | Prisma.Order$originatedSubscriptionArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  paymentSubmissions?: boolean | Prisma.Order$paymentSubmissionsArgs<ExtArgs>
+  originatedSubscription?: boolean | Prisma.Order$originatedSubscriptionArgs<ExtArgs>
   _count?: boolean | Prisma.OrderCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
 
 export type OrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   orderNumber?: boolean
   customerName?: boolean
   company?: boolean
@@ -2860,10 +2865,11 @@ export type OrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   discount?: boolean
   tax?: boolean
   total?: boolean
-  accountPasswordHash?: boolean
-  accountPasswordSalt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  workspaceId?: boolean
+  accountPasswordHash?: boolean
+  accountPasswordSalt?: boolean
   customer?: boolean | Prisma.Order$customerArgs<ExtArgs>
   plan?: boolean | Prisma.Order$planArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
@@ -2871,7 +2877,6 @@ export type OrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 
 export type OrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   orderNumber?: boolean
   customerName?: boolean
   company?: boolean
@@ -2895,10 +2900,11 @@ export type OrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   discount?: boolean
   tax?: boolean
   total?: boolean
-  accountPasswordHash?: boolean
-  accountPasswordSalt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  workspaceId?: boolean
+  accountPasswordHash?: boolean
+  accountPasswordSalt?: boolean
   customer?: boolean | Prisma.Order$customerArgs<ExtArgs>
   plan?: boolean | Prisma.Order$planArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
@@ -2906,7 +2912,6 @@ export type OrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 
 export type OrderSelectScalar = {
   id?: boolean
-  workspaceId?: boolean
   orderNumber?: boolean
   customerName?: boolean
   company?: boolean
@@ -2930,22 +2935,23 @@ export type OrderSelectScalar = {
   discount?: boolean
   tax?: boolean
   total?: boolean
-  accountPasswordHash?: boolean
-  accountPasswordSalt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  workspaceId?: boolean
+  accountPasswordHash?: boolean
+  accountPasswordSalt?: boolean
 }
 
-export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "orderNumber" | "customerName" | "company" | "email" | "phone" | "package" | "quantity" | "notes" | "status" | "paymentStatus" | "fulfillmentStatus" | "customerId" | "planId" | "billingInterval" | "planNameSnapshot" | "planDescriptionSnapshot" | "billingIntervalSnapshot" | "currency" | "planPriceSnapshot" | "subtotal" | "discount" | "tax" | "total" | "accountPasswordHash" | "accountPasswordSalt" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
+export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderNumber" | "customerName" | "company" | "email" | "phone" | "package" | "quantity" | "notes" | "status" | "paymentStatus" | "fulfillmentStatus" | "customerId" | "planId" | "billingInterval" | "planNameSnapshot" | "planDescriptionSnapshot" | "billingIntervalSnapshot" | "currency" | "planPriceSnapshot" | "subtotal" | "discount" | "tax" | "total" | "createdAt" | "updatedAt" | "workspaceId" | "accountPasswordHash" | "accountPasswordSalt", ExtArgs["result"]["order"]>
 export type OrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cards?: boolean | Prisma.Order$cardsArgs<ExtArgs>
+  invoices?: boolean | Prisma.Order$invoicesArgs<ExtArgs>
+  notifications?: boolean | Prisma.Order$notificationsArgs<ExtArgs>
   customer?: boolean | Prisma.Order$customerArgs<ExtArgs>
   plan?: boolean | Prisma.Order$planArgs<ExtArgs>
-  cards?: boolean | Prisma.Order$cardsArgs<ExtArgs>
-  notifications?: boolean | Prisma.Order$notificationsArgs<ExtArgs>
-  paymentSubmissions?: boolean | Prisma.Order$paymentSubmissionsArgs<ExtArgs>
-  invoices?: boolean | Prisma.Order$invoicesArgs<ExtArgs>
-  originatedSubscription?: boolean | Prisma.Order$originatedSubscriptionArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  paymentSubmissions?: boolean | Prisma.Order$paymentSubmissionsArgs<ExtArgs>
+  originatedSubscription?: boolean | Prisma.Order$originatedSubscriptionArgs<ExtArgs>
   _count?: boolean | Prisma.OrderCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrderIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2962,18 +2968,17 @@ export type OrderIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Order"
   objects: {
+    cards: Prisma.$CardPayload<ExtArgs>[]
+    invoices: Prisma.$InvoicePayload<ExtArgs>[]
+    notifications: Prisma.$NotificationDeliveryPayload<ExtArgs>[]
     customer: Prisma.$CustomerPayload<ExtArgs> | null
     plan: Prisma.$PlanPayload<ExtArgs> | null
-    cards: Prisma.$CardPayload<ExtArgs>[]
-    notifications: Prisma.$NotificationDeliveryPayload<ExtArgs>[]
-    paymentSubmissions: Prisma.$PaymentSubmissionPayload<ExtArgs>[]
-    invoices: Prisma.$InvoicePayload<ExtArgs>[]
-    originatedSubscription: Prisma.$SubscriptionPayload<ExtArgs> | null
     workspace: Prisma.$WorkspacePayload<ExtArgs>
+    paymentSubmissions: Prisma.$PaymentSubmissionPayload<ExtArgs>[]
+    originatedSubscription: Prisma.$SubscriptionPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    workspaceId: string
     orderNumber: string
     customerName: string
     company: string | null
@@ -2997,10 +3002,11 @@ export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     discount: number | null
     tax: number | null
     total: number | null
-    accountPasswordHash: runtime.Bytes | null
-    accountPasswordSalt: runtime.Bytes | null
     createdAt: Date
     updatedAt: Date
+    workspaceId: string
+    accountPasswordHash: runtime.Bytes | null
+    accountPasswordSalt: runtime.Bytes | null
   }, ExtArgs["result"]["order"]>
   composites: {}
 }
@@ -3395,14 +3401,14 @@ readonly fields: OrderFieldRefs;
  */
 export interface Prisma__OrderClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  cards<T extends Prisma.Order$cardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$cardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invoices<T extends Prisma.Order$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.Order$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationDeliveryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   customer<T extends Prisma.Order$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   plan<T extends Prisma.Order$planArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$planArgs<ExtArgs>>): Prisma.Prisma__PlanClient<runtime.Types.Result.GetResult<Prisma.$PlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  cards<T extends Prisma.Order$cardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$cardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  notifications<T extends Prisma.Order$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationDeliveryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  paymentSubmissions<T extends Prisma.Order$paymentSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$paymentSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  invoices<T extends Prisma.Order$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  originatedSubscription<T extends Prisma.Order$originatedSubscriptionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$originatedSubscriptionArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  paymentSubmissions<T extends Prisma.Order$paymentSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$paymentSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  originatedSubscription<T extends Prisma.Order$originatedSubscriptionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$originatedSubscriptionArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3433,7 +3439,6 @@ export interface Prisma__OrderClient<T, Null = never, ExtArgs extends runtime.Ty
  */
 export interface OrderFieldRefs {
   readonly id: Prisma.FieldRef<"Order", 'String'>
-  readonly workspaceId: Prisma.FieldRef<"Order", 'String'>
   readonly orderNumber: Prisma.FieldRef<"Order", 'String'>
   readonly customerName: Prisma.FieldRef<"Order", 'String'>
   readonly company: Prisma.FieldRef<"Order", 'String'>
@@ -3457,10 +3462,11 @@ export interface OrderFieldRefs {
   readonly discount: Prisma.FieldRef<"Order", 'Int'>
   readonly tax: Prisma.FieldRef<"Order", 'Int'>
   readonly total: Prisma.FieldRef<"Order", 'Int'>
-  readonly accountPasswordHash: Prisma.FieldRef<"Order", 'Bytes'>
-  readonly accountPasswordSalt: Prisma.FieldRef<"Order", 'Bytes'>
   readonly createdAt: Prisma.FieldRef<"Order", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Order", 'DateTime'>
+  readonly workspaceId: Prisma.FieldRef<"Order", 'String'>
+  readonly accountPasswordHash: Prisma.FieldRef<"Order", 'Bytes'>
+  readonly accountPasswordSalt: Prisma.FieldRef<"Order", 'Bytes'>
 }
     
 
@@ -3862,6 +3868,78 @@ export type OrderDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
+ * Order.cards
+ */
+export type Order$cardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Card
+   */
+  select?: Prisma.CardSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Card
+   */
+  omit?: Prisma.CardOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CardInclude<ExtArgs> | null
+  where?: Prisma.CardWhereInput
+  orderBy?: Prisma.CardOrderByWithRelationInput | Prisma.CardOrderByWithRelationInput[]
+  cursor?: Prisma.CardWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CardScalarFieldEnum | Prisma.CardScalarFieldEnum[]
+}
+
+/**
+ * Order.invoices
+ */
+export type Order$invoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Invoice
+   */
+  select?: Prisma.InvoiceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Invoice
+   */
+  omit?: Prisma.InvoiceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvoiceInclude<ExtArgs> | null
+  where?: Prisma.InvoiceWhereInput
+  orderBy?: Prisma.InvoiceOrderByWithRelationInput | Prisma.InvoiceOrderByWithRelationInput[]
+  cursor?: Prisma.InvoiceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
+}
+
+/**
+ * Order.notifications
+ */
+export type Order$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NotificationDelivery
+   */
+  select?: Prisma.NotificationDeliverySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NotificationDelivery
+   */
+  omit?: Prisma.NotificationDeliveryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificationDeliveryInclude<ExtArgs> | null
+  where?: Prisma.NotificationDeliveryWhereInput
+  orderBy?: Prisma.NotificationDeliveryOrderByWithRelationInput | Prisma.NotificationDeliveryOrderByWithRelationInput[]
+  cursor?: Prisma.NotificationDeliveryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationDeliveryScalarFieldEnum | Prisma.NotificationDeliveryScalarFieldEnum[]
+}
+
+/**
  * Order.customer
  */
 export type Order$customerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3900,54 +3978,6 @@ export type Order$planArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
 }
 
 /**
- * Order.cards
- */
-export type Order$cardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Card
-   */
-  select?: Prisma.CardSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Card
-   */
-  omit?: Prisma.CardOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CardInclude<ExtArgs> | null
-  where?: Prisma.CardWhereInput
-  orderBy?: Prisma.CardOrderByWithRelationInput | Prisma.CardOrderByWithRelationInput[]
-  cursor?: Prisma.CardWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CardScalarFieldEnum | Prisma.CardScalarFieldEnum[]
-}
-
-/**
- * Order.notifications
- */
-export type Order$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the NotificationDelivery
-   */
-  select?: Prisma.NotificationDeliverySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the NotificationDelivery
-   */
-  omit?: Prisma.NotificationDeliveryOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.NotificationDeliveryInclude<ExtArgs> | null
-  where?: Prisma.NotificationDeliveryWhereInput
-  orderBy?: Prisma.NotificationDeliveryOrderByWithRelationInput | Prisma.NotificationDeliveryOrderByWithRelationInput[]
-  cursor?: Prisma.NotificationDeliveryWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.NotificationDeliveryScalarFieldEnum | Prisma.NotificationDeliveryScalarFieldEnum[]
-}
-
-/**
  * Order.paymentSubmissions
  */
 export type Order$paymentSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3969,30 +3999,6 @@ export type Order$paymentSubmissionsArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.PaymentSubmissionScalarFieldEnum | Prisma.PaymentSubmissionScalarFieldEnum[]
-}
-
-/**
- * Order.invoices
- */
-export type Order$invoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Invoice
-   */
-  select?: Prisma.InvoiceSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Invoice
-   */
-  omit?: Prisma.InvoiceOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.InvoiceInclude<ExtArgs> | null
-  where?: Prisma.InvoiceWhereInput
-  orderBy?: Prisma.InvoiceOrderByWithRelationInput | Prisma.InvoiceOrderByWithRelationInput[]
-  cursor?: Prisma.InvoiceWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
 }
 
 /**

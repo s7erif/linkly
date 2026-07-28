@@ -26,29 +26,28 @@ export type AggregateSetting = {
 
 export type SettingMinAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   customerId: string | null
   cardId: string | null
   scope: string | null
   key: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  workspaceId: string | null
 }
 
 export type SettingMaxAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   customerId: string | null
   cardId: string | null
   scope: string | null
   key: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  workspaceId: string | null
 }
 
 export type SettingCountAggregateOutputType = {
   id: number
-  workspaceId: number
   customerId: number
   cardId: number
   scope: number
@@ -56,35 +55,35 @@ export type SettingCountAggregateOutputType = {
   value: number
   createdAt: number
   updatedAt: number
+  workspaceId: number
   _all: number
 }
 
 
 export type SettingMinAggregateInputType = {
   id?: true
-  workspaceId?: true
   customerId?: true
   cardId?: true
   scope?: true
   key?: true
   createdAt?: true
   updatedAt?: true
+  workspaceId?: true
 }
 
 export type SettingMaxAggregateInputType = {
   id?: true
-  workspaceId?: true
   customerId?: true
   cardId?: true
   scope?: true
   key?: true
   createdAt?: true
   updatedAt?: true
+  workspaceId?: true
 }
 
 export type SettingCountAggregateInputType = {
   id?: true
-  workspaceId?: true
   customerId?: true
   cardId?: true
   scope?: true
@@ -92,6 +91,7 @@ export type SettingCountAggregateInputType = {
   value?: true
   createdAt?: true
   updatedAt?: true
+  workspaceId?: true
   _all?: true
 }
 
@@ -169,7 +169,6 @@ export type SettingGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type SettingGroupByOutputType = {
   id: string
-  workspaceId: string | null
   customerId: string | null
   cardId: string | null
   scope: string
@@ -177,6 +176,7 @@ export type SettingGroupByOutputType = {
   value: runtime.JsonValue
   createdAt: Date
   updatedAt: Date
+  workspaceId: string | null
   _count: SettingCountAggregateOutputType | null
   _min: SettingMinAggregateOutputType | null
   _max: SettingMaxAggregateOutputType | null
@@ -202,7 +202,6 @@ export type SettingWhereInput = {
   OR?: Prisma.SettingWhereInput[]
   NOT?: Prisma.SettingWhereInput | Prisma.SettingWhereInput[]
   id?: Prisma.UuidFilter<"Setting"> | string
-  workspaceId?: Prisma.UuidNullableFilter<"Setting"> | string | null
   customerId?: Prisma.UuidNullableFilter<"Setting"> | string | null
   cardId?: Prisma.UuidNullableFilter<"Setting"> | string | null
   scope?: Prisma.StringFilter<"Setting"> | string
@@ -210,14 +209,14 @@ export type SettingWhereInput = {
   value?: Prisma.JsonFilter<"Setting">
   createdAt?: Prisma.DateTimeFilter<"Setting"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Setting"> | Date | string
-  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
+  workspaceId?: Prisma.UuidNullableFilter<"Setting"> | string | null
   card?: Prisma.XOR<Prisma.CardNullableScalarRelationFilter, Prisma.CardWhereInput> | null
+  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceNullableScalarRelationFilter, Prisma.WorkspaceWhereInput> | null
 }
 
 export type SettingOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
   customerId?: Prisma.SortOrderInput | Prisma.SortOrder
   cardId?: Prisma.SortOrderInput | Prisma.SortOrder
   scope?: Prisma.SortOrder
@@ -225,8 +224,9 @@ export type SettingOrderByWithRelationInput = {
   value?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  customer?: Prisma.CustomerOrderByWithRelationInput
+  workspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
   card?: Prisma.CardOrderByWithRelationInput
+  customer?: Prisma.CustomerOrderByWithRelationInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
 }
 
@@ -237,7 +237,6 @@ export type SettingWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.SettingWhereInput | Prisma.SettingWhereInput[]
   OR?: Prisma.SettingWhereInput[]
   NOT?: Prisma.SettingWhereInput | Prisma.SettingWhereInput[]
-  workspaceId?: Prisma.UuidNullableFilter<"Setting"> | string | null
   customerId?: Prisma.UuidNullableFilter<"Setting"> | string | null
   cardId?: Prisma.UuidNullableFilter<"Setting"> | string | null
   scope?: Prisma.StringFilter<"Setting"> | string
@@ -245,14 +244,14 @@ export type SettingWhereUniqueInput = Prisma.AtLeast<{
   value?: Prisma.JsonFilter<"Setting">
   createdAt?: Prisma.DateTimeFilter<"Setting"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Setting"> | Date | string
-  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
+  workspaceId?: Prisma.UuidNullableFilter<"Setting"> | string | null
   card?: Prisma.XOR<Prisma.CardNullableScalarRelationFilter, Prisma.CardWhereInput> | null
+  customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceNullableScalarRelationFilter, Prisma.WorkspaceWhereInput> | null
 }, "id" | "workspaceId_scope_customerId_cardId_key" | "scope_customerId_cardId_key">
 
 export type SettingOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
   customerId?: Prisma.SortOrderInput | Prisma.SortOrder
   cardId?: Prisma.SortOrderInput | Prisma.SortOrder
   scope?: Prisma.SortOrder
@@ -260,6 +259,7 @@ export type SettingOrderByWithAggregationInput = {
   value?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SettingCountOrderByAggregateInput
   _max?: Prisma.SettingMaxOrderByAggregateInput
   _min?: Prisma.SettingMinOrderByAggregateInput
@@ -270,7 +270,6 @@ export type SettingScalarWhereWithAggregatesInput = {
   OR?: Prisma.SettingScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SettingScalarWhereWithAggregatesInput | Prisma.SettingScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Setting"> | string
-  workspaceId?: Prisma.UuidNullableWithAggregatesFilter<"Setting"> | string | null
   customerId?: Prisma.UuidNullableWithAggregatesFilter<"Setting"> | string | null
   cardId?: Prisma.UuidNullableWithAggregatesFilter<"Setting"> | string | null
   scope?: Prisma.StringWithAggregatesFilter<"Setting"> | string
@@ -278,6 +277,7 @@ export type SettingScalarWhereWithAggregatesInput = {
   value?: Prisma.JsonWithAggregatesFilter<"Setting">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Setting"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Setting"> | Date | string
+  workspaceId?: Prisma.UuidNullableWithAggregatesFilter<"Setting"> | string | null
 }
 
 export type SettingCreateInput = {
@@ -287,14 +287,13 @@ export type SettingCreateInput = {
   value: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  customer?: Prisma.CustomerCreateNestedOneWithoutSettingsInput
   card?: Prisma.CardCreateNestedOneWithoutSettingsInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutSettingsInput
   workspace?: Prisma.WorkspaceCreateNestedOneWithoutSettingsInput
 }
 
 export type SettingUncheckedCreateInput = {
   id?: string
-  workspaceId?: string | null
   customerId?: string | null
   cardId?: string | null
   scope: string
@@ -302,6 +301,7 @@ export type SettingUncheckedCreateInput = {
   value: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId?: string | null
 }
 
 export type SettingUpdateInput = {
@@ -311,14 +311,13 @@ export type SettingUpdateInput = {
   value?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  customer?: Prisma.CustomerUpdateOneWithoutSettingsNestedInput
   card?: Prisma.CardUpdateOneWithoutSettingsNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutSettingsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneWithoutSettingsNestedInput
 }
 
 export type SettingUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scope?: Prisma.StringFieldUpdateOperationsInput | string
@@ -326,11 +325,11 @@ export type SettingUncheckedUpdateInput = {
   value?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SettingCreateManyInput = {
   id?: string
-  workspaceId?: string | null
   customerId?: string | null
   cardId?: string | null
   scope: string
@@ -338,6 +337,7 @@ export type SettingCreateManyInput = {
   value: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId?: string | null
 }
 
 export type SettingUpdateManyMutationInput = {
@@ -351,7 +351,6 @@ export type SettingUpdateManyMutationInput = {
 
 export type SettingUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scope?: Prisma.StringFieldUpdateOperationsInput | string
@@ -359,6 +358,7 @@ export type SettingUncheckedUpdateManyInput = {
   value?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SettingListRelationFilter = {
@@ -388,7 +388,6 @@ export type SettingScopeCustomerIdCardIdKeyCompoundUniqueInput = {
 
 export type SettingCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
   scope?: Prisma.SortOrder
@@ -396,28 +395,29 @@ export type SettingCountOrderByAggregateInput = {
   value?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type SettingMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
   scope?: Prisma.SortOrder
   key?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type SettingMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
   scope?: Prisma.SortOrder
   key?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type SettingCreateNestedManyWithoutCustomerInput = {
@@ -559,13 +559,13 @@ export type SettingCreateWithoutCustomerInput = {
 
 export type SettingUncheckedCreateWithoutCustomerInput = {
   id?: string
-  workspaceId?: string | null
   cardId?: string | null
   scope: string
   key: string
   value: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId?: string | null
 }
 
 export type SettingCreateOrConnectWithoutCustomerInput = {
@@ -599,7 +599,6 @@ export type SettingScalarWhereInput = {
   OR?: Prisma.SettingScalarWhereInput[]
   NOT?: Prisma.SettingScalarWhereInput | Prisma.SettingScalarWhereInput[]
   id?: Prisma.UuidFilter<"Setting"> | string
-  workspaceId?: Prisma.UuidNullableFilter<"Setting"> | string | null
   customerId?: Prisma.UuidNullableFilter<"Setting"> | string | null
   cardId?: Prisma.UuidNullableFilter<"Setting"> | string | null
   scope?: Prisma.StringFilter<"Setting"> | string
@@ -607,6 +606,7 @@ export type SettingScalarWhereInput = {
   value?: Prisma.JsonFilter<"Setting">
   createdAt?: Prisma.DateTimeFilter<"Setting"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Setting"> | Date | string
+  workspaceId?: Prisma.UuidNullableFilter<"Setting"> | string | null
 }
 
 export type SettingCreateWithoutWorkspaceInput = {
@@ -616,8 +616,8 @@ export type SettingCreateWithoutWorkspaceInput = {
   value: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  customer?: Prisma.CustomerCreateNestedOneWithoutSettingsInput
   card?: Prisma.CardCreateNestedOneWithoutSettingsInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutSettingsInput
 }
 
 export type SettingUncheckedCreateWithoutWorkspaceInput = {
@@ -670,13 +670,13 @@ export type SettingCreateWithoutCardInput = {
 
 export type SettingUncheckedCreateWithoutCardInput = {
   id?: string
-  workspaceId?: string | null
   customerId?: string | null
   scope: string
   key: string
   value: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId?: string | null
 }
 
 export type SettingCreateOrConnectWithoutCardInput = {
@@ -707,13 +707,13 @@ export type SettingUpdateManyWithWhereWithoutCardInput = {
 
 export type SettingCreateManyCustomerInput = {
   id?: string
-  workspaceId?: string | null
   cardId?: string | null
   scope: string
   key: string
   value: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId?: string | null
 }
 
 export type SettingUpdateWithoutCustomerInput = {
@@ -729,24 +729,24 @@ export type SettingUpdateWithoutCustomerInput = {
 
 export type SettingUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scope?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
   value?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SettingUncheckedUpdateManyWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   cardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scope?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
   value?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SettingCreateManyWorkspaceInput = {
@@ -767,8 +767,8 @@ export type SettingUpdateWithoutWorkspaceInput = {
   value?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  customer?: Prisma.CustomerUpdateOneWithoutSettingsNestedInput
   card?: Prisma.CardUpdateOneWithoutSettingsNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutSettingsNestedInput
 }
 
 export type SettingUncheckedUpdateWithoutWorkspaceInput = {
@@ -795,13 +795,13 @@ export type SettingUncheckedUpdateManyWithoutWorkspaceInput = {
 
 export type SettingCreateManyCardInput = {
   id?: string
-  workspaceId?: string | null
   customerId?: string | null
   scope: string
   key: string
   value: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  workspaceId?: string | null
 }
 
 export type SettingUpdateWithoutCardInput = {
@@ -817,31 +817,30 @@ export type SettingUpdateWithoutCardInput = {
 
 export type SettingUncheckedUpdateWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scope?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
   value?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SettingUncheckedUpdateManyWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   scope?: Prisma.StringFieldUpdateOperationsInput | string
   key?: Prisma.StringFieldUpdateOperationsInput | string
   value?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspaceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
 
 export type SettingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   customerId?: boolean
   cardId?: boolean
   scope?: boolean
@@ -849,14 +848,14 @@ export type SettingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   value?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  customer?: boolean | Prisma.Setting$customerArgs<ExtArgs>
+  workspaceId?: boolean
   card?: boolean | Prisma.Setting$cardArgs<ExtArgs>
+  customer?: boolean | Prisma.Setting$customerArgs<ExtArgs>
   workspace?: boolean | Prisma.Setting$workspaceArgs<ExtArgs>
 }, ExtArgs["result"]["setting"]>
 
 export type SettingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   customerId?: boolean
   cardId?: boolean
   scope?: boolean
@@ -864,14 +863,14 @@ export type SettingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   value?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  customer?: boolean | Prisma.Setting$customerArgs<ExtArgs>
+  workspaceId?: boolean
   card?: boolean | Prisma.Setting$cardArgs<ExtArgs>
+  customer?: boolean | Prisma.Setting$customerArgs<ExtArgs>
   workspace?: boolean | Prisma.Setting$workspaceArgs<ExtArgs>
 }, ExtArgs["result"]["setting"]>
 
 export type SettingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   customerId?: boolean
   cardId?: boolean
   scope?: boolean
@@ -879,14 +878,14 @@ export type SettingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   value?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  customer?: boolean | Prisma.Setting$customerArgs<ExtArgs>
+  workspaceId?: boolean
   card?: boolean | Prisma.Setting$cardArgs<ExtArgs>
+  customer?: boolean | Prisma.Setting$customerArgs<ExtArgs>
   workspace?: boolean | Prisma.Setting$workspaceArgs<ExtArgs>
 }, ExtArgs["result"]["setting"]>
 
 export type SettingSelectScalar = {
   id?: boolean
-  workspaceId?: boolean
   customerId?: boolean
   cardId?: boolean
   scope?: boolean
@@ -894,35 +893,35 @@ export type SettingSelectScalar = {
   value?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  workspaceId?: boolean
 }
 
-export type SettingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "customerId" | "cardId" | "scope" | "key" | "value" | "createdAt" | "updatedAt", ExtArgs["result"]["setting"]>
+export type SettingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customerId" | "cardId" | "scope" | "key" | "value" | "createdAt" | "updatedAt" | "workspaceId", ExtArgs["result"]["setting"]>
 export type SettingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  customer?: boolean | Prisma.Setting$customerArgs<ExtArgs>
   card?: boolean | Prisma.Setting$cardArgs<ExtArgs>
+  customer?: boolean | Prisma.Setting$customerArgs<ExtArgs>
   workspace?: boolean | Prisma.Setting$workspaceArgs<ExtArgs>
 }
 export type SettingIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  customer?: boolean | Prisma.Setting$customerArgs<ExtArgs>
   card?: boolean | Prisma.Setting$cardArgs<ExtArgs>
+  customer?: boolean | Prisma.Setting$customerArgs<ExtArgs>
   workspace?: boolean | Prisma.Setting$workspaceArgs<ExtArgs>
 }
 export type SettingIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  customer?: boolean | Prisma.Setting$customerArgs<ExtArgs>
   card?: boolean | Prisma.Setting$cardArgs<ExtArgs>
+  customer?: boolean | Prisma.Setting$customerArgs<ExtArgs>
   workspace?: boolean | Prisma.Setting$workspaceArgs<ExtArgs>
 }
 
 export type $SettingPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Setting"
   objects: {
-    customer: Prisma.$CustomerPayload<ExtArgs> | null
     card: Prisma.$CardPayload<ExtArgs> | null
+    customer: Prisma.$CustomerPayload<ExtArgs> | null
     workspace: Prisma.$WorkspacePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    workspaceId: string | null
     customerId: string | null
     cardId: string | null
     scope: string
@@ -930,6 +929,7 @@ export type $SettingPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     value: runtime.JsonValue
     createdAt: Date
     updatedAt: Date
+    workspaceId: string | null
   }, ExtArgs["result"]["setting"]>
   composites: {}
 }
@@ -1324,8 +1324,8 @@ readonly fields: SettingFieldRefs;
  */
 export interface Prisma__SettingClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  customer<T extends Prisma.Setting$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Setting$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   card<T extends Prisma.Setting$cardArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Setting$cardArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  customer<T extends Prisma.Setting$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Setting$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   workspace<T extends Prisma.Setting$workspaceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Setting$workspaceArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1357,7 +1357,6 @@ export interface Prisma__SettingClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface SettingFieldRefs {
   readonly id: Prisma.FieldRef<"Setting", 'String'>
-  readonly workspaceId: Prisma.FieldRef<"Setting", 'String'>
   readonly customerId: Prisma.FieldRef<"Setting", 'String'>
   readonly cardId: Prisma.FieldRef<"Setting", 'String'>
   readonly scope: Prisma.FieldRef<"Setting", 'String'>
@@ -1365,6 +1364,7 @@ export interface SettingFieldRefs {
   readonly value: Prisma.FieldRef<"Setting", 'Json'>
   readonly createdAt: Prisma.FieldRef<"Setting", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Setting", 'DateTime'>
+  readonly workspaceId: Prisma.FieldRef<"Setting", 'String'>
 }
     
 
@@ -1766,25 +1766,6 @@ export type SettingDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Setting.customer
- */
-export type Setting$customerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Customer
-   */
-  select?: Prisma.CustomerSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Customer
-   */
-  omit?: Prisma.CustomerOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CustomerInclude<ExtArgs> | null
-  where?: Prisma.CustomerWhereInput
-}
-
-/**
  * Setting.card
  */
 export type Setting$cardArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1801,6 +1782,25 @@ export type Setting$cardArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   include?: Prisma.CardInclude<ExtArgs> | null
   where?: Prisma.CardWhereInput
+}
+
+/**
+ * Setting.customer
+ */
+export type Setting$customerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Customer
+   */
+  select?: Prisma.CustomerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Customer
+   */
+  omit?: Prisma.CustomerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CustomerInclude<ExtArgs> | null
+  where?: Prisma.CustomerWhereInput
 }
 
 /**

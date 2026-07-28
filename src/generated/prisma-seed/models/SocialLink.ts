@@ -256,8 +256,8 @@ export type SocialLinkWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"SocialLink"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SocialLink"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"SocialLink"> | Date | string | null
-  card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
   events?: Prisma.AnalyticsEventListRelationFilter
+  card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
 }
 
 export type SocialLinkOrderByWithRelationInput = {
@@ -271,8 +271,8 @@ export type SocialLinkOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  card?: Prisma.CardOrderByWithRelationInput
   events?: Prisma.AnalyticsEventOrderByRelationAggregateInput
+  card?: Prisma.CardOrderByWithRelationInput
 }
 
 export type SocialLinkWhereUniqueInput = Prisma.AtLeast<{
@@ -290,8 +290,8 @@ export type SocialLinkWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"SocialLink"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"SocialLink"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"SocialLink"> | Date | string | null
-  card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
   events?: Prisma.AnalyticsEventListRelationFilter
+  card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
 }, "id" | "cardId_position">
 
 export type SocialLinkOrderByWithAggregationInput = {
@@ -338,8 +338,8 @@ export type SocialLinkCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  card: Prisma.CardCreateNestedOneWithoutSocialLinksInput
   events?: Prisma.AnalyticsEventCreateNestedManyWithoutSocialLinkInput
+  card: Prisma.CardCreateNestedOneWithoutSocialLinksInput
 }
 
 export type SocialLinkUncheckedCreateInput = {
@@ -366,8 +366,8 @@ export type SocialLinkUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  card?: Prisma.CardUpdateOneRequiredWithoutSocialLinksNestedInput
   events?: Prisma.AnalyticsEventUpdateManyWithoutSocialLinkNestedInput
+  card?: Prisma.CardUpdateOneRequiredWithoutSocialLinksNestedInput
 }
 
 export type SocialLinkUncheckedUpdateInput = {
@@ -775,8 +775,8 @@ export type SocialLinkSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   events?: boolean | Prisma.SocialLink$eventsArgs<ExtArgs>
+  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.SocialLinkCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["socialLink"]>
 
@@ -823,8 +823,8 @@ export type SocialLinkSelectScalar = {
 
 export type SocialLinkOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cardId" | "platform" | "label" | "url" | "position" | "isVisible" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["socialLink"]>
 export type SocialLinkInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   events?: boolean | Prisma.SocialLink$eventsArgs<ExtArgs>
+  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.SocialLinkCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SocialLinkIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -837,8 +837,8 @@ export type SocialLinkIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type $SocialLinkPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "SocialLink"
   objects: {
-    card: Prisma.$CardPayload<ExtArgs>
     events: Prisma.$AnalyticsEventPayload<ExtArgs>[]
+    card: Prisma.$CardPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1245,8 +1245,8 @@ readonly fields: SocialLinkFieldRefs;
  */
 export interface Prisma__SocialLinkClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  card<T extends Prisma.CardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CardDefaultArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   events<T extends Prisma.SocialLink$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SocialLink$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  card<T extends Prisma.CardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CardDefaultArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

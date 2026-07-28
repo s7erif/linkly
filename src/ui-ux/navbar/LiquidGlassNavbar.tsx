@@ -135,7 +135,7 @@ function DesktopActions() {
   return (
     <div className={styles.actionsWrapper}>
       <LanguageSwitcher />
-      <Link href="/login" className={styles.navLink}>
+      <Link href="/login" className={`${styles.navLink} ${styles.desktopLoginLink}`}>
         {t("login", "navbar")}
       </Link>
       <Link href="/register" className={styles.ctaButton}>
@@ -290,17 +290,19 @@ export default function LiquidGlassNavbar({
           </Link>
 
           <DesktopNav />
-          <DesktopActions />
-
-          <button
-            type="button"
-            className={`${styles.hamburger} ${mobileOpen ? styles.open : ""}`}
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
-            aria-expanded={mobileOpen}
-          >
-            <HamburgerIcon open={mobileOpen} />
-          </button>
+          
+          <div className={styles.rightControls}>
+            <DesktopActions />
+            <button
+              type="button"
+              className={`${styles.hamburger} ${mobileOpen ? styles.open : ""}`}
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+              aria-expanded={mobileOpen}
+            >
+              <HamburgerIcon open={mobileOpen} />
+            </button>
+          </div>
         </nav>
       </motion.header>
 

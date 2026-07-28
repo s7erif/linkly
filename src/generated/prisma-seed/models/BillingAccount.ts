@@ -223,10 +223,10 @@ export type BillingAccountWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"BillingAccount"> | Date | string
   archivedAt?: Prisma.DateTimeNullableFilter<"BillingAccount"> | Date | string | null
   customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
-  workspaces?: Prisma.WorkspaceListRelationFilter
-  subscriptions?: Prisma.SubscriptionListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
+  subscriptions?: Prisma.SubscriptionListRelationFilter
+  workspaces?: Prisma.WorkspaceListRelationFilter
 }
 
 export type BillingAccountOrderByWithRelationInput = {
@@ -241,10 +241,10 @@ export type BillingAccountOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   archivedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   customer?: Prisma.CustomerOrderByWithRelationInput
-  workspaces?: Prisma.WorkspaceOrderByRelationAggregateInput
-  subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
   payments?: Prisma.PaymentOrderByRelationAggregateInput
+  subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
+  workspaces?: Prisma.WorkspaceOrderByRelationAggregateInput
 }
 
 export type BillingAccountWhereUniqueInput = Prisma.AtLeast<{
@@ -262,10 +262,10 @@ export type BillingAccountWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"BillingAccount"> | Date | string
   archivedAt?: Prisma.DateTimeNullableFilter<"BillingAccount"> | Date | string | null
   customer?: Prisma.XOR<Prisma.CustomerNullableScalarRelationFilter, Prisma.CustomerWhereInput> | null
-  workspaces?: Prisma.WorkspaceListRelationFilter
-  subscriptions?: Prisma.SubscriptionListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
+  subscriptions?: Prisma.SubscriptionListRelationFilter
+  workspaces?: Prisma.WorkspaceListRelationFilter
 }, "id">
 
 export type BillingAccountOrderByWithAggregationInput = {
@@ -311,10 +311,10 @@ export type BillingAccountCreateInput = {
   updatedAt?: Date | string
   archivedAt?: Date | string | null
   customer?: Prisma.CustomerCreateNestedOneWithoutBillingAccountsInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentCreateNestedManyWithoutBillingAccountInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
+  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUncheckedCreateInput = {
@@ -328,10 +328,10 @@ export type BillingAccountUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutBillingAccountInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUpdateInput = {
@@ -345,10 +345,10 @@ export type BillingAccountUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customer?: Prisma.CustomerUpdateOneWithoutBillingAccountsNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutBillingAccountNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
+  workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateInput = {
@@ -362,10 +362,10 @@ export type BillingAccountUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutBillingAccountNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountCreateManyInput = {
@@ -576,10 +576,10 @@ export type BillingAccountCreateWithoutCustomerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentCreateNestedManyWithoutBillingAccountInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
+  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUncheckedCreateWithoutCustomerInput = {
@@ -592,10 +592,10 @@ export type BillingAccountUncheckedCreateWithoutCustomerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutBillingAccountInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountCreateOrConnectWithoutCustomerInput = {
@@ -651,9 +651,9 @@ export type BillingAccountCreateWithoutWorkspacesInput = {
   updatedAt?: Date | string
   archivedAt?: Date | string | null
   customer?: Prisma.CustomerCreateNestedOneWithoutBillingAccountsInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentCreateNestedManyWithoutBillingAccountInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUncheckedCreateWithoutWorkspacesInput = {
@@ -667,9 +667,9 @@ export type BillingAccountUncheckedCreateWithoutWorkspacesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutBillingAccountInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountCreateOrConnectWithoutWorkspacesInput = {
@@ -699,9 +699,9 @@ export type BillingAccountUpdateWithoutWorkspacesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customer?: Prisma.CustomerUpdateOneWithoutBillingAccountsNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutBillingAccountNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateWithoutWorkspacesInput = {
@@ -715,9 +715,9 @@ export type BillingAccountUncheckedUpdateWithoutWorkspacesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutBillingAccountNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountCreateWithoutInvoicesInput = {
@@ -731,9 +731,9 @@ export type BillingAccountCreateWithoutInvoicesInput = {
   updatedAt?: Date | string
   archivedAt?: Date | string | null
   customer?: Prisma.CustomerCreateNestedOneWithoutBillingAccountsInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentCreateNestedManyWithoutBillingAccountInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
+  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUncheckedCreateWithoutInvoicesInput = {
@@ -747,9 +747,9 @@ export type BillingAccountUncheckedCreateWithoutInvoicesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutBillingAccountInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountCreateOrConnectWithoutInvoicesInput = {
@@ -779,9 +779,9 @@ export type BillingAccountUpdateWithoutInvoicesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customer?: Prisma.CustomerUpdateOneWithoutBillingAccountsNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutBillingAccountNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
+  workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateWithoutInvoicesInput = {
@@ -795,9 +795,9 @@ export type BillingAccountUncheckedUpdateWithoutInvoicesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutBillingAccountNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountCreateWithoutSubscriptionsInput = {
@@ -811,9 +811,9 @@ export type BillingAccountCreateWithoutSubscriptionsInput = {
   updatedAt?: Date | string
   archivedAt?: Date | string | null
   customer?: Prisma.CustomerCreateNestedOneWithoutBillingAccountsInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentCreateNestedManyWithoutBillingAccountInput
+  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUncheckedCreateWithoutSubscriptionsInput = {
@@ -827,9 +827,9 @@ export type BillingAccountUncheckedCreateWithoutSubscriptionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBillingAccountInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutBillingAccountInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountCreateOrConnectWithoutSubscriptionsInput = {
@@ -859,9 +859,9 @@ export type BillingAccountUpdateWithoutSubscriptionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customer?: Prisma.CustomerUpdateOneWithoutBillingAccountsNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutBillingAccountNestedInput
+  workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateWithoutSubscriptionsInput = {
@@ -875,9 +875,9 @@ export type BillingAccountUncheckedUpdateWithoutSubscriptionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutBillingAccountNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountCreateWithoutPaymentsInput = {
@@ -891,9 +891,9 @@ export type BillingAccountCreateWithoutPaymentsInput = {
   updatedAt?: Date | string
   archivedAt?: Date | string | null
   customer?: Prisma.CustomerCreateNestedOneWithoutBillingAccountsInput
-  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
-  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutBillingAccountInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutBillingAccountInput
+  workspaces?: Prisma.WorkspaceCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountUncheckedCreateWithoutPaymentsInput = {
@@ -907,9 +907,9 @@ export type BillingAccountUncheckedCreateWithoutPaymentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   archivedAt?: Date | string | null
-  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBillingAccountInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutBillingAccountInput
+  workspaces?: Prisma.WorkspaceUncheckedCreateNestedManyWithoutBillingAccountInput
 }
 
 export type BillingAccountCreateOrConnectWithoutPaymentsInput = {
@@ -939,9 +939,9 @@ export type BillingAccountUpdateWithoutPaymentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   customer?: Prisma.CustomerUpdateOneWithoutBillingAccountsNestedInput
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutBillingAccountNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
+  workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateWithoutPaymentsInput = {
@@ -955,9 +955,9 @@ export type BillingAccountUncheckedUpdateWithoutPaymentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBillingAccountNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountCreateManyCustomerInput = {
@@ -982,10 +982,10 @@ export type BillingAccountUpdateWithoutCustomerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutBillingAccountNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutBillingAccountNestedInput
+  workspaces?: Prisma.WorkspaceUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateWithoutCustomerInput = {
@@ -998,10 +998,10 @@ export type BillingAccountUncheckedUpdateWithoutCustomerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   archivedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBillingAccountNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutBillingAccountNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutBillingAccountNestedInput
+  workspaces?: Prisma.WorkspaceUncheckedUpdateManyWithoutBillingAccountNestedInput
 }
 
 export type BillingAccountUncheckedUpdateManyWithoutCustomerInput = {
@@ -1022,17 +1022,17 @@ export type BillingAccountUncheckedUpdateManyWithoutCustomerInput = {
  */
 
 export type BillingAccountCountOutputType = {
-  workspaces: number
-  subscriptions: number
   invoices: number
   payments: number
+  subscriptions: number
+  workspaces: number
 }
 
 export type BillingAccountCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  workspaces?: boolean | BillingAccountCountOutputTypeCountWorkspacesArgs
-  subscriptions?: boolean | BillingAccountCountOutputTypeCountSubscriptionsArgs
   invoices?: boolean | BillingAccountCountOutputTypeCountInvoicesArgs
   payments?: boolean | BillingAccountCountOutputTypeCountPaymentsArgs
+  subscriptions?: boolean | BillingAccountCountOutputTypeCountSubscriptionsArgs
+  workspaces?: boolean | BillingAccountCountOutputTypeCountWorkspacesArgs
 }
 
 /**
@@ -1043,20 +1043,6 @@ export type BillingAccountCountOutputTypeDefaultArgs<ExtArgs extends runtime.Typ
    * Select specific fields to fetch from the BillingAccountCountOutputType
    */
   select?: Prisma.BillingAccountCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * BillingAccountCountOutputType without action
- */
-export type BillingAccountCountOutputTypeCountWorkspacesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.WorkspaceWhereInput
-}
-
-/**
- * BillingAccountCountOutputType without action
- */
-export type BillingAccountCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SubscriptionWhereInput
 }
 
 /**
@@ -1073,6 +1059,20 @@ export type BillingAccountCountOutputTypeCountPaymentsArgs<ExtArgs extends runti
   where?: Prisma.PaymentWhereInput
 }
 
+/**
+ * BillingAccountCountOutputType without action
+ */
+export type BillingAccountCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriptionWhereInput
+}
+
+/**
+ * BillingAccountCountOutputType without action
+ */
+export type BillingAccountCountOutputTypeCountWorkspacesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WorkspaceWhereInput
+}
+
 
 export type BillingAccountSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1086,10 +1086,10 @@ export type BillingAccountSelect<ExtArgs extends runtime.Types.Extensions.Intern
   updatedAt?: boolean
   archivedAt?: boolean
   customer?: boolean | Prisma.BillingAccount$customerArgs<ExtArgs>
-  workspaces?: boolean | Prisma.BillingAccount$workspacesArgs<ExtArgs>
-  subscriptions?: boolean | Prisma.BillingAccount$subscriptionsArgs<ExtArgs>
   invoices?: boolean | Prisma.BillingAccount$invoicesArgs<ExtArgs>
   payments?: boolean | Prisma.BillingAccount$paymentsArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.BillingAccount$subscriptionsArgs<ExtArgs>
+  workspaces?: boolean | Prisma.BillingAccount$workspacesArgs<ExtArgs>
   _count?: boolean | Prisma.BillingAccountCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["billingAccount"]>
 
@@ -1137,10 +1137,10 @@ export type BillingAccountSelectScalar = {
 export type BillingAccountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customerId" | "displayName" | "billingEmail" | "countryCode" | "taxIdentifier" | "defaultCurrency" | "createdAt" | "updatedAt" | "archivedAt", ExtArgs["result"]["billingAccount"]>
 export type BillingAccountInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   customer?: boolean | Prisma.BillingAccount$customerArgs<ExtArgs>
-  workspaces?: boolean | Prisma.BillingAccount$workspacesArgs<ExtArgs>
-  subscriptions?: boolean | Prisma.BillingAccount$subscriptionsArgs<ExtArgs>
   invoices?: boolean | Prisma.BillingAccount$invoicesArgs<ExtArgs>
   payments?: boolean | Prisma.BillingAccount$paymentsArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.BillingAccount$subscriptionsArgs<ExtArgs>
+  workspaces?: boolean | Prisma.BillingAccount$workspacesArgs<ExtArgs>
   _count?: boolean | Prisma.BillingAccountCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BillingAccountIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1154,10 +1154,10 @@ export type $BillingAccountPayload<ExtArgs extends runtime.Types.Extensions.Inte
   name: "BillingAccount"
   objects: {
     customer: Prisma.$CustomerPayload<ExtArgs> | null
-    workspaces: Prisma.$WorkspacePayload<ExtArgs>[]
-    subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
     payments: Prisma.$PaymentPayload<ExtArgs>[]
+    subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
+    workspaces: Prisma.$WorkspacePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1565,10 +1565,10 @@ readonly fields: BillingAccountFieldRefs;
 export interface Prisma__BillingAccountClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   customer<T extends Prisma.BillingAccount$customerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BillingAccount$customerArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  workspaces<T extends Prisma.BillingAccount$workspacesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BillingAccount$workspacesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  subscriptions<T extends Prisma.BillingAccount$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BillingAccount$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.BillingAccount$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BillingAccount$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payments<T extends Prisma.BillingAccount$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BillingAccount$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscriptions<T extends Prisma.BillingAccount$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BillingAccount$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workspaces<T extends Prisma.BillingAccount$workspacesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BillingAccount$workspacesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2028,54 +2028,6 @@ export type BillingAccount$customerArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
- * BillingAccount.workspaces
- */
-export type BillingAccount$workspacesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Workspace
-   */
-  select?: Prisma.WorkspaceSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Workspace
-   */
-  omit?: Prisma.WorkspaceOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.WorkspaceInclude<ExtArgs> | null
-  where?: Prisma.WorkspaceWhereInput
-  orderBy?: Prisma.WorkspaceOrderByWithRelationInput | Prisma.WorkspaceOrderByWithRelationInput[]
-  cursor?: Prisma.WorkspaceWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.WorkspaceScalarFieldEnum | Prisma.WorkspaceScalarFieldEnum[]
-}
-
-/**
- * BillingAccount.subscriptions
- */
-export type BillingAccount$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Subscription
-   */
-  select?: Prisma.SubscriptionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Subscription
-   */
-  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SubscriptionInclude<ExtArgs> | null
-  where?: Prisma.SubscriptionWhereInput
-  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
-  cursor?: Prisma.SubscriptionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
-}
-
-/**
  * BillingAccount.invoices
  */
 export type BillingAccount$invoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2121,6 +2073,54 @@ export type BillingAccount$paymentsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
+}
+
+/**
+ * BillingAccount.subscriptions
+ */
+export type BillingAccount$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Subscription
+   */
+  select?: Prisma.SubscriptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Subscription
+   */
+  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriptionInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionWhereInput
+  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriptionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
+}
+
+/**
+ * BillingAccount.workspaces
+ */
+export type BillingAccount$workspacesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Workspace
+   */
+  select?: Prisma.WorkspaceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Workspace
+   */
+  omit?: Prisma.WorkspaceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkspaceInclude<ExtArgs> | null
+  where?: Prisma.WorkspaceWhereInput
+  orderBy?: Prisma.WorkspaceOrderByWithRelationInput | Prisma.WorkspaceOrderByWithRelationInput[]
+  cursor?: Prisma.WorkspaceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WorkspaceScalarFieldEnum | Prisma.WorkspaceScalarFieldEnum[]
 }
 
 /**

@@ -15,7 +15,7 @@
   min-height: 100svh;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 104px 64px 80px;
+  padding: 144px 64px 80px;
   background: transparent;
   overflow: hidden;
   isolation: isolate;
@@ -608,7 +608,7 @@
       "text"
       "visual";
     gap: 56px;
-    padding: 88px 32px 56px;
+    padding: 128px 32px 56px;
     max-width: 100%;
   }
 
@@ -664,7 +664,7 @@
       "text"
       "visual";
     gap: 40px;
-    padding: 80px 24px 48px;
+    padding: calc(128px + env(safe-area-inset-top)) 24px 48px;
     max-width: 100%;
   }
 
@@ -773,7 +773,7 @@
 
 @media (max-width: 380px) {
   .hero {
-    padding: 72px 16px 40px;
+    padding: calc(120px + env(safe-area-inset-top)) 16px 40px;
     gap: 32px;
   }
 

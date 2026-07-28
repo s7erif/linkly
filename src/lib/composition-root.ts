@@ -37,7 +37,6 @@ import { PrismaMediaRepository } from "@/repositories/media.repository";
 import { PrismaNfcCardRepository } from "@/repositories/nfc-card.repository";
 import { PrismaActivationRepository } from "@/repositories/activation.repository";
 import { MediaService } from "@/services/media.service";
-import { LocalStorageProvider } from "@/services/local-storage.provider";
 import { SupabaseStorageProvider } from "@/services/supabase-storage.provider";
 import { NotificationService } from "@/notifications/notification.service";
 import { ResendEmailProvider } from "@/notifications/resend-email.provider";
@@ -331,7 +330,7 @@ export const billingReadService = new BillingReadService(invoiceRepository, new 
 export const dashboardProjectionService = new DashboardProjectionService();
 
 const environment = getEnvironment();
-const storageProvider = environment.SUPABASE_URL && environment.SUPABASE_SERVICE_ROLE_KEY && environment.SUPABASE_STORAGE_BUCKET ? new SupabaseStorageProvider(environment) : new LocalStorageProvider();
+const storageProvider = new SupabaseStorageProvider(environment);
 export const mediaService = new MediaService(new PrismaMediaRepository(prisma), storageProvider);
 export const uploadCardAvatar = new UploadCardAvatar(unitOfWork, mediaService, secureSessionTokenGenerator);
 

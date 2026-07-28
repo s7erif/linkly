@@ -36,7 +36,6 @@ export type CardSumAggregateOutputType = {
 
 export type CardMinAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   customerId: string | null
   orderId: string | null
   slug: string | null
@@ -50,11 +49,11 @@ export type CardMinAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
+  workspaceId: string | null
 }
 
 export type CardMaxAggregateOutputType = {
   id: string | null
-  workspaceId: string | null
   customerId: string | null
   orderId: string | null
   slug: string | null
@@ -68,11 +67,11 @@ export type CardMaxAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
+  workspaceId: string | null
 }
 
 export type CardCountAggregateOutputType = {
   id: number
-  workspaceId: number
   customerId: number
   orderId: number
   slug: number
@@ -87,6 +86,7 @@ export type CardCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   deletedAt: number
+  workspaceId: number
   _all: number
 }
 
@@ -101,7 +101,6 @@ export type CardSumAggregateInputType = {
 
 export type CardMinAggregateInputType = {
   id?: true
-  workspaceId?: true
   customerId?: true
   orderId?: true
   slug?: true
@@ -115,11 +114,11 @@ export type CardMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  workspaceId?: true
 }
 
 export type CardMaxAggregateInputType = {
   id?: true
-  workspaceId?: true
   customerId?: true
   orderId?: true
   slug?: true
@@ -133,11 +132,11 @@ export type CardMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  workspaceId?: true
 }
 
 export type CardCountAggregateInputType = {
   id?: true
-  workspaceId?: true
   customerId?: true
   orderId?: true
   slug?: true
@@ -152,6 +151,7 @@ export type CardCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  workspaceId?: true
   _all?: true
 }
 
@@ -243,7 +243,6 @@ export type CardGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type CardGroupByOutputType = {
   id: string
-  workspaceId: string
   customerId: string
   orderId: string | null
   slug: string
@@ -258,6 +257,7 @@ export type CardGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
+  workspaceId: string
   _count: CardCountAggregateOutputType | null
   _avg: CardAvgAggregateOutputType | null
   _sum: CardSumAggregateOutputType | null
@@ -285,7 +285,6 @@ export type CardWhereInput = {
   OR?: Prisma.CardWhereInput[]
   NOT?: Prisma.CardWhereInput | Prisma.CardWhereInput[]
   id?: Prisma.UuidFilter<"Card"> | string
-  workspaceId?: Prisma.UuidFilter<"Card"> | string
   customerId?: Prisma.UuidFilter<"Card"> | string
   orderId?: Prisma.UuidNullableFilter<"Card"> | string | null
   slug?: Prisma.StringFilter<"Card"> | string
@@ -300,28 +299,28 @@ export type CardWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Card"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Card"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Card"> | Date | string | null
+  workspaceId?: Prisma.UuidFilter<"Card"> | string
+  accessCodes?: Prisma.XOR<Prisma.AccessCodeNullableScalarRelationFilter, Prisma.AccessCodeWhereInput> | null
+  events?: Prisma.AnalyticsEventListRelationFilter
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
   order?: Prisma.XOR<Prisma.OrderNullableScalarRelationFilter, Prisma.OrderWhereInput> | null
-  profile?: Prisma.XOR<Prisma.CardProfileNullableScalarRelationFilter, Prisma.CardProfileWhereInput> | null
-  buttons?: Prisma.CardButtonListRelationFilter
-  socialLinks?: Prisma.SocialLinkListRelationFilter
-  sections?: Prisma.CardSectionListRelationFilter
-  blocks?: Prisma.CardBlockListRelationFilter
-  accessCodes?: Prisma.AccessCodeListRelationFilter
-  editorSessions?: Prisma.EditorSessionListRelationFilter
-  media?: Prisma.CardMediaListRelationFilter
-  events?: Prisma.AnalyticsEventListRelationFilter
-  legacyIdentifiers?: Prisma.LegacyIdentifierListRelationFilter
-  settings?: Prisma.SettingListRelationFilter
-  notifications?: Prisma.NotificationDeliveryListRelationFilter
-  nfcCards?: Prisma.NfcCardListRelationFilter
-  workspace?: Prisma.XOR<Prisma.WorkspaceNullableScalarRelationFilter, Prisma.WorkspaceWhereInput> | null
   tenantWorkspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
+  blocks?: Prisma.CardBlockListRelationFilter
+  buttons?: Prisma.CardButtonListRelationFilter
+  media?: Prisma.CardMediaListRelationFilter
+  profile?: Prisma.XOR<Prisma.CardProfileNullableScalarRelationFilter, Prisma.CardProfileWhereInput> | null
+  sections?: Prisma.CardSectionListRelationFilter
+  socialLinks?: Prisma.SocialLinkListRelationFilter
+  editorSessions?: Prisma.EditorSessionListRelationFilter
+  legacyIdentifiers?: Prisma.LegacyIdentifierListRelationFilter
+  nfcCards?: Prisma.NfcCardListRelationFilter
+  notifications?: Prisma.NotificationDeliveryListRelationFilter
+  settings?: Prisma.SettingListRelationFilter
+  workspace?: Prisma.XOR<Prisma.WorkspaceNullableScalarRelationFilter, Prisma.WorkspaceWhereInput> | null
 }
 
 export type CardOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   orderId?: Prisma.SortOrderInput | Prisma.SortOrder
   slug?: Prisma.SortOrder
@@ -336,23 +335,24 @@ export type CardOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
+  accessCodes?: Prisma.AccessCodeOrderByWithRelationInput
+  events?: Prisma.AnalyticsEventOrderByRelationAggregateInput
   customer?: Prisma.CustomerOrderByWithRelationInput
   order?: Prisma.OrderOrderByWithRelationInput
-  profile?: Prisma.CardProfileOrderByWithRelationInput
-  buttons?: Prisma.CardButtonOrderByRelationAggregateInput
-  socialLinks?: Prisma.SocialLinkOrderByRelationAggregateInput
-  sections?: Prisma.CardSectionOrderByRelationAggregateInput
-  blocks?: Prisma.CardBlockOrderByRelationAggregateInput
-  accessCodes?: Prisma.AccessCodeOrderByRelationAggregateInput
-  editorSessions?: Prisma.EditorSessionOrderByRelationAggregateInput
-  media?: Prisma.CardMediaOrderByRelationAggregateInput
-  events?: Prisma.AnalyticsEventOrderByRelationAggregateInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierOrderByRelationAggregateInput
-  settings?: Prisma.SettingOrderByRelationAggregateInput
-  notifications?: Prisma.NotificationDeliveryOrderByRelationAggregateInput
-  nfcCards?: Prisma.NfcCardOrderByRelationAggregateInput
-  workspace?: Prisma.WorkspaceOrderByWithRelationInput
   tenantWorkspace?: Prisma.WorkspaceOrderByWithRelationInput
+  blocks?: Prisma.CardBlockOrderByRelationAggregateInput
+  buttons?: Prisma.CardButtonOrderByRelationAggregateInput
+  media?: Prisma.CardMediaOrderByRelationAggregateInput
+  profile?: Prisma.CardProfileOrderByWithRelationInput
+  sections?: Prisma.CardSectionOrderByRelationAggregateInput
+  socialLinks?: Prisma.SocialLinkOrderByRelationAggregateInput
+  editorSessions?: Prisma.EditorSessionOrderByRelationAggregateInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierOrderByRelationAggregateInput
+  nfcCards?: Prisma.NfcCardOrderByRelationAggregateInput
+  notifications?: Prisma.NotificationDeliveryOrderByRelationAggregateInput
+  settings?: Prisma.SettingOrderByRelationAggregateInput
+  workspace?: Prisma.WorkspaceOrderByWithRelationInput
 }
 
 export type CardWhereUniqueInput = Prisma.AtLeast<{
@@ -362,7 +362,6 @@ export type CardWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.CardWhereInput | Prisma.CardWhereInput[]
   OR?: Prisma.CardWhereInput[]
   NOT?: Prisma.CardWhereInput | Prisma.CardWhereInput[]
-  workspaceId?: Prisma.UuidFilter<"Card"> | string
   customerId?: Prisma.UuidFilter<"Card"> | string
   orderId?: Prisma.UuidNullableFilter<"Card"> | string | null
   name?: Prisma.StringFilter<"Card"> | string
@@ -376,28 +375,28 @@ export type CardWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Card"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Card"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Card"> | Date | string | null
+  workspaceId?: Prisma.UuidFilter<"Card"> | string
+  accessCodes?: Prisma.XOR<Prisma.AccessCodeNullableScalarRelationFilter, Prisma.AccessCodeWhereInput> | null
+  events?: Prisma.AnalyticsEventListRelationFilter
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
   order?: Prisma.XOR<Prisma.OrderNullableScalarRelationFilter, Prisma.OrderWhereInput> | null
-  profile?: Prisma.XOR<Prisma.CardProfileNullableScalarRelationFilter, Prisma.CardProfileWhereInput> | null
-  buttons?: Prisma.CardButtonListRelationFilter
-  socialLinks?: Prisma.SocialLinkListRelationFilter
-  sections?: Prisma.CardSectionListRelationFilter
-  blocks?: Prisma.CardBlockListRelationFilter
-  accessCodes?: Prisma.AccessCodeListRelationFilter
-  editorSessions?: Prisma.EditorSessionListRelationFilter
-  media?: Prisma.CardMediaListRelationFilter
-  events?: Prisma.AnalyticsEventListRelationFilter
-  legacyIdentifiers?: Prisma.LegacyIdentifierListRelationFilter
-  settings?: Prisma.SettingListRelationFilter
-  notifications?: Prisma.NotificationDeliveryListRelationFilter
-  nfcCards?: Prisma.NfcCardListRelationFilter
-  workspace?: Prisma.XOR<Prisma.WorkspaceNullableScalarRelationFilter, Prisma.WorkspaceWhereInput> | null
   tenantWorkspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
+  blocks?: Prisma.CardBlockListRelationFilter
+  buttons?: Prisma.CardButtonListRelationFilter
+  media?: Prisma.CardMediaListRelationFilter
+  profile?: Prisma.XOR<Prisma.CardProfileNullableScalarRelationFilter, Prisma.CardProfileWhereInput> | null
+  sections?: Prisma.CardSectionListRelationFilter
+  socialLinks?: Prisma.SocialLinkListRelationFilter
+  editorSessions?: Prisma.EditorSessionListRelationFilter
+  legacyIdentifiers?: Prisma.LegacyIdentifierListRelationFilter
+  nfcCards?: Prisma.NfcCardListRelationFilter
+  notifications?: Prisma.NotificationDeliveryListRelationFilter
+  settings?: Prisma.SettingListRelationFilter
+  workspace?: Prisma.XOR<Prisma.WorkspaceNullableScalarRelationFilter, Prisma.WorkspaceWhereInput> | null
 }, "id" | "slug" | "workspaceId_slug">
 
 export type CardOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   orderId?: Prisma.SortOrderInput | Prisma.SortOrder
   slug?: Prisma.SortOrder
@@ -412,6 +411,7 @@ export type CardOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
   _count?: Prisma.CardCountOrderByAggregateInput
   _avg?: Prisma.CardAvgOrderByAggregateInput
   _max?: Prisma.CardMaxOrderByAggregateInput
@@ -424,7 +424,6 @@ export type CardScalarWhereWithAggregatesInput = {
   OR?: Prisma.CardScalarWhereWithAggregatesInput[]
   NOT?: Prisma.CardScalarWhereWithAggregatesInput | Prisma.CardScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Card"> | string
-  workspaceId?: Prisma.UuidWithAggregatesFilter<"Card"> | string
   customerId?: Prisma.UuidWithAggregatesFilter<"Card"> | string
   orderId?: Prisma.UuidNullableWithAggregatesFilter<"Card"> | string | null
   slug?: Prisma.StringWithAggregatesFilter<"Card"> | string
@@ -439,6 +438,7 @@ export type CardScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Card"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Card"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Card"> | Date | string | null
+  workspaceId?: Prisma.UuidWithAggregatesFilter<"Card"> | string
 }
 
 export type CardCreateInput = {
@@ -455,28 +455,27 @@ export type CardCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -491,19 +490,20 @@ export type CardUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -521,28 +521,27 @@ export type CardUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -557,25 +556,25 @@ export type CardUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardCreateManyInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -590,6 +589,7 @@ export type CardCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
 }
 
 export type CardUpdateManyMutationInput = {
@@ -610,7 +610,6 @@ export type CardUpdateManyMutationInput = {
 
 export type CardUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -625,6 +624,7 @@ export type CardUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CardListRelationFilter = {
@@ -649,7 +649,6 @@ export type CardWorkspaceIdSlugCompoundUniqueInput = {
 
 export type CardCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   slug?: Prisma.SortOrder
@@ -664,6 +663,7 @@ export type CardCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type CardAvgOrderByAggregateInput = {
@@ -672,7 +672,6 @@ export type CardAvgOrderByAggregateInput = {
 
 export type CardMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   slug?: Prisma.SortOrder
@@ -686,11 +685,11 @@ export type CardMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type CardMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   slug?: Prisma.SortOrder
@@ -704,6 +703,7 @@ export type CardMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  workspaceId?: Prisma.SortOrder
 }
 
 export type CardSumOrderByAggregateInput = {
@@ -773,12 +773,6 @@ export type CardUpdateOneWithoutNfcCardsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CardUpdateToOneWithWhereWithoutNfcCardsInput, Prisma.CardUpdateWithoutNfcCardsInput>, Prisma.CardUncheckedUpdateWithoutNfcCardsInput>
 }
 
-export type CardCreateNestedOneWithoutWorkspaceInput = {
-  create?: Prisma.XOR<Prisma.CardCreateWithoutWorkspaceInput, Prisma.CardUncheckedCreateWithoutWorkspaceInput>
-  connectOrCreate?: Prisma.CardCreateOrConnectWithoutWorkspaceInput
-  connect?: Prisma.CardWhereUniqueInput
-}
-
 export type CardCreateNestedManyWithoutTenantWorkspaceInput = {
   create?: Prisma.XOR<Prisma.CardCreateWithoutTenantWorkspaceInput, Prisma.CardUncheckedCreateWithoutTenantWorkspaceInput> | Prisma.CardCreateWithoutTenantWorkspaceInput[] | Prisma.CardUncheckedCreateWithoutTenantWorkspaceInput[]
   connectOrCreate?: Prisma.CardCreateOrConnectWithoutTenantWorkspaceInput | Prisma.CardCreateOrConnectWithoutTenantWorkspaceInput[]
@@ -786,21 +780,17 @@ export type CardCreateNestedManyWithoutTenantWorkspaceInput = {
   connect?: Prisma.CardWhereUniqueInput | Prisma.CardWhereUniqueInput[]
 }
 
+export type CardCreateNestedOneWithoutWorkspaceInput = {
+  create?: Prisma.XOR<Prisma.CardCreateWithoutWorkspaceInput, Prisma.CardUncheckedCreateWithoutWorkspaceInput>
+  connectOrCreate?: Prisma.CardCreateOrConnectWithoutWorkspaceInput
+  connect?: Prisma.CardWhereUniqueInput
+}
+
 export type CardUncheckedCreateNestedManyWithoutTenantWorkspaceInput = {
   create?: Prisma.XOR<Prisma.CardCreateWithoutTenantWorkspaceInput, Prisma.CardUncheckedCreateWithoutTenantWorkspaceInput> | Prisma.CardCreateWithoutTenantWorkspaceInput[] | Prisma.CardUncheckedCreateWithoutTenantWorkspaceInput[]
   connectOrCreate?: Prisma.CardCreateOrConnectWithoutTenantWorkspaceInput | Prisma.CardCreateOrConnectWithoutTenantWorkspaceInput[]
   createMany?: Prisma.CardCreateManyTenantWorkspaceInputEnvelope
   connect?: Prisma.CardWhereUniqueInput | Prisma.CardWhereUniqueInput[]
-}
-
-export type CardUpdateOneWithoutWorkspaceNestedInput = {
-  create?: Prisma.XOR<Prisma.CardCreateWithoutWorkspaceInput, Prisma.CardUncheckedCreateWithoutWorkspaceInput>
-  connectOrCreate?: Prisma.CardCreateOrConnectWithoutWorkspaceInput
-  upsert?: Prisma.CardUpsertWithoutWorkspaceInput
-  disconnect?: Prisma.CardWhereInput | boolean
-  delete?: Prisma.CardWhereInput | boolean
-  connect?: Prisma.CardWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CardUpdateToOneWithWhereWithoutWorkspaceInput, Prisma.CardUpdateWithoutWorkspaceInput>, Prisma.CardUncheckedUpdateWithoutWorkspaceInput>
 }
 
 export type CardUpdateManyWithoutTenantWorkspaceNestedInput = {
@@ -815,6 +805,16 @@ export type CardUpdateManyWithoutTenantWorkspaceNestedInput = {
   update?: Prisma.CardUpdateWithWhereUniqueWithoutTenantWorkspaceInput | Prisma.CardUpdateWithWhereUniqueWithoutTenantWorkspaceInput[]
   updateMany?: Prisma.CardUpdateManyWithWhereWithoutTenantWorkspaceInput | Prisma.CardUpdateManyWithWhereWithoutTenantWorkspaceInput[]
   deleteMany?: Prisma.CardScalarWhereInput | Prisma.CardScalarWhereInput[]
+}
+
+export type CardUpdateOneWithoutWorkspaceNestedInput = {
+  create?: Prisma.XOR<Prisma.CardCreateWithoutWorkspaceInput, Prisma.CardUncheckedCreateWithoutWorkspaceInput>
+  connectOrCreate?: Prisma.CardCreateOrConnectWithoutWorkspaceInput
+  upsert?: Prisma.CardUpsertWithoutWorkspaceInput
+  disconnect?: Prisma.CardWhereInput | boolean
+  delete?: Prisma.CardWhereInput | boolean
+  connect?: Prisma.CardWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CardUpdateToOneWithWhereWithoutWorkspaceInput, Prisma.CardUpdateWithoutWorkspaceInput>, Prisma.CardUncheckedUpdateWithoutWorkspaceInput>
 }
 
 export type CardUncheckedUpdateManyWithoutTenantWorkspaceNestedInput = {
@@ -1067,27 +1067,26 @@ export type CardCreateWithoutCustomerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
+  order?: Prisma.OrderCreateNestedOneWithoutCardsInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutCustomerInput = {
   id?: string
-  workspaceId: string
   orderId?: string | null
   slug: string
   name: string
@@ -1101,19 +1100,20 @@ export type CardUncheckedCreateWithoutCustomerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -1148,7 +1148,6 @@ export type CardScalarWhereInput = {
   OR?: Prisma.CardScalarWhereInput[]
   NOT?: Prisma.CardScalarWhereInput | Prisma.CardScalarWhereInput[]
   id?: Prisma.UuidFilter<"Card"> | string
-  workspaceId?: Prisma.UuidFilter<"Card"> | string
   customerId?: Prisma.UuidFilter<"Card"> | string
   orderId?: Prisma.UuidNullableFilter<"Card"> | string | null
   slug?: Prisma.StringFilter<"Card"> | string
@@ -1163,6 +1162,7 @@ export type CardScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Card"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Card"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Card"> | Date | string | null
+  workspaceId?: Prisma.UuidFilter<"Card"> | string
 }
 
 export type CardCreateWithoutNfcCardsInput = {
@@ -1179,27 +1179,26 @@ export type CardCreateWithoutNfcCardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutNfcCardsInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -1214,18 +1213,19 @@ export type CardUncheckedCreateWithoutNfcCardsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -1259,27 +1259,26 @@ export type CardUpdateWithoutNfcCardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutNfcCardsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1294,88 +1293,20 @@ export type CardUncheckedUpdateWithoutNfcCardsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
-}
-
-export type CardCreateWithoutWorkspaceInput = {
-  id?: string
-  slug: string
-  name: string
-  status?: $Enums.CardStatus
-  visibility?: $Enums.CardVisibility
-  publishedAt?: Date | string | null
-  accessVersion?: number
-  themeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  seoTitle?: string | null
-  seoDescription?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
-  order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
-}
-
-export type CardUncheckedCreateWithoutWorkspaceInput = {
-  id?: string
-  workspaceId: string
-  customerId: string
-  orderId?: string | null
-  slug: string
-  name: string
-  status?: $Enums.CardStatus
-  visibility?: $Enums.CardVisibility
-  publishedAt?: Date | string | null
-  accessVersion?: number
-  themeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  seoTitle?: string | null
-  seoDescription?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
-}
-
-export type CardCreateOrConnectWithoutWorkspaceInput = {
-  where: Prisma.CardWhereUniqueInput
-  create: Prisma.XOR<Prisma.CardCreateWithoutWorkspaceInput, Prisma.CardUncheckedCreateWithoutWorkspaceInput>
 }
 
 export type CardCreateWithoutTenantWorkspaceInput = {
@@ -1392,21 +1323,21 @@ export type CardCreateWithoutTenantWorkspaceInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
   blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
   media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -1426,19 +1357,19 @@ export type CardUncheckedCreateWithoutTenantWorkspaceInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -1450,6 +1381,91 @@ export type CardCreateOrConnectWithoutTenantWorkspaceInput = {
 export type CardCreateManyTenantWorkspaceInputEnvelope = {
   data: Prisma.CardCreateManyTenantWorkspaceInput | Prisma.CardCreateManyTenantWorkspaceInput[]
   skipDuplicates?: boolean
+}
+
+export type CardCreateWithoutWorkspaceInput = {
+  id?: string
+  slug: string
+  name: string
+  status?: $Enums.CardStatus
+  visibility?: $Enums.CardVisibility
+  publishedAt?: Date | string | null
+  accessVersion?: number
+  themeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  seoTitle?: string | null
+  seoDescription?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
+  customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
+  order?: Prisma.OrderCreateNestedOneWithoutCardsInput
+  tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+}
+
+export type CardUncheckedCreateWithoutWorkspaceInput = {
+  id?: string
+  customerId: string
+  orderId?: string | null
+  slug: string
+  name: string
+  status?: $Enums.CardStatus
+  visibility?: $Enums.CardVisibility
+  publishedAt?: Date | string | null
+  accessVersion?: number
+  themeConfig?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  seoTitle?: string | null
+  seoDescription?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
+}
+
+export type CardCreateOrConnectWithoutWorkspaceInput = {
+  where: Prisma.CardWhereUniqueInput
+  create: Prisma.XOR<Prisma.CardCreateWithoutWorkspaceInput, Prisma.CardUncheckedCreateWithoutWorkspaceInput>
+}
+
+export type CardUpsertWithWhereUniqueWithoutTenantWorkspaceInput = {
+  where: Prisma.CardWhereUniqueInput
+  update: Prisma.XOR<Prisma.CardUpdateWithoutTenantWorkspaceInput, Prisma.CardUncheckedUpdateWithoutTenantWorkspaceInput>
+  create: Prisma.XOR<Prisma.CardCreateWithoutTenantWorkspaceInput, Prisma.CardUncheckedCreateWithoutTenantWorkspaceInput>
+}
+
+export type CardUpdateWithWhereUniqueWithoutTenantWorkspaceInput = {
+  where: Prisma.CardWhereUniqueInput
+  data: Prisma.XOR<Prisma.CardUpdateWithoutTenantWorkspaceInput, Prisma.CardUncheckedUpdateWithoutTenantWorkspaceInput>
+}
+
+export type CardUpdateManyWithWhereWithoutTenantWorkspaceInput = {
+  where: Prisma.CardScalarWhereInput
+  data: Prisma.XOR<Prisma.CardUpdateManyMutationInput, Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceInput>
 }
 
 export type CardUpsertWithoutWorkspaceInput = {
@@ -1477,27 +1493,26 @@ export type CardUpdateWithoutWorkspaceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1512,35 +1527,20 @@ export type CardUncheckedUpdateWithoutWorkspaceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
-}
-
-export type CardUpsertWithWhereUniqueWithoutTenantWorkspaceInput = {
-  where: Prisma.CardWhereUniqueInput
-  update: Prisma.XOR<Prisma.CardUpdateWithoutTenantWorkspaceInput, Prisma.CardUncheckedUpdateWithoutTenantWorkspaceInput>
-  create: Prisma.XOR<Prisma.CardCreateWithoutTenantWorkspaceInput, Prisma.CardUncheckedCreateWithoutTenantWorkspaceInput>
-}
-
-export type CardUpdateWithWhereUniqueWithoutTenantWorkspaceInput = {
-  where: Prisma.CardWhereUniqueInput
-  data: Prisma.XOR<Prisma.CardUpdateWithoutTenantWorkspaceInput, Prisma.CardUncheckedUpdateWithoutTenantWorkspaceInput>
-}
-
-export type CardUpdateManyWithWhereWithoutTenantWorkspaceInput = {
-  where: Prisma.CardScalarWhereInput
-  data: Prisma.XOR<Prisma.CardUpdateManyMutationInput, Prisma.CardUncheckedUpdateManyWithoutTenantWorkspaceInput>
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
 }
 
 export type CardCreateWithoutOrderInput = {
@@ -1557,27 +1557,26 @@ export type CardCreateWithoutOrderInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
+  customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutOrderInput = {
   id?: string
-  workspaceId: string
   customerId: string
   slug: string
   name: string
@@ -1591,19 +1590,20 @@ export type CardUncheckedCreateWithoutOrderInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -1647,27 +1647,26 @@ export type CardCreateWithoutProfileInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutProfileInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -1682,18 +1681,19 @@ export type CardUncheckedCreateWithoutProfileInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -1727,27 +1727,26 @@ export type CardUpdateWithoutProfileInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutProfileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1762,18 +1761,19 @@ export type CardUncheckedUpdateWithoutProfileInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
@@ -1791,27 +1791,26 @@ export type CardCreateWithoutSectionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutSectionsInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -1826,18 +1825,19 @@ export type CardUncheckedCreateWithoutSectionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -1871,27 +1871,26 @@ export type CardUpdateWithoutSectionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutSectionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1906,18 +1905,19 @@ export type CardUncheckedUpdateWithoutSectionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
@@ -1935,27 +1935,26 @@ export type CardCreateWithoutBlocksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutBlocksInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -1970,18 +1969,19 @@ export type CardUncheckedCreateWithoutBlocksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -2015,27 +2015,26 @@ export type CardUpdateWithoutBlocksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutBlocksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2050,18 +2049,19 @@ export type CardUncheckedUpdateWithoutBlocksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
@@ -2079,27 +2079,26 @@ export type CardCreateWithoutSocialLinksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutSocialLinksInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -2114,18 +2113,19 @@ export type CardUncheckedCreateWithoutSocialLinksInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -2159,27 +2159,26 @@ export type CardUpdateWithoutSocialLinksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutSocialLinksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2194,18 +2193,19 @@ export type CardUncheckedUpdateWithoutSocialLinksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
@@ -2223,27 +2223,26 @@ export type CardCreateWithoutButtonsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutButtonsInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -2258,18 +2257,19 @@ export type CardUncheckedCreateWithoutButtonsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -2303,27 +2303,26 @@ export type CardUpdateWithoutButtonsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutButtonsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2338,18 +2337,19 @@ export type CardUncheckedUpdateWithoutButtonsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
@@ -2367,27 +2367,26 @@ export type CardCreateWithoutAccessCodesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutAccessCodesInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -2402,18 +2401,19 @@ export type CardUncheckedCreateWithoutAccessCodesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -2447,27 +2447,26 @@ export type CardUpdateWithoutAccessCodesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutAccessCodesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2482,18 +2481,19 @@ export type CardUncheckedUpdateWithoutAccessCodesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
@@ -2511,27 +2511,26 @@ export type CardCreateWithoutEditorSessionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutEditorSessionsInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -2546,18 +2545,19 @@ export type CardUncheckedCreateWithoutEditorSessionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -2591,27 +2591,26 @@ export type CardUpdateWithoutEditorSessionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutEditorSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2626,18 +2625,19 @@ export type CardUncheckedUpdateWithoutEditorSessionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
@@ -2655,27 +2655,26 @@ export type CardCreateWithoutMediaInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutMediaInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -2690,18 +2689,19 @@ export type CardUncheckedCreateWithoutMediaInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -2735,27 +2735,26 @@ export type CardUpdateWithoutMediaInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutMediaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2770,18 +2769,19 @@ export type CardUncheckedUpdateWithoutMediaInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
@@ -2799,27 +2799,26 @@ export type CardCreateWithoutEventsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutEventsInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -2834,18 +2833,19 @@ export type CardUncheckedCreateWithoutEventsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
   media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -2879,27 +2879,26 @@ export type CardUpdateWithoutEventsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutEventsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2914,18 +2913,19 @@ export type CardUncheckedUpdateWithoutEventsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
   media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
@@ -2943,27 +2943,26 @@ export type CardCreateWithoutNotificationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutNotificationsInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -2978,18 +2977,19 @@ export type CardUncheckedCreateWithoutNotificationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -3023,27 +3023,26 @@ export type CardUpdateWithoutNotificationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutNotificationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3058,18 +3057,19 @@ export type CardUncheckedUpdateWithoutNotificationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
@@ -3087,27 +3087,26 @@ export type CardCreateWithoutSettingsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutSettingsInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -3122,18 +3121,19 @@ export type CardUncheckedCreateWithoutSettingsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -3167,27 +3167,26 @@ export type CardUpdateWithoutSettingsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutSettingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3202,18 +3201,19 @@ export type CardUncheckedUpdateWithoutSettingsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
@@ -3231,27 +3231,26 @@ export type CardCreateWithoutLegacyIdentifiersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  accessCodes?: Prisma.AccessCodeCreateNestedOneWithoutCardInput
+  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
   customer: Prisma.CustomerCreateNestedOneWithoutCardsInput
   order?: Prisma.OrderCreateNestedOneWithoutCardsInput
-  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
-  events?: Prisma.AnalyticsEventCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
-  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
-  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
   tenantWorkspace: Prisma.WorkspaceCreateNestedOneWithoutCardsInput
+  blocks?: Prisma.CardBlockCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionCreateNestedManyWithoutCardInput
+  nfcCards?: Prisma.NfcCardCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingCreateNestedManyWithoutCardInput
+  workspace?: Prisma.WorkspaceCreateNestedOneWithoutPrimaryCardInput
 }
 
 export type CardUncheckedCreateWithoutLegacyIdentifiersInput = {
   id?: string
-  workspaceId: string
   customerId: string
   orderId?: string | null
   slug: string
@@ -3266,18 +3265,19 @@ export type CardUncheckedCreateWithoutLegacyIdentifiersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
-  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
-  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
-  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
-  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
-  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedManyWithoutCardInput
-  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
-  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  workspaceId: string
+  accessCodes?: Prisma.AccessCodeUncheckedCreateNestedOneWithoutCardInput
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutCardInput
-  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
-  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  blocks?: Prisma.CardBlockUncheckedCreateNestedManyWithoutCardInput
+  buttons?: Prisma.CardButtonUncheckedCreateNestedManyWithoutCardInput
+  media?: Prisma.CardMediaUncheckedCreateNestedManyWithoutCardInput
+  profile?: Prisma.CardProfileUncheckedCreateNestedOneWithoutCardInput
+  sections?: Prisma.CardSectionUncheckedCreateNestedManyWithoutCardInput
+  socialLinks?: Prisma.SocialLinkUncheckedCreateNestedManyWithoutCardInput
+  editorSessions?: Prisma.EditorSessionUncheckedCreateNestedManyWithoutCardInput
   nfcCards?: Prisma.NfcCardUncheckedCreateNestedManyWithoutCardInput
+  notifications?: Prisma.NotificationDeliveryUncheckedCreateNestedManyWithoutCardInput
+  settings?: Prisma.SettingUncheckedCreateNestedManyWithoutCardInput
   workspace?: Prisma.WorkspaceUncheckedCreateNestedOneWithoutPrimaryCardInput
 }
 
@@ -3311,27 +3311,26 @@ export type CardUpdateWithoutLegacyIdentifiersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutLegacyIdentifiersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3346,24 +3345,24 @@ export type CardUncheckedUpdateWithoutLegacyIdentifiersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardCreateManyCustomerInput = {
   id?: string
-  workspaceId: string
   orderId?: string | null
   slug: string
   name: string
@@ -3377,6 +3376,7 @@ export type CardCreateManyCustomerInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
 }
 
 export type CardUpdateWithoutCustomerInput = {
@@ -3393,27 +3393,26 @@ export type CardUpdateWithoutCustomerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
+  order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3427,25 +3426,25 @@ export type CardUncheckedUpdateWithoutCustomerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateManyWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3459,6 +3458,7 @@ export type CardUncheckedUpdateManyWithoutCustomerInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CardCreateManyTenantWorkspaceInput = {
@@ -3493,21 +3493,21 @@ export type CardUpdateWithoutTenantWorkspaceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
+  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   order?: Prisma.OrderUpdateOneWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
   blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
   media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
-  events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
@@ -3527,19 +3527,19 @@ export type CardUncheckedUpdateWithoutTenantWorkspaceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
@@ -3563,7 +3563,6 @@ export type CardUncheckedUpdateManyWithoutTenantWorkspaceInput = {
 
 export type CardCreateManyOrderInput = {
   id?: string
-  workspaceId: string
   customerId: string
   slug: string
   name: string
@@ -3577,6 +3576,7 @@ export type CardCreateManyOrderInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  workspaceId: string
 }
 
 export type CardUpdateWithoutOrderInput = {
@@ -3593,27 +3593,26 @@ export type CardUpdateWithoutOrderInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
-  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  accessCodes?: Prisma.AccessCodeUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUpdateManyWithoutCardNestedInput
-  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
-  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
+  customer?: Prisma.CustomerUpdateOneRequiredWithoutCardsNestedInput
   tenantWorkspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCardsNestedInput
+  blocks?: Prisma.CardBlockUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUpdateManyWithoutCardNestedInput
+  legacyIdentifiers?: Prisma.LegacyIdentifierUpdateManyWithoutCardNestedInput
+  nfcCards?: Prisma.NfcCardUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUpdateManyWithoutCardNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3627,25 +3626,25 @@ export type CardUncheckedUpdateWithoutOrderInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
-  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
-  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
-  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
-  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
-  accessCodes?: Prisma.AccessCodeUncheckedUpdateManyWithoutCardNestedInput
-  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
-  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  accessCodes?: Prisma.AccessCodeUncheckedUpdateOneWithoutCardNestedInput
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutCardNestedInput
+  blocks?: Prisma.CardBlockUncheckedUpdateManyWithoutCardNestedInput
+  buttons?: Prisma.CardButtonUncheckedUpdateManyWithoutCardNestedInput
+  media?: Prisma.CardMediaUncheckedUpdateManyWithoutCardNestedInput
+  profile?: Prisma.CardProfileUncheckedUpdateOneWithoutCardNestedInput
+  sections?: Prisma.CardSectionUncheckedUpdateManyWithoutCardNestedInput
+  socialLinks?: Prisma.SocialLinkUncheckedUpdateManyWithoutCardNestedInput
+  editorSessions?: Prisma.EditorSessionUncheckedUpdateManyWithoutCardNestedInput
   legacyIdentifiers?: Prisma.LegacyIdentifierUncheckedUpdateManyWithoutCardNestedInput
-  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
-  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
   nfcCards?: Prisma.NfcCardUncheckedUpdateManyWithoutCardNestedInput
+  notifications?: Prisma.NotificationDeliveryUncheckedUpdateManyWithoutCardNestedInput
+  settings?: Prisma.SettingUncheckedUpdateManyWithoutCardNestedInput
   workspace?: Prisma.WorkspaceUncheckedUpdateOneWithoutPrimaryCardNestedInput
 }
 
 export type CardUncheckedUpdateManyWithoutOrderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -3659,6 +3658,7 @@ export type CardUncheckedUpdateManyWithoutOrderInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -3667,33 +3667,31 @@ export type CardUncheckedUpdateManyWithoutOrderInput = {
  */
 
 export type CardCountOutputType = {
-  buttons: number
-  socialLinks: number
-  sections: number
-  blocks: number
-  accessCodes: number
-  editorSessions: number
-  media: number
   events: number
+  blocks: number
+  buttons: number
+  media: number
+  sections: number
+  socialLinks: number
+  editorSessions: number
   legacyIdentifiers: number
-  settings: number
-  notifications: number
   nfcCards: number
+  notifications: number
+  settings: number
 }
 
 export type CardCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  buttons?: boolean | CardCountOutputTypeCountButtonsArgs
-  socialLinks?: boolean | CardCountOutputTypeCountSocialLinksArgs
-  sections?: boolean | CardCountOutputTypeCountSectionsArgs
-  blocks?: boolean | CardCountOutputTypeCountBlocksArgs
-  accessCodes?: boolean | CardCountOutputTypeCountAccessCodesArgs
-  editorSessions?: boolean | CardCountOutputTypeCountEditorSessionsArgs
-  media?: boolean | CardCountOutputTypeCountMediaArgs
   events?: boolean | CardCountOutputTypeCountEventsArgs
+  blocks?: boolean | CardCountOutputTypeCountBlocksArgs
+  buttons?: boolean | CardCountOutputTypeCountButtonsArgs
+  media?: boolean | CardCountOutputTypeCountMediaArgs
+  sections?: boolean | CardCountOutputTypeCountSectionsArgs
+  socialLinks?: boolean | CardCountOutputTypeCountSocialLinksArgs
+  editorSessions?: boolean | CardCountOutputTypeCountEditorSessionsArgs
   legacyIdentifiers?: boolean | CardCountOutputTypeCountLegacyIdentifiersArgs
-  settings?: boolean | CardCountOutputTypeCountSettingsArgs
-  notifications?: boolean | CardCountOutputTypeCountNotificationsArgs
   nfcCards?: boolean | CardCountOutputTypeCountNfcCardsArgs
+  notifications?: boolean | CardCountOutputTypeCountNotificationsArgs
+  settings?: boolean | CardCountOutputTypeCountSettingsArgs
 }
 
 /**
@@ -3709,22 +3707,8 @@ export type CardCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * CardCountOutputType without action
  */
-export type CardCountOutputTypeCountButtonsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CardButtonWhereInput
-}
-
-/**
- * CardCountOutputType without action
- */
-export type CardCountOutputTypeCountSocialLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SocialLinkWhereInput
-}
-
-/**
- * CardCountOutputType without action
- */
-export type CardCountOutputTypeCountSectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CardSectionWhereInput
+export type CardCountOutputTypeCountEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AnalyticsEventWhereInput
 }
 
 /**
@@ -3737,15 +3721,8 @@ export type CardCountOutputTypeCountBlocksArgs<ExtArgs extends runtime.Types.Ext
 /**
  * CardCountOutputType without action
  */
-export type CardCountOutputTypeCountAccessCodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AccessCodeWhereInput
-}
-
-/**
- * CardCountOutputType without action
- */
-export type CardCountOutputTypeCountEditorSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.EditorSessionWhereInput
+export type CardCountOutputTypeCountButtonsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CardButtonWhereInput
 }
 
 /**
@@ -3758,8 +3735,22 @@ export type CardCountOutputTypeCountMediaArgs<ExtArgs extends runtime.Types.Exte
 /**
  * CardCountOutputType without action
  */
-export type CardCountOutputTypeCountEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AnalyticsEventWhereInput
+export type CardCountOutputTypeCountSectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CardSectionWhereInput
+}
+
+/**
+ * CardCountOutputType without action
+ */
+export type CardCountOutputTypeCountSocialLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SocialLinkWhereInput
+}
+
+/**
+ * CardCountOutputType without action
+ */
+export type CardCountOutputTypeCountEditorSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EditorSessionWhereInput
 }
 
 /**
@@ -3772,8 +3763,8 @@ export type CardCountOutputTypeCountLegacyIdentifiersArgs<ExtArgs extends runtim
 /**
  * CardCountOutputType without action
  */
-export type CardCountOutputTypeCountSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SettingWhereInput
+export type CardCountOutputTypeCountNfcCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NfcCardWhereInput
 }
 
 /**
@@ -3786,14 +3777,13 @@ export type CardCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Ty
 /**
  * CardCountOutputType without action
  */
-export type CardCountOutputTypeCountNfcCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.NfcCardWhereInput
+export type CardCountOutputTypeCountSettingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SettingWhereInput
 }
 
 
 export type CardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   customerId?: boolean
   orderId?: boolean
   slug?: boolean
@@ -3808,29 +3798,29 @@ export type CardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  workspaceId?: boolean
+  accessCodes?: boolean | Prisma.Card$accessCodesArgs<ExtArgs>
+  events?: boolean | Prisma.Card$eventsArgs<ExtArgs>
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   order?: boolean | Prisma.Card$orderArgs<ExtArgs>
-  profile?: boolean | Prisma.Card$profileArgs<ExtArgs>
-  buttons?: boolean | Prisma.Card$buttonsArgs<ExtArgs>
-  socialLinks?: boolean | Prisma.Card$socialLinksArgs<ExtArgs>
-  sections?: boolean | Prisma.Card$sectionsArgs<ExtArgs>
-  blocks?: boolean | Prisma.Card$blocksArgs<ExtArgs>
-  accessCodes?: boolean | Prisma.Card$accessCodesArgs<ExtArgs>
-  editorSessions?: boolean | Prisma.Card$editorSessionsArgs<ExtArgs>
-  media?: boolean | Prisma.Card$mediaArgs<ExtArgs>
-  events?: boolean | Prisma.Card$eventsArgs<ExtArgs>
-  legacyIdentifiers?: boolean | Prisma.Card$legacyIdentifiersArgs<ExtArgs>
-  settings?: boolean | Prisma.Card$settingsArgs<ExtArgs>
-  notifications?: boolean | Prisma.Card$notificationsArgs<ExtArgs>
-  nfcCards?: boolean | Prisma.Card$nfcCardsArgs<ExtArgs>
-  workspace?: boolean | Prisma.Card$workspaceArgs<ExtArgs>
   tenantWorkspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  blocks?: boolean | Prisma.Card$blocksArgs<ExtArgs>
+  buttons?: boolean | Prisma.Card$buttonsArgs<ExtArgs>
+  media?: boolean | Prisma.Card$mediaArgs<ExtArgs>
+  profile?: boolean | Prisma.Card$profileArgs<ExtArgs>
+  sections?: boolean | Prisma.Card$sectionsArgs<ExtArgs>
+  socialLinks?: boolean | Prisma.Card$socialLinksArgs<ExtArgs>
+  editorSessions?: boolean | Prisma.Card$editorSessionsArgs<ExtArgs>
+  legacyIdentifiers?: boolean | Prisma.Card$legacyIdentifiersArgs<ExtArgs>
+  nfcCards?: boolean | Prisma.Card$nfcCardsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Card$notificationsArgs<ExtArgs>
+  settings?: boolean | Prisma.Card$settingsArgs<ExtArgs>
+  workspace?: boolean | Prisma.Card$workspaceArgs<ExtArgs>
   _count?: boolean | Prisma.CardCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["card"]>
 
 export type CardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   customerId?: boolean
   orderId?: boolean
   slug?: boolean
@@ -3845,6 +3835,7 @@ export type CardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  workspaceId?: boolean
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   order?: boolean | Prisma.Card$orderArgs<ExtArgs>
   tenantWorkspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
@@ -3852,7 +3843,6 @@ export type CardSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 
 export type CardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  workspaceId?: boolean
   customerId?: boolean
   orderId?: boolean
   slug?: boolean
@@ -3867,6 +3857,7 @@ export type CardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  workspaceId?: boolean
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   order?: boolean | Prisma.Card$orderArgs<ExtArgs>
   tenantWorkspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
@@ -3874,7 +3865,6 @@ export type CardSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 
 export type CardSelectScalar = {
   id?: boolean
-  workspaceId?: boolean
   customerId?: boolean
   orderId?: boolean
   slug?: boolean
@@ -3889,27 +3879,28 @@ export type CardSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  workspaceId?: boolean
 }
 
-export type CardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "customerId" | "orderId" | "slug" | "name" | "status" | "visibility" | "publishedAt" | "accessVersion" | "themeConfig" | "seoTitle" | "seoDescription" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["card"]>
+export type CardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "customerId" | "orderId" | "slug" | "name" | "status" | "visibility" | "publishedAt" | "accessVersion" | "themeConfig" | "seoTitle" | "seoDescription" | "createdAt" | "updatedAt" | "deletedAt" | "workspaceId", ExtArgs["result"]["card"]>
 export type CardInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  accessCodes?: boolean | Prisma.Card$accessCodesArgs<ExtArgs>
+  events?: boolean | Prisma.Card$eventsArgs<ExtArgs>
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
   order?: boolean | Prisma.Card$orderArgs<ExtArgs>
-  profile?: boolean | Prisma.Card$profileArgs<ExtArgs>
-  buttons?: boolean | Prisma.Card$buttonsArgs<ExtArgs>
-  socialLinks?: boolean | Prisma.Card$socialLinksArgs<ExtArgs>
-  sections?: boolean | Prisma.Card$sectionsArgs<ExtArgs>
-  blocks?: boolean | Prisma.Card$blocksArgs<ExtArgs>
-  accessCodes?: boolean | Prisma.Card$accessCodesArgs<ExtArgs>
-  editorSessions?: boolean | Prisma.Card$editorSessionsArgs<ExtArgs>
-  media?: boolean | Prisma.Card$mediaArgs<ExtArgs>
-  events?: boolean | Prisma.Card$eventsArgs<ExtArgs>
-  legacyIdentifiers?: boolean | Prisma.Card$legacyIdentifiersArgs<ExtArgs>
-  settings?: boolean | Prisma.Card$settingsArgs<ExtArgs>
-  notifications?: boolean | Prisma.Card$notificationsArgs<ExtArgs>
-  nfcCards?: boolean | Prisma.Card$nfcCardsArgs<ExtArgs>
-  workspace?: boolean | Prisma.Card$workspaceArgs<ExtArgs>
   tenantWorkspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  blocks?: boolean | Prisma.Card$blocksArgs<ExtArgs>
+  buttons?: boolean | Prisma.Card$buttonsArgs<ExtArgs>
+  media?: boolean | Prisma.Card$mediaArgs<ExtArgs>
+  profile?: boolean | Prisma.Card$profileArgs<ExtArgs>
+  sections?: boolean | Prisma.Card$sectionsArgs<ExtArgs>
+  socialLinks?: boolean | Prisma.Card$socialLinksArgs<ExtArgs>
+  editorSessions?: boolean | Prisma.Card$editorSessionsArgs<ExtArgs>
+  legacyIdentifiers?: boolean | Prisma.Card$legacyIdentifiersArgs<ExtArgs>
+  nfcCards?: boolean | Prisma.Card$nfcCardsArgs<ExtArgs>
+  notifications?: boolean | Prisma.Card$notificationsArgs<ExtArgs>
+  settings?: boolean | Prisma.Card$settingsArgs<ExtArgs>
+  workspace?: boolean | Prisma.Card$workspaceArgs<ExtArgs>
   _count?: boolean | Prisma.CardCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CardIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3926,27 +3917,26 @@ export type CardIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $CardPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Card"
   objects: {
+    accessCodes: Prisma.$AccessCodePayload<ExtArgs> | null
+    events: Prisma.$AnalyticsEventPayload<ExtArgs>[]
     customer: Prisma.$CustomerPayload<ExtArgs>
     order: Prisma.$OrderPayload<ExtArgs> | null
-    profile: Prisma.$CardProfilePayload<ExtArgs> | null
-    buttons: Prisma.$CardButtonPayload<ExtArgs>[]
-    socialLinks: Prisma.$SocialLinkPayload<ExtArgs>[]
-    sections: Prisma.$CardSectionPayload<ExtArgs>[]
-    blocks: Prisma.$CardBlockPayload<ExtArgs>[]
-    accessCodes: Prisma.$AccessCodePayload<ExtArgs>[]
-    editorSessions: Prisma.$EditorSessionPayload<ExtArgs>[]
-    media: Prisma.$CardMediaPayload<ExtArgs>[]
-    events: Prisma.$AnalyticsEventPayload<ExtArgs>[]
-    legacyIdentifiers: Prisma.$LegacyIdentifierPayload<ExtArgs>[]
-    settings: Prisma.$SettingPayload<ExtArgs>[]
-    notifications: Prisma.$NotificationDeliveryPayload<ExtArgs>[]
-    nfcCards: Prisma.$NfcCardPayload<ExtArgs>[]
-    workspace: Prisma.$WorkspacePayload<ExtArgs> | null
     tenantWorkspace: Prisma.$WorkspacePayload<ExtArgs>
+    blocks: Prisma.$CardBlockPayload<ExtArgs>[]
+    buttons: Prisma.$CardButtonPayload<ExtArgs>[]
+    media: Prisma.$CardMediaPayload<ExtArgs>[]
+    profile: Prisma.$CardProfilePayload<ExtArgs> | null
+    sections: Prisma.$CardSectionPayload<ExtArgs>[]
+    socialLinks: Prisma.$SocialLinkPayload<ExtArgs>[]
+    editorSessions: Prisma.$EditorSessionPayload<ExtArgs>[]
+    legacyIdentifiers: Prisma.$LegacyIdentifierPayload<ExtArgs>[]
+    nfcCards: Prisma.$NfcCardPayload<ExtArgs>[]
+    notifications: Prisma.$NotificationDeliveryPayload<ExtArgs>[]
+    settings: Prisma.$SettingPayload<ExtArgs>[]
+    workspace: Prisma.$WorkspacePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    workspaceId: string
     customerId: string
     orderId: string | null
     slug: string
@@ -3961,6 +3951,7 @@ export type $CardPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
+    workspaceId: string
   }, ExtArgs["result"]["card"]>
   composites: {}
 }
@@ -4355,23 +4346,23 @@ readonly fields: CardFieldRefs;
  */
 export interface Prisma__CardClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  accessCodes<T extends Prisma.Card$accessCodesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$accessCodesArgs<ExtArgs>>): Prisma.Prisma__AccessCodeClient<runtime.Types.Result.GetResult<Prisma.$AccessCodePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  events<T extends Prisma.Card$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   order<T extends Prisma.Card$orderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$orderArgs<ExtArgs>>): Prisma.Prisma__OrderClient<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  profile<T extends Prisma.Card$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$profileArgs<ExtArgs>>): Prisma.Prisma__CardProfileClient<runtime.Types.Result.GetResult<Prisma.$CardProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  buttons<T extends Prisma.Card$buttonsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$buttonsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardButtonPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  socialLinks<T extends Prisma.Card$socialLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$socialLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  sections<T extends Prisma.Card$sectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$sectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  blocks<T extends Prisma.Card$blocksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$blocksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardBlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  accessCodes<T extends Prisma.Card$accessCodesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$accessCodesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccessCodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  editorSessions<T extends Prisma.Card$editorSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$editorSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EditorSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  media<T extends Prisma.Card$mediaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$mediaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardMediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  events<T extends Prisma.Card$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  legacyIdentifiers<T extends Prisma.Card$legacyIdentifiersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$legacyIdentifiersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LegacyIdentifierPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  settings<T extends Prisma.Card$settingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$settingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  notifications<T extends Prisma.Card$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationDeliveryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  nfcCards<T extends Prisma.Card$nfcCardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$nfcCardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NfcCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  workspace<T extends Prisma.Card$workspaceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$workspaceArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   tenantWorkspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  blocks<T extends Prisma.Card$blocksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$blocksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardBlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  buttons<T extends Prisma.Card$buttonsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$buttonsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardButtonPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  media<T extends Prisma.Card$mediaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$mediaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardMediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  profile<T extends Prisma.Card$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$profileArgs<ExtArgs>>): Prisma.Prisma__CardProfileClient<runtime.Types.Result.GetResult<Prisma.$CardProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  sections<T extends Prisma.Card$sectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$sectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CardSectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  socialLinks<T extends Prisma.Card$socialLinksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$socialLinksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  editorSessions<T extends Prisma.Card$editorSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$editorSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EditorSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  legacyIdentifiers<T extends Prisma.Card$legacyIdentifiersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$legacyIdentifiersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LegacyIdentifierPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  nfcCards<T extends Prisma.Card$nfcCardsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$nfcCardsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NfcCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.Card$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationDeliveryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  settings<T extends Prisma.Card$settingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$settingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workspace<T extends Prisma.Card$workspaceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Card$workspaceArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4402,7 +4393,6 @@ export interface Prisma__CardClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface CardFieldRefs {
   readonly id: Prisma.FieldRef<"Card", 'String'>
-  readonly workspaceId: Prisma.FieldRef<"Card", 'String'>
   readonly customerId: Prisma.FieldRef<"Card", 'String'>
   readonly orderId: Prisma.FieldRef<"Card", 'String'>
   readonly slug: Prisma.FieldRef<"Card", 'String'>
@@ -4417,6 +4407,7 @@ export interface CardFieldRefs {
   readonly createdAt: Prisma.FieldRef<"Card", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Card", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Card", 'DateTime'>
+  readonly workspaceId: Prisma.FieldRef<"Card", 'String'>
 }
     
 
@@ -4818,140 +4809,6 @@ export type CardDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Card.order
- */
-export type Card$orderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Order
-   */
-  select?: Prisma.OrderSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Order
-   */
-  omit?: Prisma.OrderOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OrderInclude<ExtArgs> | null
-  where?: Prisma.OrderWhereInput
-}
-
-/**
- * Card.profile
- */
-export type Card$profileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CardProfile
-   */
-  select?: Prisma.CardProfileSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the CardProfile
-   */
-  omit?: Prisma.CardProfileOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CardProfileInclude<ExtArgs> | null
-  where?: Prisma.CardProfileWhereInput
-}
-
-/**
- * Card.buttons
- */
-export type Card$buttonsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CardButton
-   */
-  select?: Prisma.CardButtonSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the CardButton
-   */
-  omit?: Prisma.CardButtonOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CardButtonInclude<ExtArgs> | null
-  where?: Prisma.CardButtonWhereInput
-  orderBy?: Prisma.CardButtonOrderByWithRelationInput | Prisma.CardButtonOrderByWithRelationInput[]
-  cursor?: Prisma.CardButtonWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CardButtonScalarFieldEnum | Prisma.CardButtonScalarFieldEnum[]
-}
-
-/**
- * Card.socialLinks
- */
-export type Card$socialLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SocialLink
-   */
-  select?: Prisma.SocialLinkSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SocialLink
-   */
-  omit?: Prisma.SocialLinkOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SocialLinkInclude<ExtArgs> | null
-  where?: Prisma.SocialLinkWhereInput
-  orderBy?: Prisma.SocialLinkOrderByWithRelationInput | Prisma.SocialLinkOrderByWithRelationInput[]
-  cursor?: Prisma.SocialLinkWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SocialLinkScalarFieldEnum | Prisma.SocialLinkScalarFieldEnum[]
-}
-
-/**
- * Card.sections
- */
-export type Card$sectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CardSection
-   */
-  select?: Prisma.CardSectionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the CardSection
-   */
-  omit?: Prisma.CardSectionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CardSectionInclude<ExtArgs> | null
-  where?: Prisma.CardSectionWhereInput
-  orderBy?: Prisma.CardSectionOrderByWithRelationInput | Prisma.CardSectionOrderByWithRelationInput[]
-  cursor?: Prisma.CardSectionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CardSectionScalarFieldEnum | Prisma.CardSectionScalarFieldEnum[]
-}
-
-/**
- * Card.blocks
- */
-export type Card$blocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CardBlock
-   */
-  select?: Prisma.CardBlockSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the CardBlock
-   */
-  omit?: Prisma.CardBlockOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CardBlockInclude<ExtArgs> | null
-  where?: Prisma.CardBlockWhereInput
-  orderBy?: Prisma.CardBlockOrderByWithRelationInput | Prisma.CardBlockOrderByWithRelationInput[]
-  cursor?: Prisma.CardBlockWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CardBlockScalarFieldEnum | Prisma.CardBlockScalarFieldEnum[]
-}
-
-/**
  * Card.accessCodes
  */
 export type Card$accessCodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4968,59 +4825,6 @@ export type Card$accessCodesArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   include?: Prisma.AccessCodeInclude<ExtArgs> | null
   where?: Prisma.AccessCodeWhereInput
-  orderBy?: Prisma.AccessCodeOrderByWithRelationInput | Prisma.AccessCodeOrderByWithRelationInput[]
-  cursor?: Prisma.AccessCodeWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AccessCodeScalarFieldEnum | Prisma.AccessCodeScalarFieldEnum[]
-}
-
-/**
- * Card.editorSessions
- */
-export type Card$editorSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the EditorSession
-   */
-  select?: Prisma.EditorSessionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the EditorSession
-   */
-  omit?: Prisma.EditorSessionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.EditorSessionInclude<ExtArgs> | null
-  where?: Prisma.EditorSessionWhereInput
-  orderBy?: Prisma.EditorSessionOrderByWithRelationInput | Prisma.EditorSessionOrderByWithRelationInput[]
-  cursor?: Prisma.EditorSessionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.EditorSessionScalarFieldEnum | Prisma.EditorSessionScalarFieldEnum[]
-}
-
-/**
- * Card.media
- */
-export type Card$mediaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CardMedia
-   */
-  select?: Prisma.CardMediaSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the CardMedia
-   */
-  omit?: Prisma.CardMediaOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CardMediaInclude<ExtArgs> | null
-  where?: Prisma.CardMediaWhereInput
-  orderBy?: Prisma.CardMediaOrderByWithRelationInput | Prisma.CardMediaOrderByWithRelationInput[]
-  cursor?: Prisma.CardMediaWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CardMediaScalarFieldEnum | Prisma.CardMediaScalarFieldEnum[]
 }
 
 /**
@@ -5048,6 +4852,188 @@ export type Card$eventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 }
 
 /**
+ * Card.order
+ */
+export type Card$orderArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Order
+   */
+  select?: Prisma.OrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Order
+   */
+  omit?: Prisma.OrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderInclude<ExtArgs> | null
+  where?: Prisma.OrderWhereInput
+}
+
+/**
+ * Card.blocks
+ */
+export type Card$blocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CardBlock
+   */
+  select?: Prisma.CardBlockSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CardBlock
+   */
+  omit?: Prisma.CardBlockOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CardBlockInclude<ExtArgs> | null
+  where?: Prisma.CardBlockWhereInput
+  orderBy?: Prisma.CardBlockOrderByWithRelationInput | Prisma.CardBlockOrderByWithRelationInput[]
+  cursor?: Prisma.CardBlockWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CardBlockScalarFieldEnum | Prisma.CardBlockScalarFieldEnum[]
+}
+
+/**
+ * Card.buttons
+ */
+export type Card$buttonsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CardButton
+   */
+  select?: Prisma.CardButtonSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CardButton
+   */
+  omit?: Prisma.CardButtonOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CardButtonInclude<ExtArgs> | null
+  where?: Prisma.CardButtonWhereInput
+  orderBy?: Prisma.CardButtonOrderByWithRelationInput | Prisma.CardButtonOrderByWithRelationInput[]
+  cursor?: Prisma.CardButtonWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CardButtonScalarFieldEnum | Prisma.CardButtonScalarFieldEnum[]
+}
+
+/**
+ * Card.media
+ */
+export type Card$mediaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CardMedia
+   */
+  select?: Prisma.CardMediaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CardMedia
+   */
+  omit?: Prisma.CardMediaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CardMediaInclude<ExtArgs> | null
+  where?: Prisma.CardMediaWhereInput
+  orderBy?: Prisma.CardMediaOrderByWithRelationInput | Prisma.CardMediaOrderByWithRelationInput[]
+  cursor?: Prisma.CardMediaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CardMediaScalarFieldEnum | Prisma.CardMediaScalarFieldEnum[]
+}
+
+/**
+ * Card.profile
+ */
+export type Card$profileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CardProfile
+   */
+  select?: Prisma.CardProfileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CardProfile
+   */
+  omit?: Prisma.CardProfileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CardProfileInclude<ExtArgs> | null
+  where?: Prisma.CardProfileWhereInput
+}
+
+/**
+ * Card.sections
+ */
+export type Card$sectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CardSection
+   */
+  select?: Prisma.CardSectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CardSection
+   */
+  omit?: Prisma.CardSectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CardSectionInclude<ExtArgs> | null
+  where?: Prisma.CardSectionWhereInput
+  orderBy?: Prisma.CardSectionOrderByWithRelationInput | Prisma.CardSectionOrderByWithRelationInput[]
+  cursor?: Prisma.CardSectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CardSectionScalarFieldEnum | Prisma.CardSectionScalarFieldEnum[]
+}
+
+/**
+ * Card.socialLinks
+ */
+export type Card$socialLinksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SocialLink
+   */
+  select?: Prisma.SocialLinkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SocialLink
+   */
+  omit?: Prisma.SocialLinkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SocialLinkInclude<ExtArgs> | null
+  where?: Prisma.SocialLinkWhereInput
+  orderBy?: Prisma.SocialLinkOrderByWithRelationInput | Prisma.SocialLinkOrderByWithRelationInput[]
+  cursor?: Prisma.SocialLinkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SocialLinkScalarFieldEnum | Prisma.SocialLinkScalarFieldEnum[]
+}
+
+/**
+ * Card.editorSessions
+ */
+export type Card$editorSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EditorSession
+   */
+  select?: Prisma.EditorSessionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EditorSession
+   */
+  omit?: Prisma.EditorSessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EditorSessionInclude<ExtArgs> | null
+  where?: Prisma.EditorSessionWhereInput
+  orderBy?: Prisma.EditorSessionOrderByWithRelationInput | Prisma.EditorSessionOrderByWithRelationInput[]
+  cursor?: Prisma.EditorSessionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EditorSessionScalarFieldEnum | Prisma.EditorSessionScalarFieldEnum[]
+}
+
+/**
  * Card.legacyIdentifiers
  */
 export type Card$legacyIdentifiersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -5072,27 +5058,27 @@ export type Card$legacyIdentifiersArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
- * Card.settings
+ * Card.nfcCards
  */
-export type Card$settingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Card$nfcCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Setting
+   * Select specific fields to fetch from the NfcCard
    */
-  select?: Prisma.SettingSelect<ExtArgs> | null
+  select?: Prisma.NfcCardSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Setting
+   * Omit specific fields from the NfcCard
    */
-  omit?: Prisma.SettingOmit<ExtArgs> | null
+  omit?: Prisma.NfcCardOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SettingInclude<ExtArgs> | null
-  where?: Prisma.SettingWhereInput
-  orderBy?: Prisma.SettingOrderByWithRelationInput | Prisma.SettingOrderByWithRelationInput[]
-  cursor?: Prisma.SettingWhereUniqueInput
+  include?: Prisma.NfcCardInclude<ExtArgs> | null
+  where?: Prisma.NfcCardWhereInput
+  orderBy?: Prisma.NfcCardOrderByWithRelationInput | Prisma.NfcCardOrderByWithRelationInput[]
+  cursor?: Prisma.NfcCardWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.SettingScalarFieldEnum | Prisma.SettingScalarFieldEnum[]
+  distinct?: Prisma.NfcCardScalarFieldEnum | Prisma.NfcCardScalarFieldEnum[]
 }
 
 /**
@@ -5120,27 +5106,27 @@ export type Card$notificationsArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Card.nfcCards
+ * Card.settings
  */
-export type Card$nfcCardsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Card$settingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the NfcCard
+   * Select specific fields to fetch from the Setting
    */
-  select?: Prisma.NfcCardSelect<ExtArgs> | null
+  select?: Prisma.SettingSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the NfcCard
+   * Omit specific fields from the Setting
    */
-  omit?: Prisma.NfcCardOmit<ExtArgs> | null
+  omit?: Prisma.SettingOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.NfcCardInclude<ExtArgs> | null
-  where?: Prisma.NfcCardWhereInput
-  orderBy?: Prisma.NfcCardOrderByWithRelationInput | Prisma.NfcCardOrderByWithRelationInput[]
-  cursor?: Prisma.NfcCardWhereUniqueInput
+  include?: Prisma.SettingInclude<ExtArgs> | null
+  where?: Prisma.SettingWhereInput
+  orderBy?: Prisma.SettingOrderByWithRelationInput | Prisma.SettingOrderByWithRelationInput[]
+  cursor?: Prisma.SettingWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.NfcCardScalarFieldEnum | Prisma.NfcCardScalarFieldEnum[]
+  distinct?: Prisma.SettingScalarFieldEnum | Prisma.SettingScalarFieldEnum[]
 }
 
 /**

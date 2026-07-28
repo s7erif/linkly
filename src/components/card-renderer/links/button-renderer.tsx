@@ -61,7 +61,7 @@ export function ButtonRenderer({ button, primary = false }: ButtonRendererProps)
         href={button.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center w-full min-h-[52px] md:min-h-[56px] px-6 text-center font-bold text-[15px] md:text-base text-white outline-none focus-visible:ring-2 focus-visible:ring-offset-2 transition-shadow"
+        className="flex items-center justify-center w-[var(--button-width,100%)] min-h-[52px] md:min-h-[56px] lg:min-h-[var(--button-height,56px)] px-[var(--button-px,1.5rem)] text-center font-bold text-[15px] md:text-base text-white outline-none focus-visible:ring-2 focus-visible:ring-offset-2 transition-shadow"
         style={{
           ...style,
           background: accent,
@@ -88,7 +88,7 @@ export function ButtonRenderer({ button, primary = false }: ButtonRendererProps)
       href={button.url}
       target="_blank"
       rel="noopener noreferrer"
-      className={`flex items-center w-full ${hasSubtitle ? "min-h-[64px] p-2.5 md:p-3" : "min-h-[52px] p-2 md:p-2.5"} outline-none focus-visible:ring-2 focus-visible:ring-offset-2 transition-shadow group`}
+      className={`flex items-center w-[var(--button-width,100%)] ${hasSubtitle ? "min-h-[64px] lg:min-h-[var(--button-height-large,64px)] p-2.5 md:p-3 lg:px-[var(--button-px,0.75rem)]" : "min-h-[52px] md:min-h-[56px] lg:min-h-[var(--button-height,56px)] p-2 md:p-2.5 lg:px-[var(--button-px,0.625rem)]"} outline-none focus-visible:ring-2 focus-visible:ring-offset-2 transition-shadow group`}
       style={{
         ...style,
         background: "transparent",

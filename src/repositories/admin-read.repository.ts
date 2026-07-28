@@ -383,7 +383,7 @@ export class PrismaAdminReadRepository implements AdminReadRepository {
       customer: row.customer,
       cards: row.cards.map(({ accessCodes: _codes, ...card }) => card),
       accessCodes: row.cards.flatMap((card) =>
-        card.accessCodes.map(mapAccessCode),
+        card.accessCodes ? [mapAccessCode(card.accessCodes)] : [],
       ),
       notifications: row.notifications.map((notification) => ({
         ...notification,
@@ -549,7 +549,7 @@ export class PrismaAdminReadRepository implements AdminReadRepository {
       profile: row.profile ? { ...row.profile } : null,
       editorCard,
       order: row.order,
-      accessCode: row.accessCodes[0] ? mapAccessCode(row.accessCodes[0]) : null,
+      accessCode: row.accessCodes ? mapAccessCode(row.accessCodes) : null,
     };
   }
 }

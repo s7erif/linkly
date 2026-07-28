@@ -61,7 +61,7 @@ export function SocialIcons({ links, className }: SocialIconsProps) {
   if (!links.length) return null;
 
   return (
-    <nav className={cn("flex justify-center gap-3 sm:gap-4 lg:gap-5 md:mt-1", className)}>
+    <nav className={cn("social-icons-container flex justify-center gap-3 sm:gap-4 lg:gap-[var(--social-gap,1.25rem)] md:mt-1", className)}>
       {links.map((link, i) => (
         <m.a
           key={link.id}
@@ -69,7 +69,7 @@ export function SocialIcons({ links, className }: SocialIconsProps) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={link.label ?? link.platform}
-          className="w-11 h-11 flex items-center justify-center transition-shadow backdrop-blur-sm outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+          className="w-11 h-11 lg:w-[var(--social-icon-box,2.75rem)] lg:h-[var(--social-icon-box,2.75rem)] flex items-center justify-center transition-shadow backdrop-blur-sm outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
           style={{
             background: `linear-gradient(135deg, ${theme.colors.primary}0D, ${theme.colors.primary}05)`,
             color: theme.colors.text, // Better contrast

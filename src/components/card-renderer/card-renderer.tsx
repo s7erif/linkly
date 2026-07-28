@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "./theme/theme-provider";
-import { useTheme } from "./theme/use-theme"; // still used by ProfileCard etc internally
+import { useTheme } from "./theme/use-theme";
 import {
   ProfileCard,
   ProfileAvatar,
@@ -36,16 +36,9 @@ function InnerRenderer({ data, avatarUrl, layout }: InnerProps) {
   const { profile, buttons, socialLinks, blocks } = data;
   const fallback = (profile?.fullName ?? "U").slice(0, 2).toUpperCase();
 
-  // Resolve a block by kind from the blocks array — used when a section
-  // order entry matches a block kind (e.g. "GALLERY", "DIVIDER").
   const blockByKind = (kind: string) => blocks?.find((b) => b.kind === kind && b.isEnabled);
 
-  // ════════════════════════════════════════════════════════════════════
-  // Render a single section by kind.  Adding a new section means adding
-  // one case here — no other file changes needed.
-  // ════════════════════════════════════════════════════════════════════
   function renderSection(kind: string) {
-    // ── Core profile sections ──────────────────────────────────────
     switch (kind) {
       case "header":
         return layout.showHeader && profile ? (
@@ -69,8 +62,6 @@ function InnerRenderer({ data, avatarUrl, layout }: InnerProps) {
         ) : null;
     }
 
-    // ── Content block kinds (GALLERY, VIDEO, FAQ, LOCATION_MAP,
-    //     DIVIDER, RICH_TEXT) — data comes from the blocks array. ──
     const block = blockByKind(kind);
     if (!block) return null;
 
@@ -202,7 +193,7 @@ function InnerRenderer({ data, avatarUrl, layout }: InnerProps) {
           {/* Avatar */}
           <ProfileAvatar src={avatarUrl} fallback={fallback} size="lg" />
 
-          {/* Typography Group (Unified Composition) */}
+          {/* Typography Group */}
           <header className="mt-4 md:mt-5 flex flex-col items-center w-full">
             {layout.showHeader && profile && (
               <ProfileHeader
@@ -222,14 +213,18 @@ function InnerRenderer({ data, avatarUrl, layout }: InnerProps) {
           </header>
         </div>
 
-        {/* Continuous Flow Spacer (No flexible gap) */}
+        {/* Continuous Flow Spacer */}
         <div className="h-6 md:h-7 w-full pointer-events-none shrink-0" />
 
-        {/* 3. Action Sections (excluding footer) */}
+        {/* Action Sections */}
         <nav aria-label="Profile Links" className={`flex flex-col w-full mb-2 ${widthClass} mx-auto`} style={{ alignItems: layoutAlign === "LEFT" ? "flex-start" : layoutAlign === "RIGHT" ? "flex-end" : "center", gap: spacing }}>
           {sectionOrder
             .filter((kind) => kind !== "header" && kind !== "bio" && kind !== "footer")
-            .map((kind) => renderSection(kind))}
+            .map((kind) => (
+              <div key={kind} className="w-full">
+                {renderSection(kind)}
+              </div>
+            ))}
         </nav>
 
         {/* Flexible spacer before footer on mobile */}
@@ -250,17 +245,6 @@ function InnerRenderer({ data, avatarUrl, layout }: InnerProps) {
 // Canonical renderer
 // ═══════════════════════════════════════════════════════════════════════════
 
-/**
- * PreviewRenderer — the single rendering engine for every preview surface.
- *
- * Workspace Live Preview, Public Profile, Mobile Preview, Share Page,
- * NFC Preview, and future embed widgets all render through this component.
- *
- * Responsibilities:
- *  - Receive profile data + theme + layout options
- *  - Render profile consistently using theme tokens
- *  - No API calls, no business logic
- */
 export function CardRenderer({
   data,
   appearance,
@@ -284,5 +268,4 @@ export function CardRenderer({
   );
 }
 
-/** @deprecated Use CardRenderer. Kept as a source-compatible alias. */
 export const PreviewRenderer = CardRenderer;

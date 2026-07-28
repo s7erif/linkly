@@ -1,0 +1,31 @@
+--- /dev/null
++++ src/components/workspace/card-editor-provider.tsx
+@@ -46,6 +46,8 @@
+   const { fieldErrors, errorSummary, validate, clearErrors, clearFieldError } = useValidation();
+ 
++  console.log("[TRACE] CardEditorProvider rendered");
++
+   // ── Zustand store ──────────────────────────────────────────────────
+   const hydrate = useCardEditorStore((s) => s.hydrate);
+ 
+--- src/components/workspace/preview/preview-sync.tsx
++++ src/components/workspace/preview/preview-sync.tsx
+@@ -37,6 +37,8 @@
+   const editorButtons = useCardEditorStore((s) => s.editorButtons);
+   const editorSocialLinks = useCardEditorStore((s) => s.editorSocialLinks);
+ 
++  console.log("[TRACE] PreviewSync rendered");
++
+   // Derived from source fields — no stored previewData in the store.
+   // ⚠️  Must NOT call buildPreviewData inside a Zustand selector — it returns a
+--- src/components/card-renderer/card-renderer.tsx
++++ src/components/card-renderer/card-renderer.tsx
+@@ -67,6 +67,8 @@
+   avatarUrl,
+ }: CardRendererProps) {
++  console.log("[TRACE] CardRenderer rendered. avatarUrl:", avatarUrl);
++
+   // We treat layout styling strictly as data that dictates structure.
+   // The ThemeProvider is responsible for rendering the CSS Custom Properties.
+ 
+ 

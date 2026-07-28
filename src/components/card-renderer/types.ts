@@ -59,6 +59,7 @@ export interface PreviewRendererProps {
   layout?: Partial<PreviewLayoutOptions>;
   avatarUrl?: string | null;
   className?: string;
+  variant?: "preview" | "public";
 }
 
 export type CardRendererData = PreviewData;

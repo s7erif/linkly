@@ -37,52 +37,52 @@ export type CardButtonSumAggregateOutputType = {
 export type CardButtonMinAggregateOutputType = {
   id: string | null
   cardId: string | null
-  type: string | null
   label: string | null
   url: string | null
   position: number | null
   isVisible: boolean | null
-  displayMode: string | null
-  color: string | null
-  openInNewTab: boolean | null
-  analyticsEnabled: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
+  type: string | null
+  openInNewTab: boolean | null
+  analyticsEnabled: boolean | null
+  displayMode: string | null
+  color: string | null
 }
 
 export type CardButtonMaxAggregateOutputType = {
   id: string | null
   cardId: string | null
-  type: string | null
   label: string | null
   url: string | null
   position: number | null
   isVisible: boolean | null
-  displayMode: string | null
-  color: string | null
-  openInNewTab: boolean | null
-  analyticsEnabled: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
+  type: string | null
+  openInNewTab: boolean | null
+  analyticsEnabled: boolean | null
+  displayMode: string | null
+  color: string | null
 }
 
 export type CardButtonCountAggregateOutputType = {
   id: number
   cardId: number
-  type: number
   label: number
   url: number
   position: number
   isVisible: number
-  displayMode: number
-  color: number
-  openInNewTab: number
-  analyticsEnabled: number
   createdAt: number
   updatedAt: number
   deletedAt: number
+  type: number
+  openInNewTab: number
+  analyticsEnabled: number
+  displayMode: number
+  color: number
   _all: number
 }
 
@@ -98,52 +98,52 @@ export type CardButtonSumAggregateInputType = {
 export type CardButtonMinAggregateInputType = {
   id?: true
   cardId?: true
-  type?: true
   label?: true
   url?: true
   position?: true
   isVisible?: true
-  displayMode?: true
-  color?: true
-  openInNewTab?: true
-  analyticsEnabled?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  type?: true
+  openInNewTab?: true
+  analyticsEnabled?: true
+  displayMode?: true
+  color?: true
 }
 
 export type CardButtonMaxAggregateInputType = {
   id?: true
   cardId?: true
-  type?: true
   label?: true
   url?: true
   position?: true
   isVisible?: true
-  displayMode?: true
-  color?: true
-  openInNewTab?: true
-  analyticsEnabled?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  type?: true
+  openInNewTab?: true
+  analyticsEnabled?: true
+  displayMode?: true
+  color?: true
 }
 
 export type CardButtonCountAggregateInputType = {
   id?: true
   cardId?: true
-  type?: true
   label?: true
   url?: true
   position?: true
   isVisible?: true
-  displayMode?: true
-  color?: true
-  openInNewTab?: true
-  analyticsEnabled?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  type?: true
+  openInNewTab?: true
+  analyticsEnabled?: true
+  displayMode?: true
+  color?: true
   _all?: true
 }
 
@@ -236,18 +236,18 @@ export type CardButtonGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 export type CardButtonGroupByOutputType = {
   id: string
   cardId: string
-  type: string
   label: string
   url: string
   position: number
   isVisible: boolean
-  displayMode: string
-  color: string | null
-  openInNewTab: boolean
-  analyticsEnabled: boolean
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
+  type: string
+  openInNewTab: boolean
+  analyticsEnabled: boolean
+  displayMode: string
+  color: string | null
   _count: CardButtonCountAggregateOutputType | null
   _avg: CardButtonAvgAggregateOutputType | null
   _sum: CardButtonSumAggregateOutputType | null
@@ -276,39 +276,39 @@ export type CardButtonWhereInput = {
   NOT?: Prisma.CardButtonWhereInput | Prisma.CardButtonWhereInput[]
   id?: Prisma.UuidFilter<"CardButton"> | string
   cardId?: Prisma.UuidFilter<"CardButton"> | string
-  type?: Prisma.StringFilter<"CardButton"> | string
   label?: Prisma.StringFilter<"CardButton"> | string
   url?: Prisma.StringFilter<"CardButton"> | string
   position?: Prisma.IntFilter<"CardButton"> | number
   isVisible?: Prisma.BoolFilter<"CardButton"> | boolean
-  displayMode?: Prisma.StringFilter<"CardButton"> | string
-  color?: Prisma.StringNullableFilter<"CardButton"> | string | null
-  openInNewTab?: Prisma.BoolFilter<"CardButton"> | boolean
-  analyticsEnabled?: Prisma.BoolFilter<"CardButton"> | boolean
   createdAt?: Prisma.DateTimeFilter<"CardButton"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CardButton"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"CardButton"> | Date | string | null
-  card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
+  type?: Prisma.StringFilter<"CardButton"> | string
+  openInNewTab?: Prisma.BoolFilter<"CardButton"> | boolean
+  analyticsEnabled?: Prisma.BoolFilter<"CardButton"> | boolean
+  displayMode?: Prisma.StringFilter<"CardButton"> | string
+  color?: Prisma.StringNullableFilter<"CardButton"> | string | null
   events?: Prisma.AnalyticsEventListRelationFilter
+  card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
 }
 
 export type CardButtonOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   label?: Prisma.SortOrder
   url?: Prisma.SortOrder
   position?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
-  displayMode?: Prisma.SortOrder
-  color?: Prisma.SortOrderInput | Prisma.SortOrder
-  openInNewTab?: Prisma.SortOrder
-  analyticsEnabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  card?: Prisma.CardOrderByWithRelationInput
+  type?: Prisma.SortOrder
+  openInNewTab?: Prisma.SortOrder
+  analyticsEnabled?: Prisma.SortOrder
+  displayMode?: Prisma.SortOrder
+  color?: Prisma.SortOrderInput | Prisma.SortOrder
   events?: Prisma.AnalyticsEventOrderByRelationAggregateInput
+  card?: Prisma.CardOrderByWithRelationInput
 }
 
 export type CardButtonWhereUniqueInput = Prisma.AtLeast<{
@@ -318,37 +318,37 @@ export type CardButtonWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CardButtonWhereInput[]
   NOT?: Prisma.CardButtonWhereInput | Prisma.CardButtonWhereInput[]
   cardId?: Prisma.UuidFilter<"CardButton"> | string
-  type?: Prisma.StringFilter<"CardButton"> | string
   label?: Prisma.StringFilter<"CardButton"> | string
   url?: Prisma.StringFilter<"CardButton"> | string
   position?: Prisma.IntFilter<"CardButton"> | number
   isVisible?: Prisma.BoolFilter<"CardButton"> | boolean
-  displayMode?: Prisma.StringFilter<"CardButton"> | string
-  color?: Prisma.StringNullableFilter<"CardButton"> | string | null
-  openInNewTab?: Prisma.BoolFilter<"CardButton"> | boolean
-  analyticsEnabled?: Prisma.BoolFilter<"CardButton"> | boolean
   createdAt?: Prisma.DateTimeFilter<"CardButton"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CardButton"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"CardButton"> | Date | string | null
-  card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
+  type?: Prisma.StringFilter<"CardButton"> | string
+  openInNewTab?: Prisma.BoolFilter<"CardButton"> | boolean
+  analyticsEnabled?: Prisma.BoolFilter<"CardButton"> | boolean
+  displayMode?: Prisma.StringFilter<"CardButton"> | string
+  color?: Prisma.StringNullableFilter<"CardButton"> | string | null
   events?: Prisma.AnalyticsEventListRelationFilter
+  card?: Prisma.XOR<Prisma.CardScalarRelationFilter, Prisma.CardWhereInput>
 }, "id" | "cardId_position">
 
 export type CardButtonOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   label?: Prisma.SortOrder
   url?: Prisma.SortOrder
   position?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
-  displayMode?: Prisma.SortOrder
-  color?: Prisma.SortOrderInput | Prisma.SortOrder
-  openInNewTab?: Prisma.SortOrder
-  analyticsEnabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  type?: Prisma.SortOrder
+  openInNewTab?: Prisma.SortOrder
+  analyticsEnabled?: Prisma.SortOrder
+  displayMode?: Prisma.SortOrder
+  color?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CardButtonCountOrderByAggregateInput
   _avg?: Prisma.CardButtonAvgOrderByAggregateInput
   _max?: Prisma.CardButtonMaxOrderByAggregateInput
@@ -362,140 +362,140 @@ export type CardButtonScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CardButtonScalarWhereWithAggregatesInput | Prisma.CardButtonScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"CardButton"> | string
   cardId?: Prisma.UuidWithAggregatesFilter<"CardButton"> | string
-  type?: Prisma.StringWithAggregatesFilter<"CardButton"> | string
   label?: Prisma.StringWithAggregatesFilter<"CardButton"> | string
   url?: Prisma.StringWithAggregatesFilter<"CardButton"> | string
   position?: Prisma.IntWithAggregatesFilter<"CardButton"> | number
   isVisible?: Prisma.BoolWithAggregatesFilter<"CardButton"> | boolean
-  displayMode?: Prisma.StringWithAggregatesFilter<"CardButton"> | string
-  color?: Prisma.StringNullableWithAggregatesFilter<"CardButton"> | string | null
-  openInNewTab?: Prisma.BoolWithAggregatesFilter<"CardButton"> | boolean
-  analyticsEnabled?: Prisma.BoolWithAggregatesFilter<"CardButton"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CardButton"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"CardButton"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CardButton"> | Date | string | null
+  type?: Prisma.StringWithAggregatesFilter<"CardButton"> | string
+  openInNewTab?: Prisma.BoolWithAggregatesFilter<"CardButton"> | boolean
+  analyticsEnabled?: Prisma.BoolWithAggregatesFilter<"CardButton"> | boolean
+  displayMode?: Prisma.StringWithAggregatesFilter<"CardButton"> | string
+  color?: Prisma.StringNullableWithAggregatesFilter<"CardButton"> | string | null
 }
 
 export type CardButtonCreateInput = {
   id?: string
-  type?: string
   label: string
   url: string
   position: number
   isVisible?: boolean
-  displayMode?: string
-  color?: string | null
-  openInNewTab?: boolean
-  analyticsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  card: Prisma.CardCreateNestedOneWithoutButtonsInput
+  type?: string
+  openInNewTab?: boolean
+  analyticsEnabled?: boolean
+  displayMode?: string
+  color?: string | null
   events?: Prisma.AnalyticsEventCreateNestedManyWithoutButtonInput
+  card: Prisma.CardCreateNestedOneWithoutButtonsInput
 }
 
 export type CardButtonUncheckedCreateInput = {
   id?: string
   cardId: string
-  type?: string
   label: string
   url: string
   position: number
   isVisible?: boolean
-  displayMode?: string
-  color?: string | null
-  openInNewTab?: boolean
-  analyticsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  type?: string
+  openInNewTab?: boolean
+  analyticsEnabled?: boolean
+  displayMode?: string
+  color?: string | null
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutButtonInput
 }
 
 export type CardButtonUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  card?: Prisma.CardUpdateOneRequiredWithoutButtonsNestedInput
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   events?: Prisma.AnalyticsEventUpdateManyWithoutButtonNestedInput
+  card?: Prisma.CardUpdateOneRequiredWithoutButtonsNestedInput
 }
 
 export type CardButtonUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutButtonNestedInput
 }
 
 export type CardButtonCreateManyInput = {
   id?: string
   cardId: string
-  type?: string
   label: string
   url: string
   position: number
   isVisible?: boolean
-  displayMode?: string
-  color?: string | null
-  openInNewTab?: boolean
-  analyticsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  type?: string
+  openInNewTab?: boolean
+  analyticsEnabled?: boolean
+  displayMode?: string
+  color?: string | null
 }
 
 export type CardButtonUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CardButtonUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CardButtonListRelationFilter = {
@@ -516,18 +516,18 @@ export type CardButtonCardIdPositionCompoundUniqueInput = {
 export type CardButtonCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   label?: Prisma.SortOrder
   url?: Prisma.SortOrder
   position?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
-  displayMode?: Prisma.SortOrder
-  color?: Prisma.SortOrder
-  openInNewTab?: Prisma.SortOrder
-  analyticsEnabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  type?: Prisma.SortOrder
+  openInNewTab?: Prisma.SortOrder
+  analyticsEnabled?: Prisma.SortOrder
+  displayMode?: Prisma.SortOrder
+  color?: Prisma.SortOrder
 }
 
 export type CardButtonAvgOrderByAggregateInput = {
@@ -537,35 +537,35 @@ export type CardButtonAvgOrderByAggregateInput = {
 export type CardButtonMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   label?: Prisma.SortOrder
   url?: Prisma.SortOrder
   position?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
-  displayMode?: Prisma.SortOrder
-  color?: Prisma.SortOrder
-  openInNewTab?: Prisma.SortOrder
-  analyticsEnabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  type?: Prisma.SortOrder
+  openInNewTab?: Prisma.SortOrder
+  analyticsEnabled?: Prisma.SortOrder
+  displayMode?: Prisma.SortOrder
+  color?: Prisma.SortOrder
 }
 
 export type CardButtonMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   cardId?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   label?: Prisma.SortOrder
   url?: Prisma.SortOrder
   position?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
-  displayMode?: Prisma.SortOrder
-  color?: Prisma.SortOrder
-  openInNewTab?: Prisma.SortOrder
-  analyticsEnabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  type?: Prisma.SortOrder
+  openInNewTab?: Prisma.SortOrder
+  analyticsEnabled?: Prisma.SortOrder
+  displayMode?: Prisma.SortOrder
+  color?: Prisma.SortOrder
 }
 
 export type CardButtonSumOrderByAggregateInput = {
@@ -637,35 +637,35 @@ export type CardButtonUpdateOneWithoutEventsNestedInput = {
 
 export type CardButtonCreateWithoutCardInput = {
   id?: string
-  type?: string
   label: string
   url: string
   position: number
   isVisible?: boolean
-  displayMode?: string
-  color?: string | null
-  openInNewTab?: boolean
-  analyticsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  type?: string
+  openInNewTab?: boolean
+  analyticsEnabled?: boolean
+  displayMode?: string
+  color?: string | null
   events?: Prisma.AnalyticsEventCreateNestedManyWithoutButtonInput
 }
 
 export type CardButtonUncheckedCreateWithoutCardInput = {
   id?: string
-  type?: string
   label: string
   url: string
   position: number
   isVisible?: boolean
-  displayMode?: string
-  color?: string | null
-  openInNewTab?: boolean
-  analyticsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  type?: string
+  openInNewTab?: boolean
+  analyticsEnabled?: boolean
+  displayMode?: string
+  color?: string | null
   events?: Prisma.AnalyticsEventUncheckedCreateNestedManyWithoutButtonInput
 }
 
@@ -701,52 +701,52 @@ export type CardButtonScalarWhereInput = {
   NOT?: Prisma.CardButtonScalarWhereInput | Prisma.CardButtonScalarWhereInput[]
   id?: Prisma.UuidFilter<"CardButton"> | string
   cardId?: Prisma.UuidFilter<"CardButton"> | string
-  type?: Prisma.StringFilter<"CardButton"> | string
   label?: Prisma.StringFilter<"CardButton"> | string
   url?: Prisma.StringFilter<"CardButton"> | string
   position?: Prisma.IntFilter<"CardButton"> | number
   isVisible?: Prisma.BoolFilter<"CardButton"> | boolean
-  displayMode?: Prisma.StringFilter<"CardButton"> | string
-  color?: Prisma.StringNullableFilter<"CardButton"> | string | null
-  openInNewTab?: Prisma.BoolFilter<"CardButton"> | boolean
-  analyticsEnabled?: Prisma.BoolFilter<"CardButton"> | boolean
   createdAt?: Prisma.DateTimeFilter<"CardButton"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CardButton"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"CardButton"> | Date | string | null
+  type?: Prisma.StringFilter<"CardButton"> | string
+  openInNewTab?: Prisma.BoolFilter<"CardButton"> | boolean
+  analyticsEnabled?: Prisma.BoolFilter<"CardButton"> | boolean
+  displayMode?: Prisma.StringFilter<"CardButton"> | string
+  color?: Prisma.StringNullableFilter<"CardButton"> | string | null
 }
 
 export type CardButtonCreateWithoutEventsInput = {
   id?: string
-  type?: string
   label: string
   url: string
   position: number
   isVisible?: boolean
-  displayMode?: string
-  color?: string | null
-  openInNewTab?: boolean
-  analyticsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  type?: string
+  openInNewTab?: boolean
+  analyticsEnabled?: boolean
+  displayMode?: string
+  color?: string | null
   card: Prisma.CardCreateNestedOneWithoutButtonsInput
 }
 
 export type CardButtonUncheckedCreateWithoutEventsInput = {
   id?: string
   cardId: string
-  type?: string
   label: string
   url: string
   position: number
   isVisible?: boolean
-  displayMode?: string
-  color?: string | null
-  openInNewTab?: boolean
-  analyticsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  type?: string
+  openInNewTab?: boolean
+  analyticsEnabled?: boolean
+  displayMode?: string
+  color?: string | null
 }
 
 export type CardButtonCreateOrConnectWithoutEventsInput = {
@@ -767,102 +767,102 @@ export type CardButtonUpdateToOneWithWhereWithoutEventsInput = {
 
 export type CardButtonUpdateWithoutEventsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   card?: Prisma.CardUpdateOneRequiredWithoutButtonsNestedInput
 }
 
 export type CardButtonUncheckedUpdateWithoutEventsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   cardId?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CardButtonCreateManyCardInput = {
   id?: string
-  type?: string
   label: string
   url: string
   position: number
   isVisible?: boolean
-  displayMode?: string
-  color?: string | null
-  openInNewTab?: boolean
-  analyticsEnabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  type?: string
+  openInNewTab?: boolean
+  analyticsEnabled?: boolean
+  displayMode?: string
+  color?: string | null
 }
 
 export type CardButtonUpdateWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   events?: Prisma.AnalyticsEventUpdateManyWithoutButtonNestedInput
 }
 
 export type CardButtonUncheckedUpdateWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   events?: Prisma.AnalyticsEventUncheckedUpdateManyWithoutButtonNestedInput
 }
 
 export type CardButtonUncheckedUpdateManyWithoutCardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  openInNewTab?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  analyticsEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  displayMode?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -899,80 +899,80 @@ export type CardButtonCountOutputTypeCountEventsArgs<ExtArgs extends runtime.Typ
 export type CardButtonSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   cardId?: boolean
-  type?: boolean
   label?: boolean
   url?: boolean
   position?: boolean
   isVisible?: boolean
-  displayMode?: boolean
-  color?: boolean
-  openInNewTab?: boolean
-  analyticsEnabled?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
+  type?: boolean
+  openInNewTab?: boolean
+  analyticsEnabled?: boolean
+  displayMode?: boolean
+  color?: boolean
   events?: boolean | Prisma.CardButton$eventsArgs<ExtArgs>
+  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.CardButtonCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cardButton"]>
 
 export type CardButtonSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   cardId?: boolean
-  type?: boolean
   label?: boolean
   url?: boolean
   position?: boolean
   isVisible?: boolean
-  displayMode?: boolean
-  color?: boolean
-  openInNewTab?: boolean
-  analyticsEnabled?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  type?: boolean
+  openInNewTab?: boolean
+  analyticsEnabled?: boolean
+  displayMode?: boolean
+  color?: boolean
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cardButton"]>
 
 export type CardButtonSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   cardId?: boolean
-  type?: boolean
   label?: boolean
   url?: boolean
   position?: boolean
   isVisible?: boolean
-  displayMode?: boolean
-  color?: boolean
-  openInNewTab?: boolean
-  analyticsEnabled?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  type?: boolean
+  openInNewTab?: boolean
+  analyticsEnabled?: boolean
+  displayMode?: boolean
+  color?: boolean
   card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["cardButton"]>
 
 export type CardButtonSelectScalar = {
   id?: boolean
   cardId?: boolean
-  type?: boolean
   label?: boolean
   url?: boolean
   position?: boolean
   isVisible?: boolean
-  displayMode?: boolean
-  color?: boolean
-  openInNewTab?: boolean
-  analyticsEnabled?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  type?: boolean
+  openInNewTab?: boolean
+  analyticsEnabled?: boolean
+  displayMode?: boolean
+  color?: boolean
 }
 
-export type CardButtonOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cardId" | "type" | "label" | "url" | "position" | "isVisible" | "displayMode" | "color" | "openInNewTab" | "analyticsEnabled" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["cardButton"]>
+export type CardButtonOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cardId" | "label" | "url" | "position" | "isVisible" | "createdAt" | "updatedAt" | "deletedAt" | "type" | "openInNewTab" | "analyticsEnabled" | "displayMode" | "color", ExtArgs["result"]["cardButton"]>
 export type CardButtonInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   events?: boolean | Prisma.CardButton$eventsArgs<ExtArgs>
+  card?: boolean | Prisma.CardDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.CardButtonCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CardButtonIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -985,24 +985,24 @@ export type CardButtonIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type $CardButtonPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CardButton"
   objects: {
-    card: Prisma.$CardPayload<ExtArgs>
     events: Prisma.$AnalyticsEventPayload<ExtArgs>[]
+    card: Prisma.$CardPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     cardId: string
-    type: string
     label: string
     url: string
     position: number
     isVisible: boolean
-    displayMode: string
-    color: string | null
-    openInNewTab: boolean
-    analyticsEnabled: boolean
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
+    type: string
+    openInNewTab: boolean
+    analyticsEnabled: boolean
+    displayMode: string
+    color: string | null
   }, ExtArgs["result"]["cardButton"]>
   composites: {}
 }
@@ -1397,8 +1397,8 @@ readonly fields: CardButtonFieldRefs;
  */
 export interface Prisma__CardButtonClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  card<T extends Prisma.CardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CardDefaultArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   events<T extends Prisma.CardButton$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CardButton$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AnalyticsEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  card<T extends Prisma.CardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CardDefaultArgs<ExtArgs>>): Prisma.Prisma__CardClient<runtime.Types.Result.GetResult<Prisma.$CardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1430,18 +1430,18 @@ export interface Prisma__CardButtonClient<T, Null = never, ExtArgs extends runti
 export interface CardButtonFieldRefs {
   readonly id: Prisma.FieldRef<"CardButton", 'String'>
   readonly cardId: Prisma.FieldRef<"CardButton", 'String'>
-  readonly type: Prisma.FieldRef<"CardButton", 'String'>
   readonly label: Prisma.FieldRef<"CardButton", 'String'>
   readonly url: Prisma.FieldRef<"CardButton", 'String'>
   readonly position: Prisma.FieldRef<"CardButton", 'Int'>
   readonly isVisible: Prisma.FieldRef<"CardButton", 'Boolean'>
-  readonly displayMode: Prisma.FieldRef<"CardButton", 'String'>
-  readonly color: Prisma.FieldRef<"CardButton", 'String'>
-  readonly openInNewTab: Prisma.FieldRef<"CardButton", 'Boolean'>
-  readonly analyticsEnabled: Prisma.FieldRef<"CardButton", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"CardButton", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"CardButton", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"CardButton", 'DateTime'>
+  readonly type: Prisma.FieldRef<"CardButton", 'String'>
+  readonly openInNewTab: Prisma.FieldRef<"CardButton", 'Boolean'>
+  readonly analyticsEnabled: Prisma.FieldRef<"CardButton", 'Boolean'>
+  readonly displayMode: Prisma.FieldRef<"CardButton", 'String'>
+  readonly color: Prisma.FieldRef<"CardButton", 'String'>
 }
     
 

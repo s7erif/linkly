@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.8.0
- * Query Engine version: 3c6e192761c0362d496ed980de936e2f3cebcd3a
+ * Prisma Client JS version: 7.9.1
+ * Query Engine version: e922089b7d7502aff4249d5da3420f6fa55fc6ad
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.8.0",
-  engine: "3c6e192761c0362d496ed980de936e2f3cebcd3a"
+  client: "7.9.1",
+  engine: "e922089b7d7502aff4249d5da3420f6fa55fc6ad"
 }
 
 /**
@@ -156,6 +156,19 @@ export type Subset<T, U> = {
 };
 
 /**
+ * Resolved type of the argument passed to the `PrismaClient` constructor.
+ *
+ * When called without a narrower options type (the common case), this resolves
+ * to `PrismaClientOptions` directly, which produces a clear TypeScript error
+ * message (`not assignable to parameter of type 'PrismaClientOptions'`) when
+ * the argument is missing or incomplete. When the user supplies a narrower
+ * options type (e.g. via a literal), it falls back to `Subset` to keep
+ * filtering out unknown properties.
+ */
+export type PrismaClientConstructorArgs<Options extends PrismaClientOptions> =
+  [PrismaClientOptions] extends [Options] ? PrismaClientOptions : Subset<Options, PrismaClientOptions>;
+
+/**
  * SelectSubset
  * @desc From `T` pick properties that exist in `U`. Simple version of Intersection.
  * Additionally, it validates, if both select and include are present. If the case, it errors.
@@ -187,7 +200,7 @@ type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 export type XOR<T, U> =
   T extends object ?
   U extends object ?
-    (Without<T, U> & U) | (Without<U, T> & T)
+    ((Without<T, U> & U) | (Without<U, T> & T)) & object
   : U : T
 
 
@@ -391,7 +404,6 @@ export const ModelName = {
   NfcCard: 'NfcCard',
   CustomerAccount: 'CustomerAccount',
   CustomerPasswordReset: 'CustomerPasswordReset',
-  CustomerOAuthAccount: 'CustomerOAuthAccount',
   CustomerSession: 'CustomerSession',
   Workspace: 'Workspace',
   WorkspaceMembership: 'WorkspaceMembership',
@@ -440,7 +452,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "adminUser" | "adminRole" | "adminUserRole" | "customer" | "nfcCard" | "customerAccount" | "customerPasswordReset" | "customerOAuthAccount" | "customerSession" | "workspace" | "workspaceMembership" | "billingAccount" | "order" | "paymentSubmission" | "invoice" | "retryTask" | "card" | "cardProfile" | "cardSection" | "cardBlock" | "cardBlockMedia" | "socialLink" | "cardButton" | "accessCode" | "accessCodeUsage" | "editorSession" | "plan" | "planFeature" | "planPrice" | "subscription" | "subscriptionReminder" | "mediaAsset" | "mediaFolder" | "cardMedia" | "analyticsEvent" | "notificationDelivery" | "setting" | "auditLog" | "legacyIdentifier" | "legacyBusinessCard" | "payment"
+    modelProps: "adminUser" | "adminRole" | "adminUserRole" | "customer" | "nfcCard" | "customerAccount" | "customerPasswordReset" | "customerSession" | "workspace" | "workspaceMembership" | "billingAccount" | "order" | "paymentSubmission" | "invoice" | "retryTask" | "card" | "cardProfile" | "cardSection" | "cardBlock" | "cardBlockMedia" | "socialLink" | "cardButton" | "accessCode" | "accessCodeUsage" | "editorSession" | "plan" | "planFeature" | "planPrice" | "subscription" | "subscriptionReminder" | "mediaAsset" | "mediaFolder" | "cardMedia" | "analyticsEvent" | "notificationDelivery" | "setting" | "auditLog" | "legacyIdentifier" | "legacyBusinessCard" | "payment"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -959,80 +971,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.CustomerPasswordResetCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.CustomerPasswordResetCountAggregateOutputType> | number
-        }
-      }
-    }
-    CustomerOAuthAccount: {
-      payload: Prisma.$CustomerOAuthAccountPayload<ExtArgs>
-      fields: Prisma.CustomerOAuthAccountFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.CustomerOAuthAccountFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.CustomerOAuthAccountFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>
-        }
-        findFirst: {
-          args: Prisma.CustomerOAuthAccountFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.CustomerOAuthAccountFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>
-        }
-        findMany: {
-          args: Prisma.CustomerOAuthAccountFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>[]
-        }
-        create: {
-          args: Prisma.CustomerOAuthAccountCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>
-        }
-        createMany: {
-          args: Prisma.CustomerOAuthAccountCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.CustomerOAuthAccountCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>[]
-        }
-        delete: {
-          args: Prisma.CustomerOAuthAccountDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>
-        }
-        update: {
-          args: Prisma.CustomerOAuthAccountUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>
-        }
-        deleteMany: {
-          args: Prisma.CustomerOAuthAccountDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.CustomerOAuthAccountUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.CustomerOAuthAccountUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>[]
-        }
-        upsert: {
-          args: Prisma.CustomerOAuthAccountUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerOAuthAccountPayload>
-        }
-        aggregate: {
-          args: Prisma.CustomerOAuthAccountAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateCustomerOAuthAccount>
-        }
-        groupBy: {
-          args: Prisma.CustomerOAuthAccountGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CustomerOAuthAccountGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.CustomerOAuthAccountCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CustomerOAuthAccountCountAggregateOutputType> | number
         }
       }
     }
@@ -3553,7 +3491,6 @@ export type AdminUserRoleScalarFieldEnum = (typeof AdminUserRoleScalarFieldEnum)
 
 export const CustomerScalarFieldEnum = {
   id: 'id',
-  workspaceId: 'workspaceId',
   displayName: 'displayName',
   email: 'email',
   phone: 'phone',
@@ -3562,7 +3499,8 @@ export const CustomerScalarFieldEnum = {
   timezone: 'timezone',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt'
+  deletedAt: 'deletedAt',
+  workspaceId: 'workspaceId'
 } as const
 
 export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum]
@@ -3570,13 +3508,13 @@ export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typ
 
 export const NfcCardScalarFieldEnum = {
   id: 'id',
-  activationToken: 'activationToken',
   status: 'status',
   customerId: 'customerId',
-  workspaceId: 'workspaceId',
-  cardId: 'cardId',
+  createdAt: 'createdAt',
   activatedAt: 'activatedAt',
-  createdAt: 'createdAt'
+  workspaceId: 'workspaceId',
+  activationToken: 'activationToken',
+  cardId: 'cardId'
 } as const
 
 export type NfcCardScalarFieldEnum = (typeof NfcCardScalarFieldEnum)[keyof typeof NfcCardScalarFieldEnum]
@@ -3607,20 +3545,6 @@ export const CustomerPasswordResetScalarFieldEnum = {
 export type CustomerPasswordResetScalarFieldEnum = (typeof CustomerPasswordResetScalarFieldEnum)[keyof typeof CustomerPasswordResetScalarFieldEnum]
 
 
-export const CustomerOAuthAccountScalarFieldEnum = {
-  id: 'id',
-  accountId: 'accountId',
-  provider: 'provider',
-  providerAccountId: 'providerAccountId',
-  accessToken: 'accessToken',
-  refreshToken: 'refreshToken',
-  expiresAt: 'expiresAt',
-  createdAt: 'createdAt'
-} as const
-
-export type CustomerOAuthAccountScalarFieldEnum = (typeof CustomerOAuthAccountScalarFieldEnum)[keyof typeof CustomerOAuthAccountScalarFieldEnum]
-
-
 export const CustomerSessionScalarFieldEnum = {
   id: 'id',
   accountId: 'accountId',
@@ -3637,10 +3561,10 @@ export const WorkspaceScalarFieldEnum = {
   id: 'id',
   customerId: 'customerId',
   primaryCardId: 'primaryCardId',
-  billingAccountId: 'billingAccountId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  archivedAt: 'archivedAt'
+  archivedAt: 'archivedAt',
+  billingAccountId: 'billingAccountId'
 } as const
 
 export type WorkspaceScalarFieldEnum = (typeof WorkspaceScalarFieldEnum)[keyof typeof WorkspaceScalarFieldEnum]
@@ -3678,7 +3602,6 @@ export type BillingAccountScalarFieldEnum = (typeof BillingAccountScalarFieldEnu
 
 export const OrderScalarFieldEnum = {
   id: 'id',
-  workspaceId: 'workspaceId',
   orderNumber: 'orderNumber',
   customerName: 'customerName',
   company: 'company',
@@ -3702,10 +3625,11 @@ export const OrderScalarFieldEnum = {
   discount: 'discount',
   tax: 'tax',
   total: 'total',
-  accountPasswordHash: 'accountPasswordHash',
-  accountPasswordSalt: 'accountPasswordSalt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  workspaceId: 'workspaceId',
+  accountPasswordHash: 'accountPasswordHash',
+  accountPasswordSalt: 'accountPasswordSalt'
 } as const
 
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
@@ -3713,7 +3637,6 @@ export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof Or
 
 export const PaymentSubmissionScalarFieldEnum = {
   id: 'id',
-  workspaceId: 'workspaceId',
   orderId: 'orderId',
   customerId: 'customerId',
   paymentMethod: 'paymentMethod',
@@ -3728,7 +3651,8 @@ export const PaymentSubmissionScalarFieldEnum = {
   submittedAt: 'submittedAt',
   verifiedAt: 'verifiedAt',
   verifiedBy: 'verifiedBy',
-  rejectionReason: 'rejectionReason'
+  rejectionReason: 'rejectionReason',
+  workspaceId: 'workspaceId'
 } as const
 
 export type PaymentSubmissionScalarFieldEnum = (typeof PaymentSubmissionScalarFieldEnum)[keyof typeof PaymentSubmissionScalarFieldEnum]
@@ -3736,7 +3660,6 @@ export type PaymentSubmissionScalarFieldEnum = (typeof PaymentSubmissionScalarFi
 
 export const InvoiceScalarFieldEnum = {
   id: 'id',
-  workspaceId: 'workspaceId',
   invoiceNumber: 'invoiceNumber',
   orderId: 'orderId',
   customerId: 'customerId',
@@ -3750,13 +3673,14 @@ export const InvoiceScalarFieldEnum = {
   issuedAt: 'issuedAt',
   pdfPath: 'pdfPath',
   generatedBy: 'generatedBy',
-  subscriptionId: 'subscriptionId',
   billingAccountId: 'billingAccountId',
-  periodStart: 'periodStart',
-  periodEnd: 'periodEnd',
   dueAt: 'dueAt',
   paidAt: 'paidAt',
-  version: 'version'
+  periodEnd: 'periodEnd',
+  periodStart: 'periodStart',
+  subscriptionId: 'subscriptionId',
+  version: 'version',
+  workspaceId: 'workspaceId'
 } as const
 
 export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
@@ -3781,7 +3705,6 @@ export type RetryTaskScalarFieldEnum = (typeof RetryTaskScalarFieldEnum)[keyof t
 
 export const CardScalarFieldEnum = {
   id: 'id',
-  workspaceId: 'workspaceId',
   customerId: 'customerId',
   orderId: 'orderId',
   slug: 'slug',
@@ -3795,7 +3718,8 @@ export const CardScalarFieldEnum = {
   seoDescription: 'seoDescription',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt'
+  deletedAt: 'deletedAt',
+  workspaceId: 'workspaceId'
 } as const
 
 export type CardScalarFieldEnum = (typeof CardScalarFieldEnum)[keyof typeof CardScalarFieldEnum]
@@ -3879,18 +3803,18 @@ export type SocialLinkScalarFieldEnum = (typeof SocialLinkScalarFieldEnum)[keyof
 export const CardButtonScalarFieldEnum = {
   id: 'id',
   cardId: 'cardId',
-  type: 'type',
   label: 'label',
   url: 'url',
   position: 'position',
   isVisible: 'isVisible',
-  displayMode: 'displayMode',
-  color: 'color',
-  openInNewTab: 'openInNewTab',
-  analyticsEnabled: 'analyticsEnabled',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt'
+  deletedAt: 'deletedAt',
+  type: 'type',
+  openInNewTab: 'openInNewTab',
+  analyticsEnabled: 'analyticsEnabled',
+  displayMode: 'displayMode',
+  color: 'color'
 } as const
 
 export type CardButtonScalarFieldEnum = (typeof CardButtonScalarFieldEnum)[keyof typeof CardButtonScalarFieldEnum]
@@ -3955,13 +3879,13 @@ export const PlanScalarFieldEnum = {
   quarterlyMinor: 'quarterlyMinor',
   yearlyMinor: 'yearlyMinor',
   isActive: 'isActive',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   isPopular: 'isPopular',
   badge: 'badge',
   limits: 'limits',
-  sortOrder: 'sortOrder',
-  archivedAt: 'archivedAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  archivedAt: 'archivedAt'
 } as const
 
 export type PlanScalarFieldEnum = (typeof PlanScalarFieldEnum)[keyof typeof PlanScalarFieldEnum]
@@ -4008,26 +3932,26 @@ export const SubscriptionScalarFieldEnum = {
   providerRef: 'providerRef',
   currentPeriodStart: 'currentPeriodStart',
   currentPeriodEnd: 'currentPeriodEnd',
-  startsAt: 'startsAt',
-  expiresAt: 'expiresAt',
-  activatedAt: 'activatedAt',
-  expiredAt: 'expiredAt',
   canceledAt: 'canceledAt',
-  cancelledAt: 'cancelledAt',
   suspendedAt: 'suspendedAt',
   renewedAt: 'renewedAt',
-  workspaceId: 'workspaceId',
-  planPriceId: 'planPriceId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  archivedAt: 'archivedAt',
   billingAccountId: 'billingAccountId',
-  originOrderId: 'originOrderId',
-  trialStart: 'trialStart',
-  trialEnd: 'trialEnd',
   cancelAtPeriodEnd: 'cancelAtPeriodEnd',
   endedAt: 'endedAt',
-  archivedAt: 'archivedAt',
+  originOrderId: 'originOrderId',
+  planPriceId: 'planPriceId',
+  trialEnd: 'trialEnd',
+  trialStart: 'trialStart',
   version: 'version',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  workspaceId: 'workspaceId',
+  activatedAt: 'activatedAt',
+  expiredAt: 'expiredAt',
+  expiresAt: 'expiresAt',
+  startsAt: 'startsAt',
+  cancelledAt: 'cancelledAt'
 } as const
 
 export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
@@ -4058,7 +3982,6 @@ export type SubscriptionReminderScalarFieldEnum = (typeof SubscriptionReminderSc
 
 export const MediaAssetScalarFieldEnum = {
   id: 'id',
-  workspaceId: 'workspaceId',
   customerId: 'customerId',
   createdByAdminId: 'createdByAdminId',
   folderId: 'folderId',
@@ -4079,7 +4002,8 @@ export const MediaAssetScalarFieldEnum = {
   tags: 'tags',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt'
+  deletedAt: 'deletedAt',
+  workspaceId: 'workspaceId'
 } as const
 
 export type MediaAssetScalarFieldEnum = (typeof MediaAssetScalarFieldEnum)[keyof typeof MediaAssetScalarFieldEnum]
@@ -4087,11 +4011,11 @@ export type MediaAssetScalarFieldEnum = (typeof MediaAssetScalarFieldEnum)[keyof
 
 export const MediaFolderScalarFieldEnum = {
   id: 'id',
-  workspaceId: 'workspaceId',
   name: 'name',
   parentId: 'parentId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  workspaceId: 'workspaceId'
 } as const
 
 export type MediaFolderScalarFieldEnum = (typeof MediaFolderScalarFieldEnum)[keyof typeof MediaFolderScalarFieldEnum]
@@ -4110,7 +4034,6 @@ export type CardMediaScalarFieldEnum = (typeof CardMediaScalarFieldEnum)[keyof t
 
 export const AnalyticsEventScalarFieldEnum = {
   id: 'id',
-  workspaceId: 'workspaceId',
   cardId: 'cardId',
   type: 'type',
   occurredAt: 'occurredAt',
@@ -4125,7 +4048,8 @@ export const AnalyticsEventScalarFieldEnum = {
   buttonId: 'buttonId',
   socialLinkId: 'socialLinkId',
   referrerHost: 'referrerHost',
-  metadata: 'metadata'
+  metadata: 'metadata',
+  workspaceId: 'workspaceId'
 } as const
 
 export type AnalyticsEventScalarFieldEnum = (typeof AnalyticsEventScalarFieldEnum)[keyof typeof AnalyticsEventScalarFieldEnum]
@@ -4133,7 +4057,6 @@ export type AnalyticsEventScalarFieldEnum = (typeof AnalyticsEventScalarFieldEnu
 
 export const NotificationDeliveryScalarFieldEnum = {
   id: 'id',
-  workspaceId: 'workspaceId',
   orderId: 'orderId',
   customerId: 'customerId',
   cardId: 'cardId',
@@ -4150,7 +4073,8 @@ export const NotificationDeliveryScalarFieldEnum = {
   failureCode: 'failureCode',
   failureMessage: 'failureMessage',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  workspaceId: 'workspaceId'
 } as const
 
 export type NotificationDeliveryScalarFieldEnum = (typeof NotificationDeliveryScalarFieldEnum)[keyof typeof NotificationDeliveryScalarFieldEnum]
@@ -4158,14 +4082,14 @@ export type NotificationDeliveryScalarFieldEnum = (typeof NotificationDeliverySc
 
 export const SettingScalarFieldEnum = {
   id: 'id',
-  workspaceId: 'workspaceId',
   customerId: 'customerId',
   cardId: 'cardId',
   scope: 'scope',
   key: 'key',
   value: 'value',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  workspaceId: 'workspaceId'
 } as const
 
 export type SettingScalarFieldEnum = (typeof SettingScalarFieldEnum)[keyof typeof SettingScalarFieldEnum]
@@ -4173,7 +4097,6 @@ export type SettingScalarFieldEnum = (typeof SettingScalarFieldEnum)[keyof typeo
 
 export const AuditLogScalarFieldEnum = {
   id: 'id',
-  workspaceId: 'workspaceId',
   actorType: 'actorType',
   adminUserId: 'adminUserId',
   editorSessionId: 'editorSessionId',
@@ -4183,7 +4106,8 @@ export const AuditLogScalarFieldEnum = {
   success: 'success',
   ipHash: 'ipHash',
   metadata: 'metadata',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  workspaceId: 'workspaceId'
 } as const
 
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
@@ -4845,19 +4769,10 @@ export type BatchPayload = {
 export const defineExtension = runtime.Extensions.defineExtension as unknown as runtime.Types.Extensions.ExtendsHook<"define", TypeMapCb, runtime.Types.Extensions.DefaultArgs>
 export type DefaultPrismaClient = PrismaClient
 export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
-export type PrismaClientOptions = ({
-  /**
-   * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-pg`.
-   */
-  adapter: runtime.SqlDriverAdapterFactory
-  accelerateUrl?: never
-} | {
-  /**
-   * Prisma Accelerate URL allowing the client to connect through Accelerate instead of a direct database.
-   */
-  accelerateUrl: string
-  adapter?: never
-}) & {
+/**
+ * Options common to all variants of `PrismaClientOptions`, regardless of whether you connect to your database through a driver adapter or through Prisma Accelerate.
+ */
+export interface PrismaClientBaseOptions {
   /**
    * @default "colorless"
    */
@@ -4944,6 +4859,56 @@ export type PrismaClientOptions = ({
    */
   queryPlanCacheMaxSize?: number
 }
+
+/**
+ * `PrismaClient` options for connecting to your database through Prisma Accelerate instead of a driver adapter.
+ * 
+ * Learn more: https://pris.ly/d/accelerate
+ */
+export interface PrismaClientOptionsWithAccelerateUrl extends PrismaClientBaseOptions {
+  /**
+   * The Prisma Accelerate connection URL. Use this option to connect to your database through Prisma Accelerate instead of using a driver adapter to connect directly.
+   * 
+   * Learn more: https://pris.ly/d/accelerate
+   */
+  accelerateUrl: string
+  adapter?: never
+}
+
+/**
+ * `PrismaClient` options for connecting to your database through a driver adapter. This is the common case in Prisma 7.
+ * 
+ * Learn more: https://pris.ly/d/driver-adapters
+ */
+export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions {
+  /**
+   * A driver adapter that PrismaClient uses to connect to your database, such as the ones provided by `@prisma/adapter-pg`, `@prisma/adapter-libsql`, `@prisma/adapter-planetscale`, etc.
+   * 
+   * A driver adapter is **required** unless you connect to your database through Prisma Accelerate (in which case use `accelerateUrl` instead).
+   * 
+   * Learn more: https://pris.ly/d/driver-adapters
+   * 
+   * @example
+   * ```ts
+   * import { PrismaPg } from '@prisma/adapter-pg'
+   * import { PrismaClient } from './generated/prisma/client'
+   * 
+   * const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
+   * const prisma = new PrismaClient({ adapter })
+   * ```
+   */
+  adapter: runtime.SqlDriverAdapterFactory
+  accelerateUrl?: never
+}
+
+/**
+ * Options passed to the `PrismaClient` constructor.
+ * 
+ * A driver adapter (or, alternatively, a Prisma Accelerate URL) is **required**. See {@link PrismaClientOptionsWithAdapter} and {@link PrismaClientOptionsWithAccelerateUrl} for the two variants. All other properties live in {@link PrismaClientBaseOptions} and are optional.
+ * 
+ * Learn more about driver adapters: https://pris.ly/d/driver-adapters
+ */
+export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   adminUser?: Prisma.AdminUserOmit
   adminRole?: Prisma.AdminRoleOmit
@@ -4952,7 +4917,6 @@ export type GlobalOmitConfig = {
   nfcCard?: Prisma.NfcCardOmit
   customerAccount?: Prisma.CustomerAccountOmit
   customerPasswordReset?: Prisma.CustomerPasswordResetOmit
-  customerOAuthAccount?: Prisma.CustomerOAuthAccountOmit
   customerSession?: Prisma.CustomerSessionOmit
   workspace?: Prisma.WorkspaceOmit
   workspaceMembership?: Prisma.WorkspaceMembershipOmit
